@@ -1,0 +1,36 @@
+# Planned Folder Structure
+
+- src
+  - components
+    - widgets
+    - comments
+      - comments.jsx
+      - button.jsx
+    - article
+    - reactions
+    - table
+  - screens
+    - article
+      - index.jsx
+      - mobile.jsx
+      - desktop.jsx
+  - hooks
+  - store
+    - types.js
+    - actions
+      - article.action.js
+    - reducers
+      - article.reducer.js
+  - utils
+    - constants.jsx
+    - theme
+      - dark.jsx
+      - light.jsx
+    - firebase.js
+    - apollo.js
+    - apis
+      - article.api.js
+      - comment.api.js
+  - assets
+    - img
+    - placeholders
