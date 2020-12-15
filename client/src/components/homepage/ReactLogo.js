@@ -22,6 +22,6 @@ const useStyles = makeStyles((theme) => ({
   },
   h1: {
     fontFamily: theme.typography.fontFamily,
-    color: theme.palette.background.paper,
+    color: theme.palette.primary.main90,
   },
 }));
