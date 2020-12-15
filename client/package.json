@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.2",
+    "feather-icons": "^4.28.0",
     "file-loader": "^6.2.0",
     "history": "^5.0.0",
     "react": "^16.13.1",
