@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&family=Poppins:wght@200;300;400;500;600;700&display=swap");
-
 *,
 *::after,
 *::before {
@@ -9,7 +7,6 @@
 }
 
 body {
-	font-family: "Poppins", "Montserrat", sans-serif !important;
 	font-weight: 400;
 	font-size: 16px;
 	line-height: 1.7;

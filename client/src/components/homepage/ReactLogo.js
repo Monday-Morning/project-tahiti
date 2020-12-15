@@ -1,12 +1,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
 
 function ReactLogo() {
   const classes = useStyles();
 
   return (
     <div className={classes.screen}>
-      <h1 className={classes.h1}>Welcome to React Template</h1>
+      <Typography variant='h1'>IBM Plex Sans</Typography>
     </div>
   );
 }
@@ -19,9 +20,5 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     height: '100vh',
-  },
-  h1: {
-    fontFamily: theme.typography.fontFamily,
-    color: theme.palette.primary.main90,
   },
 }));

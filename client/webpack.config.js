@@ -2,8 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-  .BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = (env) => {
@@ -91,6 +90,7 @@ module.exports = (env) => {
     extensions: ['.js'],
   };
 
+  // Config specific for Production
   if (isProduction) {
     config.output = {
       path: path.join(__dirname, 'dist'),
@@ -103,6 +103,7 @@ module.exports = (env) => {
     config.devtool = 'source-map';
   }
 
+  // Config specific for Development
   if (isDev) {
     config.output = {
       path: path.join(__dirname, 'dist'),
