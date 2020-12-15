@@ -8,7 +8,7 @@ let theme = createMuiTheme({
     },
     background: {
       paper: '#00587a',
-      default: '#0f3057',
+      default: '#fff',
     },
   },
   breakpoints: {
@@ -21,10 +21,18 @@ let theme = createMuiTheme({
     },
   },
   typography: {
-    fontFamily: 'Roboto',
+    fontFamily: [
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
   },
 });
 
-theme = responsiveFontSizes(theme);
+// theme = responsiveFontSizes(theme);
 
 export default theme;

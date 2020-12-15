@@ -6,7 +6,7 @@ function ReactLogo() {
 
   return (
     <div className={classes.screen}>
-      <h1>Welcome to React Template</h1>
+      <h1 className={classes.h1}>Welcome to React Template</h1>
     </div>
   );
 }
@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     height: '100vh',
+  },
+  h1: {
     fontFamily: theme.typography.fontFamily,
+    color: theme.palette.background.paper,
   },
 }));
