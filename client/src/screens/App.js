@@ -21,6 +21,11 @@ const AsyncHome = Loadable({
   loading: ActivityIndicator,
 });
 
+const AsyncOnboarding = Loadable({
+  loader: () => import('./Onboarding'),
+  loading: ActivityIndicator,
+});
+
 // Function to check the Authenticated status.
 const isAuthenticated = () => {
   // Check the authentication state as per your way of authentication i.e. jwt, sessions, etc
@@ -41,6 +46,7 @@ function App() {
       <Router history={createBrowserHistory}>
         <Switch>
           <Route path='/' exact component={AsyncHome} />
+          <Route path='/onboarding' exact component={AsyncOnboarding} />
           <Redirect to='/' />
         </Switch>
       </Router>
