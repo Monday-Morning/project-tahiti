@@ -8,6 +8,7 @@ import { Typography } from '@material-ui/core';
 import Welcome from '../components/onboarding/stages/Welcome';
 import VerifyEmail from '../components/onboarding/stages/VerifyEmail';
 import SelectTopics from '../components/onboarding/stages/SelectTopics';
+import NewsletterSignup from '../components/onboarding/stages/NewsletterSignup';
 
 const STAGES = {
   WELCOME: 'welcome-stage',
@@ -18,7 +19,7 @@ const STAGES = {
 
 function Onboarding() {
   const classes = useStyles();
-  const [stage, setStage] = useState(STAGES.INTERESTED_TOPICS);
+  const [stage, setStage] = useState(STAGES.NEWSLETTER);
 
   const renderStages = () => {
     switch (stage) {
@@ -28,6 +29,8 @@ function Onboarding() {
         return <VerifyEmail />;
       case STAGES.INTERESTED_TOPICS:
         return <SelectTopics />;
+      case STAGES.NEWSLETTER:
+        return <NewsletterSignup />;
       default:
         <Typography variant='body1'>Loading....</Typography>;
     }
@@ -53,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   },
   box: {
     minWidth: 350,
-    minHeight: 600,
+    minHeight: 500,
     width: '55%',
     height: '55%',
     backgroundColor: theme.palette.background.default,
