@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // Library
 import { Typography, Grid } from '@material-ui/core';
@@ -14,36 +14,44 @@ import theme from '../../../config/themes/light';
 function VerifyEmail() {
   const classes = useStyles();
   const [email, setEmail] = useInput('');
-
-  console.log(email);
+  const [isEmailVerified, setIsEmailVerified] = useState(true);
 
   return (
     <Grid className={classes.container} container spacing={3}>
-      <Grid className={classes.content} item lg={6}>
+      <Grid className={classes.content} item sm={12} md={12} lg={7}>
         <Typography className={classes.verifyTitle} variant='h1'>
           Verify Account
         </Typography>
 
         <Typography className={classes.verifyContent} variant='body1'>
-          Verify your account with insti email id <br /> just once and get access to LAN-restricted{' '}
-          <br />
-          articles !
+          {isEmailVerified
+            ? 'Verify your account with insti email id \n just once and get access to LAN-restricted \n articles !'
+            : `We have sent an email to ${email}`}
         </Typography>
 
-        <Typography className={classes.emailTitle} variant='h3'>
-          Email
-        </Typography>
-
-        <input
-          className={classes.emailInput}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder='your@email.com'
-        />
+        {isEmailVerified ? (
+          <Typography className={classes.verifyContent} variant='body1'>
+            You need to verify your email to access certain restricted articles. If you have not
+            received the verification email please check your Spam folder. You can also click on the
+            resend button below to have another email sent to you
+          </Typography>
+        ) : (
+          <>
+            <Typography className={classes.emailTitle} variant='h3'>
+              Email
+            </Typography>
+            <input
+              className={classes.emailInput}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder='your@email.com'
+            />
+          </>
+        )}
 
         <div className={classes.button}>
           <Typography className={classes.buttonText} variant='body1'>
-            Get Verification Link
+            {isEmailVerified ? 'Check again and continue' : 'Get Verification Link'}
           </Typography>
         </div>
 
@@ -53,7 +61,7 @@ function VerifyEmail() {
         </Typography>
       </Grid>
 
-      <Grid className={classes.imgContainer} item lg={5}>
+      <Grid className={classes.imgContainer} item sm={12} md={12} lg={5}>
         <img className={classes.img} src={verifyEmailImg} alt='Verify Email' />
       </Grid>
     </Grid>
