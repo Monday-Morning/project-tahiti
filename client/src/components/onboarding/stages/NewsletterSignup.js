@@ -9,6 +9,7 @@ import createBrowserHistory from '../../../utils/history';
 
 // Assets
 import newsletter from '../../../assets/images/onboarding/newsletter.png';
+import { ONBOARDING } from '../../../assets/placeholder/onboarding';
 
 function VerifyEmail(props) {
   const classes = useStyles();
@@ -28,7 +29,7 @@ function VerifyEmail(props) {
     <Grid className={classes.container} container spacing={3}>
       <Grid className={classes.content} item sm={12} md={12} lg={7}>
         <Typography className={classes.verifyTitle} variant='h1'>
-          Newsletter Signup
+          {ONBOARDING.NEWSLETTER.PRIMARY.TITLE}
         </Typography>
 
         {isSigned ? (
@@ -37,24 +38,22 @@ function VerifyEmail(props) {
               <i className='far fa-check-circle fa-6x' style={{ color: '#1F9943' }} />
             </div>
             <Typography className={classes.verifyContent} variant='body1'>
-              You’ve successfully signed up for the newsletter. <br /> Be the first to know the
-              happenings at NITR and never miss out on an issue release !
+              {ONBOARDING.NEWSLETTER.PRIMARY.CONTENT}
             </Typography>
           </>
         ) : (
           <>
             <Typography className={classes.verifyContent} variant='body1'>
-              Sign up for the MM newsletter and get news and <br /> articles delivered straight to
-              your mailbox!
+              {ONBOARDING.NEWSLETTER.SECONDARY.CONTENT}
             </Typography>
             <Typography className={classes.emailTitle} variant='h3'>
-              Email
+              {ONBOARDING.NEWSLETTER.SECONDARY.TITLE}
             </Typography>
             <input
               className={classes.emailInput}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder='your@email.com'
+              placeholder={ONBOARDING.NEWSLETTER.EMAIL_PLACEHOLDER}
             />
           </>
         )}
@@ -64,7 +63,9 @@ function VerifyEmail(props) {
           className={classes.button}
         >
           <Typography className={classes.buttonText} variant='body1'>
-            {isSigned ? 'Get Started' : 'Signup for newsletter'}
+            {isSigned
+              ? ONBOARDING.NEWSLETTER.BUTTON.SECONDARY
+              : ONBOARDING.NEWSLETTER.BUTTON.PRIMARY}
           </Typography>
         </div>
 

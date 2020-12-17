@@ -4,12 +4,12 @@ import React, { useState } from 'react';
 import { Typography, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-// Hooks
-import useSwitch from '../../../hooks/useSwitch';
-
 // Assets
 import verifyEmailImg from '../../../assets/images/onboarding/verifyEmail.png';
 import theme from '../../../config/themes/light';
+
+// Constants
+import { ONBOARDING } from '../../../assets/placeholder/onboarding';
 
 function VerifyEmail(props) {
   const classes = useStyles();
@@ -21,31 +21,29 @@ function VerifyEmail(props) {
     <Grid className={classes.container} container spacing={3}>
       <Grid className={classes.content} item sm={12} md={12} lg={7}>
         <Typography className={classes.verifyTitle} variant='h1'>
-          Verify Account
+          {ONBOARDING.VERIFY_EMAIL.PRIMARY.TITLE}
         </Typography>
 
         <Typography className={classes.verifyContent} variant='body1'>
           {!isEmailVerified
-            ? 'Verify your account with institute email id \n just once and get access to LAN-restricted \n articles !'
+            ? ONBOARDING.VERIFY_EMAIL.PRIMARY.CONTENT
             : `We have sent an email to ${email}`}
         </Typography>
 
         {isEmailVerified ? (
           <Typography className={classes.verifyContent} variant='body1'>
-            You need to verify your email to access certain restricted articles. If you have not
-            received the verification email please check your Spam folder. You can also click on the
-            resend button below to have another email sent to you
+            {ONBOARDING.VERIFY_EMAIL.SECONDARY.CONTENT}
           </Typography>
         ) : (
           <>
             <Typography className={classes.emailTitle} variant='h3'>
-              Email
+              {ONBOARDING.VERIFY_EMAIL.SECONDARY.TITLE}
             </Typography>
             <input
               className={classes.emailInput}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder='your@email.com'
+              placeholder={ONBOARDING.VERIFY_EMAIL.EMAIL_PLACEHOLDER}
             />
           </>
         )}
@@ -62,13 +60,14 @@ function VerifyEmail(props) {
           }
         >
           <Typography className={classes.buttonText} variant='body1'>
-            {isEmailVerified ? 'Check again and continue' : 'Get Verification Link'}
+            {isEmailVerified
+              ? ONBOARDING.VERIFY_EMAIL.BUTTON.SECONDARY
+              : ONBOARDING.VERIFY_EMAIL.BUTTON.PRIMARY}
           </Typography>
         </div>
 
         <Typography className={classes.note} variant='body2'>
-          Note: This only works if you’re a current student of <br /> NIT Rourkela with a valid
-          insti email id.
+          {ONBOARDING.VERIFY_EMAIL.NOTE}
         </Typography>
       </Grid>
 

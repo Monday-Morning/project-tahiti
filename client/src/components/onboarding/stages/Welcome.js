@@ -8,6 +8,9 @@ import { Link } from 'react-router-dom';
 // Assets
 import logo from '../../../assets/images/logo.png';
 
+// Constants
+import { ONBOARDING } from '../../../assets/placeholder/onboarding';
+
 function Welcome(props) {
   const classes = useStyles();
 
@@ -25,8 +28,7 @@ function Welcome(props) {
       <img className={classes.logo} src={logo} alt='Monday Morning' />
 
       <Typography className={classes.welcomeText} variant='body1'>
-        Welcome to Monday Morning, <br /> the student media body of NIT Rourkela, <br /> and India’s
-        2nd largest student media body !
+        {ONBOARDING.WELCOME.CONTENT}
       </Typography>
 
       <div className={classes.loginButton} onClick={onSignupClick}>
@@ -44,7 +46,7 @@ function Welcome(props) {
       </Link>
 
       <Typography className={classes.terms} variant='body2'>
-        By creating an account, I accept MM’s Terms of Use
+        {ONBOARDING.WELCOME.TERMS}
       </Typography>
     </div>
   );

@@ -7,6 +7,9 @@ import useToggle from '../../../hooks/useToggle';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+// Constants
+import { ONBOARDING } from '../../../assets/placeholder/onboarding';
+
 const Topic = (props) => {
   const classes = useStyles();
   const [selected, toggleSelected] = useToggle();
@@ -65,16 +68,15 @@ function SelectTopics(props) {
   return (
     <div className={classes.container}>
       <Typography className={classes.title} variant='h1'>
-        Interested Topics
+        {ONBOARDING.INTERESTED_TOPICS.PRIMARY.TITLE}
       </Typography>
 
       <Typography className={classes.content} variant='body1'>
-        Select the topics you’re interested in, and get smarter article suggestions on the MM
-        website!
+        {ONBOARDING.INTERESTED_TOPICS.PRIMARY.CONTENT}
       </Typography>
 
       <div className={classes.topicsContainer}>
-        {topics.map((topic, index) => (
+        {ONBOARDING.INTERESTED_TOPICS.TOPICS.map((topic, index) => (
           <Topic
             key={index}
             topic={topic}
@@ -134,6 +136,9 @@ const useStyles = makeStyles((theme) => ({
     margin: 10,
     marginLeft: 0,
     borderRadius: 200,
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
   nextButton: {
     position: 'absolute',
