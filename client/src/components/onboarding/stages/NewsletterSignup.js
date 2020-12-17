@@ -4,16 +4,25 @@ import React, { useState } from 'react';
 import { Typography, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-// Hooks
-import useInput from '../../../hooks/useInput';
+// Helper
+import createBrowserHistory from '../../../utils/history';
 
 // Assets
 import newsletter from '../../../assets/images/onboarding/newsletter.png';
 
-function VerifyEmail() {
+function VerifyEmail(props) {
   const classes = useStyles();
-  const [email, setEmail] = useInput('');
+
+  // Local States
   const [isSigned, setIsSigned] = useState(false);
+
+  // Props
+  const { email, setEmail, signupNewsletter } = props;
+
+  const onSignup = () => {
+    setIsSigned(true);
+    signupNewsletter();
+  };
 
   return (
     <Grid className={classes.container} container spacing={3}>
@@ -50,7 +59,10 @@ function VerifyEmail() {
           </>
         )}
 
-        <div className={classes.button}>
+        <div
+          onClick={isSigned ? () => createBrowserHistory.push('/') : onSignup}
+          className={classes.button}
+        >
           <Typography className={classes.buttonText} variant='body1'>
             {isSigned ? 'Get Started' : 'Signup for newsletter'}
           </Typography>

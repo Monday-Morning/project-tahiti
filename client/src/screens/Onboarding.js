@@ -40,6 +40,7 @@ function Onboarding() {
   // Local Helper Functions
   const onLogin = () => console.log('Login Function Executed');
   const verifyEmail = () => console.log('Email Verify Function Executed');
+  const signupNewsletter = () => console.log('Signed up for Newsletter');
 
   const addSelectedTopic = (newTopic) => setSelectedTopics((current) => [...current, newTopic]);
 
@@ -49,8 +50,6 @@ function Onboarding() {
         if (selectedTopic !== topic) return selectedTopic;
       });
     });
-
-  console.log(selectedTopics);
 
   const renderStages = () => {
     switch (stage) {
@@ -77,7 +76,13 @@ function Onboarding() {
           />
         );
       case STAGES.NEWSLETTER:
-        return <NewsletterSignup email={newsletterEmail} setEmail={setNewsletterEmail} />;
+        return (
+          <NewsletterSignup
+            email={newsletterEmail}
+            setEmail={setNewsletterEmail}
+            signupNewsletter={signupNewsletter}
+          />
+        );
       default:
         <Typography variant='body1'>Loading....</Typography>;
     }
