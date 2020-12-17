@@ -10,6 +10,10 @@ import VerifyEmail from '../components/onboarding/stages/VerifyEmail';
 import SelectTopics from '../components/onboarding/stages/SelectTopics';
 import NewsletterSignup from '../components/onboarding/stages/NewsletterSignup';
 
+// Hooks
+import useInput from '../hooks/useInput';
+import useToggle from '../hooks/useToggle';
+
 const STAGES = {
   WELCOME: 'welcome-stage',
   VERIFY_EMAIL: 'verify-email',
@@ -19,18 +23,59 @@ const STAGES = {
 
 function Onboarding() {
   const classes = useStyles();
-  const [stage, setStage] = useState(STAGES.NEWSLETTER);
+
+  // Local States
+  const [stage, setStage] = useState(STAGES.WELCOME);
+  const [email, setEmail] = useInput('');
+  const [isEmailVerified, toggleIsEmailVerified] = useToggle(false);
+  const [selectedTopics, setSelectedTopics] = useState([]);
+  const [newsletterEmail, setNewsletterEmail] = useInput('');
+
+  // Stage Change functions
+  const setStageToWelcome = () => setStage(STAGES.WELCOME);
+  const setStageToVerifyEmail = () => setStage(STAGES.VERIFY_EMAIL);
+  const setStageToInterestedTopics = () => setStage(STAGES.INTERESTED_TOPICS);
+  const setStageToNewsletter = () => setStage(STAGES.NEWSLETTER);
+
+  // Local Helper Functions
+  const onLogin = () => console.log('Login Function Executed');
+
+  const verifyEmail = () => console.log('Email Verify Function Executed');
+
+  const addSelectedTopic = (newTopic) => setSelectedTopics((selected) => [...selected, newTopic]);
+
+  const removeSelectedTopic = (topicIndex) =>
+    setSelectedTopics((selected) => {
+      selected.splice(topicIndex, 1);
+      return selected;
+    });
 
   const renderStages = () => {
     switch (stage) {
       case STAGES.WELCOME:
-        return <Welcome />;
+        return <Welcome onNext={setStageToVerifyEmail} onLogin={onLogin} />;
       case STAGES.VERIFY_EMAIL:
-        return <VerifyEmail />;
+        return (
+          <VerifyEmail
+            email={email}
+            setEmail={setEmail}
+            isEmailVerified={isEmailVerified}
+            toggleIsEmailVerified={toggleIsEmailVerified}
+            verifyEmail={verifyEmail}
+            onNext={setStageToInterestedTopics}
+          />
+        );
       case STAGES.INTERESTED_TOPICS:
-        return <SelectTopics />;
+        return (
+          <SelectTopics
+            selectedTopics={selectedTopics}
+            addSelectedTopic={addSelectedTopic}
+            removeSeletedTopic={removeSelectedTopic}
+            onNext={setStageToNewsletter}
+          />
+        );
       case STAGES.NEWSLETTER:
-        return <NewsletterSignup />;
+        return <NewsletterSignup email={newsletterEmail} setEmail={setNewsletterEmail} />;
       default:
         <Typography variant='body1'>Loading....</Typography>;
     }

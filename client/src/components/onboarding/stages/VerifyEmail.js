@@ -5,16 +5,17 @@ import { Typography, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 // Hooks
-import useInput from '../../../hooks/useInput';
+import useSwitch from '../../../hooks/useSwitch';
 
 // Assets
 import verifyEmailImg from '../../../assets/images/onboarding/verifyEmail.png';
 import theme from '../../../config/themes/light';
 
-function VerifyEmail() {
+function VerifyEmail(props) {
   const classes = useStyles();
-  const [email, setEmail] = useInput('');
-  const [isEmailVerified, setIsEmailVerified] = useState(false);
+
+  // props
+  const { email, setEmail, isEmailVerified, toggleIsEmailVerified, verifyEmail, onNext } = props;
 
   return (
     <Grid className={classes.container} container spacing={3}>
@@ -49,7 +50,17 @@ function VerifyEmail() {
           </>
         )}
 
-        <div className={classes.button}>
+        <div
+          className={classes.button}
+          onClick={
+            !isEmailVerified
+              ? () => {
+                  verifyEmail();
+                  toggleIsEmailVerified();
+                }
+              : onNext
+          }
+        >
           <Typography className={classes.buttonText} variant='body1'>
             {isEmailVerified ? 'Check again and continue' : 'Get Verification Link'}
           </Typography>
@@ -114,6 +125,9 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'center',
     alignmentItems: 'center',
     borderRadius: 5,
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
   buttonText: {
     color: theme.palette.common.white,

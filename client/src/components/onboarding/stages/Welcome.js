@@ -8,8 +8,17 @@ import { Link } from 'react-router-dom';
 // Assets
 import logo from '../../../assets/images/logo.png';
 
-function Welcome() {
+function Welcome(props) {
   const classes = useStyles();
+
+  // Props
+  const { onNext, onLogin } = props;
+
+  // Helper Functions
+  const onSignupClick = () => {
+    onLogin();
+    onNext();
+  };
 
   return (
     <div className={classes.container}>
@@ -20,7 +29,7 @@ function Welcome() {
         2nd largest student media body !
       </Typography>
 
-      <div className={classes.loginButton}>
+      <div className={classes.loginButton} onClick={onSignupClick}>
         <i className='fab fa-google fa-2x' />
 
         <Typography variant='body1' className={classes.signupText}>
@@ -77,6 +86,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-around',
     border: `1px solid ${theme.palette.common.black}`,
     borderRadius: 5,
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
   signupText: {
     marginLeft: 20,
