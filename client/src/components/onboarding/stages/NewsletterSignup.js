@@ -7,6 +7,9 @@ import { makeStyles } from '@material-ui/core/styles';
 // Helper
 import createBrowserHistory from '../../../utils/history';
 
+// Components
+import Button from '../../shared/Button/Regular';
+
 // Assets
 import newsletter from '../../../assets/images/onboarding/newsletter.png';
 import { ONBOARDING } from '../../../assets/placeholder/onboarding';
@@ -58,7 +61,7 @@ function VerifyEmail(props) {
           </>
         )}
 
-        <div
+        {/* <div
           onClick={isSigned ? () => createBrowserHistory.push('/') : onSignup}
           className={classes.button}
         >
@@ -67,11 +70,18 @@ function VerifyEmail(props) {
               ? ONBOARDING.NEWSLETTER.BUTTON.SECONDARY
               : ONBOARDING.NEWSLETTER.BUTTON.PRIMARY}
           </Typography>
-        </div>
+        </div> */}
+
+        <Button
+          text={
+            isSigned ? ONBOARDING.NEWSLETTER.BUTTON.SECONDARY : ONBOARDING.NEWSLETTER.BUTTON.PRIMARY
+          }
+          onClick={isSigned ? () => createBrowserHistory.push('/') : onSignup}
+          containerStyles={classes.button}
+        />
 
         <Typography className={classes.note} variant='body2'>
-          Note: Newsletters are sent once a week or once in a fortnight during the <br /> working
-          session of the college
+          {ONBOARDING.NEWSLETTER.NOTE}
         </Typography>
       </Grid>
 
@@ -122,12 +132,12 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     width: '85%',
-    padding: 7,
-    backgroundColor: theme.palette.primary.blue50,
-    display: 'flex',
-    justifyContent: 'center',
-    alignmentItems: 'center',
-    borderRadius: 5,
+    // padding: 7,
+    // backgroundColor: theme.palette.primary.blue50,
+    // display: 'flex',
+    // justifyContent: 'center',
+    // alignmentItems: 'center',
+    // borderRadius: 5,
   },
   buttonText: {
     color: theme.palette.common.white,
