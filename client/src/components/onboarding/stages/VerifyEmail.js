@@ -14,7 +14,7 @@ import theme from '../../../config/themes/light';
 function VerifyEmail() {
   const classes = useStyles();
   const [email, setEmail] = useInput('');
-  const [isEmailVerified, setIsEmailVerified] = useState(true);
+  const [isEmailVerified, setIsEmailVerified] = useState(false);
 
   return (
     <Grid className={classes.container} container spacing={3}>
@@ -24,8 +24,8 @@ function VerifyEmail() {
         </Typography>
 
         <Typography className={classes.verifyContent} variant='body1'>
-          {isEmailVerified
-            ? 'Verify your account with insti email id \n just once and get access to LAN-restricted \n articles !'
+          {!isEmailVerified
+            ? 'Verify your account with institute email id \n just once and get access to LAN-restricted \n articles !'
             : `We have sent an email to ${email}`}
         </Typography>
 
