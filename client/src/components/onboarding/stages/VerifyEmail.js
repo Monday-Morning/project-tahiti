@@ -8,6 +8,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import verifyEmailImg from '../../../assets/images/onboarding/verifyEmail.png';
 import theme from '../../../config/themes/light';
 
+// Components
+import Button from '../../shared/button/Regular';
+import Input from '../../shared/input/Regular';
+
 // Constants
 import { ONBOARDING } from '../../../assets/placeholder/onboarding';
 
@@ -39,17 +43,22 @@ function VerifyEmail(props) {
             <Typography className={classes.emailTitle} variant='h3'>
               {ONBOARDING.VERIFY_EMAIL.SECONDARY.TITLE}
             </Typography>
-            <input
+            <Input
               className={classes.emailInput}
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={setEmail}
               placeholder={ONBOARDING.VERIFY_EMAIL.EMAIL_PLACEHOLDER}
             />
           </>
         )}
 
-        <div
-          className={classes.button}
+        <Button
+          containerStyles={classes.button}
+          text={
+            isEmailVerified
+              ? ONBOARDING.VERIFY_EMAIL.BUTTON.SECONDARY
+              : ONBOARDING.VERIFY_EMAIL.BUTTON.PRIMARY
+          }
           onClick={
             !isEmailVerified
               ? () => {
@@ -58,13 +67,7 @@ function VerifyEmail(props) {
                 }
               : onNext
           }
-        >
-          <Typography className={classes.buttonText} variant='body1'>
-            {isEmailVerified
-              ? ONBOARDING.VERIFY_EMAIL.BUTTON.SECONDARY
-              : ONBOARDING.VERIFY_EMAIL.BUTTON.PRIMARY}
-          </Typography>
-        </div>
+        />
 
         <Typography className={classes.note} variant='body2'>
           {ONBOARDING.VERIFY_EMAIL.NOTE}
@@ -107,30 +110,10 @@ const useStyles = makeStyles(() => ({
   },
   emailInput: {
     width: '85%',
-    padding: 10,
-    backgroundColor: theme.palette.secondary.neutral30,
-    borderRadius: 5,
-    margin: 10,
-    marginLeft: 0,
-    color: theme.palette.text.disabled,
-    fontSize: '18px',
-    border: '0px',
   },
   button: {
     width: '85%',
     padding: 10,
-    backgroundColor: theme.palette.primary.blue50,
-    display: 'flex',
-    justifyContent: 'center',
-    alignmentItems: 'center',
-    borderRadius: 5,
-    '&:hover': {
-      cursor: 'pointer',
-    },
-  },
-  buttonText: {
-    color: theme.palette.common.white,
-    fontSize: '18px',
   },
   imgContainer: {
     height: '100%',

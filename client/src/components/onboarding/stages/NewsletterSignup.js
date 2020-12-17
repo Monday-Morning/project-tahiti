@@ -8,7 +8,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import createBrowserHistory from '../../../utils/history';
 
 // Components
-import Button from '../../shared/Button/Regular';
+import Button from '../../shared/button/Regular';
+import Input from '../../shared/input/Regular';
 
 // Assets
 import newsletter from '../../../assets/images/onboarding/newsletter.png';
@@ -52,25 +53,14 @@ function VerifyEmail(props) {
             <Typography className={classes.emailTitle} variant='h3'>
               {ONBOARDING.NEWSLETTER.SECONDARY.TITLE}
             </Typography>
-            <input
+            <Input
               className={classes.emailInput}
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={setEmail}
               placeholder={ONBOARDING.NEWSLETTER.EMAIL_PLACEHOLDER}
             />
           </>
         )}
-
-        {/* <div
-          onClick={isSigned ? () => createBrowserHistory.push('/') : onSignup}
-          className={classes.button}
-        >
-          <Typography className={classes.buttonText} variant='body1'>
-            {isSigned
-              ? ONBOARDING.NEWSLETTER.BUTTON.SECONDARY
-              : ONBOARDING.NEWSLETTER.BUTTON.PRIMARY}
-          </Typography>
-        </div> */}
 
         <Button
           text={
@@ -121,29 +111,9 @@ const useStyles = makeStyles((theme) => ({
   },
   emailInput: {
     width: '85%',
-    padding: 10,
-    backgroundColor: theme.palette.secondary.neutral30,
-    borderRadius: 5,
-    margin: 10,
-    marginLeft: 0,
-    color: theme.palette.text.disabled,
-    fontSize: '18px',
-    border: '0px',
   },
   button: {
     width: '85%',
-    // padding: 7,
-    // backgroundColor: theme.palette.primary.blue50,
-    // display: 'flex',
-    // justifyContent: 'center',
-    // alignmentItems: 'center',
-    // borderRadius: 5,
-  },
-  buttonText: {
-    color: theme.palette.common.white,
-    fontSize: '18px',
-    margin: 0,
-    padding: 0,
   },
   imgContainer: {
     height: '100%',

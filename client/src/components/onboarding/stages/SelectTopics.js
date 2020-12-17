@@ -7,6 +7,9 @@ import useToggle from '../../../hooks/useToggle';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+// Components
+import Button from '../../shared/button/Regular';
+
 // Constants
 import { ONBOARDING } from '../../../assets/placeholder/onboarding';
 
@@ -37,28 +40,6 @@ const Topic = (props) => {
   );
 };
 
-const topics = [
-  'Witsdom',
-  'Campus Buzz',
-  'Student Activities',
-  'Halls',
-  'Alumni Affairs',
-  'Interviews',
-  'SAC Speaks',
-  'Dean Speaks',
-  'Videos',
-  'Guest Interviews',
-  "Director's Desk",
-  "Chief Warden's Column",
-  'Alumnus Speaks',
-  'Editorial',
-  'Placements',
-  'Internships',
-  'Higher Education',
-  'Photostories',
-  'Comics',
-];
-
 function SelectTopics(props) {
   const classes = useStyles();
 
@@ -87,17 +68,14 @@ function SelectTopics(props) {
         ))}
       </div>
 
-      <div
+      <Button
+        text='Next'
         onClick={() => {
           onNext();
           console.log('Following are the selected Topics: ', selectedTopics);
         }}
-        className={classes.nextButton}
-      >
-        <Typography className={classes.next} variant='body1'>
-          Next
-        </Typography>
-      </div>
+        containerStyles={classes.nextButton}
+      />
     </div>
   );
 }
@@ -109,6 +87,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '100%',
     padding: 50,
+    paddingTop: 20,
     position: 'relative',
   },
   title: {
@@ -131,8 +110,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 400,
     backgroundColor: theme.palette.secondary.neutral30,
     color: theme.palette.secondary.neutral80,
-    padding: '5px 10px',
-    paddingVertical: 5,
+    padding: '5px 12px',
     margin: 10,
     marginLeft: 0,
     borderRadius: 200,
@@ -142,23 +120,11 @@ const useStyles = makeStyles((theme) => ({
   },
   nextButton: {
     position: 'absolute',
-    bottom: 60,
-    right: 40,
+    bottom: '5%',
+    right: '5%',
     margin: 10,
     padding: 5,
-    backgroundColor: theme.palette.primary.blue50,
-    borderRadius: 5,
     minWidth: 80,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    '&:hover': {
-      cursor: 'pointer',
-    },
-  },
-  next: {
-    color: theme.palette.common.white,
-    padding: 0,
-    margin: 0,
+    width: 'auto',
   },
 }));

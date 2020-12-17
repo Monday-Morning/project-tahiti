@@ -4,7 +4,7 @@ import React from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { CssBaseline, Card } from '@material-ui/core';
+import { CssBaseline } from '@material-ui/core';
 
 // Components
 import ActivityIndicator from '../components/shared/ActivityIndicator';
