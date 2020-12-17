@@ -1,8 +1,38 @@
 import React from 'react';
 
+// Hooks
+import useToggle from '../../../hooks/useToggle';
+
 // Libraries
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+
+const Topic = (props) => {
+  const classes = useStyles();
+  const [selected, toggleSelected] = useToggle();
+
+  // Props
+  const { topic, addSelectedTopic, removeSeletedTopic } = props;
+
+  const onClick = () => {
+    selected ? removeSeletedTopic(topic) : addSelectedTopic(topic);
+    toggleSelected();
+  };
+
+  return (
+    <Typography
+      onClick={onClick}
+      style={{
+        backgroundColor: selected ? '#4091D9' : '#EDEDED',
+        color: selected ? '#FFFFFF' : '#000000',
+      }}
+      className={classes.topicName}
+      variant='body1'
+    >
+      {topic}
+    </Typography>
+  );
+};
 
 const topics = [
   'Witsdom',
@@ -26,8 +56,11 @@ const topics = [
   'Comics',
 ];
 
-function SelectTopics() {
+function SelectTopics(props) {
   const classes = useStyles();
+
+  // props
+  const { selectedTopics, addSelectedTopic, removeSeletedTopic, onNext } = props;
 
   return (
     <div className={classes.container}>
@@ -42,13 +75,23 @@ function SelectTopics() {
 
       <div className={classes.topicsContainer}>
         {topics.map((topic, index) => (
-          <Typography className={classes.topicName} variant='body1' key={index}>
-            {topic}
-          </Typography>
+          <Topic
+            key={index}
+            topic={topic}
+            index={index}
+            addSelectedTopic={addSelectedTopic}
+            removeSeletedTopic={removeSeletedTopic}
+          />
         ))}
       </div>
 
-      <div className={classes.nextButton}>
+      <div
+        onClick={() => {
+          onNext();
+          console.log('Following are the selected Topics: ', selectedTopics);
+        }}
+        className={classes.nextButton}
+      >
         <Typography className={classes.next} variant='body1'>
           Next
         </Typography>
@@ -104,6 +147,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
   next: {
     color: theme.palette.common.white,

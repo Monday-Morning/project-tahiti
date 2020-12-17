@@ -39,16 +39,18 @@ function Onboarding() {
 
   // Local Helper Functions
   const onLogin = () => console.log('Login Function Executed');
-
   const verifyEmail = () => console.log('Email Verify Function Executed');
 
-  const addSelectedTopic = (newTopic) => setSelectedTopics((selected) => [...selected, newTopic]);
+  const addSelectedTopic = (newTopic) => setSelectedTopics((current) => [...current, newTopic]);
 
-  const removeSelectedTopic = (topicIndex) =>
+  const removeSelectedTopic = (topic) =>
     setSelectedTopics((selected) => {
-      selected.splice(topicIndex, 1);
-      return selected;
+      return selected.filter((selectedTopic) => {
+        if (selectedTopic !== topic) return selectedTopic;
+      });
     });
+
+  console.log(selectedTopics);
 
   const renderStages = () => {
     switch (stage) {
