@@ -1,10 +1,16 @@
 import React from 'react';
-import { ReactLogo } from '../components/homepage';
+import Header from '../components/marginals/Header';
+import Footer from "../components/marginals/Footer";
+import TopBar from '../components/marginals/tobBar';
+import ReactLogo from "../components/homepage/ReactLogo";
 
 function Home() {
   return (
     <div>
-      <ReactLogo />
+      <TopBar/>
+      <Header/>
+      <ReactLogo/>
+      <Footer/>
     </div>
   );
 }
