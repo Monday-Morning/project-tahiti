@@ -8,20 +8,20 @@ export const ONBOARDING = Object.freeze({
     PRIMARY: {
       TITLE: 'Verify Account',
       CONTENT:
-        'Verify your account with institute \n email id just once and get access to \n LAN-restricted articles !',
+        'Verify your account with institute \n email id just once and get access to \n limited access articles !',
     },
     SECONDARY: {
       TITLE: 'Email',
       CONTENT:
         'You need to verify your email to access certain \n restricted articles. If you have not received the \n verification email please check your Spam \n folder. You can also click on the resend button \n below to have another email sent to you',
     },
-    EMAIL_PLACEHOLDER: 'your@email.com',
+    EMAIL_PLACEHOLDER: 'instituteID@nitrkl.ac.in',
     BUTTON: {
       PRIMARY: 'Get Verification Link',
       SECONDARY: 'Check again and continue',
     },
     NOTE:
-      'Note: This only works if you’re a current student of \n NIT Rourkela with a valid institute email id.',
+      'Note: This only works if you’re a current student/employee of \n NIT Rourkela with a valid institute email id.',
   },
   INTERESTED_TOPICS: {
     PRIMARY: {
@@ -62,12 +62,12 @@ export const ONBOARDING = Object.freeze({
       CONTENT:
         'You’ve successfully signed up for the newsletter. \n Be the first to know the happenings at NITR and \n never miss out on an issue release !',
     },
-    EMAIL_PLACEHOLDER: 'your@email.com',
+    EMAIL_PLACEHOLDER: 'instituteID@nitrkl.ac.in',
     BUTTON: {
       PRIMARY: 'Signup for newsletter',
       SECONDARY: 'Get Started',
     },
     NOTE:
-      'Note: Newsletters are sent once a week or once in a fortnight \n during the working session of the college',
+      'Note: Newsletters are sent once a week or once in a fortnight \n during the working session of the institute',
   },
 });

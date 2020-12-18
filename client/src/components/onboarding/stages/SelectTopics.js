@@ -14,27 +14,19 @@ import Button from '../../shared/button/Regular';
 import { ONBOARDING } from '../../../assets/placeholder/onboarding';
 
 const Topic = (props) => {
-  const classes = useStyles();
-  const [selected, toggleSelected] = useToggle();
+  const [selected, toggleSelected] = useToggle(false);
+  const classes = useStyles(selected);
 
   // Props
-  const { topic, addSelectedTopic, removeSeletedTopic } = props;
+  const { topic, addSelectedTopic, removeSelectedTopic } = props;
 
   const onClick = () => {
-    selected ? removeSeletedTopic(topic) : addSelectedTopic(topic);
+    selected ? removeSelectedTopic(topic) : addSelectedTopic(topic);
     toggleSelected();
   };
 
   return (
-    <Typography
-      onClick={onClick}
-      style={{
-        backgroundColor: selected ? '#4091D9' : '#EDEDED',
-        color: selected ? '#FFFFFF' : '#000000',
-      }}
-      className={classes.topicName}
-      variant='body1'
-    >
+    <Typography onClick={onClick} className={classes.topicName} variant='body1'>
       {topic}
     </Typography>
   );
@@ -44,7 +36,7 @@ function SelectTopics(props) {
   const classes = useStyles();
 
   // props
-  const { selectedTopics, addSelectedTopic, removeSeletedTopic, onNext } = props;
+  const { selectedTopics, addSelectedTopic, removeSelectedTopic, onNext } = props;
 
   return (
     <div className={classes.container}>
@@ -63,7 +55,7 @@ function SelectTopics(props) {
             topic={topic}
             index={index}
             addSelectedTopic={addSelectedTopic}
-            removeSeletedTopic={removeSeletedTopic}
+            removeSelectedTopic={removeSelectedTopic}
           />
         ))}
       </div>
@@ -108,8 +100,10 @@ const useStyles = makeStyles((theme) => ({
   topicName: {
     textAlign: 'center',
     fontWeight: 400,
-    backgroundColor: theme.palette.secondary.neutral30,
-    color: theme.palette.secondary.neutral80,
+    backgroundColor: (selected) =>
+      selected ? theme.palette.primary.blue40 : theme.palette.secondary.neutral30,
+    color: (selected) =>
+      selected ? theme.palette.common.white : theme.palette.secondary.neutral80,
     padding: '5px 12px',
     margin: 10,
     marginLeft: 0,

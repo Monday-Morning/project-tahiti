@@ -39,7 +39,7 @@ function VerifyEmail(props) {
         {isSigned ? (
           <>
             <div className={classes.iconContainer}>
-              <i className='far fa-check-circle fa-6x' style={{ color: '#1F9943' }} />
+              <i className={`far fa-check-circle fa-6x ${classes.icon}`} />
             </div>
             <Typography className={classes.verifyContent} variant='body1'>
               {ONBOARDING.NEWSLETTER.PRIMARY.CONTENT}
@@ -136,5 +136,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     margin: '20px 0',
+  },
+  icon: {
+    color: theme.palette.accent.green,
   },
 }));

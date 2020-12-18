@@ -71,7 +71,7 @@ function Onboarding() {
           <SelectTopics
             selectedTopics={selectedTopics}
             addSelectedTopic={addSelectedTopic}
-            removeSeletedTopic={removeSelectedTopic}
+            removeSelectedTopic={removeSelectedTopic}
             onNext={setStageToNewsletter}
           />
         );
