@@ -6,6 +6,9 @@ import Loadable from 'react-loadable';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
 
+import Home from './Home';
+import Onboarding from './Onboarding';
+
 // Components
 import ActivityIndicator from '../components/shared/ActivityIndicator';
 
@@ -47,7 +50,7 @@ function App() {
         <Switch>
           <Route path='/' exact component={AsyncHome} />
           <Route path='/onboarding' exact component={AsyncOnboarding} />
-          <Redirect to='/' />
+          {/* <Redirect to='/' /> */}
         </Switch>
       </Router>
     </ThemeProvider>
