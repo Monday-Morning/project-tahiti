@@ -6,9 +6,6 @@ import Loadable from 'react-loadable';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
 
-import Home from './Home';
-import Onboarding from './Onboarding';
-
 // Components
 import ActivityIndicator from '../components/shared/ActivityIndicator';
 
@@ -18,29 +15,14 @@ import createBrowserHistory from '../utils/history';
 // Theme
 import lightTheme from '../config/themes/light';
 
-// Asynchronous Loading of Pages in different chunks
-const AsyncHome = Loadable({
-  loader: () => import('./Home'),
-  loading: ActivityIndicator,
-});
+const AsyncRoute = (route) =>
+  Loadable({
+    loader: () => import(`${route}`),
+    loading: ActivityIndicator,
+  });
 
-const AsyncOnboarding = Loadable({
-  loader: () => import('./Onboarding'),
-  loading: ActivityIndicator,
-});
-
-// Function to check the Authenticated status.
-const isAuthenticated = () => {
-  // Check the authentication state as per your way of authentication i.e. jwt, sessions, etc
-};
-
-// Use this Route component for authenticated Routes.
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={(props) => (isAuthenticated() ? <Component {...props} /> : <Redirect to='/login' />)}
-  />
-);
+const AsyncHome = AsyncRoute('./Home');
+const AsyncOnboarding = AsyncRoute('./Onboarding');
 
 function App() {
   return (
