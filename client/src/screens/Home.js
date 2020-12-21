@@ -16,6 +16,7 @@ import Trending from '../components/homepage/Trending';
 import Banner from '../components/homepage/Banner';
 import Calendar from '../assets/images/calendar.png';
 
+
 function Home() {
   return (
     <div>
