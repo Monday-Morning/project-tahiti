@@ -1,4 +1,6 @@
 import React from 'react';
+
+//libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, Button } from '@material-ui/core';
 
@@ -29,7 +31,7 @@ function Squiggles() {
 export default Squiggles;
 const useStyles = makeStyles((theme) => ({
   squigglesCard: {
-    backgroundColor: '#f6d982',
+    backgroundColor: theme.palette.accent.squiggles,
     boxShadow: theme.shadows[0],
   },
   squigglesWrapper: {
@@ -40,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: '25px',
   },
   squigglesButton: {
-    backgroundColor: '#e15b62',
+    backgroundColor: theme.palette.accent.squigglesButton,
     color: '#ffffff !important',
     marginRight: '40px',
     textTransform: 'unset',

@@ -1,8 +1,12 @@
 import React from 'react';
+
+//libraries
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import logo from '../../assets/images/logo.png';
 import { Grid, Button, Container, TextField } from '@material-ui/core';
+
+//images
+import logo from '../../assets/images/logo.png';
 
 const Header = () => {
   const classes = useStyles();

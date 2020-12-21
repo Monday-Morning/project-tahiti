@@ -1,8 +1,12 @@
 import React from 'react';
+
+//libraries
 import { makeStyles } from '@material-ui/core/styles';
+import { Grid, Container } from '@material-ui/core';
+
+//Components
 import Witsdom from '../expressions/Witsdom';
 import PhotoStory from '../expressions/PhotoStory';
-import { Grid, Container } from '@material-ui/core';
 
 function Banner() {
   const classes = useStyles();

@@ -1,12 +1,16 @@
 import React from 'react';
+
+//libararies
 import { makeStyles } from '@material-ui/core/styles';
-import photostory from '../../assets/images/PS.png';
+
+//images
+import photoStory from '../../assets/images/photoStory.png';
 
 function PhotoStory() {
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
-      <img className={classes.Image} src={photostory} alt='PhotoStory' />
+      <img className={classes.Image} src={photoStory} alt='PhotoStory' />
     </div>
   );
 }

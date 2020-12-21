@@ -1,4 +1,6 @@
 import React from 'react';
+
+//libraries
 import { makeStyles } from '@material-ui/core/styles';
 import logo from '../../assets/images/logo.png';
 import { Container, Grid, Typography, Button } from '@material-ui/core';
@@ -129,7 +131,7 @@ const useStyles = makeStyles((theme) => ({
   },
   bottomWrapper: {
     backgroundColor: theme.palette.secondary.main,
-    color: '#ffffff',
+    color: theme.palette.common.white,
   },
   bottomBar: {
     height: '70px',

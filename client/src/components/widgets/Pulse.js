@@ -1,6 +1,10 @@
 import React from 'react';
+
+//libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, Grid, Typography, Button } from '@material-ui/core';
+
+//Images
 import pulseImg from '../../assets/images/pulseImg.png';
 
 const Pulse = () => {

@@ -1,13 +1,17 @@
 import React from 'react';
+
+//libraries
+import { Box, Container, Grid } from '@material-ui/core';
+import { Card } from '@material-ui/core';
+
+//Components
 import Header from '../components/marginals/Header';
 import Footer from '../components/marginals/Footer';
 import TopBar from '../components/marginals/TopBar';
-import PostCard from '../components/widgets/postCard';
-import { Box, Container, Grid } from '@material-ui/core';
+import ArticleCard from '../components/widgets/ArticleCard';
 import Pulse from '../components/widgets/Pulse';
 import Squiggles from '../components/widgets/Squiggles';
-import FeaturedPosts from '../components/homepage/FeaturedPosts';
-import { Card } from '@material-ui/core';
+import FeaturedArticles from '../components/homepage/FeaturedArticles';
 import Trending from '../components/homepage/Trending';
 import Banner from '../components/homepage/Banner';
 import Calendar from '../assets/images/calendar.png';
@@ -18,9 +22,9 @@ function Home() {
       <TopBar />
       <Header />
       <Container>
-        {/* FeaturedPosts */}
+        {/* FeaturedArticles */}
         <Box mt={4}>
-          <FeaturedPosts />
+          <FeaturedArticles />
         </Box>
         <Box mt={4}>
           <Squiggles />
@@ -29,7 +33,7 @@ function Home() {
           <Grid container spacing={4}>
             {[0, 1, 2].map((val) => (
               <Grid key={val} item sm={4}>
-                <PostCard />
+                <ArticleCard />
               </Grid>
             ))}
             <Grid item sm={8}>
@@ -51,7 +55,7 @@ function Home() {
             </Grid>
             {[0, 1, 2].map((val) => (
               <Grid key={val} item sm={4}>
-                <PostCard />
+                <ArticleCard />
               </Grid>
             ))}
           </Grid>

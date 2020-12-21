@@ -1,12 +1,16 @@
 import React from 'react';
+
+//libraries
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, Grid, GridList, GridListTile, Typography } from '@material-ui/core';
+import { Card, Grid, Typography } from '@material-ui/core';
+
+//images
 import cover from '../../assets/images/featured.png';
 import black from '../../assets/images/black.jpg';
 
-function FeaturedPost() {
+function FeaturedArticle() {
   const props = {
-    post: {
+    article: {
       tags: ['Department', 'Campus', 'BM-BT'],
       title: 'Chaos, Curiosity and COVID-19: A Biotechnologist’s Perspective',
       authors: ['Debabrata Malik', 'Rama Krushna Behera'],
@@ -15,26 +19,26 @@ function FeaturedPost() {
   };
   const classes = useStyles();
   return (
-    <div className={classes.postWrapper}>
+    <div className={classes.articleWrapper}>
       <div className={classes.container}>
         <Grid container>
-          {props.post.tags.map((tag) => (
+          {props.article.tags.map((tag) => (
             <Grid item key={tag}>
               <span className={classes.tag}>{tag}</span>
             </Grid>
           ))}
         </Grid>
-        <Typography className={classes.title}>{props.post.title}</Typography>
+        <Typography className={classes.title}>{props.article.title}</Typography>
         <div className={classes.wrapper}>
           <div className={classes.authorList}>
-            {props.post.authors.map((author) => (
+            {props.article.authors.map((author) => (
               <Typography variant='body2' key={author} className={classes.author}>
                 {author}
               </Typography>
             ))}
           </div>
           <div className={classes.readTime}>
-            <Typography variant='body2'>{props.post.readTime}</Typography>
+            <Typography variant='body2'>{props.article.readTime}</Typography>
           </div>
         </div>
       </div>
@@ -42,27 +46,27 @@ function FeaturedPost() {
   );
 }
 
-function FeaturedPosts() {
+function FeaturedArticles() {
   const classes = useStyles();
   return (
-    <Card className={classes.FeaturedPostCard}>
+    <Card className={classes.FeaturedarticleCard}>
       <Grid container spacing={0}>
         <Grid item sm={6}>
-          <FeaturedPost />
+          <FeaturedArticle />
         </Grid>
         <Grid item sm={6}>
           <Grid container>
             <Grid item sm={6}>
-              <FeaturedPost />
+              <FeaturedArticle />
             </Grid>
             <Grid item sm={6}>
-              <FeaturedPost />
+              <FeaturedArticle />
             </Grid>
             <Grid item sm={6}>
-              <FeaturedPost />
+              <FeaturedArticle />
             </Grid>
             <Grid item sm={6}>
-              <FeaturedPost />
+              <FeaturedArticle />
             </Grid>
           </Grid>
         </Grid>
@@ -71,14 +75,14 @@ function FeaturedPosts() {
   );
 }
 
-export default FeaturedPosts;
+export default FeaturedArticles;
 
 const useStyles = makeStyles((theme) => ({
-  FeaturedPostCard: {
+  FeaturedarticleCard: {
     borderRadius: '8px',
   },
   FeaturedGrid: {},
-  postWrapper: {
+  articleWrapper: {
     display: 'flex',
     alignItems: 'flex-end',
     minWidth: '300px',
