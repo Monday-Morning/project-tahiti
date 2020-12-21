@@ -47,8 +47,10 @@ const theme = createMuiTheme({
       green: '#1F9943',
       purple: '#771CD1',
       brown: '#9B4D20',
-      pink: '#bd0fa1',
+      pink: '#BD0FA1',
       indigo: '#0F269E',
+      squiggles: '#F6D982',
+      squigglesButton: '#E15B62',
     },
     grey: {
       100: '#F2F2F2',
