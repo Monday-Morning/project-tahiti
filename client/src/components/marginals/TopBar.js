@@ -59,6 +59,10 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '20px',
     lineHeight: '28px',
     fontWeight: '400',
+    '@media (max-width:600px)': {
+      marginLeft: '20px',
+      fontSize: '1rem',
+    },
   },
   navLink: {
     textDecoration: 'none',

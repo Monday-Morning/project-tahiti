@@ -1,14 +1,16 @@
 import React from 'react';
 
 //libraries
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Button, Container, TextField } from '@material-ui/core';
+import theme from '../../config/themes/light';
 
 //images
 import logo from '../../assets/images/logo.png';
 
-const Header = () => {
+const DeskTopHeader = () => {
   const classes = useStyles();
   return (
     <Container>
@@ -70,6 +72,32 @@ const Header = () => {
     </Container>
   );
 };
+
+const MobileHeader = () => {
+  const classes = useMobileStyles();
+  return (
+    <Container>
+      <div className={classes.wrapper}>
+        <span className={classes.icon}>
+          <i className='fa fa-bars'></i>
+        </span>
+        <img src={logo} alt='Monday Morning' className={classes.logo} />
+        <span className={classes.icon}>
+          <i className='fa fa-search'></i>
+        </span>
+      </div>
+    </Container>
+  );
+};
+
+const Header = () => {
+  const matches = useMediaQuery(theme.breakpoints.up('md'));
+  if (matches) {
+    return <DeskTopHeader />;
+  } else {
+    return <MobileHeader />;
+  }
+};
 export default Header;
 
 const useStyles = makeStyles((theme) => ({
@@ -108,5 +136,20 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '600',
     fontSize: '24px',
     lineHeight: '32px',
+  },
+}));
+const useMobileStyles = makeStyles((theme) => ({
+  wrapper: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: '1.25rem',
+  },
+  logo: {
+    width: '180px',
+    height: 'auto',
+  },
+  icon: {
+    fontSize: '18px',
   },
 }));

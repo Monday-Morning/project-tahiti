@@ -14,7 +14,7 @@ function Squiggles() {
     <Card className={classes.squigglesCard}>
       <CardContent>
         <div className={classes.squigglesWrapper}>
-          <div>
+          <div className={classes.ButtonWrapper}>
             <Button className={classes.squigglesButton} disabled>
               Squiggles
             </Button>
@@ -40,12 +40,21 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     paddingLeft: '25px',
     paddingRight: '25px',
+    '@media (max-width:600px)': {
+      display: 'block',
+    },
+  },
+  ButtonWrapper: {
+    textAlign: 'center',
   },
   squigglesButton: {
     backgroundColor: theme.palette.accent.squigglesButton,
     color: '#ffffff !important',
     marginRight: '40px',
     textTransform: 'unset',
+    '@media (max-width:600px)': {
+      marginRight: 'auto',
+    },
   },
   SquigglesText: {
     fontSize: '20px',
