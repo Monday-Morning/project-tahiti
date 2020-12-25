@@ -1,6 +1,6 @@
 import React from 'react';
 
-//libraries
+// libraries
 import { makeStyles } from '@material-ui/core/styles';
 import logo from '../../assets/images/logo.png';
 import { Container, Grid, Typography, Button } from '@material-ui/core';
@@ -151,6 +151,9 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'flex-end',
     marginBottom: '1.5rem',
+    '@media (max-width:600px)': {
+      padding: '0 1rem',
+    },
   },
   appButton: {
     marginRight: '0',

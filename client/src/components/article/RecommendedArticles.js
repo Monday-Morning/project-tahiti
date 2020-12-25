@@ -1,9 +1,9 @@
 import React from 'react';
 
-//libraries
+// libraries
 import { makeStyles, Container, Grid, Typography } from '@material-ui/core';
 
-//Components
+// Components
 import ArticleCard from '../widgets/ArticleCard';
 
 const RecommendedArticles = () => {

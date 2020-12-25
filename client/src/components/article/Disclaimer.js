@@ -1,6 +1,6 @@
 import React from 'react';
 
-//libraries
+// libraries
 import { makeStyles, Typography } from '@material-ui/core';
 
 //placeholder

@@ -14,7 +14,7 @@ const TableOfContent = (props) => {
           {props.index.map((index, key) => {
             return (
               <li key={key} className={classes.indexList}>
-                <Link to={index.link} className={classes.indexLink}>
+                <Link to={{ pathname: '/article', hash: index.link }} className={classes.indexLink}>
                   {index.title}
                 </Link>
               </li>

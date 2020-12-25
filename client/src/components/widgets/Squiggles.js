@@ -1,6 +1,6 @@
 import React from 'react';
 
-//libraries
+// libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, Button } from '@material-ui/core';
 
@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: '25px',
     '@media (max-width:600px)': {
       display: 'block',
+      padding: 'unset',
     },
   },
   ButtonWrapper: {

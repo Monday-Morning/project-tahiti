@@ -1,10 +1,10 @@
 import React from 'react';
 
-//libraries
+// libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, Grid, Typography, Button } from '@material-ui/core';
 
-//Images
+// images
 import pulseImg from '../../assets/images/pulseImg.png';
 
 const Pulse = () => {
@@ -22,7 +22,7 @@ const Pulse = () => {
       <CardContent>
         <Typography variant='h1'>Student Pulse</Typography>
         <Grid container alignItems='center'>
-          <Grid item sm={8}>
+          <Grid item md={8}>
             <p className={classes.pulseQuestion}>{polls.question}</p>
             {polls.votes.map((value) => (
               <div key={value}>
@@ -34,7 +34,7 @@ const Pulse = () => {
               Vote
             </Button>
           </Grid>
-          <Grid item sm={4}>
+          <Grid item md={4} className={classes.pulseContainer}>
             <Grid container justify='center'>
               <img src={pulseImg} alt='Pulse Image' />
             </Grid>
@@ -67,5 +67,10 @@ const useStyles = makeStyles((theme) => ({
   },
   voteButton: {
     marginTop: '50px',
+  },
+  pulseContainer: {
+    width: '100%',
+    paddingTop: '1rem ',
+    paddingBottom: '1rem ',
   },
 }));

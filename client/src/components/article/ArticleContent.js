@@ -1,6 +1,6 @@
 import React from 'react';
 
-//libraries
+// libraries
 import { makeStyles, Typography } from '@material-ui/core';
 
 const ArticleContent = (props) => {
@@ -8,30 +8,33 @@ const ArticleContent = (props) => {
   return (
     <div>
       {props.article.content.map((content, key) => {
-        if (content.type == 'paragraph') {
-          return (
-            <Typography className={classes.para} key={key} variant='body1'>
-              {content.data}
-            </Typography>
-          );
-        } else if (content.type == 'image') {
-          return (
-            <img key={key} src={content.data} alt={content.alt} className={classes.articleImg} />
-          );
-        } else if (content.type == 'heading') {
-          return (
-            <Typography className={classes.heading} key={key} variant='h2'>
-              {content.data}
-            </Typography>
-          );
-        } else if (content.type == 'blockquote') {
-          return (
-            <div key={key} className={classes.blockquote}>
-              <Typography variant='body1' className={classes.blockquoteData}>
+        switch (content.type) {
+          case 'paragraph':
+            return (
+              <Typography className={classes.para} key={key} variant='body1'>
                 {content.data}
               </Typography>
-            </div>
-          );
+            );
+          case 'image':
+            return (
+              <img key={key} src={content.data} alt={content.alt} className={classes.articleImg} />
+            );
+          case 'heading':
+            return (
+              <Typography className={classes.heading} key={key} variant='h2' id={content.id}>
+                {content.data}
+              </Typography>
+            );
+          case 'blockquote':
+            return (
+              <div key={key} className={classes.blockquote}>
+                <Typography variant='body1' className={classes.blockquoteData}>
+                  {content.data}
+                </Typography>
+              </div>
+            );
+          default:
+            return <div key={key}>{content.data}</div>;
         }
       })}
     </div>

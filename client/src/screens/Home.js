@@ -1,10 +1,10 @@
 import React from 'react';
 
-//libraries
+// libraries
 import { Box, Container, Grid } from '@material-ui/core';
 import { Card } from '@material-ui/core';
 
-//Components
+// Components
 import Header from '../components/marginals/Header';
 import Footer from '../components/marginals/Footer';
 import TopBar from '../components/marginals/TopBar';

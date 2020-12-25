@@ -1,10 +1,10 @@
 import React from 'react';
 
-//libraries
+// libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, Grid, Typography } from '@material-ui/core';
 
-//images
+// images
 import cover from '../../assets/images/cover.png';
 
 const ArticleCard = () => {

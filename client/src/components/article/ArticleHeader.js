@@ -1,11 +1,11 @@
 import React from 'react';
 
-//libraries
+// libraries
 import { Container, Grid, makeStyles, Typography } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import theme from '../../config/themes/light';
 
-//images
+// images
 import cover from '../../assets/images/articleCover.png';
 import user from '../../assets/images/photo.png';
 
@@ -32,9 +32,9 @@ const ArticleHeader = (props) => {
             <div className={classes.authorList}>
               {props.article.authors.map((author, key) => (
                 <div key={key} className={classes.authorWrapper}>
-                  <img src={user} alt='User Photo' className={classes.authorImg} />
-                  <Typography variant='body2' key={author} className={classes.author}>
-                    {author}
+                  <img src={user} alt={author.alt} className={classes.authorImg} />
+                  <Typography variant='body2' className={classes.author}>
+                    {author.name}
                   </Typography>
                 </div>
               ))}

@@ -3,7 +3,7 @@ import React from 'react';
 //libararies
 import { makeStyles } from '@material-ui/core/styles';
 
-//images
+// images
 import photoStory from '../../assets/images/photoStory.png';
 
 function PhotoStory() {

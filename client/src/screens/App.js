@@ -33,7 +33,7 @@ function App() {
         <Switch>
           <Route path='/' exact component={AsyncHome} />
           <Route path='/onboarding' exact component={AsyncOnboarding} />
-          <Route path='/article' exact component={AsyncArticle} />
+          <Route path='/article' component={AsyncArticle} />
           {/* <Redirect to='/' /> */}
         </Switch>
       </Router>

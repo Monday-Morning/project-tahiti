@@ -1,26 +1,31 @@
 export const ARTICLE = Object.freeze({
   tags: ['Department', 'Campus', 'BM-BT'],
   title: 'Chaos, Curiosity and COVID-19: A Biotechnologist’s Perspective',
-  authors: ['Debabrata Malik', 'Rama Krushna Behera'],
+  authors: [
+    { alt: 'Deba', name: 'Debabrata Malik' },
+    { alt: 'Rama', name: 'Rama Krushna Behera' },
+  ],
   readTime: '12 min',
   publishDate: 'September 20, 2020',
   summary:
     'A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more. A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more.',
   index: [
     { title: 'Introduction', link: '#intro' },
-    { title: 'Topic 1', link: '#topic1' },
-    { title: 'Topic 2', link: '#topic2' },
-    { title: 'Topic 3', link: '#topic3' },
-    { title: 'Topic 4', link: '#topic4' },
-    { title: 'Topic 5', link: '#topic5' },
-    { title: 'Topic 6', link: '#topic6' },
+    { title: 'Heading 1', link: '#heading1' },
+    { title: 'Heading 2', link: '#heading2' },
+    { title: 'Heading 3', link: '#heading3' },
+    { title: 'Heading 4', link: '#heading4' },
+    { title: 'Heading 5', link: '#heading5' },
+    { title: 'Heading 6', link: '#heading6' },
   ],
   content: [
+    { type: 'heading', data: 'Introduction', id: 'intro' },
     {
       type: 'paragraph',
       data:
         'Delay in the curriculum may seem enthralling at the moment but the clouds of uncertainty that it casts on the future of students and academics as a whole- is an extra-ordinary issue that has to be considered. However, walking abreast of the transformations, NIT Rourkela has tried to put its best foot forward in these rather questioning times. (Excerpt)',
     },
+    { type: 'heading', data: 'Heading 1', id: 'heading1' },
     {
       type: 'paragraph',
       data:
@@ -31,7 +36,7 @@ export const ARTICLE = Object.freeze({
       data: 'https://mondaymorning.nitrkl.ac.in/uploads/media/IMG-20181111-WA0052.jpg',
       alt: 'Abel Bhai',
     },
-    { type: 'heading', data: 'Heading 2' },
+    { type: 'heading', data: 'Heading 2', id: 'heading2' },
     {
       type: 'paragraph',
       data:
@@ -42,12 +47,13 @@ export const ARTICLE = Object.freeze({
       data:
         'Delay in the curriculum may seem enthralling at the moment but the clouds of uncertainty that it casts on the future of students and academics as a whole- is an extra-ordinary issue that has to be considered. However, walking abreast of the transformations, NIT Rourkela has tried to put its best foot forward in these rather questioning times. (Excerpt)',
     },
+    { type: 'heading', data: 'Heading 3', id: 'heading3' },
     {
       type: 'paragraph',
       data:
         'Delay in the curriculum may seem enthralling at the moment but the clouds of uncertainty that it casts on the future of students and academics as a whole- is an extra-ordinary issue that has to be considered. However, walking abreast of the transformations, NIT Rourkela has tried to put its best foot forward in these rather questioning times. (Excerpt)',
     },
-    { type: 'heading', data: 'Heading 3' },
+    { type: 'heading', data: 'Heading 3', id: 'heading4' },
     {
       type: 'paragraph',
       data:

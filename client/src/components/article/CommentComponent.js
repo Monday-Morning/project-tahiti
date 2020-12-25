@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-//Libraries
+// libraries
 import {
   Container,
   makeStyles,
@@ -11,29 +11,12 @@ import {
   Grid,
 } from '@material-ui/core';
 
-//Components
+// Components
 
-//images
+// images
 import user from '../../assets/images/photo.png';
 
 const ShowComments = (props) => {
-  const comments = [
-    {
-      user: 'Vishal Rana',
-      comment:
-        'A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more. A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more.',
-    },
-    {
-      user: 'Vishal Chauhan',
-      comment:
-        'A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more. A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more.',
-    },
-    {
-      user: 'Vishal Rajput',
-      comment:
-        'A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more. A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more.',
-    },
-  ];
   const classes = useStyles();
   if (props.toggleState) {
     return (
@@ -42,10 +25,10 @@ const ShowComments = (props) => {
           onClick={() => props.setToggleState(!props.toggleState)}
           className={classes.commentToggle}
         >
-          Hide all comments (2)
+          Hide all comments ({props.comments.length})
         </Typography>
         <div className={classes.userCommentsWrapper}>
-          {comments.map((comment, index) => {
+          {props.comments.map((comment, index) => {
             return (
               <Card>
                 <CardContent>
@@ -71,7 +54,7 @@ const ShowComments = (props) => {
         onClick={() => props.setToggleState(!props.toggleState)}
         className={classes.commentToggle}
       >
-        See all comments (2)
+        See all comments ({props.comments.length})
       </Typography>
     );
   }
@@ -79,15 +62,47 @@ const ShowComments = (props) => {
 
 const CommentComponent = () => {
   const [toggleState, setToggleState] = useState(false);
+  const [comment, setComment] = useState('');
+  const [comments, setComments] = useState([
+    {
+      user: 'Vishal Rana',
+      comment:
+        'A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more. A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more.',
+    },
+    {
+      user: 'Vishal Chauhan',
+      comment:
+        'A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more. A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more.',
+    },
+    {
+      user: 'Vishal Rajput',
+      comment:
+        'A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more. A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more.',
+    },
+  ]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const commentData = { user: 'John Doe', comment: comment };
+    setComments(comments.concat(commentData));
+    setComment('');
+  };
   const classes = useStyles();
   return (
     <Container className={classes.container}>
       <Typography variant='h2'>Comment</Typography>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className={classes.commentWrapper}>
           <div className={classes.inputWrapper}>
             <img src={user} alt='User Photo' />
-            <input className={classes.commentInput} type='text' placeholder='Leave a comment' />
+            <input
+              className={classes.commentInput}
+              name='comment'
+              type='text'
+              placeholder='Leave a comment'
+              value={comment}
+              onChange={(event) => setComment(event.target.value)}
+            />
           </div>
           <Button
             type='submit'
@@ -99,7 +114,7 @@ const CommentComponent = () => {
           </Button>
         </div>
       </form>
-      <ShowComments toggleState={toggleState} setToggleState={setToggleState} />
+      <ShowComments comments={comments} toggleState={toggleState} setToggleState={setToggleState} />
     </Container>
   );
 };
@@ -141,5 +156,6 @@ const useStyles = makeStyles((theme) => ({
   commentToggle: {
     margin: '1rem auto',
     cursor: 'pointer',
+    userSelect: 'none',
   },
 }));
