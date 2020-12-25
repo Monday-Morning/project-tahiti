@@ -1,8 +1,6 @@
 {
   "docs": {
-    "Docusaurus": ["doc1", "doc9"],
-    "First Category": ["doc2"],
-    "Second Category": ["doc3"]
+    "Onboarding": ["onboardingScreen", "welcomeStage", "verifyEmailStage", "selectTopicsStage", "newsletterStage"]
   },
   "docs-other": {
     "First Category": ["doc4", "doc5"]
