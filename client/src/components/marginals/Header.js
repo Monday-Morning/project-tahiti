@@ -2,7 +2,7 @@ import React from 'react';
 
 // libraries
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Button, Container, TextField } from '@material-ui/core';
 import theme from '../../config/themes/light';
@@ -42,14 +42,14 @@ const DeskTopHeader = () => {
               </NavLink>
             </div>
             <div className={classes.navItem}>
-              <Link
-                to='/article'
+              <NavLink
+                to='/campus'
                 className={classes.navLink}
                 exact
                 activeClassName={classes.activeHeaderLink}
               >
                 Campus
-              </Link>
+              </NavLink>
             </div>
             <div className={classes.navItem}>
               <NavLink

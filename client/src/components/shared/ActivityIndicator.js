@@ -1,6 +1,6 @@
 import React from 'react';
 
-//libraries
+// libraries
 import { makeStyles } from '@material-ui/core';
 import logo from '../../assets/images/MMLogo.png';
 

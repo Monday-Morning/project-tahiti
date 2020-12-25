@@ -10,13 +10,11 @@ export const ARTICLE = Object.freeze({
   summary:
     'A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more. A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more.',
   index: [
-    { title: 'Introduction', link: '#intro' },
-    { title: 'Heading 1', link: '#heading1' },
-    { title: 'Heading 2', link: '#heading2' },
-    { title: 'Heading 3', link: '#heading3' },
-    { title: 'Heading 4', link: '#heading4' },
-    { title: 'Heading 5', link: '#heading5' },
-    { title: 'Heading 6', link: '#heading6' },
+    { title: 'Introduction', link: 'intro' },
+    { title: 'Heading 1', link: 'heading1' },
+    { title: 'Heading 2', link: 'heading2' },
+    { title: 'Heading 3', link: 'heading3' },
+    { title: 'Heading 4', link: 'heading4' },
   ],
   content: [
     { type: 'heading', data: 'Introduction', id: 'intro' },
@@ -53,7 +51,7 @@ export const ARTICLE = Object.freeze({
       data:
         'Delay in the curriculum may seem enthralling at the moment but the clouds of uncertainty that it casts on the future of students and academics as a whole- is an extra-ordinary issue that has to be considered. However, walking abreast of the transformations, NIT Rourkela has tried to put its best foot forward in these rather questioning times. (Excerpt)',
     },
-    { type: 'heading', data: 'Heading 3', id: 'heading4' },
+    { type: 'heading', data: 'Heading 4', id: 'heading4' },
     {
       type: 'paragraph',
       data:

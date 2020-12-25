@@ -2,6 +2,7 @@ import React from 'react';
 
 // libraries
 import { makeStyles, Typography } from '@material-ui/core';
+import { Element } from 'react-scroll';
 
 const ArticleContent = (props) => {
   const classes = useStyles();
@@ -21,9 +22,11 @@ const ArticleContent = (props) => {
             );
           case 'heading':
             return (
-              <Typography className={classes.heading} key={key} variant='h2' id={content.id}>
-                {content.data}
-              </Typography>
+              <Element name={content.id} key={key}>
+                <Typography className={classes.heading} variant='h2'>
+                  {content.data}
+                </Typography>
+              </Element>
             );
           case 'blockquote':
             return (

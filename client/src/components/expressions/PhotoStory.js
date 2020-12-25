@@ -1,6 +1,6 @@
 import React from 'react';
 
-//libararies
+// libararies
 import { makeStyles } from '@material-ui/core/styles';
 
 // images

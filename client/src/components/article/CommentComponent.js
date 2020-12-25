@@ -10,6 +10,7 @@ import {
   CardContent,
   Grid,
 } from '@material-ui/core';
+import { Element } from 'react-scroll';
 
 // Components
 
@@ -90,31 +91,37 @@ const CommentComponent = () => {
   const classes = useStyles();
   return (
     <Container className={classes.container}>
-      <Typography variant='h2'>Comment</Typography>
-      <form onSubmit={handleSubmit}>
-        <div className={classes.commentWrapper}>
-          <div className={classes.inputWrapper}>
-            <img src={user} alt='User Photo' />
-            <input
-              className={classes.commentInput}
-              name='comment'
-              type='text'
-              placeholder='Leave a comment'
-              value={comment}
-              onChange={(event) => setComment(event.target.value)}
-            />
+      <Element name='commentBox'>
+        <Typography variant='h2'>Comment</Typography>
+        <form onSubmit={handleSubmit}>
+          <div className={classes.commentWrapper}>
+            <div className={classes.inputWrapper}>
+              <img src={user} alt='User Photo' />
+              <input
+                className={classes.commentInput}
+                name='comment'
+                type='text'
+                placeholder='Leave a comment'
+                value={comment}
+                onChange={(event) => setComment(event.target.value)}
+              />
+            </div>
+            <Button
+              type='submit'
+              variant='contained'
+              color='primary'
+              className={classes.submitButton}
+            >
+              Submit
+            </Button>
           </div>
-          <Button
-            type='submit'
-            variant='contained'
-            color='primary'
-            className={classes.submitButton}
-          >
-            Submit
-          </Button>
-        </div>
-      </form>
-      <ShowComments comments={comments} toggleState={toggleState} setToggleState={setToggleState} />
+        </form>
+        <ShowComments
+          comments={comments}
+          toggleState={toggleState}
+          setToggleState={setToggleState}
+        />
+      </Element>
     </Container>
   );
 };

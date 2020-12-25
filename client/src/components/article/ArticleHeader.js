@@ -16,7 +16,7 @@ const ArticleHeader = (props) => {
     <Container className={classes.container}>
       <img src={cover} alt='Cover Photo' className={classes.coverImg} />
       <Grid container className={classes.container}>
-        <Grid item sm={9}>
+        <Grid item md={9}>
           <Grid container>
             {props.article.tags.map((tag, key) => (
               <Grid item key={key}>
