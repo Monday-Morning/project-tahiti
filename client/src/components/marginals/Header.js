@@ -1,14 +1,16 @@
 import React from 'react';
 
-//libraries
-import { Link } from 'react-router-dom';
+// libraries
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Button, Container, TextField } from '@material-ui/core';
+import theme from '../../config/themes/light';
 
-//images
+// images
 import logo from '../../assets/images/logo.png';
 
-const Header = () => {
+const DeskTopHeader = () => {
   const classes = useStyles();
   return (
     <Container>
@@ -30,45 +32,106 @@ const Header = () => {
         <div className={classes.navbar}>
           <div className={classes.navList}>
             <div className={classes.navItem}>
-              <Link to='#' className={classes.navLink}>
+              <NavLink
+                to='/'
+                className={classes.navLink}
+                exact
+                activeClassName={classes.activeHeaderLink}
+              >
                 Home
-              </Link>
+              </NavLink>
             </div>
             <div className={classes.navItem}>
-              <Link to='#' className={classes.navLink}>
+              <NavLink
+                to='/campus'
+                className={classes.navLink}
+                exact
+                activeClassName={classes.activeHeaderLink}
+              >
                 Campus
-              </Link>
+              </NavLink>
             </div>
             <div className={classes.navItem}>
-              <Link to='#' className={classes.navLink}>
+              <NavLink
+                to='/connect'
+                className={classes.navLink}
+                exact
+                activeClassName={classes.activeHeaderLink}
+              >
                 Connect
-              </Link>
+              </NavLink>
             </div>
             <div className={classes.navItem}>
-              <Link to='#' className={classes.navLink}>
+              <NavLink
+                to='//ddcwc'
+                className={classes.navLink}
+                exact
+                activeClassName={classes.activeHeaderLink}
+              >
                 DD {'&'} CWC
-              </Link>
+              </NavLink>
             </div>
             <div className={classes.navItem}>
-              <Link to='#' className={classes.navLink}>
+              <NavLink
+                to='//career'
+                className={classes.navLink}
+                exact
+                activeClassName={classes.activeHeaderLink}
+              >
                 Career
-              </Link>
+              </NavLink>
             </div>
             <div className={classes.navItem}>
-              <Link to='#' className={classes.navLink}>
+              <NavLink
+                to='/alumni'
+                className={classes.navLink}
+                exact
+                activeClassName={classes.activeHeaderLink}
+              >
                 Alumni
-              </Link>
+              </NavLink>
             </div>
             <div className={classes.navItem}>
-              <Link to='#' className={classes.navLink}>
+              <NavLink
+                to='/expressions'
+                className={classes.navLink}
+                exact
+                activeClassName={classes.activeHeaderLink}
+              >
                 Expressions
-              </Link>
+              </NavLink>
             </div>
           </div>
         </div>
       </div>
     </Container>
   );
+};
+
+const MobileHeader = () => {
+  const classes = useMobileStyles();
+  return (
+    <Container>
+      <div className={classes.wrapper}>
+        <span className={classes.icon}>
+          <i className='fa fa-bars'></i>
+        </span>
+        <img src={logo} alt='Monday Morning' className={classes.logo} />
+        <span className={classes.icon}>
+          <i className='fa fa-search'></i>
+        </span>
+      </div>
+    </Container>
+  );
+};
+
+const Header = () => {
+  let matches = useMediaQuery(theme.breakpoints.up('md'));
+  if (matches) {
+    return <DeskTopHeader />;
+  } else {
+    return <MobileHeader />;
+  }
 };
 export default Header;
 
@@ -108,5 +171,23 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '600',
     fontSize: '24px',
     lineHeight: '32px',
+  },
+  activeHeaderLink: {
+    color: theme.palette.primary.blue50,
+  },
+}));
+const useMobileStyles = makeStyles((theme) => ({
+  wrapper: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: '1.25rem',
+  },
+  logo: {
+    width: '180px',
+    height: 'auto',
+  },
+  icon: {
+    fontSize: '18px',
   },
 }));

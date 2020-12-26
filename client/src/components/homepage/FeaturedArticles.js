@@ -1,10 +1,10 @@
 import React from 'react';
 
-//libraries
+// libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, Grid, Typography } from '@material-ui/core';
 
-//images
+// images
 import cover from '../../assets/images/featured.png';
 import black from '../../assets/images/black.jpg';
 

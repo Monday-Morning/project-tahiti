@@ -1,20 +1,20 @@
 import React from 'react';
 
-//libraries
+// libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, Button } from '@material-ui/core';
 
+// Components
+import { SQUIGGLES } from '../../assets/placeholder/widget';
+
 function Squiggles() {
-  const squiggles = {
-    text:
-      'Hon’ble Union Education Minister inaugurated the Golden Jubilee Building at NIT Rourkela on 19th October. The broadcast of the inauguration ceremony can be watched with the following link: https://youtu.be/CTi4VnwdGVI',
-  };
+  const squiggles = SQUIGGLES;
   const classes = useStyles();
   return (
     <Card className={classes.squigglesCard}>
       <CardContent>
         <div className={classes.squigglesWrapper}>
-          <div>
+          <div className={classes.ButtonWrapper}>
             <Button className={classes.squigglesButton} disabled>
               Squiggles
             </Button>
@@ -40,12 +40,22 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     paddingLeft: '25px',
     paddingRight: '25px',
+    [theme.breakpoints.down('sm')]: {
+      display: 'block',
+      padding: 'unset',
+    },
+  },
+  ButtonWrapper: {
+    textAlign: 'center',
   },
   squigglesButton: {
     backgroundColor: theme.palette.accent.squigglesButton,
     color: '#ffffff !important',
     marginRight: '40px',
     textTransform: 'unset',
+    [theme.breakpoints.down('sm')]: {
+      marginRight: 'auto',
+    },
   },
   SquigglesText: {
     fontSize: '20px',

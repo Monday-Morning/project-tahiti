@@ -1,28 +1,24 @@
 import React from 'react';
 
-//libraries
+// libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, Grid, Typography, Button } from '@material-ui/core';
 
-//Images
+// Components
+import { POLLS } from '../../assets/placeholder/widget';
+
+// images
 import pulseImg from '../../assets/images/pulseImg.png';
 
 const Pulse = () => {
-  const polls = {
-    question: 'What is your opinion about the right time for return of students to the campus?',
-    votes: [
-      'I am desperately waiting to return back to campus with rigid safety protocols.',
-      'I am eager to return but I am a bit apprehensive about safety protocols.',
-      "I don't want to return in the near future because of the risk of transmission and would rather wait for normalcy.",
-    ],
-  };
+  const polls = POLLS;
   const classes = useStyles();
   return (
     <Card className={classes.pulseCard}>
       <CardContent>
         <Typography variant='h1'>Student Pulse</Typography>
         <Grid container alignItems='center'>
-          <Grid item sm={8}>
+          <Grid item md={8}>
             <p className={classes.pulseQuestion}>{polls.question}</p>
             {polls.votes.map((value) => (
               <div key={value}>
@@ -34,7 +30,7 @@ const Pulse = () => {
               Vote
             </Button>
           </Grid>
-          <Grid item sm={4}>
+          <Grid item md={4} className={classes.pulseContainer}>
             <Grid container justify='center'>
               <img src={pulseImg} alt='Pulse Image' />
             </Grid>
@@ -67,5 +63,10 @@ const useStyles = makeStyles((theme) => ({
   },
   voteButton: {
     marginTop: '50px',
+  },
+  pulseContainer: {
+    width: '100%',
+    paddingTop: '1rem ',
+    paddingBottom: '1rem ',
   },
 }));
