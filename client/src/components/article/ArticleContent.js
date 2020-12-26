@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: '4rem',
     fontStyle: 'italic',
     fontWeight: '400',
-    '@media (max-width:600px)': {
+    [theme.breakpoints.down('sm')]: {
       paddingLeft: '2rem',
     },
   },

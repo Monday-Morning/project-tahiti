@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '20px',
     lineHeight: '28px',
     fontWeight: '400',
-    '@media (max-width:600px)': {
+    [theme.breakpoints.down('sm')]: {
       marginLeft: '20px',
       fontSize: '1rem',
     },

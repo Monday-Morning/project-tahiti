@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.blue40,
     marginLeft: '10px',
     borderRadius: '4px',
-    '@media (max-width:600px)': {
+    [theme.breakpoints.down('sm')]: {
       marginLeft: '4px',
       padding: '1.5px 8px',
     },

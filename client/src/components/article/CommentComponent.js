@@ -13,6 +13,7 @@ import {
 import { Element } from 'react-scroll';
 
 // Components
+import { COMMENTS } from '../../assets/placeholder/comments';
 
 // images
 import user from '../../assets/images/photo.png';
@@ -64,23 +65,7 @@ const ShowComments = (props) => {
 const CommentComponent = () => {
   const [toggleState, setToggleState] = useState(false);
   const [comment, setComment] = useState('');
-  const [comments, setComments] = useState([
-    {
-      user: 'Vishal Rana',
-      comment:
-        'A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more. A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more.',
-    },
-    {
-      user: 'Vishal Chauhan',
-      comment:
-        'A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more. A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more.',
-    },
-    {
-      user: 'Vishal Rajput',
-      comment:
-        'A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more. A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more.',
-    },
-  ]);
+  const [comments, setComments] = useState(COMMENTS);
 
   const handleSubmit = (e) => {
     e.preventDefault();

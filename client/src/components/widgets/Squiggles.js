@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     paddingLeft: '25px',
     paddingRight: '25px',
-    '@media (max-width:600px)': {
+    [theme.breakpoints.down('sm')]: {
       display: 'block',
       padding: 'unset',
     },
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     color: '#ffffff !important',
     marginRight: '40px',
     textTransform: 'unset',
-    '@media (max-width:600px)': {
+    [theme.breakpoints.down('sm')]: {
       marginRight: 'auto',
     },
   },

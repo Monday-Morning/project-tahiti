@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'underline',
     marginRight: '10px',
     textTransform: 'uppercase',
-    '@media (max-width:600px)': {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '0.75rem',
       lineHeight: '1.5rem',
     },
@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1rem',
     lineHeight: '1.5rem',
     color: theme.palette.secondary.neutral60,
-    '@media (max-width:600px)': {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '0.75rem',
       lineHeight: '1rem',
     },
@@ -127,7 +127,7 @@ const useStyles = makeStyles((theme) => ({
   utilityIcon: {
     marginLeft: '30px',
     fontSize: '18px',
-    '@media (max-width:600px)': {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '12px',
       marginLeft: '5px',
     },

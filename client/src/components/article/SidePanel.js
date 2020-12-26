@@ -2,30 +2,21 @@ import React, { useState } from 'react';
 
 // libraries
 import { makeStyles } from '@material-ui/core';
-import TableOfContent from './TableOfContent';
 import { Link } from 'react-scroll';
+
+// Components
+import TableOfContent from './TableOfContent';
 
 const ReactionIcon = () => {
   const [reaction, setReaction] = useState(false);
-  if (reaction) {
-    return (
-      <i
-        className='fa fa-lightbulb'
-        onClick={() => {
-          setReaction(!reaction);
-        }}
-      ></i>
-    );
-  } else {
-    return (
-      <i
-        className='far fa-lightbulb'
-        onClick={() => {
-          setReaction(!reaction);
-        }}
-      ></i>
-    );
-  }
+  return (
+    <i
+      className={reaction ? 'fa fa-lightbulb' : 'far fa-lightbulb'}
+      onClick={() => {
+        setReaction(!reaction);
+      }}
+    ></i>
+  );
 };
 
 const Reactions = () => {
@@ -48,6 +39,7 @@ const Reactions = () => {
 };
 
 const SidePanel = (props) => {
+  //Expanded State of Table of Contents (In Mobile View Only)
   const [expanded, toggleExpanded] = useState(false);
 
   const classes = useStyles();
@@ -69,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'sticky',
     top: 20,
     zIndex: '10',
-    '@media (max-width:900px)': {
+    [theme.breakpoints.down('md')]: {
       position: 'fixed',
       top: '-1rem',
       bottom: '0',
@@ -79,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   expanded: {
-    '@media (max-width:900px)': {
+    [theme.breakpoints.down('md')]: {
       position: 'fixed',
       top: '-1rem',
       bottom: '0',
@@ -100,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
     // alignItems: 'center',
     justify: 'center',
     paddingLeft: '4rem',
-    '@media (max-width:900px)': {
+    [theme.breakpoints.down('md')]: {
       paddingLeft: '1rem',
     },
   },

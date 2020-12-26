@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     marginTop: '1rem',
     paddingLeft: '4rem',
-    '@media (max-width:900px)': {
+    [theme.breakpoints.down('md')]: {
       marginTop: '2rem',
       paddingLeft: '1rem',
       paddingRight: '2rem',
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.375rem',
     lineHeight: '1.75rem',
     fontWeight: '400',
-    '@media (max-width:900px)': {
+    [theme.breakpoints.down('md')]: {
       fontSize: '1.125rem',
       lineHeight: '1.5rem',
     },

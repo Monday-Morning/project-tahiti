@@ -113,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
   },
   aboutInfo: {
     padding: '0 100px 50px 0',
-    '@media (max-width:600px)': {
+    [theme.breakpoints.down('sm')]: {
       padding: '0 1rem',
     },
   },
@@ -128,7 +128,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   categoryContainer: {
-    '@media (max-width:600px)': {
+    [theme.breakpoints.down('sm')]: {
       marginTop: '2.5rem',
       marginBottom: '1.5rem',
       padding: '0 1rem',
@@ -140,7 +140,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '24px',
     fontSize: '16px',
     fontWeight: '700',
-    '@media (max-width:600px)': {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '14px',
       lineHeight: '20px',
       padding: 'unset',
@@ -151,7 +151,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'flex-end',
     marginBottom: '1.5rem',
-    '@media (max-width:600px)': {
+    [theme.breakpoints.down('sm')]: {
       padding: '0 1rem',
     },
   },
@@ -187,14 +187,14 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: '16px',
     marginLeft: 'auto',
     marginRight: 'auto',
-    '@media (max-width:600px)': {
+    [theme.breakpoints.down('sm')]: {
       display: 'block',
       paddingTop: '1.5rem',
       paddingBottom: '1.5rem',
     },
   },
   copyRight: {
-    '@media (max-width:600px)': {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '0.75rem',
       lineHeight: '1rem',
       textAlign: 'center',
@@ -202,7 +202,7 @@ const useStyles = makeStyles((theme) => ({
   },
   socialIcons: {
     textAlign: 'right',
-    '@media (max-width:600px)': {
+    [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
       marginTop: '1.25rem',
     },
@@ -211,7 +211,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '20px',
     fontSize: '18px',
     color: theme.palette.common.white,
-    '@media (max-width:600px)': {
+    [theme.breakpoints.down('sm')]: {
       marginLeft: '10px',
     },
   },
