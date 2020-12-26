@@ -1,6 +1,5 @@
 module.exports = {
   someSidebar: {
-    Features: ['mdx'],
     Onboarding: [
       'onboardingScreen',
       'welcomeStage',
@@ -8,5 +7,6 @@ module.exports = {
       'selectTopicsStage',
       'newsletterStage',
     ],
+    Features: ['mdx'],
   },
 };
