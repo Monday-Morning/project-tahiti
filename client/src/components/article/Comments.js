@@ -1,69 +1,17 @@
 import React, { useState } from 'react';
 
 // libraries
-import {
-  Container,
-  makeStyles,
-  Typography,
-  Button,
-  Card,
-  CardContent,
-  Grid,
-} from '@material-ui/core';
+import { Container, makeStyles, Typography, Button } from '@material-ui/core';
 import { Element } from 'react-scroll';
 
 // Components
 import { COMMENTS } from '../../assets/placeholder/comments';
+import ShowComments from './ShowComments';
 
 // images
 import user from '../../assets/images/photo.png';
 
-const ShowComments = (props) => {
-  const classes = useStyles();
-  if (props.toggleState) {
-    return (
-      <div>
-        <Typography
-          onClick={() => props.setToggleState(!props.toggleState)}
-          className={classes.commentToggle}
-        >
-          Hide all comments ({props.comments.length})
-        </Typography>
-        <div className={classes.userCommentsWrapper}>
-          {props.comments.map((comment, index) => {
-            return (
-              <Card>
-                <CardContent>
-                  <Grid container>
-                    <Grid item sm={1}>
-                      <img src={user} alt='User Photo' />
-                    </Grid>
-                    <Grid item sm={11}>
-                      <Typography variant='body1'>{comment.user}</Typography>
-                      <Typography variant='body2'>{comment.comment}</Typography>
-                    </Grid>
-                  </Grid>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
-      </div>
-    );
-  } else {
-    return (
-      <Typography
-        onClick={() => props.setToggleState(!props.toggleState)}
-        className={classes.commentToggle}
-      >
-        See all comments ({props.comments.length})
-      </Typography>
-    );
-  }
-};
-
-const CommentComponent = () => {
-  const [toggleState, setToggleState] = useState(false);
+const Comments = () => {
   const [comment, setComment] = useState('');
   const [comments, setComments] = useState(COMMENTS);
 
@@ -101,17 +49,13 @@ const CommentComponent = () => {
             </Button>
           </div>
         </form>
-        <ShowComments
-          comments={comments}
-          toggleState={toggleState}
-          setToggleState={setToggleState}
-        />
+        <ShowComments comments={comments} />
       </Element>
     </Container>
   );
 };
 
-export default CommentComponent;
+export default Comments;
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -144,10 +88,5 @@ const useStyles = makeStyles((theme) => ({
   submitButton: {
     marginLeft: '10px',
     borderRadius: '8px',
-  },
-  commentToggle: {
-    margin: '1rem auto',
-    cursor: 'pointer',
-    userSelect: 'none',
   },
 }));

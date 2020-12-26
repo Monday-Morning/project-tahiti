@@ -4,19 +4,15 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, Grid, Typography } from '@material-ui/core';
 
+// Components
+import { ARTICLECARD } from '../../assets/placeholder/widget';
+
 // images
 import cover from '../../assets/images/cover.png';
 
 const ArticleCard = () => {
   const props = {
-    article: {
-      tags: ['Department', 'Campus', 'BM-BT'],
-      title: 'Chaos, Curiosity and COVID-19: A Biotechnologist’s Perspective',
-      authors: ['Debabrata Malik', 'Rama Krushna Behera'],
-      readTime: '12 min',
-      summary:
-        'A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more. A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more.',
-    },
+    article: ARTICLECARD,
   };
   const classes = useStyles();
   return (

@@ -4,11 +4,11 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, Button } from '@material-ui/core';
 
+// Components
+import { SQUIGGLES } from '../../assets/placeholder/widget';
+
 function Squiggles() {
-  const squiggles = {
-    text:
-      'Hon’ble Union Education Minister inaugurated the Golden Jubilee Building at NIT Rourkela on 19th October. The broadcast of the inauguration ceremony can be watched with the following link: https://youtu.be/CTi4VnwdGVI',
-  };
+  const squiggles = SQUIGGLES;
   const classes = useStyles();
   return (
     <Card className={classes.squigglesCard}>

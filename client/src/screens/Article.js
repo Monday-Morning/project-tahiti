@@ -8,11 +8,11 @@ import Header from '../components/marginals/Header';
 import Footer from '../components/marginals/Footer';
 import TopBar from '../components/marginals/TopBar';
 import RecommendedArticles from '../components/article/RecommendedArticles';
-import CommentComponent from '../components/article/CommentComponent';
-import ArticleHeader from '../components/article/ArticleHeader';
-import ArticleContent from '../components/article/ArticleContent';
+import Comments from '../components/article/Comments';
+import ArticleHeader from '../components/article/Header';
+import ArticleContent from '../components/article/Content';
 import Disclaimer from '../components/article/Disclaimer';
-import ArticleTags from '../components/article/ArticleTags';
+import ArticleTags from '../components/article/Tags';
 
 //placeholders
 import { ARTICLE } from '../assets/placeholder/article';
@@ -32,7 +32,7 @@ function Home() {
             <Disclaimer />
             <ArticleTags tags={article.tags} />
             <hr />
-            <CommentComponent />
+            <Comments />
           </Grid>
           <Grid item md={3}>
             <SidePanel index={article.index} />
