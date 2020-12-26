@@ -1,8 +1,0 @@
-{
-  "docs": {
-    "Onboarding": ["onboardingScreen", "welcomeStage", "verifyEmailStage", "selectTopicsStage", "newsletterStage"]
-  },
-  "docs-other": {
-    "First Category": ["doc4", "doc5"]
-  }
-}
