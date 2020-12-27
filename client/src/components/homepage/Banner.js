@@ -1,10 +1,10 @@
 import React from 'react';
 
-// libraries
+//libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Container } from '@material-ui/core';
 
-// Components
+//Components
 import Witsdom from '../expressions/Witsdom';
 import PhotoStory from '../expressions/PhotoStory';
 

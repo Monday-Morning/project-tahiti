@@ -1,24 +1,25 @@
 import React, { useState } from 'react';
 
-// libraries
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { NavLink } from 'react-router-dom';
+//libraries
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Button, Container, TextField, SwipeableDrawer } from '@material-ui/core';
 import theme from '../../config/themes/light';
 import { BarChart, Search } from 'react-feather';
 
-// images
+//images
 import logo from '../../assets/images/logo.png';
 
-const DeskTopHeader = () => {
+const Header = () => {
   const classes = useStyles();
   return (
     <Container>
       <div className={classes.wrapper}>
         <Grid container className={classes.header}>
           <Grid item sm={6}>
-            <img src={logo} alt='Monday Morning' />
+            <img src={logo} alt='Monday Morning' style = {{
+            maxWidth: '100%',
+          }} />
           </Grid>
           <Grid item sm={6}>
             <div className={classes.searchWrapper}>
@@ -33,74 +34,39 @@ const DeskTopHeader = () => {
         <div className={classes.navbar}>
           <div className={classes.navList}>
             <div className={classes.navItem}>
-              <NavLink
-                to='/'
-                className={classes.navLink}
-                exact
-                activeClassName={classes.activeHeaderLink}
-              >
+              <Link to='/' className={classes.navLink}>
                 Home
-              </NavLink>
+              </Link>
             </div>
             <div className={classes.navItem}>
-              <NavLink
-                to='/campus'
-                className={classes.navLink}
-                exact
-                activeClassName={classes.activeHeaderLink}
-              >
+              <Link to='/campus' className={classes.navLink}>
                 Campus
-              </NavLink>
+              </Link>
             </div>
             <div className={classes.navItem}>
-              <NavLink
-                to='/connect'
-                className={classes.navLink}
-                exact
-                activeClassName={classes.activeHeaderLink}
-              >
+              <Link to='/demo' className={classes.navLink}>
                 Connect
-              </NavLink>
+              </Link>
             </div>
             <div className={classes.navItem}>
-              <NavLink
-                to='//ddcwc'
-                className={classes.navLink}
-                exact
-                activeClassName={classes.activeHeaderLink}
-              >
+              <Link to='#' className={classes.navLink}>
                 DD {'&'} CWC
-              </NavLink>
+              </Link>
             </div>
             <div className={classes.navItem}>
-              <NavLink
-                to='//career'
-                className={classes.navLink}
-                exact
-                activeClassName={classes.activeHeaderLink}
-              >
+              <Link to='#' className={classes.navLink}>
                 Career
-              </NavLink>
+              </Link>
             </div>
             <div className={classes.navItem}>
-              <NavLink
-                to='/alumni'
-                className={classes.navLink}
-                exact
-                activeClassName={classes.activeHeaderLink}
-              >
+              <Link to='#' className={classes.navLink}>
                 Alumni
-              </NavLink>
+              </Link>
             </div>
             <div className={classes.navItem}>
-              <NavLink
-                to='/expressions'
-                className={classes.navLink}
-                exact
-                activeClassName={classes.activeHeaderLink}
-              >
+              <Link to='#' className={classes.navLink}>
                 Expressions
-              </NavLink>
+              </Link>
             </div>
           </div>
         </div>
@@ -240,7 +206,7 @@ const useStyles = makeStyles((theme) => ({
   },
   navbar: {
     position: 'relative',
-    width: '100%',
+    maxWidth: '100%',
   },
   navList: {
     display: 'flex',

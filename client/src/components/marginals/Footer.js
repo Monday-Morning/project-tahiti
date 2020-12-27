@@ -1,6 +1,6 @@
 import React from 'react';
 
-// libraries
+//libraries
 import { makeStyles } from '@material-ui/core/styles';
 import logo from '../../assets/images/logo.png';
 import { Container, Grid, Typography, Button } from '@material-ui/core';
@@ -22,9 +22,9 @@ const Footer = () => {
               </Typography>
             </div>
           </Grid>
-          <Grid item sm={4} className={classes.containerGrid}>
-            <Grid container justify='space-between' className={classes.categoryContainer}>
-              <Grid item xs={4}>
+          <Grid item sm={4}>
+            <Grid container>
+              <Grid item sm={4}>
                 <ul className={classes.categories}>
                   <li>Campus</li>
                   <li>Connect</li>
@@ -34,14 +34,14 @@ const Footer = () => {
                   <li>Expressions</li>
                 </ul>
               </Grid>
-              <Grid item xs={4}>
+              <Grid item sm={4}>
                 <ul className={classes.categories}>
                   <li>About</li>
                   <li>Guide</li>
                   <li>Contact Us</li>
                 </ul>
               </Grid>
-              <Grid item xs={4}>
+              <Grid item sm={4}>
                 <ul className={classes.categories}>
                   <li>Subscribe</li>
                   <li>Terms of Use</li>
@@ -81,27 +81,17 @@ const Footer = () => {
 
       <div className={classes.bottomWrapper}>
         <div className={classes.bottomBar}>
-          <div>
-            <Typography variant='body1' className={classes.copyRight}>
+          <div className={classes.copyRight}>
+            <Typography variant='body1'>
               © 2015 - 2020 Monday Morning. All rights reserved.
             </Typography>
           </div>
           <div className={classes.socialIcons}>
-            <span className={classes.socialIcon}>
-              <i className='fab fa-facebook-f'></i>
-            </span>
-            <span className={classes.socialIcon}>
-              <i className='fab fa-twitter'></i>
-            </span>
-            <span className={classes.socialIcon}>
-              <i className='fab fa-youtube'></i>
-            </span>
-            <span className={classes.socialIcon}>
-              <i className='fab fa-linkedin'></i>
-            </span>
-            <span className={classes.socialIcon}>
-              <i className='fab fa-instagram'></i>
-            </span>
+            <span className={classes.socialIcon}>f</span>
+            <span className={classes.socialIcon}>t</span>
+            <span className={classes.socialIcon}>y</span>
+            <span className={classes.socialIcon}>l</span>
+            <span className={classes.socialIcon}>i</span>
           </div>
         </div>
       </div>
@@ -112,14 +102,12 @@ export default Footer;
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
+    marginTop: '50px',
     paddingTop: '50px',
     backgroundColor: theme.palette.secondary.neutral20,
   },
   aboutInfo: {
     padding: '0 100px 50px 0',
-    [theme.breakpoints.down('sm')]: {
-      padding: '0 1rem',
-    },
   },
   logo: {
     width: '200px',
@@ -128,36 +116,17 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '20px',
     textAlign: 'justify',
   },
-  containerGrid: {
-    width: '100%',
-  },
-  categoryContainer: {
-    [theme.breakpoints.down('sm')]: {
-      marginTop: '2.5rem',
-      marginBottom: '1.5rem',
-      padding: '0 1rem',
-    },
-  },
   categories: {
     listStyleType: 'none',
     marginTop: '0',
     lineHeight: '24px',
     fontSize: '16px',
     fontWeight: '700',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '14px',
-      lineHeight: '20px',
-      padding: 'unset',
-    },
   },
   rightSide: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-end',
-    marginBottom: '1.5rem',
-    [theme.breakpoints.down('sm')]: {
-      padding: '0 1rem',
-    },
   },
   appButton: {
     marginRight: '0',
@@ -186,7 +155,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.white,
   },
   bottomBar: {
-    minHeight: '70px',
+    height: '70px',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -196,32 +165,12 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: '16px',
     marginLeft: 'auto',
     marginRight: 'auto',
-    [theme.breakpoints.down('sm')]: {
-      display: 'block',
-      paddingTop: '1.5rem',
-      paddingBottom: '1.5rem',
-    },
   },
-  copyRight: {
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '0.75rem',
-      lineHeight: '1rem',
-      textAlign: 'center',
-    },
-  },
+  copyRight: {},
   socialIcons: {
     textAlign: 'right',
-    [theme.breakpoints.down('sm')]: {
-      textAlign: 'center',
-      marginTop: '1.25rem',
-    },
   },
   socialIcon: {
     marginLeft: '20px',
-    fontSize: '18px',
-    color: theme.palette.common.white,
-    [theme.breakpoints.down('sm')]: {
-      marginLeft: '10px',
-    },
   },
 }));

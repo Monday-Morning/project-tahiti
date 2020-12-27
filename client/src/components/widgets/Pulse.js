@@ -1,17 +1,21 @@
 import React from 'react';
 
-// libraries
+//libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, Grid, Typography, Button } from '@material-ui/core';
 
-// Components
-import { POLLS } from '../../assets/placeholder/widget';
-
-// images
+//Images
 import pulseImg from '../../assets/images/pulseImg.png';
 
 const Pulse = () => {
-  const polls = POLLS;
+  const polls = {
+    question: 'What is your opinion about the right time for return of students to the campus?',
+    votes: [
+      'I am desperately waiting to return back to campus with rigid safety protocols.',
+      'I am eager to return but I am a bit apprehensive about safety protocols.',
+      "I don't want to return in the near future because of the risk of transmission and would rather wait for normalcy.",
+    ],
+  };
   const classes = useStyles();
   return (
     <Card className={classes.pulseCard}>

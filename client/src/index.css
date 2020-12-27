@@ -1,19 +1,19 @@
 *,
 *::after,
 *::before {
-	margin: 0;
-	padding: 0;
-	box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
 }
 
 body {
-	font-weight: 400;
-	font-size: 16px;
-	line-height: 1.7;
-	box-sizing: border-box;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  box-sizing: border-box;
 }
 
 li,
 a {
-	text-decoration: none;
+  text-decoration: none;
 }
