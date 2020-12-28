@@ -40,11 +40,10 @@ const Reactions = () => {
 
 const SidePanel = (props) => {
   //Expanded State of Table of Contents (In Mobile View Only)
-  const [expanded, toggleExpanded] = useState(false);
 
   const classes = useStyles();
   return (
-    <div className={expanded ? classes.expanded : classes.wrapper}>
+    <div className={props.toggleSidebar ? classes.expanded : classes.wrapper}>
       <TableOfContent index={props.index} />
       <Reactions />
     </div>
@@ -61,17 +60,21 @@ const useStyles = makeStyles((theme) => ({
     position: 'sticky',
     top: 20,
     zIndex: '10',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       position: 'fixed',
       top: '-1rem',
       bottom: '0',
       left: '100%',
+      marginTop: 'unset',
       backgroundColor: theme.palette.common.white,
       paddingLeft: '0',
+      transition: theme.transitions.create('transform', {
+        duration: '0.5s',
+      }),
     },
   },
   expanded: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       position: 'fixed',
       top: '-1rem',
       bottom: '0',
