@@ -3,6 +3,7 @@ import React from 'react';
 // libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, Grid, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 // Components
 import { ARTICLECARD } from '../../assets/placeholder/widget';
@@ -27,18 +28,25 @@ const ArticleCard = () => {
           ))}
         </Grid>
         <Typography className={classes.title} variant='h2'>
-          {props.article.title}
+          <Link to='/article' className={classes.link}>
+            {props.article.title}
+          </Link>
         </Typography>
         <div className={classes.wrapper}>
           <div className={classes.authorList}>
-            {props.article.authors.map((author) => (
-              <Typography variant='body2' key={author} className={classes.author}>
-                {author}
-              </Typography>
-            ))}
+            {props.article.authors.map((author, key) => {
+              return (
+                <Typography variant='body2' key={key} className={classes.author}>
+                  {author}
+                </Typography>
+              );
+            })}
           </div>
           <div className={classes.readTime}>
-            <Typography variant='body2'>{props.article.readTime}</Typography>
+            <Typography variant='body2'>
+              <i className='far fa-clock'></i>
+              {props.article.readTime}
+            </Typography>
           </div>
         </div>
         <Typography variant='body2' className={classes.articleDescription}>
@@ -73,7 +81,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '4px',
     justifyContent: 'space-between',
   },
-  readTime: {},
+  readTime: {
+    '& i': {
+      marginRight: '0.5rem',
+    },
+  },
   author: {
     display: 'inline',
     color: theme.palette.secondary.neutral60,
@@ -83,6 +95,10 @@ const useStyles = makeStyles((theme) => ({
   articleDescription: {
     marginTop: '12px',
     fontWeight: '400',
+    color: theme.palette.common.black,
+  },
+  link: {
+    textDecoration: 'none',
     color: theme.palette.common.black,
   },
 }));

@@ -6,6 +6,7 @@ import { Link } from 'react-scroll';
 
 // Components
 import TableOfContent from './TableOfContent';
+import { Share2 } from 'react-feather';
 
 const ReactionIcon = () => {
   const [reaction, setReaction] = useState(false);
@@ -27,7 +28,8 @@ const Reactions = () => {
         <ReactionIcon />
       </span>
       <span className={classes.icon}>
-        <i className='fa fa-share-alt'></i>
+        {/* <i className='fa fa-share-alt'></i> */}
+        <Share2 size={28} />
       </span>
       <span className={classes.icon}>
         <Link to='commentBox' smooth={true} spy={true} activeClass={classes.indexLinkActive}>
@@ -102,5 +104,6 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     fontSize: '28px',
     marginTop: '2rem',
+    color: '#999999',
   },
 }));

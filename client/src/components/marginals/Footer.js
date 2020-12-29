@@ -4,6 +4,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import logo from '../../assets/images/logo.png';
 import { Container, Grid, Typography, Button } from '@material-ui/core';
+import { ArrowRightCircle } from 'react-feather';
 
 const Footer = () => {
   const classes = useStyles();
@@ -59,15 +60,18 @@ const Footer = () => {
                 <div className={classes.archives}>
                   <Typography variant='body1'>Archives</Typography>
 
-                  <select name='month' className={classes.archivesSelect}>
-                    <option value='Month'>Month</option>
-                  </select>
-                  <select name='year' className={classes.archivesSelect}>
-                    <option value='Year'>Year</option>
-                  </select>
-                  <span className={classes.arrchiveIcon}>
-                    <i className='fa fa-arrow-circle-right'></i>
-                  </span>
+                  <div className={classes.archivesWrapper}>
+                    <select name='month' className={classes.archivesSelect}>
+                      <option value='Month'>Month</option>
+                    </select>
+                    <select name='year' className={classes.archivesSelect}>
+                      <option value='Year'>Year</option>
+                    </select>
+                    <div className={classes.archiveIcon}>
+                      {/* <i className='fa fa-arrow-circle-right'></i> */}
+                      <ArrowRightCircle size={18} />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -169,8 +173,13 @@ const useStyles = makeStyles((theme) => ({
     borderColor: theme.palette.common.black,
     borderRadius: '4px',
   },
-  arrchiveIcon: {
-    fontSize: '18px',
+  archivesWrapper: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  archiveIcon: {
+    display: 'flex',
+    alignItems: 'center',
   },
   bottomWrapper: {
     backgroundColor: theme.palette.secondary.main,

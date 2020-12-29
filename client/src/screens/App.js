@@ -24,6 +24,7 @@ const AsyncRoute = (route) =>
 const AsyncHome = AsyncRoute('./Home');
 const AsyncOnboarding = AsyncRoute('./Onboarding');
 const AsyncArticle = AsyncRoute('./Article');
+const AsyncPodcast = AsyncRoute('./Podcast');
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path='/' exact component={AsyncHome} />
           <Route path='/onboarding' exact component={AsyncOnboarding} />
           <Route path='/article' component={AsyncArticle} />
+          <Route path='/podcast' exact component={AsyncPodcast} />
           {/* <Redirect to='/' /> */}
         </Switch>
       </Router>

@@ -50,11 +50,11 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.2",
-    "feather-icons": "^4.28.0",
     "file-loader": "^6.2.0",
     "history": "4.9.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-feather": "^2.0.9",
     "react-loadable": "^5.5.0",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",

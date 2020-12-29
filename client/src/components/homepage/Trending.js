@@ -44,11 +44,15 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     display: 'inline',
+    whiteSpace: 'nowrap',
   },
   underline: {
     borderBottom: '1px solid black',
     marginLeft: '20px',
     width: '100%',
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: '10px',
+    },
   },
   CategoryWrapper: {
     marginTop: '2rem',
