@@ -59,6 +59,8 @@
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
     "react-scroll": "^1.8.1",
+    "react-spring": "^8.0.27",
+    "react-use-gesture": "^9.0.0-beta.11",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
   }

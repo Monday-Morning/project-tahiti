@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // libraries
-import { Container, Grid } from '@material-ui/core';
+import { Container, Grid, useMediaQuery } from '@material-ui/core';
+import { useDrag } from 'react-use-gesture';
+import theme from '../config/themes/light';
 
 // Components
 import Header from '../components/marginals/Header';
@@ -19,13 +21,25 @@ import { ARTICLE } from '../assets/placeholder/article';
 import SidePanel from '../components/article/SidePanel';
 
 function Home() {
+  const [toggleSidebar, setToggleSidebar] = useState(false);
+
+  let matches = useMediaQuery(theme.breakpoints.down('sm'));
+  const bind = useDrag(({ down, movement: [mx, my] }) => {
+    if (matches) {
+      if (down && mx < -10) {
+        setToggleSidebar(true);
+      } else if ((down && mx > 10 && toggleSidebar) || (down && my !== 0 && toggleSidebar)) {
+        setToggleSidebar(false);
+      }
+    }
+  });
   const article = ARTICLE;
   return (
     <div>
       <TopBar />
       <Header />
       <ArticleHeader article={article} />
-      <Container>
+      <Container {...bind()}>
         <Grid container>
           <Grid item md={9}>
             <ArticleContent article={article} />
@@ -35,7 +49,7 @@ function Home() {
             <Comments />
           </Grid>
           <Grid item md={3}>
-            <SidePanel index={article.index} />
+            <SidePanel index={article.index} toggleSidebar={toggleSidebar} />
           </Grid>
         </Grid>
       </Container>

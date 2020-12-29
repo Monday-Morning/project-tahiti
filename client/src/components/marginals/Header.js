@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // libraries
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Button, Container, TextField } from '@material-ui/core';
+import { Grid, Button, Container, TextField, SwipeableDrawer } from '@material-ui/core';
 import theme from '../../config/themes/light';
 
 // images
@@ -109,11 +109,13 @@ const DeskTopHeader = () => {
 };
 
 const MobileHeader = () => {
+  const [toggleMenu, setToggleMenu] = useState(false);
+
   const classes = useMobileStyles();
   return (
     <Container>
       <div className={classes.wrapper}>
-        <span className={classes.icon}>
+        <span className={classes.icon} onClick={() => setToggleMenu(!toggleMenu)}>
           <i className='fa fa-bars'></i>
         </span>
         <img src={logo} alt='Monday Morning' className={classes.logo} />
@@ -121,6 +123,85 @@ const MobileHeader = () => {
           <i className='fa fa-search'></i>
         </span>
       </div>
+      <SwipeableDrawer
+        anchor='left'
+        open={toggleMenu}
+        onClose={() => setToggleMenu(false)}
+        onOpen={() => setToggleMenu(true)}
+      >
+        <div className={classes.navList}>
+          <div className={classes.navItem}>
+            <NavLink
+              to='/'
+              className={classes.navLink}
+              exact
+              activeClassName={classes.activeHeaderLink}
+            >
+              Home
+            </NavLink>
+          </div>
+          <div className={classes.navItem}>
+            <NavLink
+              to='/campus'
+              className={classes.navLink}
+              exact
+              activeClassName={classes.activeHeaderLink}
+            >
+              Campus
+            </NavLink>
+          </div>
+          <div className={classes.navItem}>
+            <NavLink
+              to='/connect'
+              className={classes.navLink}
+              exact
+              activeClassName={classes.activeHeaderLink}
+            >
+              Connect
+            </NavLink>
+          </div>
+          <div className={classes.navItem}>
+            <NavLink
+              to='//ddcwc'
+              className={classes.navLink}
+              exact
+              activeClassName={classes.activeHeaderLink}
+            >
+              DD {'&'} CWC
+            </NavLink>
+          </div>
+          <div className={classes.navItem}>
+            <NavLink
+              to='//career'
+              className={classes.navLink}
+              exact
+              activeClassName={classes.activeHeaderLink}
+            >
+              Career
+            </NavLink>
+          </div>
+          <div className={classes.navItem}>
+            <NavLink
+              to='/alumni'
+              className={classes.navLink}
+              exact
+              activeClassName={classes.activeHeaderLink}
+            >
+              Alumni
+            </NavLink>
+          </div>
+          <div className={classes.navItem}>
+            <NavLink
+              to='/expressions'
+              className={classes.navLink}
+              exact
+              activeClassName={classes.activeHeaderLink}
+            >
+              Expressions
+            </NavLink>
+          </div>
+        </div>
+      </SwipeableDrawer>
     </Container>
   );
 };
@@ -189,5 +270,15 @@ const useMobileStyles = makeStyles((theme) => ({
   },
   icon: {
     fontSize: '18px',
+  },
+  navList: {
+    padding: '2rem',
+  },
+  navItem: {
+    padding: '1rem 10px',
+  },
+  navLink: {
+    textDecoration: 'none',
+    color: 'unset',
   },
 }));
