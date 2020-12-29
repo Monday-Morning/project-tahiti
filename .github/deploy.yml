@@ -1,0 +1,24 @@
+name: Firebase Deploy
+
+on:
+    push:
+        branches:
+            - master
+
+jobs:
+    firebase-deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@master
+            - uses: actions/setup-node@master
+              with:
+                  node-version: '12.x'        
+            - run: cd client && npm ci
+            - run: cd client && npm run build:dev
+            - uses: w9jds/firebase-action@master
+              with:
+                  args: deploy --only hosting
+              env:
+                  FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+                  PROJECT_PATH: ./client
