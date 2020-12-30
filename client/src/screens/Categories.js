@@ -7,11 +7,11 @@ import TopBar from '../components/marginals/TopBar';
 function Categories() {
   return (
     <div>
-      {/* <TopBar /> */}
-      {/* <Header /> */}
+      <TopBar />
+      <Header />
 
       <Campus />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

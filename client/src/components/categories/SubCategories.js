@@ -5,7 +5,7 @@ import React from 'react';
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'inline',
-    marginBottom: '10rem',
+    // marginBottom: '10rem',
 
   },
 
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     background: '#D9E9F7',
     borderRadius: '4px',
     marginRight: '0.4rem',
-    marginTop: '1rem',
+    marginTop: '0.4rem',
     },
 
   label: {

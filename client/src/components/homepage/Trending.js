@@ -1,6 +1,6 @@
 import React from 'react';
 
-//libraries
+// libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 
@@ -37,6 +37,7 @@ export default Trending;
 const useStyles = makeStyles((theme) => ({
   wrapper: {
     marginTop: '4rem',
+    marginBottom: '3rem',
   },
   titleWrapper: {
     display: 'flex',
@@ -57,10 +58,12 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '2rem',
   },
   category: {
-    display: 'inline',
+    display: 'inline-block',
     marginRight: '10px',
+    marginTop: '10px',
     backgroundColor: theme.palette.primary.blue10,
     borderRadius: '4px',
     padding: '12px 16px',
+    cursor: 'pointer',
   },
 }));

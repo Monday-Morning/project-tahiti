@@ -1,23 +1,19 @@
 import React from 'react';
 
-//libraries
+// libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, Grid, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
-//images
+// Components
+import { ARTICLECARD } from '../../assets/placeholder/widget';
+
+// images
 import cover from '../../assets/images/cover.png';
 
 const ArticleCard = () => {
   const props = {
-    article: {
-      tags: ['Department', 'Campus', 'BM-BT'],
-      title: 'Chaos, Curiosity and COVID-19: A Biotechnologist’s Perspective',
-      authors: ['Debabrata Malik', 'Rama Krushna Behera'],
-      readTime: '12 min',
-      summary:
-        'A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more. A webinar on COVID-19 was conducted by the BM/BT Department. Read on to know more.',
-    },
+    article: ARTICLECARD,
   };
   const classes = useStyles();
   return (
@@ -79,6 +75,10 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     marginTop: '4px',
+    [theme.breakpoints.down('sm')]: {
+      lineHeight: '28px',
+      fontSize: '20px',
+    },
   },
   wrapper: {
     display: 'flex',
@@ -88,13 +88,21 @@ const useStyles = makeStyles((theme) => ({
   readTime: {
     '& i': {
       marginRight: '0.5rem',
+    color: '#6E6E6E',
+    color: theme.palette.secondary.neutral60,
+    [theme.breakpoints.down('sm')]: {
+      color: theme.palette.secondary.neutral70,
     },
   },
+},
   author: {
     display: 'inline',
-    color: theme.palette.secondary.neutral60,
+    color: theme.palette.secondary.neutral70,
     fontWeight: '400',
     marginRight: '10px',
+    [theme.breakpoints.down('sm')]: {
+      color: theme.palette.secondary.neutral70,
+    },
   },
   articleDescription: {
     marginTop: '12px',
