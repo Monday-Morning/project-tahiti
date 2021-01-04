@@ -75,9 +75,6 @@ module.exports = (env) => {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-        options: {
-          presets: ['react'],
-        },
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|cot)$/,
@@ -97,10 +94,13 @@ module.exports = (env) => {
   // Config specific for Production
   if (isProduction) {
     config.output = {
+      // path: path.join(__dirname, 'dist'),
+      // publicPath: path.join(__dirname, 'dist', '/'),
+      // chunkFilename: '[name].[chunkhash].bundle.js',
+      // filename: '[name].[chunkhash].bundle.js',
       path: path.join(__dirname, 'dist'),
-      publicPath: path.join(__dirname, 'dist', '/'),
-      chunkFilename: '[name].[chunkhash].bundle.js',
-      filename: '[name].[chunkhash].bundle.js',
+      chunkFilename: '[name].bundle.js',
+      filename: '[name].bundle.js',
     };
 
     config.mode = 'production';

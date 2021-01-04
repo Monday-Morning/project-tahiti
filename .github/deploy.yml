@@ -17,8 +17,8 @@ jobs:
             - uses: actions/setup-node@master
               with:
                   node-version: '12.x'        
-            - run: cd client && npm ci
-            - run: cd client && npm run build:dev
+            - run: cd client && yarn install
+            - run: cd client && yarn run build:prod
             - uses: w9jds/firebase-action@master
               with:
                   args: deploy --only hosting

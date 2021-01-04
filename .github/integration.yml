@@ -12,5 +12,5 @@ jobs:
             - uses: actions/setup-node@master
               with:
                   node-version: '12.x'
-            - run: npm ci
-            - run: npm run build:dev
+            - run: yarn ci
+            - run: yarn run build:prod
