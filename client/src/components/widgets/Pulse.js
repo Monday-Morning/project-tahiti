@@ -18,19 +18,24 @@ const Pulse = () => {
       <CardContent>
         <Typography variant='h1'>Student Pulse</Typography>
         <Grid container alignItems='center'>
-          <Grid item md={8}>
+          <Grid item md={8} className={classes.pulseDataContainer}>
             <p className={classes.pulseQuestion}>{polls.question}</p>
-            {polls.votes.map((value) => (
-              <div key={value}>
-                <input className={classes.voteOption} type='radio' name='votes' value={value} />
-                {value}
+            {polls.votes.map((option, key) => (
+              <div key={key} className={classes.optionWrapper}>
+                <input
+                  className={classes.voteOption}
+                  type='radio'
+                  name='votes'
+                  value={option.value}
+                />
+                <label htmlFor={option.value}>{option.option}</label>
               </div>
             ))}
             <Button variant='contained' color='primary' className={classes.voteButton}>
               Vote
             </Button>
           </Grid>
-          <Grid item md={4} className={classes.pulseContainer}>
+          <Grid item md={4} className={classes.pulseImageContainer}>
             <Grid container justify='center'>
               <img src={pulseImg} alt='Pulse Image' />
             </Grid>
@@ -64,9 +69,19 @@ const useStyles = makeStyles((theme) => ({
   voteButton: {
     marginTop: '50px',
   },
-  pulseContainer: {
+  pulseDataContainer: {
+    order: '1',
+    [theme.breakpoints.down('sm')]: {
+      order: '2',
+    },
+  },
+  pulseImageContainer: {
     width: '100%',
     paddingTop: '1rem ',
     paddingBottom: '1rem ',
+    order: '2',
+    [theme.breakpoints.down('sm')]: {
+      order: '1',
+    },
   },
 }));

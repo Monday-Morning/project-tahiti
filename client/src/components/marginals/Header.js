@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Button, Container, TextField, SwipeableDrawer } from '@material-ui/core';
 import theme from '../../config/themes/light';
+import { BarChart, Search } from 'react-feather';
 
 // images
 import logo from '../../assets/images/logo.png';
@@ -116,11 +117,15 @@ const MobileHeader = () => {
     <Container>
       <div className={classes.wrapper}>
         <span className={classes.icon} onClick={() => setToggleMenu(!toggleMenu)}>
-          <i className='fa fa-bars'></i>
+          <i>
+            <BarChart className={classes.headerIcon} />
+          </i>
         </span>
         <img src={logo} alt='Monday Morning' className={classes.logo} />
         <span className={classes.icon}>
-          <i className='fa fa-search'></i>
+          <i>
+            <Search />
+          </i>
         </span>
       </div>
       <SwipeableDrawer
@@ -270,6 +275,9 @@ const useMobileStyles = makeStyles((theme) => ({
   },
   icon: {
     fontSize: '18px',
+  },
+  headerIcon: {
+    transform: 'rotateY(180deg) rotate(-90deg)',
   },
   navList: {
     padding: '2rem',

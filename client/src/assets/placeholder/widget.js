@@ -10,9 +10,19 @@ export const ARTICLECARD = Object.freeze({
 export const POLLS = Object.freeze({
   question: 'What is your opinion about the right time for return of students to the campus?',
   votes: [
-    'I am desperately waiting to return back to campus with rigid safety protocols.',
-    'I am eager to return but I am a bit apprehensive about safety protocols.',
-    "I don't want to return in the near future because of the risk of transmission and would rather wait for normalcy.",
+    {
+      option: 'I am desperately waiting to return back to campus with rigid safety protocols.',
+      value: 1,
+    },
+    {
+      option: 'I am eager to return but I am a bit apprehensive about safety protocols.',
+      value: 2,
+    },
+    {
+      option:
+        "I don't want to return in the near future because of the risk of transmission and would rather wait for normalcy.",
+      value: 3,
+    },
   ],
 });
 
