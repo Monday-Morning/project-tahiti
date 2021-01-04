@@ -1,3 +1,4 @@
+'use strict';
 const path = require('path');
 const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -22,7 +23,7 @@ module.exports = (env) => {
   });
 
   const AnalyzerPlugin = new BundleAnalyzerPlugin({
-    analyzerMode: 'disabled',
+    analyzerMode: 'none',
   });
 
   const HTMLPlugin = new HtmlWebpackPlugin({
@@ -36,7 +37,7 @@ module.exports = (env) => {
   config.entry = ['babel-polyfill', './src/index.js'];
 
   config.output = {
-    path: path.join(__dirname, '/dist'),
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
   };
 
@@ -44,7 +45,7 @@ module.exports = (env) => {
     splitChunks: {
       cacheGroups: {
         commons: {
-          test: /[\\]node_modules[\\]/,
+          test: /[\\/]node_modules[\\/]/,
           name: 'vendor',
           chunks: 'initial',
         },
@@ -55,7 +56,7 @@ module.exports = (env) => {
     },
     minimizer: [
       new UglifyJsPlugin({
-        sourceMap: false,
+        sourceMap: true,
         uglifyOptions: {
           ecma: 8,
           mangle: false,
@@ -73,7 +74,11 @@ module.exports = (env) => {
       {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
+        include: resolve(__dirname, './src'),
         exclude: /node_modules/,
+        options: {
+          presets: ['react'],
+        },
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|cot)$/,
