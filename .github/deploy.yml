@@ -17,7 +17,7 @@ jobs:
             - uses: actions/setup-node@master
               with:
                   node-version: '14.x'        
-            - run: cd client && yarn install
+            - run: cd client && yarn install --frozen-lockfile
             - run: cd client && yarn run build:prod
             - uses: w9jds/firebase-action@master
               with:
