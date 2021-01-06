@@ -9,7 +9,11 @@
     "start": "webpack-dev-server --env development",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage --colors"
+    "test:coverage": "jest --coverage --colors",
+    "firebase:deploy": "cd .. && firebase deploy --only hosting",
+    "firebase:deploy:preview": "cd .. && firebase hosting:channel:deploy tahiti-v1",
+    "deploy:prod": "yarn build:prod && yarn firebase:deploy",
+    "deploy:preview": "yarn build:prod && yarn firebase:deploy:preview"
   },
   "keywords": [],
   "author": "",
