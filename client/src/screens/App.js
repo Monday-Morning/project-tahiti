@@ -9,7 +9,7 @@ import { CssBaseline } from '@material-ui/core';
 // Components
 import ActivityIndicator from '../components/shared/ActivityIndicator';
 import Marginals from '../components/marginals/Marginals';
-import TopBar from '../components/marginals/TopBar';
+import TopMarginal from '../components/marginals/TopMarginal';
 
 // Helpers
 import createBrowserHistory from '../utils/history';
@@ -32,15 +32,19 @@ function App() {
   return (
     <ThemeProvider theme={lightTheme}>
       <CssBaseline />
+
       <Router history={createBrowserHistory}>
         <Switch>
-          <Route path='/onboarding' exact component={AsyncOnboarding} />
+          <TopMarginal>
+            <Route path='/onboarding' exact component={AsyncOnboarding} />
+          </TopMarginal>
 
           <Marginals>
             <Route path='/' exact component={AsyncHome} />
             <Route path='/article' component={AsyncArticle} />
             <Route path='/podcast' exact component={AsyncPodcast} />
           </Marginals>
+
           {/* <Redirect to='/' /> */}
         </Switch>
       </Router>
