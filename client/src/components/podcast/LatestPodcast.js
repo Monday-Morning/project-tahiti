@@ -8,7 +8,7 @@ import { Bookmark, Share2, Clock } from 'react-feather';
 import { PODCAST } from '../../assets/placeholder/podcast';
 
 // Images
-import podcastImage from '../../assets/images/Podcast.png';
+import podcastImage from '../../assets/images/podcast.png';
 
 const LatestPodcast = () => {
   const [status, setStatus] = useState(false);
