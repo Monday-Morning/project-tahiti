@@ -8,19 +8,19 @@ import { Card, CardContent, Button } from '@material-ui/core';
 import { SQUIGGLES } from '../../assets/placeholder/widget';
 
 function Squiggles() {
-  const squiggles = SQUIGGLES;
   const classes = useStyles();
+
   return (
     <Card className={classes.squigglesCard}>
       <CardContent>
         <div className={classes.squigglesWrapper}>
-          <div className={classes.ButtonWrapper}>
+          <div className={classes.buttonWrapper}>
             <Button className={classes.squigglesButton} disabled>
               Squiggles
             </Button>
           </div>
           <div>
-            <p className={classes.SquigglesText}>{squiggles.text}</p>
+            <p className={classes.squigglesText}>{SQUIGGLES.TEXT}</p>
           </div>
         </div>
       </CardContent>
@@ -29,10 +29,12 @@ function Squiggles() {
 }
 
 export default Squiggles;
+
 const useStyles = makeStyles((theme) => ({
   squigglesCard: {
     backgroundColor: theme.palette.accent.squiggles,
     boxShadow: theme.shadows[0],
+    marginTop: 25,
   },
   squigglesWrapper: {
     display: 'flex',
@@ -45,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
       padding: 'unset',
     },
   },
-  ButtonWrapper: {
+  buttonWrapper: {
     textAlign: 'center',
   },
   squigglesButton: {
@@ -57,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
       marginRight: 'auto',
     },
   },
-  SquigglesText: {
+  squigglesText: {
     fontSize: '20px',
     lineHeight: '28px',
     fontWeight: '400',

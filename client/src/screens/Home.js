@@ -4,69 +4,53 @@ import React from 'react';
 import { Box, Container, Grid, Card, makeStyles } from '@material-ui/core';
 
 // Components
-import ArticleCard from '../components/widgets/ArticleCard';
-import Pulse from '../components/widgets/Pulse';
-import Squiggles from '../components/widgets/Squiggles';
 import FeaturedArticles from '../components/homepage/FeaturedArticles';
-import Trending from '../components/homepage/Trending';
-import Banner from '../components/homepage/Banner';
+import Squiggles from '../components/widgets/Squiggles';
+import ArticleCardStack from '../components/widgets/ArticleCardStack';
+import Pulse from '../components/widgets/Pulse';
 import Calendar from '../assets/images/calendar.png';
+import Banner from '../components/homepage/Banner';
+import Trending from '../components/homepage/Trending';
 
 function Home() {
   const classes = useStyles();
 
   return (
-    <div>
+    <>
       <Container>
-        <Box mt={4}>
-          <FeaturedArticles />
-        </Box>
+        <FeaturedArticles />
+        <Squiggles />
+        <ArticleCardStack />
 
-        <Box mt={4}>
-          <Squiggles />
-        </Box>
-
-        <Box mt={4}>
-          <Grid container spacing={4}>
-            {[0, 1, 2].map((val) => (
-              <Grid key={val} item sm={4}>
-                <ArticleCard />
-              </Grid>
-            ))}
-            <Grid item sm={8}>
-              <Box mt={2}>
-                <Pulse />
-              </Box>
-            </Grid>
-            <Grid item sm={4}>
-              <Card className={classes.calendar} />
-            </Grid>
-            {[0, 1, 2].map((val) => (
-              <Grid key={val} item sm={4}>
-                <ArticleCard />
-              </Grid>
-            ))}
+        <Grid container spacing={4} style={{ marginTop: 25 }}>
+          <Grid item sm={8}>
+            <Box mt={2}>
+              <Pulse />
+            </Box>
           </Grid>
-        </Box>
+          <Grid item sm={4}>
+            <Card className={classes.calendar} />
+          </Grid>
+        </Grid>
+
+        <ArticleCardStack />
       </Container>
 
       <Banner />
 
-      <Container>
-        <Box mt={4}>
-          <Grid container spacing={4}>
-            <Grid item sm={6}>
-              <Card className={classes.card} />
-            </Grid>
-            <Grid item sm={6}>
-              <Card className={classes.card} />
-            </Grid>
+      <Container style={{ marginTop: 35 }}>
+        <Grid container spacing={4}>
+          <Grid item sm={6}>
+            <Card className={classes.card} />
           </Grid>
+          <Grid item sm={6}>
+            <Card className={classes.card} />
+          </Grid>
+        </Grid>
 
-          <Trending />
-        </Box>
+        <Trending />
       </Container>
-    </div>
+    </>
   );
 }
 

@@ -35,17 +35,15 @@ function App() {
 
       <Router history={createBrowserHistory}>
         <Switch>
-          <TopMarginal>
-            <Route path='/onboarding' exact component={AsyncOnboarding} />
-          </TopMarginal>
+          <Route path='/onboarding' exact component={AsyncOnboarding} />
 
           <Marginals>
             <Route path='/' exact component={AsyncHome} />
-            <Route path='/article' component={AsyncArticle} />
+            <Route path='/article' exact component={AsyncArticle} />
             <Route path='/podcast' exact component={AsyncPodcast} />
-          </Marginals>
 
-          {/* <Redirect to='/' /> */}
+            {/* <Redirect to='/' /> */}
+          </Marginals>
         </Switch>
       </Router>
     </ThemeProvider>

@@ -16,9 +16,11 @@ const ArticleCard = () => {
     article: ARTICLECARD,
   };
   const classes = useStyles();
+
   return (
     <Card className={classes.articleCard}>
       <img className={classes.featuredImage} src={cover} alt='Featured' />
+
       <CardContent>
         <Grid container spacing={1}>
           {props.article.tags.map((tag) => (
@@ -27,11 +29,13 @@ const ArticleCard = () => {
             </Grid>
           ))}
         </Grid>
+
         <Typography className={classes.title} variant='h2'>
           <Link to='/article' className={classes.link}>
             {props.article.title}
           </Link>
         </Typography>
+
         <div className={classes.wrapper}>
           <div className={classes.authorList}>
             {props.article.authors.map((author, key) => {
@@ -42,6 +46,7 @@ const ArticleCard = () => {
               );
             })}
           </div>
+
           <div className={classes.readTime}>
             <Typography variant='body2'>
               <i className='far fa-clock'></i>
@@ -49,6 +54,7 @@ const ArticleCard = () => {
             </Typography>
           </div>
         </div>
+
         <Typography variant='body2' className={classes.articleDescription}>
           {props.article.summary}
         </Typography>
