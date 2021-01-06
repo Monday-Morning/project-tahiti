@@ -11,6 +11,6 @@ jobs:
             - uses: actions/checkout@master
             - uses: actions/setup-node@master
               with:
-                  node-version: '12.x'
+                  node-version: '14.x'
             - run: yarn ci
             - run: yarn run build:prod

@@ -2,8 +2,7 @@ name: Firebase Deploy
 
 on:
     push:
-        branches:
-            - master
+        branches: [master]
     paths-ignore:
         - docs
         - planning
