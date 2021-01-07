@@ -27,6 +27,7 @@ const AsyncHome = AsyncRoute('./Home');
 const AsyncOnboarding = AsyncRoute('./Onboarding');
 const AsyncArticle = AsyncRoute('./Article');
 const AsyncPodcast = AsyncRoute('./Podcast');
+const AsyncPortfolio = AsyncRoute('./Portfolio');
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
 
             {/* <Redirect to='/' /> */}
           </Marginals>
+    
         </Switch>
       </Router>
     </ThemeProvider>
