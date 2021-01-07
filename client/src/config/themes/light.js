@@ -140,6 +140,16 @@ const theme = createMuiTheme({
         lineHeight: '1.5rem',
       },
     },
+    h4: {
+      fontFamily: '"IBM Plex Sans" ,"Roboto", "Helvetica", "Arial", sans-serif',
+      fontWeight: 600,
+      fontSize: '1.125rem',
+      lineHeight: '1.375rem',
+      '@media (max-width:600px)': {
+        fontSize: '1.125rem',
+        lineHeight: '1.5rem',
+      },
+    },
     // Regular Body
     body1: {
       fontFamily: '"IBM Plex Sans" ,"Roboto", "Helvetica", "Arial", sans-serif',

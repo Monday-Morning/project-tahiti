@@ -67,4 +67,4 @@ node_modules/
 
 
 # Builds
-dist
+client/dist
