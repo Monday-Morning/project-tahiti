@@ -11,19 +11,20 @@ import { ARTICLECARD } from '../../assets/placeholder/widget';
 // images
 import cover from '../../assets/images/cover.png';
 
-const ArticleCard = () => {
+const ArticleCard = ({ carousel }) => {
   const props = {
     article: ARTICLECARD,
   };
   const classes = useStyles();
   return (
-    <Card className={classes.articleCard}>
+    // <Card className={classes.root}>
+    <Card className={carousel ? classes.root2 : classes.root}>
       <img className={classes.featuredImage} src={cover} alt='Featured' />
-      <CardContent>
-        <Grid container spacing={1}>
-          {props.article.tags.map((tag) => (
+      <CardContent className={classes.contentRoot}>
+        <Grid container>
+          {props.article.tags.map((tag, index) => (
             <Grid item key={tag}>
-              <span className={classes.tag}>{tag}</span>
+              <span className={classes.seperator}>{(index ? ' |' : '')}</span> <span className={classes.tag}>{`${tag}`}</span>
             </Grid>
           ))}
         </Grid>
@@ -34,19 +35,15 @@ const ArticleCard = () => {
         </Typography>
         <div className={classes.wrapper}>
           <div className={classes.authorList}>
-            {props.article.authors.map((author, key) => {
-              return (
-                <Typography variant='body2' key={key} className={classes.author}>
-                  {author}
-                </Typography>
-              );
-            })}
+            {props.article.authors.map((author, index) => (
+              <Typography variant='body2' key={author} className={classes.author}>
+                {(index ? ',' : '') + `  ${author}`}
+              </Typography>
+            ))}
           </div>
           <div className={classes.readTime}>
-            <Typography variant='body2'>
-              <i className='far fa-clock'></i>
-              {props.article.readTime}
-            </Typography>
+            <i className='far fa-clock'></i>
+            <Typography variant='body2'>{props.article.readTime}</Typography>
           </div>
         </div>
         <Typography variant='body2' className={classes.articleDescription}>
@@ -59,25 +56,54 @@ const ArticleCard = () => {
 
 export default ArticleCard;
 const useStyles = makeStyles((theme) => ({
-  articleCard: {
+  root: {
     boxShadow: theme.shadows[0],
+    maxWidth: '379px',
+
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '100%',
+    },
+  },
+  root2: {
+    boxShadow: theme.shadows[0],
+    maxWidth: '379px',
+    minWidth: '379px',
+    marginRight: '1.5rem',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '100%',
+      minWidth: '312px',
+    },
   },
   featuredImage: {
     width: '100%',
   },
+  contentRoot: {
+    [theme.breakpoints.up('sm')]: {
+      padding: '0.75rem',
+    },
+  },
   tag: {
-    // backgroundColor: 'unset',
-    fontSize: '12px',
+    fontSize: '0.75rem',
     fontWeight: '400',
-    lineHeight: '16px',
-    color: theme.palette.secondary.neutral60,
+    lineHeight: '1rem',
+    color: theme.palette.secondary.neutral70,
     textDecoration: 'underline',
   },
+  seperator: {
+    color: theme.palette.secondary.neutral70,
+    // marginInline: '0.25rem',
+    marginRight: '2px',
+    marginLeft: '0.25rem',
+  },
   title: {
-    marginTop: '4px',
+    marginTop: '0.25rem',
+    fontSize: '1.5rem',
+    lineHeight: '2rem',
+    textAlign: 'justify',
+
     [theme.breakpoints.down('sm')]: {
-      lineHeight: '28px',
-      fontSize: '20px',
+      lineHeight: '1.75rem',
+      fontSize: '1.25rem',
     },
   },
   wrapper: {
@@ -86,20 +112,25 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
   },
   readTime: {
-    '& i': {
-      marginRight: '0.5rem',
-    color: '#6E6E6E',
+    display: 'flex',
+    fontWeight: '400',
     color: theme.palette.secondary.neutral60,
+
+    '& i': {
+      marginTop: '0.25rem',
+      marginRight: '5px',
+    },
+
     [theme.breakpoints.down('sm')]: {
       color: theme.palette.secondary.neutral70,
     },
   },
-},
   author: {
     display: 'inline',
-    color: theme.palette.secondary.neutral70,
+    color: theme.palette.secondary.neutral60,
     fontWeight: '400',
     marginRight: '10px',
+
     [theme.breakpoints.down('sm')]: {
       color: theme.palette.secondary.neutral70,
     },
@@ -108,6 +139,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '12px',
     fontWeight: '400',
     color: theme.palette.common.black,
+    textAlign: 'justify',
   },
   link: {
     textDecoration: 'none',

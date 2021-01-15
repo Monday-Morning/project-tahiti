@@ -19,8 +19,6 @@ import Calendar from '../assets/images/calendar.png';
 function Home() {
   return (
     <div>
-      <TopBar />
-      <Header />
       <Container>
         {/* FeaturedArticles */}
         <Box mt={4}>
@@ -89,7 +87,6 @@ function Home() {
           <Trending />
         </Box>
       </Container>
-      <Footer />
     </div>
   );
 }

@@ -38,17 +38,19 @@ const Pulse = () => {
                 <label htmlFor={option.value}>{option.option}</label>
               </div>
             ))}
-            <Button variant='contained' color='primary' className={classes.voteButton}>
-              Vote
+            <Grid className={classes.voteButton}>
+              <Button variant='contained' color='primary' >
+                Vote
             </Button>
-          </Grid>
-
-          <Grid item sm={4} className={classes.image}>
-            <Grid container justify='center'>
-              <img src={pulseImg} alt='Pulse Image' />
             </Grid>
           </Grid>
-          
+
+          <Grid item sm={4} className={classes.imageContainer}>
+            <Grid container justify='center'>
+              <img src={pulseImg} alt='Pulse Image' className={classes.image} />
+            </Grid>
+          </Grid>
+
         </Grid>
 
       </CardContent>
@@ -78,13 +80,26 @@ const useStyles = makeStyles((theme) => ({
   },
   voteButton: {
     marginTop: '50px',
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
   },
   content: {
     [theme.breakpoints.down('sm')]: {
       order: 2,
     },
   },
+
   image: {
+
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
+  },
+  imageContainer: {
+
     [theme.breakpoints.down('sm')]: {
       order: 1,
     },
