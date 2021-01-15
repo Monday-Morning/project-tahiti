@@ -29,7 +29,7 @@ const AsyncOnboarding = AsyncRoute('./Onboarding');
 const AsyncArticle = AsyncRoute('./Article');
 const AsyncPodcast = AsyncRoute('./Podcast');
 const AsyncPortfolio = AsyncRoute('./Portfolio');
-const AsyncCategory = AsyncRoute('./Category');
+const AsyncCategory = AsyncRoute('./CategoryPages');
 
 
 function App() {

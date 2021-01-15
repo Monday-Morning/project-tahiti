@@ -5,7 +5,6 @@ import theme from '../config/themes/light';
 import Carousel from '../components/widgets/Carousel';
 import ArticlesCards from '../components/categories/ArticlesCards';
 import { CATEGORIES } from '../assets/placeholder/widget';
-// import Category from './Category';
 
 function Category({ category, categoryName, categoryHeader }) {
   const props = {
