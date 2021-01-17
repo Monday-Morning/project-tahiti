@@ -7,6 +7,7 @@ import theme from '../../config/themes/light';
 import cover from '../../assets/images/BACover.jpg';
 import { ARTICLECARD } from '../../assets/placeholder/widget';
 import { Grid } from '@material-ui/core';
+import { Bookmark, Share2 } from 'react-feather';
 
 const BigArticleCard = () => {
   const classes = useStyles(theme);
@@ -55,8 +56,10 @@ const BigArticleCard = () => {
 
           <div className={classes.footer}>
             <div className={classes.line}></div>
-            <i className='fal fa-share-alt'></i>
-            <i className='far fa-bookmark'></i>
+            {/* <i className='fal fa-share-alt'></i> */}
+            {/* <Share2 /> */}
+            <Share2 size={18} className={classes.icons} />
+            <Bookmark size={18} className={classes.icons} />
           </div>
         </div>
         {/* </div> */}
@@ -66,7 +69,6 @@ const BigArticleCard = () => {
 };
 
 const useStyles = makeStyles((theme) => ({
-
   root: {
     display: 'flex',
     boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
@@ -131,6 +133,9 @@ const useStyles = makeStyles((theme) => ({
     borderColor: theme.palette.common.black,
     width: '-webkit-fill-available',
   },
+  icons: {
+    // marginInline: '2px',
+  },
 
   articleDescription: {
     display: 'flex',
@@ -142,7 +147,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
     marginBottom: '0rem',
   },
-
 }));
 
 export default BigArticleCard;
