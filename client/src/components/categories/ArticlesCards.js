@@ -1,4 +1,4 @@
-import { Grid, makeStyles, useMediaQuery } from '@material-ui/core';
+import { Box, Grid, makeStyles, useMediaQuery } from '@material-ui/core';
 import React from 'react';
 import theme from '../../config/themes/light';
 import ArticleCard from '../widgets/ArticleCard';
@@ -27,24 +27,26 @@ const ArticlesCard = ({ heading, smallCards, bigCards, forum, pulse, pniData }) 
       )}
       {pulse && <Pulse />}
       {bigCards && (matches ? <BigArticleCard /> : <ArticleCard />)}
-      <div className={classes.smallCards}>
-        <Grid container spacing={4}>
-          {smallCards &&
-            [0, 1, 2].map((key) =>
-              matches ? (
-                <Grid key={key} item sm={4}>
-                  <ArticleCard />
-                </Grid>
-              ) : (
-                  <div key={key}>
-                    <SmallArticleCard />
+      <Box mt={4}>
+
+        <Grid  >
+          <div className={classes.smallCards}>
+            {smallCards &&
+              [0, 1, 2].map((key) =>
+                matches ? (
+                  <div key={key} item sm={4}>
+                    <ArticleCard />
                   </div>
-                ),
-            )}
+                ) : (
+                    <div key={key}>
+                      <SmallArticleCard />
+                    </div>
+                  ),
+              )}
+          </div>
         </Grid>
-      </div>
-      {
-        pniData && <PnIData />}
+      </Box>
+      {pniData && <PnIData />}
     </div>
   );
 };
@@ -97,7 +99,8 @@ const useStyles = makeStyles((theme) => ({
 
   smallCards: {
     [theme.breakpoints.up('sm')]: {
-      marginTop: '33px',
+      // minWidth: '100%',
+      // marginTop: '33px',
       display: 'flex',
       justifyContent: 'space-between',
     },
