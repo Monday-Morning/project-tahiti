@@ -12,5 +12,5 @@ jobs:
             - uses: actions/setup-node@master
               with:
                   node-version: '14.x'
-            - run: yarn ci
-            - run: yarn run build:prod
+            - run: cd client && yarn install --frozen-lockfile
+            - run: cd client && yarn build:prod

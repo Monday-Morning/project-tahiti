@@ -59,6 +59,7 @@ export const ARTICLE = Object.freeze({
     },
   ],
 });
+
 export const DISCLAIMER = Object.freeze({
   title: 'DISCLAIMER: ',
   firstpara:

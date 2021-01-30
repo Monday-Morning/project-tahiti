@@ -5,6 +5,7 @@ import { makeStyles, Container, Grid, Typography } from '@material-ui/core';
 
 // Components
 import ArticleCard from '../widgets/ArticleCard';
+import ArticleCardStack from '../widgets/ArticleCardStack';
 
 const RecommendedArticles = () => {
   const classes = useStyles();
@@ -17,15 +18,7 @@ const RecommendedArticles = () => {
           </Typography>
           <div className={classes.underline}></div>
         </div>
-        <Grid container spacing={4}>
-          {[0, 1, 2].map((key) => {
-            return (
-              <Grid key={key} item sm={4}>
-                <ArticleCard />
-              </Grid>
-            );
-          })}
-        </Grid>
+        <ArticleCardStack />
       </Container>
     </div>
   );

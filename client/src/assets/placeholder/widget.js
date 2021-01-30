@@ -27,7 +27,7 @@ export const POLLS = Object.freeze({
 });
 
 export const SQUIGGLES = Object.freeze({
-  text:
+  TEXT:
     'Hon’ble Union Education Minister inaugurated the Golden Jubilee Building at NIT Rourkela on 19th October. The broadcast of the inauguration ceremony can be watched with the following link: https://youtu.be/CTi4VnwdGVI',
 });
 

@@ -14,12 +14,14 @@ const LatestPodcast = () => {
   const [status, setStatus] = useState(false);
   const podcast = PODCAST[0];
   const classes = useStyles();
+
   return (
     <Container>
       <div className={classes.wrapper}>
         <Typography variant='h1' className={classes.heading}>
           Podcast
         </Typography>
+
         <Grid container className={classes.podWrapper}>
           <Grid item sm={3} className={classes.imageWrapper}>
             <div className={classes.Status} onClick={() => setStatus(!status)}>
@@ -27,11 +29,13 @@ const LatestPodcast = () => {
             </div>
             <img className={classes.podcastImage} src={podcastImage} alt='podcast Image' />
           </Grid>
+
           <Grid item sm={9} className={classes.Details}>
             <div className={classes.titleWrapper}>
               <div className={classes.title}>
                 <Typography variant='h2'>{podcast.title}</Typography>
               </div>
+
               <div className={classes.iconWrapper}>
                 <span className={classes.utilityIcon}>
                   <Share2 size={18} />
@@ -41,19 +45,24 @@ const LatestPodcast = () => {
                 </span>
               </div>
             </div>
+
             <Typography variant='body2' className={classes.authors}>
               {podcast.authors.map((author, key, podcast) => {
-                if (key === podcast.length - 1) {
-                  return <span key={key}> {author} </span>;
-                } else {
-                  return <span key={key}> {author}, </span>;
+                {
+                  key === podcast.length - 1 ? (
+                    <span key={key}> {author} </span>
+                  ) : (
+                    <span key={key}> {author}, </span>
+                  );
                 }
               })}
             </Typography>
+
             <div className={classes.duration}>
               <i className='far fa-clock'></i>
               {podcast.duration}
             </div>
+
             <div className={classes.description}>{podcast.description}</div>
           </Grid>
         </Grid>

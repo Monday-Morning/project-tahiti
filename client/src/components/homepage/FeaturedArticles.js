@@ -18,6 +18,7 @@ function FeaturedArticle() {
     },
   };
   const classes = useStyles();
+
   return (
     <div className={classes.articleWrapper}>
       <div className={classes.container}>
@@ -48,6 +49,7 @@ function FeaturedArticle() {
 
 function FeaturedArticles() {
   const classes = useStyles();
+
   return (
     <Card className={classes.FeaturedarticleCard}>
       <Grid container spacing={0}>
@@ -80,6 +82,7 @@ export default FeaturedArticles;
 const useStyles = makeStyles((theme) => ({
   FeaturedarticleCard: {
     borderRadius: '8px',
+    marginTop: 25,
   },
   FeaturedGrid: {},
   articleWrapper: {

@@ -16,23 +16,27 @@ const ArticleCard = ({ carousel }) => {
     article: ARTICLECARD,
   };
   const classes = useStyles();
+
   return (
     // <Card className={classes.root}>
     <Card className={carousel ? classes.root2 : classes.root}>
       <img className={classes.featuredImage} src={cover} alt='Featured' />
+
       <CardContent className={classes.contentRoot}>
-        <Grid container>
+        <Grid container  spacing={1}>
           {props.article.tags.map((tag, index) => (
             <Grid item key={tag}>
               <span className={classes.seperator}>{(index ? ' |' : '')}</span> <span className={classes.tag}>{`${tag}`}</span>
             </Grid>
           ))}
         </Grid>
+
         <Typography className={classes.title} variant='h2'>
           <Link to='/article' className={classes.link}>
             {props.article.title}
           </Link>
         </Typography>
+
         <div className={classes.wrapper}>
           <div className={classes.authorList}>
             {props.article.authors.map((author, index) => (
@@ -41,11 +45,13 @@ const ArticleCard = ({ carousel }) => {
               </Typography>
             ))}
           </div>
+
           <div className={classes.readTime}>
             <i className='far fa-clock'></i>
             <Typography variant='body2'>{props.article.readTime}</Typography>
           </div>
         </div>
+
         <Typography variant='body2' className={classes.articleDescription}>
           {props.article.summary}
         </Typography>

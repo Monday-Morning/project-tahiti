@@ -24,6 +24,7 @@ const PodcastList = () => {
             <th>Time</th>
             <th>Favorite</th>
           </tr>
+
           {Podcast.map((podcast, key) => {
             return (
               <tr key={key} className={classes.ListRow}>
@@ -49,6 +50,7 @@ const PodcastList = () => {
           })}
         </Table>
       </div>
+
       <div className={classes.podPlayer}>
         <Grid container alignItems='center'>
           <Grid item sm={2}>
@@ -58,6 +60,7 @@ const PodcastList = () => {
               <i className='fas fa-step-forward'></i>
             </div>
           </Grid>
+
           <Grid item sm={3}>
             <Grid container>
               <Grid item xs={3} className={classes.podcastCoverImage}>
@@ -69,6 +72,7 @@ const PodcastList = () => {
               </Grid>
             </Grid>
           </Grid>
+
           <Grid item sm={6}>
             <div className={classes.progressWrapper}>
               <span>01:59</span>
@@ -79,6 +83,7 @@ const PodcastList = () => {
               </span>
             </div>
           </Grid>
+
           <Grid item sm={1} className={classes.LikeIcon}>
             <Heart />
           </Grid>
