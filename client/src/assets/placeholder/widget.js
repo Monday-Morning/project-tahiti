@@ -30,3 +30,108 @@ export const SQUIGGLES = Object.freeze({
   TEXT:
     'Hon’ble Union Education Minister inaugurated the Golden Jubilee Building at NIT Rourkela on 19th October. The broadcast of the inauguration ceremony can be watched with the following link: https://youtu.be/CTi4VnwdGVI',
 });
+
+export const CATEGORIES = Object.freeze({
+  campus: [
+    {
+      heading: 'Academics',
+      smallCards: true,
+      bigCards: true,
+    },
+    {
+      heading: 'Campus Buzz',
+      smallCards: true,
+      bigCards: true,
+    },
+    {
+      heading: 'Forum',
+      forum: true,
+    },
+    {
+      heading: 'Student Activities',
+      smallCards: true,
+      bigCards: true,
+    },
+    {
+      heading: 'Halls',
+      smallCards: true,
+    },
+    {
+      heading: 'Poll Analysis',
+      pulse: true,
+      smallCards: true,
+    },
+  ],
+  connect: [
+    {
+      heading: 'Interviews',
+      smallCards: true,
+      bigCards: true,
+
+    },
+    {
+      heading: 'SAC Speaks',
+      bigCards: true,
+      smallCards: true,
+    },
+    {
+      heading: 'CGPA',
+      smallCards: true,
+    },
+    {
+      heading: 'Guest Interview',
+      smallCards: true,
+    },
+  ],
+  ddcwc: [
+    {
+      heading: 'Director\'s Desk',
+      smallCards: true,
+      bigCards: true,
+    },
+    {
+      heading: 'Cheif Warden\'s Desk',
+      smallCards: true,
+      bigCards: true,
+    },
+  ],
+  career: [
+    {
+      heading: 'Placements',
+      smallCards: true,
+      bigCards: true,
+
+    },
+    {
+      heading: 'Internships',
+      bigCards: true,
+      smallCards: true,
+
+
+    },
+    {
+      heading: 'Higher Education',
+      bigCards: true,
+      smallCards: true,
+      pniData: true,
+    }
+  ],
+  alumni: [
+    {
+      heading: 'Alumnus Speaks',
+      bigCards: true,
+      smallCards: true,
+    },
+    {
+      heading: 'Alumni Affairs',
+      bigCards: true,
+      smallCards: true,
+    },
+  ],
+  // expressions:[
+  //   {
+  //     heading:
+  //   },
+  // ],
+
+})

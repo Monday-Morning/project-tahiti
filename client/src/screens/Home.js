@@ -4,6 +4,7 @@ import React from 'react';
 import { Box, Container, Grid, Card, makeStyles } from '@material-ui/core';
 
 // Components
+
 import FeaturedArticles from '../components/homepage/FeaturedArticles';
 import Squiggles from '../components/widgets/Squiggles';
 import ArticleCardStack from '../components/widgets/ArticleCardStack';
@@ -16,7 +17,9 @@ function Home() {
   const classes = useStyles();
 
   return (
+
     <>
+
       <Container>
         <FeaturedArticles />
         <Squiggles />
@@ -50,7 +53,9 @@ function Home() {
 
         <Trending />
       </Container>
+
     </>
+
   );
 }
 

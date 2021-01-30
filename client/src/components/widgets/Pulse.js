@@ -1,26 +1,30 @@
 import React from 'react';
 
-// libraries
+//libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, Grid, Typography, Button } from '@material-ui/core';
 
-// Components
-import { POLLS } from '../../assets/placeholder/widget';
-
-// images
+//Images
 import pulseImg from '../../assets/images/pulseImg.png';
+import { POLLS as polls } from '../../assets/placeholder/widget';
 
 const Pulse = () => {
-  const polls = POLLS;
+  // const polls = POLLS
+
   const classes = useStyles();
   return (
     <Card className={classes.pulseCard}>
       <CardContent>
         <Typography variant='h1'>Student Pulse</Typography>
-        <Grid container alignItems='center'>
-          <Grid item md={8} className={classes.pulseDataContainer}>
+
+        <Grid container alignItems='center' >
+
+
+          <Grid item sm={8} className={classes.content}>
             <p className={classes.pulseQuestion}>{polls.question}</p>
+            {console.log()}
             {polls.votes.map((option, key) => (
+
               <div key={key} className={classes.optionWrapper}>
                 <input
                   className={classes.voteOption}
@@ -31,16 +35,21 @@ const Pulse = () => {
                 <label htmlFor={option.value}>{option.option}</label>
               </div>
             ))}
-            <Button variant='contained' color='primary' className={classes.voteButton}>
-              Vote
+            <Grid className={classes.voteButton}>
+              <Button variant='contained' color='primary' >
+                Vote
             </Button>
-          </Grid>
-          <Grid item md={4} className={classes.pulseImageContainer}>
-            <Grid container justify='center'>
-              <img src={pulseImg} alt='Pulse Image' />
             </Grid>
           </Grid>
+
+          <Grid item sm={4} className={classes.imageContainer}>
+            <Grid container justify='center'>
+              <img src={pulseImg} alt='Pulse Image' className={classes.image} />
+            </Grid>
+          </Grid>
+
         </Grid>
+
       </CardContent>
     </Card>
   );
@@ -68,20 +77,28 @@ const useStyles = makeStyles((theme) => ({
   },
   voteButton: {
     marginTop: '50px',
-  },
-  pulseDataContainer: {
-    order: '1',
     [theme.breakpoints.down('sm')]: {
-      order: '2',
+      display: 'flex',
+      justifyContent: 'center',
     },
   },
-  pulseImageContainer: {
-    width: '100%',
-    paddingTop: '1rem ',
-    paddingBottom: '1rem ',
-    order: '2',
+  content: {
     [theme.breakpoints.down('sm')]: {
-      order: '1',
+      order: 2,
+    },
+  },
+
+  image: {
+
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
+  },
+  imageContainer: {
+
+    [theme.breakpoints.down('sm')]: {
+      order: 1,
     },
   },
 }));
