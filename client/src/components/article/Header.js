@@ -4,7 +4,6 @@ import React from 'react';
 import { Container, Grid, makeStyles, Typography } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import theme from '../../config/themes/light';
-import { Bookmark, Share2, Volume2 } from 'react-feather';
 
 // images
 import cover from '../../assets/images/articleCover.png';
@@ -42,16 +41,13 @@ const ArticleHeader = (props) => {
             </div>
             <div className={classes.utilityList}>
               <span className={classes.utilityIcon}>
-                {/* <i className='fa fa-volume-up'></i> */}
-                <Volume2 size={Desktop ? 18 : 10} />
+                <i className='fa fa-volume-up'></i>
               </span>
               <span className={classes.utilityIcon}>
-                {/* <i className='fa fa-share-alt'></i> */}
-                <Share2 size={Desktop ? 18 : 10} />
+                <i className='fa fa-share-alt'></i>
               </span>
               <span className={classes.utilityIcon}>
-                {/* <i className='far fa-bookmark'></i> */}
-                <Bookmark size={Desktop ? 18 : 10} />
+                <i className='fa fa-bookmark'></i>
               </span>
             </div>
           </div>

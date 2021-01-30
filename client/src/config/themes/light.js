@@ -126,8 +126,8 @@ const theme = createMuiTheme({
       fontSize: '1.5rem',
       lineHeight: '2rem',
       '@media (max-width:600px)': {
-        fontSize: '1.25rem',
-        lineHeight: '1.75rem',
+        fontSize: '1.5rem',
+        lineHeight: '3rem',
       },
     },
     h3: {
@@ -168,9 +168,6 @@ const theme = createMuiTheme({
       fontSize: '0.75rem',
       lineHeight: '1rem',
     },
-  },
-  shape: {
-    borderRadius: 8,
   },
   zIndex: {
     mobileStepper: 1000,

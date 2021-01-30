@@ -16,11 +16,11 @@ import ArticleContent from '../components/article/Content';
 import Disclaimer from '../components/article/Disclaimer';
 import ArticleTags from '../components/article/Tags';
 
-// Placeholders
+//placeholders
 import { ARTICLE } from '../assets/placeholder/article';
 import SidePanel from '../components/article/SidePanel';
 
-function Article() {
+function Home() {
   const [toggleSidebar, setToggleSidebar] = useState(false);
 
   let matches = useMediaQuery(theme.breakpoints.down('sm'));
@@ -59,4 +59,4 @@ function Article() {
   );
 }
 
-export default Article;
+export default Home;

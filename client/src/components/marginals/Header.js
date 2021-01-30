@@ -64,7 +64,7 @@ const DeskTopHeader = () => {
             </div>
             <div className={classes.navItem}>
               <NavLink
-                to='//ddcwc'
+                to='/ddcwc'
                 className={classes.navLink}
                 exact
                 activeClassName={classes.activeHeaderLink}
@@ -74,7 +74,7 @@ const DeskTopHeader = () => {
             </div>
             <div className={classes.navItem}>
               <NavLink
-                to='//career'
+                to='/career'
                 className={classes.navLink}
                 exact
                 activeClassName={classes.activeHeaderLink}
@@ -167,7 +167,7 @@ const MobileHeader = () => {
           </div>
           <div className={classes.navItem}>
             <NavLink
-              to='//ddcwc'
+              to='/ddcwc'
               className={classes.navLink}
               exact
               activeClassName={classes.activeHeaderLink}
@@ -177,7 +177,7 @@ const MobileHeader = () => {
           </div>
           <div className={classes.navItem}>
             <NavLink
-              to='//career'
+              to='/career'
               className={classes.navLink}
               exact
               activeClassName={classes.activeHeaderLink}

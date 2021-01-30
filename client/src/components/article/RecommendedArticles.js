@@ -45,14 +45,10 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     display: 'inline-block',
-    whiteSpace: 'nowrap',
   },
   underline: {
     borderBottom: '1px solid black',
     marginLeft: '40px',
     width: '100%',
-    [theme.breakpoints.down('sm')]: {
-      marginLeft: '10px',
-    },
   },
 }));
