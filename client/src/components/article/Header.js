@@ -6,7 +6,6 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import { Bookmark, Share2, Volume2 } from 'react-feather';
 
-import theme from '../../config/themes/light';
 
 
 // Config
