@@ -38,8 +38,6 @@ function App() {
       <CssBaseline />
 
       <Router history={createBrowserHistory}>
-        <TopBar />
-        <Header />
         <Switch>
           <Route path='/onboarding' exact component={AsyncOnboarding} />
 
@@ -97,7 +95,6 @@ function App() {
     
 
         </Switch>
-        <Footer />
       </Router>
     </ThemeProvider>
   );
