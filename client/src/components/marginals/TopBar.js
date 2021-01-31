@@ -21,7 +21,7 @@ const TopBar = () => {
             </Link>
           </li>
           <li className={classes.navItem}>
-            <Link to='' className={classes.navLink}>
+            <Link to='/contact' className={classes.navLink}>
               Contact Us
             </Link>
           </li>
