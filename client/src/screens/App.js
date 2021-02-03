@@ -11,7 +11,6 @@ import ActivityIndicator from '../components/shared/ActivityIndicator';
 import Marginals from '../components/marginals/Marginals';
 import TopMarginal from '../components/marginals/TopMarginal';
 
-
 // Helpers
 import createBrowserHistory from '../utils/history';
 
@@ -30,7 +29,7 @@ const AsyncArticle = AsyncRoute('./Article');
 const AsyncPodcast = AsyncRoute('./Podcast');
 const AsyncPortfolio = AsyncRoute('./Portfolio');
 const AsyncCategory = AsyncRoute('./CategoryPages');
-
+const AsyncWitsdom = AsyncRoute('./Witsdom.js');
 
 function App() {
   return (
@@ -46,7 +45,7 @@ function App() {
             <Route path='/article' component={AsyncArticle} />
             <Route path='/podcast' exact component={AsyncPodcast} />
             <Route path='/portfolio' component={AsyncPortfolio} />
-
+            <Route path='/witsdom' component={AsyncWitsdom} />
             <Route path='/campus' exact>
               <AsyncCategory
                 category='campus'
@@ -92,8 +91,6 @@ function App() {
 
             {/* <Redirect to='/' /> */}
           </Marginals>
-    
-
         </Switch>
       </Router>
     </ThemeProvider>

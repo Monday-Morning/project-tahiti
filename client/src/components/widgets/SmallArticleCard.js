@@ -10,19 +10,14 @@ import Typography from '@material-ui/core/Typography';
 // components
 import { ARTICLECARD } from '../../assets/placeholder/widget';
 
-
 //images
 import cover from '../../assets/images/cover.png';
-
-
-
 
 const SmallArticleCard = () => {
   const classes = useStyles();
   const props = {
     article: ARTICLECARD,
   };
-
 
   return (
     <Card className={classes.root}>
@@ -46,12 +41,11 @@ const SmallArticleCard = () => {
               <Typography variant='body2'>{props.article.readTime}</Typography>
             </div>
           </div>
-
         </CardContent>
       </div>
     </Card>
   );
-}
+};
 
 export default SmallArticleCard;
 
@@ -81,13 +75,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '0.875rem',
     color: theme.palette.common.black,
     textAlign: 'justify',
-
   },
   wrapper: {
     fontFamily: 'Source Sans Pro',
     fontWeight: '400',
     color: theme.palette.secondary.neutral80,
-
   },
   authorList: {
     display: ' flex',
@@ -106,10 +98,8 @@ const useStyles = makeStyles((theme) => ({
     '& i': {
       [theme.breakpoints.up('sm')]: {
         marginTop: '0.25rem',
-
       },
       marginRight: '5px',
-    }
+    },
   },
-
 }));

@@ -28,8 +28,7 @@ const ArticlesCard = ({ heading, smallCards, bigCards, forum, pulse, pniData }) 
       {pulse && <Pulse />}
       {bigCards && (matches ? <BigArticleCard /> : <ArticleCard />)}
       <Box mt={4}>
-
-        <Grid  >
+        <Grid>
           <div className={classes.smallCards}>
             {smallCards &&
               [0, 1, 2].map((key) =>
@@ -38,10 +37,10 @@ const ArticlesCard = ({ heading, smallCards, bigCards, forum, pulse, pniData }) 
                     <ArticleCard />
                   </div>
                 ) : (
-                    <div key={key}>
-                      <SmallArticleCard />
-                    </div>
-                  ),
+                  <div key={key}>
+                    <SmallArticleCard />
+                  </div>
+                ),
               )}
           </div>
         </Grid>
@@ -52,7 +51,6 @@ const ArticlesCard = ({ heading, smallCards, bigCards, forum, pulse, pniData }) 
 };
 
 const useStyles = makeStyles((theme) => ({
-
   root: {
     marginTop: '2rem',
     [theme.breakpoints.up('sm')]: {
@@ -105,7 +103,6 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: 'space-between',
     },
   },
-
 }));
 
 export default ArticlesCard;

@@ -6,8 +6,6 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import { Bookmark, Share2, Volume2 } from 'react-feather';
 
-
-
 // Config
 import theme from '../../config/themes/light';
 
@@ -54,7 +52,6 @@ const ArticleHeader = (props) => {
 
             <div className={classes.utilityList}>
               <span className={classes.utilityIcon}>
-
                 <Volume2 size={Desktop ? 18 : 10} />
               </span>
               <span className={classes.utilityIcon}>

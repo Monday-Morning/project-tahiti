@@ -47,7 +47,6 @@ const Forum = () => {
 export default Forum;
 
 const useStyles = makeStyles((theme) => ({
-
   root: {
     boxShadow: theme.shadows[0],
     marginTop: '2rem',
@@ -79,7 +78,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       order: 2,
     },
-
   },
 
   cardActions: {
@@ -94,5 +92,4 @@ const useStyles = makeStyles((theme) => ({
   label: {
     textTransform: 'capitalize',
   },
-
 }));

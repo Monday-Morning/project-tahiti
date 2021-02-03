@@ -17,9 +17,7 @@ function Home() {
   const classes = useStyles();
 
   return (
-
     <>
-
       <Container>
         <FeaturedArticles />
         <Squiggles />
@@ -53,9 +51,7 @@ function Home() {
 
         <Trending />
       </Container>
-
     </>
-
   );
 }
 
