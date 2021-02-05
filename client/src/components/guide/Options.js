@@ -8,10 +8,10 @@ import { Typography , Grid } from '@material-ui/core';
 import { OPTIONS } from '../../assets/placeholder/guide';
 
 //images
-import icon1 from '../../assets/images/optIcon1.png';
-import icon2 from '../../assets/images/optIcon2.png';
-import icon3 from '../../assets/images/optIcon3.png';
-import icon4 from '../../assets/images/optIcon4.png';
+import icon1 from '../../assets/images/guide/optIcon1.png';
+import icon2 from '../../assets/images/guide/optIcon2.png';
+import icon3 from '../../assets/images/guide/optIcon3.png';
+import icon4 from '../../assets/images/guide/optIcon4.png';
 
 const Options = () => {
     const classes = useStyles();

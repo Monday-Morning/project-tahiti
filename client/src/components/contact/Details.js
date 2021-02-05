@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { DETAILS } from '../../assets/placeholder/contact';
 
 //image
-import map from '../../assets/images/map.png'
+import map from '../../assets/images/contact/map.png'
 
 const Details = () => {
     const classes = useStyles();
@@ -53,25 +53,28 @@ const Details = () => {
                 <Grid item xs={12} md={7}>
                     <div className={classes.socialWrapper}>
                         <Typography variant='h3' className={classes.socialTitle}>
-                        {DETAILS.social_media_title}
+                        {DETAILS.socialMedia.title}
                         </Typography>
                         <Grid container className={classes.socialLine}>
                             <Grid item xs={12} md={4}>
                                 <Typography variant='body1'>
                                 <i className='fab fa-facebook-f'></i> 
-                                <a href={`${DETAILS.facebook.link}`} target="_blank" className={classes.social}> {DETAILS.facebook.id}</a>
+                                <a href={`${DETAILS.socialMedia.facebook.link}`} target="_blank" className={classes.social}> 
+                                {DETAILS.socialMedia.facebook.id}</a>
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} md={4}>
                                 <Typography variant='body1'>
                                 <i className='fab fa-linkedin'></i>
-                                <a href={`${DETAILS.linkedIn.link}`} target="_blank" className={classes.social}> {DETAILS.linkedIn.id}</a>
+                                <a href={`${DETAILS.socialMedia.linkedIn.link}`} target="_blank" className={classes.social}> 
+                                {DETAILS.socialMedia.linkedIn.id}</a>
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} md={4}>
                                 <Typography variant='body1'>
                                 <i className='fab fa-youtube'></i>
-                                <a href={`${DETAILS.youtube.link}`} target="_blank" className={classes.social}> {DETAILS.youtube.id}</a>
+                                <a href={`${DETAILS.socialMedia.youtube.link}`} target="_blank" className={classes.social}> 
+                                {DETAILS.socialMedia.youtube.id}</a>
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -79,19 +82,22 @@ const Details = () => {
                             <Grid item xs={12} md={4}>
                                 <Typography variant='body1'>
                                 <i className='fab fa-twitter'></i>
-                                <a href={`${DETAILS.twitter.link}`} target="_blank" className={classes.social}> {DETAILS.twitter.id}</a>
+                                <a href={`${DETAILS.socialMedia.twitter.link}`} target="_blank" className={classes.social}> 
+                                {DETAILS.socialMedia.twitter.id}</a>
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} md={4}>
                                 <Typography variant='body1'>
                                 <i className='fab fa-instagram'></i> 
-                                <a href={`${DETAILS.instagram.link}`} target="_blank" className={classes.social}> {DETAILS.instagram.id}</a>
+                                <a href={`${DETAILS.socialMedia.instagram.link}`} target="_blank" className={classes.social}> 
+                                {DETAILS.socialMedia.instagram.id}</a>
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} md={4}>
                                 <Typography variant='body1'>
                                 <i className='fab fa-spotify'></i> 
-                                <a href={`${DETAILS.spotify.link}`} target="_blank" className={classes.social}> {DETAILS.spotify.id}</a>
+                                <a href={`${DETAILS.socialMedia.spotify.link}`} target="_blank" className={classes.social}> 
+                                {DETAILS.socialMedia.spotify.id}</a>
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -102,17 +108,17 @@ const Details = () => {
                         <Grid container justify='center'>
                             <Grid item xs={6}>
                                 <Typography variant='h3' className={classes.locationTitle}>
-                                {DETAILS.location_title}
+                                {DETAILS.location.title}
                                 </Typography>
-                                <Typography variant='body1' className={classes.location}>{DETAILS.location1}
+                                <Typography variant='body1' className={classes.location}>{DETAILS.location.location1}
                                 </Typography>
-                                <Typography variant='body1' className={classes.location}>{DETAILS.location2}
+                                <Typography variant='body1' className={classes.location}>{DETAILS.location.location2}
                                 </Typography>
-                                <Typography variant='body1' className={classes.location}>{DETAILS.location3}
+                                <Typography variant='body1' className={classes.location}>{DETAILS.location.location3}
                                 </Typography>
-                                <Typography variant='body1' className={classes.location}>{DETAILS.location4}
+                                <Typography variant='body1' className={classes.location}>{DETAILS.location.location4}
                                 </Typography>
-                                <Typography variant='body1' className={classes.location}>{DETAILS.pin}
+                                <Typography variant='body1' className={classes.location}>{DETAILS.location.pin}
                                 </Typography>
                             </Grid> 
                             <Grid item xs={6} className={classes.mapWrapper}>
@@ -225,6 +231,7 @@ const useStyles = makeStyles((theme) => ({
     },
     social: {
         fontSize: '16px',
+        paddingLeft: '4px',
         color: theme.palette.common.black,
         textDecorationLine: 'none',
         [theme.breakpoints.down('xs')]: {

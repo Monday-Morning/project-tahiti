@@ -5,8 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 
 // images
-import sac1 from '../../assets/images/sac1.png';
-import sac2 from '../../assets/images/sac2.png';
+import sac1 from '../../assets/images/contact/sac1.png';
+import sac2 from '../../assets/images/contact/sac2.png';
 
 const ContactUs = () => {
     const classes = useStyles();

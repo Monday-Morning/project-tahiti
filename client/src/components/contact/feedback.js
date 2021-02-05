@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Grid, makeStyles, Typography, Button } from '@material-ui/core';
 
 // Images
-import image from '../../assets/images/contact-us.png';
+import image from '../../assets/images/contact/contact-us.png';
 
 const Feedback = () => {
     const [feedback, setFeedback] = useState('');
