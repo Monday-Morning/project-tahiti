@@ -84,6 +84,14 @@ module.exports = (env) => {
         test: /\.html$/,
         loader: 'html-loader',
       },
+      {
+        test: /\.css$/i,
+        use: ['style-loader','css-loader'],
+      },
+      {
+        test: /\.eot$/,
+        loader: 'file-loader',
+      },
     ],
   };
 

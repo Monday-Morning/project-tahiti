@@ -16,12 +16,12 @@ const TopBar = () => {
             </Link>
           </li>
           <li className={classes.navItem}>
-            <Link to='' className={classes.navLink}>
+            <Link to='/guide' className={classes.navLink}>
               Guide
             </Link>
           </li>
           <li className={classes.navItem}>
-            <Link to='' className={classes.navLink}>
+            <Link to='/contact' className={classes.navLink}>
               Contact Us
             </Link>
           </li>
