@@ -2,7 +2,6 @@ import { Button, makeStyles } from '@material-ui/core';
 import React from 'react';
 // import theme from '../../config/themes/light';
 
-
 const SubCategories = (props) => {
   const classes = useStyles();
 
@@ -13,12 +12,11 @@ const SubCategories = (props) => {
       </Button>
     </div>
   );
-}
+};
 
 export default SubCategories;
 
 const useStyles = makeStyles((theme) => ({
-
   container: {
     display: 'inline',
   },
@@ -31,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '12px 16px',
     [theme.breakpoints.down('sm')]: {
       padding: '3px 8px',
-    }
+    },
   },
 
   label: {
@@ -44,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       fontSize: '14px',
       lineHeight: '20px',
-    }
+    },
   },
-
 }));

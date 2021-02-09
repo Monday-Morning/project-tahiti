@@ -67,7 +67,6 @@ export const CATEGORIES = Object.freeze({
       heading: 'Interviews',
       smallCards: true,
       bigCards: true,
-
     },
     {
       heading: 'SAC Speaks',
@@ -85,12 +84,12 @@ export const CATEGORIES = Object.freeze({
   ],
   ddcwc: [
     {
-      heading: 'Director\'s Desk',
+      heading: "Director's Desk",
       smallCards: true,
       bigCards: true,
     },
     {
-      heading: 'Cheif Warden\'s Desk',
+      heading: "Cheif Warden's Desk",
       smallCards: true,
       bigCards: true,
     },
@@ -100,21 +99,18 @@ export const CATEGORIES = Object.freeze({
       heading: 'Placements',
       smallCards: true,
       bigCards: true,
-
     },
     {
       heading: 'Internships',
       bigCards: true,
       smallCards: true,
-
-
     },
     {
       heading: 'Higher Education',
       bigCards: true,
       smallCards: true,
       pniData: true,
-    }
+    },
   ],
   alumni: [
     {
@@ -133,5 +129,4 @@ export const CATEGORIES = Object.freeze({
   //     heading:
   //   },
   // ],
-
-})
+});

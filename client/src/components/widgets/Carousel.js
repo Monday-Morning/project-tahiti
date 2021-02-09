@@ -64,5 +64,4 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: '0.5rem',
     },
   },
-
 }));

@@ -23,10 +23,11 @@ const ArticleCard = ({ carousel }) => {
       <img className={classes.featuredImage} src={cover} alt='Featured' />
 
       <CardContent className={classes.contentRoot}>
-        <Grid container  spacing={1}>
+        <Grid container spacing={1}>
           {props.article.tags.map((tag, index) => (
             <Grid item key={tag}>
-              <span className={classes.seperator}>{(index ? ' |' : '')}</span> <span className={classes.tag}>{`${tag}`}</span>
+              <span className={classes.seperator}>{index ? ' |' : ''}</span>{' '}
+              <span className={classes.tag}>{`${tag}`}</span>
             </Grid>
           ))}
         </Grid>
