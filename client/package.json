@@ -31,10 +31,13 @@
     "react-responsive-carousel": "^3.2.11",
     "react-router-dom": "^5.2.0",
     "react-scroll": "^1.8.1",
+    "react-slick": "^0.28.0",
+    "react-slick-carousel": "^0.14.9",
     "react-spring": "^8.0.27",
     "react-use-gesture": "^9.0.0-beta.11",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
@@ -49,7 +52,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-react": "^6.24.1",
     "clean-webpack-plugin": "^3.0.0",
-    "css-loader": "^4.3.0",
+    "css-loader": "^5.0.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "eslint": "^7.10.0",

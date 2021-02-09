@@ -29,7 +29,10 @@ const AsyncArticle = AsyncRoute('./Article');
 const AsyncPodcast = AsyncRoute('./Podcast');
 const AsyncPortfolio = AsyncRoute('./Portfolio');
 const AsyncCategory = AsyncRoute('./CategoryPages');
+const AsyncContact = AsyncRoute('./Contact');
+const AsyncGuide = AsyncRoute('./Guide');
 const AsyncWitsdom = AsyncRoute('./Witsdom.js');
+
 
 function App() {
   return (
@@ -45,7 +48,11 @@ function App() {
             <Route path='/article' component={AsyncArticle} />
             <Route path='/podcast' exact component={AsyncPodcast} />
             <Route path='/portfolio' component={AsyncPortfolio} />
+            <Route path='/contact' component={AsyncContact} />
+            <Route path='/guide' component={AsyncGuide} />
             <Route path='/witsdom' component={AsyncWitsdom} />
+
+
             <Route path='/campus' exact>
               <AsyncCategory
                 category='campus'
