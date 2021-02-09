@@ -11,7 +11,7 @@ const TopBar = () => {
       <div className={classes.container}>
         <ul className={classes.navList}>
           <li className={classes.navItem}>
-            <Link to='' className={classes.navLink}>
+            <Link to='/about' className={classes.navLink}>
               About
             </Link>
           </li>
