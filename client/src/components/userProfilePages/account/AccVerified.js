@@ -1,31 +1,27 @@
-import { Card, makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import React from 'react';
 import theme from '../../../config/themes/light';
 import verify from '../../../assets/images/profile/verify.png';
 import greenTick from '../../../assets/images/profile/clearedGreen.png';
+import ImageBox from '../widgets/ImageBox';
 
 function AccVerified() {
   const classes = useStyles(theme);
 
   return (
     <div className={classes.root}>
-      <span>Verify Account</span>
-      <Card className={classes.wrapper}>
-        <div className={classes.content}>
-          <h1 className={classes.head}>Great! Your account is already verified</h1>
-          <div className={classes.greenTickBox}>
-            <img src={greenTick} alt='' />
-          </div>
-          <div className={classes.text}>
-            Get seamless access to all articles, including LAN-restricted ones, now on-the-go. Happy
-            reading!
+      <div className={classes.content}>
+        <h1 className={classes.head}>Great! Your account is already verified</h1>
+        <div className={classes.greenTickBox}>
+          <img src={greenTick} alt='' />
+        </div>
+        <div className={classes.text}>
+          Get seamless access to all articles, including LAN-restricted ones, now on-the-go. Happy
+          reading!
           </div>
 
-        </div>
-        <div className={classes.imageBox}>
-          <img src={verify} alt='' className={classes.img} />
-        </div>
-      </Card>
+      </div>
+      <ImageBox widthImage="59%" img={verify} />
     </div>
   );
 }
@@ -34,28 +30,11 @@ export default AccVerified;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginLeft: '2rem',
-    width: '90%',
-    '& h2': {
-      [theme.breakpoints.down("xs")]: {
-        textAlign: 'center',
-      },
-    },
-    [theme.breakpoints.down("xs")]: {
-      marginLeft: '1rem',
-    },
-  },
-  wrapper: {
     width: '100%',
-    marginTop: '19px',
     display: 'flex',
     justifyContent: 'space-between',
 
     height: '542px',
-    boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
-    background: theme.palette.common.white,
     paddingInline: '6%',
     [theme.breakpoints.down('sm')]: {
       height: 'auto',
@@ -93,24 +72,6 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '1.5rem',
     fontWeight: '400',
     color: theme.palette.common.black,
-  },
-
-  imageBox: {
-    marginLeft: '1rem',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '59%',
-    [theme.breakpoints.down('xs')]: {
-      display: 'none',
-
-    },
-
-  },
-  img: {
-    height: 'auto',
-    width: '100%',
   },
 
 }));

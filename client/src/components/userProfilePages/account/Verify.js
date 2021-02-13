@@ -2,34 +2,29 @@ import { Button, Card, Input, makeStyles, Typography } from '@material-ui/core';
 import React, { useState } from 'react';
 import theme from '../../../config/themes/light';
 import verify from '../../../assets/images/profile/verify.png';
+import ImageBox from '../widgets/ImageBox';
 
 function Verify({ accState }) {
     const classes = useStyles(theme);
     const [input, setInput] = useState('')
     return (
         <div className={classes.root}>
-            <Typography variant="h2">Verify Account</Typography>
-            <Card className={classes.wrapper}>
-                <div className={classes.content}>
-                    <h1 className={classes.head}>You haven’t verified your account yet...</h1>
-                    <div className={classes.text}>
-                        If you are an NITR student and have a valid insti email id, you can get access to LAN-restricted articles even on the go! Just verify once and forget.
+            <div className={classes.content}>
+                <h1 className={classes.head}>You haven’t verified your account yet...</h1>
+                <div className={classes.text}>
+                    If you are an NITR student and have a valid insti email id, you can get access to LAN-restricted articles even on the go! Just verify once and forget.
           </div>
-                    <div className={classes.inputBlock}>
-                        <Typography variant="h3">Email</Typography>
-                        <Input className={classes.input} placeholder='your@nitrkl.ac.in' value={input} onChange={e => setInput(e.target.value)} />
-                        <Button className={classes.inputButton} variant='contained' color='primary' onClick={() => accState(1)} disabled={!input}>
-                            <span> Sign Up for Newsletter</span>
-                        </Button>
-
-                    </div>
+                <div className={classes.inputBlock}>
+                    <Typography variant="h3">Email</Typography>
+                    <Input className={classes.input} placeholder='your@nitrkl.ac.in' value={input} onChange={e => setInput(e.target.value)} />
+                    <Button className={classes.inputButton} variant='contained' color='primary' onClick={() => accState(1)} disabled={!input}>
+                        <span> Sign Up for Newsletter</span>
+                    </Button>
 
                 </div>
-                <div className={classes.imageBox}>
-                    <img src={verify} alt='' className={classes.img} />
-                </div>
-            </Card>
-        </div>
+
+            </div>
+            <ImageBox widthImage="59%" img={verify} />       </div>
     );
 }
 
@@ -127,21 +122,5 @@ const useStyles = makeStyles((theme) => ({
             fontFamily: 'Source Sans Pro !important',
         },
     },
-    imageBox: {
-        marginLeft: '1rem',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '59%',
-        [theme.breakpoints.down('xs')]: {
-            display: 'none',
 
-        },
-
-    },
-    img: {
-        height: 'auto',
-        width: '100%',
-    },
 }));

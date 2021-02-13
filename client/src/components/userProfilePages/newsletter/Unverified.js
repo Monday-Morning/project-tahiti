@@ -2,47 +2,44 @@ import { Button, Card, Input, makeStyles, Typography } from '@material-ui/core';
 import React, { useState } from 'react';
 import theme from '../../../config/themes/light';
 import newsletter from '../../../assets/images/profile/newsletterPic.png';
+import ImageBox from '../widgets/ImageBox';
 
 function Unverified({ nLState }) {
   const classes = useStyles(theme);
   const [input, setInput] = useState('');
   return (
     <div className={classes.root}>
-      <Typography variant="h2">Newsletter</Typography>
-      <Card className={classes.wrapper}>
-        <div className={classes.content}>
-          <h1 className={classes.head}>You haven’t signed up for the newsletter yet...</h1>
-          <div className={classes.text}>
-            Sign up for the MM newsletter and get news and articles delivered straight to your
-            mailbox!
+      <div className={classes.content}>
+        <h1 className={classes.head}>You haven’t signed up for the newsletter yet...</h1>
+        <div className={classes.text}>
+          Sign up for the MM newsletter and get news and articles delivered straight to your
+          mailbox!
           </div>
-          <div className={classes.inputBlock}>
-            <Typography variant="h3">Email</Typography>
-            <Input
-              className={classes.input}
-              placeholder='your@email.com'
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-            />
-            <Button
-              className={classes.inputButton}
-              variant='contained'
-              color='primary'
-              onClick={() => nLState(1)}
-              disabled={!input}
-            >
-              Sign Up for Newsletter
+        <div className={classes.inputBlock}>
+          <Typography variant="h3">Email</Typography>
+          <Input
+            className={classes.input}
+            placeholder='your@email.com'
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          />
+          <Button
+            className={classes.inputButton}
+            variant='contained'
+            color='primary'
+            onClick={() => nLState(1)}
+            disabled={!input}
+          >
+            Sign Up for Newsletter
             </Button>
-          </div>
-          <div className={classes.note}>
-            <span>Note:</span> Newsletters are sent once a week or once in a fortnight during the
+        </div>
+        <div className={classes.note}>
+          <span>Note:</span> Newsletters are sent once a week or once in a fortnight during the
             working session of the college
           </div>
-        </div>
-        <div className={classes.imageBox}>
-          <img src={newsletter} alt='' className={classes.img} />
-        </div>
-      </Card>
+      </div>
+      <ImageBox widthImage="41%" img={newsletter} />
+
     </div>
   );
 }
@@ -51,29 +48,10 @@ export default Unverified;
 
 const useStyles = makeStyles((theme) => ({
   root: {
+
     display: 'flex',
-    flexDirection: 'column',
-    marginLeft: '2rem',
-    width: '90%',
-    '& h2': {
-      [theme.breakpoints.down("xs")]: {
-        textAlign: 'center',
-      },
-    },
-    [theme.breakpoints.down("xs")]: {
-      marginLeft: '1rem',
-    },
-  },
-  wrapper: {
-    width: '100%',
-    marginTop: '19px',
-    display: 'flex',
-    height: '542px',
-    boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
-    background: theme.palette.common.white,
     paddingInline: '6%',
     [theme.breakpoints.down('sm')]: {
-      height: 'auto',
       paddingBottom: '7%',
     },
   },
@@ -154,21 +132,5 @@ const useStyles = makeStyles((theme) => ({
       fontWeight: '700',
     },
   },
-  imageBox: {
-    marginLeft: '1rem',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '41%',
-    [theme.breakpoints.down('xs')]: {
-      display: 'none',
 
-    },
-
-  },
-  img: {
-    height: 'auto',
-    width: '100%',
-  },
 }));

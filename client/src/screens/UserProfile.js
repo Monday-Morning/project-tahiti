@@ -1,10 +1,9 @@
-import { Button, Card, Container, makeStyles } from '@material-ui/core';
+import { Button, Card, Container, makeStyles, Typography } from '@material-ui/core';
 import React, { useState } from 'react';
 import theme from '../config/themes/light';
 
 import { ChevronRight } from 'react-feather';
 import ProfileCard from '../components/userProfilePages/widgets/ProfileCard';
-// import useToggle from '../hooks/useToggle';
 import MainBox from '../components/userProfilePages/MainBox';
 import BackButton from '../components/shared/button/BackButton';
 function UserProfile() {
@@ -19,10 +18,10 @@ function UserProfile() {
 
   const classes = useStyles(theme);
 
-  const [option, setOption] = useState(5);
+  const [option, setOption] = useState(0);
   const [nLOption, setnLOption] = useState(0);
   const [accOption, setaccOption] = useState(0);
-  const [passwdOption, setpasswdOption] = useState(3);
+  const [passwdOption, setpasswdOption] = useState(0);
   const [selectedTopics, setSelectedTopics] = useState([]);
 
   const addSelectedTopic = (newTopic) => setSelectedTopics([...selectedTopics, newTopic]);
@@ -38,18 +37,22 @@ function UserProfile() {
     <div className={classes.root}>
       <Container>
         <BackButton path='/' goTo='Guide' />
-        <div className={classes.head}>User Account</div>
+        <Typography variant="h1" className={classes.head}>User Account</Typography>
         <div className={classes.body}>
           <div className={classes.menu}>
             <ProfileCard />
             <Card className={classes.options}>
-              {options.map((option, key) => (
+              {options.map((option__value, key) => (
+
                 <Button
-                  className={key ? classes.option1 : classes.option0}
+                  className={`${key ? classes.option1 : classes.option0} 
+                  ${(option == key) ? classes.selectedOption : ''}
+                  `
+                  }
                   key={key}
                   onClick={() => setOption(key)}
                 >
-                  {option}
+                  {option__value}
 
                   <ChevronRight size={18} />
                 </Button>
@@ -58,6 +61,7 @@ function UserProfile() {
           </div>
           <MainBox
             className={classes.mainBox}
+            option__names={options}
             option={option}
             nLOption={nLOption}
             accOption={accOption}
@@ -83,10 +87,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '2rem',
   },
   head: {
-    fontFamily: 'IBM Plex Sans',
     color: theme.palette.primary.blue60,
-    fontSize: '2rem',
-    lineHeight: '3rem',
     marginTop: '2rem',
     [theme.breakpoints.down("sm")]: {
       textAlign: 'center',
@@ -106,31 +107,37 @@ const useStyles = makeStyles((theme) => ({
 
   },
   options: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginTop: '1.5rem',
     maxWidth: '276px',
     borderRadius: '6px',
     boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
     background: theme.palette.common.white,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+
   },
   option1: {
-    width: '276px',
-    height: '49px',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    color: theme.palette.secondary.neutral70,
+    width: '276px',
+    height: '49px',
     borderTop: '1px solid',
     borderColor: theme.palette.secondary.neutral60,
   },
   option0: {
-    width: '276px',
-    height: '49px',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    color: theme.palette.secondary.neutral70,
+    width: '276px',
+    height: '49px',
+  },
+  selectedOption: {
+    color: `${theme.palette.secondary.main} !important`,
   },
   mainBox: {
     width: '100%',

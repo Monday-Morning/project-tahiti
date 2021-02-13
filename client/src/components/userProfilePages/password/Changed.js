@@ -1,4 +1,4 @@
-import { Button, Card, Input, makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import React from 'react';
 import theme from '../../../config/themes/light';
 import passwd from '../../../assets/images/profile/passwd.png';
@@ -9,21 +9,16 @@ function Forgot() {
 
   return (
     <div className={classes.root}>
-      <span>Change Password</span>
-      <Card className={classes.wrapper}>
-        <div className={classes.content}>
-          <h1 className={classes.head}>Your password has been changed successfully!</h1>
-          <div className={classes.greenTickBox}>
-            <img src={greenTick} alt='' />
-          </div>
-          <div className={classes.text}>
-            Your password has been successfully changed. Don’t forget to sign in with the new one, the next time you open the MM website!
-          </div>
+      <div className={classes.content}>
+        <h1 className={classes.head}>Your password has been changed successfully!</h1>
+        <div className={classes.greenTickBox}>
+          <img src={greenTick} alt='' />
         </div>
-        <div className={classes.imageBox}>
-          <img src={passwd} alt='' className={classes.img} />
-        </div>
-      </Card>
+        <div className={classes.text}>
+          Your password has been successfully changed. Don’t forget to sign in with the new one, the next time you open the MM website!
+          </div>
+      </div>
+      <ImageBox widthImage="33%" img={passwd} />
     </div>
   );
 }
@@ -91,23 +86,5 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '1.5rem',
     fontWeight: '400',
     color: theme.palette.common.black,
-  },
-
-  imageBox: {
-    marginLeft: '1rem',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '33%',
-    [theme.breakpoints.down('xs')]: {
-      display: 'none',
-
-    },
-
-  },
-  img: {
-    height: 'auto',
-    width: '100%',
   },
 }));

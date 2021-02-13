@@ -25,33 +25,30 @@ function Interested({ selectedTopics, addSelectedTopic, removeSelectedTopic }) {
 
   return (
     <div className={classes.root}>
-      <Typography variant='h2'>Interested Topics</Typography>
-      <Card className={classes.wrapper}>
-        <div className={classes.text}>
-          Select the topics you’re interested in, and get smarter article suggestions on the MM
-          website!
+      <div className={classes.text}>
+        Select the topics you’re interested in, and get smarter article suggestions on the MM
+        website!
         </div>
 
-        <div className={classes.topicsContainer}>
-          {ONBOARDING.INTERESTED_TOPICS.TOPICS.map((topic, index) => (
-            <Topic
-              key={index}
-              topic={topic}
-              index={index}
-              addSelectedTopic={addSelectedTopic}
-              removeSelectedTopic={removeSelectedTopic}
-            />
-          ))}
-        </div>
-        <div className={classes.buttons}>
-          <Button className={classes.button}>
-            <div>Undo Changes</div>
+      <div className={classes.topicsContainer}>
+        {ONBOARDING.INTERESTED_TOPICS.TOPICS.map((topic, index) => (
+          <Topic
+            key={index}
+            topic={topic}
+            index={index}
+            addSelectedTopic={addSelectedTopic}
+            removeSelectedTopic={removeSelectedTopic}
+          />
+        ))}
+      </div>
+      <div className={classes.buttons}>
+        <Button className={classes.button}>
+          <div>Undo Changes</div>
+        </Button>
+        <Button color='primary' variant='contained' className={classes.button}>
+          Save Changes
           </Button>
-          <Button color='primary' variant='contained' className={classes.button}>
-            Save Changes
-          </Button>
-        </div>
-      </Card>
+      </div>
     </div>
   );
 }
@@ -60,27 +57,14 @@ export default Interested;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginLeft: '2rem',
-    [theme.breakpoints.down('xs')]: {
-      textAlign: 'center',
-    },
-  },
-  wrapper: {
+
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingBottom: '20px',
-    marginTop: '19px',
-    height: '542px',
-    boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
-    background: theme.palette.common.white,
-    position: 'relative',
-    [theme.breakpoints.down('sm')]: {
-      height: 'auto',
-    },
+    height: '100%',
+
   },
   text: {
     fontFamily: 'Source Sans Pro',

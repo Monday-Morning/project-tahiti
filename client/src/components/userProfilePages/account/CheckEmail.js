@@ -1,36 +1,32 @@
-import { Button, Card, makeStyles, Typography } from '@material-ui/core';
+import { Button, makeStyles } from '@material-ui/core';
 import React from 'react';
 import theme from '../../../config/themes/light';
 import verify from '../../../assets/images/profile/verify.png';
 import { PROFILEPAGES } from '../../../assets/placeholder/profile';
+import ImageBox from '../widgets/ImageBox';
 
 function CheckEmail(props) {
   const classes = useStyles(theme);
 
   return (
     <div className={classes.root}>
-      <Typography variant="h2">Verify Account</Typography>
-      <Card className={classes.wrapper}>
-        <div className={classes.content}>
-          <h1 className={classes.head}>One last step. Check your email.</h1>
-          <div className={classes.text}>
-            We’ve sent an email to <span>{PROFILEPAGES.PROFILE.INFO[2].value}</span>
-            <br />
-            <br />
+      <div className={classes.content}>
+        <h1 className={classes.head}>One last step. Check your email.</h1>
+        <div className={classes.text}>
+          We’ve sent an email to <span>{PROFILEPAGES.PROFILE.INFO[2].value}</span>
+          <br />
+          <br />
             You need to verify your email to access certain restricted articles. If you have not
             received the verification email please check your Spam folder. You can also click on the
             resend button below to have another email sent to you
           </div>
-          <Button className={classes.inputButton} variant='contained' color='primary' onClick={() => props.accState(2)}>
-            <span>Check again and continue</span>
-          </Button>
-          <div className={classes.resend}>Resend Verification Email</div>
+        <Button className={classes.inputButton} variant='contained' color='primary' onClick={() => props.accState(2)}>
+          <span>Check again and continue</span>
+        </Button>
+        <div className={classes.resend}>Resend Verification Email</div>
 
-        </div>
-        <div className={classes.imageBox}>
-          <img src={verify} alt='' className={classes.img} />
-        </div>
-      </Card>
+      </div>
+      <ImageBox widthImage="59%" img={verify} />
     </div>
   );
 }
@@ -116,23 +112,4 @@ const useStyles = makeStyles((theme) => ({
       cursor: 'pointer',
     },
   },
-
-  imageBox: {
-    marginLeft: '1rem',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '59%',
-    [theme.breakpoints.down('xs')]: {
-      display: 'none',
-
-    },
-
-  },
-  img: {
-    height: 'auto',
-    width: '100%',
-  },
-
 }));

@@ -8,26 +8,21 @@ function Forgot(props) {
   const [input, setInput] = useState('');
   return (
     <div className={classes.root}>
-      <Typography variant="h2">Change Password</Typography>
-      <Card className={classes.wrapper}>
-        <div className={classes.content}>
-          <h1 className={classes.head}>Forgot your Password?</h1>
-          <div className={classes.text}>
-            Don’t worry! Just type in the email address you’ve registered with us.
+      <div className={classes.content}>
+        <h1 className={classes.head}>Forgot your Password?</h1>
+        <div className={classes.text}>
+          Don’t worry! Just type in the email address you’ve registered with us.
           </div>
-          <div className={classes.inputBlock}>
-            <div className={classes.emailHead}>Email</div>
-            <Input className={classes.input} placeholder='your@email.com' value={input} onChange={(e) => setInput(e.target.value)} />
-            <Button className={classes.inputButton} variant='contained' color='primary' onClick={() => props.passwdState(1)} disabled={!input}>
-              Send reset link
+        <div className={classes.inputBlock}>
+          <div className={classes.emailHead}>Email</div>
+          <Input className={classes.input} placeholder='your@email.com' value={input} onChange={(e) => setInput(e.target.value)} />
+          <Button className={classes.inputButton} variant='contained' color='primary' onClick={() => props.passwdState(1)} disabled={!input}>
+            Send reset link
             </Button>
-          </div>
+        </div>
 
-        </div>
-        <div className={classes.imageBox}>
-          <img src={passwd} alt='' className={classes.img} />
-        </div>
-      </Card>
+      </div>
+      <ImageBox widthImage='33%' img={passwd} />
     </div>
   );
 }
@@ -127,21 +122,5 @@ const useStyles = makeStyles((theme) => ({
       fontFamily: 'Source Sans Pro !important',
     },
   },
-  imageBox: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: '1rem',
-    width: '33%',
-    [theme.breakpoints.down('xs')]: {
-      display: 'none',
 
-    },
-
-  },
-  img: {
-    height: 'auto',
-    width: '100%',
-  },
 }));

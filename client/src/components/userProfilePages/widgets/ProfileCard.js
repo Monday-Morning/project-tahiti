@@ -8,7 +8,7 @@ function ProfileCard() {
   const classes = useStyles(theme);
   return (
     <Card className={classes.root}>
-      <img src={userImage} alt="Sorry we Can't show your face😝" className={classes.userImage} />
+      <img src={userImage} alt="Sorry your face isn't worth showing😝" className={classes.userImage} />
       <CardContent className={classes.content}>
         <div className={classes.userName}>Rev Shawn</div>
         <div className={classes.userID}>revshawn2020</div>
@@ -34,19 +34,18 @@ export default ProfileCard;
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
     width: '276px',
     height: '276px',
     borderRadius: '6px',
     boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
     background: theme.palette.common.white,
-    display: 'flex',
-    flexDirection: 'column',
-    // justifyContent: 'center',
-    alignItems: 'center',
+
   },
   userImage: {
     marginTop: '18px',
-
     maxWidth: '112px',
     height: '112px',
     borderRadius: '50%',
@@ -74,7 +73,6 @@ const useStyles = makeStyles((theme) => ({
     borderTop: '1px solid',
     borderColor: theme.palette.secondary.neutral60,
     justifyContent: 'space-between',
-    // alignItems: 'center',
   },
   icons: {
     display: 'flex',
@@ -89,20 +87,15 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     height: '67px',
-    borderRadius: '0px',
     minWidth: '33.4%',
     border: '1px solid',
     borderTop: '0px solid',
-    // borderColor: theme.palette.secondary.neutral60,
-    // borderRight: '1px solid',
     borderColor: theme.palette.secondary.neutral60,
-  },
-  // 'icons i': {
-  //   color: 'red',
-  //   border: '0px 1px solid',
-  //   borderColor: theme.palette.secondary.neutral60,
-  // },
-  icon: {
-    // display: 'flex',
+    // '&:hover': {
+    //   position: 'relative',
+    //   zIndex: '10',
+    //   width: '50%',
+    //   height: '110%',
+    // }
   },
 }));

@@ -1,4 +1,4 @@
-import { Button, Card, Input, InputAdornment, makeStyles, TextField, Typography } from '@material-ui/core';
+import { Button, makeStyles, TextField } from '@material-ui/core';
 import React, { useState } from 'react';
 import theme from '../../../config/themes/light';
 import passwdImg from '../../../assets/images/profile/passwd.png';
@@ -9,32 +9,27 @@ function NewPasswd(props) {
   const [confirm, setConfirm] = useState('');
   return (
     <div className={classes.root}>
-      <Typography variant="h2">Change Password</Typography>
-      <Card className={classes.wrapper}>
-        <div className={classes.content}>
-          <h1 className={classes.head}>Enter your new password</h1>
+      <div className={classes.content}>
+        <h1 className={classes.head}>Enter your new password</h1>
 
-          <div className={classes.inputBlock}>
-            <div className={classes.block}>
-              <div className={classes.inputLabel}>New password</div>
-              <TextField className={classes.input} placeholder='new password' value={passwd} onChange={(e) => setPasswd(e.target.value)} />
-              <span>Must be atleast 8 characters long</span>
-              <span>Should have atleast one uppercase and one lowercase character</span>
-            </div>
-            <div className={classes.block}>
-              <div className={classes.inputLabel}>Confirm password</div>
-              <TextField className={classes.input} placeholder='confirm password' value={confirm} onChange={(e) => setConfirm(e.target.value)} />
-              <span className={confirm ? ((passwd == confirm) ? classes.hide : '') : classes.hide} >Passwords don’t match</span>
-            </div>
-            <Button className={classes.inputButton} variant='contained' color='primary' onClick={() => props.passwdState(3)} disabled={!passwd || !confirm || (passwd != confirm)}>
-              Change My Password
-            </Button>
+        <div className={classes.inputBlock}>
+          <div className={classes.block}>
+            <div className={classes.inputLabel}>New password</div>
+            <TextField className={classes.input} placeholder='new password' value={passwd} onChange={(e) => setPasswd(e.target.value)} />
+            <span>Must be atleast 8 characters long</span>
+            <span>Should have atleast one uppercase and one lowercase character</span>
           </div>
+          <div className={classes.block}>
+            <div className={classes.inputLabel}>Confirm password</div>
+            <TextField className={classes.input} placeholder='confirm password' value={confirm} onChange={(e) => setConfirm(e.target.value)} />
+            <span className={confirm ? ((passwd == confirm) ? classes.hide : '') : classes.hide} >Passwords don’t match</span>
+          </div>
+          <Button className={classes.inputButton} variant='contained' color='primary' onClick={() => props.passwdState(3)} disabled={!passwd || !confirm || (passwd != confirm)}>
+            Change My Password
+            </Button>
         </div>
-        <div className={classes.imageBox}>
-          <img src={passwdImg} alt='' className={classes.img} />
-        </div>
-      </Card>
+      </div>
+      <ImageBox widthImage="33%" img={passwd} />
     </div >
   );
 }
@@ -131,7 +126,6 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Source Sans Pro !important',
     color: theme.palette.common.black,
   },
-  // inputBox: {},
   input: {
     background: theme.palette.secondary.neutral40,
     width: '100%',
@@ -154,23 +148,5 @@ const useStyles = makeStyles((theme) => ({
       lineHeight: '1.75rem',
       fontFamily: 'Source Sans Pro !important',
     },
-  },
-
-  imageBox: {
-    marginLeft: '1rem',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '33%',
-    [theme.breakpoints.down('xs')]: {
-      display: 'none',
-
-    },
-
-  },
-  img: {
-    height: 'auto',
-    width: '100%',
   },
 }));

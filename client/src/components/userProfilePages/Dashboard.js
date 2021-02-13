@@ -5,8 +5,6 @@ import graph from '../../assets/images/profile/profilePic.png';
 import theme from '../../config/themes/light';
 
 const Dashboard = () => {
-  console.log(a);
-  // const dateTime = ` ${a.getYear()},`
   const a = new Date();
   let hours =
     a.getHours() == 0
@@ -20,28 +18,25 @@ const Dashboard = () => {
 
   return (
     <div className={classes.root}>
-      <Typography variant='h2'>Dashboard</Typography>
-      <Card className={classes.wrapper}>
-        <div className={classes.header}>
-          <Typography variant="h3">Activity</Typography>
-          <div className={classes.dateTime}>as of {dateTime}</div>
+      <div className={classes.header}>
+        <Typography variant="h3">Activity</Typography>
+        <div className={classes.dateTime}>as of {dateTime}</div>
+      </div>
+      <div className={classes.content}>
+        <div className={classes.activityGraph}>
+          <img src={graph} alt='' className={classes.graph} />
         </div>
-        <div className={classes.content}>
-          <div className={classes.activityGraph}>
-            <img src={graph} alt='' className={classes.graph} />
-          </div>
-          <div className={classes.stats}>
-            {PROFILEPAGES.DASHBOARD.map(({ head, value }, key) => (
-              <div className={key ? classes.stat : classes.stat2} key={key}>
-                <div className={classes.stat__head}>
-                  {head}
-                </div>
-                <div className={classes.stat__value}>{value}</div>
+        <div className={classes.stats}>
+          {PROFILEPAGES.DASHBOARD.map(({ head, value }, key) => (
+            <div className={key ? classes.stat : classes.stat2} key={key}>
+              <div className={classes.stat__head}>
+                {head}
               </div>
-            ))}
-          </div>
+              <div className={classes.stat__value}>{value}</div>
+            </div>
+          ))}
         </div>
-      </Card>
+      </div>
     </div>
   );
 };
@@ -51,36 +46,15 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    marginLeft: '2rem',
-    width: '90%',
-    '& h2': {
-      [theme.breakpoints.down("xs")]: {
-        marginLeft: '0',
-        textAlign: 'center',
-      },
-    },
-    [theme.breakpoints.down("xs")]: {
-      marginLeft: '1rem',
-    },
-  },
-  wrapper: {
-    width: '100%',
-    marginTop: '19px',
-    display: 'flex',
-    flexDirection: 'column',
-    height: '542px',
-    boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
     background: theme.palette.common.white,
-    paddingTop: '15px',
-    // paddingLeft: "40px",
-    paddingBottom: '10%',
-    paddingLeft: '5%',
+    paddingLeft: "40px",
+    padding: "15px 0 10% 5%",
     [theme.breakpoints.down('xs')]: {
-      // flexWrap: 'wrap',
       paddingInline: '5%',
       height: 'auto',
     },
   },
+
   header: {
     display: 'flex',
     flexDirection: 'column',
@@ -100,18 +74,10 @@ const useStyles = makeStyles((theme) => ({
     color: '#9FA2B4',
   },
   content: {
-    // position: 'relative',
     display: 'flex',
-
-    // flexDirection: 'column',
     marginTop: '15px',
     width: '100%',
-    // [theme.breakpoints.up("md")]: {
-    //   marginLeft: '39px',
-    // },
-    // [theme.breakpoints.down("sm")]: {
     justifyContent: 'center',
-    // },
 
   },
   activityGraph: {
@@ -127,20 +93,14 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   stats: {
-    // position: 'absolute',
-    // top: '-15px',
-    // right: '0',
-    // zIndex: '10',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-end',
     marginTop: '0',
     fontFamily: 'Mulish',
     background: theme.palette.common.white,
-    // height: '100%',
     width: '259px',
     [theme.breakpoints.down("xs")]: {
-      // top: '42px',
       alignItems: 'center',
     },
   },

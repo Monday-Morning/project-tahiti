@@ -1,4 +1,4 @@
-import { Button, Card, Input, makeStyles, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import React from 'react';
 import theme from '../../../config/themes/light';
 import passwd from '../../../assets/images/profile/passwd.png';
@@ -9,26 +9,21 @@ function LinkSent() {
 
   return (
     <div className={classes.root}>
-      <Typography variant="h2">Change Password</Typography>
-      <Card className={classes.wrapper}>
-        <div className={classes.content}>
-          <h1 className={classes.head}>We’ve sent you a reset link</h1>
-          <div className={classes.text}>
-            We’ve sent a reset link on
+      <div className={classes.content}>
+        <h1 className={classes.head}>We’ve sent you a reset link</h1>
+        <div className={classes.text}>
+          We’ve sent a reset link on
           <br />
-            <span>
-              {PROFILEPAGES.PROFILE.INFO[2].value}
-            </span>
-            <br />
-            <br />
+          <span>
+            {PROFILEPAGES.PROFILE.INFO[2].value}
+          </span>
+          <br />
+          <br />
             Please click on the link there to reset your password.
           </div>
 
-        </div>
-        <div className={classes.imageBox}>
-          <img src={passwd} alt='' className={classes.img} />
-        </div>
-      </Card>
+      </div>
+      <ImageBox widthImage="33%" img={passwd} />
     </div>
   );
 }
@@ -112,22 +107,4 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
-  imageBox: {
-    marginLeft: '1rem',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '33%',
-    [theme.breakpoints.down('xs')]: {
-      display: 'none',
-
-    },
-
-  },
-  img: {
-    height: 'auto',
-    width: '100%',
-    minWidth: '200px',
-  },
 }))
