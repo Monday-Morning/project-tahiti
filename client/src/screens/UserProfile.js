@@ -2,13 +2,12 @@ import { Button, Card, Container, makeStyles } from '@material-ui/core';
 import React, { useState } from 'react';
 import theme from '../config/themes/light';
 
-import { ChevronLeft, ChevronRight } from 'react-feather';
+import { ChevronRight } from 'react-feather';
 import ProfileCard from '../components/userProfilePages/widgets/ProfileCard';
-import useToggle from '../hooks/useToggle';
+// import useToggle from '../hooks/useToggle';
 import MainBox from '../components/userProfilePages/MainBox';
-
+import BackButton from '../components/shared/button/BackButton';
 function UserProfile() {
-
   const options = [
     'Profile',
     'Dashboard',
@@ -19,35 +18,58 @@ function UserProfile() {
   ];
 
   const classes = useStyles(theme);
-  const [optionState, toggleOptionState] = useToggle(false);
 
-  const [option, setOption] = useState('profile');
+  const [option, setOption] = useState(5);
+  const [nLOption, setnLOption] = useState(0);
+  const [accOption, setaccOption] = useState(0);
+  const [passwdOption, setpasswdOption] = useState(3);
+  const [selectedTopics, setSelectedTopics] = useState([]);
+
+  const addSelectedTopic = (newTopic) => setSelectedTopics([...selectedTopics, newTopic]);
+
+  const removeSelectedTopic = (topic) =>
+    setSelectedTopics((selected) => {
+      return selected.filter((selectedTopic) => {
+        if (selectedTopic !== topic) return selectedTopic;
+      });
+    });
 
   return (
     <div className={classes.root}>
       <Container>
-        <Button className={classes.backButton}>
-          <ChevronLeft size={18} className={classes.backIcon} />
-          Back to Guide
-        </Button>
+        <BackButton path='/' goTo='Guide' />
         <div className={classes.head}>User Account</div>
         <div className={classes.body}>
           <div className={classes.menu}>
-            <div className={classes.profileCardBox}>
-              <ProfileCard />
-            </div>
+            <ProfileCard />
             <Card className={classes.options}>
               {options.map((option, key) => (
-                <Button className={key ? classes.option1 : classes.option0} key={key}>
+                <Button
+                  className={key ? classes.option1 : classes.option0}
+                  key={key}
+                  onClick={() => setOption(key)}
+                >
                   {option}
 
-                  <ChevronRight size={18} className={classes.rightIcon} />
+                  <ChevronRight size={18} />
                 </Button>
               ))}
             </Card>
           </div>
-          <MainBox option={5} nLOption={0} accOption={0} passwdOption={3} />
-
+          <MainBox
+            className={classes.mainBox}
+            option={option}
+            nLOption={nLOption}
+            accOption={accOption}
+            passwdOption={passwdOption}
+            selectedTopics={selectedTopics}
+            boxState={setOption}
+            nLState={setnLOption}
+            passwdState={setpasswdOption}
+            accState={setaccOption}
+            addSelectedTopic={addSelectedTopic}
+            removeSelectedTopic={removeSelectedTopic}
+          />
         </div>
       </Container>
     </div>
@@ -58,20 +80,7 @@ export default UserProfile;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-  },
-
-  backButton: {
-    textTransform: 'unset',
-    fontFamily: 'Source Sans Pro',
-    fontSize: '1.25rem',
-    lineHeight: '1.25rem',
-    padding: '5px',
-    marginTop: '47.5px',
-    fontWeight: '400',
-    color: theme.palette.secondary.neutral80,
-  },
-  backIcon: {
-    marginRight: '21px',
+    marginBottom: '2rem',
   },
   head: {
     fontFamily: 'IBM Plex Sans',
@@ -79,6 +88,10 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '2rem',
     lineHeight: '3rem',
     marginTop: '2rem',
+    [theme.breakpoints.down("sm")]: {
+      textAlign: 'center',
+      marginTop: '0.75rem',
+    },
   },
   body: {
     display: 'flex',
@@ -87,8 +100,11 @@ const useStyles = makeStyles((theme) => ({
   menu: {
     display: 'flex',
     flexDirection: 'column',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+
   },
-  profileCardBox: {},
   options: {
     marginTop: '1.5rem',
     maxWidth: '276px',
@@ -116,7 +132,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  rightIcon: {},
-
-  content: {},
+  mainBox: {
+    width: '100%',
+  },
 }));

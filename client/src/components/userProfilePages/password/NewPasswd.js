@@ -1,14 +1,15 @@
-import { Button, Card, Input, InputAdornment, makeStyles, TextField } from '@material-ui/core';
-import React from 'react';
+import { Button, Card, Input, InputAdornment, makeStyles, TextField, Typography } from '@material-ui/core';
+import React, { useState } from 'react';
 import theme from '../../../config/themes/light';
-import passwd from '../../../assets/images/profile/passwd.png';
+import passwdImg from '../../../assets/images/profile/passwd.png';
 
-function Forgot() {
+function NewPasswd(props) {
   const classes = useStyles(theme);
-
+  const [passwd, setPasswd] = useState('');
+  const [confirm, setConfirm] = useState('');
   return (
     <div className={classes.root}>
-      <span>Change Password</span>
+      <Typography variant="h2">Change Password</Typography>
       <Card className={classes.wrapper}>
         <div className={classes.content}>
           <h1 className={classes.head}>Enter your new password</h1>
@@ -16,79 +17,112 @@ function Forgot() {
           <div className={classes.inputBlock}>
             <div className={classes.block}>
               <div className={classes.inputLabel}>New password</div>
-              <TextField className={classes.input} placeholder='new password' />
+              <TextField className={classes.input} placeholder='new password' value={passwd} onChange={(e) => setPasswd(e.target.value)} />
               <span>Must be atleast 8 characters long</span>
               <span>Should have atleast one uppercase and one lowercase character</span>
             </div>
             <div className={classes.block}>
               <div className={classes.inputLabel}>Confirm password</div>
-              <TextField className={classes.input} placeholder='confirm password' />
-              <span>Passwords don’t match</span>
+              <TextField className={classes.input} placeholder='confirm password' value={confirm} onChange={(e) => setConfirm(e.target.value)} />
+              <span className={confirm ? ((passwd == confirm) ? classes.hide : '') : classes.hide} >Passwords don’t match</span>
             </div>
-            <Button className={classes.inputButton} variant='contained' color='primary'>
+            <Button className={classes.inputButton} variant='contained' color='primary' onClick={() => props.passwdState(3)} disabled={!passwd || !confirm || (passwd != confirm)}>
               Change My Password
             </Button>
           </div>
         </div>
         <div className={classes.imageBox}>
-          <img src={passwd} alt='' className={classes.img} />
+          <img src={passwdImg} alt='' className={classes.img} />
         </div>
       </Card>
-    </div>
+    </div >
   );
 }
 
-export default Forgot;
+export default NewPasswd;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
     marginLeft: '2rem',
-    '& span': {
-      fontFamily: 'IBM Sans Pro ',
-      fontSize: '1.5rem',
-      lineHeight: '2rem',
-      fontWeight: '600',
+    width: '90%',
+    '& h2': {
+      [theme.breakpoints.down("xs")]: {
+        textAlign: 'center',
+      },
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: '1rem',
     },
   },
   wrapper: {
+    width: '100%',
     marginTop: '19px',
-    height: '542px',
     display: 'flex',
+    justifyContent: 'space-between',
+    height: '542px',
     boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
     background: theme.palette.common.white,
+    paddingInline: '6%',
+    [theme.breakpoints.down('sm')]: {
+      height: 'auto',
+      paddingBottom: '7%',
+    },
   },
+
   content: {
     display: 'flex',
     flexDirection: 'column',
-    marginTop: '70px',
-    marginLeft: '45px',
-    width: '419px',
+    marginTop: '52px',
+    width: '47%',
+    [theme.breakpoints.down('xs')]: {
+      width: '100%',
+      textAlign: "center",
+      alignItems: 'center',
+    },
+
   },
   head: {
-    fontSize: '2rem',
     lineHeight: '2.25rem',
     color: theme.palette.common.black,
-  },
 
+  },
+  text: {
+    marginTop: '10px',
+    fontFamily: 'Source Sans Pro',
+    fontSize: '1.25rem',
+    lineHeight: '1.5rem',
+    fontWeight: '400',
+    color: theme.palette.common.black,
+
+  },
   inputBlock: {
+    marginTop: '26px',
     display: 'flex',
     flexDirection: 'column',
-    marginTop: '4.5px',
-    fontFamily: 'Source Sans Pro !important',
-    width: '322px',
+    width: '90%',
+    [theme.breakpoints.down('xs')]: {
+      textAlign: 'center',
+
+    },
+
   },
   block: {
     marginTop: '23px',
     display: 'flex',
     flexDirection: 'column',
+    textAlign: 'left',
     '& span': {
       fontSize: '1rem',
       fontFamily: 'Source Sans Pro !important',
       lineHeight: '1.5rem',
       fontWeight: '400',
+
     },
+  },
+  hide: {
+    display: 'none',
   },
   inputLabel: {
     fontWeight: '400',
@@ -113,7 +147,7 @@ const useStyles = makeStyles((theme) => ({
   inputButton: {
     textTransform: 'unset',
     textAlign: 'center',
-    height: '37px',
+    lineHeight: '37px',
     marginTop: '10px',
     '& span': {
       fontSize: '1.25rem !important',
@@ -123,15 +157,20 @@ const useStyles = makeStyles((theme) => ({
   },
 
   imageBox: {
-    marginLeft: '68px',
+    marginLeft: '1rem',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: '66px',
+    width: '33%',
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
+
+    },
+
   },
   img: {
-    height: '328px',
-    width: '294px',
+    height: 'auto',
+    width: '100%',
   },
 }));

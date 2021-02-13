@@ -31,12 +31,9 @@ const AsyncPortfolio = AsyncRoute('./Portfolio');
 const AsyncCategory = AsyncRoute('./CategoryPages');
 const AsyncContact = AsyncRoute('./Contact');
 const AsyncGuide = AsyncRoute('./Guide');
-<<<<<<< HEAD
 const AsyncWitsdom = AsyncRoute('./Witsdom.js');
 
-=======
 const AsyncProfile = AsyncRoute('./UserProfile');
->>>>>>> 0afd0c0 (Add Route to App.js)
 
 function App() {
   return (
@@ -49,13 +46,13 @@ function App() {
 
           <Marginals>
             <Route path='/' exact component={AsyncHome} />
-            <Route path='/article' component={AsyncArticle} />
+            <Route path='/article' exact component={AsyncArticle} />
             <Route path='/podcast' exact component={AsyncPodcast} />
-            <Route path='/portfolio' component={AsyncPortfolio} />
-            <Route path='/contact' component={AsyncContact} />
-            <Route path='/guide' component={AsyncGuide} />
             <Route path='/witsdom' component={AsyncWitsdom} />
 
+            <Route path='/portfolio' exact component={AsyncPortfolio} />
+            <Route path='/contact' exact component={AsyncContact} />
+            <Route path='/guide' exact component={AsyncGuide} />
 
             <Route path='/profile' exact component={AsyncProfile} />
             <Route path='/campus' exact>
@@ -100,10 +97,10 @@ function App() {
                 categoryHeader='Catch up on everything at NITR in this section. From Academics to Fests, find everything on campus here.'
               />
             </Route> */}
-            <Route>
-              <h1>404 Page not found</h1>
-              {/* TODO: Make not found page */}
-            </Route>
+            {/* <Route> */}
+            {/* <h1>404 Page not found</h1> */}
+            {/* TODO: Make not found page */}
+            {/* </Route> */}
           </Marginals>
         </Switch>
       </Router>

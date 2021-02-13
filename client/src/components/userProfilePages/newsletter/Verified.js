@@ -1,17 +1,21 @@
 import React from 'react';
 import { PROFILEPAGES } from '../../../assets/placeholder/profile';
-import { Button, Card, Input, makeStyles } from '@material-ui/core';
+import { Button, Card, Input, makeStyles, Typography } from '@material-ui/core';
 import theme from '../../../config/themes/light';
 import newsletter from '../../../assets/images/profile/newsletterPic.png';
+import { ChevronsLeft } from 'react-feather';
 
 
-function Verified() {
+function Verified({ nLState }) {
   const classes = useStyles(theme);
 
   return (
     <div className={classes.root}>
-      <span>Newsletter</span>
+      <Typography variant="h2">Newsletter</Typography>
       <Card className={classes.wrapper}>
+        <div className={classes.back} onClick={() => nLState(0)} >
+          <ChevronsLeft />
+        </div>
         <div className={classes.content}>
           <h1 className={classes.head}>Awesome! You’re all caught up. </h1>
           <div className={classes.text}>
@@ -45,28 +49,53 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     marginLeft: '2rem',
-    '& span': {
-      fontFamily: 'IBM Sans Pro',
-      fontSize: '1.5rem',
-      lineHeight: '2rem',
-      fontWeight: '600',
+    width: '90%',
+    '& h2': {
+      [theme.breakpoints.down("sm")]: {
+        marginLeft: '0',
+        textAlign: 'center',
+      },
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: '1rem',
     },
   },
   wrapper: {
+    position: 'relative',
+    width: '100%',
     marginTop: '19px',
-    height: '542px',
     display: 'flex',
+    justifyContent: 'space-between',
+
+    height: '542px',
     boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
     background: theme.palette.common.white,
+    paddingInline: '6%',
+    [theme.breakpoints.down('xs')]: {
+      flexWrap: 'wrap',
+      height: 'auto',
+      flexDirection: 'column',
+      paddingBottom: '10%',
+    },
+  },
+  back: {
+    position: 'absolute',
+    color: theme.palette.secondary.neutral80,
+    top: '15px',
+    left: '20px',
   },
   content: {
     display: 'flex',
     flexDirection: 'column',
     marginTop: '45px',
-    marginLeft: '53px',
-    width: '420px',
+    // marginLeft: '53px',
+    width: '47%',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
   },
   head: {
+    textAlign: 'center',
     lineHeight: '2.25rem',
     color: theme.palette.common.black,
   },
@@ -114,5 +143,8 @@ const useStyles = makeStyles((theme) => ({
   img: {
     height: '276px',
     width: '367px',
+    [theme.breakpoints.down("sm")]: {
+      display: 'none',
+    },
   },
 }))

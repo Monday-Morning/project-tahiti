@@ -35,31 +35,48 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     marginLeft: '2rem',
-    '& span': {
-      fontFamily: 'IBM Sans Pro ',
-      fontSize: '1.5rem',
-      lineHeight: '2rem',
-      fontWeight: '600',
+    width: '90%',
+    '& h2': {
+      [theme.breakpoints.down("xs")]: {
+        textAlign: 'center',
+      },
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: '1rem',
     },
   },
   wrapper: {
+    width: '100%',
     marginTop: '19px',
-    height: '542px',
     display: 'flex',
+    justifyContent: 'space-between',
+
+    height: '542px',
     boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
     background: theme.palette.common.white,
+    paddingInline: '6%',
+    [theme.breakpoints.down('sm')]: {
+      height: 'auto',
+      paddingBottom: '7%',
+    },
   },
+
   content: {
     display: 'flex',
     flexDirection: 'column',
-    marginTop: '70px',
-    marginLeft: '45px',
-    width: '419px',
+    marginTop: '52px',
+    width: '47%',
+    [theme.breakpoints.down('xs')]: {
+      width: '100%',
+      textAlign: "center",
+      alignItems: 'center',
+    },
+
   },
   head: {
-    fontSize: '2rem',
     lineHeight: '2.25rem',
     color: theme.palette.common.black,
+
   },
   greenTickBox: {
     display: 'flex',
@@ -68,61 +85,29 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '43px',
   },
   text: {
-    marginTop: '62px',
+    marginTop: '43px',
     fontFamily: 'Source Sans Pro',
     fontSize: '1.25rem',
     lineHeight: '1.5rem',
     fontWeight: '400',
     color: theme.palette.common.black,
   },
-  inputBlock: {
-    marginTop: '54px',
-    display: 'flex',
-    flexDirection: 'column',
-    width: '322px',
-  },
-  emailHead: {
-    fontFamily: 'IBM Sans Plex !important',
-    fontWeight: '600',
-    fontSize: '22px',
-    lineHeight: '1.5rem',
-    color: theme.palette.common.black,
-  },
-  input: {
-    background: theme.palette.secondary.neutral40,
-    width: '100%',
-    paddingLeft: '1rem',
-    fontStyle: 'Source Sans Pro',
-    fontSize: '1.25rem',
-    lineHeight: '1.75rem',
-    marginTop: '12px',
-    '&::before': {
-      borderBottom: '0 !important',
-    },
-  },
-  inputButton: {
-    textTransform: 'unset',
-    textAlign: 'center',
-    height: '37px',
-    marginTop: '10px',
-    '& span': {
-
-      fontSize: '1.25rem !important',
-      lineHeight: '1.75rem',
-      fontFamily: 'Source Sans Pro !important',
-    },
-  },
 
   imageBox: {
-    marginLeft: '68px',
+    marginLeft: '1rem',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: '66px',
+    width: '33%',
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
+
+    },
+
   },
   img: {
-    height: '328px',
-    width: '294px',
+    height: 'auto',
+    width: '100%',
   },
 }));

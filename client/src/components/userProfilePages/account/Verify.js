@@ -1,14 +1,14 @@
-import { Button, Card, Input, makeStyles } from '@material-ui/core';
-import React from 'react';
+import { Button, Card, Input, makeStyles, Typography } from '@material-ui/core';
+import React, { useState } from 'react';
 import theme from '../../../config/themes/light';
 import verify from '../../../assets/images/profile/verify.png';
 
-function Verify() {
+function Verify({ accState }) {
     const classes = useStyles(theme);
-
+    const [input, setInput] = useState('')
     return (
         <div className={classes.root}>
-            <span>Verify Account</span>
+            <Typography variant="h2">Verify Account</Typography>
             <Card className={classes.wrapper}>
                 <div className={classes.content}>
                     <h1 className={classes.head}>You haven’t verified your account yet...</h1>
@@ -16,17 +16,17 @@ function Verify() {
                         If you are an NITR student and have a valid insti email id, you can get access to LAN-restricted articles even on the go! Just verify once and forget.
           </div>
                     <div className={classes.inputBlock}>
-                        <div className={classes.emailHead}>Email</div>
-                        <Input className={classes.input} placeholder='your@nitrkl.ac.in' />
-                        <Button className={classes.inputButton} variant='contained' color='primary'>
+                        <Typography variant="h3">Email</Typography>
+                        <Input className={classes.input} placeholder='your@nitrkl.ac.in' value={input} onChange={e => setInput(e.target.value)} />
+                        <Button className={classes.inputButton} variant='contained' color='primary' onClick={() => accState(1)} disabled={!input}>
                             <span> Sign Up for Newsletter</span>
                         </Button>
 
                     </div>
 
-                    <div className={classes.imageBox}>
-                        <img src={verify} alt='' className={classes.img} />
-                    </div>
+                </div>
+                <div className={classes.imageBox}>
+                    <img src={verify} alt='' className={classes.img} />
                 </div>
             </Card>
         </div>
@@ -40,55 +40,70 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         marginLeft: '2rem',
-        '& span': {
-            fontFamily: 'IBM Sans Pro',
-            fontSize: '1.5rem',
-            lineHeight: '2rem',
-            fontWeight: '600',
+        width: '90%',
+        '& h2': {
+            [theme.breakpoints.down("xs")]: {
+                textAlign: 'center',
+            },
+        },
+        [theme.breakpoints.down("xs")]: {
+            marginLeft: '1rem',
         },
     },
     wrapper: {
+        width: '100%',
         marginTop: '19px',
-        height: '542px',
         display: 'flex',
+        height: '542px',
         boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
         background: theme.palette.common.white,
-        position: 'relative',
-        width: '892px',
+        paddingInline: '6%',
+        [theme.breakpoints.down('sm')]: {
+            height: 'auto',
+            paddingBottom: '7%',
+        },
     },
+
     content: {
         display: 'flex',
         flexDirection: 'column',
         marginTop: '52px',
-        marginLeft: '45px',
-        width: '432px',
+        width: '47%',
+        [theme.breakpoints.down('xs')]: {
+            width: '100%',
+            textAlign: "center",
+            alignItems: 'center',
+        },
+
     },
     head: {
         lineHeight: '2.25rem',
         color: theme.palette.common.black,
+
     },
     text: {
-        marginTop: '30px',
+        marginTop: '10px',
         fontFamily: 'Source Sans Pro',
         fontSize: '1.25rem',
         lineHeight: '1.5rem',
         fontWeight: '400',
         color: theme.palette.common.black,
+
     },
     inputBlock: {
-        marginTop: '45px',
+        marginTop: '26px',
         display: 'flex',
         flexDirection: 'column',
-        width: '322px',
+        width: '90%',
+        [theme.breakpoints.down('xs')]: {
+            textAlign: 'center',
+
+        },
+
     },
     emailHead: {
-        fontFamily: 'IBM Sans Plex !important',
-        fontWeight: '600',
-        fontSize: '22px',
-        lineHeight: '1.5rem',
         color: theme.palette.common.black,
     },
-    // inputBox: {},
     input: {
         background: theme.palette.secondary.neutral40,
         width: '100%',
@@ -101,46 +116,32 @@ const useStyles = makeStyles((theme) => ({
             borderBottom: '0 !important',
         },
     },
-    // buttonBox: {},
     inputButton: {
         textTransform: 'unset',
         textAlign: 'center',
-        height: '37px',
+        lineHeight: '37px',
         marginTop: '10px',
         '& span': {
-
             fontSize: '1.25rem !important',
             lineHeight: '1.75rem',
             fontFamily: 'Source Sans Pro !important',
         },
     },
-    note: {
-        marginTop: '61px',
-        fontSize: '0.75rem',
-        lineHeight: '1rem',
-        fontFamily: 'Source Sans Pro',
-        fontWeight: '400',
-        '& span': {
-            fontFamily: 'Source Sans Pro',
-            fontSize: '0.75rem',
-            lineHeight: '1rem',
-            fontWeight: '700',
-        },
-    },
     imageBox: {
-        position: 'absolute',
-        // zIndex: '-10',
-        right: '-45px',
-        top: '112px',
-        marginLeft: '0.75rem',
+        marginLeft: '1rem',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        marginRight: '3rem',
+        width: '59%',
+        [theme.breakpoints.down('xs')]: {
+            display: 'none',
+
+        },
+
     },
     img: {
-        height: '276px',
-        width: '367px',
+        height: 'auto',
+        width: '100%',
     },
 }));

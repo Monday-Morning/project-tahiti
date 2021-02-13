@@ -1,4 +1,4 @@
-import { Card, makeStyles } from '@material-ui/core';
+import { Card, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
 import { PROFILEPAGES } from '../../assets/placeholder/profile';
 import graph from '../../assets/images/profile/profilePic.png';
@@ -12,69 +12,28 @@ const Dashboard = () => {
     a.getHours() == 0
       ? '12 AM'
       : a.getHours() < 12
-      ? `${a.getHours()} AM`
-      : `${a.getHours() - 12} PM`;
-  let month = 0;
-  switch (a.getMonth()) {
-    case 0:
-      month = 'January';
-      break;
-    case 1:
-      month = 'February';
-      break;
-    case 2:
-      month = 'March';
-      break;
-    case 3:
-      month = 'April';
-      break;
-    case 4:
-      month = 'May';
-      break;
-    case 5:
-      month = 'June';
-      break;
-    case 6:
-      month = 'July';
-      break;
-    case 7:
-      month = 'August';
-      break;
-    case 8:
-      month = 'September';
-      break;
-    case 9:
-      month = 'October';
-      break;
-    case 10:
-      month = 'November';
-      break;
-    case 11:
-      month = 'December';
-      break;
-
-    default:
-      break;
-  }
-  let dateTime = `${a.getDate()} ${month} ${a.getFullYear()}, ${hours}`;
+        ? `${a.getHours()} AM`
+        : `${a.getHours() - 12} PM`;
+  let month = ['January', 'February', 'March', 'April', 'May', 'June', 'August', 'September', 'October', 'November', 'December'];
+  let dateTime = `${a.getDate()} ${month[a.getMonth()]} ${a.getFullYear()}, ${hours}`;
   const classes = useStyles(theme);
 
   return (
     <div className={classes.root}>
-      <span>Dashboard</span>
+      <Typography variant='h2'>Dashboard</Typography>
       <Card className={classes.wrapper}>
+        <div className={classes.header}>
+          <Typography variant="h3">Activity</Typography>
+          <div className={classes.dateTime}>as of {dateTime}</div>
+        </div>
         <div className={classes.content}>
-          <div className={classes.header}>
-            <span>Activity</span>
-            <div className={classes.dateTime}>as of {dateTime}</div>
-          </div>
           <div className={classes.activityGraph}>
             <img src={graph} alt='' className={classes.graph} />
           </div>
           <div className={classes.stats}>
             {PROFILEPAGES.DASHBOARD.map(({ head, value }, key) => (
-              <div className={key ? classes.stat : classes.stat2}>
-                <div key={key} className={classes.stat__head}>
+              <div className={key ? classes.stat : classes.stat2} key={key}>
+                <div className={classes.stat__head}>
                   {head}
                 </div>
                 <div className={classes.stat__value}>{value}</div>
@@ -93,73 +52,99 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     marginLeft: '2rem',
-    '& span': {
-      fontFamily: 'IBM Sans Pro',
-      fontSize: '1.5rem',
-      lineHeight: '2rem',
-      fontWeight: '600',
+    width: '90%',
+    '& h2': {
+      [theme.breakpoints.down("xs")]: {
+        marginLeft: '0',
+        textAlign: 'center',
+      },
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: '1rem',
     },
   },
   wrapper: {
+    width: '100%',
     marginTop: '19px',
-    height: '542px',
-    width: '886px',
-    display: 'flex',
-    boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
-    background: theme.palette.common.white,
-  },
-  content: {
-    position: 'relative',
     display: 'flex',
     flexDirection: 'column',
-    marginTop: '15px',
-    marginLeft: '39px',
-    width: '100%',
+    height: '542px',
+    boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
+    background: theme.palette.common.white,
+    paddingTop: '15px',
+    // paddingLeft: "40px",
+    paddingBottom: '10%',
+    paddingLeft: '5%',
+    [theme.breakpoints.down('xs')]: {
+      // flexWrap: 'wrap',
+      paddingInline: '5%',
+      height: 'auto',
+    },
   },
   header: {
     display: 'flex',
     flexDirection: 'column',
-    '& span': {
-      fontFamily: 'IBM Sans Pro',
-      fontSize: '22px',
-      lineHeight: '1.5rem',
-      fontWeight: '600',
+    whiteSpace: 'nowrap',
+    '& h3': {
       color: theme.palette.secondary.main,
+    },
+    [theme.breakpoints.down("xs")]: {
+      textAlign: 'center',
     },
   },
   dateTime: {
     fontFamily: 'Mulish',
     fontWeight: '400',
-    fintSize: '0.75rem',
+    fontSize: '0.75rem',
     lineHeight: '1rem',
     color: '#9FA2B4',
+  },
+  content: {
+    // position: 'relative',
+    display: 'flex',
+
+    // flexDirection: 'column',
+    marginTop: '15px',
+    width: '100%',
+    // [theme.breakpoints.up("md")]: {
+    //   marginLeft: '39px',
+    // },
+    // [theme.breakpoints.down("sm")]: {
+    justifyContent: 'center',
+    // },
+
   },
   activityGraph: {
     height: '432px',
     paddingTop: '98px',
     width: '100%',
+    [theme.breakpoints.down("xs")]: {
+      display: 'none',
+    },
   },
   graph: {
     height: '336px',
     width: '100%',
   },
   stats: {
-    fontFamily: 'Mulish',
-    position: 'absolute',
+    // position: 'absolute',
+    // top: '-15px',
+    // right: '0',
+    // zIndex: '10',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-end',
-    top: '-15px',
-    right: '0',
-    background: theme.palette.common.white,
-    height: '100%',
-    zIndex: '10',
-    width: '259px',
     marginTop: '0',
-    // paddingTop:''
+    fontFamily: 'Mulish',
+    background: theme.palette.common.white,
+    // height: '100%',
+    width: '259px',
+    [theme.breakpoints.down("xs")]: {
+      // top: '42px',
+      alignItems: 'center',
+    },
   },
   stat: {
-    // color: key ? 'red' : 'blue',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -189,6 +174,6 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '700',
     fontSize: '1.5rem',
     lineHeight: '30.12px',
-    color: '#2527330,',
+    color: '#252733',
   },
 }));
