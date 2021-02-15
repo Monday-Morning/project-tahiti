@@ -3,7 +3,8 @@ const path = require('path');
 const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = (env) => {
@@ -31,7 +32,7 @@ module.exports = (env) => {
     chunksSortMode: 'none',
   });
 
-  // Building Webpack
+  /* ============== Building Webpack ============== */
   const config = {};
 
   config.entry = ['babel-polyfill', './src/index.js'];
@@ -86,7 +87,7 @@ module.exports = (env) => {
       },
       {
         test: /\.css$/i,
-        use: ['style-loader','css-loader'],
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.eot$/,

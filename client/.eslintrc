@@ -11,9 +11,16 @@
     "jest": true
   },
   "rules": {
-    "max-len": ["error", { "code": 100 }],
+    "max-len": ["error", { "code": 80 }],
     "prefer-promise-reject-errors": ["off"],
     "react/jsx-filename-extension": ["off"],
-    "no-return-assign": ["off"]
+    "no-return-assign": ["off"],
+    "react/prop-types": 0,
+    "import/prefer-default-export": 0,
+    "no-use-before-define": 0,
+    "click-events-have-key-events": 0,
+    "no-static-element-interactions": 0,
+    "prefer-destructuring": 1
   }
 }
+

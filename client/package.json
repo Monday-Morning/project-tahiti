@@ -4,16 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:dev": "webpack --env development",
-    "build:prod": "webpack -p --env production",
     "start": "webpack-dev-server --env development",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage --colors",
+    "build:dev": "webpack --env development",
+    "build:prod": "webpack -p --env production",
     "firebase:deploy": "cd .. && firebase deploy --only hosting",
     "firebase:deploy:preview": "cd .. && firebase hosting:channel:deploy tahiti-v1",
     "deploy:prod": "yarn build:prod && yarn firebase:deploy",
-    "deploy:preview": "yarn build:prod && yarn firebase:deploy:preview"
+    "deploy:preview": "yarn build:prod && yarn firebase:deploy:preview",
+    "lint:fix": "eslint --fix '**/*.js'",
+    "format": "prettier --write '**/*.js'"
   },
   "keywords": [],
   "author": "",
