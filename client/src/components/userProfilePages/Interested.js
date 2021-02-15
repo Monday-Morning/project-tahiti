@@ -114,11 +114,17 @@ const useStyles = makeStyles((theme) => ({
     minWidth: '80px',
     maxWidth: '156px',
     '& span': {
+      textTransform: 'unset',
       fontFamily: 'Source Sans Pro !important',
       fontSize: '1.25rem !important',
       '& div': {
         color: theme.palette.secondary.neutral70,
       },
+    },
+    [theme.breakpoints.down('sm')]: {
+
+      fontSize: "1rem",
+      lineHeight: '1.25rem'
     },
   },
 }));

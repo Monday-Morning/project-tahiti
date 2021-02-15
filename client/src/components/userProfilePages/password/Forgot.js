@@ -10,12 +10,12 @@ function Forgot(props) {
   return (
     <div className={classes.root}>
       <div className={classes.content}>
-        <h1 className={classes.head}>Forgot your Password?</h1>
+        <Typography variant="h1" className={classes.head}>Forgot your Password?</Typography>
         <div className={classes.text}>
           Don’t worry! Just type in the email address you’ve registered with us.
           </div>
         <div className={classes.inputBlock}>
-          <div className={classes.emailHead}>Email</div>
+          <Typography variant="h3" className={classes.emailHead}>Email</Typography>
           <Input className={classes.input} placeholder='your@email.com' value={input} onChange={(e) => setInput(e.target.value)} />
           <Button className={classes.inputButton} variant='contained' color='primary' onClick={() => props.passwdState(1)} disabled={!input}>
             Send reset link
@@ -57,7 +57,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   head: {
-    lineHeight: '2.25rem',
     color: theme.palette.common.black,
 
   },

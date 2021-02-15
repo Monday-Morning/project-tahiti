@@ -42,6 +42,9 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '6px',
     boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
     background: theme.palette.common.white,
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
 
   },
   userImage: {
@@ -91,11 +94,6 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid',
     borderTop: '0px solid',
     borderColor: theme.palette.secondary.neutral60,
-    // '&:hover': {
-    //   position: 'relative',
-    //   zIndex: '10',
-    //   width: '50%',
-    //   height: '110%',
-    // }
+
   },
 }));

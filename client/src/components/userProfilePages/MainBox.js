@@ -19,7 +19,6 @@ function MainBox({
   accOption,
   passwdOption,
   nLOption,
-  boxState,
   accState,
   passwdState,
   nLState,
@@ -98,6 +97,10 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     marginLeft: '2rem',
     width: '90%',
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: 'unset',
+      marginTop: '1rem',
+    },
     '& h2': {
       [theme.breakpoints.down('xs')]: {
         marginLeft: '0',

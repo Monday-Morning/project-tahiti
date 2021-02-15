@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '2rem',
     width: '84%',
     [theme.breakpoints.down('xs')]: {
-      alignItems: 'center',
+      justifyContent: 'center',
       marginLeft: '0',
     },
   },
@@ -118,9 +118,14 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '0.25rem',
   },
   subInfo: {
+    textAlign: 'center',
     fontSize: '1.5rem',
     fontWeight: '400',
     marginTop: '0.25rem',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.25rem',
+    },
+
   },
 
   subLine: {
@@ -133,8 +138,10 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.black,
 
     [theme.breakpoints.down('sm')]: {
+      marginTop: '1rem',
       flexDirection: 'column',
       justifyContent: 'space-around',
+      alignItems: 'center',
     },
   },
   emailSub: {
@@ -143,6 +150,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '400',
     color: theme.palette.secondary.neutral80,
     [theme.breakpoints.down('xs')]: {
+      fontSize: '1rem',
       whiteSpace: 'wrap',
       textAlign: 'center',
       marginTop: '0.4rem',
@@ -151,6 +159,7 @@ const useStyles = makeStyles((theme) => ({
       '&:hover': {
         cursor: 'pointer',
       },
+      whiteSpace: 'nowrap',
       fontSize: '1rem',
       textDecoration: 'underline',
       color: theme.palette.secondary.main,
@@ -161,7 +170,6 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '400',
     lineHeight: '1.25rem',
     color: theme.palette.secondary.main,
-    whiteSpace: 'nowrap',
     '& span': {
       fontWeight: '600',
       whiteSpace: 'nowrap',

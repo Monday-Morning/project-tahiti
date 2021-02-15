@@ -74,7 +74,6 @@ function UserProfile() {
             accOption={accOption}
             passwdOption={passwdOption}
             selectedTopics={selectedTopics}
-            boxState={setOption}
             nLState={setNLOption}
             passwdState={setPasswdOption}
             accState={setAccOption}
@@ -103,14 +102,20 @@ const useStyles = makeStyles((theme) => ({
   },
   body: {
     display: 'flex',
-    marginTop: '1rem',
+    [theme.breakpoints.down('sm')]: {
+      // display: 'none',
+      justifyContent: 'center',
+      flexWrap: 'wrap',
+    },
+
   },
   menu: {
     display: 'flex',
     flexDirection: 'column',
     [theme.breakpoints.down('sm')]: {
-      display: 'none',
+      width: '90%',
     },
+
 
   },
   options: {
@@ -120,6 +125,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     marginTop: '1.5rem',
     maxWidth: '276px',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '100%',
+    },
     borderRadius: '6px',
     boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
     background: theme.palette.common.white,
@@ -134,6 +142,10 @@ const useStyles = makeStyles((theme) => ({
     height: '49px',
     borderTop: '1px solid',
     borderColor: theme.palette.secondary.neutral60,
+    borderRadius: '0',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
   },
   option0: {
     display: 'flex',
@@ -142,6 +154,10 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary.neutral70,
     width: '276px',
     height: '49px',
+    borderRadius: '0',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
   },
   selectedOption: {
     color: `${theme.palette.secondary.main} !important`,
