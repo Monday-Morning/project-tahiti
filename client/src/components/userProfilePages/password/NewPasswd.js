@@ -1,12 +1,22 @@
-import { Button, makeStyles, TextField } from '@material-ui/core';
+import { Button, IconButton, Input, InputAdornment, makeStyles, TextField } from '@material-ui/core';
 import React, { useState } from 'react';
 import theme from '../../../config/themes/light';
 import passwdImg from '../../../assets/images/profile/passwd.png';
+import ImageBox from '../widgets/ImageBox';
+import { Eye, EyeOff } from 'react-feather';
 
 function NewPasswd(props) {
   const classes = useStyles(theme);
   const [passwd, setPasswd] = useState('');
   const [confirm, setConfirm] = useState('');
+  const [showPasswd, setShowPasswd] = useState(false);
+
+  const handleClickShowPassword = () => {
+    setShowPasswd(!showPasswd);
+  }
+
+
+
   return (
     <div className={classes.root}>
       <div className={classes.content}>
@@ -15,13 +25,33 @@ function NewPasswd(props) {
         <div className={classes.inputBlock}>
           <div className={classes.block}>
             <div className={classes.inputLabel}>New password</div>
-            <TextField className={classes.input} placeholder='new password' value={passwd} onChange={(e) => setPasswd(e.target.value)} />
+            <Input className={classes.input} placeholder='new password' value={passwd} onChange={(e) => setPasswd(e.target.value)}
+              type={showPasswd ? 'text' : 'password'} endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                  >
+                    {showPasswd ? <Eye /> : <EyeOff />}
+                  </IconButton>
+                </InputAdornment>
+              } />
             <span>Must be atleast 8 characters long</span>
             <span>Should have atleast one uppercase and one lowercase character</span>
           </div>
           <div className={classes.block}>
             <div className={classes.inputLabel}>Confirm password</div>
-            <TextField className={classes.input} placeholder='confirm password' value={confirm} onChange={(e) => setConfirm(e.target.value)} />
+            <Input className={classes.input} placeholder='confirm password' value={confirm} onChange={(e) => setConfirm(e.target.value)}
+              type={showPasswd ? 'text' : 'password'} endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                  >
+                    {showPasswd ? <Eye /> : <EyeOff />}
+                  </IconButton>
+                </InputAdornment>
+              } />
             <span className={confirm ? ((passwd == confirm) ? classes.hide : '') : classes.hide} >Passwords don’t match</span>
           </div>
           <Button className={classes.inputButton} variant='contained' color='primary' onClick={() => props.passwdState(3)} disabled={!passwd || !confirm || (passwd != confirm)}>
@@ -29,7 +59,7 @@ function NewPasswd(props) {
             </Button>
         </div>
       </div>
-      <ImageBox widthImage="33%" img={passwd} />
+      <ImageBox widthImage="33%" img={passwdImg} />
     </div >
   );
 }
@@ -38,30 +68,11 @@ export default NewPasswd;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginLeft: '2rem',
-    width: '90%',
-    '& h2': {
-      [theme.breakpoints.down("xs")]: {
-        textAlign: 'center',
-      },
-    },
-    [theme.breakpoints.down("xs")]: {
-      marginLeft: '1rem',
-    },
-  },
-  wrapper: {
-    width: '100%',
-    marginTop: '19px',
+
     display: 'flex',
     justifyContent: 'space-between',
-    height: '542px',
-    boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
-    background: theme.palette.common.white,
     paddingInline: '6%',
     [theme.breakpoints.down('sm')]: {
-      height: 'auto',
       paddingBottom: '7%',
     },
   },
@@ -71,13 +82,16 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     marginTop: '52px',
     width: '47%',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('md')]: {
       width: '100%',
+    },
+    [theme.breakpoints.down('xs')]: {
       textAlign: "center",
       alignItems: 'center',
     },
 
   },
+
   head: {
     lineHeight: '2.25rem',
     color: theme.palette.common.black,

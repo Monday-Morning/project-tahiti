@@ -19,10 +19,17 @@ function UserProfile() {
   const classes = useStyles(theme);
 
   const [option, setOption] = useState(0);
-  const [nLOption, setnLOption] = useState(0);
-  const [accOption, setaccOption] = useState(0);
-  const [passwdOption, setpasswdOption] = useState(0);
+  const [nLOption, setNLOption] = useState(0);
+  const [accOption, setAccOption] = useState(0);
+  const [passwdOption, setPasswdOption] = useState(0);
   const [selectedTopics, setSelectedTopics] = useState([]);
+
+  function handleOptionClick(value) {
+    setOption(value);
+    setNLOption(0);
+    setAccOption(0);
+    setPasswdOption(0);
+  }
 
   const addSelectedTopic = (newTopic) => setSelectedTopics([...selectedTopics, newTopic]);
 
@@ -50,7 +57,7 @@ function UserProfile() {
                   `
                   }
                   key={key}
-                  onClick={() => setOption(key)}
+                  onClick={() => handleOptionClick(key)}
                 >
                   {option__value}
 
@@ -68,9 +75,9 @@ function UserProfile() {
             passwdOption={passwdOption}
             selectedTopics={selectedTopics}
             boxState={setOption}
-            nLState={setnLOption}
-            passwdState={setpasswdOption}
-            accState={setaccOption}
+            nLState={setNLOption}
+            passwdState={setPasswdOption}
+            accState={setAccOption}
             addSelectedTopic={addSelectedTopic}
             removeSelectedTopic={removeSelectedTopic}
           />

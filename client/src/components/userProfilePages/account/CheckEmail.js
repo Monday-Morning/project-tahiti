@@ -35,29 +35,12 @@ export default CheckEmail;
 
 const useStyles = makeStyles((theme) => ({
   root: {
+
     display: 'flex',
-    flexDirection: 'column',
-    marginLeft: '2rem',
-    width: '90%',
-    '& h2': {
-      [theme.breakpoints.down("xs")]: {
-        textAlign: 'center',
-      },
-    },
-    [theme.breakpoints.down("xs")]: {
-      marginLeft: '1rem',
-    },
-  },
-  wrapper: {
+    justifyContent: 'space-around',
     width: '100%',
-    marginTop: '19px',
-    display: 'flex',
-    height: '542px',
-    boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
-    background: theme.palette.common.white,
     paddingInline: '6%',
     [theme.breakpoints.down('sm')]: {
-      height: 'auto',
       paddingBottom: '7%',
     },
   },
@@ -67,8 +50,11 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     marginTop: '52px',
     width: '47%',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('md')]: {
       width: '100%',
+    },
+
+    [theme.breakpoints.down('xs')]: {
       textAlign: "center",
       alignItems: 'center',
     },

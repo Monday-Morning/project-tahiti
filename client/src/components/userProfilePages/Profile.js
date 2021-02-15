@@ -5,40 +5,41 @@ import { PROFILEPAGES } from '../../assets/placeholder/profile';
 import theme from '../../config/themes/light';
 import profile from '../../assets/images/profile/profilePic.png';
 import pp from '../../assets/images/profile.png';
+import ImageBox from './widgets/ImageBox';
 
 function Profile() {
   const classes = useStyles(theme);
   return (
     <div className={classes.root}>
-      <div className={classes.content}>
-        <div className={classes.profilePic}>
-          <img src={pp} alt='' height='115px' width='115px' className={classes.pp} />
-          <Edit2 size={30} className={classes.invertedIcon} />
-        </div>
-        <div className={classes.infoBlocks}>
-          {PROFILEPAGES.PROFILE.INFO.map(({ head, value }, key) => (
-            <div className={classes.infoBlock} key={key}>
-              <div className={classes.infoHead}>
-                <Typography variant='h2'>{head}</Typography>
-                <div className={classes.editButton}>
-                  <Edit2 size={18} />
+      <div className={classes.wrapper}>
+        <div className={classes.content}>
+          <div className={classes.profilePic}>
+            <img src={pp} alt='' height='115px' width='115px' className={classes.pp} />
+            <Edit2 size={30} className={classes.invertedIcon} />
+          </div>
+          <div className={classes.infoBlocks}>
+            {PROFILEPAGES.PROFILE.INFO.map(({ head, value }, key) => (
+              <div className={classes.infoBlock} key={key}>
+                <div className={classes.infoHead}>
+                  <Typography variant='h2'>{head}</Typography>
+                  <div className={classes.editButton}>
+                    <Edit2 size={18} />
+                  </div>
                 </div>
+                <Typography className={classes.subInfo}>{value}</Typography>
               </div>
-              <Typography className={classes.subInfo}>{value}</Typography>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-
+        <ImageBox widthImage='44.3%' img={profile} />
+      </div>
+      <div className={classes.subLine}>
         <div className={classes.emailSub}>
           Your email is not yet verified. <span>Verify Now</span>
         </div>
-      </div>
-      <div className={classes.imageBox}>
-        <img src={profile} alt='' className={classes.image} />
-        <div>
-          <div className={classes.imageSub}>
-            <span>Joined on:</span> {PROFILEPAGES.PROFILE.JOINDATE}
-          </div>
+
+        <div className={classes.joined}>
+          <span>Joined on:</span> {PROFILEPAGES.PROFILE.JOINDATE}
         </div>
       </div>
     </div>
@@ -50,22 +51,32 @@ export default Profile;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
     [theme.breakpoints.down('sm')]: {
       flexWrap: 'wrap',
-      flexDirection: 'column',
       paddingInline: '5%',
-      paddingBottom: '10%',
+      paddingBottom: '7%',
+    },
+  },
+  wrapper: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginTop: '2rem',
+    width: '84%',
+    [theme.breakpoints.down('xs')]: {
+      alignItems: 'center',
+      marginLeft: '0',
     },
   },
   content: {
     display: 'flex',
     flexDirection: 'column',
-    marginTop: '2rem',
-    marginLeft: '4.5rem',
     [theme.breakpoints.down('xs')]: {
       alignItems: 'center',
-      marginLeft: '0',
-    }
+    },
   },
   profilePic: {
     height: '115px',
@@ -88,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     [theme.breakpoints.down('xs')]: {
       alignItems: 'center',
-    }
+    },
   },
   infoBlock: {
     marginTop: '2.5rem',
@@ -100,7 +111,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       justifyContent: 'center',
     },
-
   },
   editButton: {
     display: 'flex',
@@ -111,16 +121,27 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.5rem',
     fontWeight: '400',
     marginTop: '0.25rem',
-
   },
 
-  emailSub: {
+  subLine: {
     fontFamily: 'Source Sans Pro',
+    width: '84%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'baseline',
+    flexWrap: 'wrap',
+    color: theme.palette.common.black,
+
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+      justifyContent: 'space-around',
+    },
+  },
+  emailSub: {
     fontSize: '1.25rem',
     lineHeight: '1.75rem',
     fontWeight: '400',
     color: theme.palette.secondary.neutral80,
-    marginTop: '0.25rem',
     [theme.breakpoints.down('xs')]: {
       whiteSpace: 'wrap',
       textAlign: 'center',
@@ -135,39 +156,15 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.secondary.main,
     },
   },
-  imageBox: {
-    margin: '3rem 4.5rem 0px 2rem',
-    display: "flex",
-    flexDirection: 'column',
-    justifyContent: 'center',
-  },
-  image: {
-    height: 'auto',
-    width: '100%',
-    [theme.breakpoints.down('sm')]: {
-      display: 'none',
-    }
-  },
-  imageSub: {
-    fontFamily: 'Source Sans Pro',
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'baseline',
-    color: theme.palette.common.black,
-    fontSize: '0.9rem',
+  joined: {
+    fontSize: '1rem',
     fontWeight: '400',
+    lineHeight: '1.25rem',
+    color: theme.palette.secondary.main,
     whiteSpace: 'nowrap',
-    textAlign: "center",
-
-    [theme.breakpoints.down('sm')]: {
-      justifyContent: 'center',
-    },
     '& span': {
       fontWeight: '600',
-      fontSize: '1rem',
-      lineHeight: '1.5rem',
-      color: theme.palette.secondary.main,
+      whiteSpace: 'nowrap',
     },
   },
 }));

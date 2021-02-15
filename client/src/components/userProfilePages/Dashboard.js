@@ -100,9 +100,13 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Mulish',
     background: theme.palette.common.white,
     width: '259px',
+    position: 'relative',
+    top: '-60px',
     [theme.breakpoints.down("xs")]: {
       alignItems: 'center',
+      position: 'static',
     },
+
   },
   stat: {
     display: 'flex',

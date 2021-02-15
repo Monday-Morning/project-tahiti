@@ -2,6 +2,7 @@ import { Button, Card, Input, makeStyles, Typography } from '@material-ui/core';
 import React, { useState } from 'react';
 import theme from '../../../config/themes/light';
 import passwd from '../../../assets/images/profile/passwd.png';
+import ImageBox from '../widgets/ImageBox';
 
 function Forgot(props) {
   const classes = useStyles(theme);
@@ -31,30 +32,12 @@ export default Forgot;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginLeft: '2rem',
-    width: '90%',
-    '& h2': {
-      [theme.breakpoints.down("xs")]: {
-        textAlign: 'center',
-      },
-    },
-    [theme.breakpoints.down("xs")]: {
-      marginLeft: '1rem',
-    },
-  },
-  wrapper: {
+
     display: 'flex',
     justifyContent: 'space-between',
-    width: '100%',
-    marginTop: '19px',
-    height: '542px',
-    boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
-    background: theme.palette.common.white,
     paddingInline: '6%',
+    height: '-webkit-fill-available',
     [theme.breakpoints.down('sm')]: {
-      height: 'auto',
       paddingBottom: '7%',
     },
   },
@@ -62,14 +45,16 @@ const useStyles = makeStyles((theme) => ({
   content: {
     display: 'flex',
     flexDirection: 'column',
-    marginTop: '52px',
+    justifyContent: 'flex-start',
+    marginTop: '70px',
     width: '47%',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('md')]: {
       width: '100%',
+    },
+    [theme.breakpoints.down('xs')]: {
       textAlign: "center",
       alignItems: 'center',
     },
-
   },
   head: {
     lineHeight: '2.25rem',
@@ -77,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
 
   },
   text: {
-    marginTop: '10px',
+    marginTop: '62px',
     fontFamily: 'Source Sans Pro',
     fontSize: '1.25rem',
     lineHeight: '1.5rem',
@@ -86,9 +71,9 @@ const useStyles = makeStyles((theme) => ({
 
   },
   inputBlock: {
+    marginTop: '54px',
     display: 'flex',
     flexDirection: 'column',
-    marginTop: '26px',
     width: '90%',
     [theme.breakpoints.down('xs')]: {
       textAlign: 'center',

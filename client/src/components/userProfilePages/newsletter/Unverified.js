@@ -61,8 +61,11 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     marginTop: '52px',
     width: '47%',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('md')]: {
       width: '100%',
+    },
+
+    [theme.breakpoints.down('xs')]: {
       textAlign: "center",
       alignItems: 'center',
     },
@@ -89,7 +92,6 @@ const useStyles = makeStyles((theme) => ({
     width: '90%',
     [theme.breakpoints.down('xs')]: {
       textAlign: 'center',
-
     },
 
   },

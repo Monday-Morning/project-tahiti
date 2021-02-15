@@ -1,8 +1,9 @@
 import { makeStyles } from '@material-ui/core';
 import React from 'react';
 import theme from '../../../config/themes/light';
-import passwd from '../../../assets/images/profile/passwd.png';
+import passwdImg from '../../../assets/images/profile/passwd.png';
 import greenTick from '../../../assets/images/profile/clearedGreen.png';
+import ImageBox from '../widgets/ImageBox';
 
 function Forgot() {
   const classes = useStyles(theme);
@@ -18,7 +19,7 @@ function Forgot() {
           Your password has been successfully changed. Don’t forget to sign in with the new one, the next time you open the MM website!
           </div>
       </div>
-      <ImageBox widthImage="33%" img={passwd} />
+      <ImageBox widthImage="33%" img={passwdImg} />
     </div>
   );
 }
@@ -27,31 +28,12 @@ export default Forgot;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginLeft: '2rem',
-    width: '90%',
-    '& h2': {
-      [theme.breakpoints.down("xs")]: {
-        textAlign: 'center',
-      },
-    },
-    [theme.breakpoints.down("xs")]: {
-      marginLeft: '1rem',
-    },
-  },
-  wrapper: {
-    width: '100%',
-    marginTop: '19px',
+
     display: 'flex',
     justifyContent: 'space-between',
-
-    height: '542px',
-    boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
-    background: theme.palette.common.white,
+    alignItems: 'center',
     paddingInline: '6%',
     [theme.breakpoints.down('sm')]: {
-      height: 'auto',
       paddingBottom: '7%',
     },
   },
@@ -61,14 +43,16 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     marginTop: '52px',
     width: '47%',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('md')]: {
       width: '100%',
+    },
+
+    [theme.breakpoints.down('xs')]: {
       textAlign: "center",
       alignItems: 'center',
     },
 
-  },
-  head: {
+  }, head: {
     lineHeight: '2.25rem',
     color: theme.palette.common.black,
 

@@ -41,14 +41,16 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: '7%',
     },
   },
-
   content: {
     display: 'flex',
     flexDirection: 'column',
     marginTop: '52px',
     width: '47%',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('md')]: {
       width: '100%',
+    },
+
+    [theme.breakpoints.down('xs')]: {
       textAlign: "center",
       alignItems: 'center',
     },

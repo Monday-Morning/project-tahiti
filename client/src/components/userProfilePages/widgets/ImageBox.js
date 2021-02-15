@@ -19,10 +19,10 @@ const useStyles = makeStyles((theme, widthImage) => ({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignContent: 'right',
         width: widthImage,
 
-        [theme.breakpoints.down('xs')]: {
+        [theme.breakpoints.down('sm')]: {
             display: 'none',
         },
 

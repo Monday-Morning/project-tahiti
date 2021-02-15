@@ -12,9 +12,9 @@ function Verified({ nLState }) {
 
   return (
     <div className={classes.root}>
-      <div className={classes.back} onClick={() => nLState(0)} >
+      {/* <div className={classes.back} onClick={() => nLState(0)} >
         <ChevronsLeft />
-      </div>
+      </div> */}
       <div className={classes.content}>
         <h1 className={classes.head}>Awesome! You’re all caught up. </h1>
         <div className={classes.text}>
@@ -67,12 +67,17 @@ const useStyles = makeStyles((theme) => ({
   content: {
     display: 'flex',
     flexDirection: 'column',
-    marginTop: '45px',
-    // marginLeft: '53px',
+    marginTop: '52px',
     width: '47%',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '100%',
     },
+
+    [theme.breakpoints.down('xs')]: {
+      textAlign: "center",
+      alignItems: 'center',
+    },
+
   },
   head: {
     textAlign: 'center',
