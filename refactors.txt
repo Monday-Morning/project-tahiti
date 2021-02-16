@@ -1,0 +1,13 @@
+1. Placeholder files. Make the properties of the objects also capitalized since they are also the constants
+2. In the file App.js, No props should be passed apart from authentication ones.
+eg:
+    <AsyncCategory
+      category='connect'
+      categoryName='Connect'
+      categoryHeader='Catch up on everything at NITR in this section. From Academics to Fests, find everything on campus here.'
+    />
+
+    THIS IS NOT AT ALL A GOOD PRACTICE SINCE THAT FILE IS TO JUST HANDLE THE ROUTING AND NOTHING ELSE!
+
+3. Categorize import statements!
+4.

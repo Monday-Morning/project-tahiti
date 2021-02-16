@@ -1,3 +1,4 @@
+/* eslint-disable */
 export const PODCAST = Object.freeze([
   {
     cover: 'cover.png',

@@ -1,3 +1,4 @@
+/* eslint-disable */
 export const ARTICLE = Object.freeze({
   tags: ['Department', 'Campus', 'BM-BT'],
   title: 'Chaos, Curiosity and COVID-19: A Biotechnologist’s Perspective',
@@ -31,7 +32,8 @@ export const ARTICLE = Object.freeze({
     },
     {
       type: 'image',
-      data: 'https://mondaymorning.nitrkl.ac.in/uploads/media/IMG-20181111-WA0052.jpg',
+      data:
+        'https://mondaymorning.nitrkl.ac.in/uploads/media/IMG-20181111-WA0052.jpg',
       alt: 'Abel Bhai',
     },
     { type: 'heading', data: 'Heading 2', id: 'heading2' },

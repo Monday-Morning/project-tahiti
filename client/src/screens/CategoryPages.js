@@ -1,9 +1,14 @@
-import { Grid, Container, makeStyles } from '@material-ui/core';
 import React from 'react';
+
+// Libraries
+import { Grid, Container, makeStyles } from '@material-ui/core';
+
+// Components
 import SubCategory from '../components/widgets/SubCategories';
-import theme from '../config/themes/light';
 import Carousel from '../components/widgets/Carousel';
 import ArticlesCards from '../components/categories/ArticlesCards';
+
+// Assets
 import { CATEGORIES } from '../assets/placeholder/widget';
 
 function Category({ category, categoryName, categoryHeader }) {
@@ -11,7 +16,7 @@ function Category({ category, categoryName, categoryHeader }) {
     categories: CATEGORIES,
   };
 
-  const classes = useStyles(theme);
+  const classes = useStyles();
 
   return (
     <div>
@@ -20,11 +25,17 @@ function Category({ category, categoryName, categoryHeader }) {
           <Container>
             <div className={classes.header}>
               <Grid className={classes.category}>{categoryName}</Grid>
-              <Grid className={classes.categoryHeaderText}>{categoryHeader}</Grid>
+              <Grid className={classes.categoryHeaderText}>
+                {categoryHeader}
+              </Grid>
             </div>
             <Grid className={classes.subCategories}>
               {props.categories[category].map(({ heading }, key) => (
-                <SubCategory text={heading} key={key} className={classes.subCategory} />
+                <SubCategory
+                  text={heading}
+                  key={key}
+                  className={classes.subCategory}
+                />
               ))}
             </Grid>
           </Container>
@@ -35,7 +46,10 @@ function Category({ category, categoryName, categoryHeader }) {
           <Container>
             <div className={classes.articlesCards}>
               {props.categories[category].map(
-                ({ heading, smallCards, bigCards, forum, pulse, pniData }, key) => (
+                (
+                  { heading, smallCards, bigCards, forum, pulse, pniData },
+                  key,
+                ) => (
                   <ArticlesCards
                     heading={heading}
                     smallCards={smallCards}

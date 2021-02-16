@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Libraries
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
@@ -9,7 +9,6 @@ import { CssBaseline } from '@material-ui/core';
 // Components
 import ActivityIndicator from '../components/shared/ActivityIndicator';
 import Marginals from '../components/marginals/Marginals';
-import TopMarginal from '../components/marginals/TopMarginal';
 
 // Helpers
 import createBrowserHistory from '../utils/history';
@@ -32,7 +31,6 @@ const AsyncCategory = AsyncRoute('./CategoryPages');
 const AsyncContact = AsyncRoute('./Contact');
 const AsyncGuide = AsyncRoute('./Guide');
 const AsyncWitsdom = AsyncRoute('./Witsdom.js');
-
 const AsyncProfile = AsyncRoute('./UserProfile');
 const AsyncAbout = AsyncRoute('./About');
 const AsyncPhotoStory = AsyncRoute('./PhotoStory');
@@ -51,6 +49,7 @@ function App() {
             <Route path='/' exact component={AsyncHome} />
             <Route path='/article' exact component={AsyncArticle} />
             <Route path='/podcast' exact component={AsyncPodcast} />
+            <Route path='/portfolio' component={AsyncPortfolio} />
             <Route path='/witsdom' component={AsyncWitsdom} />
             <Route path='/portfolio' exact component={AsyncPortfolio} />
             <Route path='/contact' exact component={AsyncContact} />
@@ -59,7 +58,9 @@ function App() {
             <Route path='/about' component={AsyncAbout} />
             <Route path='/photostory' component={AsyncPhotoStory} />
             <Route path='/gallery' component={AsyncGallery} />
-
+            {/* TODO: About Route */}
+            <Route path='/contact' component={AsyncContact} />
+            <Route path='/guide' component={AsyncGuide} />
 
             <Route path='/profile' exact component={AsyncProfile} />
             <Route path='/campus' exact>
