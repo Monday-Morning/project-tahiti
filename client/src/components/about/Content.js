@@ -38,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     text: {
-        fontFamily: 'Source Sans Pro',
         fontSize: '20px',
         lineHeight: '28px',
         [theme.breakpoints.down('xs')]: {

@@ -64,6 +64,8 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.primary.blue10,
         padding: '12px 16px',
         margin: '0px 8px',
+        cursor: 'pointer',
+        userSelect: 'none',
         [theme.breakpoints.down('xs')]: {
             padding: '8px 3px',
             margin: '4px',
@@ -74,6 +76,8 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.common.white,
         padding: '12px 16px',
         margin: '0px 8px',
+        cursor: 'pointer',
+        userSelect: 'none',
         [theme.breakpoints.down('xs')]: {
             padding: '8px 3px',
             margin: '4px',

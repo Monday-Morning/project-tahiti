@@ -38,10 +38,10 @@ export default Project;
 const useStyles = makeStyles((theme) => ({
     wrapper: {
         maxWidth: '1280px',
-        margin: '40px auto 0px auto',
+        margin: '40px auto 24px auto',
         [theme.breakpoints.down('md')]: {
             marginTop: '24px',
-            padding: '0px 24px 0px 24px',
+            padding: '0px 24px 16px 24px',
         },
     },
     header: {
