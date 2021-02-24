@@ -1,8 +1,8 @@
-import React , { useState } from 'react';
+import React, { useState } from 'react';
 
 // libararies
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography , Grid , Button , useMediaQuery } from '@material-ui/core';
+import { Typography, Grid, Button, useMediaQuery } from '@material-ui/core';
 import theme from '../../config/themes/light';
 
 //Components
@@ -33,45 +33,45 @@ const Archives = () => {
             <div className={classes.archive}>
                 <Typography variant='h1' className={classes.archivetitle}>Archive</Typography>
                 {useMediaQuery(theme.breakpoints.down('xs')) ?
-                        <div className={classes.archieveWrapper}>
-                        <select name="year" id="year" value={activeYear} onChange={(e)=> selectYear(e.target.value)} className={classes.drop}>
-                            {ARCHIVES.years.map((year,key) => (
+                    <div className={classes.archieveWrapper}>
+                        <select name="year" id="year" value={activeYear} onChange={(e) => selectYear(e.target.value)} className={classes.drop}>
+                            {ARCHIVES.years.map((year, key) => (
                                 <option key={key} value={year} className={classes.selectItem}>{year}</option>
                             ))}
                         </select>
-                        <select name="month" id="month" value={activeMonth} onChange={(e)=> selectMonth(e.target.value)} className={classes.drop}>
-                            {ARCHIVES.months.map((month,key) => (
+                        <select name="month" id="month" value={activeMonth} onChange={(e) => selectMonth(e.target.value)} className={classes.drop}>
+                            {ARCHIVES.months.map((month, key) => (
                                 <option key={key} value={month}>{month}</option>
                             ))}
                         </select>
                         <Button
-                        type='submit'
-                        variant='contained'
-                        className={classes.submitButton}
+                            type='submit'
+                            variant='contained'
+                            className={classes.submitButton}
                         >Browse
                         </Button>
-                        </div> :
-                        <div>
-                            <Grid container  direction="row" justify="flex-start" alignItems="center" className={classes.timeWrapper}>
-                            {ARCHIVES.years.map((year,key) => (
+                    </div> :
+                    <div>
+                        <Grid container direction="row" justify="flex-start" alignItems="center" className={classes.timeWrapper}>
+                            {ARCHIVES.years.map((year, key) => (
                                 <Grid item key={key}>
-                                    <span className={activeYear==year ? classes.active : classes.time} onClick={()=>selectYear(year)}>{year}</span>
+                                    <span className={activeYear == year ? classes.active : classes.time} onClick={() => selectYear(year)}>{year}</span>
                                 </Grid>
                             ))}
                         </Grid>
-                        <Grid container  direction="row" justify="flex-start" alignItems="center" className={classes.timeWrapper}>
-                            {ARCHIVES.months.map((month,key) => (
+                        <Grid container direction="row" justify="flex-start" alignItems="center" className={classes.timeWrapper}>
+                            {ARCHIVES.months.map((month, key) => (
                                 <Grid item key={key}>
-                                    <span className={activeMonth==month ? classes.active : classes.time} onClick={()=>selectMonth(month)}>{month}</span>
+                                    <span className={activeMonth == month ? classes.active : classes.time} onClick={() => selectMonth(month)}>{month}</span>
                                 </Grid>
                             ))}
                         </Grid>
-                        </div>
-                    }
+                    </div>
+                }
             </div>
             <div className={classes.postWrapper}>
                 <Typography variant='h3'>
-                <span className={classes.select}>selected:</span>August 2020
+                    <span className={classes.select}>selected:</span>August 2020
                 </Typography>
                 <div>
                     {useMediaQuery(theme.breakpoints.down('xs')) ?
@@ -143,7 +143,7 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.common.white,
         borderTop: '4px solid',
         borderColor: theme.palette.common.white,
-        width: '205px', 
+        width: '205px',
         [theme.breakpoints.down('xs')]: {
             borderTop: '0px',
             marginBottom: '12px',

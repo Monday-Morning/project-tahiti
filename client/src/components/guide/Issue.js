@@ -4,6 +4,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 
+//components
 import PhotoCarousel from '../widgets/PhotoCarousel';
 
 // Placeholder
@@ -19,7 +20,7 @@ const Issues = () => {
         </Typography>
       </div>
       <div>
-        <PhotoCarousel IMAGE={CAROUSEL} />
+        <PhotoCarousel IMAGE={CAROUSEL} navigator = "2020-21" />
       </div>
     </div>
   );
@@ -34,7 +35,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       padding: '12px 0px',
     },
+    marginTop: '2rem',
   },
+
   textWrapper: {
     display: 'flex',
     direction: 'row',
@@ -43,5 +46,13 @@ const useStyles = makeStyles((theme) => ({
   text: {
     color: theme.palette.common.white,
     alignSelf: 'center',
-  },
-}));
+    textWrapper: {
+      display: 'flex',
+      direction: 'row',
+      justifyContent: 'center',
+    },
+    text: {
+      color: theme.palette.common.white,
+      alignSelf: 'center',
+    },
+  }));

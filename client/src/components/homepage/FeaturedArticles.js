@@ -22,13 +22,7 @@ function FeaturedArticle() {
   return (
     <div className={classes.articleWrapper}>
       <div className={classes.container}>
-        <Grid container>
-          {props.article.tags.map((tag) => (
-            <Grid item key={tag}>
-              <span className={classes.tag}>{tag}</span>
-            </Grid>
-          ))}
-        </Grid>
+
         <Typography className={classes.title}>{props.article.title}</Typography>
         <div className={classes.wrapper}>
           <div className={classes.authorList}>

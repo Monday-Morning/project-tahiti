@@ -4,15 +4,15 @@ import React from 'react';
 import Backlink from '../components/guide/Backlink';
 import Options from '../components/guide/Options';
 import Archives from '../components/guide/Archive';
-import Issues from '../components/guide/Issue';
+import BigCarousel from '../components/widgets/BigCarousel';
 
-function Contact(){
-    return(
+function Contact() {
+    return (
         <div>
-        <Backlink />
-        <Options />
-        <Issues />
-        <Archives />
+            <Backlink />
+            <Options />
+            <BigCarousel head='Issues' navigator='2020-2021' />
+            <Archives />
         </div>
     );
 }
