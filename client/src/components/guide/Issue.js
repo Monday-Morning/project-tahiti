@@ -36,7 +36,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       padding: '12px 0px',
     },
+    marginTop: '2rem',
   },
+
   textWrapper: {
     display: 'flex',
     direction: 'row',

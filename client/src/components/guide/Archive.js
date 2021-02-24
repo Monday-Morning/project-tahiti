@@ -147,6 +147,7 @@ const Archives = () => {
 export default Archives;
 
 const useStyles = makeStyles((theme) => ({
+<<<<<<< HEAD
   wrapper: {
     overflow: 'hidden',
   },
@@ -158,6 +159,96 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       margin: '40px 16px 0px 24px',
       display: 'block',
+=======
+    wrapper: {
+        overflow: 'hidden',
+    },
+    header: {
+        maxWidth: '1280px',
+        margin: '60px auto 0px auto',
+        display: 'flex',
+        direction: 'row',
+        [theme.breakpoints.down('xs')]: {
+            margin: '40px 16px 0px 24px',
+            display: 'block',
+        },
+    },
+    title: {
+        color: theme.palette.primary.blue60,
+        borderTop: '4px solid',
+        borderColor: theme.palette.primary.blue60,
+        width: '205px',
+    },
+    titleText: {
+        marginLeft: '7%',
+        fontFamily: 'Source Sans Pro',
+        color: theme.palette.secondary.neutral70,
+        fontSize: '20px',
+        fontWeight: '400',
+        opacity: '75%',
+        marginTop: '1.5rem',
+        textAlign: 'justify',
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '14px',
+            lineHeight: '20px',
+            marginLeft: '0px',
+        },
+    },
+    archive: {
+        padding: '40px 120px',
+        backgroundColor: theme.palette.secondary.main,
+        [theme.breakpoints.down('xs')]: {
+            padding: '0px 30px 30px 30px',
+        },
+    },
+    archivetitle: {
+        color: theme.palette.common.white,
+        borderTop: '4px solid',
+        borderColor: theme.palette.common.white,
+        width: '205px',
+        [theme.breakpoints.down('xs')]: {
+            borderTop: '0px',
+            marginBottom: '12px',
+        },
+
+    },
+    formControl: {
+        margin: '5px',
+    },
+    drop: {
+        backgroundColor: theme.palette.secondary.main,
+        borderColor: theme.palette.common.white,
+        padding: '4px 12px',
+        fontFamily: 'Source Sans Pro',
+        fontSize: '20px',
+        lineHeight: '28px',
+        color: theme.palette.common.white,
+        fontWeight: theme.typography.fontWeightRegular,
+    },
+    postWrapper: {
+        marginTop: '1.5rem',
+        maxWidth: '1280px',
+        margin: '40px auto 20px auto',
+        paddingLeft: '16px',
+        [theme.breakpoints.down('xs')]: {
+            marginTop: '1rem',
+        },
+    },
+    select: {
+        color: theme.palette.grey[400],
+        marginRight: '26px',
+    },
+    timeWrapper: {
+        margin: '24px 0px',
+    },
+    time: {
+        color: theme.palette.secondary.neutral60,
+        fontFamily: 'IBM Plex Sans',
+        fontWeight: theme.typography.fontWeightRegular,
+        fontSize: '24px',
+        lineHeight: '32px',
+        margin: '24px',
+>>>>>>> bfdacd4 (Add Expressions Page)
     },
   },
   title: {

@@ -38,10 +38,10 @@ const ArticlesCard = ({
                     <ArticleCard />
                   </div>
                 ) : (
-                  <div key={key}>
-                    <SmallArticleCard />
-                  </div>
-                ),
+                    <div key={key}>
+                      <SmallArticleCard />
+                    </div>
+                  ),
               )}
           </div>
         </Grid>

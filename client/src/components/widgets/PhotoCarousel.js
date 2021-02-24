@@ -10,8 +10,6 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 
 const PhotoCarousel = ({ IMAGE, navigator }) => {
-  console.log(IMAGE);
-
   const slider = useRef();
   const next = () => {
     slider.current.slickNext();
@@ -83,7 +81,11 @@ const PhotoCarousel = ({ IMAGE, navigator }) => {
       </div>
       <div className={classes.textWrapper}>
         <Typography variant='h3' className={classes.text}>
+<<<<<<< HEAD
           <i className='far fa-arrow-alt-circle-left' onClick={previous}></i>
+=======
+          <i className='far fa-arrow-alt-circle-left' onClick={previous}></i>{' '}
+>>>>>>> bfdacd4 (Add Expressions Page)
           {navigator}
           <i className='far fa-arrow-alt-circle-right' onClick={next}></i>
         </Typography>
