@@ -10,4 +10,26 @@ eg:
     THIS IS NOT AT ALL A GOOD PRACTICE SINCE THAT FILE IS TO JUST HANDLE THE ROUTING AND NOTHING ELSE!
 
 3. Categorize import statements!
-4.
+4. Each item container should be wrapped with a parent grid container
+  eg:
+    <Container>
+      <div className={classes.header}>
+        <Grid className={classes.category}>{categoryName}</Grid>
+        <Grid className={classes.categoryHeaderText}>{categoryName}</Grid>
+      </div>
+      <Grid className={classes.subCategories}>
+        {CATEGORIES[category].map(({ heading }, index) => (
+          <SubCategory
+            text={heading}
+            // eslint-disable-next-line
+            key={index}
+            className={classes.subCategory}
+          />
+        ))}
+      </Grid>
+    </Container>
+
+    - THIS SORT OF STRUCTURE IS NOT VALID!
+    - ALSO REDUCE THE USE OF GRIDS AND USE FLEXBOXES MORE!! USE GRID ONLY FOR THE LAYOUT OF THE ENITRE PAGE AND NOT FOR SMALL COMPONENTS
+5. Use React.Fragments or <></> instead of wrapper divs while returning blocks of elements.
+6. MOST IMPORTANT OF ALL!! CHECK THE EXISTING COMPONENTS LIST FOR BEFORE MAKING YOUR OWN NEW COMPONENTS

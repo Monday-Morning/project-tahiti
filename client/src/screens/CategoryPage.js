@@ -11,59 +11,57 @@ import ArticlesCards from '../components/categories/ArticlesCards';
 // Assets
 import { CATEGORIES } from '../assets/placeholder/widget';
 
-function Category({ category, categoryName, categoryHeader }) {
-  const props = {
-    categories: CATEGORIES,
-  };
-
+function Category() {
   const classes = useStyles();
 
-  return (
-    <div>
-      <div className={classes.container}>
-        <div className={classes.wrapper}>
-          <Container>
-            <div className={classes.header}>
-              <Grid className={classes.category}>{categoryName}</Grid>
-              <Grid className={classes.categoryHeaderText}>
-                {categoryHeader}
-              </Grid>
-            </div>
-            <Grid className={classes.subCategories}>
-              {props.categories[category].map(({ heading }, key) => (
-                <SubCategory
-                  text={heading}
-                  key={key}
-                  className={classes.subCategory}
-                />
-              ))}
-            </Grid>
-          </Container>
-          <Carousel />
-        </div>
+  // Categories
+  const category = window.location.pathname.split('/')[1];
+  let categoryName = category.charAt(0).toUpperCase() + category.slice(1);
+  if (category === 'ddcwc') categoryName = 'DD & CWC';
 
-        <div>
-          <Container>
-            <div className={classes.articlesCards}>
-              {props.categories[category].map(
-                (
-                  { heading, smallCards, bigCards, forum, pulse, pniData },
-                  key,
-                ) => (
-                  <ArticlesCards
-                    heading={heading}
-                    smallCards={smallCards}
-                    bigCards={bigCards}
-                    forum={forum}
-                    pulse={pulse}
-                    key={key}
-                    pniData={pniData}
-                  />
-                ),
-              )}
-            </div>
-          </Container>
-        </div>
+  return (
+    <div className={classes.container}>
+      <div className={classes.wrapper}>
+        <Container>
+          <div className={classes.header}>
+            <Grid className={classes.category}>{categoryName}</Grid>
+            <Grid className={classes.categoryHeaderText}>{categoryName}</Grid>
+          </div>
+          <Grid className={classes.subCategories}>
+            {CATEGORIES[category].map(({ heading }, index) => (
+              <SubCategory
+                text={heading}
+                // eslint-disable-next-line
+                key={index}
+                className={classes.subCategory}
+              />
+            ))}
+          </Grid>
+        </Container>
+        <Carousel />
+      </div>
+
+      <div>
+        <Container>
+          <div className={classes.articlesCards}>
+            {CATEGORIES[category].map(
+              (
+                { heading, smallCards, bigCards, forum, pulse, pniData },
+                key,
+              ) => (
+                <ArticlesCards
+                  heading={heading}
+                  smallCards={smallCards}
+                  bigCards={bigCards}
+                  forum={forum}
+                  pulse={pulse}
+                  key={key}
+                  pniData={pniData}
+                />
+              ),
+            )}
+          </div>
+        </Container>
       </div>
     </div>
   );
