@@ -32,6 +32,8 @@ const AsyncCategory = AsyncRoute('./CategoryPages');
 const AsyncContact = AsyncRoute('./Contact');
 const AsyncGuide = AsyncRoute('./Guide');
 const AsyncWitsdom = AsyncRoute('./Witsdom.js');
+
+const AsyncProfile = AsyncRoute('./UserProfile');
 const AsyncAbout = AsyncRoute('./About');
 const AsyncPhotoStory = AsyncRoute('./PhotoStory');
 const AsyncGallery = AsyncRoute('./Gallery');
@@ -47,16 +49,19 @@ function App() {
 
           <Marginals>
             <Route path='/' exact component={AsyncHome} />
-            <Route path='/article' component={AsyncArticle} />
+            <Route path='/article' exact component={AsyncArticle} />
             <Route path='/podcast' exact component={AsyncPodcast} />
-            <Route path='/portfolio' component={AsyncPortfolio} />
-            <Route path='/contact' component={AsyncContact} />
-            <Route path='/guide' component={AsyncGuide} />
             <Route path='/witsdom' component={AsyncWitsdom} />
+            <Route path='/portfolio' exact component={AsyncPortfolio} />
+            <Route path='/contact' exact component={AsyncContact} />
+            <Route path='/guide' exact component={AsyncGuide} />
+
             <Route path='/about' component={AsyncAbout} />
             <Route path='/photostory' component={AsyncPhotoStory} />
             <Route path='/gallery' component={AsyncGallery} />
 
+
+            <Route path='/profile' exact component={AsyncProfile} />
             <Route path='/campus' exact>
               <AsyncCategory
                 category='campus'
@@ -99,13 +104,14 @@ function App() {
                 categoryHeader='Catch up on everything at NITR in this section. From Academics to Fests, find everything on campus here.'
               />
             </Route> */}
-
-            {/* <Redirect to='/' /> */}
+            {/* <Route> */}
+            {/* <h1>404 Page not found</h1> */}
+            {/* TODO: Make not found page */}
+            {/* </Route> */}
           </Marginals>
         </Switch>
       </Router>
     </ThemeProvider>
   );
 }
-
 export default App;
