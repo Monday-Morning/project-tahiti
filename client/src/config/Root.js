@@ -3,7 +3,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
-import reducers from './store/reducers';
+import reducers from '../store/reducers';
 
 export default ({ initialState = {}, children }) => {
   const composeEnhancers =
