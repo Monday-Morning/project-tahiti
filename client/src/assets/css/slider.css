@@ -7,7 +7,7 @@
     opacity: 1;
 }
 .slick-slide img {
-    height: 80% !important;
+    height: 80% ;
 }
 @media only screen and (max-width: 2000px) and (min-width: 1280px) {
     .slick-slide img {margin: 50px auto;}
@@ -21,8 +21,17 @@
 @media only screen and (max-width: 600px) and (min-width: 380px){
     .slick-slide img {margin: 20px auto;}
 }
+@media only screen and (max-width: 380px){
+    .slick-slide img {
+        margin: 20px auto;
+        height: 60% !important;
+    }
+    .slick-active img{
+        height: 80% !important;
+    }
+}
 
 .slick-active img {
-    height: 100% !important;
+    height: 100% ;
     margin: auto;
 }
