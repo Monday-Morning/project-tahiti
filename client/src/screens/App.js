@@ -34,6 +34,9 @@ const AsyncGuide = AsyncRoute('./Guide');
 const AsyncWitsdom = AsyncRoute('./Witsdom.js');
 
 const AsyncProfile = AsyncRoute('./UserProfile');
+const AsyncAbout = AsyncRoute('./About');
+const AsyncPhotoStory = AsyncRoute('./PhotoStory');
+const AsyncGallery = AsyncRoute('./Gallery');
 
 function App() {
   return (
@@ -49,10 +52,14 @@ function App() {
             <Route path='/article' exact component={AsyncArticle} />
             <Route path='/podcast' exact component={AsyncPodcast} />
             <Route path='/witsdom' component={AsyncWitsdom} />
-
             <Route path='/portfolio' exact component={AsyncPortfolio} />
             <Route path='/contact' exact component={AsyncContact} />
             <Route path='/guide' exact component={AsyncGuide} />
+
+            <Route path='/about' component={AsyncAbout} />
+            <Route path='/photostory' component={AsyncPhotoStory} />
+            <Route path='/gallery' component={AsyncGallery} />
+
 
             <Route path='/profile' exact component={AsyncProfile} />
             <Route path='/campus' exact>

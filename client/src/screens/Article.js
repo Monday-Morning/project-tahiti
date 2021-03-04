@@ -53,7 +53,7 @@ function Home() {
         </Grid>
       </Container>
 
-      <RecommendedArticles />
+      <RecommendedArticles title='Reading based on your history' />
     </div>
   );
 }

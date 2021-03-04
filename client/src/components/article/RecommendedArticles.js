@@ -4,17 +4,16 @@ import React from 'react';
 import { makeStyles, Container, Grid, Typography } from '@material-ui/core';
 
 // Components
-import ArticleCard from '../widgets/ArticleCard';
 import ArticleCardStack from '../widgets/ArticleCardStack';
 
-const RecommendedArticles = () => {
+const RecommendedArticles = ({ title }) => {
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
       <Container>
         <div className={classes.titleWrapper}>
           <Typography variant='h2' className={classes.title}>
-            Reading based on your history
+            {title}
           </Typography>
           <div className={classes.underline}></div>
         </div>
