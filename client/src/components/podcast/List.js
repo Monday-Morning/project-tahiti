@@ -1,7 +1,16 @@
 import React, { useState } from 'react';
 
 // Libraries
-import { Container, makeStyles, Typography, Grid, Table, LinearProgress } from '@material-ui/core';
+import {
+  Container,
+  makeStyles,
+  Typography,
+  Grid,
+  Table,
+  LinearProgress,
+  TableHead,
+  TableBody,
+} from '@material-ui/core';
 import { Heart, PlayCircle, Volume2 } from 'react-feather';
 
 // Components
@@ -17,37 +26,40 @@ const PodcastList = () => {
     <Container>
       <div className={classes.wrapper}>
         <Table>
-          <tr className={classes.headerRow}>
-            <th></th>
-            <th>Title</th>
-            <th>Tags</th>
-            <th>Time</th>
-            <th>Favorite</th>
-          </tr>
-
-          {Podcast.map((podcast, key) => {
-            return (
-              <tr key={key} className={classes.ListRow}>
-                <td>
-                  <PlayCircle />
-                </td>
-                <td>{podcast.title}</td>
-                <td>
-                  {podcast.tags.map((tag, key, podcast) => {
-                    if (key === podcast.length - 1) {
-                      return <span key={key}> {tag} </span>;
-                    } else {
-                      return <span key={key}> {tag}, </span>;
-                    }
-                  })}
-                </td>
-                <td>{podcast.duration}</td>
-                <td>
-                  <Heart size={18} />
-                </td>
-              </tr>
-            );
-          })}
+          <TableHead>
+            <tr className={classes.headerRow}>
+              <th></th>
+              <th>Title</th>
+              <th>Tags</th>
+              <th>Time</th>
+              <th>Favorite</th>
+            </tr>
+          </TableHead>
+          <TableBody>
+            {Podcast.map((podcast, key) => {
+              return (
+                <tr key={key} className={classes.ListRow}>
+                  <td>
+                    <PlayCircle />
+                  </td>
+                  <td>{podcast.title}</td>
+                  <td>
+                    {podcast.tags.map((tag, key, podcast) => {
+                      if (key === podcast.length - 1) {
+                        return <span key={key}> {tag} </span>;
+                      } else {
+                        return <span key={key}> {tag}, </span>;
+                      }
+                    })}
+                  </td>
+                  <td>{podcast.duration}</td>
+                  <td>
+                    <Heart size={18} />
+                  </td>
+                </tr>
+              );
+            })}
+          </TableBody>
         </Table>
       </div>
 
@@ -76,7 +88,11 @@ const PodcastList = () => {
           <Grid item sm={6}>
             <div className={classes.progressWrapper}>
               <span>01:59</span>
-              <LinearProgress className={classes.progress} variant='determinate' value='50' />
+              <LinearProgress
+                className={classes.progress}
+                variant='determinate'
+                value={50}
+              />
               <span>03:29</span>
               <span>
                 <Volume2 />

@@ -20,7 +20,7 @@ const Issues = () => {
         </Typography>
       </div>
       <div>
-        <PhotoCarousel IMAGE={CAROUSEL} navigator = "2020-21" />
+        <PhotoCarousel IMAGE={CAROUSEL} navigator='2020-21' />
       </div>
     </div>
   );
@@ -32,10 +32,10 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     backgroundColor: theme.palette.secondary.main,
     padding: '24px 0px',
+    marginTop: '2rem',
     [theme.breakpoints.down('xs')]: {
       padding: '12px 0px',
     },
-    marginTop: '2rem',
   },
 
   textWrapper: {
@@ -46,13 +46,14 @@ const useStyles = makeStyles((theme) => ({
   text: {
     color: theme.palette.common.white,
     alignSelf: 'center',
-    textWrapper: {
-      display: 'flex',
-      direction: 'row',
-      justifyContent: 'center',
-    },
-    text: {
-      color: theme.palette.common.white,
-      alignSelf: 'center',
-    },
-  }));
+  },
+  textWrapper: {
+    display: 'flex',
+    direction: 'row',
+    justifyContent: 'center',
+  },
+  text: {
+    color: theme.palette.common.white,
+    alignSelf: 'center',
+  },
+}));

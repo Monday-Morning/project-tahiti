@@ -11,6 +11,7 @@ import FeaturedArticles from '../components/homepage/FeaturedArticles';
 import ArticleCardStack from '../components/widgets/ArticleCardStack';
 import BigCarousel from '../components/widgets/BigCarousel';
 import FeatureArticle from '../components/expressions/FeatureArticle';
+import { CAROUSEL } from '../assets/placeholder/guide';
 
 function Expressions() {
   const classes = useStyles(theme);
@@ -35,7 +36,11 @@ function Expressions() {
 
         <Grid className={classes.subCategories}>
           {SUBHEADS.map((subHeading, key) => (
-            <SubCategories text={subHeading} key={key} className={classes.subCategory} />
+            <SubCategories
+              text={subHeading}
+              key={key}
+              className={classes.subCategory}
+            />
           ))}
         </Grid>
 
@@ -44,7 +49,11 @@ function Expressions() {
         <FeaturedArticles />
       </Container>
 
-      <BigCarousel head="Gallery" navigator="XVII Convocation" />
+      <BigCarousel
+        head='Gallery'
+        navigator='XVII Convocation'
+        IMAGE={CAROUSEL}
+      />
       <Container>
         <Section heading='NITR in Motion' />
         <Title heading='Podcasts' />
