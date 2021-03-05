@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
       padding: '12px 0px',
     },
   },
-
   textWrapper: {
     display: 'flex',
     direction: 'row',
