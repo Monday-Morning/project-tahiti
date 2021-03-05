@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Switch, FormControlLabel, Button } from '@material-ui/core';
+import {
+  Typography,
+  Switch,
+  FormControlLabel,
+  Button,
+} from '@material-ui/core';
 
 const blue = {
   '--background-start': '#2196F3',
@@ -18,7 +23,8 @@ function ReactLogo() {
   const classes = useStyles();
   const [color, setColor] = React.useState(defaultColor);
 
-  const handleChange = (event) => setColor(event.target.checked ? blue : defaultColor);
+  const handleChange = (event) =>
+    setColor(event.target.checked ? blue : defaultColor);
 
   return (
     <div className={classes.screen}>
@@ -38,7 +44,7 @@ function ReactLogo() {
         label={color === blue ? 'Red' : 'Blue'}
       />
       <Button className={classes.button} style={color}>
-        {'CSS variables'}
+        CSS variables
       </Button>
     </div>
   );
@@ -46,7 +52,7 @@ function ReactLogo() {
 
 export default ReactLogo;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   screen: {
     display: 'flex',
     flexDirection: 'column',
@@ -58,7 +64,9 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '1em',
   },
   button: {
-    background: 'linear-gradient(45deg, var(--background-start) 30%, var(--background-end) 90%)',
+    background:
+      // eslint-disable-next-line
+      'linear-gradient(45deg, var(--background-start) 30%, var(--background-end) 90%)',
     borderRadius: 3,
     border: 0,
     color: 'white',

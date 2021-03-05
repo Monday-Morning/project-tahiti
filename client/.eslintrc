@@ -20,7 +20,7 @@
     "no-use-before-define": 0,
     "click-events-have-key-events": 0,
     "no-static-element-interactions": 0,
-    "prefer-destructuring": 1
+    "prefer-destructuring": 1,
+    "react/jsx-wrap-multilines": 0
   }
 }
-
