@@ -7,13 +7,13 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary:#006DCC;
+  --ifm-color-primary: #006dcc;
   --ifm-color-primary-dark: #005299;
-  --ifm-color-primary-darker: #003C70;
+  --ifm-color-primary-darker: #003c70;
   --ifm-color-primary-darkest: #002647;
-  --ifm-color-primary-light: #4091D9;
-  --ifm-color-primary-lighter: #73AFE3;
-  --ifm-color-primary-lightest: #A6CCED;
+  --ifm-color-primary-light: #4091d9;
+  --ifm-color-primary-lighter: #73afe3;
+  --ifm-color-primary-lightest: #a6cced;
   --ifm-code-font-size: 95%;
 }
 
