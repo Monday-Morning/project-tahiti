@@ -1,4 +1,10 @@
-import { Button, Card, Container, makeStyles, Typography } from '@material-ui/core';
+import {
+  Button,
+  Card,
+  Container,
+  makeStyles,
+  Typography,
+} from '@material-ui/core';
 import React, { useState } from 'react';
 import theme from '../config/themes/light';
 
@@ -31,7 +37,8 @@ function UserProfile() {
     setPasswdOption(0);
   }
 
-  const addSelectedTopic = (newTopic) => setSelectedTopics([...selectedTopics, newTopic]);
+  const addSelectedTopic = (newTopic) =>
+    setSelectedTopics([...selectedTopics, newTopic]);
 
   const removeSelectedTopic = (topic) =>
     setSelectedTopics((selected) => {
@@ -44,18 +51,18 @@ function UserProfile() {
     <div className={classes.root}>
       <Container>
         <BackButton path='/' goTo='Guide' />
-        <Typography variant="h1" className={classes.head}>User Account</Typography>
+        <Typography variant='h1' className={classes.head}>
+          User Account
+        </Typography>
         <div className={classes.body}>
           <div className={classes.menu}>
             <ProfileCard />
             <Card className={classes.options}>
               {options.map((option__value, key) => (
-
                 <Button
                   className={`${key ? classes.option1 : classes.option0} 
-                  ${(option == key) ? classes.selectedOption : ''}
-                  `
-                  }
+                  ${option == key ? classes.selectedOption : ''}
+                  `}
                   key={key}
                   onClick={() => handleOptionClick(key)}
                 >
@@ -95,7 +102,7 @@ const useStyles = makeStyles((theme) => ({
   head: {
     color: theme.palette.primary.blue60,
     marginTop: '2rem',
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
       marginTop: '0.75rem',
     },
@@ -107,7 +114,6 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: 'center',
       flexWrap: 'wrap',
     },
-
   },
   menu: {
     display: 'flex',
@@ -115,8 +121,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       width: '90%',
     },
-
-
   },
   options: {
     display: 'flex',
@@ -129,9 +133,9 @@ const useStyles = makeStyles((theme) => ({
       maxWidth: '100%',
     },
     borderRadius: '6px',
-    boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
+    boxShadow:
+      '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
     background: theme.palette.common.white,
-
   },
   option1: {
     display: 'flex',

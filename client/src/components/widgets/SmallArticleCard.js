@@ -31,7 +31,11 @@ const SmallArticleCard = () => {
           <div className={classes.wrapper}>
             <div className={classes.authorList}>
               {props.article.authors.map((author, index) => (
-                <Typography variant='body2' key={index} className={classes.author}>
+                <Typography
+                  variant='body2'
+                  key={index}
+                  className={classes.author}
+                >
                   {(index ? ',' : '') + `  ${author}`}
                 </Typography>
               ))}

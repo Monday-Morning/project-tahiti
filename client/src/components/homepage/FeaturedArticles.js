@@ -22,12 +22,15 @@ function FeaturedArticle() {
   return (
     <div className={classes.articleWrapper}>
       <div className={classes.container}>
-
         <Typography className={classes.title}>{props.article.title}</Typography>
         <div className={classes.wrapper}>
           <div className={classes.authorList}>
             {props.article.authors.map((author) => (
-              <Typography variant='body2' key={author} className={classes.author}>
+              <Typography
+                variant='body2'
+                key={author}
+                className={classes.author}
+              >
                 {author}
               </Typography>
             ))}

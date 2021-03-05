@@ -18,7 +18,12 @@ const ArticleContent = (props) => {
             );
           case 'image':
             return (
-              <img key={key} src={content.data} alt={content.alt} className={classes.articleImg} />
+              <img
+                key={key}
+                src={content.data}
+                alt={content.alt}
+                className={classes.articleImg}
+              />
             );
           case 'heading':
             return (

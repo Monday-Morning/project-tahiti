@@ -1,4 +1,12 @@
-import { Box, Button, Card, CardContent, Grid, makeStyles, Typography } from '@material-ui/core';
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Grid,
+  makeStyles,
+  Typography,
+} from '@material-ui/core';
 import React from 'react';
 import { Bell, Bookmark, User } from 'react-feather';
 import userImage from '../../../assets/images/profile.png';
@@ -8,7 +16,11 @@ function ProfileCard() {
   const classes = useStyles(theme);
   return (
     <Card className={classes.root}>
-      <img src={userImage} alt="Sorry your face isn't worth showing😝" className={classes.userImage} />
+      <img
+        src={userImage}
+        alt="Sorry your face isn't worth showing😝"
+        className={classes.userImage}
+      />
       <CardContent className={classes.content}>
         <div className={classes.userName}>Rev Shawn</div>
         <div className={classes.userID}>revshawn2020</div>
@@ -40,12 +52,12 @@ const useStyles = makeStyles((theme) => ({
     width: '276px',
     height: '276px',
     borderRadius: '6px',
-    boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
+    boxShadow:
+      '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
     background: theme.palette.common.white,
     [theme.breakpoints.down('sm')]: {
       width: '100%',
     },
-
   },
   userImage: {
     marginTop: '18px',
@@ -94,6 +106,5 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid',
     borderTop: '0px solid',
     borderColor: theme.palette.secondary.neutral60,
-
   },
 }));

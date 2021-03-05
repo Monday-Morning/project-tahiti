@@ -19,7 +19,14 @@ function VerifyEmail(props) {
   const classes = useStyles();
 
   // props
-  const { email, setEmail, isEmailVerified, toggleIsEmailVerified, verifyEmail, onNext } = props;
+  const {
+    email,
+    setEmail,
+    isEmailVerified,
+    toggleIsEmailVerified,
+    verifyEmail,
+    onNext,
+  } = props;
 
   return (
     <Grid className={classes.container} container spacing={3}>

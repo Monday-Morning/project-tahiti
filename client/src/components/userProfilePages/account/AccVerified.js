@@ -11,17 +11,18 @@ function AccVerified() {
   return (
     <div className={classes.root}>
       <div className={classes.content}>
-        <h1 className={classes.head}>Great! Your account is already verified</h1>
+        <h1 className={classes.head}>
+          Great! Your account is already verified
+        </h1>
         <div className={classes.greenTickBox}>
           <img src={greenTick} alt='' />
         </div>
         <div className={classes.text}>
-          Get seamless access to all articles, including LAN-restricted ones, now on-the-go. Happy
-          reading!
-          </div>
-
+          Get seamless access to all articles, including LAN-restricted ones,
+          now on-the-go. Happy reading!
+        </div>
       </div>
-      <ImageBox widthImage="59%" img={verify} />
+      <ImageBox widthImage='59%' img={verify} />
     </div>
   );
 }
@@ -51,15 +52,13 @@ const useStyles = makeStyles((theme) => ({
     },
 
     [theme.breakpoints.down('xs')]: {
-      textAlign: "center",
+      textAlign: 'center',
       alignItems: 'center',
     },
-
   },
   head: {
     lineHeight: '2.25rem',
     color: theme.palette.common.black,
-
   },
   greenTickBox: {
     display: 'flex',
@@ -75,5 +74,4 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '400',
     color: theme.palette.common.black,
   },
-
 }));

@@ -24,12 +24,8 @@ function Section({ heading }) {
           <FeatureArticle className={classes.feature} />
         </Grid>
         <Grid item sm={3} className={classes.smallCards}>
-          <Box>
-            {matches ? <SmallCard /> : <SmallArticleCard />}
-          </Box>
-          <Box mt={3}>
-            {matches ? <SmallCard /> : <SmallArticleCard />}
-          </Box>
+          <Box>{matches ? <SmallCard /> : <SmallArticleCard />}</Box>
+          <Box mt={3}>{matches ? <SmallCard /> : <SmallArticleCard />}</Box>
         </Grid>
       </Grid>
     </div>

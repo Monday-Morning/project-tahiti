@@ -26,9 +26,9 @@ function Interested({ selectedTopics, addSelectedTopic, removeSelectedTopic }) {
   return (
     <div className={classes.root}>
       <div className={classes.text}>
-        Select the topics you’re interested in, and get smarter article suggestions on the MM
-        website!
-        </div>
+        Select the topics you’re interested in, and get smarter article
+        suggestions on the MM website!
+      </div>
 
       <div className={classes.topicsContainer}>
         {ONBOARDING.INTERESTED_TOPICS.TOPICS.map((topic, index) => (
@@ -47,7 +47,7 @@ function Interested({ selectedTopics, addSelectedTopic, removeSelectedTopic }) {
         </Button>
         <Button color='primary' variant='contained' className={classes.button}>
           Save Changes
-          </Button>
+        </Button>
       </div>
     </div>
   );
@@ -57,14 +57,12 @@ export default Interested;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingBottom: '20px',
     height: '100%',
-
   },
   text: {
     fontFamily: 'Source Sans Pro',
@@ -88,7 +86,9 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     fontWeight: 400,
     backgroundColor: (selected) =>
-      selected ? theme.palette.primary.blue40 : theme.palette.secondary.neutral30,
+      selected
+        ? theme.palette.primary.blue40
+        : theme.palette.secondary.neutral30,
     color: (selected) =>
       selected ? theme.palette.common.white : theme.palette.secondary.neutral80,
     padding: '5px 12px',
@@ -122,9 +122,8 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     [theme.breakpoints.down('sm')]: {
-
-      fontSize: "1rem",
-      lineHeight: '1.25rem'
+      fontSize: '1rem',
+      lineHeight: '1.25rem',
     },
   },
 }));

@@ -9,17 +9,16 @@ import RecommendedArticles from '../components/article/RecommendedArticles';
 // Placeholder
 import { PHOTOSTORY } from '../assets/placeholder/photostory';
 
-
-function PhotoStory(){
-    return(
-        <div>
-        <Header DATA={PHOTOSTORY} />
-        <Body />
-        <hr />
-        <Comments />
-        <RecommendedArticles title='More Photostories' />
-        </div>
-    );
+function PhotoStory() {
+  return (
+    <div>
+      <Header DATA={PHOTOSTORY} />
+      <Body />
+      <hr />
+      <Comments />
+      <RecommendedArticles title='More Photostories' />
+    </div>
+  );
 }
 
 export default PhotoStory;

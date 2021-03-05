@@ -6,7 +6,6 @@ import newsletter from '../../../assets/images/profile/newsletterPic.png';
 import { ChevronsLeft } from 'react-feather';
 import ImageBox from '../widgets/ImageBox';
 
-
 function Verified({ nLState }) {
   const classes = useStyles(theme);
 
@@ -18,23 +17,22 @@ function Verified({ nLState }) {
       <div className={classes.content}>
         <h1 className={classes.head}>Awesome! You’re all caught up. </h1>
         <div className={classes.text}>
-          You’ve already signed up for the newsletter. Catch up on the latest news and happenings
-          at NITR. See you then!
-          </div>
-        <div className={classes.text}>You’re receiving your newsletter on <br />
-          <div>
-            {PROFILEPAGES.PROFILE.INFO[2].value}
-          </div>
+          You’ve already signed up for the newsletter. Catch up on the latest
+          news and happenings at NITR. See you then!
+        </div>
+        <div className={classes.text}>
+          You’re receiving your newsletter on <br />
+          <div>{PROFILEPAGES.PROFILE.INFO[2].value}</div>
           <br />
           <span>Change Email.</span>
         </div>
         <div className={classes.note}>
-          Write to <span> morning.monday@gmail.com</span> incase you haven’t started receiving newsletters.
-            These are delivered once in a week or in a fortnight during the working session of the
-            institute
-          </div>
+          Write to <span> morning.monday@gmail.com</span> incase you haven’t
+          started receiving newsletters. These are delivered once in a week or
+          in a fortnight during the working session of the institute
+        </div>
       </div>
-      <ImageBox widthImage="41%" img={newsletter} />
+      <ImageBox widthImage='41%' img={newsletter} />
     </div>
   );
 }
@@ -42,7 +40,6 @@ function Verified({ nLState }) {
 export default Verified;
 const useStyles = makeStyles((theme) => ({
   root: {
-
     display: 'flex',
     justifyContent: 'space-between',
     position: 'relative',
@@ -74,10 +71,9 @@ const useStyles = makeStyles((theme) => ({
     },
 
     [theme.breakpoints.down('xs')]: {
-      textAlign: "center",
+      textAlign: 'center',
       alignItems: 'center',
     },
-
   },
   head: {
     textAlign: 'center',
@@ -100,7 +96,6 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '1rem',
       lineHeight: '26px',
       textDecoration: 'underline',
-
     },
   },
   note: {
@@ -117,5 +112,4 @@ const useStyles = makeStyles((theme) => ({
       fontWeight: '700',
     },
   },
-
-}))
+}));

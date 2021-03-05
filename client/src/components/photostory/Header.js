@@ -20,12 +20,18 @@ const Header = ({ DATA }) => {
           <Typography className={classes.title} variant={Desktop ? 'h1' : 'h2'}>
             {DATA.title}
           </Typography>
-          <Typography className={classes.publishDate}>{DATA.publishDate}</Typography>
+          <Typography className={classes.publishDate}>
+            {DATA.publishDate}
+          </Typography>
           <div className={classes.wrapper}>
             <div className={classes.authorList}>
               {DATA.authors.map((author, key) => (
                 <div key={key} className={classes.authorWrapper}>
-                  <img src={author.img} alt={author.alt} className={classes.authorImg} />
+                  <img
+                    src={author.img}
+                    alt={author.alt}
+                    className={classes.authorImg}
+                  />
                   <Typography variant='body2' className={classes.author}>
                     {author.name}
                   </Typography>

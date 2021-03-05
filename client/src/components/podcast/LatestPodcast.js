@@ -25,9 +25,17 @@ const LatestPodcast = () => {
         <Grid container className={classes.podWrapper}>
           <Grid item sm={3} className={classes.imageWrapper}>
             <div className={classes.Status} onClick={() => setStatus(!status)}>
-              {status ? <i className='fas fa-pause'></i> : <i className='fas fa-play'></i>}
+              {status ? (
+                <i className='fas fa-pause'></i>
+              ) : (
+                <i className='fas fa-play'></i>
+              )}
             </div>
-            <img className={classes.podcastImage} src={podcastImage} alt='podcast Image' />
+            <img
+              className={classes.podcastImage}
+              src={podcastImage}
+              alt='podcast Image'
+            />
           </Grid>
 
           <Grid item sm={9} className={classes.Details}>

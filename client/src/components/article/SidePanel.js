@@ -30,7 +30,12 @@ const Reactions = () => {
         <i className='fa fa-share-alt'></i>
       </span>
       <span className={classes.icon}>
-        <Link to='commentBox' smooth={true} spy={true} activeClass={classes.indexLinkActive}>
+        <Link
+          to='commentBox'
+          smooth={true}
+          spy={true}
+          activeClass={classes.indexLinkActive}
+        >
           <i className='far fa-comment'></i>
         </Link>
       </span>

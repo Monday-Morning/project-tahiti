@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 // Libraries
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Typography , useMediaQuery } from '@material-ui/core';
+import { Container, Typography, useMediaQuery } from '@material-ui/core';
 import theme from '../../config/themes/light';
 
 // Components
@@ -37,7 +37,7 @@ function Member() {
 
   const renderTeam = () => {
     switch (stage) {
-        case STAGE.CONTENT:
+      case STAGE.CONTENT:
         return TEAM.CONTENT.map((member, index) => (
           <Profile
             // eslint-disable-next-line
@@ -59,7 +59,7 @@ function Member() {
             small
           />
         ));
-        case STAGE.PHOTO:
+      case STAGE.PHOTO:
         return TEAM.PHOTO.map((member, index) => (
           <Profile
             // eslint-disable-next-line
@@ -106,9 +106,15 @@ function Member() {
             color: stage === STAGE.CONTENT ? '#000' : '#999999',
           }}
         >
-          {useMediaQuery(theme.breakpoints.down('sm')) ?
-          <span ><img src={Content} className={classes.logo} /> C</span> :
-          <span ><img src={Content} className={classes.logo} /> Content</span>  }
+          {useMediaQuery(theme.breakpoints.down('sm')) ? (
+            <span>
+              <img src={Content} className={classes.logo} /> C
+            </span>
+          ) : (
+            <span>
+              <img src={Content} className={classes.logo} /> Content
+            </span>
+          )}
         </Typography>
         <Typography
           className={classes.navLink}
@@ -118,9 +124,15 @@ function Member() {
             color: stage === STAGE.DESIGN ? '#000' : '#999999',
           }}
         >
-          {useMediaQuery(theme.breakpoints.down('sm')) ?
-          <span ><img src={Design} className={classes.logo} /> D</span> :
-          <span ><img src={Design} className={classes.logo} /> Design</span>  }
+          {useMediaQuery(theme.breakpoints.down('sm')) ? (
+            <span>
+              <img src={Design} className={classes.logo} /> D
+            </span>
+          ) : (
+            <span>
+              <img src={Design} className={classes.logo} /> Design
+            </span>
+          )}
         </Typography>
         <Typography
           className={classes.navLink}
@@ -130,9 +142,15 @@ function Member() {
             color: stage === STAGE.PHOTO ? '#000' : '#999999',
           }}
         >
-          {useMediaQuery(theme.breakpoints.down('sm')) ?
-          <span ><img src={Photo} className={classes.logo} /> P</span> :
-          <span ><img src={Photo} className={classes.logo} /> Photography</span>  }
+          {useMediaQuery(theme.breakpoints.down('sm')) ? (
+            <span>
+              <img src={Photo} className={classes.logo} /> P
+            </span>
+          ) : (
+            <span>
+              <img src={Photo} className={classes.logo} /> Photography
+            </span>
+          )}
         </Typography>
         <Typography
           className={classes.navLink}
@@ -142,9 +160,15 @@ function Member() {
             color: stage === STAGE.TECH ? '#000' : '#999999',
           }}
         >
-          {useMediaQuery(theme.breakpoints.down('sm')) ?
-          <span ><img src={Tech} className={classes.logo} /> T</span> :
-          <span ><img src={Tech} className={classes.logo} /> Technical</span>  }
+          {useMediaQuery(theme.breakpoints.down('sm')) ? (
+            <span>
+              <img src={Tech} className={classes.logo} /> T
+            </span>
+          ) : (
+            <span>
+              <img src={Tech} className={classes.logo} /> Technical
+            </span>
+          )}
         </Typography>
       </div>
 

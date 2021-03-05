@@ -15,7 +15,11 @@ const Works = () => {
       <div className={classes.wrapper}>
         <div className={classes.sectionWrapper}>
           {/* Content */}
-          <Typography variant='h1' color='primary' className={classes.sectionHead}>
+          <Typography
+            variant='h1'
+            color='primary'
+            className={classes.sectionHead}
+          >
             Content
           </Typography>
           <Grid container spacing={4}>
@@ -30,7 +34,11 @@ const Works = () => {
         </div>
         <div className={classes.sectionWrapper}>
           {/* Design */}
-          <Typography variant='h1' color='primary' className={classes.sectionHead}>
+          <Typography
+            variant='h1'
+            color='primary'
+            className={classes.sectionHead}
+          >
             Design
           </Typography>
           <Grid container spacing={4}>
@@ -45,7 +53,11 @@ const Works = () => {
         </div>
         <div className={classes.sectionWrapper}>
           {/* Photography */}
-          <Typography variant='h1' color='primary' className={classes.sectionHead}>
+          <Typography
+            variant='h1'
+            color='primary'
+            className={classes.sectionHead}
+          >
             Photography
           </Typography>
           <Grid container spacing={4}>

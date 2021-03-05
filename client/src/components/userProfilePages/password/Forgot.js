@@ -10,18 +10,32 @@ function Forgot(props) {
   return (
     <div className={classes.root}>
       <div className={classes.content}>
-        <Typography variant="h1" className={classes.head}>Forgot your Password?</Typography>
+        <Typography variant='h1' className={classes.head}>
+          Forgot your Password?
+        </Typography>
         <div className={classes.text}>
           Don’t worry! Just type in the email address you’ve registered with us.
-          </div>
-        <div className={classes.inputBlock}>
-          <Typography variant="h3" className={classes.emailHead}>Email</Typography>
-          <Input className={classes.input} placeholder='your@email.com' value={input} onChange={(e) => setInput(e.target.value)} />
-          <Button className={classes.inputButton} variant='contained' color='primary' onClick={() => props.passwdState(1)} disabled={!input}>
-            Send reset link
-            </Button>
         </div>
-
+        <div className={classes.inputBlock}>
+          <Typography variant='h3' className={classes.emailHead}>
+            Email
+          </Typography>
+          <Input
+            className={classes.input}
+            placeholder='your@email.com'
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          />
+          <Button
+            className={classes.inputButton}
+            variant='contained'
+            color='primary'
+            onClick={() => props.passwdState(1)}
+            disabled={!input}
+          >
+            Send reset link
+          </Button>
+        </div>
       </div>
       <ImageBox widthImage='33%' img={passwd} />
     </div>
@@ -32,7 +46,6 @@ export default Forgot;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-
     display: 'flex',
     justifyContent: 'space-between',
     paddingInline: '6%',
@@ -52,13 +65,12 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
     [theme.breakpoints.down('xs')]: {
-      textAlign: "center",
+      textAlign: 'center',
       alignItems: 'center',
     },
   },
   head: {
     color: theme.palette.common.black,
-
   },
   text: {
     marginTop: '62px',
@@ -67,7 +79,6 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '1.5rem',
     fontWeight: '400',
     color: theme.palette.common.black,
-
   },
   inputBlock: {
     marginTop: '54px',
@@ -76,9 +87,7 @@ const useStyles = makeStyles((theme) => ({
     width: '90%',
     [theme.breakpoints.down('xs')]: {
       textAlign: 'center',
-
     },
-
   },
   emailHead: {
     color: theme.palette.common.black,
@@ -106,5 +115,4 @@ const useStyles = makeStyles((theme) => ({
       fontFamily: 'Source Sans Pro !important',
     },
   },
-
 }));

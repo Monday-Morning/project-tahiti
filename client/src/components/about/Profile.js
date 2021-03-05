@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography , useMediaQuery } from '@material-ui/core';
+import { Typography, useMediaQuery } from '@material-ui/core';
 import theme from '../../config/themes/light';
 
 // Images
@@ -28,24 +28,26 @@ const Profile = ({
           {member.ROLE}
         </Typography>
       )}
-      {showSocial && (useMediaQuery(theme.breakpoints.down('sm')) ?
-      <div className={classes.social}>
-        <a href={`tel:${member.PHONE}`}><img src={Phone} /></a>
-        <a href={`mailto:${member.MAIL}`} ><img src={Mail} /></a>
-      </div> :
-      <div>
-        <a href={`tel:${member.PHONE}`} className={classes.designation}>
-          <Typography variant='body2'>
-            {member.PHONE}
-          </Typography>
-        </a>
-        <a href={`mailto:${member.MAIL}`} className={classes.designation}>
-        <Typography variant='body2'>
-          {member.MAIL}
-        </Typography>
-        </a>
-      </div>
-      )}
+      {showSocial &&
+        (useMediaQuery(theme.breakpoints.down('sm')) ? (
+          <div className={classes.social}>
+            <a href={`tel:${member.PHONE}`}>
+              <img src={Phone} />
+            </a>
+            <a href={`mailto:${member.MAIL}`}>
+              <img src={Mail} />
+            </a>
+          </div>
+        ) : (
+          <div>
+            <a href={`tel:${member.PHONE}`} className={classes.designation}>
+              <Typography variant='body2'>{member.PHONE}</Typography>
+            </a>
+            <a href={`mailto:${member.MAIL}`} className={classes.designation}>
+              <Typography variant='body2'>{member.MAIL}</Typography>
+            </a>
+          </div>
+        ))}
     </div>
   );
 };
@@ -64,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       width: ({ small }) => (small ? 70 : 100),
       height: ({ small }) => (small ? 90 : 160),
-  },
+    },
   },
   img: {
     width: ({ small }) => (small ? 90 : 120),
@@ -73,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       width: ({ small }) => (small ? 50 : 60),
       height: ({ small }) => (small ? 50 : 60),
-  },
+    },
   },
   name: {
     fontWeight: theme.typography.fontWeightMedium,

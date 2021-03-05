@@ -9,7 +9,14 @@ import Forum from '../widgets/Forum';
 import PnIData from '../widgets/PnIData';
 import Title from '../widgets/Title';
 
-const ArticlesCard = ({ heading, smallCards, bigCards, forum, pulse, pniData }) => {
+const ArticlesCard = ({
+  heading,
+  smallCards,
+  bigCards,
+  forum,
+  pulse,
+  pniData,
+}) => {
   const matches = useMediaQuery('(min-width:600px)');
   const classes = useStyles(theme);
   if (forum) {
@@ -31,10 +38,10 @@ const ArticlesCard = ({ heading, smallCards, bigCards, forum, pulse, pniData }) 
                     <ArticleCard />
                   </div>
                 ) : (
-                    <div key={key}>
-                      <SmallArticleCard />
-                    </div>
-                  ),
+                  <div key={key}>
+                    <SmallArticleCard />
+                  </div>
+                ),
               )}
           </div>
         </Grid>

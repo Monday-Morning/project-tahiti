@@ -11,15 +11,18 @@ function Forgot() {
   return (
     <div className={classes.root}>
       <div className={classes.content}>
-        <h1 className={classes.head}>Your password has been changed successfully!</h1>
+        <h1 className={classes.head}>
+          Your password has been changed successfully!
+        </h1>
         <div className={classes.greenTickBox}>
           <img src={greenTick} alt='' />
         </div>
         <div className={classes.text}>
-          Your password has been successfully changed. Don’t forget to sign in with the new one, the next time you open the MM website!
-          </div>
+          Your password has been successfully changed. Don’t forget to sign in
+          with the new one, the next time you open the MM website!
+        </div>
       </div>
-      <ImageBox widthImage="33%" img={passwdImg} />
+      <ImageBox widthImage='33%' img={passwdImg} />
     </div>
   );
 }
@@ -28,7 +31,6 @@ export default Forgot;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -48,14 +50,13 @@ const useStyles = makeStyles((theme) => ({
     },
 
     [theme.breakpoints.down('xs')]: {
-      textAlign: "center",
+      textAlign: 'center',
       alignItems: 'center',
     },
-
-  }, head: {
+  },
+  head: {
     lineHeight: '2.25rem',
     color: theme.palette.common.black,
-
   },
   greenTickBox: {
     display: 'flex',

@@ -23,11 +23,15 @@ const Forum = () => {
             </p>
 
             <p>
-              On the MM Forum, you can start a thread about anything and seek others’ opinion. You
-              can also check out previous discussions.
+              On the MM Forum, you can start a thread about anything and seek
+              others’ opinion. You can also check out previous discussions.
             </p>
             <CardActions>
-              <Button variant='contained' color='primary' className={classes.button}>
+              <Button
+                variant='contained'
+                color='primary'
+                className={classes.button}
+              >
                 <div className={classes.label}>Go To Forum</div>
               </Button>
             </CardActions>
