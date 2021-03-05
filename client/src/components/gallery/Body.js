@@ -46,7 +46,11 @@ const Body = () => {
         {view === 'Grid' ? (
           <div>
             <div className={classes.active}>
-              <img src={GALLERY.gallery[activeImage]} alt='image' className={classes.activeImage} />
+              <img
+                src={GALLERY.gallery[activeImage]}
+                alt='image'
+                className={classes.activeImage}
+              />
             </div>
             <div className={classes.imageContainer}>
               {GALLERY.gallery.map((image, key) => (

@@ -36,7 +36,12 @@ function SelectTopics(props) {
   const classes = useStyles();
 
   // props
-  const { selectedTopics, addSelectedTopic, removeSelectedTopic, onNext } = props;
+  const {
+    selectedTopics,
+    addSelectedTopic,
+    removeSelectedTopic,
+    onNext,
+  } = props;
 
   return (
     <div className={classes.container}>
@@ -101,7 +106,9 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     fontWeight: 400,
     backgroundColor: (selected) =>
-      selected ? theme.palette.primary.blue40 : theme.palette.secondary.neutral30,
+      selected
+        ? theme.palette.primary.blue40
+        : theme.palette.secondary.neutral30,
     color: (selected) =>
       selected ? theme.palette.common.white : theme.palette.secondary.neutral80,
     padding: '5px 12px',

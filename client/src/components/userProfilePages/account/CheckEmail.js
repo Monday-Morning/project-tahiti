@@ -13,20 +13,26 @@ function CheckEmail(props) {
       <div className={classes.content}>
         <h1 className={classes.head}>One last step. Check your email.</h1>
         <div className={classes.text}>
-          We’ve sent an email to <span>{PROFILEPAGES.PROFILE.INFO[2].value}</span>
+          We’ve sent an email to{' '}
+          <span>{PROFILEPAGES.PROFILE.INFO[2].value}</span>
           <br />
           <br />
-            You need to verify your email to access certain restricted articles. If you have not
-            received the verification email please check your Spam folder. You can also click on the
-            resend button below to have another email sent to you
-          </div>
-        <Button className={classes.inputButton} variant='contained' color='primary' onClick={() => props.accState(2)}>
+          You need to verify your email to access certain restricted articles.
+          If you have not received the verification email please check your Spam
+          folder. You can also click on the resend button below to have another
+          email sent to you
+        </div>
+        <Button
+          className={classes.inputButton}
+          variant='contained'
+          color='primary'
+          onClick={() => props.accState(2)}
+        >
           <span>Check again and continue</span>
         </Button>
         <div className={classes.resend}>Resend Verification Email</div>
-
       </div>
-      <ImageBox widthImage="59%" img={verify} />
+      <ImageBox widthImage='59%' img={verify} />
     </div>
   );
 }
@@ -35,7 +41,6 @@ export default CheckEmail;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-
     display: 'flex',
     justifyContent: 'space-around',
     width: '100%',
@@ -55,15 +60,13 @@ const useStyles = makeStyles((theme) => ({
     },
 
     [theme.breakpoints.down('xs')]: {
-      textAlign: "center",
+      textAlign: 'center',
       alignItems: 'center',
     },
-
   },
   head: {
     lineHeight: '2.25rem',
     color: theme.palette.common.black,
-
   },
   text: {
     marginTop: '10px',
@@ -72,8 +75,8 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '1.5rem',
     fontWeight: '400',
     color: theme.palette.common.black,
-
-  }, inputButton: {
+  },
+  inputButton: {
     textTransform: 'unset',
     width: '90%',
     whiteSpace: 'nowrap',

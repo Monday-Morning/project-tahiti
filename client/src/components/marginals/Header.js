@@ -4,7 +4,13 @@ import React, { useState } from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Button, Container, TextField, SwipeableDrawer } from '@material-ui/core';
+import {
+  Grid,
+  Button,
+  Container,
+  TextField,
+  SwipeableDrawer,
+} from '@material-ui/core';
 import theme from '../../config/themes/light';
 import { BarChart, Search } from 'react-feather';
 
@@ -23,7 +29,11 @@ const DeskTopHeader = () => {
           <Grid item sm={6}>
             <div className={classes.searchWrapper}>
               <TextField label='Search for articles' />
-              <Button variant='outlined' color='primary' className={classes.signInButton}>
+              <Button
+                variant='outlined'
+                color='primary'
+                className={classes.signInButton}
+              >
                 Sign In
               </Button>
             </div>
@@ -116,7 +126,10 @@ const MobileHeader = () => {
   return (
     <Container>
       <div className={classes.wrapper}>
-        <span className={classes.icon} onClick={() => setToggleMenu(!toggleMenu)}>
+        <span
+          className={classes.icon}
+          onClick={() => setToggleMenu(!toggleMenu)}
+        >
           <i>
             <BarChart className={classes.headerIcon} />
           </i>

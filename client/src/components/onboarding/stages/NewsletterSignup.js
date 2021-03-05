@@ -64,7 +64,9 @@ function VerifyEmail(props) {
 
         <Button
           text={
-            isSigned ? ONBOARDING.NEWSLETTER.BUTTON.SECONDARY : ONBOARDING.NEWSLETTER.BUTTON.PRIMARY
+            isSigned
+              ? ONBOARDING.NEWSLETTER.BUTTON.SECONDARY
+              : ONBOARDING.NEWSLETTER.BUTTON.PRIMARY
           }
           onClick={isSigned ? () => createBrowserHistory.push('/') : onSignup}
           containerStyles={classes.button}

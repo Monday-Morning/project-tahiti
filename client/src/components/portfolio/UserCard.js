@@ -2,7 +2,14 @@ import React from 'react';
 
 // Libraries
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { Container, Grid, makeStyles, Typography, Card, CardContent } from '@material-ui/core';
+import {
+  Container,
+  Grid,
+  makeStyles,
+  Typography,
+  Card,
+  CardContent,
+} from '@material-ui/core';
 import theme from '../../config/themes/light';
 
 // Images
@@ -20,7 +27,11 @@ const UserCard = () => {
               <Grid item md={4} sm={12} className={classes.gridPadding}>
                 <div className={classes.userWrapper}>
                   <div>
-                    <img className={classes.userImage} src={profile} alt='user photo' />
+                    <img
+                      className={classes.userImage}
+                      src={profile}
+                      alt='user photo'
+                    />
                   </div>
                   <div className={classes.userData}>
                     <div className={classes.columnFlex}>
@@ -29,24 +40,40 @@ const UserCard = () => {
                       </div>
                       <div>
                         <Typography variant='body2'>Email</Typography>
-                        <div className={`${classes.PostText} ${classes.subtext}`}>
+                        <div
+                          className={`${classes.PostText} ${classes.subtext}`}
+                        >
                           jonna@gmail.com
                         </div>
                       </div>
                       {Desktop ? (
                         <div>
                           <Typography variant='body2'>Year</Typography>
-                          <div className={`${classes.PostText} ${classes.subtext}`}>2019-20</div>
+                          <div
+                            className={`${classes.PostText} ${classes.subtext}`}
+                          >
+                            2019-20
+                          </div>
                         </div>
                       ) : (
                         <Grid container spacing={2}>
                           <Grid item sm={6}>
                             <Typography variant='body2'>Year</Typography>
-                            <div className={`${classes.PostText} ${classes.subtext}`}>2019-20</div>
+                            <div
+                              className={`${classes.PostText} ${classes.subtext}`}
+                            >
+                              2019-20
+                            </div>
                           </Grid>
                           <Grid item sm={6}>
-                            <Typography variant='body2'>Number Of Posts </Typography>
-                            <span className={`${classes.PostText} ${classes.subtext}`}>8</span>
+                            <Typography variant='body2'>
+                              Number Of Posts{' '}
+                            </Typography>
+                            <span
+                              className={`${classes.PostText} ${classes.subtext}`}
+                            >
+                              8
+                            </span>
                           </Grid>
                         </Grid>
                       )}
@@ -55,11 +82,20 @@ const UserCard = () => {
                 </div>
               </Grid>
               {Desktop ? (
-                <Grid item md={4} sm={6} className={`${classes.bordered} ${classes.gridPadding}`}>
+                <Grid
+                  item
+                  md={4}
+                  sm={6}
+                  className={`${classes.bordered} ${classes.gridPadding}`}
+                >
                   <div className={classes.columnFlex}>
                     <div>
                       <Typography variant='h4'>Number Of Posts :</Typography>
-                      <span className={`${classes.PostText} ${classes.subtext}`}>8</span>
+                      <span
+                        className={`${classes.PostText} ${classes.subtext}`}
+                      >
+                        8
+                      </span>
                     </div>
                     <div>
                       <div className={classes.subtext}>
@@ -69,7 +105,8 @@ const UserCard = () => {
                         Design : <span className={classes.PostText}>2</span>
                       </div>
                       <div className={classes.subtext}>
-                        Photography : <span className={classes.PostText}>1</span>
+                        Photography :{' '}
+                        <span className={classes.PostText}>1</span>
                       </div>
                     </div>
                   </div>
@@ -78,7 +115,12 @@ const UserCard = () => {
                 ''
               )}
 
-              <Grid item md={4} sm={6} className={`${classes.bordered} ${classes.gridPadding}`}>
+              <Grid
+                item
+                md={4}
+                sm={6}
+                className={`${classes.bordered} ${classes.gridPadding}`}
+              >
                 <div className={classes.columnFlex}>
                   <div>
                     <Typography variant='h4'>Teams</Typography>

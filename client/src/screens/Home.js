@@ -62,12 +62,14 @@ const useStyles = makeStyles(() => ({
     width: '100%',
     height: '100%',
     minHeight: '600px',
-    boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
+    boxShadow:
+      '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
   },
   calendar: {
     width: '100%',
     height: '100%',
-    boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
+    boxShadow:
+      '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
     backgroundImage: `url(${Calendar})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',

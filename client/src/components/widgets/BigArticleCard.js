@@ -45,7 +45,9 @@ const BigArticleCard = () => {
               </div>
               <div className={classes.readTime}>
                 <i className='far fa-clock'></i>
-                <Typography variant='body2'>{props.article.readTime}</Typography>
+                <Typography variant='body2'>
+                  {props.article.readTime}
+                </Typography>
               </div>
             </div>
             <Typography variant='body2' className={classes.articleDescription}>
@@ -71,7 +73,8 @@ const BigArticleCard = () => {
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
+    boxShadow:
+      '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
   },
 
   cover: {

@@ -10,16 +10,30 @@ const Dashboard = () => {
     a.getHours() == 0
       ? '12 AM'
       : a.getHours() < 12
-        ? `${a.getHours()} AM`
-        : `${a.getHours() - 12} PM`;
-  let month = ['January', 'February', 'March', 'April', 'May', 'June', 'August', 'September', 'October', 'November', 'December'];
-  let dateTime = `${a.getDate()} ${month[a.getMonth()]} ${a.getFullYear()}, ${hours}`;
+      ? `${a.getHours()} AM`
+      : `${a.getHours() - 12} PM`;
+  let month = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  let dateTime = `${a.getDate()} ${
+    month[a.getMonth()]
+  } ${a.getFullYear()}, ${hours}`;
   const classes = useStyles(theme);
 
   return (
     <div className={classes.root}>
       <div className={classes.header}>
-        <Typography variant="h3">Activity</Typography>
+        <Typography variant='h3'>Activity</Typography>
         <div className={classes.dateTime}>as of {dateTime}</div>
       </div>
       <div className={classes.content}>
@@ -29,9 +43,7 @@ const Dashboard = () => {
         <div className={classes.stats}>
           {PROFILEPAGES.DASHBOARD.map(({ head, value }, key) => (
             <div className={key ? classes.stat : classes.stat2} key={key}>
-              <div className={classes.stat__head}>
-                {head}
-              </div>
+              <div className={classes.stat__head}>{head}</div>
               <div className={classes.stat__value}>{value}</div>
             </div>
           ))}
@@ -47,8 +59,8 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     background: theme.palette.common.white,
-    paddingLeft: "40px",
-    padding: "15px 0 10% 5%",
+    paddingLeft: '40px',
+    padding: '15px 0 10% 5%',
     [theme.breakpoints.down('xs')]: {
       paddingInline: '5%',
       height: 'auto',
@@ -62,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
     '& h3': {
       color: theme.palette.secondary.main,
     },
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down('xs')]: {
       textAlign: 'center',
     },
   },
@@ -78,13 +90,12 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '15px',
     width: '100%',
     justifyContent: 'center',
-
   },
   activityGraph: {
     height: '432px',
     paddingTop: '98px',
     width: '100%',
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down('xs')]: {
       display: 'none',
     },
   },
@@ -102,11 +113,10 @@ const useStyles = makeStyles((theme) => ({
     width: '259px',
     position: 'relative',
     top: '-60px',
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down('xs')]: {
       alignItems: 'center',
       position: 'static',
     },
-
   },
   stat: {
     display: 'flex',

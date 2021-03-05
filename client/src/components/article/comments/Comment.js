@@ -1,7 +1,13 @@
 import React from 'react';
 
 // Libraries
-import { Card, CardContent, Grid, Typography, makeStyles } from '@material-ui/core';
+import {
+  Card,
+  CardContent,
+  Grid,
+  Typography,
+  makeStyles,
+} from '@material-ui/core';
 
 // Assets
 import user from '../../../assets/images/photo.png';

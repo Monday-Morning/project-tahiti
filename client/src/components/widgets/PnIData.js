@@ -18,15 +18,20 @@ const PnIData = () => {
         <Grid container alignItems='center'>
           <Grid item sm={8} className={classes.forumContent}>
             <p>
-              Find all the companies by branch, year and semester here along with the list of
-              students who interned or were placed there.{' '}
+              Find all the companies by branch, year and semester here along
+              with the list of students who interned or were placed there.{' '}
             </p>
 
             <p>
-              This section can only be accessed by verified accounts or through the institute LAN.
+              This section can only be accessed by verified accounts or through
+              the institute LAN.
             </p>
             <CardActions>
-              <Button variant='contained' color='primary' className={classes.button}>
+              <Button
+                variant='contained'
+                color='primary'
+                className={classes.button}
+              >
                 Go To Live Database
               </Button>
             </CardActions>

@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '400',
     color: theme.palette.secondary.neutral80,
     '& div': {
-      [theme.breakpoints.down("xs")]: {
+      [theme.breakpoints.down('xs')]: {
         display: 'none',
       },
     },
@@ -44,6 +44,5 @@ const useStyles = makeStyles((theme) => ({
   },
   backIcon: {
     marginRight: '21px',
-
   },
 }));

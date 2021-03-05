@@ -35,11 +35,18 @@ const Comments = () => {
       <Element name='commentBox'>
         <Typography variant='h2'>Comment</Typography>
 
-        <Input comment={comment} setComment={setComment} handleSubmit={handleSubmit} />
+        <Input
+          comment={comment}
+          setComment={setComment}
+          handleSubmit={handleSubmit}
+        />
 
         {showComments ? (
           <>
-            <Typography onClick={toggleShowComments} className={classes.commentToggle}>
+            <Typography
+              onClick={toggleShowComments}
+              className={classes.commentToggle}
+            >
               Hide all comments ({comments.length})
             </Typography>
             <div className={classes.userCommentsWrapper}>
@@ -49,7 +56,10 @@ const Comments = () => {
             </div>
           </>
         ) : (
-          <Typography onClick={toggleShowComments} className={classes.commentToggle}>
+          <Typography
+            onClick={toggleShowComments}
+            className={classes.commentToggle}
+          >
             See all comments ({comments.length})
           </Typography>
         )}

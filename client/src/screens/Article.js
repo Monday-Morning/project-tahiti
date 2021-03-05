@@ -26,7 +26,10 @@ function Home() {
     if (matches) {
       if (down && mx < -10) {
         setToggleSidebar(true);
-      } else if ((down && mx > 10 && toggleSidebar) || (down && my !== 0 && toggleSidebar)) {
+      } else if (
+        (down && mx > 10 && toggleSidebar) ||
+        (down && my !== 0 && toggleSidebar)
+      ) {
         setToggleSidebar(false);
       }
     }

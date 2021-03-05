@@ -15,9 +15,10 @@ const Footer = () => {
             <div className={classes.aboutInfo}>
               <img src={logo} alt='Monday Morning' className={classes.logo} />
               <Typography variant='body2' className={classes.aboutText}>
-                Monday Morning is the student Media Body of National Institute Of Technology
-                Rourkela. We cover all the events, issues and activities going on inside the campus.
-                We serve as a link between the administration and the students.
+                Monday Morning is the student Media Body of National Institute
+                Of Technology Rourkela. We cover all the events, issues and
+                activities going on inside the campus. We serve as a link
+                between the administration and the students.
               </Typography>
             </div>
           </Grid>
@@ -53,7 +54,11 @@ const Footer = () => {
           <Grid item sm={4}>
             <div className={classes.rightSide}>
               <div>
-                <Button variant='contained' color='secondary' className={classes.appButton}>
+                <Button
+                  variant='contained'
+                  color='secondary'
+                  className={classes.appButton}
+                >
                   Google Play
                 </Button>
                 <div className={classes.archives}>

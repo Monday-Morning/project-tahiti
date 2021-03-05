@@ -41,7 +41,11 @@ const ArticleCard = ({ carousel }) => {
         <div className={classes.wrapper}>
           <div className={classes.authorList}>
             {props.article.authors.map((author, index) => (
-              <Typography variant='body2' key={author} className={classes.author}>
+              <Typography
+                variant='body2'
+                key={author}
+                className={classes.author}
+              >
                 {(index ? ',' : '') + `  ${author}`}
               </Typography>
             ))}

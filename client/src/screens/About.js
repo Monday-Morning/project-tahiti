@@ -7,16 +7,16 @@ import Content from '../components/about/Content';
 import Team from '../components/about/Team';
 import Project from '../components/about/Project';
 
-function About(){
-    return(
-        <div>
-        <Backlink />
-        <AboutUs />
-        <Content />
-        <Team />
-        <Project />
-        </div>
-    );
+function About() {
+  return (
+    <div>
+      <Backlink />
+      <AboutUs />
+      <Content />
+      <Team />
+      <Project />
+    </div>
+  );
 }
 
 export default About;

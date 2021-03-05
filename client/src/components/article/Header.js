@@ -35,13 +35,19 @@ const ArticleHeader = (props) => {
             {props.article.title}
           </Typography>
 
-          <Typography className={classes.publishDate}>{props.article.publishDate}</Typography>
+          <Typography className={classes.publishDate}>
+            {props.article.publishDate}
+          </Typography>
 
           <div className={classes.wrapper}>
             <div className={classes.authorList}>
               {props.article.authors.map((author, key) => (
                 <div key={key} className={classes.authorWrapper}>
-                  <img src={user} alt={author.alt} className={classes.authorImg} />
+                  <img
+                    src={user}
+                    alt={author.alt}
+                    className={classes.authorImg}
+                  />
 
                   <Typography variant='body2' className={classes.author}>
                     {author.name}
