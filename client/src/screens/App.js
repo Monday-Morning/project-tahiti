@@ -69,42 +69,11 @@ function App() {
 
             <Route path='/profile' exact component={AsyncProfile} />
 
-            <Route path='/campus' exact>
-              <AsyncCategory
-                category='campus'
-                categoryName='Campus'
-                categoryHeader='Catch up on everything at NITR in this section. From Academics to Fests, find everything on campus here.'
-              />
-            </Route>
-            <Route path='/connect' exact>
-              <AsyncCategory
-                category='connect'
-                categoryName='Connect'
-                categoryHeader='Catch up on everything at NITR in this section. From Academics to Fests, find everything on campus here.'
-              />
-            </Route>
-            <Route path='/career' exact>
-              <AsyncCategory
-                category='career'
-                categoryName='Career'
-                categoryHeader='Catch up on everything at NITR in this section. From Academics to Fests, find everything on campus here.'
-              />
-            </Route>
-            <Route path='/alumni' exact>
-              <AsyncCategory
-                category='alumni'
-                categoryName='Alumni'
-                categoryHeader='Catch up on everything at NITR in this section. From Academics to Fests, find everything on campus here.'
-              />
-            </Route>
-            <Route path='/ddcwc' exact>
-              <AsyncCategory
-                category='ddcwc'
-                categoryName='DD & CWC '
-                categoryHeader='Catch up on everything at NITR in this section. From Academics to Fests, find everything on campus here.'
-              />
-            </Route>
             <Route path='/expressions' exact component={AsyncExpressions} />
+            {/* <Route> /}
+            {/ <h1>404 Page not found</h1> /}
+            {/ TODO: Make not found page /}
+            {/ </Route> */}
             {/* <Redirect to='/' /> */}
           </Marginals>
         </Switch>

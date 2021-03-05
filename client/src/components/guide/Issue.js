@@ -37,16 +37,6 @@ const useStyles = makeStyles((theme) => ({
       padding: '12px 0px',
     },
   },
-
-  textWrapper: {
-    display: 'flex',
-    direction: 'row',
-    justifyContent: 'center',
-  },
-  text: {
-    color: theme.palette.common.white,
-    alignSelf: 'center',
-  },
   textWrapper: {
     display: 'flex',
     direction: 'row',
