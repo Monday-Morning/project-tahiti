@@ -24,7 +24,12 @@ const Comments = ({ handleSubmit, setComment, comment }) => {
           />
         </div>
 
-        <Button type='submit' variant='contained' color='primary' className={classes.submitButton}>
+        <Button
+          type='submit'
+          variant='contained'
+          color='primary'
+          className={classes.submitButton}
+        >
           Submit
         </Button>
       </div>

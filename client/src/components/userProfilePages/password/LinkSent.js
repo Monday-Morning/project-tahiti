@@ -15,16 +15,13 @@ function LinkSent() {
         <div className={classes.text}>
           We’ve sent a reset link on
           <br />
-          <span>
-            {PROFILEPAGES.PROFILE.INFO[2].value}
-          </span>
+          <span>{PROFILEPAGES.PROFILE.INFO[2].value}</span>
           <br />
           <br />
-            Please click on the link there to reset your password.
-          </div>
-
+          Please click on the link there to reset your password.
+        </div>
       </div>
-      <ImageBox widthImage="33%" img={passwd} />
+      <ImageBox widthImage='33%' img={passwd} />
     </div>
   );
 }
@@ -33,7 +30,6 @@ export default LinkSent;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-
     display: 'flex',
     justifyContent: 'space-between',
     paddingInline: '6%',
@@ -54,11 +50,10 @@ const useStyles = makeStyles((theme) => ({
       marginTop: '40px',
     },
     [theme.breakpoints.down('xs')]: {
-      textAlign: "center",
+      textAlign: 'center',
       alignItems: 'center',
     },
   },
-
 
   head: {
     lineHeight: '2.25rem',
@@ -79,12 +74,10 @@ const useStyles = makeStyles((theme) => ({
       fontWeight: '600',
       fontSize: '1rem',
       lineHeight: '26px',
-
     },
     [theme.breakpoints.down('sm')]: {
       marginTop: '2.5rem',
       textAlign: 'center',
     },
   },
-
-}))
+}));

@@ -115,7 +115,8 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     marginTop: '19px',
     height: '542px',
-    boxShadow: '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
+    boxShadow:
+      '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
     background: theme.palette.common.white,
 
     [theme.breakpoints.down('sm')]: {

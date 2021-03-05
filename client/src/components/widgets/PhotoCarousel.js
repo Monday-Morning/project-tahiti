@@ -81,7 +81,8 @@ const PhotoCarousel = ({ IMAGE }) => {
       </div>
       <div className={classes.textWrapper}>
         <Typography variant='h3' className={classes.text}>
-          <i className='far fa-arrow-alt-circle-left' onClick={previous}></i> 2020-21
+          <i className='far fa-arrow-alt-circle-left' onClick={previous}></i>{' '}
+          2020-21
           <i className='far fa-arrow-alt-circle-right' onClick={next}></i>
         </Typography>
       </div>

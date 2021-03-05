@@ -14,7 +14,13 @@ function Profile() {
       <div className={classes.wrapper}>
         <div className={classes.content}>
           <div className={classes.profilePic}>
-            <img src={pp} alt='' height='115px' width='115px' className={classes.pp} />
+            <img
+              src={pp}
+              alt=''
+              height='115px'
+              width='115px'
+              className={classes.pp}
+            />
             <Edit2 size={30} className={classes.invertedIcon} />
           </div>
           <div className={classes.infoBlocks}>
@@ -125,7 +131,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       fontSize: '1.25rem',
     },
-
   },
 
   subLine: {

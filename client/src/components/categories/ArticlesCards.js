@@ -8,7 +8,14 @@ import SmallArticleCard from '../widgets/SmallArticleCard';
 import Forum from '../widgets/Forum';
 import PnIData from '../widgets/PnIData';
 
-const ArticlesCard = ({ heading, smallCards, bigCards, forum, pulse, pniData }) => {
+const ArticlesCard = ({
+  heading,
+  smallCards,
+  bigCards,
+  forum,
+  pulse,
+  pniData,
+}) => {
   const matches = useMediaQuery('(min-width:600px)');
   const classes = useStyles(theme);
   if (forum) {

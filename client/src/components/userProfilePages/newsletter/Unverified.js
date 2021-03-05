@@ -10,13 +10,15 @@ function Unverified({ nLState }) {
   return (
     <div className={classes.root}>
       <div className={classes.content}>
-        <h1 className={classes.head}>You haven’t signed up for the newsletter yet...</h1>
+        <h1 className={classes.head}>
+          You haven’t signed up for the newsletter yet...
+        </h1>
         <div className={classes.text}>
-          Sign up for the MM newsletter and get news and articles delivered straight to your
-          mailbox!
-          </div>
+          Sign up for the MM newsletter and get news and articles delivered
+          straight to your mailbox!
+        </div>
         <div className={classes.inputBlock}>
-          <Typography variant="h3">Email</Typography>
+          <Typography variant='h3'>Email</Typography>
           <Input
             className={classes.input}
             placeholder='your@email.com'
@@ -31,15 +33,14 @@ function Unverified({ nLState }) {
             disabled={!input}
           >
             Sign Up for Newsletter
-            </Button>
+          </Button>
         </div>
         <div className={classes.note}>
-          <span>Note:</span> Newsletters are sent once a week or once in a fortnight during the
-            working session of the college
-          </div>
+          <span>Note:</span> Newsletters are sent once a week or once in a
+          fortnight during the working session of the college
+        </div>
       </div>
-      <ImageBox widthImage="41%" img={newsletter} />
-
+      <ImageBox widthImage='41%' img={newsletter} />
     </div>
   );
 }
@@ -48,7 +49,6 @@ export default Unverified;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-
     display: 'flex',
     paddingInline: '6%',
     [theme.breakpoints.down('sm')]: {
@@ -66,15 +66,13 @@ const useStyles = makeStyles((theme) => ({
     },
 
     [theme.breakpoints.down('xs')]: {
-      textAlign: "center",
+      textAlign: 'center',
       alignItems: 'center',
     },
-
   },
   head: {
     lineHeight: '2.25rem',
     color: theme.palette.common.black,
-
   },
   text: {
     marginTop: '10px',
@@ -83,7 +81,6 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '1.5rem',
     fontWeight: '400',
     color: theme.palette.common.black,
-
   },
   inputBlock: {
     marginTop: '26px',
@@ -93,7 +90,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       textAlign: 'center',
     },
-
   },
   emailHead: {
     color: theme.palette.common.black,
@@ -134,5 +130,4 @@ const useStyles = makeStyles((theme) => ({
       fontWeight: '700',
     },
   },
-
 }));
