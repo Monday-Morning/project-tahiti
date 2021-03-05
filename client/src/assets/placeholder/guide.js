@@ -1,3 +1,4 @@
+/* eslint-disable */
 import img from '../../assets/images/carousel.png';
 
 export const OPTIONS = Object.freeze({
@@ -12,7 +13,30 @@ export const OPTIONS = Object.freeze({
   ],
 });
 export const ARCHIVES = Object.freeze({
-  years: ['2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'],
-  months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  years: [
+    '2012',
+    '2013',
+    '2014',
+    '2015',
+    '2016',
+    '2017',
+    '2018',
+    '2019',
+    '2020',
+  ],
+  months: [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ],
 });
 export const CAROUSEL = Object.freeze([img, img, img, img, img]);

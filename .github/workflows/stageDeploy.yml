@@ -1,0 +1,35 @@
+name: Firebase Staging Deploy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'client/**'
+
+jobs:
+  firebase-stage-deploy:
+    name: Firebase Development Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@master
+
+      - name: Setup Node v14
+        uses: actions/setup-node@master
+        with:
+          node-version: '14.x'
+
+      - name: Install Dependencies
+        run: cd client && yarn install --frozen-lockfile
+
+      - name: Build React WebApp
+        run: cd client && yarn build:prod
+
+      - name: Deploy to Firebase
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          projectId: project-infinity-98561
+          channelId: staging
+          expires: 30d

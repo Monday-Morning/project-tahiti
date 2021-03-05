@@ -1,3 +1,4 @@
+/* eslint-disable */
 export const ONBOARDING = Object.freeze({
   WELCOME: {
     CONTENT:

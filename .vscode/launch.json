@@ -1,0 +1,19 @@
+{
+  "folders": [
+    {
+      "path": ".."
+    }
+  ],
+  "launch": {
+    "version": "0.1.0",
+    "configurations": [
+      {
+        "type": "pwa-chrome",
+        "request": "launch",
+        "name": "Launch Chrome against localhost",
+        "url": "http://localhost:8080",
+        "webRoot": "${workspaceFolder}"
+      }
+    ]
+  }
+}

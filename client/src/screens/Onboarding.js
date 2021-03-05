@@ -32,6 +32,7 @@ function Onboarding() {
   const [newsletterEmail, setNewsletterEmail] = useInput('');
 
   // Stage Change functions
+  // eslint-disable-next-line
   const setStageToWelcome = () => setStage(STAGES.WELCOME);
   const setStageToVerifyEmail = () => setStage(STAGES.VERIFY_EMAIL);
   const setStageToInterestedTopics = () => setStage(STAGES.INTERESTED_TOPICS);
@@ -42,7 +43,8 @@ function Onboarding() {
   const verifyEmail = () => console.log('Email Verify Function Executed');
   const signupNewsletter = () => console.log('Signed up for Newsletter');
 
-  const addSelectedTopic = (newTopic) => setSelectedTopics((current) => [...current, newTopic]);
+  const addSelectedTopic = (newTopic) =>
+    setSelectedTopics((current) => [...current, newTopic]);
 
   const removeSelectedTopic = (topic) =>
     setSelectedTopics((selected) => {
@@ -84,7 +86,7 @@ function Onboarding() {
           />
         );
       default:
-        <Typography variant='body1'>Loading....</Typography>;
+        return <Typography variant='body1'>Loading....</Typography>;
     }
   };
 

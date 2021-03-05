@@ -1,3 +1,4 @@
+/* eslint-disable */
 export const COMMENTS = Object.freeze([
   {
     user: 'Vishal Rana',
