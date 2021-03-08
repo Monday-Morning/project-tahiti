@@ -1,12 +1,15 @@
 import React from 'react';
 
+// libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, useMediaQuery } from '@material-ui/core';
-import theme from '../../config/themes/light';
 
 // Images
 import Phone from '../../assets/images/about/Phone.png';
 import Mail from '../../assets/images/about/Mail.png';
+
+// theme
+import theme from '../../config/themes/light';
 
 const Profile = ({
   member,

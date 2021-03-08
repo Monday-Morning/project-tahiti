@@ -1,21 +1,24 @@
 import React from 'react';
 
 // Components
-import Backlink from '../components/about/Backlink';
+import BackButton from '../components/shared/button/BackButton';
 import AboutUs from '../components/about/AboutUs';
 import Content from '../components/about/Content';
 import Team from '../components/about/Team';
 import Project from '../components/about/Project';
 
+// libraries
+import { Container } from '@material-ui/core';
+
 function About() {
   return (
-    <div>
-      <Backlink />
+    <Container>
+      <BackButton path='/' goTo='Home' />
       <AboutUs />
       <Content />
       <Team />
       <Project />
-    </div>
+    </Container>
   );
 }
 

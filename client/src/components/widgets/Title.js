@@ -1,15 +1,20 @@
-import { makeStyles } from '@material-ui/core';
 import React from 'react';
+
+// libraries
+import { makeStyles } from '@material-ui/core';
+import { Element } from 'react-scroll';
+
+// theme
 import theme from '../../config/themes/light';
 
-function Title({ heading }) {
+function Title({ heading, link }) {
   const classes = useStyles(theme);
   return (
-    <div className={classes.root}>
+    <Element className={classes.root} name={link}>
       <div className={classes.head}>{heading}</div>
       <div className={classes.line}></div>
       <div className={classes.seeAll}>See All</div>
-    </div>
+    </Element>
   );
 }
 

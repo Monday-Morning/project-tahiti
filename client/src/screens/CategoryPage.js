@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Libraries
-import { Grid, Container, makeStyles } from '@material-ui/core';
+import { Grid, Container, makeStyles, Typography } from '@material-ui/core';
 
 // Components
 import SubCategory from '../components/widgets/SubCategories';
@@ -9,7 +9,8 @@ import Carousel from '../components/widgets/Carousel';
 import ArticlesCards from '../components/categories/ArticlesCards';
 
 // Assets
-import { CATEGORIES } from '../assets/placeholder/widget';
+import { CATEGORIES } from '../assets/placeholder/categoryPages';
+import { Link, Element } from 'react-scroll';
 
 function Category() {
   const classes = useStyles();
@@ -24,17 +25,23 @@ function Category() {
       <div className={classes.wrapper}>
         <Container>
           <div className={classes.header}>
-            <Grid className={classes.category}>{categoryName}</Grid>
+            <Grid>
+              <Typography variant='h1' className={classes.category}>
+                {categoryName}
+              </Typography>
+            </Grid>
             <Grid className={classes.categoryHeaderText}>{categoryName}</Grid>
           </div>
           <Grid className={classes.subCategories}>
-            {CATEGORIES[category].map(({ heading }, index) => (
-              <SubCategory
-                text={heading}
-                // eslint-disable-next-line
-                key={index}
-                className={classes.subCategory}
-              />
+            {CATEGORIES[category].map(({ heading, link }, index) => (
+              <Link to={link} smooth='true' key={index}>
+                <SubCategory
+                  text={heading}
+                  // eslint-disable-next-line
+
+                  className={classes.subCategory}
+                />
+              </Link>
             ))}
           </Grid>
         </Container>
@@ -46,18 +53,19 @@ function Category() {
           <div className={classes.articlesCards}>
             {CATEGORIES[category].map(
               (
-                { heading, smallCards, bigCards, forum, pulse, pniData },
+                { heading, smallCards, bigCards, forum, pulse, pniData, link },
                 key,
               ) => (
-                <ArticlesCards
-                  heading={heading}
-                  smallCards={smallCards}
-                  bigCards={bigCards}
-                  forum={forum}
-                  pulse={pulse}
-                  key={key}
-                  pniData={pniData}
-                />
+                <Element name={link} key={key}>
+                  <ArticlesCards
+                    heading={heading}
+                    smallCards={smallCards}
+                    bigCards={bigCards}
+                    forum={forum}
+                    pulse={pulse}
+                    pniData={pniData}
+                  />
+                </Element>
               ),
             )}
           </div>
@@ -89,17 +97,13 @@ const useStyles = makeStyles((theme) => ({
   },
 
   category: {
-    fontSize: '1.5rem',
     color: theme.palette.primary.blue60,
     fontFamily: 'IBM Plex Sans',
-    lineHeight: '2rem',
     borderTop: '4px solid',
     borderColor: theme.palette.primary.blue60,
     width: '124px',
     [theme.breakpoints.up('sm')]: {
       width: '205px',
-      fontSize: '2rem',
-      lineHeight: '3rem',
     },
   },
 

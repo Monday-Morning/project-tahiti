@@ -7,8 +7,11 @@ import { Card, CardContent, Button } from '@material-ui/core';
 // Components
 import { SQUIGGLES } from '../../assets/placeholder/widget';
 
+// theme
+import theme from '../../config/themes/light';
+
 function Squiggles() {
-  const classes = useStyles();
+  const classes = useStyles(theme);
 
   return (
     <Card className={classes.squigglesCard}>

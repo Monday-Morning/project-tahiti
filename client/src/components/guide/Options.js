@@ -2,7 +2,7 @@ import React from 'react';
 
 // libararies
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Grid } from '@material-ui/core';
+import { Typography, Grid, Button } from '@material-ui/core';
 
 //placeholder
 import { OPTIONS } from '../../assets/placeholder/guide';
@@ -13,8 +13,15 @@ import icon2 from '../../assets/images/guide/optIcon2.png';
 import icon3 from '../../assets/images/guide/optIcon3.png';
 import icon4 from '../../assets/images/guide/optIcon4.png';
 
+// components
+import SubCategories from '../widgets/SubCategories';
+
+// theme
+import theme from '../../config/themes/light';
+
 const Options = () => {
-  const classes = useStyles();
+  const classes = useStyles(theme);
+
   return (
     <div className={classes.wrapper}>
       <Typography variant='h1' className={classes.title}>
@@ -28,9 +35,7 @@ const Options = () => {
         className={classes.tagWrapper}
       >
         {OPTIONS.tags.map((tag, key) => (
-          <Grid item key={key} className={classes.tag}>
-            <Typography variant='h3'>{tag}</Typography>
-          </Grid>
+          <SubCategories text={tag} key={key} className={classes.tag} />
         ))}
       </Grid>
       <div className={classes.optionWrapper}>
@@ -79,9 +84,7 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     marginTop: '1.5rem',
     position: 'relative',
-    maxWidth: '1280px',
     margin: '40px auto 0px auto',
-    paddingLeft: '16px',
     overflow: 'hidden',
     [theme.breakpoints.down('xs')]: {
       marginTop: '1rem',
@@ -97,13 +100,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   tag: {
-    backgroundColor: theme.palette.primary.blue10,
-    padding: '12px 16px',
-    margin: '0px 8px',
-    [theme.breakpoints.down('xs')]: {
-      padding: '8px 3px',
-      margin: '4px',
-    },
+    whiteSpace: 'nowrap',
   },
   optionWrapper: {
     maxWidth: '1200px',
