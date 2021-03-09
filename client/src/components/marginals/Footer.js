@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import logo from '../../assets/images/logo.png';
 import { Container, Grid, Typography, Button } from '@material-ui/core';
 import { ArrowRightCircle } from 'react-feather';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const classes = useStyles();
@@ -31,19 +32,37 @@ const Footer = () => {
             >
               <Grid item xs={4}>
                 <ul className={classes.categories}>
-                  <li>Campus</li>
-                  <li>Connect</li>
-                  <li>DD {'&'} CWC</li>
-                  <li>Career</li>
-                  <li>Alumni</li>
-                  <li>Expressions</li>
+                  <li>
+                    <Link to='/campus'>Campus</Link>
+                  </li>
+                  <li>
+                    <Link to='/connect'>Connect</Link>
+                  </li>
+                  <li>
+                    <Link to='/ddcwc'>DD {'&'} CWC</Link>
+                  </li>
+                  <li>
+                    <Link to='/career'>Career</Link>
+                  </li>
+                  <li>
+                    <Link to='/alumni'>Alumni</Link>
+                  </li>
+                  <li>
+                    <Link to='/expressions'>Expressions</Link>
+                  </li>
                 </ul>
               </Grid>
               <Grid item xs={4}>
                 <ul className={classes.categories}>
-                  <li>About</li>
-                  <li>Guide</li>
-                  <li>Contact Us</li>
+                  <li>
+                    <Link to='/about'>About</Link>
+                  </li>
+                  <li>
+                    <Link to='/guide'>Guide</Link>
+                  </li>
+                  <li>
+                    <Link to='/contact'>Contact Us</Link>
+                  </li>
                 </ul>
               </Grid>
               <Grid item xs={4}>
@@ -59,13 +78,13 @@ const Footer = () => {
           <Grid item sm={4}>
             <div className={classes.rightSide}>
               <div>
-                <Button
-                  variant='contained'
-                  color='secondary'
-                  className={classes.appButton}
-                >
-                  Google Play
-                </Button>
+                <a href='https://play.google.com/store/apps/details?id=in.ac.nitrkl.mondaymorning&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+                  <img
+                    alt='Get it on Google Play'
+                    src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'
+                    className={classes.appButton}
+                  />
+                </a>
                 <div className={classes.archives}>
                   <Typography variant='body1'>Archives</Typography>
 
@@ -77,7 +96,6 @@ const Footer = () => {
                       <option value='Year'>Year</option>
                     </select>
                     <div className={classes.archiveIcon}>
-                      {/* <i className='fa fa-arrow-circle-right'></i> */}
                       <ArrowRightCircle size={18} />
                     </div>
                   </div>
@@ -158,6 +176,9 @@ const useStyles = makeStyles((theme) => ({
       lineHeight: '20px',
       padding: 'unset',
     },
+    '& a': {
+      color: theme.palette.common.black,
+    },
   },
   rightSide: {
     display: 'flex',
@@ -170,6 +191,8 @@ const useStyles = makeStyles((theme) => ({
   },
   appButton: {
     marginRight: '0',
+    height: '100px',
+    objectPosition: '-17px -16px',
   },
   archives: {
     marginTop: '40px',

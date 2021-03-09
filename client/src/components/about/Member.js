@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 // Libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Typography, useMediaQuery } from '@material-ui/core';
-import theme from '../../config/themes/light';
 
 // Components
 import Profile from './Profile';
@@ -17,6 +16,9 @@ import Design from '../../assets/images/about/Design.png';
 import Photo from '../../assets/images/about/Photography.png';
 import Tech from '../../assets/images/about/Technical.png';
 
+// theme
+import theme from '../../config/themes/light';
+
 const STAGE = {
   DESIGN: 'Design Team',
   TECH: 'Technical Team',
@@ -27,7 +29,7 @@ const STAGE = {
 function Member() {
   const [stage, setStage] = useState(STAGE.CONTENT);
   // const [inProp, setInProp] = useState(true);
-  const classes = useStyles(stage);
+  const classes = useStyles(theme);
 
   // Helpers
   const setStageToDesign = () => setStage(STAGE.DESIGN);

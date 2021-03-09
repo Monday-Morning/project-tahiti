@@ -5,14 +5,19 @@ import BackButton from '../components/shared/button/BackButton';
 import ContactUs from '../components/contact/ContactUs';
 import Details from '../components/contact/Details';
 import Feedback from '../components/contact/feedback';
+import { Container } from '@material-ui/core';
 
 function Contact() {
   return (
     <div>
-      <BackButton path='/' goTo='Home' />
+      <Container>
+        <BackButton path='/' goTo='Home' />
+      </Container>
       <ContactUs />
-      <Details />
-      <Feedback />
+      <Container>
+        <Details />
+        <Feedback />
+      </Container>
     </div>
   );
 }

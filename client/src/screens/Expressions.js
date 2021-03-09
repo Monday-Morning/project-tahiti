@@ -1,29 +1,28 @@
 import React from 'react';
+
+// libraries
 import { Container, Grid, makeStyles, Typography } from '@material-ui/core';
+import { Link, Element } from 'react-scroll';
+
+// components
 import Section from '../components/expressions/Section';
 import Title from '../components/widgets/Title';
-// import Issue from '../components/guide/Issue';
-// import LatestPodcast from '../components/podcast/LatestPodcast';
 import PodcastList from '../components/podcast/List';
-import theme from '../config/themes/light';
 import SubCategories from '../components/widgets/SubCategories';
 import FeaturedArticles from '../components/homepage/FeaturedArticles';
 import ArticleCardStack from '../components/widgets/ArticleCardStack';
 import BigCarousel from '../components/widgets/BigCarousel';
-import FeatureArticle from '../components/expressions/FeatureArticle';
+
+// placeholders
 import { CAROUSEL } from '../assets/placeholder/guide';
+import { EXPRESSIONS } from '../assets/placeholder/categoryPages';
+
+// theme
+import theme from '../config/themes/light';
 
 function Expressions() {
   const classes = useStyles(theme);
 
-  const SUBHEADS = [
-    'Witsdom',
-    'Photostory',
-    'Gallery',
-    'NITR in Motion',
-    'Editorial',
-    'Podcasts',
-  ];
   return (
     <div className={classes.root}>
       <Container>
@@ -35,32 +34,35 @@ function Expressions() {
         </div>
 
         <Grid className={classes.subCategories}>
-          {SUBHEADS.map((subHeading, key) => (
-            <SubCategories
-              text={subHeading}
-              key={key}
-              className={classes.subCategory}
-            />
+          {EXPRESSIONS.expressions.map(({ heading, link }, key) => (
+            <Link to={link} key={key} smooth='true'>
+              <SubCategories text={heading} className={classes.subCategory} />
+            </Link>
           ))}
         </Grid>
 
-        <Section heading='Witsdom' />
-        <Title heading='Photostory' />
+        <Section heading='Witsdom' link='witsdom' />
+
+        <Title heading='Photostory' link='photostory' />
         <FeaturedArticles />
       </Container>
 
-      <BigCarousel
-        head='Gallery'
-        navigator='XVII Convocation'
-        IMAGE={CAROUSEL}
-      />
+      <Element name='gallery'>
+        <BigCarousel
+          head='Gallery'
+          navigator='XVII Convocation'
+          IMAGE={CAROUSEL}
+        />
+      </Element>
+
       <Container>
-        <Section heading='NITR in Motion' />
-        <Title heading='Podcasts' />
+        <Section heading='NITR in Motion' link='nitr' />
+
+        <Title heading='Podcasts' link='podcasts' />
       </Container>
       <PodcastList />
       <Container>
-        <Title heading='Editorials' />
+        <Title heading='Editorials' link='editorial' />
         <ArticleCardStack />
       </Container>
     </div>
@@ -97,9 +99,6 @@ const useStyles = makeStyles((theme) => ({
 
   subCategories: {
     marginTop: '1rem',
-    // marginTop: '3rem',
     marginBottom: '3rem',
-    // [theme.breakpoints.down('sm')]: {
-    // },
   },
 }));

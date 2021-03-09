@@ -8,10 +8,9 @@ import '../../assets/css/slider.css';
 import Slider from 'react-slick';
 
 import 'slick-carousel/slick/slick.css';
+import { ArrowLeftCircle, ArrowRightCircle } from 'react-feather';
 
 const PhotoCarousel = ({ IMAGE, navigator }) => {
-  console.log(IMAGE);
-
   const slider = useRef();
   const next = () => {
     slider.current.slickNext();
@@ -83,9 +82,9 @@ const PhotoCarousel = ({ IMAGE, navigator }) => {
       </div>
       <div className={classes.textWrapper}>
         <Typography variant='h3' className={classes.text}>
-          <i className='far fa-arrow-alt-circle-left' onClick={previous}></i>
-          {navigator}
-          <i className='far fa-arrow-alt-circle-right' onClick={next}></i>
+          <ArrowLeftCircle onClick={previous} />
+          <div>{navigator}</div>
+          <ArrowRightCircle onClick={next} />
         </Typography>
       </div>
     </div>
@@ -108,7 +107,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   text: {
+    display: 'flex',
+    alignItems: 'center',
     color: theme.palette.common.white,
+    '& div': {
+      marginInline: '0.3rem',
+    },
   },
   img: {
     [theme.breakpoints.down('lg')]: {

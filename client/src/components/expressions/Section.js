@@ -12,13 +12,13 @@ import SmallArticleCard from '../widgets/SmallArticleCard';
 //theme
 import theme from '../../config/themes/light';
 
-function Section({ heading }) {
+function Section({ heading, link }) {
   const matches = useMediaQuery('(min-width:600px');
   const classes = useStyles(theme);
 
   return (
     <div className={classes.root}>
-      <Title heading={heading} />
+      <Title heading={heading} link={link} />
       <Grid container spacing={4}>
         <Grid item sm={9}>
           <FeatureArticle className={classes.feature} />

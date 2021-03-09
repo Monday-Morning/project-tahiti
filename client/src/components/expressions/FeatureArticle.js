@@ -4,8 +4,11 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 
-// images
+// assests
 import cover from '../../assets/images/witsdom.png';
+
+// theme
+import theme from '../../config/themes/light';
 
 function FeatureArticle() {
   const props = {
@@ -14,7 +17,7 @@ function FeatureArticle() {
       authors: ['Debabrata Malik', 'Rama Krushna Behera'],
     },
   };
-  const classes = useStyles();
+  const classes = useStyles(theme);
 
   return (
     <div className={classes.root}>

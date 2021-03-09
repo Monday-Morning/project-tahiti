@@ -18,7 +18,7 @@ const TableOfContent = (props) => {
                   to={index.link}
                   className={classes.indexLink}
                   smooth={true}
-                  spy={true}
+                  // spy={true} // commented out this feature, because it highlights the heading only when it is at top, and then ignores it as soon as it is out of about 100px from the top. - Divyam
                   activeClass={classes.indexLinkActive}
                 >
                   {index.title}
