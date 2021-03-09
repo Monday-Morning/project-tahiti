@@ -77,7 +77,6 @@ const Footer = () => {
                       <option value='Year'>Year</option>
                     </select>
                     <div className={classes.archiveIcon}>
-                      {/* <i className='fa fa-arrow-circle-right'></i> */}
                       <ArrowRightCircle size={18} />
                     </div>
                   </div>
@@ -170,7 +169,8 @@ const useStyles = makeStyles((theme) => ({
   },
   appButton: {
     marginRight: '0',
-    width: '100%',
+    height: '100px',
+    objectPosition: '-17px -16px',
   },
   archives: {
     marginTop: '40px',

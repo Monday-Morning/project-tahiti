@@ -2,7 +2,6 @@ import React from 'react';
 
 //libraries
 import { Box, Grid, makeStyles, useMediaQuery } from '@material-ui/core';
-import { Elements } from 'react-scroll';
 
 //components
 import Title from '../widgets/Title';
