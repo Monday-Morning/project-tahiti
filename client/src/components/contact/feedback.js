@@ -108,7 +108,7 @@ export default Feedback;
 const useStyles = makeStyles((theme) => ({
   wrapper: {
     maxWidth: '1248px',
-    margin: '40px auto 20px auto',
+    margin: '40px auto 40px auto',
     [theme.breakpoints.down('md')]: {
       marginTop: '24px',
       padding: '0px 40px 0px 40px',

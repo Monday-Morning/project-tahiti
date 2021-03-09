@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import logo from '../../assets/images/logo.png';
 import { Container, Grid, Typography, Button } from '@material-ui/core';
 import { ArrowRightCircle } from 'react-feather';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const classes = useStyles();
@@ -31,19 +32,37 @@ const Footer = () => {
             >
               <Grid item xs={4}>
                 <ul className={classes.categories}>
-                  <li>Campus</li>
-                  <li>Connect</li>
-                  <li>DD {'&'} CWC</li>
-                  <li>Career</li>
-                  <li>Alumni</li>
-                  <li>Expressions</li>
+                  <li>
+                    <Link to='/campus'>Campus</Link>
+                  </li>
+                  <li>
+                    <Link to='/connect'>Connect</Link>
+                  </li>
+                  <li>
+                    <Link to='/ddcwc'>DD {'&'} CWC</Link>
+                  </li>
+                  <li>
+                    <Link to='/career'>Career</Link>
+                  </li>
+                  <li>
+                    <Link to='/alumni'>Alumni</Link>
+                  </li>
+                  <li>
+                    <Link to='/expressions'>Expressions</Link>
+                  </li>
                 </ul>
               </Grid>
               <Grid item xs={4}>
                 <ul className={classes.categories}>
-                  <li>About</li>
-                  <li>Guide</li>
-                  <li>Contact Us</li>
+                  <li>
+                    <Link to='/about'>About</Link>
+                  </li>
+                  <li>
+                    <Link to='/guide'>Guide</Link>
+                  </li>
+                  <li>
+                    <Link to='/contact'>Contact Us</Link>
+                  </li>
                 </ul>
               </Grid>
               <Grid item xs={4}>
@@ -156,6 +175,9 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '14px',
       lineHeight: '20px',
       padding: 'unset',
+    },
+    '& a': {
+      color: theme.palette.common.black,
     },
   },
   rightSide: {
