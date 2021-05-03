@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 // Components
 import App from './screens/App';
 import Root from './config/Root';
+import ApolloClient from './config/ApolloClient';
 
 // Utils
 import configureFirebase from './config/firebase';
@@ -12,9 +13,11 @@ import('./index.css');
 configureFirebase()
   .then(() => {
     ReactDOM.render(
-      <Root>
-        <App />
-      </Root>,
+      <ApolloClient client={client}>
+        <Root>
+          <App />
+        </Root>
+      </ApolloClient>,
       document.querySelector('#root'),
     );
   })
