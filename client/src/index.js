@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+// Components
 import App from './screens/App';
 import Root from './config/Root';
 
+// Utils
 import configureFirebase from './config/firebase';
-
 import('./index.css');
 
 configureFirebase()
