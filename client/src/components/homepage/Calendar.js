@@ -109,6 +109,7 @@ const useStyles = makeStyles((theme) => ({
   calendar: {
     boxShadow: theme.shadows[0],
     backgroundColor: theme.palette.common.white,
+    height: '100%',
   },
   monthRow: {
     display: 'flex',
@@ -128,8 +129,8 @@ const useStyles = makeStyles((theme) => ({
     '& td': {
       fontSize: '14px',
       fontWeight: '500',
-      paddingTop: '0.5rem',
-      paddingBottom: '0.5rem',
+      paddingTop: '0.85rem',
+      paddingBottom: '0.85rem',
       textAlign: 'center',
     },
   },

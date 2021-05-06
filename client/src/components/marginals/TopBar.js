@@ -65,6 +65,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   navLink: {
+    fontFamily: 'IBM Plex Sans',
     textDecoration: 'none',
     color: theme.palette.common.white,
   },

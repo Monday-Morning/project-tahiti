@@ -56,12 +56,13 @@ const useStyles = makeStyles((theme) => ({
   pulseCard: {
     boxShadow: theme.shadows[0],
     backgroundColor: theme.palette.common.white,
+    height: '100%',
   },
   pulseQuestion: {
     fontSize: '1rem',
     fontWeight: '700',
     lineHeight: '1.5rem',
-    marginBlock: '1.5rem',
+    marginBlock: '2rem',
   },
   optionWrapper: {
     marginTop: '1rem',

@@ -34,14 +34,10 @@ function Home() {
 
         <Grid container spacing={4} style={{ marginTop: 25 }}>
           <Grid item sm={8}>
-            <Box mt={2}>
-              <Pulse />
-            </Box>
+            <Pulse />
           </Grid>
           <Grid item sm={4}>
-            <Box mt={2}>
-              <Calendar />
-            </Box>
+            <Calendar />
           </Grid>
         </Grid>
 
