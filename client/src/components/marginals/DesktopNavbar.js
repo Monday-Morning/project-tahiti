@@ -3,7 +3,8 @@ import React from 'react';
 // libraries
 import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Button, Container, TextField } from '@material-ui/core';
+import { Grid, Container } from '@material-ui/core';
+// import { Button, TextField } from '@material-ui/core';
 
 // Assets
 import theme from '../../config/themes/light';
@@ -20,7 +21,8 @@ const DeskTopHeader = ({ nav }) => {
           </NavLink>
         </Grid>
         <Grid item sm={6}>
-          <div className={classes.searchWrapper}>
+          {/*  Disabled Until proper functionality is setup */}
+          {/* <div className={classes.searchWrapper}>
             <TextField label='Search for articles' />
             <Button
               variant='outlined'
@@ -29,7 +31,7 @@ const DeskTopHeader = ({ nav }) => {
             >
               Sign In
             </Button>
-          </div>
+          </div> */}
         </Grid>
       </Grid>
       <hr />
