@@ -93,9 +93,58 @@
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
     /></noscript>
+    <style>
+      .wrapper {
+        width: 100vw;
+        height: 100vh;
+        display: grid;
+        align-items: center;
+        justify-items: center;
+      }
+
+      .logo {
+        width: 200px;
+        height: 200px;
+        animation: rotation 2s infinite linear;
+      }
+
+      .text {
+        margin-top: 1rem;
+        text-align: center;
+        font-size: 2rem;
+        line-height: 3rem;
+      }
+
+      .subWrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      @keyframes rotation {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(359deg);
+        }
+      }
+    </style>
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="wrapper">
+        <div class="subWrapper">
+          <img
+            src="./src/assets/images/logo_mm.png"
+            alt="MM Logo"
+            class="logo"
+          />
+          <h1 class="text">Monday Morning</h1>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

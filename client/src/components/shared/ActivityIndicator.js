@@ -9,7 +9,7 @@ function ActivityIndicator() {
 
   useEffect(() => {
     setAnimate(true);
-  });
+  }, []);
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
