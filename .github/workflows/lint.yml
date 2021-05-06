@@ -1,14 +1,14 @@
 name: Lint Check
 
 on:
-  pull_request_review:
-    types: [submitted]
+  pull_request:
+    types: [labeled]
 
 jobs:
   eslint:
     name: ESLint Check
     runs-on: ubuntu-latest
-    if: github.event.review.state == 'approved'
+    if: contains(github.event.pull_request.labels.*.name, 'lint-check')
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2

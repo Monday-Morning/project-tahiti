@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import {
   ApolloClient,
@@ -12,9 +13,30 @@ const cache = new InMemoryCache();
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
-    graphQLErrors.map(({ message, location, path }) => {
-      alert(`Graphql error ${message}`);
-    });
+    graphQLErrors.map(({ message, location, path }) =>
+      console.log(new Error({ message, location, path })),
+    );
+  } else if (networkError) {
+    const {
+      message,
+      name,
+      respose,
+      result,
+      bodyText,
+      stack,
+      statusCode,
+    } = networkError;
+    console.log(
+      new Error({
+        message,
+        name,
+        respose,
+        result,
+        bodyText,
+        stack,
+        statusCode,
+      }),
+    );
   }
 });
 
@@ -24,8 +46,7 @@ const link = from([
     uri:
       process.env.NODE_ENV === 'production'
         ? 'https://server.mondaymorning.nitrkl.ac.in'
-        : 'http://localhost:8000/graphql',
-    // : 'http://mm.server1.dashnet.in/v1/graph',
+        : 'http://mm.server1.dashnet.in/v1/graph',
   }),
 ]);
 
@@ -50,6 +71,6 @@ const client = new ApolloClient({
   },
 });
 
-export default ({ children }) => {
-  return <ApolloProvider client={client}>{children}</ApolloProvider>;
-};
+export default ({ children }) => (
+  <ApolloProvider client={client}>{children}</ApolloProvider>
+);
