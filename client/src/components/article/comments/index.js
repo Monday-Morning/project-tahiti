@@ -31,7 +31,7 @@ const Comments = () => {
   };
 
   return (
-    <Container className={classes.container}>
+    <div className={classes.container}>
       <Element name='commentBox'>
         <Typography variant='h2'>Comment</Typography>
 
@@ -64,7 +64,7 @@ const Comments = () => {
           </Typography>
         )}
       </Element>
-    </Container>
+    </div>
   );
 };
 

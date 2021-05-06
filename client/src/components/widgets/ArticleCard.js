@@ -74,12 +74,14 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       maxWidth: '100%',
     },
+    backgroundColor: theme.palette.common.white,
   },
   root2: {
     boxShadow: theme.shadows[0],
     maxWidth: '379px',
     minWidth: '379px',
     marginRight: '1.5rem',
+    backgroundColor: theme.palette.common.white,
     [theme.breakpoints.down('sm')]: {
       maxWidth: '100%',
       minWidth: '312px',
@@ -121,9 +123,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     marginTop: '4px',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   readTime: {
     display: 'flex',
+    alignItems: 'flex-end',
     fontWeight: '400',
     color: theme.palette.secondary.neutral60,
 

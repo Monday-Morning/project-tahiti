@@ -9,7 +9,7 @@ import FeaturedArticles from '../components/homepage/FeaturedArticles';
 import Squiggles from '../components/widgets/Squiggles';
 import ArticleCardStack from '../components/widgets/ArticleCardStack';
 import Pulse from '../components/widgets/Pulse';
-import Calendar from '../assets/images/calendar.png';
+import Calendar from '../components/homepage/Calendar';
 import Banner from '../components/homepage/Banner';
 import Trending from '../components/homepage/Trending';
 
@@ -39,7 +39,9 @@ function Home() {
             </Box>
           </Grid>
           <Grid item sm={4}>
-            <Card className={classes.calendar} />
+            <Box mt={2}>
+              <Calendar />
+            </Box>
           </Grid>
         </Grid>
 
