@@ -9,102 +9,44 @@ import { Grid, Button, Container, TextField } from '@material-ui/core';
 import theme from '../../config/themes/light';
 import logo from '../../assets/images/logo.png';
 
-const DeskTopHeader = () => {
+const DeskTopHeader = ({ nav }) => {
   const classes = useStyles();
   return (
-    <Container>
-      <div className={classes.wrapper}>
-        <Grid container className={classes.header}>
-          <Grid item sm={6}>
+    <Container className={classes.wrapper}>
+      <Grid container className={classes.header}>
+        <Grid item sm={6}>
+          <NavLink to='/'>
             <img src={logo} alt='Monday Morning' />
-          </Grid>
-          <Grid item sm={6}>
-            <div className={classes.searchWrapper}>
-              <TextField label='Search for articles' />
-              <Button
-                variant='outlined'
-                color='primary'
-                className={classes.signInButton}
-              >
-                Sign In
-              </Button>
-            </div>
-          </Grid>
+          </NavLink>
         </Grid>
-        <hr />
-        <div className={classes.navbar}>
-          <div className={classes.navList}>
-            <div className={classes.navItem}>
-              <NavLink
-                to='/'
-                className={classes.navLink}
-                exact
-                activeClassName={classes.activeHeaderLink}
-              >
-                Home
-              </NavLink>
-            </div>
-            <div className={classes.navItem}>
-              <NavLink
-                to='/campus'
-                className={classes.navLink}
-                exact
-                activeClassName={classes.activeHeaderLink}
-              >
-                Campus
-              </NavLink>
-            </div>
-            <div className={classes.navItem}>
-              <NavLink
-                to='/connect'
-                className={classes.navLink}
-                exact
-                activeClassName={classes.activeHeaderLink}
-              >
-                Connect
-              </NavLink>
-            </div>
-            <div className={classes.navItem}>
-              <NavLink
-                to='/ddcwc'
-                className={classes.navLink}
-                exact
-                activeClassName={classes.activeHeaderLink}
-              >
-                DD & CWC
-              </NavLink>
-            </div>
-            <div className={classes.navItem}>
-              <NavLink
-                to='/career'
-                className={classes.navLink}
-                exact
-                activeClassName={classes.activeHeaderLink}
-              >
-                Career
-              </NavLink>
-            </div>
-            <div className={classes.navItem}>
-              <NavLink
-                to='/alumni'
-                className={classes.navLink}
-                exact
-                activeClassName={classes.activeHeaderLink}
-              >
-                Alumni
-              </NavLink>
-            </div>
-            <div className={classes.navItem}>
-              <NavLink
-                to='/expressions'
-                className={classes.navLink}
-                exact
-                activeClassName={classes.activeHeaderLink}
-              >
-                Expressions
-              </NavLink>
-            </div>
+        <Grid item sm={6}>
+          <div className={classes.searchWrapper}>
+            <TextField label='Search for articles' />
+            <Button
+              variant='outlined'
+              color='primary'
+              className={classes.signInButton}
+            >
+              Sign In
+            </Button>
           </div>
+        </Grid>
+      </Grid>
+      <hr />
+      <div className={classes.navbar}>
+        <div className={classes.navList}>
+          {nav.map(({ to, name }) => (
+            <div key={name} className={classes.navItem}>
+              <NavLink
+                to={to}
+                className={classes.navLink}
+                exact
+                activeClassName={classes.activeHeaderLink}
+              >
+                {name}
+              </NavLink>
+            </div>
+          ))}
         </div>
       </div>
     </Container>

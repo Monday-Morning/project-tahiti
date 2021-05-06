@@ -12,7 +12,7 @@ import logo from '../../assets/images/logo.png';
 // Hooks
 import useToggle from '../../hooks/useToggle';
 
-const MobileHeader = () => {
+const MobileHeader = ({ nav }) => {
   const [isMenuOpen, toggleMenu, setMenuOpen] = useToggle(false);
 
   const classes = useMobileStyles();
@@ -44,76 +44,18 @@ const MobileHeader = () => {
         onOpen={() => setMenuOpen(true)}
       >
         <div className={classes.navList}>
-          <div className={classes.navItem}>
-            <NavLink
-              to='/'
-              className={classes.navLink}
-              exact
-              activeClassName={classes.activeHeaderLink}
-            >
-              Home
-            </NavLink>
-          </div>
-          <div className={classes.navItem}>
-            <NavLink
-              to='/campus'
-              className={classes.navLink}
-              exact
-              activeClassName={classes.activeHeaderLink}
-            >
-              Campus
-            </NavLink>
-          </div>
-          <div className={classes.navItem}>
-            <NavLink
-              to='/connect'
-              className={classes.navLink}
-              exact
-              activeClassName={classes.activeHeaderLink}
-            >
-              Connect
-            </NavLink>
-          </div>
-          <div className={classes.navItem}>
-            <NavLink
-              to='/ddcwc'
-              className={classes.navLink}
-              exact
-              activeClassName={classes.activeHeaderLink}
-            >
-              DD & CWC
-            </NavLink>
-          </div>
-          <div className={classes.navItem}>
-            <NavLink
-              to='/career'
-              className={classes.navLink}
-              exact
-              activeClassName={classes.activeHeaderLink}
-            >
-              Career
-            </NavLink>
-          </div>
-          <div className={classes.navItem}>
-            <NavLink
-              to='/alumni'
-              className={classes.navLink}
-              exact
-              activeClassName={classes.activeHeaderLink}
-            >
-              Alumni
-            </NavLink>
-          </div>
-          <div className={classes.navItem}>
-            <NavLink
-              to='/expressions'
-              className={classes.navLink}
-              exact
-              activeClassName={classes.activeHeaderLink}
-            >
-              Expressions
-            </NavLink>
-          </div>
+          {nav.map(({ to, name }) => (
+            <div key={name} className={classes.navItem}>
+              <NavLink
+                to={to}
+                className={classes.navLink}
+                exact
+                activeClassName={classes.activeHeaderLink}
+              >
+                {name}
+              </NavLink>
+            </div>
+          ))}
         </div>
       </SwipeableDrawer>
     </Container>
