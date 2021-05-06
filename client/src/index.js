@@ -13,7 +13,7 @@ import('./index.css');
 configureFirebase()
   .then(() => {
     ReactDOM.render(
-      <ApolloClient client={client}>
+      <ApolloClient>
         <Root>
           <App />
         </Root>

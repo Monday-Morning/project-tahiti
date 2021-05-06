@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   ApolloClient,
   InMemoryCache,
@@ -23,7 +24,8 @@ const link = from([
     uri:
       process.env.NODE_ENV === 'production'
         ? 'https://server.mondaymorning.nitrkl.ac.in'
-        : 'http://mm.server1.dashnet.in/v1/graph',
+        : 'http://localhost:8000/graphql',
+    // : 'http://mm.server1.dashnet.in/v1/graph',
   }),
 ]);
 
@@ -48,6 +50,6 @@ const client = new ApolloClient({
   },
 });
 
-export default Apollo = ({ children }) => {
+export default ({ children }) => {
   return <ApolloProvider client={client}>{children}</ApolloProvider>;
 };
