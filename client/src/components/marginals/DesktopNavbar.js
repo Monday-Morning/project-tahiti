@@ -91,6 +91,7 @@ const useStyles = makeStyles(() => ({
     fontWeight: '600',
     fontSize: '24px',
     lineHeight: '32px',
+    fontFamily: 'IBM Plex Sans',
   },
   activeHeaderLink: {
     color: theme.palette.primary.blue50,

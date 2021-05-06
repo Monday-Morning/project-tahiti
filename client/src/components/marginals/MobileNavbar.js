@@ -90,5 +90,6 @@ const useMobileStyles = makeStyles(() => ({
   navLink: {
     textDecoration: 'none',
     color: 'unset',
+    fontFamily: 'IBM Plex Sans',
   },
 }));
