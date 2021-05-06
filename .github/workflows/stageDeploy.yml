@@ -2,7 +2,7 @@ name: Firebase Staging Deploy
 
 on:
   push:
-    branches: [main]
+    branches: [master]
     paths:
       - "client/**"
 
