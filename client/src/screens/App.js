@@ -55,7 +55,6 @@ function App() {
             <Route path='/about' component={AsyncAbout} />
             <Route path='/photostory' component={AsyncPhotoStory} />
             <Route path='/gallery' component={AsyncGallery} />
-            {/* TODO: About Route */}
             <Route path='/contact' exact component={AsyncContact} />
             <Route path='/guide' exact component={AsyncGuide} />
 
@@ -68,13 +67,7 @@ function App() {
             <Route path='/alumni' exact component={AsyncCategory} />
 
             <Route path='/profile' exact component={AsyncProfile} />
-
             <Route path='/expressions' exact component={AsyncExpressions} />
-            {/* <Route> /}
-            {/ <h1>404 Page not found</h1> /}
-            {/ TODO: Make not found page /}
-            {/ </Route> */}
-            {/* <Redirect to='/' /> */}
           </Marginals>
         </Switch>
       </Router>

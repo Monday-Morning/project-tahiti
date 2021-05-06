@@ -2,9 +2,9 @@ import React from 'react';
 
 // libraries
 import { Box, Container, Grid, Card, makeStyles } from '@material-ui/core';
+import { useQuery } from '@apollo/client';
 
 // Components
-
 import FeaturedArticles from '../components/homepage/FeaturedArticles';
 import Squiggles from '../components/widgets/Squiggles';
 import ArticleCardStack from '../components/widgets/ArticleCardStack';
@@ -13,8 +13,17 @@ import Calendar from '../assets/images/calendar.png';
 import Banner from '../components/homepage/Banner';
 import Trending from '../components/homepage/Trending';
 
+// Queries
+import TrialQuery from '../graphql/queries/trial';
+
 function Home() {
   const classes = useStyles();
+  const { loading, error, data } = useQuery(TrialQuery, {
+    variables: { username: 'riteshsp2000' },
+  });
+
+  // eslint-disable-next-line no-console
+  console.log('here', { loading, error, data });
 
   return (
     <>

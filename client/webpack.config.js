@@ -6,7 +6,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin');
 const dotenv = require('dotenv');
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (env) => {
   // eslint-disable-next-line
@@ -53,13 +53,13 @@ module.exports = (env) => {
   const HTMLPlugin = new HtmlWebpackPlugin({
     template: 'template.html',
     chunksSortMode: 'none',
-    // favicon: './src/assets/static/favicon.ico',
+    favicon: './src/assets/static/favicon.ico',
   });
 
   // Plugin to copy assets/static directory to the build
-  // const CopyPlugin = new CopyWebpackPlugin({
-  //   patterns: [{ from: './src/assets/static', to: '.' }],
-  // });
+  const CopyPlugin = new CopyWebpackPlugin({
+    patterns: [{ from: './src/assets/static', to: '.' }],
+  });
 
   // Plugin for compression
   const BrotliWebpackPlugin = new BrotliPlugin({
@@ -109,7 +109,7 @@ module.exports = (env) => {
     CleanPlugin,
     AnalyzerPlugin,
     HTMLPlugin,
-    // CopyPlugin,
+    CopyPlugin,
     DefinePlugin,
   ];
 
