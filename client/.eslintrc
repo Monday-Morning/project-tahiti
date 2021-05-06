@@ -1,26 +1,42 @@
 {
-  "parser": "babel-eslint",
-  "parserOptions": {
-    "sourceType": "module",
-    "allowImportExportEverywhere": false,
-    "codeFrame": false
+  "root":true,
+  "env":{
+    "browser":true,
+    "jest":true,
+    "node":true,
+    "es6":true
   },
-  "extends": ["airbnb", "prettier"],
-  "env": {
-    "browser": true,
-    "jest": true
+  "globals":{
+    "Atomics":"readonly",
+    "SharedArraybuffer":"readonly"
   },
-  "rules": {
-    "max-len": ["error", { "code": 80 }],
-    "prefer-promise-reject-errors": ["off"],
-    "react/jsx-filename-extension": ["off"],
-    "no-return-assign": ["off"],
-    "react/prop-types": 0,
-    "import/prefer-default-export": 0,
-    "no-use-before-define": 0,
-    "click-events-have-key-events": 0,
-    "no-static-element-interactions": 0,
-    "prefer-destructuring": 1,
-    "react/jsx-wrap-multilines": 0
+  "settings":{
+    "react":{
+      "pragma":"React",
+      "version":"detect"
+    }
+  },
+  "extends":[
+    "plugin:react/recommended",
+    "airbnb",
+    "airbnb/hooks",
+    "prettier"
+  ],
+  "plugins":[
+    "react",
+    "prettier"
+  ],
+  "parserOptions":{
+    "ecmaFeatures":{
+      "jsx":true
+    },
+    "ecmaVersion":12,
+    "sourceType":"module"
+  },
+  "rules":{
+    "no-plusplus":0,
+    "react/prop-types":0,
+    "import/extensions":0,
+    "import/no-cycle":0
   }
 }

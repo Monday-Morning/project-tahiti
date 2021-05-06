@@ -8,6 +8,7 @@ import ApolloClient from './config/ApolloClient';
 
 // Utils
 import configureFirebase from './config/firebase';
+
 import('./index.css');
 
 configureFirebase()
