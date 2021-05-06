@@ -9,7 +9,7 @@ import FeaturedArticles from '../components/homepage/FeaturedArticles';
 import Squiggles from '../components/widgets/Squiggles';
 import ArticleCardStack from '../components/widgets/ArticleCardStack';
 import Pulse from '../components/widgets/Pulse';
-import Calendar from '../assets/images/calendar.png';
+import Calendar from '../components/homepage/Calendar';
 import Banner from '../components/homepage/Banner';
 import Trending from '../components/homepage/Trending';
 
@@ -34,12 +34,10 @@ function Home() {
 
         <Grid container spacing={4} style={{ marginTop: 25 }}>
           <Grid item sm={8}>
-            <Box mt={2}>
-              <Pulse />
-            </Box>
+            <Pulse />
           </Grid>
           <Grid item sm={4}>
-            <Card className={classes.calendar} />
+            <Calendar />
           </Grid>
         </Grid>
 

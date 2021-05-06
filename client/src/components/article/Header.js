@@ -18,7 +18,7 @@ const ArticleHeader = (props) => {
   const classes = useStyles();
 
   return (
-    <Container className={classes.container}>
+    <div className={classes.container}>
       <img src={cover} alt='Cover Photo' className={classes.coverImg} />
 
       <Grid container className={classes.container}>
@@ -72,7 +72,7 @@ const ArticleHeader = (props) => {
           <hr />
         </Grid>
       </Grid>
-    </Container>
+    </div>
   );
 };
 

@@ -55,11 +55,17 @@ export default Pulse;
 const useStyles = makeStyles((theme) => ({
   pulseCard: {
     boxShadow: theme.shadows[0],
+    backgroundColor: theme.palette.common.white,
+    height: '100%',
   },
   pulseQuestion: {
     fontSize: '1rem',
     fontWeight: '700',
     lineHeight: '1.5rem',
+    marginBlock: '2rem',
+  },
+  optionWrapper: {
+    marginTop: '1rem',
   },
   votes: {
     marginTop: '12px',
@@ -71,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '10px',
   },
   voteButton: {
-    marginTop: '50px',
+    marginTop: '55px',
     [theme.breakpoints.down('sm')]: {
       display: 'flex',
       justifyContent: 'center',
@@ -82,7 +88,6 @@ const useStyles = makeStyles((theme) => ({
       order: 2,
     },
   },
-
   image: {
     [theme.breakpoints.down('sm')]: {
       display: 'flex',

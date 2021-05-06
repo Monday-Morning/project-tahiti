@@ -265,6 +265,7 @@ const useStyles = makeStyles((theme) => ({
     width: 'auto',
   },
   navLink: {
+    fontFamily: 'IBM Plex Sans',
     textDecoration: 'none',
     color: '#999999',
     fontWeight: '600',
