@@ -8,6 +8,9 @@ export default gql`
   query getIssueByID($id: ID!) {
     getIssueByID(id: $id) {
       name
+      featured {
+        ...ArticleDetails
+      }
       articles {
         ...ArticleDetails
       }

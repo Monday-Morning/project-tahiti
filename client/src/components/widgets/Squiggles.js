@@ -33,7 +33,7 @@ function Squiggles() {
 
 export default Squiggles;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   squigglesCard: {
     backgroundColor: theme.palette.accent.squiggles,
     boxShadow: theme.shadows[0],
@@ -67,5 +67,6 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '28px',
     fontWeight: '400',
     textAlign: 'justify',
+    fontFamily: 'IBM Plex Sans',
   },
 }));

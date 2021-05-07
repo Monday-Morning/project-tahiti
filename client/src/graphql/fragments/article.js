@@ -5,31 +5,10 @@ export default gql`
     id
     articleType
     title
-    content {
-      plaintext
-      data
-      mediaID
-      contentType
-      blockFormatting {
-        align
-        hasHeaderRow
-        listStyle
-      }
-      textFormatting {
-        bold
-        italic
-        underline
-        strikethrough
-        size
-        start
-        end
-      }
-    }
     inshort
+    readTime
+    status
     authors {
-      name
-    }
-    tech {
       name
     }
     categories {
@@ -49,12 +28,5 @@ export default gql`
         storePath
       }
     }
-    coverMedia {
-      rectangle {
-        storePath
-        blurhash
-      }
-    }
-    status
   }
 `;

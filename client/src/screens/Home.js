@@ -12,6 +12,7 @@ import Pulse from '../components/widgets/Pulse';
 import Calendar from '../components/homepage/Calendar';
 import Banner from '../components/homepage/Banner';
 import Trending from '../components/homepage/Trending';
+import ActivityIndicator from '../components/shared/ActivityIndicator';
 
 // Queries
 import GetIssueByIdQuery from '../graphql/queries/getIssueByID';
@@ -21,14 +22,18 @@ function Home() {
     variables: { id: '609566db3fa05a2fdb2f9c6a' },
   });
 
-  // eslint-disable-next-line no-console
-  console.log('here', { loading, error, data });
-
   const classes = useStyles();
+  if (loading && !data) return <ActivityIndicator size={150} />;
+  if (error) return <div>{error}</div>;
+
+  const {
+    getIssueByID: { articles, featured },
+  } = data;
+
   return (
     <>
       <Container>
-        <FeaturedArticles />
+        <FeaturedArticles articles={featured} />
         <Squiggles />
         <ArticleCardStack />
 
@@ -41,7 +46,7 @@ function Home() {
           </Grid>
         </Grid>
 
-        <ArticleCardStack />
+        <ArticleCardStack articles={articles} />
       </Container>
 
       <Banner />
