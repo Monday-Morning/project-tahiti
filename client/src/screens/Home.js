@@ -1,7 +1,7 @@
 import React from 'react';
 
 // libraries
-import { Box, Container, Grid, Card, makeStyles } from '@material-ui/core';
+import { Container, Grid, Card, makeStyles } from '@material-ui/core';
 import { useQuery } from '@apollo/client';
 
 // Components
@@ -14,17 +14,17 @@ import Banner from '../components/homepage/Banner';
 import Trending from '../components/homepage/Trending';
 
 // Queries
-import TrialQuery from '../graphql/queries/trial';
+import GetIssueByIdQuery from '../graphql/queries/getIssueByID';
 
 function Home() {
-  const classes = useStyles();
-  const { loading, error, data } = useQuery(TrialQuery, {
-    variables: { username: 'riteshsp2000' },
+  const { loading, error, data } = useQuery(GetIssueByIdQuery, {
+    variables: { id: '609566db3fa05a2fdb2f9c6a' },
   });
 
   // eslint-disable-next-line no-console
   console.log('here', { loading, error, data });
 
+  const classes = useStyles();
   return (
     <>
       <Container>
