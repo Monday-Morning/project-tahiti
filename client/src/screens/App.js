@@ -47,7 +47,7 @@ function App() {
           <Route path='/onboarding' exact component={AsyncOnboarding} />
 
           <Marginals>
-            <Route path='/article' exact component={AsyncArticle} />
+            <Route path='/article/:id' exact component={AsyncArticle} />
             <Route path='/podcast' exact component={AsyncPodcast} />
             <Route path='/portfolio' exact component={AsyncPortfolio} />
             <Route path='/witsdom' exact component={AsyncWitsdom} />

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+/* eslint-disable react/jsx-props-no-spreading */
+import React, { useState, useEffect } from 'react';
 
 // libraries
 import { Container, Grid, useMediaQuery } from '@material-ui/core';
+import { useLocation } from 'react-router-dom';
 import { useDrag } from 'react-use-gesture';
-import theme from '../config/themes/light';
 
 // Components
 import Comments from '../components/article/comments';
@@ -13,17 +14,19 @@ import Disclaimer from '../components/article/Disclaimer';
 import ArticleTags from '../components/article/Tags';
 import RecommendedArticles from '../components/article/RecommendedArticles';
 
-//placeholders
+// Assets
+import theme from '../config/themes/light';
 import { ARTICLE } from '../assets/placeholder/article';
 import SidePanel from '../components/article/SidePanel';
 
 function Home() {
   const [toggleSidebar, setToggleSidebar] = useState(false);
-
-  let matches = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMatch = useMediaQuery(theme.breakpoints.down('sm'));
+  const location = useLocation();
+  const articleID = location.pathname.split('/')[2];
 
   const bind = useDrag(({ down, movement: [mx, my] }) => {
-    if (matches) {
+    if (isMatch) {
       if (down && mx < -10) {
         setToggleSidebar(true);
       } else if (

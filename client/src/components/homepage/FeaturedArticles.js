@@ -3,15 +3,15 @@ import React from 'react';
 // libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, Grid, Typography } from '@material-ui/core';
-
-// image
-import black from '../../assets/images/black.jpg';
+import { useHistory } from 'react-router-dom';
 
 // Utils
 import limitString from '../../utils/limitString';
+// import createBrowserHistory from '../../utils/history';
 
 function FeaturedArticle({ article }) {
   const {
+    id,
     title,
     readTime,
     authors,
@@ -21,9 +21,17 @@ function FeaturedArticle({ article }) {
   } = article;
 
   const classes = useStyles();
+  const history = useHistory();
+
+  const navigateToArticle = () => history.push(`/article/${id}`);
+
   return (
     <div
       className={classes.articleWrapper}
+      onClick={navigateToArticle}
+      onKeyDown={navigateToArticle}
+      role='button'
+      tabIndex={0}
       style={{
         backgroundImage: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2),  rgba(0,0,0,0.9)), url(${storePath}) `,
       }}
@@ -87,10 +95,12 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '300px',
     height: '100%',
     width: '100%',
-    backgroundImage: (cover) => `url(${cover}), url(${black})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     color: theme.palette.common.white,
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
   container: {
     width: '100%',
