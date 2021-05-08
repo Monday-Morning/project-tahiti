@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 
 // libraries
@@ -52,14 +53,14 @@ function Home() {
       <Banner />
 
       <Container style={{ marginTop: 35 }}>
-        <Grid container spacing={4}>
+        {/* <Grid container spacing={4}>
           <Grid item sm={6}>
             <Card className={classes.card} />
           </Grid>
           <Grid item sm={6}>
             <Card className={classes.card} />
           </Grid>
-        </Grid>
+        </Grid> */}
 
         <Trending />
       </Container>

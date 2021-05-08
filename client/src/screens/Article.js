@@ -61,7 +61,7 @@ function Article() {
 
         <Grid container>
           <Grid item md={9}>
-            {/* <ArticleContent article={article} /> */}
+            <ArticleContent article={article} />
             <Disclaimer />
             {/* <ArticleTags tags={article.tags} /> */}
             <hr />
