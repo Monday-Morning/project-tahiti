@@ -1,65 +1,101 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 
 // libraries
-import { Container, Grid, makeStyles, Typography } from '@material-ui/core';
+import { Grid, makeStyles, Typography } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-
 import { Bookmark, Share2, Volume2 } from 'react-feather';
+import moment from 'moment';
 
-// Config
+// Config + Utilities
 import theme from '../../config/themes/light';
+import getCategory from '../../utils/categoryMap';
 
 // images
-import cover from '../../assets/images/articleCover.png';
-import user from '../../assets/images/photo.png';
 
-const ArticleHeader = (props) => {
+const ArticleHeader = ({ article, articleTitle }) => {
   const Desktop = useMediaQuery(theme.breakpoints.up('sm'));
   const classes = useStyles();
 
+  const categorySortFunction = (firstObj, secondObj) => {
+    if (firstObj.number.toString() < secondObj.number.toString()) return -1;
+    if (firstObj.number.toString() > secondObj.number.toString()) return 1;
+    return 0;
+  };
+
+  const {
+    authors,
+    readTime,
+    updatedAt,
+    categories,
+    coverMedia: {
+      rectangle: { storePath },
+    },
+  } = article;
+
   return (
     <div className={classes.container}>
-      <img src={cover} alt='Cover Photo' className={classes.coverImg} />
+      <img
+        src={storePath}
+        alt={`Monday Morning Article Cover for: ${articleTitle}`}
+        className={classes.coverImg}
+      />
 
       <Grid container className={classes.container}>
         <Grid item md={9}>
           <Grid container>
-            {props.article.tags.map((tag, key) => (
-              <Grid item key={key}>
-                <span className={classes.tag}>{tag}</span>
-              </Grid>
-            ))}
+            {categories
+              .slice()
+              .sort(categorySortFunction)
+              .map(({ number }) => (
+                <Grid item key={getCategory(number)}>
+                  <Typography variant='body1' className={classes.tag}>
+                    {getCategory(number)}
+                    <span
+                      style={{
+                        textDecoration: 'none',
+                        paddingLeft: '10px',
+                        paddingRight: '10px',
+                      }}
+                    >
+                      |
+                    </span>
+                  </Typography>
+                </Grid>
+              ))}
           </Grid>
 
           <Typography className={classes.title} variant={Desktop ? 'h1' : 'h2'}>
-            {props.article.title}
+            {articleTitle}
           </Typography>
 
           <Typography className={classes.publishDate}>
-            {props.article.publishDate}
+            {moment(updatedAt).format('ll')}
+            <span style={{ marginRight: 10, marginLeft: 10 }}>|</span>
+            {moment.duration(readTime, 'seconds').humanize()}
           </Typography>
 
           <div className={classes.wrapper}>
             <div className={classes.authorList}>
-              {props.article.authors.map((author, key) => (
-                <div key={key} className={classes.authorWrapper}>
-                  <img
+              {authors.map(({ name }) => (
+                <div key={name} className={classes.authorWrapper}>
+                  {/* <img
                     src={user}
                     alt={author.alt}
                     className={classes.authorImg}
-                  />
+                  /> */}
 
                   <Typography variant='body2' className={classes.author}>
-                    {author.name}
+                    {name}
                   </Typography>
                 </div>
               ))}
             </div>
 
             <div className={classes.utilityList}>
-              <span className={classes.utilityIcon}>
+              {/* <span className={classes.utilityIcon}>
                 <Volume2 size={Desktop ? 18 : 10} />
-              </span>
+              </span> */}
               <span className={classes.utilityIcon}>
                 <Share2 size={Desktop ? 18 : 10} />
               </span>
@@ -78,7 +114,7 @@ const ArticleHeader = (props) => {
 
 export default ArticleHeader;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   container: {
     marginTop: '2rem',
   },
@@ -94,7 +130,6 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '1.75rem',
     color: theme.palette.secondary.neutral60,
     textDecoration: 'underline',
-    marginRight: '10px',
     textTransform: 'uppercase',
     [theme.breakpoints.down('sm')]: {
       fontSize: '0.75rem',

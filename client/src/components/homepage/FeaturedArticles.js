@@ -23,7 +23,7 @@ function FeaturedArticle({ article }) {
   const classes = useStyles();
   const history = useHistory();
 
-  const navigateToArticle = () => history.push(`/article/${id}`);
+  const navigateToArticle = () => history.push(`/article/${id}/${title}`);
 
   return (
     <div

@@ -2,7 +2,6 @@ import { gql } from '@apollo/client';
 
 export default gql`
   fragment ArticleContent on Article {
-
     content {
       plaintext
       data
