@@ -1,15 +1,18 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 
 // libraries
 import { Grid, makeStyles, Typography } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { Bookmark, Share2, Volume2 } from 'react-feather';
+import {
+  Bookmark,
+  Share2,
+  // Volume2
+} from 'react-feather';
 import moment from 'moment';
 
 // Config + Utilities
 import theme from '../../config/themes/light';
-import getCategory from '../../utils/categoryMap';
+import getCategory from '../../utils/determineCategory';
 
 // images
 
