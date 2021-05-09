@@ -44,10 +44,11 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 const link = from([
   errorLink,
   new HttpLink({
-    uri:
-      process.env.NODE_ENV === 'production'
-        ? 'https://server.mondaymorning.nitrkl.ac.in'
-        : 'https://mm.server1.dashnet.in/v1/graph',
+    // TODO: Use the production link when deployed
+    uri: 'https://mm.server1.dashnet.in/v1/graph',
+    // process.env.NODE_ENV === 'production'
+    //   ? 'https://server.mondaymorning.nitrkl.ac.in'
+    //   : 'https://mm.server1.dashnet.in/v1/graph',
   }),
 ]);
 
