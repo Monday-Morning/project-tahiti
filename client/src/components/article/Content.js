@@ -1,5 +1,3 @@
-/* eslint-disable array-callback-return */
-/* eslint-disable no-unused-vars */
 import React from 'react';
 
 // libraries
@@ -31,7 +29,7 @@ const ArticleContent = ({ article: { content } }) => {
     ({
       contentType,
       plaintext,
-      data,
+      // data,
       media,
       blockFormatting,
       textFormatting,
@@ -46,20 +44,26 @@ const ArticleContent = ({ article: { content } }) => {
         if (textFormatting.length === 0) {
           structuredContent.push({
             contentType,
-            text: plaintext,
-            media,
-            blockFormatting,
-            styles: {
-              bold: null,
-              underline: null,
-              italic: null,
-              strikethrough: null,
-              size: null,
-            },
+            data: [
+              {
+                contentType,
+                text: plaintext,
+                media,
+                blockFormatting,
+                styles: {
+                  bold: null,
+                  underline: null,
+                  italic: null,
+                  strikethrough: null,
+                  size: null,
+                },
+              },
+            ],
           });
         }
 
         let endMarker = 0;
+        const paragraphArray = [];
         textFormatting.forEach(
           (
             { bold, italic, underline, strikethrough, size, start, end },
@@ -71,7 +75,7 @@ const ArticleContent = ({ article: { content } }) => {
             const styledTextGroup = text.slice(start, end + 1).join('');
             endMarker = end + 1;
 
-            structuredContent.push(
+            paragraphArray.push(
               {
                 contentType,
                 text: preStyledTextGroup,
@@ -102,9 +106,9 @@ const ArticleContent = ({ article: { content } }) => {
               const postStyledTextGroup = text
                 .slice(end + 1, text.length + 1)
                 .join('');
-              structuredContent.push({
+              paragraphArray.push({
                 contentType,
-                text: preStyledTextGroup,
+                text: postStyledTextGroup,
                 blockFormatting,
                 styles: {
                   bold: null,
@@ -117,24 +121,26 @@ const ArticleContent = ({ article: { content } }) => {
             }
           },
         );
+
+        const filteredPara = paragraphArray.filter(
+          (element) => element.text !== '',
+        );
+        structuredContent.push({ contentType, data: filteredPara });
       } else {
         structuredContent.push({
           contentType,
-          media,
-          text: plaintext,
-          blockFormatting,
+          data: [
+            {
+              contentType,
+              media,
+              text: plaintext,
+              blockFormatting,
+            },
+          ],
         });
       }
     },
   );
-
-  const filteredContent = structuredContent
-    // eslint-disable-next-line consistent-return
-    .map((obj) => {
-      if (obj.text && obj.text !== '') return obj;
-      if (obj.media) return obj;
-    })
-    .filter((element) => element !== undefined);
 
   const getClassName = (styles) => {
     const classNames = [];
@@ -146,62 +152,83 @@ const ArticleContent = ({ article: { content } }) => {
     return classNames.join(' ');
   };
 
-  const renderContent = (contentObj) => {
-    const { contentType } = contentObj;
+  const renderContent = (contentObj, index) => {
+    const { contentType, data } = contentObj;
 
     switch (contentType) {
       case CONTENT_TYPE.h1 || CONTENT_TYPE.h2 || CONTENT_TYPE.h3:
         return (
-          <Element key={contentObj.text} name={contentObj.text}>
+          <Element key={`${contentType}-${index}`} name={contentType}>
             <Typography
-              className={`${classes.heading} ${getClassName(
-                contentObj.styles,
-              )}`}
+              className={classes.heading}
               variant={contentType.toLowerCase()}
             >
-              {contentObj.text}
+              {data.map(({ text, styles }) => (
+                <span key={text} className={getClassName(styles)}>
+                  {text}
+                </span>
+              ))}
             </Typography>
           </Element>
         );
       case CONTENT_TYPE.paragraph:
         return (
           <Typography
-            className={`${classes.para} ${getClassName(contentObj.styles)}`}
-            key={contentObj.text}
+            className={classes.para}
+            key={`${contentType}-${index}`}
             variant='body1'
           >
-            {contentObj.text}
+            {data.map(({ text, styles }) => (
+              <span key={text} className={getClassName(styles)}>
+                {text}
+              </span>
+            ))}
           </Typography>
         );
       case CONTENT_TYPE.image:
-        return (
+        return data.map((dataObj) => (
           <img
-            key={contentObj.text}
-            src={contentObj.media.storePath}
-            alt={contentObj.plainText}
+            key={dataObj.text}
+            src={dataObj.media.storePath}
+            alt={dataObj.plainText}
             className={classes.articleImg}
           />
-        );
+        ));
       case CONTENT_TYPE.quote:
         return (
-          <div key={contentObj.text} className={classes.blockquote}>
-            <Typography variant='body1' className={classes.blockquoteData}>
-              {contentObj.text}
-            </Typography>
+          <div key={`${contentType}-${index}`} className={classes.blockquote}>
+            {data.map((dataObj) => (
+              <Typography variant='body1' className={classes.blockquoteData}>
+                {dataObj.text}
+              </Typography>
+            ))}
           </div>
         );
       default:
         return (
-          <Element name={contentObj.text} key={contentObj.text}>
-            <Typography className={classes.heading} variant='h2'>
-              {contentObj.text}
+          <Element key={`${contentType}-${index}`} name={contentType}>
+            <Typography
+              className={classes.heading}
+              variant={contentType.toLowerCase()}
+            >
+              {data.map(({ text, styles }) => (
+                <span key={text} className={getClassName(styles)}>
+                  {text}
+                </span>
+              ))}
             </Typography>
           </Element>
         );
     }
   };
 
-  return <div>{filteredContent.map((obj) => renderContent(obj))}</div>;
+  return (
+    <div>
+      {structuredContent
+        .filter((element) => element.data.length > 0)
+        .map((obj, index) => renderContent(obj, index))}
+    </div>
+  );
 };
 
 export default ArticleContent;
