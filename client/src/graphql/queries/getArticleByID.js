@@ -51,6 +51,14 @@ export default gql`
         plaintext
         data
         mediaID
+        media {
+          storePath
+          authors {
+            name
+          }
+          mediaType
+          blurhash
+        }
         contentType
         blockFormatting {
           align
