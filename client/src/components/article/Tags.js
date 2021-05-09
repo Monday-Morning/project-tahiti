@@ -1,20 +1,19 @@
-import { makeStyles } from '@material-ui/core';
 import React from 'react';
 
-// libraries
+// Libraries
+import { makeStyles } from '@material-ui/core';
 
-const ArticleTags = (props) => {
+const ArticleTags = ({ tags }) => {
   const classes = useStyles();
+
   return (
     <div className={classes.wrapper}>
       Tags :
-      {props.tags.map((tag, key) => {
-        return (
-          <div key={key} className={classes.tag}>
-            {tag}
-          </div>
-        );
-      })}
+      {tags.map((tag) => (
+        <div key={tag.name} className={classes.tag}>
+          {tag.name}
+        </div>
+      ))}
     </div>
   );
 };

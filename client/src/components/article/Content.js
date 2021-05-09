@@ -5,13 +5,10 @@ import { makeStyles, Typography } from '@material-ui/core';
 import { Element } from 'react-scroll';
 
 // Utils
-import getStructuredContent, {
-  CONTENT_TYPE,
-} from '../../utils/articleContentParser';
+import { CONTENT_TYPE } from '../../utils/articleContentParser';
 
-const ArticleContent = ({ article: { content } }) => {
+const ArticleContent = ({ structuredContent }) => {
   const classes = useStyles();
-  const structuredContent = getStructuredContent(content);
 
   const getClassName = (styles) => {
     const classNames = [];

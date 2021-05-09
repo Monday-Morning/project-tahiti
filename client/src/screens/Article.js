@@ -17,13 +17,16 @@ import Disclaimer from '../components/article/Disclaimer';
 import ArticleTags from '../components/article/Tags';
 import RecommendedArticles from '../components/article/RecommendedArticles';
 import ActivityIndicator from '../components/shared/ActivityIndicator';
+import SidePanel from '../components/article/SidePanel';
 
 // Assets
 import theme from '../config/themes/light';
-import SidePanel from '../components/article/SidePanel';
 
 // Queries
 import GetArticleByID from '../graphql/queries/getArticleByID';
+
+// Utils
+import getStructuredContent from '../utils/articleContentParser';
 
 function Article() {
   const [toggleSidebar, setToggleSidebar] = useState(false);
@@ -53,6 +56,7 @@ function Article() {
   if (error) return <div>{error}</div>;
 
   const { getArticle: article } = data;
+  const structuredContent = getStructuredContent(article.content);
 
   return (
     <div>
@@ -61,15 +65,18 @@ function Article() {
 
         <Grid container>
           <Grid item md={9}>
-            <ArticleContent article={article} />
+            <ArticleContent structuredContent={structuredContent} />
             <Disclaimer />
-            {/* <ArticleTags tags={article.tags} /> */}
+            <ArticleTags tags={article.tags} />
             <hr />
             <Comments />
           </Grid>
 
           <Grid item md={3}>
-            {/* <SidePanel index={article.index} toggleSidebar={toggleSidebar} /> */}
+            <SidePanel
+              structuredContent={structuredContent}
+              toggleSidebar={toggleSidebar}
+            />
           </Grid>
         </Grid>
       </Container>
