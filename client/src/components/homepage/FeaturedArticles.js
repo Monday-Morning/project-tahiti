@@ -3,40 +3,53 @@ import React from 'react';
 // libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, Grid, Typography } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 
-// images
-import cover from '../../assets/images/featured.png';
-import black from '../../assets/images/black.jpg';
+// Utils
+import limitString from '../../utils/limitString';
+// import createBrowserHistory from '../../utils/history';
 
-function FeaturedArticle() {
-  const props = {
-    article: {
-      tags: ['Department', 'Campus', 'BM-BT'],
-      title: 'Chaos, Curiosity and COVID-19: A Biotechnologist’s Perspective',
-      authors: ['Debabrata Malik', 'Rama Krushna Behera'],
-      readTime: '12 min',
+function FeaturedArticle({ article }) {
+  const {
+    id,
+    title,
+    readTime,
+    authors,
+    coverMedia: {
+      rectangle: { storePath },
     },
-  };
+  } = article;
+
   const classes = useStyles();
+  const history = useHistory();
+
+  const navigateToArticle = () => history.push(`/article/${id}/${title}`);
 
   return (
-    <div className={classes.articleWrapper}>
+    <div
+      className={classes.articleWrapper}
+      onClick={navigateToArticle}
+      onKeyDown={navigateToArticle}
+      role='button'
+      tabIndex={0}
+      style={{
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2),  rgba(0,0,0,0.9)), url(${storePath}) `,
+      }}
+    >
       <div className={classes.container}>
-        <Typography className={classes.title}>{props.article.title}</Typography>
+        <Typography className={classes.title}>
+          {limitString(title, 48)}
+        </Typography>
         <div className={classes.wrapper}>
           <div className={classes.authorList}>
-            {props.article.authors.map((author) => (
-              <Typography
-                variant='body2'
-                key={author}
-                className={classes.author}
-              >
-                {author}
+            {authors.map(({ name }) => (
+              <Typography variant='body2' key={name} className={classes.author}>
+                {name}
               </Typography>
             ))}
           </div>
           <div className={classes.readTime}>
-            <Typography variant='body2'>{props.article.readTime}</Typography>
+            <Typography variant='body2'>{readTime}</Typography>
           </div>
         </div>
       </div>
@@ -44,29 +57,22 @@ function FeaturedArticle() {
   );
 }
 
-function FeaturedArticles() {
+function FeaturedArticles({ articles }) {
   const classes = useStyles();
 
   return (
     <Card className={classes.FeaturedarticleCard}>
       <Grid container spacing={0}>
         <Grid item sm={6}>
-          <FeaturedArticle />
+          <FeaturedArticle article={articles[0]} />
         </Grid>
         <Grid item sm={6}>
           <Grid container>
-            <Grid item sm={6}>
-              <FeaturedArticle />
-            </Grid>
-            <Grid item sm={6}>
-              <FeaturedArticle />
-            </Grid>
-            <Grid item sm={6}>
-              <FeaturedArticle />
-            </Grid>
-            <Grid item sm={6}>
-              <FeaturedArticle />
-            </Grid>
+            {[0, 1, 2, 3].map((number) => (
+              <Grid key={number} item sm={6}>
+                <FeaturedArticle article={articles[number + 1]} />
+              </Grid>
+            ))}
           </Grid>
         </Grid>
       </Grid>
@@ -89,10 +95,12 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '300px',
     height: '100%',
     width: '100%',
-    backgroundImage: `url(${cover}), url(${black})`,
     backgroundSize: 'cover',
-    backgroundPosition: '50% 50%',
+    backgroundPosition: 'center',
     color: theme.palette.common.white,
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
   container: {
     width: '100%',

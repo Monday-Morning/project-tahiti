@@ -10,47 +10,43 @@ import TableOfContent from './TableOfContent';
 const ReactionIcon = () => {
   const [reaction, setReaction] = useState(false);
   return (
+    // eslint-disable-next-line jsx-a11y/control-has-associated-label
     <i
       className={reaction ? 'fa fa-lightbulb' : 'far fa-lightbulb'}
-      onClick={() => {
-        setReaction(!reaction);
-      }}
-    ></i>
+      onClick={() => setReaction(!reaction)}
+      onKeyDown={() => setReaction(!reaction)}
+      role='button'
+      tabIndex={0}
+    />
   );
 };
 
-const Reactions = () => {
+const SidePanel = ({ structuredContent, toggleSidebar }) => {
   const classes = useStyles();
-  return (
-    <div className={classes.reactionsWrapper}>
-      <span className={classes.icon}>
-        <ReactionIcon />
-      </span>
-      <span className={classes.icon}>
-        <i className='fa fa-share-alt'></i>
-      </span>
-      <span className={classes.icon}>
-        <Link
-          to='commentBox'
-          smooth={true}
-          spy={true}
-          activeClass={classes.indexLinkActive}
-        >
-          <i className='far fa-comment'></i>
-        </Link>
-      </span>
-    </div>
-  );
-};
 
-const SidePanel = (props) => {
-  //Expanded State of Table of Contents (In Mobile View Only)
-
-  const classes = useStyles();
   return (
-    <div className={props.toggleSidebar ? classes.expanded : classes.wrapper}>
-      <TableOfContent index={props.index} />
-      <Reactions />
+    <div className={toggleSidebar ? classes.expanded : classes.wrapper}>
+      <TableOfContent structuredContent={structuredContent} />
+
+      {/* Reactions */}
+      <div className={classes.reactionsWrapper}>
+        <span className={classes.icon}>
+          <ReactionIcon />
+        </span>
+        <span className={classes.icon}>
+          <i className='fa fa-share-alt' />
+        </span>
+        <span className={classes.icon}>
+          <Link
+            to='commentBox'
+            smooth
+            spy
+            activeClass={classes.indexLinkActive}
+          >
+            <i className='far fa-comment' />
+          </Link>
+        </span>
+      </div>
     </div>
   );
 };
@@ -61,7 +57,6 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     marginTop: '1rem',
     paddingLeft: '4rem',
-    position: '-webkit-sticky',
     position: 'sticky',
     top: 20,
     zIndex: '10',
@@ -80,6 +75,7 @@ const useStyles = makeStyles((theme) => ({
   },
   expanded: {
     [theme.breakpoints.down('sm')]: {
+      minWidth: '250px',
       position: 'fixed',
       top: '-1rem',
       bottom: '0',
@@ -97,7 +93,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '4rem',
     display: 'flex',
     flexDirection: 'column',
-    // alignItems: 'center',
     justify: 'center',
     paddingLeft: '4rem',
     [theme.breakpoints.down('md')]: {

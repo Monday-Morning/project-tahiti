@@ -7,6 +7,7 @@ import {
   HttpLink,
   from,
 } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
 
 const cache = new InMemoryCache();
@@ -43,16 +44,24 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 const link = from([
   errorLink,
   new HttpLink({
-    uri:
-      process.env.NODE_ENV === 'production'
-        ? 'https://server.mondaymorning.nitrkl.ac.in'
-        : 'http://mm.server1.dashnet.in/v1/graph',
+    // TODO: Use the production link when deployed
+    uri: 'https://mm.server1.dashnet.in/v1/graph',
+    // process.env.NODE_ENV === 'production'
+    //   ? 'https://server.mondaymorning.nitrkl.ac.in'
+    //   : 'https://mm.server1.dashnet.in/v1/graph',
   }),
 ]);
 
+const authLink = setContext((_, { headers }) => ({
+  headers: {
+    ...headers,
+    Authorization: '',
+  },
+}));
+
 const client = new ApolloClient({
   cache,
-  link,
+  link: authLink.concat(link),
   name: 'monday-morning-client',
   version: '1.3',
   queryDeduplication: false,

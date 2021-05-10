@@ -1,9 +1,13 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 
 // libraries
 import { Container, Grid, useMediaQuery } from '@material-ui/core';
+import { useLocation } from 'react-router-dom';
 import { useDrag } from 'react-use-gesture';
-import theme from '../config/themes/light';
+import { useQuery } from '@apollo/client';
 
 // Components
 import Comments from '../components/article/comments';
@@ -12,18 +16,31 @@ import ArticleContent from '../components/article/Content';
 import Disclaimer from '../components/article/Disclaimer';
 import ArticleTags from '../components/article/Tags';
 import RecommendedArticles from '../components/article/RecommendedArticles';
-
-//placeholders
-import { ARTICLE } from '../assets/placeholder/article';
+import ActivityIndicator from '../components/shared/ActivityIndicator';
 import SidePanel from '../components/article/SidePanel';
 
-function Home() {
-  const [toggleSidebar, setToggleSidebar] = useState(false);
+// Assets
+import theme from '../config/themes/light';
 
-  let matches = useMediaQuery(theme.breakpoints.down('sm'));
+// Queries
+import GetArticleByID from '../graphql/queries/getArticleByID';
+
+// Utils
+import getStructuredContent from '../utils/articleContentParser';
+
+function Article() {
+  const [toggleSidebar, setToggleSidebar] = useState(false);
+  const isMatch = useMediaQuery(theme.breakpoints.down('sm'));
+  const location = useLocation();
+  const articleID = location.pathname.split('/')[2];
+  const articleTitle = location.pathname.split('/')[3];
+
+  const { loading, error, data } = useQuery(GetArticleByID, {
+    variables: { id: articleID },
+  });
 
   const bind = useDrag(({ down, movement: [mx, my] }) => {
-    if (matches) {
+    if (isMatch) {
       if (down && mx < -10) {
         setToggleSidebar(true);
       } else if (
@@ -34,16 +51,21 @@ function Home() {
       }
     }
   });
-  const article = ARTICLE;
+
+  if (loading && !data) return <ActivityIndicator size={150} />;
+  if (error) return <div>{error}</div>;
+
+  const { getArticle: article } = data;
+  const structuredContent = getStructuredContent(article.content);
 
   return (
     <div>
       <Container {...bind()}>
-        <ArticleHeader article={article} />
+        <ArticleHeader article={article} articleTitle={articleTitle} />
 
         <Grid container>
           <Grid item md={9}>
-            <ArticleContent article={article} />
+            <ArticleContent structuredContent={structuredContent} />
             <Disclaimer />
             <ArticleTags tags={article.tags} />
             <hr />
@@ -51,7 +73,10 @@ function Home() {
           </Grid>
 
           <Grid item md={3}>
-            <SidePanel index={article.index} toggleSidebar={toggleSidebar} />
+            <SidePanel
+              structuredContent={structuredContent}
+              toggleSidebar={toggleSidebar}
+            />
           </Grid>
         </Grid>
       </Container>
@@ -61,4 +86,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Article;

@@ -4,47 +4,101 @@ import React from 'react';
 import { makeStyles, Typography } from '@material-ui/core';
 import { Element } from 'react-scroll';
 
-const ArticleContent = (props) => {
+// Utils
+import { CONTENT_TYPE } from '../../utils/articleContentParser';
+
+const ArticleContent = ({ structuredContent }) => {
   const classes = useStyles();
+
+  const getClassName = (styles) => {
+    const classNames = [];
+    if (styles.bold) classNames.push(`${classes.boldText}`);
+    if (styles.italic) classNames.push(`${classes.italicText}`);
+    if (styles.underline) classNames.push(`${classes.underlineText}`);
+    if (styles.strikethrough) classNames.push(`${classes.strikethroughText}`);
+
+    return classNames.join(' ');
+  };
+
+  const renderContent = (contentObj, index) => {
+    const { contentType, data } = contentObj;
+
+    switch (contentType) {
+      case CONTENT_TYPE.h1 || CONTENT_TYPE.h2 || CONTENT_TYPE.h3:
+        return (
+          <Element
+            key={`${contentType}-${index}`}
+            name={`${contentType}-${index}`}
+          >
+            <Typography
+              className={classes.heading}
+              variant={contentType.toLowerCase()}
+            >
+              {data.map(({ text, styles }) => (
+                <span key={text} className={getClassName(styles)}>
+                  {text}
+                </span>
+              ))}
+            </Typography>
+          </Element>
+        );
+      case CONTENT_TYPE.paragraph:
+        return (
+          <Typography
+            className={classes.para}
+            key={`${contentType}-${index}`}
+            variant='body1'
+          >
+            {data.map(({ text, styles }) => (
+              <span key={text} className={getClassName(styles)}>
+                {text}
+              </span>
+            ))}
+          </Typography>
+        );
+      case CONTENT_TYPE.image:
+        return data.map((dataObj) => (
+          <img
+            key={dataObj.text}
+            src={dataObj.media.storePath}
+            alt={dataObj.plainText}
+            className={classes.articleImg}
+          />
+        ));
+      case CONTENT_TYPE.quote:
+        return (
+          <div key={`${contentType}-${index}`} className={classes.blockquote}>
+            {data.map((dataObj) => (
+              <Typography variant='body1' className={classes.blockquoteData}>
+                {dataObj.text}
+              </Typography>
+            ))}
+          </div>
+        );
+      default:
+        return (
+          <Element
+            key={`${contentType}-${index}`}
+            name={`${contentType}-${index}`}
+          >
+            <Typography
+              className={classes.heading}
+              variant={contentType.toLowerCase()}
+            >
+              {data.map(({ text, styles }) => (
+                <span key={text} className={getClassName(styles)}>
+                  {text}
+                </span>
+              ))}
+            </Typography>
+          </Element>
+        );
+    }
+  };
+
   return (
     <div>
-      {props.article.content.map((content, key) => {
-        switch (content.type) {
-          case 'paragraph':
-            return (
-              <Typography className={classes.para} key={key} variant='body1'>
-                {content.data}
-              </Typography>
-            );
-          case 'image':
-            return (
-              <img
-                key={key}
-                src={content.data}
-                alt={content.alt}
-                className={classes.articleImg}
-              />
-            );
-          case 'heading':
-            return (
-              <Element name={content.id} key={key}>
-                <Typography className={classes.heading} variant='h2'>
-                  {content.data}
-                </Typography>
-              </Element>
-            );
-          case 'blockquote':
-            return (
-              <div key={key} className={classes.blockquote}>
-                <Typography variant='body1' className={classes.blockquoteData}>
-                  {content.data}
-                </Typography>
-              </div>
-            );
-          default:
-            return <div key={key}>{content.data}</div>;
-        }
-      })}
+      {structuredContent.map((obj, index) => renderContent(obj, index))}
     </div>
   );
 };
@@ -56,7 +110,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '1rem',
     marginBottom: '1rem',
     textAlign: 'justify',
-    fontWeight: '400',
+    fontWeight: 'normal',
   },
   heading: {
     marginTop: '0.5rem',
@@ -78,4 +132,25 @@ const useStyles = makeStyles((theme) => ({
     borderLeft: '4px solid',
     borderColor: theme.palette.common.black,
   },
+
+  // Custom Text Styles
+  boldText: {
+    fontWeight: 'bold',
+  },
+  underlineText: {
+    textDecoration: 'underline',
+  },
+  italicText: {
+    fontStyle: 'italic',
+  },
+  strikethroughText: {
+    textDecoration: 'line-through',
+  },
+  // customSizeText: {},
+
+  // Custom Block Styles
+  // alignLeft: {},
+  // alignCenter: {},
+  // alignRight: {},
+  // alignJustify: {},
 }));

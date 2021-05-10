@@ -1,7 +1,7 @@
 import React from 'react';
 
 // libraries
-import { makeStyles, Container, Grid, Typography } from '@material-ui/core';
+import { makeStyles, Container, Typography } from '@material-ui/core';
 
 // Components
 import ArticleCardStack from '../widgets/ArticleCardStack';
@@ -15,7 +15,7 @@ const RecommendedArticles = ({ title }) => {
           <Typography variant='h2' className={classes.title}>
             {title}
           </Typography>
-          <div className={classes.underline}></div>
+          <div className={classes.underline} />
         </div>
         <ArticleCardStack />
       </Container>
@@ -34,13 +34,17 @@ const useStyles = makeStyles((theme) => ({
   titleWrapper: {
     display: 'flex',
     marginBottom: '20px',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   title: {
     display: 'inline-block',
+    width: 'auto',
   },
   underline: {
-    borderBottom: '1px solid black',
+    height: '2px',
+    backgroundColor: 'black',
     marginLeft: '40px',
-    width: '100%',
+    flex: 1,
   },
 }));

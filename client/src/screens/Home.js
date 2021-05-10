@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 
 // libraries
-import { Box, Container, Grid, Card, makeStyles } from '@material-ui/core';
+import { Container, Grid, Card, makeStyles } from '@material-ui/core';
 import { useQuery } from '@apollo/client';
 
 // Components
@@ -12,23 +13,28 @@ import Pulse from '../components/widgets/Pulse';
 import Calendar from '../components/homepage/Calendar';
 import Banner from '../components/homepage/Banner';
 import Trending from '../components/homepage/Trending';
+import ActivityIndicator from '../components/shared/ActivityIndicator';
 
 // Queries
-import TrialQuery from '../graphql/queries/trial';
+import GetIssueByIdQuery from '../graphql/queries/getIssueByID';
 
 function Home() {
-  const classes = useStyles();
-  const { loading, error, data } = useQuery(TrialQuery, {
-    variables: { username: 'riteshsp2000' },
+  const { loading, error, data } = useQuery(GetIssueByIdQuery, {
+    variables: { id: '609566db3fa05a2fdb2f9c6a' },
   });
 
-  // eslint-disable-next-line no-console
-  console.log('here', { loading, error, data });
+  const classes = useStyles();
+  if (loading && !data) return <ActivityIndicator size={150} />;
+  if (error) return <div>{error}</div>;
+
+  const {
+    getIssueByID: { articles, featured },
+  } = data;
 
   return (
     <>
       <Container>
-        <FeaturedArticles />
+        <FeaturedArticles articles={featured} />
         <Squiggles />
         <ArticleCardStack />
 
@@ -41,20 +47,20 @@ function Home() {
           </Grid>
         </Grid>
 
-        <ArticleCardStack />
+        <ArticleCardStack articles={articles} />
       </Container>
 
       <Banner />
 
       <Container style={{ marginTop: 35 }}>
-        <Grid container spacing={4}>
+        {/* <Grid container spacing={4}>
           <Grid item sm={6}>
             <Card className={classes.card} />
           </Grid>
           <Grid item sm={6}>
             <Card className={classes.card} />
           </Grid>
-        </Grid>
+        </Grid> */}
 
         <Trending />
       </Container>

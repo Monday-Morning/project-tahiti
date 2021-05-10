@@ -29,6 +29,7 @@
     "firebase": "^8.2.9",
     "graphql": "^15.5.0",
     "history": "4.10.1",
+    "moment": "^2.29.1",
     "react": "^17.0.1",
     "react-dom": "^16.13.1",
     "react-feather": "^2.0.9",
