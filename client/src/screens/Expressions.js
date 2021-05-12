@@ -44,7 +44,7 @@ function Expressions() {
         <Section heading='Witsdom' link='witsdom' />
 
         <Title heading='Photostory' link='photostory' />
-        <FeaturedArticles />
+        {/* <FeaturedArticles /> */}
       </Container>
 
       <Element name='gallery'>

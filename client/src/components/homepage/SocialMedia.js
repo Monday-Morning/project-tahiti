@@ -36,8 +36,8 @@ const Socials = () => {
   const classes = useStyles();
 
   return (
-    <Grid container justify='center' spacing={4} className={classes.root}>
-      <Grid item sm={5} className={classes.card}>
+    <Grid container spacing={0} className={classes.root}>
+      <Grid item sm={12} md={6} lg={6} className={classes.card}>
         <Header
           Icon={Instagram}
           title='mondaymorningnitr'
@@ -51,7 +51,7 @@ const Socials = () => {
         />
       </Grid>
 
-      <Grid item sm={5} className={classes.card}>
+      <Grid item sm={12} md={6} lg={6} className={classes.card}>
         <Header
           Icon={Youtube}
           title='Monday Morning'
@@ -63,6 +63,39 @@ const Socials = () => {
             )
           }
         />
+        <iframe
+          width='520'
+          height='292'
+          src='https://www.youtube.com/embed/_KJlm1mafGo'
+          title='YouTube video player'
+          frameBorder='0'
+          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+          allowFullScreen
+          className={classes.largeVideo}
+        />
+
+        <div className={classes.subVideoContainer}>
+          <iframe
+            width='248'
+            height='139'
+            src='https://www.youtube.com/embed/btc-_kqkdpc'
+            title='YouTube video player'
+            frameBorder='0'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+            allowFullScreen
+            className={classes.smallVideo}
+          />
+          <iframe
+            width='248'
+            height='139'
+            src='https://www.youtube.com/embed/c6SglPpwmVg'
+            title='YouTube video player'
+            frameBorder='0'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+            allowFullScreen
+            className={classes.smallVideo}
+          />
+        </div>
       </Grid>
     </Grid>
   );
@@ -75,12 +108,7 @@ const useStyles = makeStyles(() => ({
     flexGrow: 1,
   },
   card: {
-    width: '100%',
-    height: '100%',
-    minHeight: '600px',
-
-    padding: '40px',
-    margin: '20px',
+    padding: '20px',
     borderRadius: '10px',
     boxShadow:
       '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
@@ -114,14 +142,31 @@ const useStyles = makeStyles(() => ({
     borderRadius: '4px',
     width: 'auto',
     height: '28px',
-    padding: '0px 12px',
+    padding: '2px 14px',
     color: '#ffffff',
 
     fontFamily: 'Source Sans Pro',
     fontWeight: '400',
-    fontSize: '20px',
+    fontSize: '18px',
     lineHeight: '28px',
     textAlign: 'center',
     textTransform: 'capitalize',
+  },
+  largeVideo: {
+    width: '100%',
+    height: '300px',
+    borderRadius: '10px',
+    marginBottom: '10px',
+  },
+  subVideoContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  smallVideo: {
+    width: '48%',
+    height: '140px',
+    borderRadius: '10px',
   },
 }));
