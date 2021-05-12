@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Libraries
-import { Button, makeStyles, Typography, Grid } from '@material-ui/core';
+import { Button, makeStyles, Typography, Grid, Paper } from '@material-ui/core';
 import { Youtube, Instagram } from 'react-feather';
 
 // const YOUTUBE_LINKS = ['Link1', 'Link2', 'Link3'];
@@ -36,68 +36,74 @@ const Socials = () => {
   const classes = useStyles();
 
   return (
-    <Grid container spacing={0} className={classes.root}>
-      <Grid item sm={12} md={6} lg={6} className={classes.card}>
-        <Header
-          Icon={Instagram}
-          title='mondaymorningnitr'
-          buttonText='Follow'
-          onClick={() =>
-            window.open(
-              'https://www.instagram.com/mondaymorningnitrofficial',
-              '_blank',
-            )
-          }
-        />
-      </Grid>
+    <div className={classes.root}>
+      <Grid container spacing={4}>
+        <Grid item sm={12} md={6} lg={6}>
+          <Paper className={classes.card}>
+            <Header
+              Icon={Instagram}
+              title='mondaymorningnitr'
+              buttonText='Follow'
+              onClick={() =>
+                window.open(
+                  'https://www.instagram.com/mondaymorningnitrofficial',
+                  '_blank',
+                )
+              }
+            />
+          </Paper>
+        </Grid>
 
-      <Grid item sm={12} md={6} lg={6} className={classes.card}>
-        <Header
-          Icon={Youtube}
-          title='Monday Morning'
-          buttonText='Subscribe'
-          onClick={() =>
-            window.open(
-              'https://www.youtube.com/channel/UCC2H5dnJ0AD-y8Fcscdq6bA',
-              '_blank',
-            )
-          }
-        />
-        <iframe
-          width='520'
-          height='292'
-          src='https://www.youtube.com/embed/_KJlm1mafGo'
-          title='YouTube video player'
-          frameBorder='0'
-          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-          allowFullScreen
-          className={classes.largeVideo}
-        />
+        <Grid item sm={12} md={6} lg={6}>
+          <Paper className={classes.card}>
+            <Header
+              Icon={Youtube}
+              title='Monday Morning'
+              buttonText='Subscribe'
+              onClick={() =>
+                window.open(
+                  'https://www.youtube.com/channel/UCC2H5dnJ0AD-y8Fcscdq6bA',
+                  '_blank',
+                )
+              }
+            />
+            <iframe
+              width='520'
+              height='292'
+              src='https://www.youtube.com/embed/_KJlm1mafGo'
+              title='YouTube video player'
+              frameBorder='0'
+              allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+              allowFullScreen
+              className={classes.largeVideo}
+            />
 
-        <div className={classes.subVideoContainer}>
-          <iframe
-            width='248'
-            height='139'
-            src='https://www.youtube.com/embed/btc-_kqkdpc'
-            title='YouTube video player'
-            frameBorder='0'
-            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-            allowFullScreen
-            className={classes.smallVideo}
-          />
-          <iframe
-            width='248'
-            height='139'
-            src='https://www.youtube.com/embed/c6SglPpwmVg'
-            title='YouTube video player'
-            frameBorder='0'
-            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-            allowFullScreen
-            className={classes.smallVideo}
-          />
-        </div>
+            <div className={classes.subVideoContainer}>
+              <iframe
+                width='248'
+                height='139'
+                src='https://www.youtube.com/embed/btc-_kqkdpc'
+                title='YouTube video player'
+                frameBorder='0'
+                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                allowFullScreen
+                className={classes.smallVideo}
+              />
+              <iframe
+                width='248'
+                height='139'
+                src='https://www.youtube.com/embed/c6SglPpwmVg'
+                title='YouTube video player'
+                frameBorder='0'
+                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                allowFullScreen
+                className={classes.smallVideo}
+              />
+            </div>
+          </Paper>
+        </Grid>
       </Grid>
-    </Grid>
+    </div>
   );
 };
 
@@ -108,6 +114,8 @@ const useStyles = makeStyles(() => ({
     flexGrow: 1,
   },
   card: {
+    width: '100%',
+    height: '100%',
     padding: '20px',
     borderRadius: '10px',
     boxShadow:
