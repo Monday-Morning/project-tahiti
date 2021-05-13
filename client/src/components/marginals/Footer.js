@@ -2,10 +2,10 @@ import React from 'react';
 
 // libraries
 import { makeStyles } from '@material-ui/core/styles';
-import logo from '../../assets/images/logo.png';
-import { Container, Grid, Typography, Button } from '@material-ui/core';
+import { Container, Grid, Typography } from '@material-ui/core';
 import { ArrowRightCircle } from 'react-feather';
 import { Link } from 'react-router-dom';
+import logo from '../../assets/images/logo.png';
 
 const Footer = () => {
   const classes = useStyles();
@@ -33,44 +33,88 @@ const Footer = () => {
               <Grid item xs={4}>
                 <ul className={classes.categories}>
                   <li>
-                    <Link to='/campus'>Campus</Link>
+                    <Typography variant='body1'>
+                      <Link to='/campus' className={classes.links}>
+                        Campus
+                      </Link>
+                    </Typography>
                   </li>
                   <li>
-                    <Link to='/connect'>Connect</Link>
+                    <Typography variant='body1'>
+                      <Link to='/connect' className={classes.links}>
+                        Connect
+                      </Link>
+                    </Typography>
                   </li>
                   <li>
-                    <Link to='/ddcwc'>DD {'&'} CWC</Link>
+                    <Typography variant='body1'>
+                      <Link to='/ddcwc' className={classes.links}>
+                        DD & CWC
+                      </Link>
+                    </Typography>
                   </li>
                   <li>
-                    <Link to='/career'>Career</Link>
+                    <Typography variant='body1'>
+                      <Link to='/career' className={classes.links}>
+                        Career
+                      </Link>
+                    </Typography>
                   </li>
                   <li>
-                    <Link to='/alumni'>Alumni</Link>
+                    <Typography variant='body1'>
+                      <Link to='/alumni' className={classes.links}>
+                        Alumni
+                      </Link>
+                    </Typography>
                   </li>
                   <li>
-                    <Link to='/expressions'>Expressions</Link>
+                    <Typography variant='body1'>
+                      <Link to='/expressions' className={classes.links}>
+                        Expressions
+                      </Link>
+                    </Typography>
                   </li>
                 </ul>
               </Grid>
               <Grid item xs={4}>
                 <ul className={classes.categories}>
                   <li>
-                    <Link to='/about'>About</Link>
+                    <Typography variant='body1'>
+                      <Link to='/about' className={classes.links}>
+                        About
+                      </Link>
+                    </Typography>
                   </li>
                   <li>
-                    <Link to='/guide'>Guide</Link>
+                    <Typography variant='body1'>
+                      <Link to='/guide' className={classes.links}>
+                        Guide
+                      </Link>
+                    </Typography>
                   </li>
                   <li>
-                    <Link to='/contact'>Contact Us</Link>
+                    <Typography variant='body1'>
+                      <Link to='/contact' className={classes.links}>
+                        Contact Us
+                      </Link>
+                    </Typography>
                   </li>
                 </ul>
               </Grid>
               <Grid item xs={4}>
                 <ul className={classes.categories}>
-                  <li>Subscribe</li>
-                  <li>Terms of Use</li>
-                  <li>Privacy Policy</li>
-                  <li>Sitemap</li>
+                  <Typography variant='body1'>
+                    <li className={classes.links}>Subscribe</li>
+                  </Typography>
+                  <Typography variant='body1'>
+                    <li className={classes.links}>Terms of Use</li>
+                  </Typography>
+                  <Typography variant='body1'>
+                    <li className={classes.links}>Privacy Policy</li>
+                  </Typography>
+                  <Typography variant='body1'>
+                    <li className={classes.links}>Sitemap</li>
+                  </Typography>
                 </ul>
               </Grid>
             </Grid>
@@ -115,19 +159,19 @@ const Footer = () => {
           </div>
           <div className={classes.socialIcons}>
             <span className={classes.socialIcon}>
-              <i className='fab fa-facebook-f'></i>
+              <i className='fab fa-facebook-f' />
             </span>
             <span className={classes.socialIcon}>
-              <i className='fab fa-twitter'></i>
+              <i className='fab fa-twitter' />
             </span>
             <span className={classes.socialIcon}>
-              <i className='fab fa-youtube'></i>
+              <i className='fab fa-youtube' />
             </span>
             <span className={classes.socialIcon}>
-              <i className='fab fa-linkedin'></i>
+              <i className='fab fa-linkedin' />
             </span>
             <span className={classes.socialIcon}>
-              <i className='fab fa-instagram'></i>
+              <i className='fab fa-instagram' />
             </span>
           </div>
         </div>
@@ -222,7 +266,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    //Container Properties
+    // Container Properties
     maxWidth: '1280px',
     paddingLeft: '16px',
     paddingRight: '16px',
@@ -255,5 +299,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       marginLeft: '10px',
     },
+  },
+  links: {
+    textDecoration: 'none',
+    fontWeight: theme.typography.fontWeightBold,
   },
 }));

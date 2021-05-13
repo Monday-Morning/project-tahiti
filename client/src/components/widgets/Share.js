@@ -48,7 +48,14 @@ function Share({ url, title, text, size }) {
         size={size || (Desktop ? 18 : 10)}
         onClick={Desktop ? handleClick : handleShare}
       />
-      <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        getContentAnchorEl={null}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
         <MenuItem onClick={handleClose}>
           <WhatsappShareButton url={url} title={title} separator=':: '>
             <ListItem>
