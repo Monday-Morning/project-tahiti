@@ -1,4 +1,4 @@
-import { Container, Grid } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 import React from 'react';
 import BackLink from '../components/podcast/BackLink';
 import Title from '../components/shared/PageTitle';
@@ -11,7 +11,7 @@ function Witsdom() {
     <div>
       <Container>
         <BackLink />
-        <Title title={'Witsdom'} />
+        <Title title='Witsdom' />
         <BigArticleCard />
         <ArticleCardStack />
         <ArticleCardStack />

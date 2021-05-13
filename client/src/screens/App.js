@@ -30,7 +30,7 @@ const AsyncPortfolio = AsyncRoute('./Portfolio');
 const AsyncCategory = AsyncRoute('./CategoryPage');
 const AsyncContact = AsyncRoute('./Contact');
 const AsyncGuide = AsyncRoute('./Guide');
-const AsyncWitsdom = AsyncRoute('./Witsdom.js');
+const AsyncSubCategory = AsyncRoute('./SubCategory.js');
 const AsyncProfile = AsyncRoute('./UserProfile');
 const AsyncAbout = AsyncRoute('./About');
 const AsyncPhotoStory = AsyncRoute('./PhotoStory');
@@ -42,32 +42,82 @@ function App() {
     <ThemeProvider theme={lightTheme}>
       <CssBaseline />
 
+      {/* prettier-ignore */}
       <Router history={createBrowserHistory}>
         <Switch>
           <Route path='/onboarding' exact component={AsyncOnboarding} />
 
           <Marginals>
-            <Route path='/article/:id/:title' exact component={AsyncArticle} />
-            <Route path='/podcast' exact component={AsyncPodcast} />
-            <Route path='/portfolio' exact component={AsyncPortfolio} />
-            <Route path='/witsdom' exact component={AsyncWitsdom} />
-
-            <Route path='/about' component={AsyncAbout} />
-            <Route path='/photostory' component={AsyncPhotoStory} />
-            <Route path='/gallery' component={AsyncGallery} />
-            <Route path='/contact' exact component={AsyncContact} />
-            <Route path='/guide' exact component={AsyncGuide} />
-
-            {/* Navigation Tabs */}
+            {/* Categories Tabs */}
             <Route path='/' exact component={AsyncHome} />
             <Route path='/campus' exact component={AsyncCategory} />
             <Route path='/connect' exact component={AsyncCategory} />
             <Route path='/ddcwc' exact component={AsyncCategory} />
             <Route path='/career' exact component={AsyncCategory} />
             <Route path='/alumni' exact component={AsyncCategory} />
-
-            <Route path='/profile' exact component={AsyncProfile} />
             <Route path='/expressions' exact component={AsyncExpressions} />
+
+            {/* Sub Categories */}
+            {/* Campus */}
+            <Route path='/campus/academics' exact component={AsyncSubCategory} />
+            <Route path='/campus/campusBuzz' exact component={AsyncSubCategory} />
+            <Route path='/campus/forum' exact component={AsyncSubCategory} />
+            <Route path='/campus/studentActivities' exact component={AsyncSubCategory} />
+            <Route path='/campus/halls' exact component={AsyncSubCategory} />
+            <Route path='/campus/pollAnalysis' exact component={AsyncSubCategory} />
+
+            {/* Connect */}
+            <Route path='/connect/interviews' exact component={AsyncSubCategory} />
+            <Route path='/connect/sacSpeaks' exact component={AsyncSubCategory} />
+            <Route path='/connect/cgpa' exact component={AsyncSubCategory} />
+            <Route path='/connect/guestInterview' exact component={AsyncSubCategory} />
+
+            {/* DD && CWC */}
+            <Route path='/ddcwc/directorsDesk' exact component={AsyncSubCategory} />
+            <Route path='/ddcwc/chiefWardensDesk' exact component={AsyncSubCategory} />
+
+            {/* Career */}
+            <Route path='/career/placements' exact component={AsyncSubCategory} />
+            <Route path='/career/internships' exact component={AsyncSubCategory} />
+            <Route path='/career/higherEducation' exact component={AsyncSubCategory} />
+            {/* // TODO */}
+            {/* <Route path='/career/live' exact component={AsyncSubCategory} /> */}
+
+            {/* Alumni */}
+            <Route path='/alumni/alumnusSpeaks' exact component={AsyncSubCategory} />
+            <Route path='/alumni/alumniAffairs' exact component={AsyncSubCategory} />
+
+            {/* Expressions */}
+            <Route path='/expressions/witsdom' exact component={AsyncSubCategory} />
+            <Route path='/expressions/editorial' exact component={AsyncSubCategory} />
+            <Route path='/expressions/podcasts' exact component={AsyncPodcast} />
+            <Route path='/expressions/photostory' component={AsyncPhotoStory} />
+            <Route path='/expressions/gallery' component={AsyncSubCategory} />
+
+            {/* Individuals */}
+            <Route path='/article/:id/:title' exact component={AsyncArticle} />
+            <Route path='/witsdom/:id/:title' exact component={AsyncArticle} />
+            <Route path='/gallery/:id/title' component={AsyncGallery} />
+            <Route path='/photostory/:id/title' component={AsyncGallery} />
+            <Route path='/portfolio/:id/:name' exact component={AsyncPortfolio}/>
+
+            {/* Interactions: TODO */}
+            {/* <Route path='/calendar' /> */}
+            {/* <Route path='/polls' /> */}
+            {/* <Route path='/forums' /> */}
+
+            {/* General */}
+            <Route path='/about' component={AsyncAbout} />
+            <Route path='/guide' exact component={AsyncGuide} />
+            <Route path='/contact' exact component={AsyncContact} />
+            {/* <Route path='/archive' /> */}
+            {/* <Route path='/terms&policies' /> */}
+            {/* <Route path='/sac&clubs' /> */}
+            {/* <Route path='/health' /> */}
+            {/* <Route path='/emergency' /> */}
+
+            {/* User Account */}
+            <Route path='/profile' exact component={AsyncProfile} />
           </Marginals>
         </Switch>
       </Router>
