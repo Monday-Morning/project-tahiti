@@ -62,7 +62,7 @@ const CATEGORIES = [
 const CAMPUS = [
   {
     name: 'Academics',
-    shortName: LINKS.SUB_CATEGORIES.CAMPUS.ACADEMICS.split('/')[1],
+    shortName: LINKS.SUB_CATEGORIES.CAMPUS.ACADEMICS.split('/')[2],
     path: LINKS.SUB_CATEGORIES.CAMPUS.ACADEMICS,
     asyncRoutePath: './SubCategory',
     idNumber: 11,
@@ -70,7 +70,7 @@ const CAMPUS = [
   },
   {
     name: 'Campus Buzz',
-    shortName: LINKS.SUB_CATEGORIES.CAMPUS.BUZZ.split('/')[1],
+    shortName: LINKS.SUB_CATEGORIES.CAMPUS.BUZZ.split('/')[2],
     path: LINKS.SUB_CATEGORIES.CAMPUS.BUZZ,
     asyncRoutePath: './SubCategory',
     idNumber: 12,
@@ -78,7 +78,7 @@ const CAMPUS = [
   },
   {
     name: 'Forum',
-    shortName: LINKS.SUB_CATEGORIES.CAMPUS.FORUM.split('/')[1],
+    shortName: LINKS.SUB_CATEGORIES.CAMPUS.FORUM.split('/')[2],
     path: LINKS.SUB_CATEGORIES.CAMPUS.FORUM,
     asyncRoutePath: './SubCategory',
     idNumber: 13,
@@ -86,7 +86,7 @@ const CAMPUS = [
   },
   {
     name: 'Student Activities',
-    shortName: LINKS.SUB_CATEGORIES.CAMPUS.STUDENT_ACTIVITIES.split('/')[1],
+    shortName: LINKS.SUB_CATEGORIES.CAMPUS.STUDENT_ACTIVITIES.split('/')[2],
     path: LINKS.SUB_CATEGORIES.CAMPUS.STUDENT_ACTIVITIES,
     asyncRoutePath: './SubCategory',
     idNumber: 14,
@@ -94,7 +94,7 @@ const CAMPUS = [
   },
   {
     name: 'Halls',
-    shortName: LINKS.SUB_CATEGORIES.CAMPUS.HALLS.split('/')[1],
+    shortName: LINKS.SUB_CATEGORIES.CAMPUS.HALLS.split('/')[2],
     path: LINKS.SUB_CATEGORIES.CAMPUS.HALLS,
     asyncRoutePath: './SubCategory',
     idNumber: 15,
@@ -102,7 +102,7 @@ const CAMPUS = [
   },
   {
     name: 'Poll Analysis',
-    shortName: LINKS.SUB_CATEGORIES.CAMPUS.POLL_ANALYSIS.split('/')[1],
+    shortName: LINKS.SUB_CATEGORIES.CAMPUS.POLL_ANALYSIS.split('/')[2],
     path: LINKS.SUB_CATEGORIES.CAMPUS.POLL_ANALYSIS,
     asyncRoutePath: './SubCategory',
     idNumber: 16,
@@ -113,7 +113,7 @@ const CAMPUS = [
 const CONNECT = [
   {
     name: 'Interviews',
-    shortName: LINKS.SUB_CATEGORIES.CONNECT.INTERVIEWS.split('/')[1],
+    shortName: LINKS.SUB_CATEGORIES.CONNECT.INTERVIEWS.split('/')[2],
     path: LINKS.SUB_CATEGORIES.CONNECT.INTERVIEWS,
     asyncRoutePath: './SubCategory',
     idNumber: 21,
@@ -121,7 +121,7 @@ const CONNECT = [
   },
   {
     name: 'Sac Speaks',
-    shortName: LINKS.SUB_CATEGORIES.CONNECT.SAC_SPEAKS.split('/')[1],
+    shortName: LINKS.SUB_CATEGORIES.CONNECT.SAC_SPEAKS.split('/')[2],
     path: LINKS.SUB_CATEGORIES.CONNECT.SAC_SPEAKS,
     asyncRoutePath: './SubCategory',
     idNumber: 22,
@@ -129,7 +129,7 @@ const CONNECT = [
   },
   {
     name: 'CGPA',
-    shortName: LINKS.SUB_CATEGORIES.CONNECT.CGPA.split('/')[1],
+    shortName: LINKS.SUB_CATEGORIES.CONNECT.CGPA.split('/')[2],
     path: LINKS.SUB_CATEGORIES.CONNECT.CGPA,
     asyncRoutePath: './SubCategory',
     idNumber: 23,
@@ -137,7 +137,7 @@ const CONNECT = [
   },
   {
     name: 'Guest Interview',
-    shortName: LINKS.SUB_CATEGORIES.CONNECT.GUEST_INTERVIEW.split('/')[1],
+    shortName: LINKS.SUB_CATEGORIES.CONNECT.GUEST_INTERVIEW.split('/')[2],
     path: LINKS.SUB_CATEGORIES.CONNECT.GUEST_INTERVIEW,
     asyncRoutePath: './SubCategory',
     idNumber: 24,
@@ -148,7 +148,7 @@ const CONNECT = [
 const DDCWC = [
   {
     name: "Director's Desk",
-    shortName: LINKS.SUB_CATEGORIES.DDCWC.DIRECTORS_DESK.split('/')[1],
+    shortName: LINKS.SUB_CATEGORIES.DDCWC.DIRECTORS_DESK.split('/')[2],
     path: LINKS.SUB_CATEGORIES.DDCWC.DIRECTORS_DESK,
     asyncRoutePath: './SubCategory',
     idNumber: 31,
@@ -156,7 +156,7 @@ const DDCWC = [
   },
   {
     name: "Chief Warden's Desk",
-    shortName: LINKS.SUB_CATEGORIES.DDCWC.CHIEF_WARDENS_DESK.split('/')[1],
+    shortName: LINKS.SUB_CATEGORIES.DDCWC.CHIEF_WARDENS_DESK.split('/')[2],
     path: LINKS.SUB_CATEGORIES.DDCWC.CHIEF_WARDENS_DESK,
     asyncRoutePath: './SubCategory',
     idNumber: 32,
@@ -167,7 +167,7 @@ const DDCWC = [
 const CAREER = [
   {
     name: 'Placements',
-    shortName: LINKS.SUB_CATEGORIES.CAREER.PLACEMENTS.split('/')[1],
+    shortName: LINKS.SUB_CATEGORIES.CAREER.PLACEMENTS.split('/')[2],
     path: LINKS.SUB_CATEGORIES.CAREER.PLACEMENTS,
     asyncRoutePath: './SubCategory',
     idNumber: 41,
@@ -175,7 +175,7 @@ const CAREER = [
   },
   {
     name: 'Internships',
-    shortName: LINKS.SUB_CATEGORIES.CAREER.INTERNSHIPS.split('/')[1],
+    shortName: LINKS.SUB_CATEGORIES.CAREER.INTERNSHIPS.split('/')[2],
     path: LINKS.SUB_CATEGORIES.CAREER.INTERNSHIPS,
     asyncRoutePath: './SubCategory',
     idNumber: 42,
@@ -183,7 +183,7 @@ const CAREER = [
   },
   {
     name: 'Higher Education',
-    shortName: LINKS.SUB_CATEGORIES.CAREER.HIGHER_EDUCATION.split('/')[1],
+    shortName: LINKS.SUB_CATEGORIES.CAREER.HIGHER_EDUCATION.split('/')[2],
     path: LINKS.SUB_CATEGORIES.CAREER.HIGHER_EDUCATION,
     asyncRoutePath: './SubCategory',
     idNumber: 43,
@@ -191,7 +191,7 @@ const CAREER = [
   },
   // {
   //   name: "Live",
-  //   shortName: LINKS.SUB_CATEGORIES.CAREER.LIVE.split('/')[1],
+  //   shortName: LINKS.SUB_CATEGORIES.CAREER.LIVE.split('/')[2],
   //   path: LINKS.SUB_CATEGORIES.CAREER.LIVE,
   //   asyncRoutePath: './SubCategory',
   //   idNumber: 21,
@@ -202,7 +202,7 @@ const CAREER = [
 const ALUMNI = [
   {
     name: 'Alumnus Speaks',
-    shortName: LINKS.SUB_CATEGORIES.ALUMNI.ALUMNUS_SPEAKS.split('/')[1],
+    shortName: LINKS.SUB_CATEGORIES.ALUMNI.ALUMNUS_SPEAKS.split('/')[2],
     path: LINKS.SUB_CATEGORIES.ALUMNI.ALUMNUS_SPEAKS,
     asyncRoutePath: './SubCategory',
     idNumber: 51,
@@ -210,7 +210,7 @@ const ALUMNI = [
   },
   {
     name: 'Alumni Affairs',
-    shortName: LINKS.SUB_CATEGORIES.ALUMNI.ALUMNI_AFFAIRS.split('/')[1],
+    shortName: LINKS.SUB_CATEGORIES.ALUMNI.ALUMNI_AFFAIRS.split('/')[2],
     path: LINKS.SUB_CATEGORIES.ALUMNI.ALUMNI_AFFAIRS,
     asyncRoutePath: './SubCategory',
     idNumber: 52,
@@ -221,7 +221,7 @@ const ALUMNI = [
 const EXPRESSIONS = [
   {
     name: 'Witsdom',
-    shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.WITSDOM.split('/')[1],
+    shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.WITSDOM.split('/')[2],
     path: LINKS.SUB_CATEGORIES.EXPRESSIONS.WITSDOM,
     asyncRoutePath: './SubCategory',
     idNumber: 61,
@@ -229,7 +229,7 @@ const EXPRESSIONS = [
   },
   {
     name: 'Photostory',
-    shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.PHOTOSTORY.split('/')[1],
+    shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.PHOTOSTORY.split('/')[2],
     path: LINKS.SUB_CATEGORIES.EXPRESSIONS.PHOTOSTORY,
     asyncRoutePath: './SubCategory',
     idNumber: 62,
@@ -237,7 +237,7 @@ const EXPRESSIONS = [
   },
   {
     name: 'Gallery',
-    shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.GALLERY.split('/')[1],
+    shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.GALLERY.split('/')[2],
     path: LINKS.SUB_CATEGORIES.EXPRESSIONS.GALLERY,
     asyncRoutePath: './SubCategory',
     idNumber: 63,
@@ -245,7 +245,7 @@ const EXPRESSIONS = [
   },
   {
     name: 'Editorial',
-    shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.EDITORIAL.split('/')[1],
+    shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.EDITORIAL.split('/')[2],
     path: LINKS.SUB_CATEGORIES.EXPRESSIONS.EDITORIAL,
     asyncRoutePath: './SubCategory',
     idNumber: 64,
@@ -253,7 +253,7 @@ const EXPRESSIONS = [
   },
   {
     name: 'Podcasts',
-    shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.PODCASTS.split('/')[1],
+    shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.PODCASTS.split('/')[2],
     path: LINKS.SUB_CATEGORIES.EXPRESSIONS.PODCASTS,
     asyncRoutePath: './Podcast',
     idNumber: 65,

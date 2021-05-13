@@ -1,50 +1,47 @@
 import React from 'react';
 
 // Libraries
-import { Grid, Container, makeStyles, Typography } from '@material-ui/core';
-import { Link, Element } from 'react-scroll';
+import { Container, makeStyles, Typography } from '@material-ui/core';
+import { useLocation } from 'react-router-dom';
+import { Link as ScrollLink, Element } from 'react-scroll';
 
 // Components
 import SubCategory from '../components/widgets/SubCategories';
 import Carousel from '../components/widgets/Carousel';
 import ArticlesCards from '../components/categories/ArticlesCards';
 
-// Assets
-import { CATEGORIES } from '../assets/placeholder/categoryPages';
+// Utils
+import ROUTES from '../utils/getRoutes';
 
 function Category() {
   const classes = useStyles();
 
-  // Categories
-  const category = window.location.pathname.split('/')[1];
-  let categoryName = category.charAt(0).toUpperCase() + category.slice(1);
-  if (category === 'ddcwc') categoryName = 'DD & CWC';
+  // 1. Determine category from the url.
+  // 2. Get the title for the category from the ROUTES object.
+  const location = useLocation();
+  const category = location.pathname.split('/')[1];
+  const categoryName = ROUTES.CATEGORIES.filter(
+    ({ shortName }) => shortName === category,
+  )[0].name;
 
   return (
     <div className={classes.container}>
-      <div className={classes.wrapper}>
+      <div className={classes.navbarContainer}>
         <Container>
-          <div className={classes.header}>
-            <Grid>
-              <Typography variant='h1' className={classes.category}>
-                {categoryName}
-              </Typography>
-            </Grid>
-            <Grid className={classes.categoryHeaderText}>{categoryName}</Grid>
-          </div>
-          <Grid className={classes.subCategories}>
-            {CATEGORIES[category].map(({ heading, link }, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <Link to={link} smooth='true' key={index}>
-                <SubCategory
-                  text={heading}
-                  // eslint-disable-next-line
+          <Typography variant='h1' className={classes.title}>
+            {categoryName}
+          </Typography>
 
-                  className={classes.subCategory}
-                />
-              </Link>
-            ))}
-          </Grid>
+          <div className={classes.subCategories}>
+            {/* Render SubCategories from the ROUTES object */}
+            {ROUTES.SUB_CATEGORIES.OBJECT[category.toUpperCase()].map(
+              ({ name, shortName }) => (
+                <ScrollLink key={shortName} to={shortName} smooth='true'>
+                  <SubCategory text={name} className={classes.subCategory} />
+                </ScrollLink>
+              ),
+            )}
+          </div>
         </Container>
         <Carousel />
       </div>
@@ -52,21 +49,10 @@ function Category() {
       <div>
         <Container>
           <div className={classes.articlesCards}>
-            {CATEGORIES[category].map(
-              (
-                { heading, smallCards, bigCards, forum, pulse, pniData, link },
-                key,
-              ) => (
-                // eslint-disable-next-line react/no-array-index-key
-                <Element name={link} key={key}>
-                  <ArticlesCards
-                    heading={heading}
-                    smallCards={smallCards}
-                    bigCards={bigCards}
-                    forum={forum}
-                    pulse={pulse}
-                    pniData={pniData}
-                  />
+            {ROUTES.SUB_CATEGORIES.OBJECT[category.toUpperCase()].map(
+              ({ name, shortName }) => (
+                <Element name={shortName} key={shortName}>
+                  <ArticlesCards heading={name} smallCards bigCards />
                 </Element>
               ),
             )}
@@ -84,57 +70,33 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '100%',
     marginTop: '1.5rem',
   },
-
-  wrapper: {
+  navbarContainer: {
     backgroundColor: theme.palette.secondary.neutral20,
     paddingTop: '2.125rem',
-    // position: 'relative',
   },
-
-  header: {
-    [theme.breakpoints.up('sm')]: {
-      display: 'flex',
-      justifyContent: 'space-between',
-    },
-  },
-
-  category: {
+  title: {
+    display: 'inline-block',
     color: theme.palette.primary.blue60,
     fontFamily: 'IBM Plex Sans',
     borderTop: '4px solid',
     borderColor: theme.palette.primary.blue60,
-    width: '124px',
+    minWidth: '124px',
+    width: 'auto',
     [theme.breakpoints.up('sm')]: {
-      width: '205px',
+      minWidth: '205px',
     },
   },
-
-  categoryHeaderText: {
-    fontFamily: 'Source Sans Pro',
-    color: theme.palette.secondary.neutral70,
-    fontSize: '0.875rem',
-    fontWeight: '400',
-    opacity: '75%',
-    marginTop: '1.5rem',
-    textAlign: 'justify',
-    [theme.breakpoints.up('sm')]: {
-      fontSize: '1.25rem',
-      lineHeight: '1.75rem',
-    },
-  },
-
   subCategories: {
     marginTop: '1.5rem',
     maxWidth: '100%',
-    [theme.breakpoints.up('sm')]: {
-      display: 'flex',
-    },
+    display: 'flex',
+    alignItem: 'center',
+    justifyContent: 'flex-start',
+    flexWrap: 'wrap',
   },
-
   subCategory: {
     whiteSpace: 'nowrap',
   },
-
   articlesCards: {
     marginTop: '2rem',
     paddingBottom: '2.25rem',
