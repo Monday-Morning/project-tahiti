@@ -26,7 +26,7 @@ function Home() {
 
   const classes = useStyles();
   if (loading && !data) return <ActivityIndicator size={150} />;
-  if (error) return <div>{error}</div>;
+  if (error) return <div>{JSON.stringify(error)}</div>;
 
   const {
     getIssueByID: { articles, featured },

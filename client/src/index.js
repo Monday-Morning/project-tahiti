@@ -6,7 +6,7 @@ import App from './screens/App';
 import Root from './config/Root';
 import ApolloClient from './config/ApolloClient';
 
-// // Utils
+// Utils
 import configureFirebase from './config/firebase';
 
 import('./index.css');

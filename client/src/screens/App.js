@@ -22,8 +22,14 @@ const AsyncRoute = (route) =>
     loading: ActivityIndicator,
   });
 
+const ONBOARDING_DETAILS = {
+  path: '/onboarding',
+  name: 'Onboarding',
+  component: './Onboarding.js',
+};
+
 const AsyncHome = AsyncRoute('./Home');
-const AsyncOnboarding = AsyncRoute('./Onboarding');
+// const AsyncOnboarding = AsyncRoute('./Onboarding');
 const AsyncArticle = AsyncRoute('./Article');
 const AsyncPodcast = AsyncRoute('./Podcast');
 const AsyncPortfolio = AsyncRoute('./Portfolio');
@@ -45,7 +51,7 @@ function App() {
       {/* prettier-ignore */}
       <Router history={createBrowserHistory}>
         <Switch>
-          <Route path='/onboarding' exact component={AsyncOnboarding} />
+          <Route path={ONBOARDING_DETAILS.path} exact component={AsyncRoute(ONBOARDING_DETAILS.component)} />
 
           <Marginals>
             {/* Categories Tabs */}
