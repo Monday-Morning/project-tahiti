@@ -14,6 +14,7 @@ import Calendar from '../components/homepage/Calendar';
 import Banner from '../components/homepage/Banner';
 import Trending from '../components/homepage/Trending';
 import ActivityIndicator from '../components/shared/ActivityIndicator';
+import SocialMedia from '../components/homepage/SocialMedia';
 
 // Queries
 import GetIssueByIdQuery from '../graphql/queries/getIssueByID';
@@ -53,15 +54,7 @@ function Home() {
       <Banner />
 
       <Container style={{ marginTop: 35 }}>
-        {/* <Grid container spacing={4}>
-          <Grid item sm={6}>
-            <Card className={classes.card} />
-          </Grid>
-          <Grid item sm={6}>
-            <Card className={classes.card} />
-          </Grid>
-        </Grid> */}
-
+        <SocialMedia />
         <Trending />
       </Container>
     </>
