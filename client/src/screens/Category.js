@@ -8,7 +8,7 @@ import { Link as ScrollLink, Element } from 'react-scroll';
 // Components
 import SubCategory from '../components/widgets/SubCategories';
 import Carousel from '../components/widgets/Carousel';
-import ArticlesCards from '../components/categories/ArticlesCards';
+import SubCategorySection from '../components/categories/SubCategorySection';
 
 // Utils
 import ROUTES from '../utils/getRoutes';
@@ -52,7 +52,7 @@ function Category() {
             {ROUTES.SUB_CATEGORIES.OBJECT[category.toUpperCase()].map(
               ({ name, shortName }) => (
                 <Element name={shortName} key={shortName}>
-                  <ArticlesCards heading={name} smallCards bigCards />
+                  <SubCategorySection heading={name} smallCards bigCards />
                 </Element>
               ),
             )}

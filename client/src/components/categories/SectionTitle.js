@@ -1,0 +1,56 @@
+import React from 'react';
+
+// libraries
+import { makeStyles } from '@material-ui/core';
+import { Element } from 'react-scroll';
+
+function Title({ heading, link }) {
+  const classes = useStyles();
+  return (
+    <Element className={classes.root} name={link}>
+      <div className={classes.head}>{heading}</div>
+      <div className={classes.line} />
+      <div className={classes.seeAll}>See All</div>
+    </Element>
+  );
+}
+
+export default Title;
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    margin: '2rem 0',
+    lineHeight: '2rem',
+  },
+  head: {
+    fontSize: '2rem',
+    whiteSpace: 'nowrap',
+    fontWeight: '600',
+    fontFamily: 'Source Sans Pro',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1.25rem',
+      lineHeight: '1.75rem',
+    },
+  },
+  line: {
+    [theme.breakpoints.up('sm')]: {
+      borderBottom: '1px solid #000000',
+      borderColor: theme.palette.common.black,
+      width: '-webkit-fill-available',
+      marginInline: '1rem',
+    },
+  },
+  seeAll: {
+    whiteSpace: 'nowrap',
+    fontSize: '1.25rem',
+    fontWeight: '400',
+    color: theme.palette.secondary.main,
+    fontFamily: 'Source Sans Pro',
+    borderBottom: '1px solid #000000',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '14px',
+    },
+  },
+}));

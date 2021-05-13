@@ -46,13 +46,13 @@ const ArticleCard = ({ carousel }) => {
                 key={author}
                 className={classes.author}
               >
-                {(index ? ',' : '') + `  ${author}`}
+                {`${index ? ',' : ''}  ${author}`}
               </Typography>
             ))}
           </div>
 
           <div className={classes.readTime}>
-            <i className='far fa-clock'></i>
+            <i className='far fa-clock' />
             <Typography variant='body2'>{props.article.readTime}</Typography>
           </div>
         </div>
