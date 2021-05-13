@@ -53,21 +53,21 @@ const INDIVIDUALS = {
   PORTFOLIO: '/portfolio/:id/:name',
 };
 
-// const INTERACTIONS = {
-//   CALENDAR: '/calendar',
-//   POLLS: '/polls',
-//   FORUMS: '/forums',
-// };
+const INTERACTIONS = {
+  CALENDAR: '/calendar',
+  POLLS: '/polls',
+  FORUMS: '/forums',
+};
 
 const GENERAL = {
   ABOUT: '/about',
   GUIDE: '/guide',
   CONTACT: '/contact',
-  // ARCHIVE: '/archive',
-  // TERMS_POLICIES: '/terms&policies',
-  // SAC_CLUBS: '/sac&clubs',
-  // HEALTH: '/health',
-  // EMERGENCY: '/emergency',
+  ARCHIVE: '/archive',
+  TERMS_POLICIES: '/terms&policies',
+  SAC_CLUBS: '/sac&clubs',
+  HEALTH: '/health',
+  EMERGENCY: '/emergency',
 };
 
 const USER = {
@@ -79,7 +79,7 @@ export default Object.freeze({
   CATEGORIES,
   SUB_CATEGORIES,
   INDIVIDUALS,
-  // INTERACTIONS,
+  INTERACTIONS,
   GENERAL,
   USER,
 });
