@@ -6,6 +6,7 @@ import { Link } from 'react-scroll';
 
 // Components
 import TableOfContent from './TableOfContent';
+import Share from '../widgets/Share';
 
 const ReactionIcon = () => {
   const [reaction, setReaction] = useState(false);
@@ -21,7 +22,7 @@ const ReactionIcon = () => {
   );
 };
 
-const SidePanel = ({ structuredContent, toggleSidebar }) => {
+const SidePanel = ({ structuredContent, toggleSidebar, articleTitle }) => {
   const classes = useStyles();
 
   return (
@@ -34,7 +35,7 @@ const SidePanel = ({ structuredContent, toggleSidebar }) => {
           <ReactionIcon />
         </span>
         <span className={classes.icon}>
-          <i className='fa fa-share-alt' />
+          <Share title={articleTitle} url={window.location.href} size={28} />
         </span>
         <span className={classes.icon}>
           <Link

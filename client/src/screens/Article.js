@@ -76,6 +76,7 @@ function Article() {
             <SidePanel
               structuredContent={structuredContent}
               toggleSidebar={toggleSidebar}
+              articleTitle={articleTitle}
             />
           </Grid>
         </Grid>

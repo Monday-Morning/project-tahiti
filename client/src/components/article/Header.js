@@ -3,16 +3,13 @@ import React from 'react';
 // libraries
 import { Grid, makeStyles, Typography } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import {
-  Bookmark,
-  Share2,
-  // Volume2
-} from 'react-feather';
+import { Bookmark } from 'react-feather';
 import moment from 'moment';
 
 // Config + Utilities
 import theme from '../../config/themes/light';
 import getCategory from '../../utils/determineCategory';
+import Share from '../widgets/Share';
 
 // images
 
@@ -100,7 +97,7 @@ const ArticleHeader = ({ article, articleTitle }) => {
                 <Volume2 size={Desktop ? 18 : 10} />
               </span> */}
               <span className={classes.utilityIcon}>
-                <Share2 size={Desktop ? 18 : 10} />
+                <Share title={articleTitle} url={window.location.href} />
               </span>
               <span className={classes.utilityIcon}>
                 <Bookmark size={Desktop ? 18 : 10} />
