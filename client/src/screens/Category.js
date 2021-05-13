@@ -2,6 +2,7 @@ import React from 'react';
 
 // Libraries
 import { Grid, Container, makeStyles, Typography } from '@material-ui/core';
+import { Link, Element } from 'react-scroll';
 
 // Components
 import SubCategory from '../components/widgets/SubCategories';
@@ -10,7 +11,6 @@ import ArticlesCards from '../components/categories/ArticlesCards';
 
 // Assets
 import { CATEGORIES } from '../assets/placeholder/categoryPages';
-import { Link, Element } from 'react-scroll';
 
 function Category() {
   const classes = useStyles();
@@ -34,6 +34,7 @@ function Category() {
           </div>
           <Grid className={classes.subCategories}>
             {CATEGORIES[category].map(({ heading, link }, index) => (
+              // eslint-disable-next-line react/no-array-index-key
               <Link to={link} smooth='true' key={index}>
                 <SubCategory
                   text={heading}
@@ -56,6 +57,7 @@ function Category() {
                 { heading, smallCards, bigCards, forum, pulse, pniData, link },
                 key,
               ) => (
+                // eslint-disable-next-line react/no-array-index-key
                 <Element name={link} key={key}>
                   <ArticlesCards
                     heading={heading}
