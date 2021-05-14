@@ -8,7 +8,7 @@ import RegularArticleCard from './RegularArticleCard';
 import SmallArticleCard from './SmallArticleCard';
 
 const ArticleCard = () => {
-  const matches = useMediaQuery('@media (max-width: 600px)');
+  const matches = useMediaQuery('(max-width: 600px)');
 
   return matches ? <SmallArticleCard /> : <RegularArticleCard />;
 };

@@ -1,18 +1,15 @@
 import React from 'react';
 
 // libraries
-import { Grid, makeStyles, useMediaQuery } from '@material-ui/core';
+import { Grid, makeStyles } from '@material-ui/core';
 
 // Components
 import Forum from '../widgets/Forum';
 import Title from './SectionTitle';
 import Pulse from '../widgets/Pulse';
 import PnIData from '../widgets/PnIData';
-import BigArticleCard from './BigArticleCard';
-// import ArticleCard from '../widgets/ArticleCard';
-// import ArticleCardStack from '../widgets/ArticleCardStack';
-import ArticleCard from '../widgets/article/ArticleCard';
 import ArticleCardStack from '../widgets/article/ArticleCardStack';
+import BigArticleCard from '../widgets/article/BigArticleCard';
 
 const ArticlesCard = ({
   heading,
@@ -22,7 +19,6 @@ const ArticlesCard = ({
   pulse,
   pniData,
 }) => {
-  const matches = useMediaQuery('(min-width:600px)');
   const classes = useStyles();
 
   if (forum) {
@@ -36,7 +32,7 @@ const ArticlesCard = ({
       {pulse && <Pulse />}
       {pniData && <PnIData />}
 
-      {bigCards && (matches ? <BigArticleCard /> : <ArticleCard />)}
+      {bigCards && <BigArticleCard />}
 
       <Grid>{smallCards && <ArticleCardStack />}</Grid>
     </div>

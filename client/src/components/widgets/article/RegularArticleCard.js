@@ -70,8 +70,9 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: '0px',
     },
     [theme.breakpoints.between('xs', 'sm')]: {
-      // width: 'auto',
-      // height: 'auto',
+      margin: '0px',
+      width: 'auto',
+      height: 'auto',
       minHeight: '420px',
     },
   },
