@@ -16,9 +16,7 @@ const Carousel = () => {
         <div className={classes.articleRow}>
           <div className={classes.articles}>
             {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((val) => (
-              <span key={val} style={{ marginRight: '10px' }}>
-                <RegularArticleCard carousel />
-              </span>
+              <RegularArticleCard key={val} carousel />
             ))}
           </div>
         </div>

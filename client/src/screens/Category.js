@@ -7,7 +7,6 @@ import { Link as ScrollLink, Element } from 'react-scroll';
 
 // Components
 import SubCategory from '../components/widgets/SubCategories';
-// import ArticleCarousel from '../components/widgets/Carousel';
 import ArticleCarousel from '../components/widgets/article/ArticleCarousel';
 import SubCategorySection from '../components/categories/SubCategorySection';
 

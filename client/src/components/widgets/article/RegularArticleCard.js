@@ -59,17 +59,24 @@ const ArticleCard = ({ carousel }) => {
 export default ArticleCard;
 
 const useStyles = makeStyles((theme) => ({
+  link: {
+    textDecoration: 'none',
+    color: theme.palette.common.black,
+    marginTop: '25px',
+    marginRight: (carousel) => (carousel ? '10px' : '0px'),
+    [theme.breakpoints.between('sm', 'lg')]: {
+      margin: '25px',
+      marginBottom: '0px',
+      marginLeft: '0px',
+    },
+  },
   root: {
     boxShadow: theme.shadows[0],
     backgroundColor: theme.palette.common.white,
     overflow: 'hidden',
     width: '380px',
     height: '420px',
-    [theme.breakpoints.between('sm', 'lg')]: {
-      margin: '25px',
-      marginBottom: '0px',
-      marginLeft: '0px',
-    },
+
     [theme.breakpoints.between('xs', 'sm')]: {
       margin: '0px',
       width: (carousel) => (carousel ? '380px' : 'auto'),
@@ -124,10 +131,5 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '400',
     color: theme.palette.common.black,
     textAlign: 'justify',
-  },
-  link: {
-    textDecoration: 'none',
-    color: theme.palette.common.black,
-    marginTop: '25px',
   },
 }));

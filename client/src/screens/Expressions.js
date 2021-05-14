@@ -9,8 +9,8 @@ import Section from '../components/expressions/Section';
 import Title from '../components/widgets/Title';
 import PodcastList from '../components/podcast/List';
 import SubCategories from '../components/widgets/SubCategories';
-import FeaturedArticles from '../components/homepage/FeaturedArticles';
-import ArticleCardStack from '../components/widgets/ArticleCardStack';
+// import FeaturedArticles from '../components/homepage/FeaturedArticles';
+import ArticleCardStack from '../components/widgets/article/ArticleCardStack.js';
 import BigCarousel from '../components/widgets/BigCarousel';
 
 // placeholders
@@ -30,7 +30,7 @@ function Expressions() {
           <Typography variant='h1' className={classes.head}>
             Expressions
           </Typography>
-          <div className={classes.line}></div>
+          <div className={classes.line} />
         </div>
 
         <Grid className={classes.subCategories}>

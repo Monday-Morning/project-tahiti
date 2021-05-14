@@ -1,15 +1,16 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
 
-// libararies
+// Libararies
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Grid, Button, useMediaQuery } from '@material-ui/core';
 import theme from '../../config/themes/light';
 
-//Components
-import ArticleCardStack from '../widgets/ArticleCardStack';
-import Carousel from '../widgets/Carousel';
+// Components
+import ArticleCardStack from '../widgets/article/ArticleCardStack';
+import ArticleCarousel from '../widgets/article/ArticleCarousel';
 
-//placeholder
+// Assets
 import { ARCHIVES } from '../../assets/placeholder/guide';
 
 const Archives = () => {
@@ -33,7 +34,7 @@ const Archives = () => {
           The only guide you will need at NITR!
         </Grid>
       </div>
-      <Carousel />
+      <ArticleCarousel />
       <div className={classes.archive}>
         <Typography variant='h1' className={classes.archivetitle}>
           Archive
@@ -87,9 +88,12 @@ const Archives = () => {
                 <Grid item key={key}>
                   <span
                     className={
-                      activeYear == year ? classes.active : classes.time
+                      activeYear === year ? classes.active : classes.time
                     }
                     onClick={() => selectYear(year)}
+                    onKeyDown={() => selectYear(year)}
+                    role='button'
+                    tabIndex={0}
                   >
                     {year}
                   </span>
@@ -107,9 +111,12 @@ const Archives = () => {
                 <Grid item key={key}>
                   <span
                     className={
-                      activeMonth == month ? classes.active : classes.time
+                      activeMonth === month ? classes.active : classes.time
                     }
                     onClick={() => selectMonth(month)}
+                    onKeyDown={() => selectMonth(month)}
+                    role='button'
+                    tabIndex={0}
                   >
                     {month}
                   </span>
@@ -146,7 +153,7 @@ const Archives = () => {
 
 export default Archives;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   wrapper: {
     overflow: 'hidden',
   },

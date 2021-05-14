@@ -146,18 +146,6 @@ function App() {
               ),
             )}
 
-            {/* General Routes */}
-            {ROUTES.GENERAL.map(
-              ({ shortName, path, asyncRoutePath, exact, idNumber }) => (
-                <Route
-                  key={`${shortName}-${idNumber}`}
-                  path={path}
-                  component={AsyncRoute(asyncRoutePath)}
-                  exact={exact}
-                />
-              ),
-            )}
-
             {/* User Profile Route */}
             <Route
               path={ROUTES.USER[1].path}
