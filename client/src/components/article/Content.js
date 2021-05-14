@@ -131,6 +131,10 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: '1rem',
     borderLeft: '4px solid',
     borderColor: theme.palette.common.black,
+    minHeight: '60px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
 
   // Custom Text Styles

@@ -40,6 +40,7 @@
     "react-responsive-carousel": "^3.2.11",
     "react-router-dom": "^5.2.0",
     "react-scroll": "^1.8.1",
+    "react-share": "^4.4.0",
     "react-slick": "^0.28.0",
     "react-slick-carousel": "^0.14.9",
     "react-spring": "^8.0.27",
