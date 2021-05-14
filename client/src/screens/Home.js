@@ -8,7 +8,7 @@ import { useQuery } from '@apollo/client';
 // Components
 import FeaturedArticles from '../components/homepage/FeaturedArticles';
 import Squiggles from '../components/widgets/Squiggles';
-import ArticleCardStack from '../components/widgets/ArticleCardStack';
+import ArticleCardStack from '../components/widgets/article/ArticleCardStack';
 import Pulse from '../components/widgets/Pulse';
 import Calendar from '../components/homepage/Calendar';
 import Banner from '../components/homepage/Banner';
@@ -26,7 +26,7 @@ function Home() {
 
   const classes = useStyles();
   if (loading && !data) return <ActivityIndicator size={150} />;
-  if (error) return <div>{error}</div>;
+  if (error) return <div>{JSON.stringify(error)}</div>;
 
   const {
     getIssueByID: { articles, featured },

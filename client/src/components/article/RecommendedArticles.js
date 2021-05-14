@@ -4,7 +4,7 @@ import React from 'react';
 import { makeStyles, Container, Typography } from '@material-ui/core';
 
 // Components
-import ArticleCardStack from '../widgets/ArticleCardStack';
+import ArticleCardStack from '../widgets/article/ArticleCardStack';
 
 const RecommendedArticles = ({ title }) => {
   const classes = useStyles();

@@ -9,9 +9,11 @@ import { CssBaseline } from '@material-ui/core';
 // Components
 import ActivityIndicator from '../components/shared/ActivityIndicator';
 import Marginals from '../components/marginals/Marginals';
+import ScrollToTopOnMount from '../components/shared/ScrollToTopOnMount';
 
 // Helpers
 import createBrowserHistory from '../utils/history';
+import ROUTES from '../utils/getRoutes';
 
 // Theme
 import lightTheme from '../config/themes/light';
@@ -22,106 +24,139 @@ const AsyncRoute = (route) =>
     loading: ActivityIndicator,
   });
 
-const AsyncHome = AsyncRoute('./Home');
-const AsyncOnboarding = AsyncRoute('./Onboarding');
-const AsyncArticle = AsyncRoute('./Article');
-const AsyncPodcast = AsyncRoute('./Podcast');
-const AsyncPortfolio = AsyncRoute('./Portfolio');
-const AsyncCategory = AsyncRoute('./CategoryPage');
-const AsyncContact = AsyncRoute('./Contact');
-const AsyncGuide = AsyncRoute('./Guide');
-const AsyncSubCategory = AsyncRoute('./SubCategory.js');
-const AsyncProfile = AsyncRoute('./UserProfile');
-const AsyncAbout = AsyncRoute('./About');
-const AsyncPhotoStory = AsyncRoute('./PhotoStory');
-const AsyncGallery = AsyncRoute('./Gallery');
-const AsyncExpressions = AsyncRoute('./Expressions');
-const AsyncLive = AsyncRoute('./Live');
-
 function App() {
   return (
     <ThemeProvider theme={lightTheme}>
       <CssBaseline />
 
-      {/* prettier-ignore */}
       <Router history={createBrowserHistory}>
         <Switch>
-          <Route path='/onboarding' exact component={AsyncOnboarding} />
+          {/* Render the Onboarding Route Outside the Marginals. */}
+          <Route
+            path={ROUTES.USER[0].path}
+            component={AsyncRoute(ROUTES.USER[0].asyncRoutePath)}
+            exact={ROUTES.USER[0].exact}
+          />
 
           <Marginals>
             {/* Categories Tabs */}
-            <Route path='/' exact component={AsyncHome} />
-            <Route path='/campus' exact component={AsyncCategory} />
-            <Route path='/connect' exact component={AsyncCategory} />
-            <Route path='/ddcwc' exact component={AsyncCategory} />
-            <Route path='/career' exact component={AsyncCategory} />
-            <Route path='/alumni' exact component={AsyncCategory} />
-            <Route path='/expressions' exact component={AsyncExpressions} />
+            {ROUTES.CATEGORIES.map(
+              ({ shortName, path, asyncRoutePath, exact, idNumber }) => (
+                <Route
+                  key={`${shortName}-${idNumber}`}
+                  path={path}
+                  component={AsyncRoute(asyncRoutePath)}
+                  exact={exact}
+                />
+              ),
+            )}
 
-            {/* Sub Categories */}
-            {/* Campus */}
-            <Route path='/campus/academics' exact component={AsyncSubCategory} />
-            <Route path='/campus/campusBuzz' exact component={AsyncSubCategory} />
-            <Route path='/campus/forum' exact component={AsyncSubCategory} />
-            <Route path='/campus/studentActivities' exact component={AsyncSubCategory} />
-            <Route path='/campus/halls' exact component={AsyncSubCategory} />
-            <Route path='/campus/pollAnalysis' exact component={AsyncSubCategory} />
+            {/* Sub Categories - Campus Tabs */}
+            {ROUTES.SUB_CATEGORIES.OBJECT.CAMPUS.map(
+              ({ shortName, path, asyncRoutePath, exact, idNumber }) => (
+                <Route
+                  key={`${shortName}-${idNumber}`}
+                  path={path}
+                  component={AsyncRoute(asyncRoutePath)}
+                  exact={exact}
+                />
+              ),
+            )}
 
-            {/* Connect */}
-            <Route path='/connect/interviews' exact component={AsyncSubCategory} />
-            <Route path='/connect/sacSpeaks' exact component={AsyncSubCategory} />
-            <Route path='/connect/cgpa' exact component={AsyncSubCategory} />
-            <Route path='/connect/guestInterview' exact component={AsyncSubCategory} />
+            {/* Sub Categories - Connect Tabs */}
+            {ROUTES.SUB_CATEGORIES.OBJECT.CONNECT.map(
+              ({ shortName, path, asyncRoutePath, exact, idNumber }) => (
+                <Route
+                  key={`${shortName}-${idNumber}`}
+                  path={path}
+                  component={AsyncRoute(asyncRoutePath)}
+                  exact={exact}
+                />
+              ),
+            )}
 
-            {/* DD && CWC */}
-            <Route path='/ddcwc/directorsDesk' exact component={AsyncSubCategory} />
-            <Route path='/ddcwc/chiefWardensDesk' exact component={AsyncSubCategory} />
+            {/* Sub Categories - DD & CWC Tabs */}
+            {ROUTES.SUB_CATEGORIES.OBJECT.DDCWC.map(
+              ({ shortName, path, asyncRoutePath, exact, idNumber }) => (
+                <Route
+                  key={`${shortName}-${idNumber}`}
+                  path={path}
+                  component={AsyncRoute(asyncRoutePath)}
+                  exact={exact}
+                />
+              ),
+            )}
 
-            {/* Career */}
-            <Route path='/career/placements' exact component={AsyncSubCategory} />
-            <Route path='/career/internships' exact component={AsyncSubCategory} />
-            <Route path='/career/higherEducation' exact component={AsyncSubCategory} />
-            {/* // TODO */}
-            {/* <Route path='/career/live' exact component={AsyncSubCategory} /> */}
+            {/* Sub Categories - Career Tabs */}
+            {ROUTES.SUB_CATEGORIES.OBJECT.CAREER.map(
+              ({ shortName, path, asyncRoutePath, exact, idNumber }) => (
+                <Route
+                  key={`${shortName}-${idNumber}`}
+                  path={path}
+                  component={AsyncRoute(asyncRoutePath)}
+                  exact={exact}
+                />
+              ),
+            )}
 
-            {/* Alumni */}
-            <Route path='/alumni/alumnusSpeaks' exact component={AsyncSubCategory} />
-            <Route path='/alumni/alumniAffairs' exact component={AsyncSubCategory} />
+            {/* Sub Categories - Alumni Tabs */}
+            {ROUTES.SUB_CATEGORIES.OBJECT.ALUMNI.map(
+              ({ shortName, path, asyncRoutePath, exact, idNumber }) => (
+                <Route
+                  key={`${shortName}-${idNumber}`}
+                  path={path}
+                  component={AsyncRoute(asyncRoutePath)}
+                  exact={exact}
+                />
+              ),
+            )}
 
-            {/* Expressions */}
-            <Route path='/expressions/witsdom' exact component={AsyncSubCategory} />
-            <Route path='/expressions/editorial' exact component={AsyncSubCategory} />
-            <Route path='/expressions/podcasts' exact component={AsyncPodcast} />
-            <Route path='/expressions/photostory' component={AsyncPhotoStory} />
-            <Route path='/expressions/gallery' component={AsyncSubCategory} />
+            {/* Sub Categories - Expressions Tabs */}
+            {ROUTES.SUB_CATEGORIES.OBJECT.EXPRESSIONS.map(
+              ({ shortName, path, asyncRoutePath, exact, idNumber }) => (
+                <Route
+                  key={`${shortName}-${idNumber}`}
+                  path={path}
+                  component={AsyncRoute(asyncRoutePath)}
+                  exact={exact}
+                />
+              ),
+            )}
 
-            {/* Individuals */}
-            <Route path='/article/:id/:title' exact component={AsyncArticle} />
-            <Route path='/witsdom/:id/:title' exact component={AsyncArticle} />
-            <Route path='/gallery/:id/title' component={AsyncGallery} />
-            <Route path='/photostory/:id/title' component={AsyncGallery} />
-            <Route path='/portfolio/:id/:name' exact component={AsyncPortfolio}/>
+            {/* Individual Routes */}
+            {ROUTES.INDIVIDUALS.map(
+              ({ shortName, path, asyncRoutePath, exact, idNumber }) => (
+                <Route
+                  key={`${shortName}-${idNumber}`}
+                  path={path}
+                  component={AsyncRoute(asyncRoutePath)}
+                  exact={exact}
+                />
+              ),
+            )}
 
-            {/* Interactions: TODO */}
-            {/* <Route path='/calendar' /> */}
-            {/* <Route path='/polls' /> */}
-            {/* <Route path='/forums' /> */}
+            {/* General Routes */}
+            {ROUTES.GENERAL.map(
+              ({ shortName, path, asyncRoutePath, exact, idNumber }) => (
+                <Route
+                  key={`${shortName}-${idNumber}`}
+                  path={path}
+                  component={AsyncRoute(asyncRoutePath)}
+                  exact={exact}
+                />
+              ),
+            )}
 
-            {/* General */}
-            <Route path='/about' component={AsyncAbout} />
-            <Route path='/guide' exact component={AsyncGuide} />
-            <Route path='/contact' exact component={AsyncContact} />
-            <Route path='/live' exact component={AsyncLive} />
-            {/* <Route path='/archive' /> */}
-            {/* <Route path='/terms&policies' /> */}
-            {/* <Route path='/sac&clubs' /> */}
-            {/* <Route path='/health' /> */}
-            {/* <Route path='/emergency' /> */}
-
-            {/* User Account */}
-            <Route path='/profile' exact component={AsyncProfile} />
+            {/* User Profile Route */}
+            <Route
+              path={ROUTES.USER[1].path}
+              component={AsyncRoute(ROUTES.USER[1].asyncRoutePath)}
+              exact={ROUTES.USER[1].exact}
+            />
           </Marginals>
         </Switch>
+
+        <ScrollToTopOnMount />
       </Router>
     </ThemeProvider>
   );

@@ -1,29 +1,29 @@
 import React from 'react';
 
 // Libraries
-import { Container, makeStyles, Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { makeStyles, Typography } from '@material-ui/core';
+import { Link, useLocation } from 'react-router-dom';
 
-const BackLink = () => {
+const BackLink = ({ backTo }) => {
   const classes = useStyles();
+  const location = useLocation();
+  const category = location.pathname.split('/')[1];
   return (
-    <Container>
-      <div className={classes.wrapper}>
-        <Link to='/expressions' className={classes.link}>
-          <Typography variant='body1'>
-            <i className='fas fa-chevron-left'></i>
-            <span className={classes.text}>Back to Expressions</span>
-          </Typography>
-        </Link>
-      </div>
-    </Container>
+    <div className={classes.wrapper}>
+      <Link to={`/${category}`} className={classes.link}>
+        <Typography variant='body1'>
+          <i className='fas fa-chevron-left' />
+          <span className={classes.text}>Back to {backTo}</span>
+        </Typography>
+      </Link>
+    </div>
   );
 };
 export default BackLink;
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
-    marginTop: '3rem',
+    marginTop: '2rem',
   },
   link: {
     textDecoration: 'none',

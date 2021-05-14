@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Grid } from '@material-ui/core';
 
 // Component
-import ArticleCard from '../widgets/ArticleCard';
+import ArticleCard from '../widgets/article/ArticleCard';
 
 // Placeholder
 import { PROJECT } from '../../assets/placeholder/about';

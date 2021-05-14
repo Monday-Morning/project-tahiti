@@ -4,7 +4,7 @@ import React from 'react';
 import { Container, Grid, makeStyles, Typography } from '@material-ui/core';
 
 // Components
-import ArticleCard from '../widgets/ArticleCard';
+import ArticleCardStack from '../widgets/article/ArticleCardStack';
 import Witsdom from '../expressions/Witsdom';
 import PhotoStory from '../expressions/PhotoStory';
 
@@ -22,15 +22,7 @@ const Works = () => {
           >
             Content
           </Typography>
-          <Grid container spacing={4}>
-            {[0, 1, 2, 3, 4].map((key) => {
-              return (
-                <Grid key={key} item sm={4}>
-                  <ArticleCard />
-                </Grid>
-              );
-            })}
-          </Grid>
+          <ArticleCardStack />
         </div>
         <div className={classes.sectionWrapper}>
           {/* Design */}
@@ -42,13 +34,11 @@ const Works = () => {
             Design
           </Typography>
           <Grid container spacing={4}>
-            {[0, 1].map((key) => {
-              return (
-                <Grid key={key} item sm={6}>
-                  <Witsdom />
-                </Grid>
-              );
-            })}
+            {[0, 1].map((key) => (
+              <Grid key={key} item sm={6}>
+                <Witsdom />
+              </Grid>
+            ))}
           </Grid>
         </div>
         <div className={classes.sectionWrapper}>
@@ -61,13 +51,11 @@ const Works = () => {
             Photography
           </Typography>
           <Grid container spacing={4}>
-            {[0].map((key) => {
-              return (
-                <Grid key={key} item sm={6}>
-                  <PhotoStory />
-                </Grid>
-              );
-            })}
+            {[0].map((key) => (
+              <Grid key={key} item sm={6}>
+                <PhotoStory />
+              </Grid>
+            ))}
           </Grid>
         </div>
       </div>
@@ -76,7 +64,7 @@ const Works = () => {
 };
 export default Works;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   wrapper: {
     marginBottom: '4rem',
   },

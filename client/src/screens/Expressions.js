@@ -1,27 +1,26 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 
-// libraries
+// Libraries
 import { Container, Grid, makeStyles, Typography } from '@material-ui/core';
 import { Link, Element } from 'react-scroll';
 
-// components
+// Components
 import Section from '../components/expressions/Section';
 import Title from '../components/widgets/Title';
 import PodcastList from '../components/podcast/List';
 import SubCategories from '../components/widgets/SubCategories';
-import FeaturedArticles from '../components/homepage/FeaturedArticles';
-import ArticleCardStack from '../components/widgets/ArticleCardStack';
+import ArticleCardStack from '../components/widgets/article/ArticleCardStack.js';
 import BigCarousel from '../components/widgets/BigCarousel';
+// import SectionTitle from '../components/categories/SectionTitle';
+// import FeaturedArticles from '../components/homepage/FeaturedArticles';
 
-// placeholders
+// Placeholders
 import { CAROUSEL } from '../assets/placeholder/guide';
 import { EXPRESSIONS } from '../assets/placeholder/categoryPages';
 
-// theme
-import theme from '../config/themes/light';
-
 function Expressions() {
-  const classes = useStyles(theme);
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -30,7 +29,7 @@ function Expressions() {
           <Typography variant='h1' className={classes.head}>
             Expressions
           </Typography>
-          <div className={classes.line}></div>
+          <div className={classes.line} />
         </div>
 
         <Grid className={classes.subCategories}>
