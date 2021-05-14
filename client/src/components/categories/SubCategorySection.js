@@ -5,7 +5,6 @@ import { Grid, makeStyles, useMediaQuery } from '@material-ui/core';
 
 // Components
 import Forum from '../widgets/Forum';
-// import Title from '../widgets/Title';
 import Title from './SectionTitle';
 import Pulse from '../widgets/Pulse';
 import PnIData from '../widgets/PnIData';

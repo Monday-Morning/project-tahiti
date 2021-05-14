@@ -2,7 +2,7 @@ import React from 'react';
 
 // libraries
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardContent, Grid, Typography } from '@material-ui/core';
+import { Card, CardContent, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
 // Components
@@ -18,50 +18,40 @@ const ArticleCard = ({ carousel }) => {
   const classes = useStyles();
 
   return (
-    // <Card className={classes.root}>
-    <Card className={carousel ? classes.root2 : classes.root}>
-      <img className={classes.featuredImage} src={cover} alt='Featured' />
+    <Link to='/article/adfjh/Dummy Article Title' className={classes.link}>
+      <Card className={carousel ? classes.root2 : classes.root}>
+        <img className={classes.featuredImage} src={cover} alt='Featured' />
 
-      <CardContent className={classes.contentRoot}>
-        <Grid container spacing={1}>
-          {props.article.tags.map((tag, index) => (
-            <Grid item key={tag}>
-              <span className={classes.seperator}>{index ? ' |' : ''}</span>{' '}
-              <span className={classes.tag}>{`${tag}`}</span>
-            </Grid>
-          ))}
-        </Grid>
-
-        <Typography className={classes.title} variant='h2'>
-          <Link to='/article' className={classes.link}>
-            {props.article.title}
-          </Link>
-        </Typography>
-
-        <div className={classes.wrapper}>
-          <div className={classes.authorList}>
-            {props.article.authors.map((author, index) => (
-              <Typography
-                variant='body2'
-                key={author}
-                className={classes.author}
-              >
-                {`${index ? ',' : ''}  ${author}`}
-              </Typography>
+        <CardContent className={classes.cardContent}>
+          <Typography variant='body2' className={classes.categories}>
+            {props.article.tags.map((category, index) => (
+              <span key={category}>{`${index ? ' | ' : ''}${category}`}</span>
             ))}
+          </Typography>
+
+          <Typography className={classes.title} variant='h2'>
+            {props.article.title}
+          </Typography>
+
+          <div className={classes.detailsContainer}>
+            <Typography variant='body2' className={classes.author}>
+              {props.article.authors.map((author, index) => (
+                <span key={author}>{`${index ? ', ' : ''}  ${author}`}</span>
+              ))}
+            </Typography>
+
+            <div className={classes.readTime}>
+              <i className={`far fa-clock ${classes.clockIcon}`} />
+              <Typography variant='body2'>{props.article.readTime}</Typography>
+            </div>
           </div>
 
-          <div className={classes.readTime}>
-            <i className='far fa-clock' />
-            <Typography variant='body2'>{props.article.readTime}</Typography>
-          </div>
-        </div>
-
-        <Typography variant='body2' className={classes.articleDescription}>
-          {props.article.summary}
-        </Typography>
-      </CardContent>
-    </Card>
+          <Typography variant='body2' className={classes.articleDescription}>
+            {props.article.summary}
+          </Typography>
+        </CardContent>
+      </Card>
+    </Link>
   );
 };
 
@@ -70,11 +60,12 @@ const useStyles = makeStyles((theme) => ({
   root: {
     boxShadow: theme.shadows[0],
     maxWidth: '379px',
-
+    backgroundColor: theme.palette.common.white,
+    overflow: 'hidden',
+    maxHeight: '450px',
     [theme.breakpoints.down('sm')]: {
       maxWidth: '100%',
     },
-    backgroundColor: theme.palette.common.white,
   },
   root2: {
     boxShadow: theme.shadows[0],
@@ -89,66 +80,45 @@ const useStyles = makeStyles((theme) => ({
   },
   featuredImage: {
     width: '100%',
+    height: 'auto',
   },
-  contentRoot: {
+  cardContent: {
     [theme.breakpoints.up('sm')]: {
       padding: '0.75rem',
     },
   },
-  tag: {
-    fontSize: '0.75rem',
-    fontWeight: '400',
-    lineHeight: '1rem',
+  categories: {
     color: theme.palette.secondary.neutral70,
-    textDecoration: 'underline',
-  },
-  seperator: {
-    color: theme.palette.secondary.neutral70,
-    // marginInline: '0.25rem',
-    marginRight: '2px',
-    marginLeft: '0.25rem',
   },
   title: {
     marginTop: '0.25rem',
     fontSize: '1.5rem',
     lineHeight: '2rem',
-    textAlign: 'justify',
+    textAlign: 'left',
 
     [theme.breakpoints.down('sm')]: {
       lineHeight: '1.75rem',
       fontSize: '1.25rem',
     },
   },
-  wrapper: {
+  detailsContainer: {
     display: 'flex',
     marginTop: '4px',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  author: {
+    color: theme.palette.secondary.neutral70,
+  },
+  clockIcon: {
+    marginRight: '5px',
+  },
   readTime: {
     display: 'flex',
-    alignItems: 'flex-end',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     fontWeight: '400',
-    color: theme.palette.secondary.neutral60,
-
-    '& i': {
-      marginTop: '0.25rem',
-      marginRight: '5px',
-    },
-
-    [theme.breakpoints.down('sm')]: {
-      color: theme.palette.secondary.neutral70,
-    },
-  },
-  author: {
-    display: 'inline',
-    color: theme.palette.secondary.neutral60,
-    fontWeight: '400',
-    marginRight: '10px',
-
-    [theme.breakpoints.down('sm')]: {
-      color: theme.palette.secondary.neutral70,
-    },
+    color: theme.palette.secondary.neutral70,
   },
   articleDescription: {
     marginTop: '12px',
