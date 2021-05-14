@@ -9,11 +9,11 @@ import { Link } from 'react-router-dom';
 import { ARTICLECARD } from '../../../assets/placeholder/widget';
 import cover from '../../../assets/images/cover.png';
 
-const ArticleCard = () => {
+const ArticleCard = ({ carousel }) => {
   const props = {
     article: ARTICLECARD,
   };
-  const classes = useStyles();
+  const classes = useStyles(carousel);
 
   return (
     <Link
@@ -57,6 +57,7 @@ const ArticleCard = () => {
 };
 
 export default ArticleCard;
+
 const useStyles = makeStyles((theme) => ({
   root: {
     boxShadow: theme.shadows[0],
@@ -71,8 +72,8 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.between('xs', 'sm')]: {
       margin: '0px',
-      width: 'auto',
-      height: 'auto',
+      width: (carousel) => (carousel ? '380px' : 'auto'),
+      height: (carousel) => (carousel ? '420px' : 'auto'),
       minHeight: '420px',
     },
   },

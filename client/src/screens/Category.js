@@ -7,7 +7,8 @@ import { Link as ScrollLink, Element } from 'react-scroll';
 
 // Components
 import SubCategory from '../components/widgets/SubCategories';
-import Carousel from '../components/widgets/Carousel';
+// import ArticleCarousel from '../components/widgets/Carousel';
+import ArticleCarousel from '../components/widgets/article/ArticleCarousel';
 import SubCategorySection from '../components/categories/SubCategorySection';
 
 // Utils
@@ -43,7 +44,7 @@ function Category() {
             )}
           </div>
         </Container>
-        <Carousel />
+        <ArticleCarousel />
       </div>
 
       <div>
