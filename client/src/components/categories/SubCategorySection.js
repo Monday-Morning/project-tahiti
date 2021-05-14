@@ -9,8 +9,10 @@ import Title from './SectionTitle';
 import Pulse from '../widgets/Pulse';
 import PnIData from '../widgets/PnIData';
 import BigArticleCard from './BigArticleCard';
-import ArticleCard from '../widgets/ArticleCard';
-import ArticleCardStack from '../widgets/ArticleCardStack';
+// import ArticleCard from '../widgets/ArticleCard';
+// import ArticleCardStack from '../widgets/ArticleCardStack';
+import ArticleCard from '../widgets/article/ArticleCard';
+import ArticleCardStack from '../widgets/article/ArticleCardStack';
 
 const ArticlesCard = ({
   heading,

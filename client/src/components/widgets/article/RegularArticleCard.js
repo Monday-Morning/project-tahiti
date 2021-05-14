@@ -5,21 +5,22 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
-// Components
-import { ARTICLECARD } from '../../assets/placeholder/widget';
+// Assets
+import { ARTICLECARD } from '../../../assets/placeholder/widget';
+import cover from '../../../assets/images/cover.png';
 
-// images
-import cover from '../../assets/images/cover.png';
-
-const ArticleCard = ({ carousel }) => {
+const ArticleCard = () => {
   const props = {
     article: ARTICLECARD,
   };
   const classes = useStyles();
 
   return (
-    <Link to='/article/adfjh/Dummy Article Title' className={classes.link}>
-      <Card className={carousel ? classes.root2 : classes.root}>
+    <Link
+      to='/article/609673938c0ee55b2c03e814/Adapting%20To%20The%20Unprecedented:%20NITR%20Rewind%202020-21'
+      className={classes.link}
+    >
+      <Card className={classes.root}>
         <img className={classes.featuredImage} src={cover} alt='Featured' />
 
         <CardContent className={classes.cardContent}>
@@ -63,6 +64,16 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
     width: '380px',
     height: '420px',
+    [theme.breakpoints.between('sm', 'lg')]: {
+      margin: '25px',
+      marginBottom: '0px',
+      marginLeft: '0px',
+    },
+    [theme.breakpoints.between('xs', 'sm')]: {
+      // width: 'auto',
+      // height: 'auto',
+      minHeight: '420px',
+    },
   },
   featuredImage: {
     width: '100%',

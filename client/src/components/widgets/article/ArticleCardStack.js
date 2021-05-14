@@ -27,9 +27,11 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'space-between',
     flexWrap: 'wrap',
-
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.between('sm', 'lg')]: {
       justifyContent: 'flex-start',
+    },
+    [theme.breakpoints.between('xs', 'sm')]: {
+      justifyContent: 'center',
     },
   },
 }));
