@@ -9,6 +9,7 @@ import { CssBaseline } from '@material-ui/core';
 // Components
 import ActivityIndicator from '../components/shared/ActivityIndicator';
 import Marginals from '../components/marginals/Marginals';
+import ScrollToTopOnMount from '../components/shared/ScrollToTopOnMount';
 
 // Helpers
 import createBrowserHistory from '../utils/history';
@@ -154,6 +155,8 @@ function App() {
             />
           </Marginals>
         </Switch>
+
+        <ScrollToTopOnMount />
       </Router>
     </ThemeProvider>
   );
