@@ -2,13 +2,13 @@ import { Button, makeStyles } from '@material-ui/core';
 import React from 'react';
 // import theme from '../../config/themes/light';
 
-const SubCategories = (props) => {
+const SubCategories = ({ text }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.container}>
       <Button className={classes.button}>
-        <span className={classes.label}> {props.text} </span>
+        <span className={classes.label}> {text} </span>
       </Button>
     </div>
   );

@@ -3,14 +3,17 @@ import React from 'react';
 // libraries
 import { makeStyles } from '@material-ui/core';
 import { Element } from 'react-scroll';
+import { Link } from 'react-router-dom';
 
-function Title({ heading, link }) {
+function Title({ heading, link, path }) {
   const classes = useStyles();
   return (
     <Element className={classes.root} name={link}>
       <div className={classes.head}>{heading}</div>
       <div className={classes.line} />
-      <div className={classes.seeAll}>See All</div>
+      <Link to={path} s style={{ textDecoration: 'none' }}>
+        <div className={classes.seeAll}>See All</div>
+      </Link>
     </Element>
   );
 }

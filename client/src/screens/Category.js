@@ -50,9 +50,14 @@ function Category() {
         <Container>
           <div className={classes.articlesCards}>
             {ROUTES.SUB_CATEGORIES.OBJECT[category.toUpperCase()].map(
-              ({ name, shortName }) => (
+              ({ name, shortName, path }) => (
                 <Element name={shortName} key={shortName}>
-                  <SubCategorySection heading={name} smallCards bigCards />
+                  <SubCategorySection
+                    path={path}
+                    heading={name}
+                    smallCards
+                    bigCards
+                  />
                 </Element>
               ),
             )}

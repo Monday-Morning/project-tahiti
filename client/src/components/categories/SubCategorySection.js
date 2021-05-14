@@ -11,13 +11,14 @@ import PnIData from '../widgets/PnIData';
 import ArticleCardStack from '../widgets/article/ArticleCardStack';
 import BigArticleCard from '../widgets/article/BigArticleCard';
 
-const ArticlesCard = ({
+const SubCategorySection = ({
   heading,
   smallCards,
   bigCards,
   forum,
   pulse,
   pniData,
+  path,
 }) => {
   const classes = useStyles();
 
@@ -28,7 +29,7 @@ const ArticlesCard = ({
   return (
     <div className={classes.root}>
       {forum && <Forum />}
-      {heading && <Title heading={heading} />}
+      {heading && <Title path={path} heading={heading} />}
       {pulse && <Pulse />}
       {pniData && <PnIData />}
 
@@ -48,4 +49,4 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default ArticlesCard;
+export default SubCategorySection;
