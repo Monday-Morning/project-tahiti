@@ -9,11 +9,11 @@ import { Link } from 'react-router-dom';
 import { ARTICLECARD } from '../../../assets/placeholder/widget';
 import cover from '../../../assets/images/cover.png';
 
-const ArticleCard = ({ carousel }) => {
+const ArticleCard = ({ carousel, isLastInStack }) => {
   const props = {
     article: ARTICLECARD,
   };
-  const classes = useStyles(carousel);
+  const classes = useStyles({ carousel, isLastInStack });
 
   return (
     <Link
@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
     color: theme.palette.common.black,
     marginTop: '25px',
-    marginRight: (carousel) => (carousel ? '10px' : '0px'),
+    marginRight: ({ carousel }) => (carousel ? '10px' : '0px'),
     [theme.breakpoints.between('sm', 'lg')]: {
       margin: '25px',
       marginBottom: '0px',
@@ -79,8 +79,8 @@ const useStyles = makeStyles((theme) => ({
 
     [theme.breakpoints.between('xs', 'sm')]: {
       margin: '0px',
-      width: (carousel) => (carousel ? '380px' : 'auto'),
-      height: (carousel) => (carousel ? '420px' : 'auto'),
+      width: ({ carousel }) => (carousel ? '380px' : 'auto'),
+      height: ({ carousel }) => (carousel ? '420px' : 'auto'),
       minHeight: '420px',
     },
   },

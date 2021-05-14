@@ -11,8 +11,8 @@ function ArticleCardStack() {
 
   return (
     <div className={classes.root}>
-      {[0, 1, 2].map((val) => (
-        <ArticleCard key={val} />
+      {[0, 1, 2].map((val, index) => (
+        <ArticleCard key={val} isLastInStack={index === 2} />
       ))}
     </div>
   );

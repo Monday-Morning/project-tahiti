@@ -7,10 +7,14 @@ import { useMediaQuery } from '@material-ui/core';
 import RegularArticleCard from './RegularArticleCard';
 import SmallArticleCard from './SmallArticleCard';
 
-const ArticleCard = () => {
+const ArticleCard = ({ isLastInStack }) => {
   const matches = useMediaQuery('(max-width: 600px)');
 
-  return matches ? <SmallArticleCard /> : <RegularArticleCard />;
+  return matches ? (
+    <SmallArticleCard />
+  ) : (
+    <RegularArticleCard isLastInStack={isLastInStack} carousel={false} />
+  );
 };
 
 export default ArticleCard;
