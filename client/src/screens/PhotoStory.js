@@ -1,5 +1,8 @@
 import React from 'react';
 
+// libraries
+import { Container } from '@material-ui/core';
+
 // Components
 import Header from '../components/photostory/Header';
 import Body from '../components/photostory/Body';
@@ -15,7 +18,10 @@ function PhotoStory() {
       <Header DATA={PHOTOSTORY} />
       <Body />
       <hr />
-      <Comments />
+      <Container>
+        <Comments />
+      </Container>
+
       <RecommendedArticles title='More Photostories' />
     </div>
   );
