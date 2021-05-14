@@ -36,6 +36,7 @@ const AsyncAbout = AsyncRoute('./About');
 const AsyncPhotoStory = AsyncRoute('./PhotoStory');
 const AsyncGallery = AsyncRoute('./Gallery');
 const AsyncExpressions = AsyncRoute('./Expressions');
+const AsyncLive = AsyncRoute('./Live');
 
 function App() {
   return (
@@ -110,6 +111,7 @@ function App() {
             <Route path='/about' component={AsyncAbout} />
             <Route path='/guide' exact component={AsyncGuide} />
             <Route path='/contact' exact component={AsyncContact} />
+            <Route path='/live' exact component={AsyncLive} />
             {/* <Route path='/archive' /> */}
             {/* <Route path='/terms&policies' /> */}
             {/* <Route path='/sac&clubs' /> */}
