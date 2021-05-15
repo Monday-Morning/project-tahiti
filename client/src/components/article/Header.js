@@ -5,13 +5,12 @@ import { Grid, makeStyles, Typography } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Bookmark } from 'react-feather';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 // Config + Utilities
 import theme from '../../config/themes/light';
 import getCategory from '../../utils/determineCategory';
 import Share from '../widgets/Share';
-
-// images
 
 const ArticleHeader = ({ article, articleTitle }) => {
   const Desktop = useMediaQuery(theme.breakpoints.up('sm'));
@@ -47,19 +46,23 @@ const ArticleHeader = ({ article, articleTitle }) => {
             {categories
               .slice()
               .sort(categorySortFunction)
-              .map(({ number }) => (
+              .map(({ number }, index) => (
                 <Grid item key={getCategory(number)}>
                   <Typography variant='body1' className={classes.tag}>
+                    {index ? (
+                      <span
+                        style={{
+                          textDecoration: 'none',
+                          paddingLeft: '10px',
+                          paddingRight: '10px',
+                        }}
+                      >
+                        |
+                      </span>
+                    ) : (
+                      ''
+                    )}
                     {getCategory(number)}
-                    <span
-                      style={{
-                        textDecoration: 'none',
-                        paddingLeft: '10px',
-                        paddingRight: '10px',
-                      }}
-                    >
-                      |
-                    </span>
                   </Typography>
                 </Grid>
               ))}
@@ -78,17 +81,25 @@ const ArticleHeader = ({ article, articleTitle }) => {
           <div className={classes.wrapper}>
             <div className={classes.authorList}>
               {authors.map(({ name }) => (
-                <div key={name} className={classes.authorWrapper}>
-                  {/* <img
+                <Link
+                  to='/portfolio/id/title'
+                  key={name}
+                  target='_blank'
+                  rel='noreferrer'
+                  style={{ textDecoration: 'none' }}
+                >
+                  <div key={name} className={classes.authorWrapper}>
+                    {/* <img
                     src={user}
                     alt={author.alt}
                     className={classes.authorImg}
                   /> */}
 
-                  <Typography variant='body2' className={classes.author}>
-                    {name}
-                  </Typography>
-                </div>
+                    <Typography variant='body2' className={classes.author}>
+                      {name}
+                    </Typography>
+                  </div>
+                </Link>
               ))}
             </div>
 
