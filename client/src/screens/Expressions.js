@@ -1,23 +1,66 @@
-/* eslint-disable react/no-array-index-key */
 import React from 'react';
 
 // Libraries
-import { Container, Grid, makeStyles, Typography } from '@material-ui/core';
-import { Link, Element } from 'react-scroll';
+import { Container, makeStyles, Typography } from '@material-ui/core';
+import { Link } from 'react-scroll';
 
 // Components
 import Section from '../components/expressions/Section';
-import Title from '../components/widgets/Title';
 import PodcastList from '../components/podcast/List';
 import SubCategories from '../components/widgets/SubCategories';
 import ArticleCardStack from '../components/widgets/article/ArticleCardStack.js';
 import BigCarousel from '../components/widgets/BigCarousel';
-// import SectionTitle from '../components/categories/SectionTitle';
+import SectionTitle from '../components/categories/SectionTitle';
 // import FeaturedArticles from '../components/homepage/FeaturedArticles';
+
+// Utils
+import ROUTES from '../utils/getRoutes';
 
 // Placeholders
 import { CAROUSEL } from '../assets/placeholder/guide';
-import { EXPRESSIONS } from '../assets/placeholder/categoryPages';
+
+const CONTENT = [
+  {
+    name: 'Witsdom',
+    container: true,
+    section: <Section heading='Witsdom' />,
+  },
+  {
+    name: 'Photostory',
+    container: true,
+    section: <Section heading='Photostory' />,
+  },
+  {
+    name: 'Gallery',
+    container: false,
+    section: (
+      <BigCarousel
+        head='Gallery'
+        navigator='XVII Convocation'
+        IMAGE={CAROUSEL}
+      />
+    ),
+  },
+  {
+    name: 'Podcasts',
+    container: true,
+    section: <PodcastList />,
+  },
+  {
+    name: 'Editorial',
+    container: true,
+    section: <ArticleCardStack />,
+  },
+];
+
+const EXPRESSIONS_CONTENT = ROUTES.SUB_CATEGORIES.OBJECT.EXPRESSIONS.map(
+  ({ name, shortName, path }, index) => ({
+    name,
+    shortName,
+    path,
+    ...CONTENT[index],
+  }),
+);
 
 function Expressions() {
   const classes = useStyles();
@@ -32,38 +75,34 @@ function Expressions() {
           <div className={classes.line} />
         </div>
 
-        <Grid className={classes.subCategories}>
-          {EXPRESSIONS.expressions.map(({ heading, link }, key) => (
-            <Link to={link} key={key} smooth='true'>
-              <SubCategories text={heading} className={classes.subCategory} />
-            </Link>
-          ))}
-        </Grid>
-
-        <Section heading='Witsdom' link='witsdom' />
-
-        <Title heading='Photostory' link='photostory' />
-        {/* <FeaturedArticles /> */}
+        <div className={classes.subCategories}>
+          {ROUTES.SUB_CATEGORIES.OBJECT.EXPRESSIONS.map(
+            ({ name, shortName }) => (
+              <Link key={shortName} to={shortName} smooth>
+                <SubCategories text={name} />
+              </Link>
+            ),
+          )}
+        </div>
       </Container>
 
-      <Element name='gallery'>
-        <BigCarousel
-          head='Gallery'
-          navigator='XVII Convocation'
-          IMAGE={CAROUSEL}
-        />
-      </Element>
+      {EXPRESSIONS_CONTENT.map(
+        ({ name, shortName, path, container, section }) => {
+          const element = (
+            <>
+              <SectionTitle
+                heading={name}
+                link={shortName}
+                path={path}
+                container={!container}
+              />
+              {section}
+            </>
+          );
 
-      <Container>
-        <Section heading='NITR in Motion' link='nitr' />
-
-        <Title heading='Podcasts' link='podcasts' />
-      </Container>
-      <PodcastList />
-      <Container>
-        <Title heading='Editorials' link='editorial' />
-        <ArticleCardStack />
-      </Container>
+          return container ? <Container>{element}</Container> : element;
+        },
+      )}
     </div>
   );
 }
@@ -80,12 +119,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     margin: '2.7rem 0 2rem 0',
   },
-
   head: {
     color: theme.palette.primary.blue60,
     lineHeight: '2rem',
   },
-
   line: {
     [theme.breakpoints.up('sm')]: {
       borderBottom: '1px solid ',
@@ -95,9 +132,13 @@ const useStyles = makeStyles((theme) => ({
       height: '2.5rem',
     },
   },
-
   subCategories: {
     marginTop: '1rem',
     marginBottom: '3rem',
+
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    flexWrap: 'wrap',
   },
 }));

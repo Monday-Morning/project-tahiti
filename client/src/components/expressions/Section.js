@@ -1,24 +1,19 @@
 import React from 'react';
 
-//libraries
+// Libraries
 import { Box, Grid, makeStyles, useMediaQuery } from '@material-ui/core';
 
-//components
-import Title from '../widgets/Title';
+// Components
 import FeatureArticle from './FeatureArticle';
 import SmallCard from './SmallCard';
 import SmallArticleCard from '../widgets/SmallArticleCard';
 
-//theme
-import theme from '../../config/themes/light';
-
-function Section({ heading, link }) {
+function Section() {
   const matches = useMediaQuery('(min-width:600px');
-  const classes = useStyles(theme);
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <Title heading={heading} link={link} />
       <Grid container spacing={4}>
         <Grid item sm={9}>
           <FeatureArticle className={classes.feature} />
@@ -34,7 +29,7 @@ function Section({ heading, link }) {
 
 export default Section;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     width: '100%',
     marginTop: '2rem',

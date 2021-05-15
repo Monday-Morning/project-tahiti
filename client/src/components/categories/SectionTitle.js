@@ -1,13 +1,13 @@
 import React from 'react';
 
-// libraries
-import { makeStyles } from '@material-ui/core';
+// Libraries
+import { makeStyles, Container } from '@material-ui/core';
 import { Element } from 'react-scroll';
 import { Link } from 'react-router-dom';
 
-function Title({ heading, link, path }) {
+function Title({ heading, link, path, container }) {
   const classes = useStyles();
-  return (
+  const title = (
     <Element className={classes.root} name={link}>
       <div className={classes.head}>{heading}</div>
       <div className={classes.line} />
@@ -16,6 +16,8 @@ function Title({ heading, link, path }) {
       </Link>
     </Element>
   );
+
+  return container ? <Container>{title}</Container> : title;
 }
 
 export default Title;
