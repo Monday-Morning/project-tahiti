@@ -31,6 +31,7 @@ const SUB_CATEGORIES = {
     PLACEMENTS: `${CATEGORIES.CAREER}/placements`,
     INTERNSHIPS: `${CATEGORIES.CAREER}/internships`,
     HIGHER_EDUCATION: `${CATEGORIES.CAREER}/higherEducation`,
+    LIVE: `${CATEGORIES.CAREER}/live`,
   },
   ALUMNI: {
     ALUMNUS_SPEAKS: `${CATEGORIES.ALUMNI}/alumnusSpeaks`,
