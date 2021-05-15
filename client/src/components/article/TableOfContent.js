@@ -8,6 +8,7 @@ import { makeStyles, Typography } from '@material-ui/core';
 
 // Utils
 import { CONTENT_TYPE } from '../../utils/articleContentParser';
+import limitString from '../../utils/limitString';
 
 const TableOfContent = ({ structuredContent }) => {
   const classes = useStyles();
@@ -27,19 +28,19 @@ const TableOfContent = ({ structuredContent }) => {
       <div>
         <ol>
           {structuredContent.map(
-            ({ contentType, data }) =>
+            ({ contentType, data }, primaryIndex) =>
               isApplicable(contentType) &&
               data.map(({ text }, index) => (
                 <li key={`${text}-${index}`} className={classes.indexList}>
                   <Link
-                    to={text}
+                    to={`${contentType}-${primaryIndex}`}
                     className={`${classes.indexLink} ${getIndentClasses(
                       contentType,
                     )}`}
                     smooth
                     activeClass={classes.indexLinkActive}
                   >
-                    {text}
+                    {limitString(text, 15)}
                   </Link>
                 </li>
               )),
