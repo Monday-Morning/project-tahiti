@@ -244,19 +244,19 @@ const EXPRESSIONS = [
     exact: true,
   },
   {
-    name: 'Editorial',
-    shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.EDITORIAL.split('/')[2],
-    path: LINKS.SUB_CATEGORIES.EXPRESSIONS.EDITORIAL,
-    asyncRoutePath: './SubCategory',
-    idNumber: 64,
-    exact: true,
-  },
-  {
     name: 'Podcasts',
     shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.PODCASTS.split('/')[2],
     path: LINKS.SUB_CATEGORIES.EXPRESSIONS.PODCASTS,
     asyncRoutePath: './Podcast',
     idNumber: 65,
+    exact: true,
+  },
+  {
+    name: 'Editorial',
+    shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.EDITORIAL.split('/')[2],
+    path: LINKS.SUB_CATEGORIES.EXPRESSIONS.EDITORIAL,
+    asyncRoutePath: './SubCategory',
+    idNumber: 64,
     exact: true,
   },
 ];

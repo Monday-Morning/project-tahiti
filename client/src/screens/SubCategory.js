@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
 // Libraries
@@ -17,9 +18,9 @@ import ROUTES from '../utils/getRoutes';
 function Witsdom() {
   // 1. Determine category from the url.
   // 2. Get the title for the category from the ROUTES object.
-  const location = useLocation();
-  const category = location.pathname.split('/')[1];
-  const subCategory = location.pathname.split('/')[2];
+  const { pathname } = useLocation();
+  const category = pathname.split('/')[1];
+  const subCategory = pathname.split('/')[2];
   const categoryName = ROUTES.CATEGORIES.filter(
     ({ shortName }) => shortName === category,
   )[0].name;
@@ -27,17 +28,23 @@ function Witsdom() {
     category.toUpperCase()
   ].filter(({ shortName }) => shortName === subCategory)[0].name;
 
+  const isWitsdom = subCategory === 'witsdom';
+  const isPhotostory = subCategory === 'photostory';
+  const isGallery = subCategory === 'gallery';
+
+  const commonArticleProps = { isWitsdom, isPhotostory, isGallery };
+
   return (
-    <div>
-      <Container>
-        <BackLink backTo={categoryName} />
-        <Title title={subCategoryName} />
-        <BigArticleCard />
-        <ArticleCardStack />
-        <ArticleCardStack />
-        <Pagination />
-      </Container>
-    </div>
+    // <div>
+    <Container>
+      <BackLink backTo={categoryName} />
+      <Title title={subCategoryName} />
+      <BigArticleCard {...commonArticleProps} />
+      <ArticleCardStack {...commonArticleProps} />
+      <ArticleCardStack {...commonArticleProps} />
+      <Pagination />
+    </Container>
+    // {/* </div> */}
   );
 }
 
