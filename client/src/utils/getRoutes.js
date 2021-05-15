@@ -189,14 +189,14 @@ const CAREER = [
     idNumber: 43,
     exact: true,
   },
-  // {
-  //   name: "Live",
-  //   shortName: LINKS.SUB_CATEGORIES.CAREER.LIVE.split('/')[2],
-  //   path: LINKS.SUB_CATEGORIES.CAREER.LIVE,
-  //   asyncRoutePath: './SubCategory',
-  //   idNumber: 21,
-  //   exact: true,
-  // },
+  {
+    name: 'Live',
+    shortName: LINKS.SUB_CATEGORIES.CAREER.LIVE.split('/')[2],
+    path: LINKS.SUB_CATEGORIES.CAREER.LIVE,
+    asyncRoutePath: './Live',
+    idNumber: 44,
+    exact: true,
+  },
 ];
 
 const ALUMNI = [
@@ -330,6 +330,14 @@ const GENERAL = [
     path: LINKS.GENERAL.CONTACT,
     asyncRoutePath: './Contact',
     idNumber: 203,
+    exact: true,
+  },
+  {
+    name: 'Terms & Policies',
+    shortName: LINKS.GENERAL.TERMS_POLICIES.split('/')[1],
+    path: LINKS.GENERAL.TERMS_POLICIES,
+    asyncRoutePath: './Policy',
+    idNumber: 204,
     exact: true,
   },
   // TODO: Add the remaining general routes: Archive, Terms & Policies, SAC and Clubs, Health, Emergency

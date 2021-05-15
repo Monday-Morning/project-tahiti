@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 
 // libararies
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Grid } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
 // placeholder
 import { LIVE } from '../../assets/placeholder/live';
@@ -26,8 +26,14 @@ const LiveData = () => {
 
   return (
     <>
-      <Grid container spacing={5}>
-        <Grid item xs={3}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        }}
+      >
+        <div style={{ width: '25%' }}>
           <Typography variant='h2' className={classes.title}>
             Courses
           </Typography>
@@ -103,75 +109,71 @@ const LiveData = () => {
               </div>
             ))}
           </div>
-        </Grid>
-        <Grid item xs={9}>
-          <div>
-            <div className={classes.active}>
-              <div className={classes.companyData}>
-                <img
-                  src={LIVE.data[activeCompany].image}
-                  alt={LIVE.data[activeCompany].name}
-                  className={classes.activeImage}
-                />
-                <Typography variant='body1' className={classes.companyTitle}>
-                  {LIVE.data[activeCompany].name}
+        </div>
+        <div style={{ width: '70%' }}>
+          <div className={classes.active}>
+            <div className={classes.companyData}>
+              <img
+                src={LIVE.data[activeCompany].image}
+                alt={LIVE.data[activeCompany].name}
+                className={classes.activeImage}
+              />
+              <Typography variant='body1' className={classes.companyTitle}>
+                {LIVE.data[activeCompany].name}
+              </Typography>
+              <Typography variant='body2' className={classes.companysubTitle}>
+                <span style={{ color: '#005299' }}>Students Recruited: </span>
+                {LIVE.data[activeCompany].students}
+              </Typography>
+              <Typography variant='body2' className={classes.companysubTitle}>
+                <span style={{ color: '#005299' }}>CTC: </span>
+                {LIVE.data[activeCompany].ctc}
+              </Typography>
+            </div>
+            {LIVE.data[activeCompany].placed.map((student) => (
+              <div className={classes.studentsData}>
+                <Typography variant='body2' className={classes.course}>
+                  {student.course}
                 </Typography>
-                <Typography variant='body2' className={classes.companysubTitle}>
-                  <span style={{ color: '#005299' }}>Students Recruited: </span>
-                  {LIVE.data[activeCompany].students}
-                </Typography>
-                <Typography variant='body2' className={classes.companysubTitle}>
-                  <span style={{ color: '#005299' }}>CTC: </span>
-                  {LIVE.data[activeCompany].ctc}
-                </Typography>
-              </div>
-
-              {LIVE.data[activeCompany].placed.map((student) => (
-                <div className={classes.studentsData}>
-                  <Typography variant='body2' className={classes.course}>
-                    {student.course}
-                  </Typography>
-                  {student.branch.map((branches) => (
-                    <div>
-                      <Typography variant='body2' className={classes.branch}>
-                        {branches.branchName}
+                {student.branch.map((branches) => (
+                  <div>
+                    <Typography variant='body2' className={classes.branch}>
+                      {branches.branchName}
+                    </Typography>
+                    {branches.students.map((studentName) => (
+                      <Typography
+                        variant='body2'
+                        className={classes.student}
+                        key={studentName}
+                      >
+                        {studentName}
                       </Typography>
-                      {branches.students.map((studentName) => (
-                        <Typography
-                          variant='body2'
-                          className={classes.student}
-                          key={studentName}
-                        >
-                          {studentName}
-                        </Typography>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
-            <div className={classes.imageContainer}>
-              {LIVE.data.map((data, key) => (
-                <div
-                  className={classes.imageWrapper}
-                  style={{
-                    backgroundColor:
-                      activeCompany === key ? '#D9E9F7' : 'unset',
-                  }}
-                  onClick={() => setCompany(key)}
-                >
-                  <img
-                    src={data.image}
-                    alt={data.name}
-                    key={data.name}
-                    className={classes.images}
-                  />
-                </div>
-              ))}
-            </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            ))}
           </div>
-        </Grid>
-      </Grid>
+          <div className={classes.imageContainer}>
+            {LIVE.data.map((data, key) => (
+              <div
+                className={classes.imageWrapper}
+                style={{
+                  backgroundColor: activeCompany === key ? '#D9E9F7' : 'unset',
+                }}
+                onClick={() => setCompany(key)}
+              >
+                <img
+                  src={data.image}
+                  alt={data.name}
+                  key={data.name}
+                  className={classes.images}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </>
   );
 };
