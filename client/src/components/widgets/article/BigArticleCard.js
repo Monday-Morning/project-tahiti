@@ -11,6 +11,7 @@ import {
   useMediaQuery,
 } from '@material-ui/core';
 import { Bookmark, Share2 } from 'react-feather';
+import { Link } from 'react-router-dom';
 
 // Components
 import RegularArticleCard from './RegularArticleCard';
@@ -19,72 +20,90 @@ import RegularArticleCard from './RegularArticleCard';
 import { ARTICLECARD } from '../../../assets/placeholder/widget';
 import cover from '../../../assets/images/BACover.jpg';
 
-const BigArticleCard = () => {
+const BigArticleCard = ({ isWitsdom, isGallery, isPhotostory }) => {
   const classes = useStyles();
   const matches = useMediaQuery('(max-width: 600px)');
   const props = {
     article: ARTICLECARD,
   };
 
+  const getArticleLink = () => {
+    if (isWitsdom)
+      return '/article/609673938c0ee55b2c03e814/Adapting%20To%20The%20Unprecedented:%20NITR%20Rewind%202020-21';
+    if (isGallery) return '/gallery/id/title';
+    if (isPhotostory) return '/photostory/id/title';
+    return '/article/609673938c0ee55b2c03e814/Adapting%20To%20The%20Unprecedented:%20NITR%20Rewind%202020-21';
+  };
+
   return matches ? (
-    <RegularArticleCard />
+    <RegularArticleCard {...{ isWitsdom, isGallery, isPhotostory }} />
   ) : (
-    <Card className={classes.root}>
-      <img className={classes.cover} src={cover} alt='Cover' />
+    <Link
+      to={getArticleLink()}
+      target='_blank'
+      rel='noopener noreferrer'
+      style={{ textDecoration: 'none' }}
+    >
+      <Card className={classes.root}>
+        <img className={classes.cover} src={cover} alt='Cover' />
 
-      <CardContent className={classes.details}>
-        <div className={classes.container}>
-          <div>
-            <Grid container spacing={1}>
-              {props.article.tags.map((tag, index) => (
-                <Grid item key={tag}>
-                  <Typography
-                    variant='body2'
-                    key={index}
-                    className={classes.tag}
-                  >
-                    {`${index ? '|' : ''}    ${tag}`}
-                  </Typography>
-                </Grid>
-              ))}
-            </Grid>
-
-            <Typography className={classes.title} variant='h2'>
-              {props.article.title}
-            </Typography>
-
-            <div className={classes.wrapper}>
-              <div className={classes.authorList}>
-                {props.article.authors.map((author, index) => (
-                  <Typography
-                    variant='body2'
-                    key={index}
-                    className={classes.author}
-                  >
-                    {`${index ? ',' : ''}  ${author}`}
-                  </Typography>
+        <CardContent className={classes.details}>
+          <div className={classes.container}>
+            <div>
+              <Grid container spacing={1}>
+                {props.article.tags.map((tag, index) => (
+                  <Grid item key={tag}>
+                    <Typography
+                      variant='body2'
+                      key={index}
+                      className={classes.tag}
+                    >
+                      {`${index ? '|' : ''}    ${tag}`}
+                    </Typography>
+                  </Grid>
                 ))}
-              </div>
-              <div className={classes.readTime}>
-                <i className='far fa-clock' />
-                <Typography variant='body2'>
-                  {props.article.readTime}
-                </Typography>
-              </div>
-            </div>
-            <Typography variant='body1' className={classes.articleDescription}>
-              {props.article.summary}
-            </Typography>
-          </div>
+              </Grid>
 
-          <div className={classes.footer}>
-            <div className={classes.line} />
-            <Share2 size={18} className={classes.icons} />
-            <Bookmark size={18} className={classes.icons} />
+              <Typography className={classes.title} variant='h2'>
+                {props.article.title}
+              </Typography>
+
+              <div className={classes.wrapper}>
+                <div className={classes.authorList}>
+                  {props.article.authors.map((author, index) => (
+                    <Typography
+                      variant='body2'
+                      key={index}
+                      className={classes.author}
+                    >
+                      {`${index ? ',' : ''}  ${author}`}
+                    </Typography>
+                  ))}
+                </div>
+                <div className={classes.readTime}>
+                  <i className='far fa-clock' />
+                  <Typography variant='body2'>
+                    {props.article.readTime}
+                  </Typography>
+                </div>
+              </div>
+              <Typography
+                variant='body1'
+                className={classes.articleDescription}
+              >
+                {props.article.summary}
+              </Typography>
+            </div>
+
+            <div className={classes.footer}>
+              <div className={classes.line} />
+              <Share2 size={18} className={classes.icons} />
+              <Bookmark size={18} className={classes.icons} />
+            </div>
           </div>
-        </div>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </Link>
   );
 };
 

@@ -9,16 +9,32 @@ import { Link } from 'react-router-dom';
 import { ARTICLECARD } from '../../../assets/placeholder/widget';
 import cover from '../../../assets/images/cover.png';
 
-const ArticleCard = ({ carousel, isLastInStack }) => {
+const ArticleCard = ({
+  carousel,
+  isLastInStack,
+  isWitsdom,
+  isGallery,
+  isPhotostory,
+}) => {
+  const classes = useStyles({ carousel, isLastInStack });
   const props = {
     article: ARTICLECARD,
   };
-  const classes = useStyles({ carousel, isLastInStack });
+
+  const getArticleLink = () => {
+    if (isWitsdom)
+      return '/article/609673938c0ee55b2c03e814/Adapting%20To%20The%20Unprecedented:%20NITR%20Rewind%202020-21';
+    if (isGallery) return '/gallery/id/title';
+    if (isPhotostory) return '/photostory/id/title';
+    return '/article/609673938c0ee55b2c03e814/Adapting%20To%20The%20Unprecedented:%20NITR%20Rewind%202020-21';
+  };
 
   return (
     <Link
-      to='/article/609673938c0ee55b2c03e814/Adapting%20To%20The%20Unprecedented:%20NITR%20Rewind%202020-21'
+      to={getArticleLink()}
       className={classes.link}
+      target='_blank'
+      rel='noopener noreferrer'
     >
       <Card className={classes.root}>
         <img className={classes.featuredImage} src={cover} alt='Featured' />
