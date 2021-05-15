@@ -3,11 +3,10 @@ import React from 'react';
 // libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, Grid, Typography } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // Utils
 import limitString from '../../utils/limitString';
-// import createBrowserHistory from '../../utils/history';
 
 function FeaturedArticle({ article }) {
   const {
@@ -21,39 +20,43 @@ function FeaturedArticle({ article }) {
   } = article;
 
   const classes = useStyles();
-  const history = useHistory();
-
-  const navigateToArticle = () => history.push(`/article/${id}/${title}`);
 
   return (
-    <div
-      className={classes.articleWrapper}
-      onClick={navigateToArticle}
-      onKeyDown={navigateToArticle}
-      role='button'
-      tabIndex={0}
-      style={{
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2),  rgba(0,0,0,0.9)), url(${storePath}) `,
-      }}
+    <Link
+      to={`/article/${id}/${title}`}
+      target='_blank'
+      rel='noopener noreferrer'
+      className={classes.link}
     >
-      <div className={classes.container}>
-        <Typography className={classes.title}>
-          {limitString(title, 48)}
-        </Typography>
-        <div className={classes.wrapper}>
-          <div className={classes.authorList}>
-            {authors.map(({ name }) => (
-              <Typography variant='body2' key={name} className={classes.author}>
-                {name}
-              </Typography>
-            ))}
-          </div>
-          <div className={classes.readTime}>
-            <Typography variant='body2'>{readTime}</Typography>
+      <div
+        className={classes.articleWrapper}
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2),  rgba(0,0,0,0.9)), url(${storePath}) `,
+        }}
+      >
+        <div className={classes.container}>
+          <Typography className={classes.title}>
+            {limitString(title, 48)}
+          </Typography>
+          <div className={classes.wrapper}>
+            <div className={classes.authorList}>
+              {authors.map(({ name }) => (
+                <Typography
+                  variant='body2'
+                  key={name}
+                  className={classes.author}
+                >
+                  {name}
+                </Typography>
+              ))}
+            </div>
+            <div className={classes.readTime}>
+              <Typography variant='body2'>{readTime}</Typography>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
@@ -83,6 +86,10 @@ function FeaturedArticles({ articles }) {
 export default FeaturedArticles;
 
 const useStyles = makeStyles((theme) => ({
+  link: {
+    textDecoration: 'none',
+    color: 'black',
+  },
   FeaturedarticleCard: {
     borderRadius: '8px',
     marginTop: 25,
@@ -108,7 +115,6 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: '20px',
   },
   tag: {
-    // backgroundColor: 'unset',
     fontSize: '12px',
     fontWeight: '400',
     lineHeight: '16px',

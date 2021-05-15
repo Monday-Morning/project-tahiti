@@ -89,7 +89,7 @@ function Expressions() {
       {EXPRESSIONS_CONTENT.map(
         ({ name, shortName, path, container, section }) => {
           const element = (
-            <>
+            <React.Fragment key={shortName}>
               <SectionTitle
                 heading={name}
                 link={shortName}
@@ -97,10 +97,14 @@ function Expressions() {
                 container={!container}
               />
               {section}
-            </>
+            </React.Fragment>
           );
 
-          return container ? <Container>{element}</Container> : element;
+          return container ? (
+            <Container key={shortName}>{element}</Container>
+          ) : (
+            element
+          );
         },
       )}
     </div>
