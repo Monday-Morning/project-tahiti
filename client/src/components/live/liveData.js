@@ -1,121 +1,33 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react';
+import React from 'react';
 
 // libararies
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import { makeStyles, Typography, useMediaQuery } from '@material-ui/core';
+
+// theme
+import theme from '../../config/themes/light';
+
+// Component
+import CompanyBanner from './companyBanner';
 
 // placeholder
 import { LIVE } from '../../assets/placeholder/live';
 
-const LiveData = () => {
+const LiveData = ({ activeCompany, setCompany, data }) => {
   const classes = useStyles();
-  const [degree, setDegree] = useState('B.Tech');
-  const [department, setDepartment] = useState(LIVE.departments[0]);
-  const [activeCompany, setCompany] = useState(0);
-
-  const selectDepartment = (branch) => {
-    setDepartment(branch);
-  };
-
-  const handleChange = (event) => {
-    setDegree(event.target.value);
-  };
+  const Desktop = useMediaQuery(theme.breakpoints.up('sm'));
 
   return (
     <>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-        }}
-      >
-        <div style={{ width: '25%' }}>
-          <Typography variant='h2' className={classes.title}>
-            Courses
-          </Typography>
-          <div className={classes.radioWrapper}>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}
-            >
-              <div className={classes.radioButton}>
-                <input
-                  type='radio'
-                  checked={degree === 'B.Tech'}
-                  onChange={handleChange}
-                  value='B.Tech'
-                  className={classes.radio}
-                />
-              </div>
-              <Typography variant='body1' className={classes.radioText}>
-                B.Tech
-              </Typography>
-            </div>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}
-            >
-              <div className={classes.radioButton}>
-                <input
-                  type='radio'
-                  checked={degree === 'M.Tech'}
-                  onChange={handleChange}
-                  value='M.Tech'
-                  className={classes.radio}
-                />
-              </div>
-              <Typography variant='body1' className={classes.radioText}>
-                M.Tech
-              </Typography>
-            </div>
-          </div>
-          <Typography variant='h2' className={classes.title}>
-            Departments
-          </Typography>
-          <div className={classes.branchWrapper}>
-            {LIVE.departments.map((branch) => (
-              <div
-                key={branch}
-                style={{
-                  backgroundColor: department === branch ? '#006DCC' : 'unset',
-                  color: department === branch ? 'white' : 'black',
-                  borderRadius: '6px',
-                  padding: '1px 6px',
-                  cursor: 'pointer',
-                }}
-                onClick={() => selectDepartment(branch)}
-              >
-                <Typography
-                  variant='body1'
-                  style={{
-                    fontSize: '18px',
-                    lineHeight: '28px',
-                    fontFamily: 'Source Sans Pro',
-                    fontWeight: 400,
-                  }}
-                >
-                  {branch}
-                </Typography>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div style={{ width: '70%' }}>
+      {Desktop ? (
+        <>
           <div className={classes.active}>
             <div className={classes.companyData}>
               <img
-                src={LIVE.data[activeCompany].image}
-                alt={LIVE.data[activeCompany].name}
+                src={data[activeCompany].image}
+                alt={data[activeCompany].name}
                 className={classes.activeImage}
               />
               <Typography variant='body1' className={classes.companyTitle}>
@@ -123,14 +35,14 @@ const LiveData = () => {
               </Typography>
               <Typography variant='body2' className={classes.companysubTitle}>
                 <span style={{ color: '#005299' }}>Students Recruited: </span>
-                {LIVE.data[activeCompany].students}
+                {data[activeCompany].students}
               </Typography>
               <Typography variant='body2' className={classes.companysubTitle}>
                 <span style={{ color: '#005299' }}>CTC: </span>
-                {LIVE.data[activeCompany].ctc}
+                {data[activeCompany].ctc}
               </Typography>
             </div>
-            {LIVE.data[activeCompany].placed.map((student) => (
+            {data[activeCompany].placed.map((student) => (
               <div className={classes.studentsData}>
                 <Typography variant='body2' className={classes.course}>
                   {student.course}
@@ -141,11 +53,7 @@ const LiveData = () => {
                       {branches.branchName}
                     </Typography>
                     {branches.students.map((studentName) => (
-                      <Typography
-                        variant='body2'
-                        className={classes.student}
-                        key={studentName}
-                      >
+                      <Typography variant='body2' key={studentName}>
                         {studentName}
                       </Typography>
                     ))}
@@ -155,7 +63,7 @@ const LiveData = () => {
             ))}
           </div>
           <div className={classes.imageContainer}>
-            {LIVE.data.map((data, key) => (
+            {data.map((company, key) => (
               <div
                 className={classes.imageWrapper}
                 style={{
@@ -164,60 +72,32 @@ const LiveData = () => {
                 onClick={() => setCompany(key)}
               >
                 <img
-                  src={data.image}
-                  alt={data.name}
-                  key={data.name}
+                  src={company.image}
+                  alt={company.name}
+                  key={company.name}
                   className={classes.images}
                 />
               </div>
             ))}
           </div>
-        </div>
-      </div>
+        </>
+      ) : (
+        <>
+          <Typography variant='body1' className={classes.companyNumber}>
+            Showing {LIVE.data.length} Companies
+          </Typography>
+          {data.map((company) => (
+            <CompanyBanner data={company} />
+          ))}
+        </>
+      )}
     </>
   );
 };
 
 export default LiveData;
 
-const useStyles = makeStyles((theme) => ({
-  title: {
-    margin: '2rem 0rem 1rem 0rem',
-    color: theme.palette.secondary.main,
-  },
-  radioWrapper: {
-    padding: '8px 24px',
-    boxShadow: theme.shadows[0],
-    borderRadius: '6px',
-  },
-  branchWrapper: {
-    padding: '8px 4px',
-    boxShadow: theme.shadows[0],
-    borderRadius: '6px',
-  },
-  radioButton: {
-    border: '1px solid',
-    borderColor: theme.palette.primary.blue50,
-    width: '16px',
-    height: '16px',
-    display: 'flex',
-  },
-  radio: {
-    margin: 'auto',
-    width: '8px',
-    height: '8px',
-    appearance: 'none',
-    '&:checked': {
-      backgroundColor: theme.palette.primary.blue50,
-    },
-  },
-  radioText: {
-    marginLeft: '4px',
-    fontSize: '18px',
-    lineHeight: '28px',
-    fontFamily: 'Source Sans Pro',
-    fontWeight: theme.typography.fontWeightLight,
-  },
+const useStyles = makeStyles(() => ({
   active: {
     boxShadow: theme.shadows[0],
     borderRadius: '6px',
@@ -269,5 +149,8 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     margin: '20px 0px',
+  },
+  companyNumber: {
+    margin: '20px 20px 10px 20px',
   },
 }));

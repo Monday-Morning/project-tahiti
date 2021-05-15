@@ -4,8 +4,7 @@
 import React, { useState } from 'react';
 
 // libararies
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography, useMediaQuery } from '@material-ui/core';
+import { makeStyles, Typography, useMediaQuery } from '@material-ui/core';
 
 // theme
 import theme from '../../config/themes/light';
@@ -60,9 +59,9 @@ const LiveData = () => {
         <Typography variant='body1' className={classes.bodyText}>
           {POLICY[activeType].text}
         </Typography>
-        <ol>
+        <ol style={{ listStyleType: 'decimal' }}>
           {POLICY[activeType].terms.map((term) => (
-            <li key={term.body}>
+            <li key={term.body} className={classes.bodyItem}>
               <Typography
                 variant='body1'
                 className={classes.bodyText}
@@ -108,6 +107,16 @@ const useStyles = makeStyles(() => ({
     userSelect: 'none',
     padding: '8px 3px',
     margin: '4px',
+  },
+  bodyItem: {
+    fontFamily: 'Source Sans Pro',
+    fontWeight: 700,
+    fontSize: '1.25rem',
+    lineHeight: '1.75rem',
+    '@media (max-width:600px)': {
+      fontSize: '1rem',
+      lineHeight: '1.5rem',
+    },
   },
   bodyText: {
     marginTop: '2rem',

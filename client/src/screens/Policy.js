@@ -1,11 +1,11 @@
 import React from 'react';
 
-// Components
+// libraries
 import { Container } from '@material-ui/core';
+
+// Components
 import Terms from '../components/policy/terms';
 import BackButton from '../components/shared/button/BackButton';
-
-// libraries
 
 function Policy() {
   return (
