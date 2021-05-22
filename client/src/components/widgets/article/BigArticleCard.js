@@ -7,7 +7,6 @@ import {
   Card,
   CardContent,
   Typography,
-  Grid,
   useMediaQuery,
 } from '@material-ui/core';
 // import { Bookmark, Share2 } from 'react-feather';
@@ -21,8 +20,6 @@ import RegularArticleCard from './RegularArticleCard';
 import getCategory from '../../../utils/determineCategory';
 
 // Assets
-// import { ARTICLECARD } from '../../../assets/placeholder/widget';
-// import cover from '../../../assets/images/BACover.jpg';
 import { DEFAULT_ARTICLE } from '../../../assets/placeholder/article';
 
 const BigArticleCard = ({
@@ -52,38 +49,33 @@ const BigArticleCard = ({
         alt='Cover'
       />
 
-      <CardContent className={classes.details}>
+      <CardContent className={classes.cardDetails}>
         <div className={classes.container}>
           <div>
-            <Grid container spacing={1}>
-              {article.categories.slice().map(
-                ({ number }, index) =>
-                  number < 70 && (
-                    <Grid item key={number}>
-                      <Typography
-                        variant='body2'
-                        key={index}
-                        className={classes.tag}
-                      >
-                        {getCategory(number)}
-                        {index === article.categories.length - 1 ? (
-                          ''
-                        ) : (
-                          <span
-                            style={{
-                              textDecoration: 'none',
-                              paddingLeft: '10px',
-                              paddingRight: '10px',
-                            }}
-                          >
-                            |
-                          </span>
-                        )}
-                      </Typography>
-                    </Grid>
-                  ),
-              )}
-            </Grid>
+            <div className={classes.categoriesContainer}>
+              {article.categories.slice().map(({ number }, index) => (
+                <Typography
+                  key={number}
+                  variant='body2'
+                  className={classes.category}
+                >
+                  {getCategory(number)}
+                  {index === article.categories.length - 1 ? (
+                    ''
+                  ) : (
+                    <span
+                      style={{
+                        textDecoration: 'none',
+                        paddingLeft: '10px',
+                        paddingRight: '10px',
+                      }}
+                    >
+                      |
+                    </span>
+                  )}
+                </Typography>
+              ))}
+            </div>
 
             <Typography className={classes.title} variant='h2'>
               {article.title}
@@ -97,21 +89,24 @@ const BigArticleCard = ({
                     key={name}
                     target='_blank'
                     rel='noreferrer'
-                    style={{ textDecoration: 'none' }}
+                    className={classes.link}
                   >
                     <Typography
                       variant='body2'
                       key={index}
                       className={classes.author}
                     >
-                      {`${index ? ',' : ''}  ${name}`}
+                      {`${name}${
+                        index === article.authors.length - 1 ? ' ' : ','
+                      }`}
                     </Typography>
                   </Link>
                 ))}
               </div>
+
               <div className={classes.readTime}>
                 <i className='far fa-clock' />
-                <Typography variant='body2'>
+                <Typography variant='body2' style={{ width: 'auto' }}>
                   {moment.duration(article.readTime, 'seconds').humanize()}
                 </Typography>
               </div>
@@ -169,7 +164,8 @@ const useStyles = makeStyles((theme) => ({
     width: '65%',
     height: 'auto',
   },
-  details: {
+
+  cardDetails: {
     width: '35%',
     display: 'flex',
     flexDirection: 'column',
@@ -182,44 +178,72 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     height: '100%',
   },
-  tag: {
+
+  categoriesContainer: {
+    width: '100%',
+    height: 'auto',
+
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    flexWrap: 'wrap',
+
+    marginBottom: '10px',
+  },
+  category: {
+    width: 'auto',
     fontFamily: 'Source Sans Pro',
-    fontSize: '12px',
+    fontSize: '14px',
     fontWeight: '400',
+    lineHeight: '20px',
     color: theme.palette.secondary.neutral70,
   },
+
   title: {
     fontFamily: 'IBM Plex Sans',
     fontWeight: '600',
     fontSize: '1.5rem',
     lineHeight: '2rem',
   },
+
   wrapper: {
-    fontFamily: 'Source Sans Pro',
-    fontSize: '10px',
-    fontWeight: '400',
-    display: 'flex',
     paddingTop: '0.75rem',
     color: theme.palette.secondary.neutral70,
-    justifyContent: 'space-between',
-  },
-  authorList: {
+
     display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
-  author: {},
+
+  authorList: {
+    width: 'auto',
+    maxWidth: '75%',
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  link: {
+    textDecoration: 'none',
+    marginRight: '7px',
+    marginTop: '5px',
+  },
+  author: {
+    color: theme.palette.secondary.neutral70,
+    fontFamily: 'Source Sans Pro',
+    fontSize: '14px',
+    lineHeight: '16px',
+    fontWeight: '400',
+  },
+
   readTime: {
+    width: 'auto',
     display: 'flex',
     '& i': {
-      marginTop: '0.25rem',
       marginRight: '5px',
     },
   },
-  line: {
-    borderBottom: '1px solid ',
-    borderColor: theme.palette.common.black,
-    width: '-webkit-fill-available',
-  },
-  icons: {},
+
   articleDescription: {
     paddingTop: '1.5rem',
     fontFamily: 'Source Sans Pro',
@@ -228,10 +252,16 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '16px',
     color: '#222222',
   },
+
   footer: {
     display: 'flex',
     justifyContent: 'flex-end',
     marginBottom: '0rem',
+  },
+  line: {
+    borderBottom: '1px solid ',
+    borderColor: theme.palette.common.black,
+    width: '-webkit-fill-available',
   },
 }));
 
