@@ -20,7 +20,12 @@ import RegularArticleCard from './RegularArticleCard';
 import { ARTICLECARD } from '../../../assets/placeholder/widget';
 import cover from '../../../assets/images/BACover.jpg';
 
-const BigArticleCard = ({ isWitsdom, isGallery, isPhotostory }) => {
+const BigArticleCard = ({
+  isWitsdom,
+  isGallery,
+  isPhotostory,
+  // article
+}) => {
   const classes = useStyles();
   const matches = useMediaQuery('(max-width: 600px)');
   const props = {

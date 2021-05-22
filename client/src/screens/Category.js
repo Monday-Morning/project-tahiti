@@ -4,14 +4,19 @@ import React from 'react';
 import { Container, makeStyles, Typography } from '@material-ui/core';
 import { useLocation } from 'react-router-dom';
 import { Link as ScrollLink, Element } from 'react-scroll';
+import { useQuery } from '@apollo/client';
 
 // Components
 import SubCategory from '../components/widgets/SubCategories';
 import ArticleCarousel from '../components/widgets/article/ArticleCarousel';
 import SubCategorySection from '../components/categories/SubCategorySection';
+import ActivityIndicator from '../components/shared/ActivityIndicator';
 
 // Utils
 import ROUTES from '../utils/getRoutes';
+
+// Graphql
+import GetArticlesByCategories from '../graphql/queries/getArticlesByCategories';
 
 function Category() {
   const classes = useStyles();
@@ -19,22 +24,31 @@ function Category() {
   // 1. Determine category from the url.
   // 2. Get the title for the category from the ROUTES object.
   const location = useLocation();
-  const category = location.pathname.split('/')[1];
-  const categoryName = ROUTES.CATEGORIES.filter(
-    ({ shortName }) => shortName === category,
-  )[0].name;
+  const categoryShortName = location.pathname.split('/')[1];
+  const category = ROUTES.CATEGORIES.filter(
+    ({ shortName }) => shortName === categoryShortName,
+  )[0];
+
+  const { loading, error, data } = useQuery(GetArticlesByCategories, {
+    variables: { categoryNumbers: category.subCategoryIds, limit: 10 },
+  });
+
+  if (loading && !data) return <ActivityIndicator size={150} />;
+  if (error) return <div>{JSON.stringify(error)}</div>;
+
+  const { getArticlesByCategories: articlesList } = data;
 
   return (
     <div className={classes.container}>
       <div className={classes.navbarContainer}>
         <Container>
           <Typography variant='h1' className={classes.title}>
-            {categoryName}
+            {category.name}
           </Typography>
 
           <div className={classes.subCategories}>
             {/* Render SubCategories from the ROUTES object */}
-            {ROUTES.SUB_CATEGORIES.OBJECT[category.toUpperCase()].map(
+            {ROUTES.SUB_CATEGORIES.OBJECT[categoryShortName.toUpperCase()].map(
               ({ name, shortName }) => (
                 <ScrollLink key={shortName} to={shortName} smooth='true'>
                   <SubCategory text={name} className={classes.subCategory} />
@@ -49,14 +63,15 @@ function Category() {
       <div>
         <Container>
           <div className={classes.articlesCards}>
-            {ROUTES.SUB_CATEGORIES.OBJECT[category.toUpperCase()].map(
-              ({ name, shortName, path }) => (
+            {ROUTES.SUB_CATEGORIES.OBJECT[categoryShortName.toUpperCase()].map(
+              ({ name, shortName, path }, index) => (
                 <Element name={shortName} key={shortName}>
                   <SubCategorySection
                     path={path}
                     heading={name}
                     smallCards
                     bigCards
+                    articleList={articlesList[index]}
                   />
                 </Element>
               ),

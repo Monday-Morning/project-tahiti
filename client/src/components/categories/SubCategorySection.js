@@ -19,6 +19,7 @@ const SubCategorySection = ({
   pulse,
   pniData,
   path,
+  articleList,
 }) => {
   const classes = useStyles();
 
@@ -33,9 +34,15 @@ const SubCategorySection = ({
       {pulse && <Pulse />}
       {pniData && <PnIData />}
 
-      {bigCards && <BigArticleCard />}
+      {bigCards && <BigArticleCard article={articleList[0]} />}
 
-      <Grid>{smallCards && <ArticleCardStack />}</Grid>
+      <Grid>
+        {smallCards && (
+          <ArticleCardStack
+            artilceList={articleList.slice(0, articleList.length)}
+          />
+        )}
+      </Grid>
     </div>
   );
 };
