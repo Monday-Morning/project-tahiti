@@ -30,8 +30,13 @@ function Category() {
   )[0];
 
   const { loading, error, data } = useQuery(GetArticlesByCategories, {
-    variables: { categoryNumbers: category.subCategoryIds, limit: 10 },
+    variables: {
+      categoryNumbers: [category.idNumber, ...category.subCategoryIds],
+      limit: 4,
+    },
   });
+
+  console.log({ loading, error, data });
 
   if (loading && !data) return <ActivityIndicator size={150} />;
   if (error) return <div>{JSON.stringify(error)}</div>;

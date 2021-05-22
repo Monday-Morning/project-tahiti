@@ -1,4 +1,6 @@
 const CATEGORY_MAP = {
+  '-1': '......',
+
   1: 'Campus',
   11: 'Academics',
   12: 'Campus Buzz',
