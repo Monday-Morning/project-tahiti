@@ -1,4 +1,38 @@
-/* eslint-disable */
+import defaultArticleCoverImage from '../images/article/defaultArticleCover.png';
+
+export const DEFAULT_ARTICLE = Object.freeze({
+  id: 'default_article',
+  articleType: 'default',
+  title: 'Error: Article Title not found. Check others.',
+  inShort:
+    '................................................................................................................................................................................................................................................................................................',
+  readTime: '....',
+  status: 'default',
+  authors: [{ name: '.......' }, { name: '.......' }, { name: '.......' }],
+  categories: [
+    {
+      number: -1,
+      subcategory: false,
+    },
+    {
+      number: -1,
+      subcategory: false,
+    },
+  ],
+  coverMedia: {
+    rectangle: {
+      authors: [
+        {
+          name: 'Monday Morning',
+        },
+      ],
+      mediaType: 'IMAGE',
+      blurhash: null,
+      storePath: defaultArticleCoverImage,
+    },
+  },
+});
+
 export const ARTICLE = Object.freeze({
   tags: ['Department', 'Campus', 'BM-BT'],
   title: 'Chaos, Curiosity and COVID-19: A Biotechnologist’s Perspective',

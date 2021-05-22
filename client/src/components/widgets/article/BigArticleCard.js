@@ -10,38 +10,137 @@ import {
   Grid,
   useMediaQuery,
 } from '@material-ui/core';
-import { Bookmark, Share2 } from 'react-feather';
+// import { Bookmark, Share2 } from 'react-feather';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 // Components
 import RegularArticleCard from './RegularArticleCard';
 
+// Utils
+import getCategory from '../../../utils/determineCategory';
+
 // Assets
-import { ARTICLECARD } from '../../../assets/placeholder/widget';
-import cover from '../../../assets/images/BACover.jpg';
+// import { ARTICLECARD } from '../../../assets/placeholder/widget';
+// import cover from '../../../assets/images/BACover.jpg';
+import { DEFAULT_ARTICLE } from '../../../assets/placeholder/article';
 
 const BigArticleCard = ({
   isWitsdom,
   isGallery,
   isPhotostory,
-  // article
+  article: articleProp,
 }) => {
   const classes = useStyles();
   const matches = useMediaQuery('(max-width: 600px)');
-  const props = {
-    article: ARTICLECARD,
-  };
+
+  const isDefaultArticle = !articleProp?.title;
+  const article = isDefaultArticle ? DEFAULT_ARTICLE : articleProp;
 
   const getArticleLink = () => {
-    if (isWitsdom)
-      return '/article/609673938c0ee55b2c03e814/Adapting%20To%20The%20Unprecedented:%20NITR%20Rewind%202020-21';
-    if (isGallery) return '/gallery/id/title';
-    if (isPhotostory) return '/photostory/id/title';
-    return '/article/609673938c0ee55b2c03e814/Adapting%20To%20The%20Unprecedented:%20NITR%20Rewind%202020-21';
+    if (isWitsdom) return `/article/${article.id}/${article.title}`;
+    if (isGallery) return `/gallery/${article.id}/${article.title}`;
+    if (isPhotostory) return `/photostory/${article.id}/${article.title}`;
+    return `/article/${article.id}/${article.title}`;
   };
 
-  return matches ? (
-    <RegularArticleCard {...{ isWitsdom, isGallery, isPhotostory }} />
+  const ArticleJSX = (
+    <Card className={classes.root}>
+      <img
+        className={classes.cover}
+        src={article.coverMedia.rectangle.storePath}
+        alt='Cover'
+      />
+
+      <CardContent className={classes.details}>
+        <div className={classes.container}>
+          <div>
+            <Grid container spacing={1}>
+              {article.categories.slice().map(
+                ({ number }, index) =>
+                  number < 70 && (
+                    <Grid item key={number}>
+                      <Typography
+                        variant='body2'
+                        key={index}
+                        className={classes.tag}
+                      >
+                        {getCategory(number)}
+                        {index === article.categories.length - 1 ? (
+                          ''
+                        ) : (
+                          <span
+                            style={{
+                              textDecoration: 'none',
+                              paddingLeft: '10px',
+                              paddingRight: '10px',
+                            }}
+                          >
+                            |
+                          </span>
+                        )}
+                      </Typography>
+                    </Grid>
+                  ),
+              )}
+            </Grid>
+
+            <Typography className={classes.title} variant='h2'>
+              {article.title}
+            </Typography>
+
+            <div className={classes.wrapper}>
+              <div className={classes.authorList}>
+                {article.authors.map(({ name, id }, index) => (
+                  <Link
+                    to={`/portfolio/${id}/${name}`}
+                    key={name}
+                    target='_blank'
+                    rel='noreferrer'
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <Typography
+                      variant='body2'
+                      key={index}
+                      className={classes.author}
+                    >
+                      {`${index ? ',' : ''}  ${name}`}
+                    </Typography>
+                  </Link>
+                ))}
+              </div>
+              <div className={classes.readTime}>
+                <i className='far fa-clock' />
+                <Typography variant='body2'>
+                  {moment.duration(article.readTime, 'seconds').humanize()}
+                </Typography>
+              </div>
+            </div>
+            <Typography variant='body1' className={classes.articleDescription}>
+              {article.inshort}
+            </Typography>
+          </div>
+
+          <div className={classes.footer}>
+            <div className={classes.line} />
+            {/* <Share2 size={18} className={classes.icons} />
+            <Bookmark size={18} className={classes.icons} /> */}
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+
+  if (matches)
+    return (
+      <RegularArticleCard
+        {...{ isWitsdom, isGallery, isPhotostory }}
+        article={article}
+      />
+    );
+
+  return isDefaultArticle ? (
+    ArticleJSX
   ) : (
     <Link
       to={getArticleLink()}
@@ -49,65 +148,7 @@ const BigArticleCard = ({
       rel='noopener noreferrer'
       style={{ textDecoration: 'none' }}
     >
-      <Card className={classes.root}>
-        <img className={classes.cover} src={cover} alt='Cover' />
-
-        <CardContent className={classes.details}>
-          <div className={classes.container}>
-            <div>
-              <Grid container spacing={1}>
-                {props.article.tags.map((tag, index) => (
-                  <Grid item key={tag}>
-                    <Typography
-                      variant='body2'
-                      key={index}
-                      className={classes.tag}
-                    >
-                      {`${index ? '|' : ''}    ${tag}`}
-                    </Typography>
-                  </Grid>
-                ))}
-              </Grid>
-
-              <Typography className={classes.title} variant='h2'>
-                {props.article.title}
-              </Typography>
-
-              <div className={classes.wrapper}>
-                <div className={classes.authorList}>
-                  {props.article.authors.map((author, index) => (
-                    <Typography
-                      variant='body2'
-                      key={index}
-                      className={classes.author}
-                    >
-                      {`${index ? ',' : ''}  ${author}`}
-                    </Typography>
-                  ))}
-                </div>
-                <div className={classes.readTime}>
-                  <i className='far fa-clock' />
-                  <Typography variant='body2'>
-                    {props.article.readTime}
-                  </Typography>
-                </div>
-              </div>
-              <Typography
-                variant='body1'
-                className={classes.articleDescription}
-              >
-                {props.article.summary}
-              </Typography>
-            </div>
-
-            <div className={classes.footer}>
-              <div className={classes.line} />
-              <Share2 size={18} className={classes.icons} />
-              <Bookmark size={18} className={classes.icons} />
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+      {ArticleJSX}
     </Link>
   );
 };

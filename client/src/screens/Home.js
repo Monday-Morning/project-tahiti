@@ -21,7 +21,7 @@ import GetIssueByIdQuery from '../graphql/queries/getIssueByID';
 
 function Home() {
   const { loading, error, data } = useQuery(GetIssueByIdQuery, {
-    variables: { id: '609566db3fa05a2fdb2f9c6a' },
+    variables: { id: '60a5913ec5df3a6218fa8336' },
   });
 
   if (loading && !data) return <ActivityIndicator size={150} />;
