@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import React from 'react';
 
 // Libraries
@@ -41,13 +40,28 @@ const BigArticleCard = ({
     return `/article/${article.id}/${article.title}`;
   };
 
-  const ArticleJSX = (
-    <Card className={classes.root}>
-      <img
-        className={classes.cover}
-        src={article.coverMedia.rectangle.storePath}
-        alt='Cover'
+  if (matches)
+    return (
+      <RegularArticleCard
+        {...{ isWitsdom, isGallery, isPhotostory }}
+        article={article}
       />
+    );
+
+  return (
+    <Card className={classes.root}>
+      <Link
+        to={getArticleLink()}
+        target='_blank'
+        rel='noopener noreferrer'
+        className={classes.coverContainer}
+      >
+        <img
+          className={classes.cover}
+          src={article.coverMedia.rectangle.storePath}
+          alt='Cover'
+        />
+      </Link>
 
       <CardContent className={classes.cardDetails}>
         <div className={classes.container}>
@@ -55,7 +69,8 @@ const BigArticleCard = ({
             <div className={classes.categoriesContainer}>
               {article.categories.slice().map(({ number }, index) => (
                 <Typography
-                  key={number}
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={`${number}-${index}-bigArticleCard-category`}
                   variant='body2'
                   className={classes.category}
                 >
@@ -77,9 +92,16 @@ const BigArticleCard = ({
               ))}
             </div>
 
-            <Typography className={classes.title} variant='h2'>
-              {article.title}
-            </Typography>
+            <Link
+              to={getArticleLink()}
+              target='_blank'
+              rel='noopener noreferrer'
+              className={classes.link}
+            >
+              <Typography className={classes.title} variant='h2'>
+                {article.title}
+              </Typography>
+            </Link>
 
             <div className={classes.wrapper}>
               <div className={classes.authorList}>
@@ -93,7 +115,7 @@ const BigArticleCard = ({
                   >
                     <Typography
                       variant='body2'
-                      key={index}
+                      key={name}
                       className={classes.author}
                     >
                       {`${name}${
@@ -125,27 +147,6 @@ const BigArticleCard = ({
       </CardContent>
     </Card>
   );
-
-  if (matches)
-    return (
-      <RegularArticleCard
-        {...{ isWitsdom, isGallery, isPhotostory }}
-        article={article}
-      />
-    );
-
-  return isDefaultArticle ? (
-    ArticleJSX
-  ) : (
-    <Link
-      to={getArticleLink()}
-      target='_blank'
-      rel='noopener noreferrer'
-      style={{ textDecoration: 'none' }}
-    >
-      {ArticleJSX}
-    </Link>
-  );
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -160,8 +161,14 @@ const useStyles = makeStyles((theme) => ({
     boxShadow:
       '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
   },
-  cover: {
+
+  coverContainer: {
     width: '65%',
+    height: 'auto',
+    textDecoration: 'none',
+  },
+  cover: {
+    width: '100%',
     height: 'auto',
   },
 
@@ -204,6 +211,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '600',
     fontSize: '1.5rem',
     lineHeight: '2rem',
+    color: theme.palette.common.black,
   },
 
   wrapper: {

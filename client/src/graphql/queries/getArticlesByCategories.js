@@ -21,6 +21,9 @@ export default gql`
       updatedAt
       authors {
         name
+        # details {
+        #   id
+        # }
       }
       tech {
         name

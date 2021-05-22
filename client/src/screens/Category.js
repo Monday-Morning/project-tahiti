@@ -36,8 +36,6 @@ function Category() {
     },
   });
 
-  console.log({ loading, error, data });
-
   if (loading && !data) return <ActivityIndicator size={150} />;
   if (error) return <div>{JSON.stringify(error)}</div>;
 

@@ -8,8 +8,21 @@ export const DEFAULT_ARTICLE = Object.freeze({
     '................................................................................................................................................................................................................................................................................................',
   readTime: '....',
   status: 'default',
-  authors: [{ name: '.......' }, { name: '.......' }, { name: '.......' }],
+  authors: [
+    { name: '......', details: { id: 1 } },
+    { name: '.......', details: { id: 2 } },
+    { name: '........', details: { id: 3 } },
+    { name: '.........', details: { id: 4 } },
+  ],
   categories: [
+    {
+      number: -1,
+      subcategory: false,
+    },
+    {
+      number: -1,
+      subcategory: false,
+    },
     {
       number: -1,
       subcategory: false,
