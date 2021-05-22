@@ -16,6 +16,7 @@ const CATEGORIES = [
     asyncRoutePath: './Category',
     idNumber: 1,
     exact: true,
+    subCategoryIds: [11, 12, 13, 14, 15, 16],
   },
   {
     name: 'Connect',
@@ -24,6 +25,7 @@ const CATEGORIES = [
     asyncRoutePath: './Category',
     idNumber: 2,
     exact: true,
+    subCategoryIds: [21, 22, 23, 24],
   },
   {
     name: 'DD & CWC',
@@ -32,6 +34,7 @@ const CATEGORIES = [
     asyncRoutePath: './Category',
     idNumber: 3,
     exact: true,
+    subCategoryIds: [31, 32],
   },
   {
     name: 'Career',
@@ -40,6 +43,7 @@ const CATEGORIES = [
     asyncRoutePath: './Category',
     idNumber: 4,
     exact: true,
+    subCategoryIds: [41, 42, 43, 44],
   },
   {
     name: 'Alumni',
@@ -48,6 +52,7 @@ const CATEGORIES = [
     asyncRoutePath: './Category',
     idNumber: 5,
     exact: true,
+    subCategoryIds: [51, 52],
   },
   {
     name: 'Expressions',
@@ -56,6 +61,7 @@ const CATEGORIES = [
     asyncRoutePath: './Expressions',
     idNumber: 1,
     exact: true,
+    subCategoryIds: [61, 62, 63, 64, 65, 66],
   },
 ];
 
@@ -194,7 +200,11 @@ const CAREER = [
     shortName: LINKS.SUB_CATEGORIES.CAREER.LIVE.split('/')[2],
     path: LINKS.SUB_CATEGORIES.CAREER.LIVE,
     asyncRoutePath: './Live',
+<<<<<<< HEAD
     idNumber: 44,
+=======
+    idNumber: 21,
+>>>>>>> feat: Create getArticlesByCategory query and fetch data
     exact: true,
   },
 ];
