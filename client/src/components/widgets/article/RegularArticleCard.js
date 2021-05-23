@@ -3,11 +3,16 @@ import React from 'react';
 // libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import moment from 'moment';
+
+// Components
+import NewTabLink from '../../shared/links/NewTabLink';
+
+// Utils
+import getCategory from '../../../utils/determineCategory';
 
 // Assets
-import { ARTICLECARD } from '../../../assets/placeholder/widget';
-import cover from '../../../assets/images/cover.png';
+import { DEFAULT_ARTICLE } from '../../../assets/placeholder/article';
 
 const ArticleCard = ({
   carousel,
@@ -15,11 +20,12 @@ const ArticleCard = ({
   isWitsdom,
   isGallery,
   isPhotostory,
+  article: articleProp,
 }) => {
   const classes = useStyles({ carousel, isLastInStack });
-  const props = {
-    article: ARTICLECARD,
-  };
+
+  const isDefaultArticle = !articleProp?.title;
+  const article = isDefaultArticle ? DEFAULT_ARTICLE : articleProp;
 
   const getArticleLink = () => {
     if (isWitsdom)
@@ -30,54 +36,87 @@ const ArticleCard = ({
   };
 
   return (
-    <Link
-      to={getArticleLink()}
-      className={classes.link}
-      target='_blank'
-      rel='noopener noreferrer'
-    >
-      <Card className={classes.root}>
-        <img className={classes.featuredImage} src={cover} alt='Featured' />
+    <Card className={classes.root}>
+      <NewTabLink to={getArticleLink()} className={classes.coverContainer}>
+        <img
+          className={classes.featuredImage}
+          src={article.coverMedia.rectangle.storePath}
+          alt='Featured'
+        />
+      </NewTabLink>
 
-        <CardContent className={classes.cardContent}>
-          <Typography variant='body2' className={classes.categories}>
-            {props.article.tags.map((category, index) => (
-              <span key={category}>{`${index ? ' | ' : ''}${category}`}</span>
-            ))}
-          </Typography>
-
-          <Typography className={classes.title} variant='h2'>
-            {props.article.title}
-          </Typography>
-
-          <div className={classes.detailsContainer}>
-            <Typography variant='body2' className={classes.author}>
-              {props.article.authors.map((author, index) => (
-                <span key={author}>{`${index ? ', ' : ''}  ${author}`}</span>
-              ))}
+      <CardContent className={classes.cardContent}>
+        <div className={classes.categoriesContainer}>
+          {article.categories.slice().map(({ number }, index) => (
+            <Typography
+              // eslint-disable-next-line react/no-array-index-key
+              key={`${number}-${index}-bigArticleCard-category`}
+              variant='body2'
+              className={classes.category}
+            >
+              {getCategory(number)}
+              {index === article.categories.length - 1 ? (
+                ''
+              ) : (
+                <span
+                  style={{
+                    textDecoration: 'none',
+                    paddingLeft: '10px',
+                    paddingRight: '10px',
+                  }}
+                >
+                  |
+                </span>
+              )}
             </Typography>
+          ))}
+        </div>
 
-            <div className={classes.readTime}>
-              <i className={`far fa-clock ${classes.clockIcon}`} />
-              <Typography variant='body2'>{props.article.readTime}</Typography>
-            </div>
+        <Typography className={classes.title} variant='h2'>
+          {article.title}
+        </Typography>
+
+        <div className={classes.detailsContainer}>
+          <div className={classes.authorList}>
+            {article.authors.map(({ name, id }, index) => (
+              <NewTabLink to={`/portfolio/${id}/${name}`} key={name}>
+                <Typography
+                  variant='body2'
+                  key={name}
+                  className={classes.author}
+                >
+                  {`${name}${index === article.authors.length - 1 ? ' ' : ','}`}
+                </Typography>
+              </NewTabLink>
+            ))}
           </div>
 
-          <Typography variant='body2' className={classes.articleDescription}>
-            {props.article.summary}
-          </Typography>
-        </CardContent>
-      </Card>
-    </Link>
+          <div className={classes.readTime}>
+            <i className={`far fa-clock ${classes.clockIcon}`} />
+            <Typography variant='body2'>
+              {moment.duration(article.readTime, 'seconds').humanize()}
+            </Typography>
+          </div>
+        </div>
+
+        <Typography variant='body2' className={classes.articleDescription}>
+          {article.inshort}
+        </Typography>
+      </CardContent>
+    </Card>
   );
 };
 
 export default ArticleCard;
 
 const useStyles = makeStyles((theme) => ({
-  link: {
-    textDecoration: 'none',
-    color: theme.palette.common.black,
+  root: {
+    boxShadow: theme.shadows[0],
+    backgroundColor: theme.palette.common.white,
+    overflow: 'hidden',
+    width: '380px',
+    height: '420px',
+
     marginTop: '25px',
     marginRight: ({ carousel }) => (carousel ? '10px' : '0px'),
     [theme.breakpoints.between('sm', 'lg')]: {
@@ -85,13 +124,6 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: '0px',
       marginLeft: '0px',
     },
-  },
-  root: {
-    boxShadow: theme.shadows[0],
-    backgroundColor: theme.palette.common.white,
-    overflow: 'hidden',
-    width: '380px',
-    height: '420px',
 
     [theme.breakpoints.between('xs', 'sm')]: {
       margin: '0px',
@@ -100,18 +132,42 @@ const useStyles = makeStyles((theme) => ({
       minHeight: '420px',
     },
   },
+
+  coverContainer: {
+    width: '100%',
+    height: '100%',
+  },
   featuredImage: {
     width: '100%',
     height: 'auto',
   },
+
+  categoriesContainer: {
+    width: '100%',
+    height: 'auto',
+
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    flexWrap: 'wrap',
+
+    marginBottom: '10px',
+  },
+  category: {
+    width: 'auto',
+    fontFamily: 'Source Sans Pro',
+    fontSize: '14px',
+    fontWeight: '400',
+    lineHeight: '20px',
+    color: theme.palette.secondary.neutral70,
+  },
+
   cardContent: {
     [theme.breakpoints.up('sm')]: {
       padding: '0.75rem',
     },
   },
-  categories: {
-    color: theme.palette.secondary.neutral70,
-  },
+
   title: {
     marginTop: '0.25rem',
     fontSize: '1.5rem',
@@ -123,14 +179,31 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '1.25rem',
     },
   },
+
+  authorList: {
+    width: 'auto',
+    maxWidth: '75%',
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  author: {
+    color: theme.palette.secondary.neutral70,
+    fontFamily: 'Source Sans Pro',
+    fontSize: '14px',
+    lineHeight: '16px',
+    fontWeight: '400',
+
+    marginRight: '7px',
+    marginTop: '5px',
+  },
+
   detailsContainer: {
     display: 'flex',
     marginTop: '4px',
     justifyContent: 'space-between',
     alignItems: 'center',
-  },
-  author: {
-    color: theme.palette.secondary.neutral70,
   },
   clockIcon: {
     marginRight: '5px',
@@ -146,6 +219,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '12px',
     fontWeight: '400',
     color: theme.palette.common.black,
-    textAlign: 'justify',
+    textAlign: 'left',
+    fontFamily: 'Source Sans Pro',
   },
 }));

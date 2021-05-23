@@ -34,13 +34,6 @@ const BigArticleCard = ({
   const isDefaultArticle = !articleProp?.title;
   const article = isDefaultArticle ? DEFAULT_ARTICLE : articleProp;
 
-  // const getArticleLink = () => {
-  //   if (isWitsdom) return `/article/${article.id}/${article.title}`;
-  //   if (isGallery) return `/gallery/${article.id}/${article.title}`;
-  //   if (isPhotostory) return `/photostory/${article.id}/${article.title}`;
-  //   return `/article/${article.id}/${article.title}`;
-  // };
-
   if (matches)
     return (
       <RegularArticleCard
@@ -52,12 +45,12 @@ const BigArticleCard = ({
   return (
     <Card className={classes.root}>
       <NewTabLink
+        className={classes.coverContainer}
         to={getArticleLink(article.id, article.title, {
           isWitsdom,
           isPhotostory,
           isGallery,
         })}
-        className={classes.coverContainer}
       >
         <img
           className={classes.cover}
@@ -153,6 +146,9 @@ const useStyles = makeStyles((theme) => ({
     alignItem: 'center',
     justifyContent: 'space-between',
 
+    width: '100%',
+    height: '445px',
+
     borderRadius: '10px',
     overflow: 'hidden',
     backgroundColor: '#ffffff',
@@ -162,8 +158,7 @@ const useStyles = makeStyles((theme) => ({
 
   coverContainer: {
     width: '65%',
-    height: 'auto',
-    textDecoration: 'none',
+    height: '100%',
   },
   cover: {
     width: '100%',
@@ -254,7 +249,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '400',
     lineHeight: '24px',
     fontSize: '16px',
-    color: '#222222',
+    color: theme.palette.secondary.neutral90,
   },
 
   footer: {
