@@ -38,9 +38,7 @@ const SubCategorySection = ({
 
       <Grid>
         {smallCards && (
-          <ArticleCardStack
-            artilceList={articleList.slice(0, articleList.length)}
-          />
+          <ArticleCardStack articleList={articleList.slice(0, 3)} />
         )}
       </Grid>
     </div>

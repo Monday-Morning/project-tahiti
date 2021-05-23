@@ -32,14 +32,15 @@ function Category() {
   const { loading, error, data } = useQuery(GetArticlesByCategories, {
     variables: {
       categoryNumbers: [category.idNumber, ...category.subCategoryIds],
-      limit: 4,
+      limit: 10,
     },
   });
 
   if (loading && !data) return <ActivityIndicator size={150} />;
   if (error) return <div>{JSON.stringify(error)}</div>;
+  if (!data.getArticlesByCategories) return <div>Internal Server Error</div>;
 
-  const { getArticlesByCategories: articlesList } = data;
+  const { getArticlesByCategories: articleList } = data;
 
   return (
     <div className={classes.container}>
@@ -60,7 +61,7 @@ function Category() {
             )}
           </div>
         </Container>
-        <ArticleCarousel />
+        <ArticleCarousel articleList={articleList[0]} />
       </div>
 
       <div>
@@ -74,7 +75,7 @@ function Category() {
                     heading={name}
                     smallCards
                     bigCards
-                    articleList={articlesList[index]}
+                    articleList={articleList[index + 1]}
                   />
                 </Element>
               ),

@@ -6,8 +6,18 @@ import { makeStyles } from '@material-ui/core';
 // Components
 import RegularArticleCard from './RegularArticleCard';
 
-const Carousel = () => {
+// Assets
+import { DEFAULT_ARTICLE } from '../../../assets/placeholder/article';
+
+const Carousel = ({ articleList }) => {
   const classes = useStyles();
+
+  const renderArticles = (articleParam) => {
+    const isDefaultArticle = !articleParam?.title;
+    const article = isDefaultArticle ? DEFAULT_ARTICLE : articleParam;
+
+    return <RegularArticleCard key={article.id} article={article} carousel />;
+  };
 
   return (
     <div className={classes.wrapper}>
@@ -15,9 +25,7 @@ const Carousel = () => {
       <div className={classes.carousel}>
         <div className={classes.articleRow}>
           <div className={classes.articles}>
-            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((val) => (
-              <RegularArticleCard key={val} carousel />
-            ))}
+            {articleList.map(renderArticles)}
           </div>
         </div>
       </div>

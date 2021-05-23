@@ -6,14 +6,26 @@ import { makeStyles } from '@material-ui/core';
 // Components
 import ArticleCard from './ArticleCard';
 
-function ArticleCardStack() {
+function ArticleCardStack({ articleList }) {
   const classes = useStyles();
+
+  if (articleList.length === 1)
+    articleList.push({ id: 'placeholder1' }, { id: 'placeholder2' });
+  if (articleList.length === 2) articleList.push({ id: 'placeholder1' });
 
   return (
     <div className={classes.root}>
-      {[0, 1, 2].map((val, index) => (
-        <ArticleCard key={val} isLastInStack={index === 2} />
-      ))}
+      {articleList.length > 0
+        ? articleList.map((article, index) => (
+            <ArticleCard
+              key={article.id}
+              article={article}
+              isLastInStack={index === 2}
+            />
+          ))
+        : [0, 1, 2].map((val, index) => (
+            <ArticleCard key={val} isLastInStack={index === 2} />
+          ))}
     </div>
   );
 }
