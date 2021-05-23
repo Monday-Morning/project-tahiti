@@ -8,15 +8,16 @@ import {
   Typography,
   useMediaQuery,
 } from '@material-ui/core';
-// import { Bookmark, Share2 } from 'react-feather';
-import { Link } from 'react-router-dom';
 import moment from 'moment';
+// import { Bookmark, Share2 } from 'react-feather';
 
 // Components
+import NewTabLink from '../../shared/links/NewTabLink';
 import RegularArticleCard from './RegularArticleCard';
 
 // Utils
 import getCategory from '../../../utils/determineCategory';
+import getArticleLink from '../../../utils/getArticleLink';
 
 // Assets
 import { DEFAULT_ARTICLE } from '../../../assets/placeholder/article';
@@ -33,12 +34,12 @@ const BigArticleCard = ({
   const isDefaultArticle = !articleProp?.title;
   const article = isDefaultArticle ? DEFAULT_ARTICLE : articleProp;
 
-  const getArticleLink = () => {
-    if (isWitsdom) return `/article/${article.id}/${article.title}`;
-    if (isGallery) return `/gallery/${article.id}/${article.title}`;
-    if (isPhotostory) return `/photostory/${article.id}/${article.title}`;
-    return `/article/${article.id}/${article.title}`;
-  };
+  // const getArticleLink = () => {
+  //   if (isWitsdom) return `/article/${article.id}/${article.title}`;
+  //   if (isGallery) return `/gallery/${article.id}/${article.title}`;
+  //   if (isPhotostory) return `/photostory/${article.id}/${article.title}`;
+  //   return `/article/${article.id}/${article.title}`;
+  // };
 
   if (matches)
     return (
@@ -50,10 +51,12 @@ const BigArticleCard = ({
 
   return (
     <Card className={classes.root}>
-      <Link
-        to={getArticleLink()}
-        target='_blank'
-        rel='noopener noreferrer'
+      <NewTabLink
+        to={getArticleLink(article.id, article.title, {
+          isWitsdom,
+          isPhotostory,
+          isGallery,
+        })}
         className={classes.coverContainer}
       >
         <img
@@ -61,7 +64,7 @@ const BigArticleCard = ({
           src={article.coverMedia.rectangle.storePath}
           alt='Cover'
         />
-      </Link>
+      </NewTabLink>
 
       <CardContent className={classes.cardDetails}>
         <div className={classes.container}>
@@ -92,27 +95,22 @@ const BigArticleCard = ({
               ))}
             </div>
 
-            <Link
-              to={getArticleLink()}
-              target='_blank'
-              rel='noopener noreferrer'
-              className={classes.link}
+            <NewTabLink
+              to={getArticleLink(article.id, article.title, {
+                isWitsdom,
+                isPhotostory,
+                isGallery,
+              })}
             >
               <Typography className={classes.title} variant='h2'>
                 {article.title}
               </Typography>
-            </Link>
+            </NewTabLink>
 
             <div className={classes.wrapper}>
               <div className={classes.authorList}>
                 {article.authors.map(({ name, id }, index) => (
-                  <Link
-                    to={`/portfolio/${id}/${name}`}
-                    key={name}
-                    target='_blank'
-                    rel='noreferrer'
-                    className={classes.link}
-                  >
+                  <NewTabLink to={`/portfolio/${id}/${name}`} key={name}>
                     <Typography
                       variant='body2'
                       key={name}
@@ -122,7 +120,7 @@ const BigArticleCard = ({
                         index === article.authors.length - 1 ? ' ' : ','
                       }`}
                     </Typography>
-                  </Link>
+                  </NewTabLink>
                 ))}
               </div>
 
@@ -231,17 +229,15 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
-  link: {
-    textDecoration: 'none',
-    marginRight: '7px',
-    marginTop: '5px',
-  },
   author: {
     color: theme.palette.secondary.neutral70,
     fontFamily: 'Source Sans Pro',
     fontSize: '14px',
     lineHeight: '16px',
     fontWeight: '400',
+
+    marginRight: '7px',
+    marginTop: '5px',
   },
 
   readTime: {
