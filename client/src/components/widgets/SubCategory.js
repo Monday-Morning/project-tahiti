@@ -1,15 +1,16 @@
-import { Button, makeStyles } from '@material-ui/core';
 import React from 'react';
-// import theme from '../../config/themes/light';
 
-const SubCategories = ({ text }) => {
-  const classes = useStyles();
+// Libraries
+import { makeStyles, ButtonBase } from '@material-ui/core';
+
+const SubCategories = ({ text, isRed }) => {
+  const classes = useStyles({ isRed });
 
   return (
     <div className={classes.container}>
-      <Button className={classes.button}>
+      <ButtonBase type='button' className={classes.button}>
         <span className={classes.label}> {text} </span>
-      </Button>
+      </ButtonBase>
     </div>
   );
 };
@@ -19,11 +20,13 @@ export default SubCategories;
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'inline',
+    textDecoration: 'none',
   },
 
   button: {
     textAlign: 'center',
-    backgroundColor: theme.palette.primary.blue10,
+    backgroundColor: ({ isRed }) =>
+      isRed ? 'rgba(215, 36, 46, 0.6)' : theme.palette.primary.blue10,
     borderRadius: '4px',
     margin: '8px 8px 0px 0px',
     padding: '12px 16px',
@@ -38,7 +41,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '22px',
     fontWeight: '600',
     lineHeight: '1.5rem',
-    color: theme.palette.secondary.main,
+    textDecoration: 'none',
+    color: ({ isRed }) =>
+      isRed ? theme.palette.secondary.neutral20 : theme.palette.secondary.main,
     [theme.breakpoints.down('sm')]: {
       fontSize: '14px',
       lineHeight: '20px',

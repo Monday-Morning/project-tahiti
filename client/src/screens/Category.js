@@ -2,12 +2,12 @@ import React from 'react';
 
 // Libraries
 import { Container, makeStyles, Typography } from '@material-ui/core';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { Link as ScrollLink, Element } from 'react-scroll';
 import { useQuery } from '@apollo/client';
 
 // Components
-import SubCategory from '../components/widgets/SubCategories';
+import SubCategory from '../components/widgets/SubCategory';
 import ArticleCarousel from '../components/widgets/article/ArticleCarousel';
 import SubCategorySection from '../components/categories/SubCategorySection';
 import ActivityIndicator from '../components/shared/ActivityIndicator';
@@ -58,6 +58,15 @@ function Category() {
                   <SubCategory text={name} className={classes.subCategory} />
                 </ScrollLink>
               ),
+            )}
+            {categoryShortName === 'career' && (
+              <Link to='/live' style={{ textDecoration: 'none' }}>
+                <SubCategory
+                  text='Live'
+                  isRed
+                  className={classes.subCategory}
+                />
+              </Link>
             )}
           </div>
         </Container>
