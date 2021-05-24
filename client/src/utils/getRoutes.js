@@ -1,5 +1,6 @@
 import LINKS from './getLinks';
 
+// ========================= CATEGORIES =========================
 const CATEGORIES = [
   {
     name: 'HOME',
@@ -16,7 +17,7 @@ const CATEGORIES = [
     asyncRoutePath: './Category',
     idNumber: 1,
     exact: true,
-    subCategoryIds: [11, 12, 13, 14, 15, 16],
+    subCategoryIds: [11, 12, 13, 14, 15, 16, 17],
   },
   {
     name: 'Connect',
@@ -61,10 +62,13 @@ const CATEGORIES = [
     asyncRoutePath: './Expressions',
     idNumber: 1,
     exact: true,
-    subCategoryIds: [61, 62, 63, 64, 65, 66],
+    subCategoryIds: [61, 62, 63, 64, 65, 66, 67],
   },
 ];
 
+// ========================= SUB CATEGORIES =========================
+
+// ========================= CAMPUS =========================
 const CAMPUS = [
   {
     name: 'Academics',
@@ -114,8 +118,17 @@ const CAMPUS = [
     idNumber: 16,
     exact: true,
   },
+  {
+    name: 'Admissions',
+    shortName: LINKS.SUB_CATEGORIES.CAMPUS.ADMISSIONS.split('/')[2],
+    path: LINKS.SUB_CATEGORIES.CAMPUS.ADMISSIONS,
+    asyncRoutePath: './SubCategory',
+    idNumber: 17,
+    exact: true,
+  },
 ];
 
+// ========================= CONNECT =========================
 const CONNECT = [
   {
     name: 'Interviews',
@@ -151,6 +164,7 @@ const CONNECT = [
   },
 ];
 
+// ========================= DDCWC =========================
 const DDCWC = [
   {
     name: "Director's Desk",
@@ -170,6 +184,7 @@ const DDCWC = [
   },
 ];
 
+// ========================= CAREER =========================
 const CAREER = [
   {
     name: 'Placements',
@@ -196,19 +211,16 @@ const CAREER = [
     exact: true,
   },
   {
-    name: 'Live',
-    shortName: LINKS.SUB_CATEGORIES.CAREER.LIVE.split('/')[2],
-    path: LINKS.SUB_CATEGORIES.CAREER.LIVE,
-    asyncRoutePath: './Live',
-<<<<<<< HEAD
+    name: 'Guidance',
+    shortName: LINKS.SUB_CATEGORIES.CAREER.GUIDANCE.split('/')[2],
+    path: LINKS.SUB_CATEGORIES.CAREER.GUIDANCE,
+    asyncRoutePath: './SubCategory',
     idNumber: 44,
-=======
-    idNumber: 21,
->>>>>>> feat: Create getArticlesByCategory query and fetch data
     exact: true,
   },
 ];
 
+// ========================= ALUMNI =========================
 const ALUMNI = [
   {
     name: 'Alumnus Speaks',
@@ -228,6 +240,7 @@ const ALUMNI = [
   },
 ];
 
+// ========================= EXPRESSIONS =========================
 const EXPRESSIONS = [
   {
     name: 'Witsdom',
@@ -253,24 +266,41 @@ const EXPRESSIONS = [
     idNumber: 63,
     exact: true,
   },
-  {
-    name: 'Podcasts',
-    shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.PODCASTS.split('/')[2],
-    path: LINKS.SUB_CATEGORIES.EXPRESSIONS.PODCASTS,
-    asyncRoutePath: './Podcast',
-    idNumber: 65,
-    exact: true,
-  },
+  // {
+  //   name: 'NITR in Motion',
+  //   shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.NITR_IN_MOTION.split('/')[2],
+  //   path: LINKS.SUB_CATEGORIES.EXPRESSIONS.NITR_IN_MOTION,
+  //   asyncRoutePath: './SubCategory',
+  //   idNumber: 64,
+  //   exact: true,
+  // },
   {
     name: 'Editorial',
     shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.EDITORIAL.split('/')[2],
     path: LINKS.SUB_CATEGORIES.EXPRESSIONS.EDITORIAL,
     asyncRoutePath: './SubCategory',
-    idNumber: 64,
+    idNumber: 65,
+    exact: true,
+  },
+  {
+    name: 'Podcasts',
+    shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.PODCASTS.split('/')[2],
+    path: LINKS.SUB_CATEGORIES.EXPRESSIONS.PODCASTS,
+    asyncRoutePath: './Podcast',
+    idNumber: 66,
+    exact: true,
+  },
+  {
+    name: 'Miscellaneous',
+    shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.MISCELLANEOUS.split('/')[2],
+    path: LINKS.SUB_CATEGORIES.EXPRESSIONS.MISCELLANEOUS,
+    asyncRoutePath: './SubCategory',
+    idNumber: 67,
     exact: true,
   },
 ];
 
+// ========================= INDIVIDUALS =========================
 const INDIVIDUALS = [
   {
     name: 'Article',
@@ -310,6 +340,14 @@ const INDIVIDUALS = [
     path: LINKS.INDIVIDUALS.PORTFOLIO,
     asyncRoutePath: './Portfolio',
     idNumber: 104,
+    exact: true,
+  },
+  {
+    name: 'Live',
+    shortName: LINKS.INDIVIDUALS.LIVE.split('/')[1],
+    path: LINKS.INDIVIDUALS.LIVE,
+    asyncRoutePath: './Live',
+    idNumber: 105,
     exact: true,
   },
 ];
@@ -372,6 +410,7 @@ const USER = [
   },
 ];
 
+// ========================= ROUTES OBJECT =========================
 export default Object.freeze({
   CATEGORIES,
   SUB_CATEGORIES: {

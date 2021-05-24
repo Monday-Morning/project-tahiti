@@ -16,6 +16,7 @@ const SUB_CATEGORIES = {
     STUDENT_ACTIVITIES: `${CATEGORIES.CAMPUS}/studentActivities`,
     HALLS: `${CATEGORIES.CAMPUS}/halls`,
     POLL_ANALYSIS: `${CATEGORIES.CAMPUS}/pollAnalysis`,
+    ADMISSIONS: `${CATEGORIES.CAMPUS}/admissions`,
   },
   CONNECT: {
     INTERVIEWS: `${CATEGORIES.CONNECT}/interviews`,
@@ -31,7 +32,7 @@ const SUB_CATEGORIES = {
     PLACEMENTS: `${CATEGORIES.CAREER}/placements`,
     INTERNSHIPS: `${CATEGORIES.CAREER}/internships`,
     HIGHER_EDUCATION: `${CATEGORIES.CAREER}/higherEducation`,
-    LIVE: `${CATEGORIES.CAREER}/live`,
+    GUIDANCE: `${CATEGORIES.CAREER}/guidance`,
   },
   ALUMNI: {
     ALUMNUS_SPEAKS: `${CATEGORIES.ALUMNI}/alumnusSpeaks`,
@@ -39,10 +40,12 @@ const SUB_CATEGORIES = {
   },
   EXPRESSIONS: {
     WITSDOM: `${CATEGORIES.EXPRESSIONS}/witsdom`,
-    EDITORIAL: `${CATEGORIES.EXPRESSIONS}/editorial`,
-    PODCASTS: `${CATEGORIES.EXPRESSIONS}/podcasts`,
     PHOTOSTORY: `${CATEGORIES.EXPRESSIONS}/photostory`,
     GALLERY: `${CATEGORIES.EXPRESSIONS}/gallery`,
+    NITR_IN_MOTION: `${CATEGORIES.EXPRESSIONS}/nitrInMotion`,
+    EDITORIAL: `${CATEGORIES.EXPRESSIONS}/editorial`,
+    PODCASTS: `${CATEGORIES.EXPRESSIONS}/podcasts`,
+    MISCELLANEOUS: `${CATEGORIES.EXPRESSIONS}/miscellaneous`,
   },
 };
 
@@ -52,6 +55,7 @@ const INDIVIDUALS = {
   GALLERY: '/gallery/:id/:title',
   PHOTOSTORY: '/photostory/:id/:title',
   PORTFOLIO: '/portfolio/:id/:name',
+  LIVE: '/live',
 };
 
 const INTERACTIONS = {
