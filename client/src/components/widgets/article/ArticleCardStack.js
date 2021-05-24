@@ -9,13 +9,13 @@ import ArticleCard from './ArticleCard';
 function ArticleCardStack({ articleList }) {
   const classes = useStyles();
 
-  if (articleList.length === 1)
+  if (articleList?.length === 1)
     articleList.push({ id: 'placeholder1' }, { id: 'placeholder2' });
-  if (articleList.length === 2) articleList.push({ id: 'placeholder1' });
+  if (articleList?.length === 2) articleList.push({ id: 'placeholder1' });
 
   return (
     <div className={classes.root}>
-      {articleList.length > 0
+      {articleList?.length > 0
         ? articleList.map((article, index) => (
             <ArticleCard
               key={article.id}
