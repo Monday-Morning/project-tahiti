@@ -32,7 +32,7 @@ function Category() {
   const { loading, error, data } = useQuery(GetArticlesByCategories, {
     variables: {
       categoryNumbers: [category.idNumber, ...category.subCategoryIds],
-      limit: 10,
+      limit: category.subCategoryIds.length * 4 + 10,
     },
   });
 
@@ -70,7 +70,7 @@ function Category() {
             )}
           </div>
         </Container>
-        <ArticleCarousel articleList={articleList[0]} />
+        <ArticleCarousel articleList={articleList[0].slice(0, 10)} />
       </div>
 
       <div>

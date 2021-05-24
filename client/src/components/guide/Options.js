@@ -2,19 +2,19 @@ import React from 'react';
 
 // libararies
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Grid, Button } from '@material-ui/core';
+import { Typography, Grid } from '@material-ui/core';
 
-//placeholder
+// placeholder
 import { OPTIONS } from '../../assets/placeholder/guide';
 
-//images
+// images
 import icon1 from '../../assets/images/guide/optIcon1.png';
 import icon2 from '../../assets/images/guide/optIcon2.png';
 import icon3 from '../../assets/images/guide/optIcon3.png';
 import icon4 from '../../assets/images/guide/optIcon4.png';
 
 // components
-import SubCategories from '../widgets/SubCategories';
+import SubCategories from '../widgets/SubCategory';
 
 // theme
 import theme from '../../config/themes/light';
