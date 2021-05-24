@@ -7,7 +7,7 @@ import { Link } from 'react-scroll';
 // Components
 import Section from '../components/expressions/Section';
 import PodcastList from '../components/podcast/List';
-import SubCategories from '../components/widgets/SubCategories';
+import SubCategories from '../components/widgets/SubCategory';
 import ArticleCardStack from '../components/widgets/article/ArticleCardStack.js';
 import BigCarousel from '../components/widgets/BigCarousel';
 import SectionTitle from '../components/categories/SectionTitle';
