@@ -2,59 +2,98 @@ import React from 'react';
 
 // Libraries
 import { Card, makeStyles, Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import moment from 'moment';
+
+// Components
+import NewTabLink from '../../shared/links/NewTabLink';
 
 // Assets
-import { ARTICLECARD } from '../../../assets/placeholder/widget';
-import cover from '../../../assets/images/cover.png';
+// import { ARTICLECARD } from '../../../assets/placeholder/widget';
+// import cover from '../../../assets/images/cover.png';
+import { DEFAULT_ARTICLE } from '../../../assets/placeholder/article';
 
-const SmallArticleCard = ({ isWitsdom, isGallery, isPhotostory }) => {
+// Utils
+import getArticleLink from '../../../utils/getArticleLink';
+// import getCategory from '../../../utils/determineCategory';
+
+const SmallArticleCard = ({
+  isWitsdom,
+  isGallery,
+  isPhotostory,
+  article: articleProp,
+}) => {
   const classes = useStyles();
 
-  const getArticleLink = () => {
-    if (isWitsdom)
-      return '/article/609673938c0ee55b2c03e814/Adapting%20To%20The%20Unprecedented:%20NITR%20Rewind%202020-21';
-    if (isGallery) return '/gallery/id/title';
-    if (isPhotostory) return '/photostory/id/title';
-    return '/article/609673938c0ee55b2c03e814/Adapting%20To%20The%20Unprecedented:%20NITR%20Rewind%202020-21';
-  };
+  const isDefaultArticle = !articleProp?.title;
+  const article = isDefaultArticle ? DEFAULT_ARTICLE : articleProp;
+
+  // const getArticleLink = () => {
+  //   if (isWitsdom)
+  //     return '/article/609673938c0ee55b2c03e814/Adapting%20To%20The%20Unprecedented:%20NITR%20Rewind%202020-21';
+  //   if (isGallery) return '/gallery/id/title';
+  //   if (isPhotostory) return '/photostory/id/title';
+  //   return '/article/609673938c0ee55b2c03e814/Adapting%20To%20The%20Unprecedented:%20NITR%20Rewind%202020-21';
+  // };
 
   return (
-    <Link
-      className={classes.link}
-      to={getArticleLink()}
-      target='_blank'
-      rel='noopener noreferrer'
-    >
-      <Card className={classes.root}>
-        <div className={classes.imgContainer}>
-          <img src={cover} alt='Cover' className={classes.img} />
-        </div>
+    <Card className={classes.root}>
+      <NewTabLink
+        to={getArticleLink(article.id, article.title, {
+          isWitsdom,
+          isPhotostory,
+          isGallery,
+        })}
+        className={classes.imgContainer}
+      >
+        <img
+          src={article.coverMedia.rectangle.storePath}
+          alt='Cover'
+          className={classes.img}
+        />
+      </NewTabLink>
 
-        <div className={classes.contentContainer}>
+      <div className={classes.contentContainer}>
+        <NewTabLink
+          to={getArticleLink(article.id, article.title, {
+            isWitsdom,
+            isPhotostory,
+            isGallery,
+          })}
+        >
           <Typography variant='h3' className={classes.title}>
-            {ARTICLECARD.title}
+            {article.title}
           </Typography>
+        </NewTabLink>
 
-          <Typography varinat='body1' className={classes.authors}>
-            {ARTICLECARD.authors}
-          </Typography>
+        {/* <Typography variant='body1' className={classes.authors}>
+          {ARTICLECARD.authors}
+        </Typography> */}
 
-          <Typography variant='body1' className={classes.readTime}>
-            {ARTICLECARD.readTime}
-          </Typography>
+        <div className={classes.authorList}>
+          {article.authors.map(({ name, id }, index) => (
+            <NewTabLink to={`/portfolio/${id}/${name}`} key={name}>
+              <Typography
+                variant='body2'
+                key={name}
+                className={classes.authors}
+              >
+                {`${name}${index === article.authors.length - 1 ? ' ' : ','}`}
+              </Typography>
+            </NewTabLink>
+          ))}
         </div>
-      </Card>
-    </Link>
+
+        <Typography variant='body1' className={classes.readTime}>
+          {moment.duration(article.readTime, 'seconds').humanize()}
+        </Typography>
+      </div>
+    </Card>
   );
 };
 
 export default SmallArticleCard;
 
 const useStyles = makeStyles((theme) => ({
-  link: {
-    textDecoration: 'none',
-  },
   root: {
     width: '100%',
     height: '100px',
@@ -94,15 +133,23 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '14px',
     fontWeight: '700',
     lineHeight: '16px',
-    // fontFamily: 'IMB Plex Sans',
+    fontFamily: 'IBM Plex Sans',
+  },
+  authorList: {
+    width: 'auto',
+    maxWidth: '100%',
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
   authors: {
-    fontSize: '12px',
-    fontWeight: '400',
-    lineHeight: '16px',
-    fontFamily: 'Source Sans Pro',
     color: theme.palette.secondary.neutral70,
-    marginTop: '5px',
+    fontFamily: 'Source Sans Pro',
+    fontSize: '12px',
+    lineHeight: '16px',
+    fontWeight: '400',
+    marginRight: '2px',
   },
   readTime: {
     fontSize: '12px',

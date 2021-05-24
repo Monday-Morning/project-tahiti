@@ -10,6 +10,7 @@ import NewTabLink from '../../shared/links/NewTabLink';
 
 // Utils
 import getCategory from '../../../utils/determineCategory';
+import getArticleLink from '../../../utils/getArticleLink';
 
 // Assets
 import { DEFAULT_ARTICLE } from '../../../assets/placeholder/article';
@@ -27,17 +28,16 @@ const ArticleCard = ({
   const isDefaultArticle = !articleProp?.title;
   const article = isDefaultArticle ? DEFAULT_ARTICLE : articleProp;
 
-  const getArticleLink = () => {
-    if (isWitsdom)
-      return '/article/609673938c0ee55b2c03e814/Adapting%20To%20The%20Unprecedented:%20NITR%20Rewind%202020-21';
-    if (isGallery) return '/gallery/id/title';
-    if (isPhotostory) return '/photostory/id/title';
-    return '/article/609673938c0ee55b2c03e814/Adapting%20To%20The%20Unprecedented:%20NITR%20Rewind%202020-21';
-  };
-
   return (
     <Card className={classes.root}>
-      <NewTabLink to={getArticleLink()} className={classes.coverContainer}>
+      <NewTabLink
+        to={getArticleLink(article.id, article.title, {
+          isWitsdom,
+          isPhotostory,
+          isGallery,
+        })}
+        className={classes.coverContainer}
+      >
         <img
           className={classes.featuredImage}
           src={article.coverMedia.rectangle.storePath}
@@ -72,9 +72,17 @@ const ArticleCard = ({
           ))}
         </div>
 
-        <Typography className={classes.title} variant='h2'>
-          {article.title}
-        </Typography>
+        <NewTabLink
+          to={getArticleLink(article.id, article.title, {
+            isWitsdom,
+            isPhotostory,
+            isGallery,
+          })}
+        >
+          <Typography className={classes.title} variant='h2'>
+            {article.title}
+          </Typography>
+        </NewTabLink>
 
         <div className={classes.detailsContainer}>
           <div className={classes.authorList}>
