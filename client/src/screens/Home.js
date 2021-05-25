@@ -36,7 +36,7 @@ function Home() {
       <Container>
         <FeaturedArticles articles={featured} />
         <Squiggles />
-        <ArticleCardStack />
+        <ArticleCardStack articleList={articles.slice(0, 3)} />
 
         <Grid container spacing={4} style={{ marginTop: 25 }}>
           <Grid item sm={8}>
@@ -47,7 +47,7 @@ function Home() {
           </Grid>
         </Grid>
 
-        <ArticleCardStack articles={articles} />
+        <ArticleCardStack articleList={articles.slice(4, 7)} />
       </Container>
 
       <Banner />
