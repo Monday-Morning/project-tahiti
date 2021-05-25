@@ -58,7 +58,7 @@ const Socials = () => {
 
   const openYoutube = () =>
     window.open(
-      'https://www.instagram.com/mondaymorningnitrofficial',
+      'https://www.youtube.com/channel/UCC2H5dnJ0AD-y8Fcscdq6bA',
       '_blank',
     );
   const openInstagram = () =>

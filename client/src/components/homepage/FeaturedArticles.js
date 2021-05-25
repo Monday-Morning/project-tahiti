@@ -3,6 +3,7 @@ import React from 'react';
 // Libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, Grid, Typography } from '@material-ui/core';
+import moment from 'moment';
 
 // Components
 import NewTabLink from '../shared/links/NewTabLink';
@@ -30,6 +31,7 @@ function FeaturedArticle({ article }) {
           <Typography className={classes.title}>
             {limitString(title, 48)}
           </Typography>
+
           <div className={classes.wrapper}>
             <div className={classes.authorList}>
               {authors.map(({ name }) => (
@@ -42,9 +44,10 @@ function FeaturedArticle({ article }) {
                 </Typography>
               ))}
             </div>
-            <div className={classes.readTime}>
-              <Typography variant='body2'>{readTime}</Typography>
-            </div>
+
+            <Typography variant='body2' className={classes.readTime}>
+              {moment.duration(readTime, 'seconds').humanize()}
+            </Typography>
           </div>
         </div>
       </div>
@@ -129,13 +132,24 @@ const useStylesChild = makeStyles((theme) => ({
     display: 'flex',
     marginTop: '4px',
     justifyContent: 'space-between',
+    alignItems: 'flex-end',
   },
-  authorList: {},
+  authorList: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    flexWrap: 'wrap',
+    width: 'auto',
+  },
   author: {
     display: 'inline',
     color: theme.palette.secondary.neutral60,
     fontWeight: '400',
     marginRight: '10px',
   },
-  readTime: {},
+  readTime: {
+    width: 'auto',
+    height: 'auto',
+    minWidth: '60px',
+  },
 }));
