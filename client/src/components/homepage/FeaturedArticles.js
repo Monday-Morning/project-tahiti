@@ -1,9 +1,11 @@
 import React from 'react';
 
-// libraries
+// Libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, Grid, Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+
+// Components
+import NewTabLink from '../shared/links/NewTabLink';
 
 // Utils
 import limitString from '../../utils/limitString';
@@ -19,22 +21,12 @@ function FeaturedArticle({ article }) {
     },
   } = article;
 
-  const classes = useStyles();
+  const classes = useStylesChild({ storePath });
 
   return (
-    <Link
-      to={`/article/${id}/${title}`}
-      target='_blank'
-      rel='noopener noreferrer'
-      className={classes.link}
-    >
-      <div
-        className={classes.articleWrapper}
-        style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2),  rgba(0,0,0,0.9)), url(${storePath}) `,
-        }}
-      >
-        <div className={classes.container}>
+    <NewTabLink to={`/article/${id}/${title}`} className={classes.link}>
+      <div className={classes.articleWrapper}>
+        <div className={classes.detailsContainer}>
           <Typography className={classes.title}>
             {limitString(title, 48)}
           </Typography>
@@ -56,12 +48,12 @@ function FeaturedArticle({ article }) {
           </div>
         </div>
       </div>
-    </Link>
+    </NewTabLink>
   );
 }
 
 function FeaturedArticles({ articles }) {
-  const classes = useStyles();
+  const classes = useStylesParent();
 
   return (
     <Card className={classes.FeaturedarticleCard}>
@@ -85,59 +77,65 @@ function FeaturedArticles({ articles }) {
 
 export default FeaturedArticles;
 
-const useStyles = makeStyles((theme) => ({
-  link: {
-    textDecoration: 'none',
-    color: 'black',
-  },
+const useStylesParent = makeStyles(() => ({
   FeaturedarticleCard: {
     borderRadius: '8px',
     marginTop: 25,
   },
-  FeaturedGrid: {},
+}));
+
+const useStylesChild = makeStyles((theme) => ({
+  link: {
+    display: 'inline-block',
+    width: '100%',
+    height: '100%',
+    backgroundImage:
+      'linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2),  rgba(0,0,0,0.9))',
+  },
   articleWrapper: {
     display: 'flex',
     alignItems: 'flex-end',
+
     minWidth: '300px',
     minHeight: '300px',
     height: '100%',
     width: '100%',
+
+    color: theme.palette.common.white,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    color: theme.palette.common.white,
+    backgroundImage: ({ storePath }) =>
+      `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2),  rgba(0,0,0,0.9)), url(${storePath
+        .split(' ')
+        .join('%20')}) `,
+
     '&:hover': {
       cursor: 'pointer',
     },
   },
-  container: {
+  detailsContainer: {
     width: '100%',
     padding: '10px',
     paddingBottom: '20px',
-  },
-  tag: {
-    fontSize: '12px',
-    fontWeight: '400',
-    lineHeight: '16px',
-    color: theme.palette.secondary.neutral60,
-    textDecoration: 'underline',
-    marginRight: '10px',
   },
   title: {
     marginTop: '4px',
     fontSize: '18px',
     lineHeight: '24px',
     fontWeight: '600',
+    fontFamily: 'IBM Plex Sans',
   },
   wrapper: {
     display: 'flex',
     marginTop: '4px',
     justifyContent: 'space-between',
   },
-  readTime: {},
+  authorList: {},
   author: {
     display: 'inline',
     color: theme.palette.secondary.neutral60,
     fontWeight: '400',
     marginRight: '10px',
   },
+  readTime: {},
 }));
