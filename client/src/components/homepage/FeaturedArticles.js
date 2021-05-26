@@ -109,7 +109,8 @@ const useStylesChild = makeStyles((theme) => ({
     color: theme.palette.common.white,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    backgroundImage: ({ storePath }) => `url(${storePath})`,
+    backgroundImage: ({ storePath }) =>
+      `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2),  rgba(0,0,0,0.9)), url(${storePath})`,
 
     '&:hover': {
       cursor: 'pointer',
