@@ -11,6 +11,7 @@ import NewTabLink from '../../shared/links/NewTabLink';
 // Utils
 import getCategory from '../../../utils/determineCategory';
 import getArticleLink from '../../../utils/getArticleLink';
+import limitString from '../../../utils/limitString';
 
 // Assets
 import { DEFAULT_ARTICLE } from '../../../assets/placeholder/article';
@@ -37,39 +38,45 @@ const ArticleCard = ({
           isGallery,
         })}
         className={classes.coverContainer}
+        style={{
+          backgroundImage: `url(${DEFAULT_ARTICLE.coverMedia.rectangle.storePath})`,
+        }}
       >
         <img
           className={classes.featuredImage}
-          src={article.coverMedia.rectangle.storePath}
+          src={article.coverMedia.rectangle.storePath.split(' ').join('%20')}
           alt='Featured'
         />
       </NewTabLink>
 
       <CardContent className={classes.cardContent}>
         <div className={classes.categoriesContainer}>
-          {article.categories.slice().map(({ number }, index) => (
-            <Typography
-              // eslint-disable-next-line react/no-array-index-key
-              key={`${number}-${index}-bigArticleCard-category`}
-              variant='body2'
-              className={classes.category}
-            >
-              {getCategory(number)}
-              {index === article.categories.length - 1 ? (
-                ''
-              ) : (
-                <span
-                  style={{
-                    textDecoration: 'none',
-                    paddingLeft: '10px',
-                    paddingRight: '10px',
-                  }}
-                >
-                  |
-                </span>
-              )}
-            </Typography>
-          ))}
+          {article.categories
+            .filter(({ number }) => number > 10)
+            .slice(0, 3)
+            .map(({ number }, index) => (
+              <Typography
+                // eslint-disable-next-line react/no-array-index-key
+                key={`${number}-${index}-bigArticleCard-category`}
+                variant='body2'
+                className={classes.category}
+              >
+                {getCategory(number)}
+                {index === article.categories.length - 1 ? (
+                  ''
+                ) : (
+                  <span
+                    style={{
+                      textDecoration: 'none',
+                      paddingLeft: '10px',
+                      paddingRight: '10px',
+                    }}
+                  >
+                    |
+                  </span>
+                )}
+              </Typography>
+            ))}
         </div>
 
         <NewTabLink
@@ -80,7 +87,7 @@ const ArticleCard = ({
           })}
         >
           <Typography className={classes.title} variant='h2'>
-            {article.title}
+            {limitString(article.title, 40)}
           </Typography>
         </NewTabLink>
 
@@ -122,8 +129,8 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[0],
     backgroundColor: theme.palette.common.white,
     overflow: 'hidden',
-    width: '380px',
-    height: '420px',
+    width: '400px',
+    height: '470px',
 
     marginTop: '25px',
     marginRight: ({ carousel }) => (carousel ? '10px' : '0px'),
@@ -135,9 +142,9 @@ const useStyles = makeStyles((theme) => ({
 
     [theme.breakpoints.between('xs', 'sm')]: {
       margin: '0px',
-      width: ({ carousel }) => (carousel ? '380px' : 'auto'),
-      height: ({ carousel }) => (carousel ? '420px' : 'auto'),
-      minHeight: '420px',
+      width: ({ carousel }) => (carousel ? '400px' : 'auto'),
+      height: ({ carousel }) => (carousel ? '470px' : 'auto'),
+      minHeight: '470px',
     },
   },
 

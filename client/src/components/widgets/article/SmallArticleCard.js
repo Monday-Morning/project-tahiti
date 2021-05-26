@@ -8,13 +8,10 @@ import moment from 'moment';
 import NewTabLink from '../../shared/links/NewTabLink';
 
 // Assets
-// import { ARTICLECARD } from '../../../assets/placeholder/widget';
-// import cover from '../../../assets/images/cover.png';
 import { DEFAULT_ARTICLE } from '../../../assets/placeholder/article';
 
 // Utils
 import getArticleLink from '../../../utils/getArticleLink';
-// import getCategory from '../../../utils/determineCategory';
 
 const SmallArticleCard = ({
   isWitsdom,
@@ -26,14 +23,6 @@ const SmallArticleCard = ({
 
   const isDefaultArticle = !articleProp?.title;
   const article = isDefaultArticle ? DEFAULT_ARTICLE : articleProp;
-
-  // const getArticleLink = () => {
-  //   if (isWitsdom)
-  //     return '/article/609673938c0ee55b2c03e814/Adapting%20To%20The%20Unprecedented:%20NITR%20Rewind%202020-21';
-  //   if (isGallery) return '/gallery/id/title';
-  //   if (isPhotostory) return '/photostory/id/title';
-  //   return '/article/609673938c0ee55b2c03e814/Adapting%20To%20The%20Unprecedented:%20NITR%20Rewind%202020-21';
-  // };
 
   return (
     <Card className={classes.root}>
