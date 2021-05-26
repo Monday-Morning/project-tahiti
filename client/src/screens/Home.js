@@ -17,16 +17,25 @@ import ActivityIndicator from '../components/shared/ActivityIndicator';
 import SocialMedia from '../components/homepage/SocialMedia';
 
 // Queries
-// import GetIssueByIdQuery from '../graphql/queries/getIssueByID';
 import GetLatestIssue from '../graphql/queries/getLatestIssue';
+import GetSquiggles from '../graphql/queries/getSquiggles';
 
 function Home() {
   const { loading, error, data } = useQuery(GetLatestIssue, {
     variables: { limit: 3 },
   });
 
+  const {
+    loading: squigglesLoading,
+    error: squigglesError,
+    data: squigglesData,
+  } = useQuery(GetSquiggles, {
+    variables: { limit: 1 },
+  });
+
   if (loading && !data) return <ActivityIndicator size={150} />;
   if (error) return <div>{JSON.stringify(error)}</div>;
+  if (squigglesError) return <div>{JSON.stringify(error)}</div>;
 
   const { listIssues: issues } = data;
 
@@ -59,7 +68,7 @@ function Home() {
     <>
       <Container>
         <FeaturedArticles articles={featured} />
-        <Squiggles />
+        <Squiggles loading={squigglesLoading} data={squigglesData} />
         <ArticleCardStack articleList={firstArticleStack} />
 
         <Grid container spacing={4} style={{ marginTop: 25 }}>
