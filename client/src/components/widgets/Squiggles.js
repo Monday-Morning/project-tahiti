@@ -1,16 +1,13 @@
 import React from 'react';
 
-// libraries
+// Libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, Button } from '@material-ui/core';
 
-// Components
-import { SQUIGGLES } from '../../assets/placeholder/widget';
-
-// theme
+// Theme
 import theme from '../../config/themes/light';
 
-function Squiggles() {
+function Squiggles({ loading, data }) {
   const classes = useStyles(theme);
 
   return (
@@ -23,7 +20,11 @@ function Squiggles() {
             </Button>
           </div>
           <div>
-            <p className={classes.squigglesText}>{SQUIGGLES.TEXT}</p>
+            <p className={classes.squigglesText}>
+              {loading
+                ? 'Loading...'
+                : data.listSquiggles[0].content[0].plaintext}
+            </p>
           </div>
         </div>
       </CardContent>

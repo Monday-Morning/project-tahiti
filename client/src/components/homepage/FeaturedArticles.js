@@ -22,7 +22,11 @@ function FeaturedArticle({ article }) {
     },
   } = article;
 
-  const classes = useStylesChild({ storePath });
+  const classes = useStylesChild({
+    storePath: storePath.split(' ').join('%20'),
+  });
+
+  console.log(storePath.split(' ').join('%20'));
 
   return (
     <NewTabLink to={`/article/${id}/${title}`} className={classes.link}>
@@ -107,10 +111,7 @@ const useStylesChild = makeStyles((theme) => ({
     color: theme.palette.common.white,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    backgroundImage: ({ storePath }) =>
-      `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2),  rgba(0,0,0,0.9)), url(${storePath
-        .split(' ')
-        .join('%20')}) `,
+    backgroundImage: ({ storePath }) => `url(${storePath})`,
 
     '&:hover': {
       cursor: 'pointer',
