@@ -26,8 +26,6 @@ function FeaturedArticle({ article }) {
     storePath: storePath.split(' ').join('%20'),
   });
 
-  console.log(storePath.split(' ').join('%20'));
-
   return (
     <NewTabLink to={`/article/${id}/${title}`} className={classes.link}>
       <div className={classes.articleWrapper}>
