@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 
 // libraries
@@ -6,7 +5,6 @@ import { Container, Grid } from '@material-ui/core';
 import { useQuery } from '@apollo/client';
 
 // Components
-import FeaturedArticles from '../components/homepage/FeaturedArticles';
 import Squiggles from '../components/widgets/Squiggles';
 import ArticleCardStack from '../components/widgets/article/ArticleCardStack';
 import Pulse from '../components/widgets/Pulse';
@@ -15,6 +13,7 @@ import Banner from '../components/homepage/Banner';
 import Trending from '../components/homepage/Trending';
 import ActivityIndicator from '../components/shared/ActivityIndicator';
 import SocialMedia from '../components/homepage/SocialMedia';
+import ArticleGrid from '../components/widgets/article/ArticleGrid';
 
 // Queries
 import GetLatestIssue from '../graphql/queries/getLatestIssue';
@@ -67,7 +66,7 @@ function Home() {
   return (
     <>
       <Container>
-        <FeaturedArticles articles={featured} />
+        <ArticleGrid articles={featured} />
         <Squiggles loading={squigglesLoading} data={squigglesData} />
         <ArticleCardStack articleList={firstArticleStack} />
 
