@@ -1,101 +1,100 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // libraries
 import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Container } from '@material-ui/core';
-// import { Button, TextField } from '@material-ui/core';
+import { Container, Typography, TextField } from '@material-ui/core';
+
+// Utils
+import ROUTES from '../../utils/getRoutes';
 
 // Assets
-import theme from '../../config/themes/light';
-import logo from '../../assets/images/logo.png';
+import logoFullBlack from '../../assets/images/logos/logo_full_black.png';
 
-const DeskTopHeader = ({ nav }) => {
+const DesktopNavbar = () => {
   const classes = useStyles();
+  const [search, setSearch] = useState('');
+
   return (
-    <Container className={classes.wrapper}>
-      <Grid container className={classes.header}>
-        <Grid item sm={6}>
-          <NavLink to='/'>
-            <img src={logo} alt='Monday Morning' />
-          </NavLink>
-        </Grid>
-        <Grid item sm={6}>
-          {/*  Disabled Until proper functionality is setup */}
-          {/* <div className={classes.searchWrapper}>
-            <TextField label='Search for articles' />
-            <Button
-              variant='outlined'
-              color='primary'
-              className={classes.signInButton}
-            >
-              Sign In
-            </Button>
-          </div> */}
-        </Grid>
-      </Grid>
-      <hr />
-      <div className={classes.navbar}>
-        <div className={classes.navList}>
-          {nav.map(({ to, name }) => (
-            <div key={name} className={classes.navItem}>
-              <NavLink
-                to={to}
-                className={classes.navLink}
-                exact
-                activeClassName={classes.activeHeaderLink}
-              >
-                {name}
-              </NavLink>
-            </div>
-          ))}
+    <Container>
+      <nav
+        aria-label='Monday Morning Navigation'
+        className={classes.navContainer}
+      >
+        <div
+          aria-label='Details Container'
+          className={classes.detailsContainer}
+        >
+          <img
+            src={logoFullBlack}
+            alt='Monday Morning Logo'
+            className={classes.img}
+          />
+
+          <TextField
+            label='Search for articles'
+            placeholder='Enter related words'
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
         </div>
-      </div>
+
+        <ul aria-label='Navbar' className={classes.menuContainer}>
+          {ROUTES.CATEGORIES.map(({ name, shortName, path }) => (
+            <li key={shortName} className={classes.linkContainer}>
+              <NavLink className={classes.link} aria-label='Nav Item' to={path}>
+                <Typography variant='h2' className={classes.menu}>
+                  {name}
+                </Typography>
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </Container>
   );
 };
 
-export default DeskTopHeader;
+export default DesktopNavbar;
 
-const useStyles = makeStyles(() => ({
-  wrapper: {
-    marginTop: '15px',
-  },
-  header: {
-    paddingTop: '24px ',
-    paddingBottom: '24px',
-  },
-  searchWrapper: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  signInButton: {
-    alignItems: 'center',
-    margin: 'auto 0 0 70px',
-  },
-  navbar: {
-    position: 'relative',
+const useStyles = makeStyles((theme) => ({
+  navContainer: {
     width: '100%',
+    marginTop: '10px',
   },
-  navList: {
+
+  detailsContainer: {
     display: 'flex',
-    width: '100%',
+    alignItems: 'center',
     justifyContent: 'space-between',
+
+    paddingTop: '10px',
+    paddingBottom: '25px',
+    borderBottom: `3px solid ${theme.palette.secondary.neutral50}`,
+  },
+  img: {
+    width: '33%',
+    height: 'auto',
+  },
+
+  menuContainer: {
+    width: '100%',
     marginTop: '20px',
+
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
-  navItem: {
-    width: 'auto',
+  linkContainer: {
+    display: 'inline-block',
+    width: '100%',
+    height: '100%',
   },
-  navLink: {
+  link: {
     textDecoration: 'none',
-    color: '#999999',
-    fontWeight: '600',
-    fontSize: '24px',
-    lineHeight: '32px',
-    fontFamily: 'IBM Plex Sans',
+    color: theme.palette.secondary.neutral60,
   },
-  activeHeaderLink: {
-    color: theme.palette.primary.blue50,
+  menu: {
+    textAlign: 'center',
   },
 }));

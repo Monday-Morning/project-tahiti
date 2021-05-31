@@ -3,7 +3,7 @@ import LINKS from './getLinks';
 // ========================= CATEGORIES =========================
 const CATEGORIES = [
   {
-    name: 'HOME',
+    name: 'Home',
     shortName: LINKS.CATEGORIES.HOME.split('/')[1],
     path: LINKS.CATEGORIES.HOME,
     asyncRoutePath: './Home',
