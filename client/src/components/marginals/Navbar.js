@@ -43,6 +43,6 @@ const NAV = [
 
 const Header = () => {
   const matches = useMediaQuery(theme.breakpoints.up('md'));
-  return matches ? <DesktopNavbar nav={NAV} /> : <MobileNavbar nav={NAV} />;
+  return matches ? <DesktopNavbar /> : <MobileNavbar nav={NAV} />;
 };
 export default Header;
