@@ -1,104 +1,137 @@
 import React from 'react';
 
-// libraries
+// Libraries
 import { NavLink } from 'react-router-dom';
-import { BarChart } from 'react-feather';
-import { makeStyles } from '@material-ui/core/styles';
-import { Container, SwipeableDrawer } from '@material-ui/core';
-// import {Search} from 'react-feather'
+import { BarChart, Search } from 'react-feather';
+import {
+  Container,
+  SwipeableDrawer,
+  makeStyles,
+  Typography,
+} from '@material-ui/core';
 
 // Assets
-import logo from '../../assets/images/logo.png';
+import logoFullDark from '../../assets/images/logos/logo_full_black.png';
 
 // Hooks
 import useToggle from '../../hooks/useToggle';
 
-// TODO: Add signin button to the mobile nav when ready.
-const MobileHeader = ({ nav }) => {
-  const [isMenuOpen, toggleMenu, setMenuOpen] = useToggle(false);
+// Utils
+import ROUTES from '../../utils/getRoutes';
 
-  const classes = useMobileStyles();
+// TODO: Add signin button to the mobile nav when ready.
+const MobileNavbar = ({ nav }) => {
+  const [isMenuOpen, toggleMenu, setMenuOpen] = useToggle(false);
+  const classes = useStyles();
+
   return (
-    <Container>
-      <div className={classes.wrapper}>
-        <span
-          className={classes.icon}
+    <>
+      <Container className={classes.header}>
+        {/* {!isMenuOpen && ( */}
+        <BarChart
           onClick={toggleMenu}
           onKeyDown={toggleMenu}
           role='button'
           tabIndex={0}
-        >
-          <i>
-            <BarChart className={classes.headerIcon} />
-          </i>
-        </span>
-        <img src={logo} alt='Monday Morning' className={classes.logo} />
-        <span className={classes.icon}>
-          {/* Disabled until proper functionality ready */}
-          {/* <i>
-            <Search />
-          </i> */}
-        </span>
-      </div>
+          className={classes.menuIcon}
+          size={30}
+        />
+        {/* )} */}
+
+        <img
+          src={logoFullDark}
+          alt='Monday Morning Logo'
+          className={classes.logo}
+        />
+
+        <Search
+          className={classes.searchIcon}
+          onClick={() => {}}
+          onKeyDown={() => {}}
+          role='button'
+          tabIndex={0}
+          size={30}
+        />
+      </Container>
 
       <SwipeableDrawer
         anchor='left'
         open={isMenuOpen}
         onClose={() => setMenuOpen(false)}
         onOpen={() => setMenuOpen(true)}
+        swipeAreaWidth={50}
+        style={{ zIndex: 10001 }}
       >
-        <div className={classes.navList}>
-          {nav.map(({ to, name }) => (
-            <div key={name} className={classes.navItem}>
-              <NavLink
-                to={to}
-                className={classes.navLink}
-                exact
-                activeClassName={classes.activeHeaderLink}
-              >
+        <nav className={classes.navContainer} aria-label='Navigation Container'>
+          {ROUTES.CATEGORIES.map(({ name, shortName, path }) => (
+            <NavLink
+              key={shortName}
+              to={path}
+              className={classes.navLink}
+              exact
+              activeClassName={classes.activeHeaderLink}
+              onClick={toggleMenu}
+            >
+              <Typography variant='h3' className={classes.typography}>
                 {name}
-              </NavLink>
-            </div>
+              </Typography>
+            </NavLink>
           ))}
-        </div>
+        </nav>
       </SwipeableDrawer>
-    </Container>
+    </>
   );
 };
 
-export default MobileHeader;
+export default MobileNavbar;
 
-const useMobileStyles = makeStyles(() => ({
-  wrapper: {
+const useStyles = makeStyles((theme) => ({
+  header: {
+    width: '100%',
+    marginBottom: '10px',
+    marginTop: '20px',
+
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'space-between',
-    marginTop: '1.25rem',
+
     position: 'relative',
   },
+  menuIcon: {
+    transform: 'rotateY(180deg) rotate(-90deg)',
+    zIndex: 10000,
+  },
   logo: {
-    width: '180px',
-    height: 'auto',
     position: 'absolute',
+    transform: 'translate(-50%, -50%)',
     top: '50%',
     left: '50%',
-    transform: 'translate(-50%, -50%)',
+
+    width: '40%',
+    height: 'auto',
   },
-  icon: {
-    fontSize: '18px',
+
+  swipeableDrawer: {
+    zIndex: 10001,
   },
-  headerIcon: {
-    transform: 'rotateY(180deg) rotate(-90deg)',
-  },
-  navList: {
-    padding: '2rem',
-  },
-  navItem: {
-    padding: '1rem 10px',
+  navContainer: {
+    width: '200px',
+    height: 'auto',
+    minHeight: '40vh',
+
+    marginTop: '60px',
+    zIndex: 10001,
+
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    flexDirection: 'column',
   },
   navLink: {
+    width: '100%',
+    padding: '20px',
     textDecoration: 'none',
-    color: 'unset',
-    fontFamily: 'IBM Plex Sans',
+    color: theme.palette.secondary.neutral70,
   },
+  activeHeaderLink: {},
 }));
