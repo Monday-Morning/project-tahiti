@@ -24,6 +24,8 @@ const AsyncRoute = (route) =>
     loading: ActivityIndicator,
   });
 
+const AsyncPlayground = AsyncRoute('./Playground.js');
+
 function App() {
   return (
     <ThemeProvider theme={lightTheme}>
@@ -31,6 +33,9 @@ function App() {
 
       <Router history={createBrowserHistory}>
         <Switch>
+          {/* Playground route for testing */}
+          <Route path='/playground' component={AsyncPlayground} exact />
+
           {/* Render the Onboarding Route Outside the Marginals. */}
           <Route
             path={ROUTES.USER[0].path}

@@ -104,6 +104,7 @@ const theme = createMuiTheme({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
     ].join(','),
+    htmlFontSize: 16,
     fontSize: 16,
     fontWeightLight: 300,
     fontWeightRegular: 400,
@@ -117,7 +118,7 @@ const theme = createMuiTheme({
       lineHeight: '3rem',
       '@media (max-width:600px)': {
         fontSize: '1.5rem',
-        lineHeight: '3rem',
+        lineHeight: '2rem',
       },
     },
     h2: {
@@ -126,8 +127,8 @@ const theme = createMuiTheme({
       fontSize: '1.5rem',
       lineHeight: '2rem',
       '@media (max-width:600px)': {
-        fontSize: '1.5rem',
-        lineHeight: '3rem',
+        fontSize: '1.25rem',
+        lineHeight: '1.75rem',
       },
     },
     h3: {
@@ -140,33 +141,37 @@ const theme = createMuiTheme({
         lineHeight: '1.5rem',
       },
     },
-    h4: {
-      fontFamily: '"IBM Plex Sans" ,"Roboto", "Helvetica", "Arial", sans-serif',
-      fontWeight: 600,
-      fontSize: '1.125rem',
-      lineHeight: '1.375rem',
-      '@media (max-width:600px)': {
-        fontSize: '1.125rem',
-        lineHeight: '1.5rem',
-      },
-    },
+    // h4: {
+    //   fontFamily: '"IBM Plex Sans" ,"Roboto", "Helvetica", "Arial", sans-serif',
+    //   fontWeight: 600,
+    //   fontSize: '2rem',
+    //   lineHeight: '3rem',
+    //   '@media (max-width:600px)': {
+    //     fontSize: '1.5rem',
+    //     lineHeight: '3rem',
+    //   },
+    // },
     // Regular Body
     body1: {
       fontFamily: '"IBM Plex Sans" ,"Roboto", "Helvetica", "Arial", sans-serif',
-      fontWeight: 500,
+      fontWeight: 400,
       fontSize: '1.25rem',
       lineHeight: '1.75rem',
       '@media (max-width:600px)': {
-        fontSize: '1rem',
+        fontSize: '1.125rem',
         lineHeight: '1.5rem',
       },
     },
     // MetaData
     body2: {
       fontFamily: '"IBM Plex Sans" ,"Roboto", "Helvetica", "Arial", sans-serif',
-      fontWeight: 500,
-      fontSize: '0.75rem',
-      lineHeight: '1rem',
+      fontWeight: 400,
+      fontSize: '1rem',
+      lineHeight: '1.25rem',
+      '@media (max-width:600px)': {
+        fontSize: '1rem',
+        lineHeight: '1.25rem',
+      },
     },
   },
   zIndex: {

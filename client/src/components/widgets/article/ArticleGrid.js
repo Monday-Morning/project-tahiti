@@ -166,7 +166,7 @@ const useStylesGrid = makeStyles((theme) => ({
       gridTemplateRows: 'repeat(4, 175px)',
     },
     [theme.breakpoints.up('md')]: {
-      gridTemplateRows: 'repeat(2, 300px)',
+      gridTemplateRows: 'repeat(2, 265px)',
     },
   },
   large: {
