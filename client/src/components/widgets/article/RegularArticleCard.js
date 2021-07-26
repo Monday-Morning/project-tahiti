@@ -115,7 +115,7 @@ const ArticleCard = ({
         </div>
 
         <Typography variant='body2' className={classes.articleDescription}>
-          {article.inshort}
+          {limitString(article.inshort, 150)}
         </Typography>
       </CardContent>
     </Card>
@@ -129,23 +129,18 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[0],
     backgroundColor: theme.palette.common.white,
     overflow: 'hidden',
-    // width: '400px',
     width: ({ carousel }) => (carousel ? '400px' : 'auto'),
     height: '470px',
 
     marginTop: ({ carousel }) => (carousel ? '10px' : '0px'),
     marginRight: ({ carousel }) => (carousel ? '24px' : '0px'),
-    // [theme.breakpoints.between('sm', 'lg')]: {
-    //   margin: '25px',
-    //   marginBottom: '0px',
-    //   marginLeft: '0px',
-    // },
-
+    [theme.breakpoints.up('lg')]: {
+      maxWidth: '400px',
+    },
     [theme.breakpoints.between('xs', 'sm')]: {
       margin: '0px',
-      width: ({ carousel }) => (carousel ? '350px' : 'auto'),
+      width: ({ carousel }) => (carousel ? '300px' : 'auto'),
       height: ({ carousel }) => (carousel ? '470px' : '470px'),
-      // minHeight: '470px',
     },
   },
 
@@ -155,7 +150,8 @@ const useStyles = makeStyles((theme) => ({
   },
   featuredImage: {
     width: '100%',
-    height: 'auto',
+    height: '220px',
+    objectFit: 'cover',
   },
 
   categoriesContainer: {
@@ -179,6 +175,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   cardContent: {
+    overflow: 'hidden',
     [theme.breakpoints.up('sm')]: {
       padding: '0.75rem',
     },

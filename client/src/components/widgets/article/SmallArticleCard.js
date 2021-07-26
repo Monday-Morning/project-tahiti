@@ -114,6 +114,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '5px',
     borderTopRightRadius: '0px',
     borderBottomRightRadius: '0px',
+    objectFit: 'cover',
   },
   contentContainer: {
     flex: 1,

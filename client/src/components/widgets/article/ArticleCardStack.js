@@ -9,11 +9,6 @@ import ArticleCard from './ArticleCard';
 function ArticleCardStack({ articleList }) {
   const classes = useStyles();
 
-  // Code to show default article cards if length < 3
-  // if (articleList?.length === 1)
-  //   articleList.push({ id: 'placeholder1' }, { id: 'placeholder2' });
-  // if (articleList?.length === 2) articleList.push({ id: 'placeholder1' });
-
   return (
     <div className={classes.root}>
       {articleList.map((article, index) => (
@@ -37,10 +32,15 @@ const useStyles = makeStyles((theme) => ({
 
     display: 'grid',
     gridTemplateColumns: '1fr',
+    justifyItems: 'center',
     gap: '10px',
 
     [theme.breakpoints.up('sm')]: {
       gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+    },
+
+    [theme.breakpoints.up('lg')]: {
+      justifyItems: 'start',
     },
   },
   smallArticle: {
