@@ -18,6 +18,7 @@ const SmallArticleCard = ({
   isGallery,
   isPhotostory,
   article: articleProp,
+  className,
 }) => {
   const classes = useStyles();
 
@@ -25,7 +26,7 @@ const SmallArticleCard = ({
   const article = isDefaultArticle ? DEFAULT_ARTICLE : articleProp;
 
   return (
-    <Card className={classes.root}>
+    <Card className={`${classes.root} ${className}`}>
       <NewTabLink
         to={getArticleLink(article.id, article.title, {
           isWitsdom,

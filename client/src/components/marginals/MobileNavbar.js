@@ -20,7 +20,7 @@ import useToggle from '../../hooks/useToggle';
 import ROUTES from '../../utils/getRoutes';
 
 // TODO: Add signin button to the mobile nav when ready.
-const MobileNavbar = ({ nav }) => {
+const MobileNavbar = () => {
   const [isMenuOpen, toggleMenu, setMenuOpen] = useToggle(false);
   const classes = useStyles();
 

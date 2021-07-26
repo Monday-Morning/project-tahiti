@@ -43,7 +43,7 @@ const DesktopNavbar = () => {
           {ROUTES.CATEGORIES.map(({ name, shortName, path }) => (
             <li key={shortName} className={classes.linkContainer}>
               <NavLink className={classes.link} aria-label='Nav Item' to={path}>
-                <Typography variant='h2' className={classes.menu}>
+                <Typography variant='h2' className={`${classes.menu}`}>
                   {name}
                 </Typography>
               </NavLink>

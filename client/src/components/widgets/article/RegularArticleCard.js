@@ -17,20 +17,20 @@ import limitString from '../../../utils/limitString';
 import { DEFAULT_ARTICLE } from '../../../assets/placeholder/article';
 
 const ArticleCard = ({
+  className,
   carousel,
-  isLastInStack,
   isWitsdom,
   isGallery,
   isPhotostory,
   article: articleProp,
 }) => {
-  const classes = useStyles({ carousel, isLastInStack });
+  const classes = useStyles({ carousel });
 
   const isDefaultArticle = !articleProp?.title;
   const article = isDefaultArticle ? DEFAULT_ARTICLE : articleProp;
 
   return (
-    <Card className={classes.root}>
+    <Card className={`${classes.root} ${className}`}>
       <NewTabLink
         to={getArticleLink(article.id, article.title, {
           isWitsdom,
@@ -129,22 +129,23 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[0],
     backgroundColor: theme.palette.common.white,
     overflow: 'hidden',
-    width: '400px',
+    // width: '400px',
+    width: ({ carousel }) => (carousel ? '400px' : 'auto'),
     height: '470px',
 
-    marginTop: '25px',
-    marginRight: ({ carousel }) => (carousel ? '10px' : '0px'),
-    [theme.breakpoints.between('sm', 'lg')]: {
-      margin: '25px',
-      marginBottom: '0px',
-      marginLeft: '0px',
-    },
+    marginTop: ({ carousel }) => (carousel ? '10px' : '0px'),
+    marginRight: ({ carousel }) => (carousel ? '24px' : '0px'),
+    // [theme.breakpoints.between('sm', 'lg')]: {
+    //   margin: '25px',
+    //   marginBottom: '0px',
+    //   marginLeft: '0px',
+    // },
 
     [theme.breakpoints.between('xs', 'sm')]: {
       margin: '0px',
-      width: ({ carousel }) => (carousel ? '400px' : 'auto'),
-      height: ({ carousel }) => (carousel ? '470px' : 'auto'),
-      minHeight: '470px',
+      width: ({ carousel }) => (carousel ? '350px' : 'auto'),
+      height: ({ carousel }) => (carousel ? '470px' : '470px'),
+      // minHeight: '470px',
     },
   },
 
