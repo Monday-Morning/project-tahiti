@@ -69,6 +69,8 @@ Following technologies and libraries are used for the development of this websit
 - [Webpack](https://webpack.js.org/)
 - [Material-UI](https://material-ui.com/)
 - [Firebase](https://firebase.google.com/)
+- [GraphQL](https://graphql.org/)
+- [Apollo Client](https://www.apollographql.com/docs/react/)
 
 ## Getting Started
 
