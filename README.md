@@ -1,70 +1,186 @@
-# Monday Morning Website Frontend Repository
+<!-- [![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url] -->
 
-  <p>
-    <img src="https://img.shields.io/badge/client-React.js-blue" alt="react.js" />
-    <img src="https://img.shields.io/badge/bundler-Webpack-blue" alt="webpack" />
-    <img src="https://img.shields.io/badge/transcompiler-Babel-yellow" alt="Babel" />
-    <img src="https://img.shields.io/badge/state-Redux-purple" alt="Redux" />  
-    <img src="https://img.shields.io/badge/test-Jest-red" alt="Jest" />   
-    <img src="https://img.shields.io/badge/test-Enzyme-green" alt="Enzyme" />  
-    <img src="https://img.shields.io/badge/routing-React--Router--Dom-lightgrey" alt="React-Router-Dom" />  
-    <img src="https://img.shields.io/badge/dynamic--loading-React--Loadable-red" alt="React Loadable" />  
-    <img src="https://img.shields.io/badge/hmr-Hot--Module--Reload--Loadable-red" alt="HMR" />
-    <img src="https://img.shields.io/badge/virtualization-Docker-blue" alt="Docker" />
+<br />
+<p align="center">
+  <a href="https://github.com/Monday-Morning/project-tahiti">
+    <img src="repoImages/logo.png" alt="Monday Morning Logo" width="130">
+  </a>
+
+  <h3 align="center">Monday Morning</h3>
+
+  <p align="center">
+    The official student media body of NIT Rourkela
+    <br />
+    <br />
+    <a href="https://mondaymorning.nitrkl.ac.in">View Live</a>
+    ·
+    <a href="https://github.com/Monday-Morning/project-tahiti/issues">Report Bugs</a>
+    .
+    <a href="https://github.com/Monday-Morning/project-tahiti/issues">Add Features</a>
   </p>
+</p>
 
-## Do not use NPM
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#about-monday-morning">About Monday Morning</a></li>
+    <li><a href="#about-the-project">About the Project</a></li>
+    <li><a href="#built-with">Built With</a></li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#contribution-guidlines">Contribution guidlines</a></li>
+        <li><a href="#local-repository-setup">Local Repository Setup</a></li>
+        <li><a href="#running-the-project">Running the project</a></li>
+      </ul>
+    </li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contributors">Contributors</a></li>
+  </ol>
+</details>
 
-- We use yarn as it is fast. Using npm will create unnecessary files which will cause issue during production.
+## About Monday Morning
 
-## Start the dev server
+[![Monday Morning][repo-cover]](https://mondaymonrning.nitrkl.ac.in)
 
-1. Clone the directory `https://github.com/Monday-Morning/project-tahiti.git`
-2. Change into the client directory `cd client`
-3. Install the dependancies `yarn install`
-4. Start the server `yarn start`
-5. Run the tests `yarn test:watch`
+Monday Morning is the student media body of National Institute of Technology, Rourkela. Since its inception in 2006, it has constantly served as a vital link between the student community and the administration. The weekly e-newsletter serves as a news feed for the students, professors and alumni of the institute, featuring campus activities, department updates, recruitment information, SAC happenings, alumni news, weekly polls and interviews of the Director, Chief Warden, professors, distinguished alumni and dignitaries and exceptional students. Apart from the online weekly edition, Monday Morning also publishes print editions and organises the Open House Discussion.
 
-## Start the documentation server
+## About the Project
 
-1. Change into the docs directory `cd docs`
-2. Install the dependancies `yarn install`
-3. Start the server `yarn start`
+[![Monday Morning Home Screen][home-screen]](https://mondaymonrning.nitrkl.ac.in)
 
-## Writing documentation for components
+Project Infinity is about updating the Monday Morning website using modern technologies which is divided accross 3 main sub-projects.
 
-1. The docs folder contains the documentation code for all the components
-2. Inside the docs folder, there is another folder named docs which contains markdown files for different components and screens
-3. Add a markdown file with the component name and add the respective markdown for documentation.
-4. Each markdown should start with a certain set of lines as described below. Add these lines to the file and then it is good to go for documentation.
+1. [project-tahiti](https://github.com/Monday-Morning/project-tahiti): The Client side application of the website.
+1. [project-reclamation](https://github.com/Monday-Morning/project-tahiti): The Server application of the website.
+1. [project-pegasus](https://github.com/Monday-Morning/project-tahiti): The cross-platform Mobile application of the Monday Morning.
+
+## Built With
+
+Following technologies and libraries are used for the development of this website
+
+- [React](https://reactjs.org/)
+- [Webpack](https://webpack.js.org/)
+- [Material-UI](https://material-ui.com/)
+- [Firebase](https://firebase.google.com/)
+
+## Getting Started
+
+To setup the project locally follow the steps below.
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/en/download/)
+
+```sh
+  # Homebrew
+  brew install nodejs
+
+  # Sudo apt
+  sudo apt install nodejs
+
+  # Packman
+  pacman -S nodejs
+
+  # Module Install
+  dnf module install nodejs:<stream> # stream is the version
+
+  # Windows (chocolaty)
+  cinst nodejs.install
 
 ```
----
-id: onboardingScreen
-title: Onboarding Component
-sidebar_label: Onboarding
----
+
+- [Yarn](https://classic.yarnpkg.com/en/docs/install/)
+
+```sh
+  npm install --global yarn
 ```
 
-- The id that needs to be specified in the sidebars.js
-- The title of the page
-- The label that will be shown in the sidebar. 5. In the docs folder, there is a file named sidebars.js which determines the different categories on the documentation site.
+- [Git](https://git-scm.com/downloads)
+
+```sh
+  # Homebrew
+  brew install git
+
+  # Sudo apt
+  apt-get install git
+
+  # Packman
+  pacman -S git
+
+  # Module Install (Fedora)
+  dnf install git
 
 ```
-module.exports = {
-  someSidebar: {
-    Onboarding: [
-      'onboardingScreen',
-      'welcomeStage',
-      'verifyEmailStage',
-      'selectTopicsStage',
-      'newsletterStage',
-    ],
-    Features: ['mdx'],
-  },
-};
+
+### Contribution guidlines 🎃
+
+NOTE 1: Please abide by the [Contributing Guidelines](https://github.com/Monday-Morning/project-tahiti/blob/master/CONTRIBUTING.md).
+
+NOTE 2: Please abide by the [Code of Conduct](https://github.com/Monday-Morning/project-tahiti/blob/master/CODE_OF_CONDUCT.md).
+
+### Local Repository Setup
+
+Please refer to the project's style and contribution guidelines for submitting patches and additions. In general, we follow the "fork-and-pull" Git workflow.
+
+1.  **Fork** the repo on GitHub
+2.  **Clone** the project to your local system
+3.  **Commit** changes to your own separate branch
+4.  **Push** your work back up to your fork
+5.  Submit a **Pull request** so that we can review your changes
+
+### Running the project.
+
+The project uses Yarn and not NPM. It is strictly advised to stick with Yarn so as to avoid dependency conflicts down the line. After cloning the fork repo, follow the give steps.
+
+```
+## Checkout into the project client directory
+cd client
+
+## Install Dependencies
+yarn install
+
+## Run the Project
+yarn develop
+
 ```
 
-6. Add a new property with the name of the category below the Onboarding property.
-7. Add the ids of all the markdown files that need to be under this category.
-8. Save the file and the changes then can be seen in the documentation.
+Following are the commands to remove/add new dependencies using yarn
+
+```
+## Add a new Package
+yarn add package_name
+
+## Remove an existing Package
+yarn remove package_name
+
+## Save Package as a Dev Dependency
+yarn add -D package_name
+```
+
+## License
+
+Distributed under the MIT License. See [`License`](license-url) for more information.
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/Monday-Morning/project-tahiti?style=for-the-badge
+[contributors-url]: https://github.com/Monday-Morning/project-tahiti/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Monday-Morning/project-tahiti?style=for-the-badge
+[forks-url]: https://github.com/Monday-Morning/project-tahiti/network/members
+[stars-shield]: https://img.shields.io/github/stars/Monday-Morning/project-tahiti?style=for-the-badge
+[stars-url]: https://github.com/Monday-Morning/project-tahiti/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Monday-Morning/project-tahiti?style=for-the-badge
+[issues-url]: https://github.com/Monday-Morning/project-tahiti/issues
+[license-shield]: https://img.shields.io/github/license/Monday-Morning/project-tahiti?style=for-the-badge
+[license-url]: https://github.com/Monday-Morning/project-tahiti/blob/main/LICENSE.txt
+[home-screen]: repoImages/homeScreen.png
+[repo-cover]: repoImages/cover.png
+[repo-logo]: repoImages/logo.png
