@@ -1,66 +1,12 @@
-name: Lint Check
-
-on:
-  pull_request:
-    types: [labeled]
-
+name: reviewdog
+on: [pull_request]
 jobs:
   eslint:
-    name: ESLint Check
+    name: runner / eslint
     runs-on: ubuntu-latest
-    if: contains(github.event.pull_request.labels.*.name, 'lint-check')
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: "14"
-
-      - name: Install Dependencies
-        run: cp client/package.json ./ && yarn install
-
-      - name: Run ESLint
+      - uses: actions/checkout@v1
+      - name: eslint
         uses: reviewdog/action-eslint@v1
         with:
-          reporter: github-check
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-  prettier:
-    name: Prettier Check
-    runs-on: ubuntu-latest
-    if: github.event.review.state == 'approved'
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: "14"
-
-      - name: Install Dependencies
-        run: cp client/package.json ./ && yarn install
-
-      - name: Run Prettier
-        id: prettier_run
-        run: |
-          echo "::set-output name=prettier_output::$(npx prettier --list-different .)"
-          echo "$(npx prettier --list-different . > prettier.txt)"
-
-      - name: Comment on PR
-        if: contains(${{ steps.prettier_run.outputs.prettier_output }}, '.');
-        uses: actions/github-script@v3
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            const fs = require('fs')
-            const cmdoutput = fs.readFileSync(`${process.env.GITHUB_WORKSPACE}/prettier.txt`)
-            console.log(cmdoutput)
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `Prettier Response:\n ${cmdoutput}`
-            })
+          reporter: github-pr-review # Change reporter.
