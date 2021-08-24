@@ -2,13 +2,13 @@ name: Firebase PR Preview Deploy
 
 on:
   pull_request:
-    types: [labeled]
+    paths:
+      - 'client/**'
 
 jobs:
   firebase-pr-preview:
     name: Firebase Development Deploy
     runs-on: ubuntu-latest
-    if: contains(github.event.pull_request.labels.*.name, 'create-live-preview')
     steps:
       - name: Checkout Repository
         uses: actions/checkout@master
@@ -31,10 +31,3 @@ jobs:
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
           projectId: project-infinity-98561
           expires: 14d
-
-      - name: removelabel
-        uses: buildsville/add-remove-label@v1
-        with:
-          token: ${{secrets.GITHUB_TOKEN}}
-          label: create-live-preview
-          type: remove
