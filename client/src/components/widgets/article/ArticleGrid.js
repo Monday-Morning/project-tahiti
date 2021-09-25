@@ -9,10 +9,12 @@ import NewTabLink from '../../shared/links/NewTabLink';
 
 // Utils
 import limitString from '../../../utils/limitString';
+import getCategory from '../../../utils/determineCategory';
 
 const ArticleItem = ({ article, className }) => {
   const {
     id,
+    categories,
     title,
     readTime,
     authors,
@@ -36,6 +38,35 @@ const ArticleItem = ({ article, className }) => {
           {limitString(title, 48)}
         </Typography>
         <section className={classes.articleDetailsContainer}>
+          <div className={classes.categoriesContainer}>
+            {categories
+              .filter(({ number }) => number > 10)
+              .slice(0, 3)
+              .map(({ number }, index) => (
+                <Typography
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={`${number}-${index}-bigArticleCard-category`}
+                  variant='body2'
+                  className={classes.category}
+                >
+                  {getCategory(number)}
+                  {index === article.categories.length - 1 ? (
+                    ''
+                  ) : (
+                    <span
+                      style={{
+                        textDecoration: 'none',
+                        paddingLeft: '10px',
+                        paddingRight: '10px',
+                      }}
+                    >
+                      |
+                    </span>
+                  )}
+                </Typography>
+              ))}
+          </div>
+
           <Typography variant='h3' className={classes.articleTitle}>
             {limitString(title, 48)}
           </Typography>
@@ -48,14 +79,17 @@ const ArticleItem = ({ article, className }) => {
                   key={name}
                   className={classes.author}
                 >
-                  {name}
+                  {name.split(' ')[0]},
                 </Typography>
               ))}
             </div>
 
-            <Typography variant='body2' className={classes.readTime}>
-              {moment.duration(readTime, 'seconds').humanize()}
-            </Typography>
+            <div className={classes.readTime}>
+              <i className={`far fa-clock ${classes.clockIcon}`} />
+              <Typography variant='body2'>
+                {moment.utc(moment.duration(readTime, "seconds").asMilliseconds()).format("m [mins]")}
+              </Typography>
+            </div>
           </div>
         </section>
       </article>
@@ -93,6 +127,25 @@ const useStylesItem = makeStyles((theme) => ({
     padding: '10px',
     paddingBottom: '20px',
   },
+  categoriesContainer: {
+    width: '100%',
+    height: 'auto',
+
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    flexWrap: 'wrap',
+
+    marginBottom: '10px',
+  },
+  category: {
+    width: 'auto',
+    fontFamily: 'Source Sans Pro',
+    fontSize: '14px',
+    fontWeight: '400',
+    lineHeight: '20px',
+    color: theme.palette.secondary.neutral60,
+  },
   articleTitle: {
     marginTop: '4px',
     fontSize: '18px',
@@ -115,14 +168,20 @@ const useStylesItem = makeStyles((theme) => ({
   },
   author: {
     display: 'inline',
+    fontSize: '15px',
     color: theme.palette.secondary.neutral60,
     fontWeight: '400',
     marginRight: '10px',
   },
+  clockIcon: {
+    marginRight: '5px',
+  },
   readTime: {
-    width: 'auto',
-    height: 'auto',
-    minWidth: '60px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    fontWeight: '400',
+    color: theme.palette.secondary.neutral70,
   },
 }));
 

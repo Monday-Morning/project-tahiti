@@ -39,6 +39,7 @@ const useStyles = makeStyles(() => ({
     backgroundColor: theme.palette.accent.squiggles,
     boxShadow: theme.shadows[0],
     marginTop: 25,
+    paddingTop: 10,
   },
   squigglesWrapper: {
     display: 'flex',

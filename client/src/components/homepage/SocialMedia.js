@@ -3,6 +3,8 @@ import React from 'react';
 // Libraries
 import { Button, makeStyles, Typography, Grid, Paper } from '@material-ui/core';
 import { Youtube, Instagram } from 'react-feather';
+import Carousel from 'react-material-ui-carousel';
+import { KeyboardArrowLeft, KeyboardArrowRight } from '@material-ui/icons';
 
 // Assets
 import insta1 from '../../assets/images/instagram/insta1.jpeg';
@@ -11,20 +13,13 @@ import insta3 from '../../assets/images/instagram/insta3.jpeg';
 import insta4 from '../../assets/images/instagram/insta4.jpeg';
 import insta5 from '../../assets/images/instagram/insta5.jpeg';
 import insta6 from '../../assets/images/instagram/insta6.jpeg';
-import insta7 from '../../assets/images/instagram/insta7.jpeg';
-import insta8 from '../../assets/images/instagram/insta8.jpeg';
-import insta9 from '../../assets/images/instagram/insta9.jpeg';
 
-const INSTA_LINKS = [
-  insta1,
-  insta2,
-  insta3,
-  insta4,
-  insta5,
-  insta6,
-  insta7,
-  insta8,
-  insta9,
+const INSTA_LINKS = [insta1, insta2, insta3, insta4, insta5, insta6];
+
+const YOUTUBE_LINKS = [
+  'https://www.youtube.com/embed/_KJlm1mafGo',
+  'https://www.youtube.com/embed/btc-_kqkdpc',
+  'https://www.youtube.com/embed/c6SglPpwmVg',
 ];
 
 const Header = ({ Icon, title, buttonText, onClick }) => {
@@ -111,41 +106,28 @@ const Socials = () => {
               buttonText='Subscribe'
               onClick={openYoutube}
             />
-            {/* <div className={classes.iframeContainer}> */}
-            <iframe
-              width='520'
-              height='292'
-              src='https://www.youtube.com/embed/_KJlm1mafGo'
-              title='YouTube video player'
-              frameBorder='0'
-              allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-              allowFullScreen
-              className={classes.largeVideo}
-            />
-
-            <div className={classes.subVideoContainer}>
-              <iframe
-                width='248'
-                height='139'
-                src='https://www.youtube.com/embed/btc-_kqkdpc'
-                title='YouTube video player'
-                frameBorder='0'
-                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                allowFullScreen
-                className={classes.smallVideo}
-              />
-              <iframe
-                width='248'
-                height='139'
-                src='https://www.youtube.com/embed/c6SglPpwmVg'
-                title='YouTube video player'
-                frameBorder='0'
-                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                allowFullScreen
-                className={classes.smallVideo}
-              />
+            <div className={classes.iframeContainer}>
+              <Carousel
+                NextIcon={<KeyboardArrowRight />}
+                PrevIcon={<KeyboardArrowLeft />}
+                indicators={false}
+              >
+                {YOUTUBE_LINKS.map((link) => (
+                  <div>
+                    <iframe
+                      width='560'
+                      height='350'
+                      src={link}
+                      title='YouTube video player'
+                      frameBorder='0'
+                      allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                      allowFullScreen
+                      className={classes.largeVideo}
+                    />
+                  </div>
+                ))}
+              </Carousel>
             </div>
-            {/* </div> */}
           </Paper>
         </Grid>
       </Grid>
@@ -214,10 +196,8 @@ const useStyles = makeStyles(() => ({
     height: '100%',
   },
   largeVideo: {
-    width: '100%',
-    height: '66%',
     borderRadius: '10px',
-    marginBottom: '10px',
+    marginBottom: '20px',
   },
   subVideoContainer: {
     display: 'flex',

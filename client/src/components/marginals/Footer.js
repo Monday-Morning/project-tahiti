@@ -3,7 +3,7 @@ import React from 'react';
 // libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Grid, Typography } from '@material-ui/core';
-import { ArrowRightCircle } from 'react-feather';
+// import { ArrowRightCircle } from 'react-feather';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 
@@ -129,7 +129,7 @@ const Footer = () => {
                     className={classes.appButton}
                   />
                 </a>
-                <div className={classes.archives}>
+                {/* <div className={classes.archives}>
                   <Typography variant='body1'>Archives</Typography>
 
                   <div className={classes.archivesWrapper}>
@@ -143,7 +143,7 @@ const Footer = () => {
                       <ArrowRightCircle size={18} />
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </Grid>
