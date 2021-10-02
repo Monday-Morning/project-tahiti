@@ -110,6 +110,7 @@ const Socials = () => {
               <Carousel
                 NextIcon={<KeyboardArrowRight />}
                 PrevIcon={<KeyboardArrowLeft />}
+                navButtonsAlwaysVisible
                 indicators={false}
               >
                 {YOUTUBE_LINKS.map((link) => (
@@ -117,11 +118,12 @@ const Socials = () => {
                     <iframe
                       width='560'
                       height='350'
-                      src={link}
+                      src={`${link}?autoplay=1&mute=1`}
                       title='YouTube video player'
                       frameBorder='0'
                       allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                       allowFullScreen
+                      timeout={10000}
                       className={classes.largeVideo}
                     />
                   </div>

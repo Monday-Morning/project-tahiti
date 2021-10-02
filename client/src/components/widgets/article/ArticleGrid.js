@@ -60,7 +60,7 @@ const ArticleItem = ({ article, className }) => {
                         paddingRight: '10px',
                       }}
                     >
-                      |
+                    , 
                     </span>
                   )}
                 </Typography>
@@ -144,7 +144,7 @@ const useStylesItem = makeStyles((theme) => ({
     fontSize: '14px',
     fontWeight: '400',
     lineHeight: '20px',
-    color: theme.palette.secondary.neutral60,
+    color: theme.palette.secondary.neutral30,
   },
   articleTitle: {
     marginTop: '4px',
