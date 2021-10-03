@@ -11,7 +11,7 @@ function ArticleCardStack({ articleList }) {
 
   return (
     <div className={classes.root}>
-      {articleList.map((article, index) => (
+      {articleList?.map((article, index) => (
         <ArticleCard
           key={article.id}
           article={article}

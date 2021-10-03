@@ -36,7 +36,7 @@ const SmallArticleCard = ({
         className={classes.imgContainer}
       >
         <img
-          src={article.coverMedia.rectangle.storePath}
+          src={article.coverMedia?.rectangle.storePath}
           alt='Cover'
           className={classes.img}
         />

@@ -10,21 +10,44 @@ const Feedback = () => {
   const [feedback, setFeedback] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
 
-  const enabled = email.length > 0 || name.length > 0 || feedback.length > 0;
+  const enabled =
+    email.length > 0 ||
+    name.length > 0 ||
+    feedback.length > 0 ||
+    error.length > 0;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const feedbackData = { name: name, email: email, feedback: feedback };
-    setName('');
-    setEmail('');
-    setFeedback('');
+
+    if (name.length <= 0) {
+      setError('Name Required');
+      return;
+    } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      setError('Valid Email Required');
+      return;
+    } else if (feedback.length <= 0) {
+      setError('Message Required');
+      return;
+    }
+
+    try {
+      const feedbackData = { name: name, email: email, feedback: feedback };
+      setName('');
+      setEmail('');
+      setFeedback('');
+      setError('');
+    } catch {
+      setError('Failed To Send Message');
+    }
   };
 
   const cancel = () => {
     setName('');
     setEmail('');
     setFeedback('');
+    setError(' ');
   };
 
   const classes = useStyles();
@@ -66,6 +89,13 @@ const Feedback = () => {
                 onChange={(event) => setFeedback(event.target.value)}
               ></textarea>
             </div>
+
+            <Grid container className={classes.errorMessage}>
+              <Grid item>
+                <Typography>{error}</Typography>
+              </Grid>
+            </Grid>
+
             <Grid
               container
               justify='flex-end'
@@ -195,8 +225,13 @@ const useStyles = makeStyles((theme) => ({
       border: '0px',
     },
   },
+  errorMessage: {
+    position: 'absolute',
+    marginLeft: '8px',
+    color: 'red',
+  },
   buttonWrapper: {
-    padding: '5px 16px 5px 5px',
+    padding: '10px 16px 5px 5px',
     margin: '0px 0px 15px 0px',
   },
   buttonText: {

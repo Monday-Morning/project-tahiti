@@ -32,7 +32,7 @@ function Category() {
   const { loading, error, data } = useQuery(GetArticlesByCategories, {
     variables: {
       categoryNumbers: [category.idNumber, ...category.subCategoryIds],
-      limit: category.subCategoryIds.length * 4 + 10,
+      limit: 4,
     },
   });
 
