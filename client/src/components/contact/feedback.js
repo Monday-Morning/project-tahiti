@@ -21,13 +21,13 @@ const Feedback = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (name.length <= 0) {
+    if (name.trim().length <= 0) {
       setError('Name Required');
       return;
     } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
       setError('Valid Email Required');
       return;
-    } else if (feedback.length <= 0) {
+    } else if (feedback.trim().length <= 0) {
       setError('Message Required');
       return;
     }
@@ -47,7 +47,7 @@ const Feedback = () => {
     setName('');
     setEmail('');
     setFeedback('');
-    setError(' ');
+    setError('');
   };
 
   const classes = useStyles();

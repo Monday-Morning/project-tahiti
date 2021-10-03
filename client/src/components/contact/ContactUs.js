@@ -5,18 +5,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography } from '@material-ui/core';
 
 // images
-import sac1 from '../../assets/images/contact/sac1.png';
-import sac2 from '../../assets/images/contact/sac2.png';
+import SACimagemd from '../../assets/images/contact/sac1.png';
+import SACimagexs from '../../assets/images/contact/sac2.png';
 
 const ContactUs = () => {
   const classes = useStyles();
   return (
     <Grid container className={classes.wrapper}>
       <Grid item>
-        <img src={sac1} alt='Monday Morning' className={classes.image1} />
+        <img src={SACimagemd} alt='Failed to load' className={classes.image1} />
       </Grid>
       <Grid item>
-        <img src={sac2} alt='Monday Morning' className={classes.image2} />
+        <img src={SACimagexs} alt='Failed to load' className={classes.image2} />
       </Grid>
       <Typography variant='h1' className={classes.title1}>
         CONTACT US
