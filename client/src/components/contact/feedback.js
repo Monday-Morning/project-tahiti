@@ -10,25 +10,30 @@ const Feedback = () => {
   const [feedback, setFeedback] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState({
+    nameError: '',
+    emailError: '',
+    feedbackError: '',
+    Error: '',
+  });
 
   const enabled =
     email.length > 0 ||
     name.length > 0 ||
     feedback.length > 0 ||
-    error.length > 0;
+    error.nameError.length > 0;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (name.trim().length <= 0) {
-      setError('Name Required');
+      setError({ nameError: 'Name Required' });
       return;
     } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-      setError('Valid Email Required');
+      setError({ emailError: 'Valid Email-Id Required' });
       return;
     } else if (feedback.trim().length <= 0) {
-      setError('Message Required');
+      setError({ feedbackError: 'Message Required' });
       return;
     }
 
@@ -41,9 +46,14 @@ const Feedback = () => {
       setName('');
       setEmail('');
       setFeedback('');
-      setError('');
+      setError({
+        nameError: '',
+        emailError: '',
+        feedbackError: '',
+        Error: '',
+      });
     } catch {
-      setError('Failed To Send Message');
+      setError({ Error: 'Failed to send' });
     }
   };
 
@@ -51,7 +61,12 @@ const Feedback = () => {
     setName('');
     setEmail('');
     setFeedback('');
-    setError('');
+    setError({
+      nameError: '',
+      emailError: '',
+      feedbackError: '',
+      Error: '',
+    });
   };
 
   const classes = useStyles();
@@ -73,6 +88,9 @@ const Feedback = () => {
                 onChange={(event) => setName(event.target.value)}
               />
             </div>
+            <div container className={classes.errorMessage}>
+              <Typography>{error.nameError}</Typography>
+            </div>
             <div className={classes.emailWrapper}>
               <input
                 className={classes.emailInput}
@@ -83,6 +101,11 @@ const Feedback = () => {
                 onChange={(event) => setEmail(event.target.value)}
               />
             </div>
+
+            <div container className={classes.errorMessage}>
+              <Typography>{error.emailError}</Typography>
+            </div>
+
             <div className={classes.feedbackWrapper}>
               <textarea
                 className={classes.feedbackInput}
@@ -94,11 +117,13 @@ const Feedback = () => {
               ></textarea>
             </div>
 
-            <Grid container className={classes.errorMessage}>
-              <Grid item>
-                <Typography>{error}</Typography>
-              </Grid>
-            </Grid>
+            <div container className={classes.errorMessage}>
+              <Typography>{error.feedbackError}</Typography>
+            </div>
+
+            <div container className={classes.errorMessage}>
+              <Typography>{error.Error}</Typography>
+            </div>
 
             <Grid
               container
@@ -166,7 +191,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '4px',
     width: '100%',
     padding: '5px 16px 5px 5px',
-    margin: '16px 0px 15px 0px',
+    margin: '16px 0px 0px 0px',
     height: 'auto',
   },
   nameInput: {
@@ -189,7 +214,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '4px',
     width: '100%',
     padding: '5px 16px 5px 5px',
-    margin: '0px 0px 15px 0px',
+    margin: '0px 0px 0px 0px',
     height: 'auto',
   },
   emailInput: {
@@ -230,8 +255,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   errorMessage: {
-    position: 'absolute',
-    marginLeft: '8px',
+    margin: '10px 0px 2px 8px',
     color: 'red',
   },
   buttonWrapper: {
