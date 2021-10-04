@@ -33,7 +33,11 @@ const Feedback = () => {
     }
 
     try {
-      const feedbackData = { name: name, email: email, feedback: feedback };
+      const feedbackData = {
+        name: name.trim(),
+        email: email,
+        feedback: feedback.trim(),
+      };
       setName('');
       setEmail('');
       setFeedback('');
