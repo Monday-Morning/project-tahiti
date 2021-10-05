@@ -10,6 +10,7 @@ const Feedback = () => {
   const [feedback, setFeedback] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [isEmailCorrect, setEmailCorrect] = useState(false);
   const [error, setError] = useState({
     nameError: '',
     emailError: '',
@@ -18,25 +19,10 @@ const Feedback = () => {
   });
 
   const enabled =
-    email.length > 0 ||
-    name.length > 0 ||
-    feedback.length > 0 ||
-    error.nameError.length > 0;
+    isEmailCorrect && name.trim().length > 0 && feedback.trim().length > 0;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (name.trim().length <= 0) {
-      setError({ nameError: 'Name Required' });
-      return;
-    } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-      setError({ emailError: 'Valid Email-Id Required' });
-      return;
-    } else if (feedback.trim().length <= 0) {
-      setError({ feedbackError: 'Message Required' });
-      return;
-    }
-
     try {
       const feedbackData = {
         name: name.trim(),
@@ -53,7 +39,7 @@ const Feedback = () => {
         Error: '',
       });
     } catch {
-      setError({ Error: 'Failed to send' });
+      setError({ ...error, Error: 'Failed to send' });
     }
   };
 
@@ -86,6 +72,11 @@ const Feedback = () => {
                 placeholder='Name'
                 value={name}
                 onChange={(event) => setName(event.target.value)}
+                onBlur={() => {
+                  name.trim().length <= 0
+                    ? setError({ ...error, nameError: 'Name Required' })
+                    : setError({ ...error, nameError: '' });
+                }}
               />
             </div>
             <div container className={classes.errorMessage}>
@@ -99,6 +90,16 @@ const Feedback = () => {
                 placeholder='Email'
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
+                onBlur={() => {
+                  !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+                    ? (setError({
+                        ...error,
+                        emailError: 'Valid Email-Id Required',
+                      }),
+                      setEmailCorrect(false))
+                    : (setError({ ...error, emailError: '' }),
+                      setEmailCorrect(true));
+                }}
               />
             </div>
 
@@ -108,13 +109,19 @@ const Feedback = () => {
 
             <div className={classes.feedbackWrapper}>
               <textarea
+                multiline
                 className={classes.feedbackInput}
                 rows='8'
                 name='feedback'
                 placeholder='Write your message here'
                 value={feedback}
                 onChange={(event) => setFeedback(event.target.value)}
-              ></textarea>
+                onBlur={() => {
+                  feedback.trim().length <= 0
+                    ? setError({ ...error, feedbackError: 'Message Required' })
+                    : setError({ ...error, feedbackError: '' });
+                }}
+              />
             </div>
 
             <div container className={classes.errorMessage}>
@@ -132,11 +139,7 @@ const Feedback = () => {
               className={classes.buttonWrapper}
             >
               <Grid item>
-                <Button
-                  onClick={cancel}
-                  variant='contained'
-                  disabled={!enabled}
-                >
+                <Button onClick={cancel} variant='contained'>
                   <span className={classes.buttonText}>Cancel</span>
                 </Button>
               </Grid>
@@ -146,6 +149,7 @@ const Feedback = () => {
                   variant='contained'
                   color='primary'
                   className={classes.submitButton}
+                  disabled={!enabled}
                 >
                   <span className={classes.buttonText}>send Message</span>
                 </Button>
