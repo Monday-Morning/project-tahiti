@@ -199,7 +199,6 @@ const useStyles = makeStyles((theme) => ({
     height: 'auto',
   },
   nameInput: {
-    marginLeft: '16px',
     fontSize: '18px',
     fontFamily: theme.typography.body1.fontFamily,
     fontWeight: 400,
@@ -208,6 +207,7 @@ const useStyles = makeStyles((theme) => ({
     border: '0',
     padding: '5px 10px',
     '&:focus': {
+      outline: 'none',
       border: '0px',
     },
   },
@@ -222,7 +222,6 @@ const useStyles = makeStyles((theme) => ({
     height: 'auto',
   },
   emailInput: {
-    marginLeft: '16px',
     fontSize: '18px',
     fontFamily: theme.typography.body1.fontFamily,
     fontWeight: 400,
@@ -231,6 +230,7 @@ const useStyles = makeStyles((theme) => ({
     border: '0',
     padding: '5px 10px',
     '&:focus': {
+      outline: 'none',
       border: '0px',
     },
   },
@@ -249,12 +249,12 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '18px',
     fontFamily: theme.typography.body1.fontFamily,
     fontWeight: 400,
-    marginLeft: '16px',
     width: '100%',
     backgroundColor: 'unset',
     border: '0',
     padding: '5px 10px',
     '&:focus': {
+      outline: 'none',
       border: '0px',
     },
   },
