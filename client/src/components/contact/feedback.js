@@ -72,15 +72,17 @@ const Feedback = () => {
                 placeholder='Name'
                 value={name}
                 onChange={(event) => setName(event.target.value)}
+                onFocus={() => setError({ ...error, nameError: '' })}
                 onBlur={() => {
                   name.trim().length <= 0
                     ? setError({ ...error, nameError: 'Name Required' })
                     : setError({ ...error, nameError: '' });
                 }}
               />
-            </div>
-            <div container className={classes.errorMessage}>
-              <Typography>{error.nameError}</Typography>
+
+              <Typography className={classes.errorMessage}>
+                {error.nameError}
+              </Typography>
             </div>
             <div className={classes.emailWrapper}>
               <input
@@ -90,6 +92,7 @@ const Feedback = () => {
                 placeholder='Email'
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
+                onFocus={() => setError({ ...error, emailError: '' })}
                 onBlur={() => {
                   !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
                     ? (setError({
@@ -101,10 +104,9 @@ const Feedback = () => {
                       setEmailCorrect(true));
                 }}
               />
-            </div>
-
-            <div container className={classes.errorMessage}>
-              <Typography>{error.emailError}</Typography>
+              <Typography className={classes.errorMessage}>
+                {error.emailError}
+              </Typography>
             </div>
 
             <div className={classes.feedbackWrapper}>
@@ -116,16 +118,16 @@ const Feedback = () => {
                 placeholder='Write your message here'
                 value={feedback}
                 onChange={(event) => setFeedback(event.target.value)}
+                onFocus={() => setError({ ...error, feedbackError: '' })}
                 onBlur={() => {
                   feedback.trim().length <= 0
                     ? setError({ ...error, feedbackError: 'Message Required' })
                     : setError({ ...error, feedbackError: '' });
                 }}
               />
-            </div>
-
-            <div container className={classes.errorMessage}>
-              <Typography>{error.feedbackError}</Typography>
+              <Typography className={classes.errorMessagefeedBack}>
+                {error.feedbackError}
+              </Typography>
             </div>
 
             <div container className={classes.errorMessage}>
@@ -195,7 +197,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '4px',
     width: '100%',
     padding: '5px 16px 5px 5px',
-    margin: '16px 0px 0px 0px',
+    margin: '16px 0px 20px 0px',
     height: 'auto',
   },
   nameInput: {
@@ -218,7 +220,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '4px',
     width: '100%',
     padding: '5px 16px 5px 5px',
-    margin: '0px 0px 0px 0px',
+    margin: '0px 0px 20px 0px',
     height: 'auto',
   },
   emailInput: {
@@ -241,7 +243,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '4px',
     width: '100%',
     padding: '5px 16px 5px 5px',
-    margin: '0px 0px 15px 0px',
+    margin: '0px 0px 20px 0px',
     height: 'auto',
   },
   feedbackInput: {
@@ -259,7 +261,15 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   errorMessage: {
-    margin: '10px 0px 2px 8px',
+    position: 'absolute',
+    fontSize: '14px',
+    margin: '68px 0px 10px 8px',
+    color: 'red',
+  },
+  errorMessagefeedBack: {
+    position: 'absolute',
+    fontSize: '14px',
+    margin: '240px 0px 10px 8px',
     color: 'red',
   },
   buttonWrapper: {
