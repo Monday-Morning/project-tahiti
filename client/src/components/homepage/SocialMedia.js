@@ -98,7 +98,7 @@ const Socials = () => {
           </Paper>
         </Grid>
 
-        <Grid item sm={12} md={6} lg={6}>
+        <Grid item sm={12} md={6} lg={6} style={{ width: '100%' }}>
           <Paper className={classes.card}>
             <Header
               Icon={Youtube}
@@ -107,27 +107,25 @@ const Socials = () => {
               onClick={openYoutube}
             />
             {/* <div className={classes.carouselContainer}> */}
-              <Carousel
-                NextIcon={<KeyboardArrowRight />}
-                PrevIcon={<KeyboardArrowLeft />}
-                navButtonsAlwaysVisible
-                indicators={false}
-                className={classes.iframeContainer}
-              >
-                {YOUTUBE_LINKS.map((link) => (
-                  <div>
-                    <iframe
-                      src={link}
-                      title='YouTube video player'
-                      frameBorder='0'
-                      allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                      allowFullScreen
-                      timeout={10000}
-                      className={classes.largeVideo}
-                    />
-                  </div>
-                ))}
-              </Carousel>
+            <Carousel
+              NextIcon={<KeyboardArrowRight />}
+              PrevIcon={<KeyboardArrowLeft />}
+              navButtonsAlwaysVisible
+              indicators={false}
+              className={classes.iframeContainer}
+            >
+              {YOUTUBE_LINKS.map((link) => (
+                <iframe
+                  src={link}
+                  title='YouTube video player'
+                  frameBorder='0'
+                  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                  allowFullScreen
+                  timeout={10000}
+                  className={classes.largeVideo}
+                />
+              ))}
+            </Carousel>
             {/* </div> */}
           </Paper>
         </Grid>

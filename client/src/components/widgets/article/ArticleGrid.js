@@ -11,7 +11,7 @@ import NewTabLink from '../../shared/links/NewTabLink';
 import limitString from '../../../utils/limitString';
 import getCategory from '../../../utils/determineCategory';
 
-const ArticleItem = ({ article, className }) => {
+const ArticleItem = ({ article, isLarge, className }) => {
   const {
     id,
     categories,
@@ -24,6 +24,7 @@ const ArticleItem = ({ article, className }) => {
   } = article;
   const classes = useStylesItem({
     storePath: storePath.split(' ').join('%20'),
+    isLarge,
   });
 
   return (
@@ -42,7 +43,7 @@ const ArticleItem = ({ article, className }) => {
             {categories
               .filter(({ number }) => number > 10)
               .slice(0, 3)
-              .map(({ number }, index) => (
+              .map(({ number }, index, catArray) => (
                 <Typography
                   // eslint-disable-next-line react/no-array-index-key
                   key={`${number}-${index}-bigArticleCard-category`}
@@ -50,9 +51,7 @@ const ArticleItem = ({ article, className }) => {
                   className={classes.category}
                 >
                   {getCategory(number)}
-                  {index === article.categories.length - 1 ? (
-                    ''
-                  ) : (
+                  {index === catArray.length - 1 ? null : (
                     <span
                       style={{
                         textDecoration: 'none',
@@ -60,7 +59,7 @@ const ArticleItem = ({ article, className }) => {
                         paddingRight: '10px',
                       }}
                     >
-                    , 
+                      |
                     </span>
                   )}
                 </Typography>
@@ -73,21 +72,34 @@ const ArticleItem = ({ article, className }) => {
 
           <div className={classes.metaDetailsContainer}>
             <div className={classes.authorsList}>
-              {authors.map(({ name }) => (
-                <Typography
-                  variant='body2'
-                  key={name}
-                  className={classes.author}
-                >
-                  {name.split(' ')[0]},
-                </Typography>
-              ))}
+              {authors.map(({ name }, index, authorArray) => {
+                let authorName = name.split(' ');
+                if (authorName.length > 1) {
+                  authorName.splice(
+                    Math.floor(authorName.length / 2),
+                    authorName.length,
+                  );
+                }
+                authorName = authorName.reduce((a, b) => `${a} ${b}`);
+                if (index < authorArray.length - 1) authorName += ', ';
+                return (
+                  <Typography
+                    variant='body2'
+                    key={name}
+                    className={classes.author}
+                  >
+                    {authorName}
+                  </Typography>
+                );
+              })}
             </div>
 
             <div className={classes.readTime}>
               <i className={`far fa-clock ${classes.clockIcon}`} />
               <Typography variant='body2'>
-                {moment.utc(moment.duration(readTime, "seconds").asMilliseconds()).format("m [mins]")}
+                {moment
+                  .utc(moment.duration(readTime, 'seconds').asMilliseconds())
+                  .format('m [mins]')}
               </Typography>
             </div>
           </div>
@@ -141,14 +153,14 @@ const useStylesItem = makeStyles((theme) => ({
   category: {
     width: 'auto',
     fontFamily: 'Source Sans Pro',
-    fontSize: '14px',
+    fontSize: '12px',
     fontWeight: '400',
     lineHeight: '20px',
-    color: theme.palette.secondary.neutral30,
+    color: theme.palette.secondary.neutral40,
   },
   articleTitle: {
     marginTop: '4px',
-    fontSize: '18px',
+    fontSize: (_) => (_.isLarge ? '22px' : '18px'),
     lineHeight: '24px',
     fontWeight: '600',
     fontFamily: 'IBM Plex Sans',
@@ -168,20 +180,24 @@ const useStylesItem = makeStyles((theme) => ({
   },
   author: {
     display: 'inline',
-    fontSize: '15px',
-    color: theme.palette.secondary.neutral60,
+    fontSize: '12px',
+    color: theme.palette.secondary.neutral20,
     fontWeight: '400',
     marginRight: '10px',
   },
   clockIcon: {
     marginRight: '5px',
+    color: theme.palette.secondary.neutral20,
+    width: '10px',
+    height: '10px',
   },
   readTime: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
     fontWeight: '400',
-    color: theme.palette.secondary.neutral70,
+    fontSize: '12px',
+    color: theme.palette.secondary.neutral20,
   },
 }));
 
@@ -192,6 +208,7 @@ function ArticleGrid({ articles }) {
     <section className={classes.articleGrid}>
       <ArticleItem
         className={`${classes.article} ${classes.large}`}
+        isLarge
         article={articles[0]}
       />
 
@@ -199,6 +216,7 @@ function ArticleGrid({ articles }) {
         <ArticleItem
           key={number}
           className={`${classes.article} ${classes.small}`}
+          isLarge={false}
           article={articles[number + 1]}
         />
       ))}
