@@ -62,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '10px',
     marginTop: '10px',
     backgroundColor: theme.palette.primary.blue10,
+    color: theme.palette.common.black,
     borderRadius: '4px',
     padding: '12px 16px',
     cursor: 'pointer',

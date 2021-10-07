@@ -106,19 +106,18 @@ const Socials = () => {
               buttonText='Subscribe'
               onClick={openYoutube}
             />
-            <div className={classes.iframeContainer}>
+            {/* <div className={classes.carouselContainer}> */}
               <Carousel
                 NextIcon={<KeyboardArrowRight />}
                 PrevIcon={<KeyboardArrowLeft />}
                 navButtonsAlwaysVisible
                 indicators={false}
+                className={classes.iframeContainer}
               >
                 {YOUTUBE_LINKS.map((link) => (
                   <div>
                     <iframe
-                      width='560'
-                      height='350'
-                      src={`${link}?autoplay=1&mute=1`}
+                      src={link}
                       title='YouTube video player'
                       frameBorder='0'
                       allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
@@ -129,7 +128,7 @@ const Socials = () => {
                   </div>
                 ))}
               </Carousel>
-            </div>
+            {/* </div> */}
           </Paper>
         </Grid>
       </Grid>
@@ -147,6 +146,7 @@ const useStyles = makeStyles(() => ({
     width: '100%',
     height: '100%',
     padding: '20px',
+    margin: '0px',
     borderRadius: '10px',
     boxShadow:
       '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
@@ -190,27 +190,30 @@ const useStyles = makeStyles(() => ({
     textAlign: 'center',
     textTransform: 'capitalize',
   },
+  carouselContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+  },
   iframeContainer: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'column',
-    height: '100%',
-  },
-  largeVideo: {
-    borderRadius: '10px',
-    marginBottom: '20px',
-  },
-  subVideoContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    position: 'relative',
+    overflow: 'hidden',
+    paddingTop: '66.66%',
     width: '100%',
   },
-  smallVideo: {
-    width: '48%',
-    height: '33%',
+  largeVideo: {
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    bottom: '0',
+    right: '0',
     borderRadius: '10px',
+    width: '100%',
+    height: '100%',
   },
   instaImage: {
     width: '100%',
