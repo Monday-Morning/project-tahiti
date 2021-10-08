@@ -1,59 +1,55 @@
 import React, { useState } from 'react';
 
 // Libraries
-import { Grid, makeStyles, Typography, Button } from '@material-ui/core';
+import {
+  Grid,
+  makeStyles,
+  Typography,
+  Button,
+  TextField,
+} from '@material-ui/core';
 
 // Images
 import image from '../../assets/images/contact/contact-us.png';
 
 const Feedback = () => {
-  const [feedback, setFeedback] = useState('');
+  const [message, setMessage] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [isEmailCorrect, setEmailCorrect] = useState(false);
   const [error, setError] = useState({
     nameError: '',
     emailError: '',
-    feedbackError: '',
+    messageError: '',
     Error: '',
+    Success: '',
   });
 
+  const setFieldsNull = () => {
+    setName('');
+    setEmail('');
+    setMessage('');
+    setError({
+      nameError: '',
+      emailError: '',
+      messageError: '',
+      Error: '',
+      Success: '',
+    });
+  };
+
   const enabled =
-    isEmailCorrect && name.trim().length > 0 && feedback.trim().length > 0;
+    error.emailError.length == 0 && name.length > 0 && message.length > 0;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const feedbackData = {
-        name: name.trim(),
-        email: email,
-        feedback: feedback.trim(),
-      };
-      setName('');
-      setEmail('');
-      setFeedback('');
-      setError({
-        nameError: '',
-        emailError: '',
-        feedbackError: '',
-        Error: '',
-      });
+      const feedbackData = { name, message, email };
+      setFieldsNull();
+      setError({ ...error, Success: 'Send' });
     } catch {
       setError({ ...error, Error: 'Failed to send' });
     }
-  };
-
-  const cancel = () => {
-    setName('');
-    setEmail('');
-    setFeedback('');
-    setError({
-      nameError: '',
-      emailError: '',
-      feedbackError: '',
-      Error: '',
-    });
-  };
+  }; //API to be added later
 
   const classes = useStyles();
   return (
@@ -65,73 +61,81 @@ const Feedback = () => {
           </Typography>
           <form onSubmit={handleSubmit}>
             <div className={classes.nameWrapper}>
-              <input
+              <TextField
                 className={classes.nameInput}
                 name='name'
                 type='text'
                 placeholder='Name'
+                disableUnderline={true}
                 value={name}
                 onChange={(event) => setName(event.target.value)}
                 onFocus={() => setError({ ...error, nameError: '' })}
                 onBlur={() => {
-                  name.trim().length <= 0
-                    ? setError({ ...error, nameError: 'Name Required' })
-                    : setError({ ...error, nameError: '' });
+                  setName(name.trim()),
+                    name.length <= 0
+                      ? setError({ ...error, nameError: 'Name Required' })
+                      : setError({ ...error, nameError: '' });
                 }}
+                InputProps={{ disableUnderline: true }}
               />
-
-              <Typography className={classes.errorMessage}>
-                {error.nameError}
-              </Typography>
             </div>
+            <Typography className={classes.errorMessage}>
+              {error.nameError}
+            </Typography>
+
             <div className={classes.emailWrapper}>
-              <input
+              <TextField
                 className={classes.emailInput}
                 name='email'
-                type='text'
+                type='email'
                 placeholder='Email'
+                InputProps={{ disableUnderline: true }}
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 onFocus={() => setError({ ...error, emailError: '' })}
                 onBlur={() => {
                   !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
-                    ? (setError({
+                    ? setError({
                         ...error,
                         emailError: 'Valid Email-Id Required',
-                      }),
-                      setEmailCorrect(false))
-                    : (setError({ ...error, emailError: '' }),
-                      setEmailCorrect(true));
+                      })
+                    : setError({ ...error, emailError: '' });
                 }}
               />
-              <Typography className={classes.errorMessage}>
-                {error.emailError}
-              </Typography>
+            </div>
+            <Typography className={classes.errorMessage}>
+              {error.emailError}
+            </Typography>
+
+            <div className={classes.messageWrapper}>
+              <TextField
+                multiline
+                className={classes.messageInput}
+                rows='8'
+                name='message'
+                placeholder='Write your message here'
+                InputProps={{ disableUnderline: true }}
+                value={message}
+                onChange={(event) => setMessage(event.target.value)}
+                onFocus={() => setError({ ...error, messageError: '' })}
+                onBlur={() => {
+                  setMessage(message.trim()),
+                    message.length <= 0
+                      ? setError({ ...error, messageError: 'Message Required' })
+                      : setError({ ...error, messageError: '' });
+                }}
+              />
             </div>
 
-            <div className={classes.feedbackWrapper}>
-              <textarea
-                multiline
-                className={classes.feedbackInput}
-                rows='8'
-                name='feedback'
-                placeholder='Write your message here'
-                value={feedback}
-                onChange={(event) => setFeedback(event.target.value)}
-                onFocus={() => setError({ ...error, feedbackError: '' })}
-                onBlur={() => {
-                  feedback.trim().length <= 0
-                    ? setError({ ...error, feedbackError: 'Message Required' })
-                    : setError({ ...error, feedbackError: '' });
-                }}
-              />
-              <Typography className={classes.errorMessagefeedBack}>
-                {error.feedbackError}
-              </Typography>
-            </div>
+            <Typography className={classes.errorMessage}>
+              {error.messageError}
+            </Typography>
 
             <div container className={classes.errorMessage}>
               <Typography>{error.Error}</Typography>
+            </div>
+            <div container className={classes.successMessage}>
+              <Typography>{error.Success}</Typography>
             </div>
 
             <Grid
@@ -141,7 +145,7 @@ const Feedback = () => {
               className={classes.buttonWrapper}
             >
               <Grid item>
-                <Button onClick={cancel} variant='contained'>
+                <Button onClick={setFieldsNull} variant='contained'>
                   <span className={classes.buttonText}>Cancel</span>
                 </Button>
               </Grid>
@@ -196,8 +200,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.neutral30,
     borderRadius: '4px',
     width: '100%',
-    padding: '5px 16px 5px 5px',
-    margin: '16px 0px 20px 0px',
+    padding: '5px 16px 0px 5px',
+    margin: '0px 0px 0px 0px',
     height: 'auto',
   },
   nameInput: {
@@ -219,8 +223,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.neutral30,
     borderRadius: '4px',
     width: '100%',
-    padding: '5px 16px 5px 5px',
-    margin: '0px 0px 20px 0px',
+    padding: '5px 16px 0px 5px',
+    margin: '0px 0px 0px 0px',
     height: 'auto',
   },
   emailInput: {
@@ -236,17 +240,17 @@ const useStyles = makeStyles((theme) => ({
       border: '0px',
     },
   },
-  feedbackWrapper: {
+  messageWrapper: {
     display: 'flex',
     alignItems: 'center',
     backgroundColor: theme.palette.secondary.neutral30,
     borderRadius: '4px',
     width: '100%',
     padding: '5px 16px 5px 5px',
-    margin: '0px 0px 20px 0px',
+    margin: '0px 0px 0px 0px',
     height: 'auto',
   },
-  feedbackInput: {
+  messageInput: {
     resize: 'none',
     fontSize: '18px',
     fontFamily: theme.typography.body1.fontFamily,
@@ -261,16 +265,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   errorMessage: {
-    position: 'absolute',
     fontSize: '14px',
-    margin: '68px 0px 10px 8px',
+    margin: '0px 0px 10px 8px',
     color: 'red',
   },
-  errorMessagefeedBack: {
-    position: 'absolute',
+  successMessage: {
     fontSize: '14px',
-    margin: '240px 0px 10px 8px',
-    color: 'red',
+    margin: '0px 0px 0px 8px',
+    color: 'green',
   },
   buttonWrapper: {
     padding: '10px 16px 5px 5px',
