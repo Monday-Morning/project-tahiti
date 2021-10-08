@@ -132,10 +132,10 @@ const Feedback = () => {
             </Typography>
 
             <div container className={classes.errorMessage}>
-              <Typography>{error.Error}</Typography>
+              <Typography>{error.error}</Typography>
             </div>
             <div container className={classes.successMessage}>
-              <Typography>{error.Success}</Typography>
+              <Typography>{error.success}</Typography>
             </div>
 
             <Grid
