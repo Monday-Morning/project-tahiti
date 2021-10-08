@@ -20,11 +20,11 @@ const Feedback = () => {
     nameError: '',
     emailError: '',
     messageError: '',
-    Error: '',
-    Success: '',
+    error: '',
+    success: '',
   });
 
-  const setFieldsNull = () => {
+  const resetFields = () => {
     setName('');
     setEmail('');
     setMessage('');
@@ -32,22 +32,22 @@ const Feedback = () => {
       nameError: '',
       emailError: '',
       messageError: '',
-      Error: '',
-      Success: '',
+      error: '',
+      success: '',
     });
   };
 
   const enabled =
-    error.emailError.length == 0 && name.length > 0 && message.length > 0;
+    error.emailError.length === 0 && name.length > 0 && message.length > 0;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const feedbackData = { name, message, email };
-      setFieldsNull();
-      setError({ ...error, Success: 'Send' });
+      resetFields();   // When adding API, make sure to refactor and reset state only when API gives success
+      setError({ ...error, success: 'Send' });
     } catch {
-      setError({ ...error, Error: 'Failed to send' });
+      setError({ ...error, error: 'Failed to send' });
     }
   }; //API to be added later
 
@@ -145,7 +145,7 @@ const Feedback = () => {
               className={classes.buttonWrapper}
             >
               <Grid item>
-                <Button onClick={setFieldsNull} variant='contained'>
+                <Button onClick={resetFields} variant='contained'>
                   <span className={classes.buttonText}>Cancel</span>
                 </Button>
               </Grid>
