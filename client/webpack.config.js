@@ -94,13 +94,13 @@ module.exports = (env) => {
     },
     minimizer: [
       new TerserPlugin({
-        sourceMap: false,
+        sourceMap: isDev,
         parallel: true,
         terserOptions: {
           ecma: 2021,
-          mangle: false,
-          keep_classnames: true,
-          keep_fnames: true,
+          mangle: isProduction,
+          keep_classnames: isDev,
+          keep_fnames: isDev,
         },
       }),
     ],
