@@ -56,7 +56,7 @@ function Article() {
   if (error) return <div>{error}</div>;
 
   const { getArticle: article } = data;
-  const structuredContent = getStructuredContent(article.content);
+  const structuredContent = getStructuredContent(article?.content);
 
   return (
     <div>
@@ -67,7 +67,7 @@ function Article() {
           <Grid item md={9}>
             <ArticleContent structuredContent={structuredContent} />
             <Disclaimer />
-            <ArticleTags tags={article.tags} />
+            <ArticleTags tags={article?.tags} />
             <hr />
             <Comments />
           </Grid>

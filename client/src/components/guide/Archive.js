@@ -34,7 +34,7 @@ const Archives = () => {
           The only guide you will need at NITR!
         </Grid>
       </div>
-      <ArticleCarousel />
+      <ArticleCarousel /> {/* props missing */}
       <div className={classes.archive}>
         <Typography variant='h1' className={classes.archivetitle}>
           Archive
@@ -135,9 +135,9 @@ const Archives = () => {
             <ArticleCardStack />
           ) : (
             <div>
-              <ArticleCardStack />
-              <ArticleCardStack />
-              <ArticleCardStack />
+              <ArticleCardStack /> {/* props missing */}
+              <ArticleCardStack /> {/* props missing */}
+              <ArticleCardStack /> {/* props missing */}
             </div>
           )}
         </div>

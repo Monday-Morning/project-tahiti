@@ -1,31 +1,55 @@
 import React, { useState } from 'react';
 
 // Libraries
-import { Grid, makeStyles, Typography, Button } from '@material-ui/core';
+import {
+  Grid,
+  makeStyles,
+  Typography,
+  Button,
+  TextField,
+} from '@material-ui/core';
 
 // Images
 import image from '../../assets/images/contact/contact-us.png';
 
 const Feedback = () => {
-  const [feedback, setFeedback] = useState('');
+  const [message, setMessage] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [error, setError] = useState({
+    nameError: '',
+    emailError: '',
+    messageError: '',
+    error: '',
+    success: '',
+  });
 
-  const enabled = email.length > 0 || name.length > 0 || feedback.length > 0;
+  const resetFields = () => {
+    setName('');
+    setEmail('');
+    setMessage('');
+    setError({
+      nameError: '',
+      emailError: '',
+      messageError: '',
+      error: '',
+      success: '',
+    });
+  };
 
-  const handleSubmit = (e) => {
+  const enabled =
+    error.emailError.length === 0 && name.length > 0 && message.length > 0;
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const feedbackData = { name: name, email: email, feedback: feedback };
-    setName('');
-    setEmail('');
-    setFeedback('');
-  };
-
-  const cancel = () => {
-    setName('');
-    setEmail('');
-    setFeedback('');
-  };
+    try {
+      const feedbackData = { name, message, email };
+      resetFields();   // When adding API, make sure to refactor and reset state only when API gives success
+      setError({ ...error, success: 'Send' });
+    } catch {
+      setError({ ...error, error: 'Failed to send' });
+    }
+  }; //API to be added later
 
   const classes = useStyles();
   return (
@@ -37,35 +61,83 @@ const Feedback = () => {
           </Typography>
           <form onSubmit={handleSubmit}>
             <div className={classes.nameWrapper}>
-              <input
+              <TextField
                 className={classes.nameInput}
                 name='name'
                 type='text'
                 placeholder='Name'
+                disableUnderline={true}
                 value={name}
                 onChange={(event) => setName(event.target.value)}
+                onFocus={() => setError({ ...error, nameError: '' })}
+                onBlur={() => {
+                  setName(name.trim()),
+                    name.length <= 0
+                      ? setError({ ...error, nameError: 'Name Required' })
+                      : setError({ ...error, nameError: '' });
+                }}
+                InputProps={{ disableUnderline: true }}
               />
             </div>
+            <Typography className={classes.errorMessage}>
+              {error.nameError}
+            </Typography>
+
             <div className={classes.emailWrapper}>
-              <input
+              <TextField
                 className={classes.emailInput}
                 name='email'
-                type='text'
+                type='email'
                 placeholder='Email'
+                InputProps={{ disableUnderline: true }}
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
+                onFocus={() => setError({ ...error, emailError: '' })}
+                onBlur={() => {
+                  !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+                    ? setError({
+                        ...error,
+                        emailError: 'Valid Email-Id Required',
+                      })
+                    : setError({ ...error, emailError: '' });
+                }}
               />
             </div>
-            <div className={classes.feedbackWrapper}>
-              <textarea
-                className={classes.feedbackInput}
+            <Typography className={classes.errorMessage}>
+              {error.emailError}
+            </Typography>
+
+            <div className={classes.messageWrapper}>
+              <TextField
+                multiline
+                className={classes.messageInput}
                 rows='8'
-                name='feedback'
+                name='message'
                 placeholder='Write your message here'
-                value={feedback}
-                onChange={(event) => setFeedback(event.target.value)}
-              ></textarea>
+                InputProps={{ disableUnderline: true }}
+                value={message}
+                onChange={(event) => setMessage(event.target.value)}
+                onFocus={() => setError({ ...error, messageError: '' })}
+                onBlur={() => {
+                  setMessage(message.trim()),
+                    message.length <= 0
+                      ? setError({ ...error, messageError: 'Message Required' })
+                      : setError({ ...error, messageError: '' });
+                }}
+              />
             </div>
+
+            <Typography className={classes.errorMessage}>
+              {error.messageError}
+            </Typography>
+
+            <div container className={classes.errorMessage}>
+              <Typography>{error.error}</Typography>
+            </div>
+            <div container className={classes.successMessage}>
+              <Typography>{error.success}</Typography>
+            </div>
+
             <Grid
               container
               justify='flex-end'
@@ -73,11 +145,7 @@ const Feedback = () => {
               className={classes.buttonWrapper}
             >
               <Grid item>
-                <Button
-                  onClick={cancel}
-                  variant='contained'
-                  disabled={!enabled}
-                >
+                <Button onClick={resetFields} variant='contained'>
                   <span className={classes.buttonText}>Cancel</span>
                 </Button>
               </Grid>
@@ -87,6 +155,7 @@ const Feedback = () => {
                   variant='contained'
                   color='primary'
                   className={classes.submitButton}
+                  disabled={!enabled}
                 >
                   <span className={classes.buttonText}>send Message</span>
                 </Button>
@@ -131,12 +200,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.neutral30,
     borderRadius: '4px',
     width: '100%',
-    padding: '5px 16px 5px 5px',
-    margin: '16px 0px 15px 0px',
+    padding: '5px 16px 0px 5px',
+    margin: '0px 0px 0px 0px',
     height: 'auto',
   },
   nameInput: {
-    marginLeft: '16px',
     fontSize: '18px',
     fontFamily: theme.typography.body1.fontFamily,
     fontWeight: 400,
@@ -145,6 +213,7 @@ const useStyles = makeStyles((theme) => ({
     border: '0',
     padding: '5px 10px',
     '&:focus': {
+      outline: 'none',
       border: '0px',
     },
   },
@@ -154,12 +223,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.neutral30,
     borderRadius: '4px',
     width: '100%',
-    padding: '5px 16px 5px 5px',
-    margin: '0px 0px 15px 0px',
+    padding: '5px 16px 0px 5px',
+    margin: '0px 0px 0px 0px',
     height: 'auto',
   },
   emailInput: {
-    marginLeft: '16px',
     fontSize: '18px',
     fontFamily: theme.typography.body1.fontFamily,
     fontWeight: 400,
@@ -168,35 +236,46 @@ const useStyles = makeStyles((theme) => ({
     border: '0',
     padding: '5px 10px',
     '&:focus': {
+      outline: 'none',
       border: '0px',
     },
   },
-  feedbackWrapper: {
+  messageWrapper: {
     display: 'flex',
     alignItems: 'center',
     backgroundColor: theme.palette.secondary.neutral30,
     borderRadius: '4px',
     width: '100%',
     padding: '5px 16px 5px 5px',
-    margin: '0px 0px 15px 0px',
+    margin: '0px 0px 0px 0px',
     height: 'auto',
   },
-  feedbackInput: {
+  messageInput: {
     resize: 'none',
     fontSize: '18px',
     fontFamily: theme.typography.body1.fontFamily,
     fontWeight: 400,
-    marginLeft: '16px',
     width: '100%',
     backgroundColor: 'unset',
     border: '0',
     padding: '5px 10px',
     '&:focus': {
+      outline: 'none',
       border: '0px',
     },
   },
+  errorMessage: {
+    fontSize: '14px',
+    margin: '0px 0px 10px 8px',
+    color: 'red',
+  },
+  successMessage: {
+    fontSize: '14px',
+    margin: '0px 0px 0px 8px',
+    color: 'green',
+  },
   buttonWrapper: {
-    padding: '5px 16px 5px 5px',
+    padding: '10px 16px 5px 5px',
     margin: '0px 0px 15px 0px',
   },
   buttonText: {
