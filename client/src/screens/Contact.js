@@ -1,11 +1,11 @@
 import React from 'react';
 
 // Components
+import { Container } from '@material-ui/core';
 import BackButton from '../components/shared/button/BackButton';
 import ContactUs from '../components/contact/ContactUs';
 import Details from '../components/contact/Details';
-import Feedback from '../components/contact/feedback';
-import { Container } from '@material-ui/core';
+import Feedback from '../components/contact/Feedback';
 
 function Contact() {
   return (
