@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -94,13 +93,14 @@ module.exports = (env) => {
       name: 'manifest',
     },
     minimizer: [
-      new UglifyJsPlugin({
-        sourceMap: false,
-        uglifyOptions: {
-          ecma: 8,
-          mangle: false,
-          keep_classnames: true,
-          keep_fnames: true,
+      new TerserPlugin({
+        sourceMap: isDev,
+        parallel: true,
+        terserOptions: {
+          ecma: 2021,
+          mangle: isProduction,
+          keep_classnames: isDev,
+          keep_fnames: isDev,
         },
       }),
     ],

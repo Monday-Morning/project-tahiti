@@ -25,7 +25,7 @@ const Carousel = ({ articleList }) => {
       <div className={classes.carousel}>
         <div className={classes.articleRow}>
           <div className={classes.articles}>
-            {articleList.map(renderArticles)}
+            {articleList?.map(renderArticles)}
           </div>
         </div>
       </div>

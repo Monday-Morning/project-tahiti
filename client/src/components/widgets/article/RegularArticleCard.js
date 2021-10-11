@@ -44,7 +44,7 @@ const ArticleCard = ({
       >
         <img
           className={classes.featuredImage}
-          src={article.coverMedia.rectangle.storePath.split(' ').join('%20')}
+          src={article.coverMedia?.rectangle.storePath.split(' ').join('%20')}
           alt='Featured'
         />
       </NewTabLink>
@@ -52,7 +52,7 @@ const ArticleCard = ({
       <CardContent className={classes.cardContent}>
         <div className={classes.categoriesContainer}>
           {article.categories
-            .filter(({ number }) => number > 10)
+            ?.filter(({ number }) => number > 10)
             .slice(0, 3)
             .map(({ number }, index) => (
               <Typography
