@@ -4,24 +4,15 @@ import { makeStyles } from '@material-ui/core';
 import { useSwipeable } from 'react-swipeable';
 import { ArrowBack, ArrowForward } from '@material-ui/icons';
 
-export const CarouselItem = ({ children}) => {
-  const classes = useStyles();
-  return (
-    <div className={classes.carouselItem}>
-      {children}
-    </div>
-  );
-};
-
-const HomeCarousel = ({ children }) => {
+const HomeCarousel = ({ links }) => {
   const classes = useStyles();
   const [activeIndex, setactiveIndex] = useState(0);
 
   const updateIndex = (newIndex) => {
     let index = newIndex;
     if (index < 0) {
-      index = React.Children.count(children) - 1;
-    } else if (newIndex >= React.Children.count(children)) {
+      index = links.length - 1;
+    } else if (newIndex >= links.length) {
       index = 0;
     }
 
@@ -50,9 +41,18 @@ const HomeCarousel = ({ children }) => {
         className={classes.inner}
         style={{ transform: `translateX(-${activeIndex * 100}%)` }}
       >
-        {React.Children.map(children, (child) =>
-          React.cloneElement(child),
-        )}
+        {links.map((link) => (
+          <iframe
+            key={link}
+            src={link}
+            title='YouTube video player'
+            frameBorder='0'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+            allowFullScreen
+            timeout={10000}
+            className={classes.largeVideo}
+          />
+        ))}
       </div>
       <div className={classes.indicators}>
         <button
@@ -62,7 +62,7 @@ const HomeCarousel = ({ children }) => {
           }}
           className={classes.button}
         >
-          <ArrowBack />
+          <ArrowBack className={classes.buttonIcon} />
         </button>
         <button
           type='button'
@@ -71,7 +71,7 @@ const HomeCarousel = ({ children }) => {
           }}
           className={classes.button}
         >
-          <ArrowForward />
+          <ArrowForward className={classes.buttonIcon} />
         </button>
       </div>
     </div>
@@ -83,38 +83,45 @@ export default HomeCarousel;
 const useStyles = makeStyles((theme) => ({
   carousel: {
     overflow: 'hidden',
+    display: 'flex',
+    height: '90%',
+    width: '100%',
+    flexDirection: 'column',
+    justifyItems: 'center',
   },
   inner: {
+    flexGrow: '1',
+    [theme.breakpoints.down('sm')]: {
+      flexBasis: '50vw',
+    },
+    display: 'inline-block',
     whiteSpace: 'nowrap',
     transition: 'transform 0.3s',
-    height: 'auto',
+    height: '100%',
     width: '100%',
-  },
-  carouselItem: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '300px',
-    width: '100%',
-    [theme.breakpoints.down('md')]: {
-      height: '210px',
-    },
-    [theme.breakpoints.down('sm')]: {
-      height: '400px',
-    },
-    [theme.breakpoints.down('xs')]: {
-      height: '200px',
-    },
   },
   indicators: {
     display: 'flex',
+    flexBasis: '25px',
+    margin: '10px',
     justifyContent: 'center',
     alignItems: 'center',
   },
   button: {
-    margin: '15px 5px',
+    display: 'flex',
+    alignItems: 'center',
+    margin: '5px 5px',
+    padding: '0.2rem 0.15rem',
     color: '#6E6E6E',
     background: 'transparent',
     borderRadius: '100%',
+  },
+  buttonIcon: {
+    fontSize: '1em',
+  },
+  largeVideo: {
+    borderRadius: '10px',
+    width: '100%',
+    height: '100%',
   },
 }));

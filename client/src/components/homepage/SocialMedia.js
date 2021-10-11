@@ -5,7 +5,7 @@ import { Button, makeStyles, Typography, Grid, Paper } from '@material-ui/core';
 import { Youtube, Instagram } from 'react-feather';
 
 // Components
-import Carousel, { CarouselItem } from '../widgets/HomeCarousel';
+import HomeCarousel from '../widgets/HomeCarousel';
 
 // Assets
 import insta1 from '../../assets/images/instagram/insta1.jpeg';
@@ -107,21 +107,7 @@ const Socials = () => {
               buttonText='Subscribe'
               onClick={openYoutube}
             />
-            <Carousel className={classes.iframeContainer}>
-              {YOUTUBE_LINKS.map((link) => (
-                <CarouselItem>
-                  <iframe
-                    src={link}
-                    title='YouTube video player'
-                    frameBorder='0'
-                    allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                    allowFullScreen
-                    timeout={10000}
-                    className={classes.largeVideo}
-                  />
-                </CarouselItem>
-              ))}
-            </Carousel>
+            <HomeCarousel links={YOUTUBE_LINKS} />
           </Paper>
         </Grid>
       </Grid>
@@ -182,20 +168,6 @@ const useStyles = makeStyles(() => ({
     lineHeight: '28px',
     textAlign: 'center',
     textTransform: 'capitalize',
-  },
-  iframeContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
-    overflow: 'hidden',
-    paddingTop: '66.66%',
-    width: '100%',
-  },
-  largeVideo: {
-    borderRadius: '10px',
-    width: '100%',
-    height: '100%',
   },
   instaImage: {
     width: '100%',
