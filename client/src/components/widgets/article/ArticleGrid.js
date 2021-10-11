@@ -76,7 +76,7 @@ const ArticleItem = ({ article, isLarge, className }) => {
                 let authorName = name.split(' ');
                 if (authorName.length > 1) {
                   authorName.splice(
-                    Math.floor(authorName.length / 2),
+                    Math.round(authorName.length / 2),
                     authorName.length,
                   );
                 }

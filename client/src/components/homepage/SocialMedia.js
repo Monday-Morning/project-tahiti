@@ -3,8 +3,9 @@ import React from 'react';
 // Libraries
 import { Button, makeStyles, Typography, Grid, Paper } from '@material-ui/core';
 import { Youtube, Instagram } from 'react-feather';
-import Carousel from 'react-material-ui-carousel';
-import { KeyboardArrowLeft, KeyboardArrowRight } from '@material-ui/icons';
+
+// Components
+import Carousel, { CarouselItem } from '../widgets/HomeCarousel';
 
 // Assets
 import insta1 from '../../assets/images/instagram/insta1.jpeg';
@@ -106,27 +107,21 @@ const Socials = () => {
               buttonText='Subscribe'
               onClick={openYoutube}
             />
-            {/* <div className={classes.carouselContainer}> */}
-            <Carousel
-              NextIcon={<KeyboardArrowRight />}
-              PrevIcon={<KeyboardArrowLeft />}
-              navButtonsAlwaysVisible
-              indicators={false}
-              className={classes.iframeContainer}
-            >
+            <Carousel className={classes.iframeContainer}>
               {YOUTUBE_LINKS.map((link) => (
-                <iframe
-                  src={link}
-                  title='YouTube video player'
-                  frameBorder='0'
-                  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                  allowFullScreen
-                  timeout={10000}
-                  className={classes.largeVideo}
-                />
+                <CarouselItem>
+                  <iframe
+                    src={link}
+                    title='YouTube video player'
+                    frameBorder='0'
+                    allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                    allowFullScreen
+                    timeout={10000}
+                    className={classes.largeVideo}
+                  />
+                </CarouselItem>
               ))}
             </Carousel>
-            {/* </div> */}
           </Paper>
         </Grid>
       </Grid>
@@ -188,12 +183,6 @@ const useStyles = makeStyles(() => ({
     textAlign: 'center',
     textTransform: 'capitalize',
   },
-  carouselContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-  },
   iframeContainer: {
     display: 'flex',
     alignItems: 'center',
@@ -204,14 +193,9 @@ const useStyles = makeStyles(() => ({
     width: '100%',
   },
   largeVideo: {
-    position: 'absolute',
-    top: '0',
-    left: '0',
-    bottom: '0',
-    right: '0',
     borderRadius: '10px',
     width: '100%',
-    height: '100%',
+    height: '300px',
   },
   instaImage: {
     width: '100%',

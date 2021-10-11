@@ -46,6 +46,7 @@
     "react-slick": "^0.28.0",
     "react-slick-carousel": "^0.14.9",
     "react-spring": "^8.0.27",
+    "react-swipeable": "^6.2.0",
     "react-use-gesture": "^9.0.0-beta.11",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
