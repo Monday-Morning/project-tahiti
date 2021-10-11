@@ -80,7 +80,7 @@ const HomeCarousel = ({ children }) => {
 
 export default HomeCarousel;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   carousel: {
     overflow: 'hidden',
   },
@@ -94,8 +94,17 @@ const useStyles = makeStyles(() => ({
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 'auto',
+    height: '300px',
     width: '100%',
+    [theme.breakpoints.down('md')]: {
+      height: '210px',
+    },
+    [theme.breakpoints.down('sm')]: {
+      height: '400px',
+    },
+    [theme.breakpoints.down('xs')]: {
+      height: '200px',
+    },
   },
   indicators: {
     display: 'flex',

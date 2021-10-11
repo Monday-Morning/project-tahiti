@@ -195,7 +195,7 @@ const useStyles = makeStyles(() => ({
   largeVideo: {
     borderRadius: '10px',
     width: '100%',
-    height: '300px',
+    height: '100%',
   },
   instaImage: {
     width: '100%',
