@@ -99,7 +99,7 @@ const Socials = () => {
           </Paper>
         </Grid>
 
-        <Grid item sm={12} md={6} lg={6} style={{ width: '100%' }}>
+        <Grid item sm={12} md={6} lg={6} className={classes.grid}>
           <Paper className={classes.card}>
             <Header
               Icon={Youtube}
@@ -146,6 +146,9 @@ const useStyles = makeStyles(() => ({
     '&:hover': {
       cursor: 'pointer',
     },
+  },
+  grid: {
+    width: '100%',
   },
   title: {
     fontSize: '16px',

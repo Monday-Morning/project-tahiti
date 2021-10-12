@@ -10,6 +10,7 @@ import NewTabLink from '../../shared/links/NewTabLink';
 // Utils
 import limitString from '../../../utils/limitString';
 import getCategory from '../../../utils/determineCategory';
+import limitAuthor from '../../../utils/limitAuthor';
 
 const ArticleItem = ({ article, isLarge, className }) => {
   const {
@@ -40,13 +41,14 @@ const ArticleItem = ({ article, isLarge, className }) => {
         </Typography>
         <section className={classes.articleDetailsContainer}>
           <div className={classes.categoriesContainer}>
+            {/* filter is done to get the categories as below 10 there are only navbar categories */}
+            {/* slice is done reduce the amount of categories so that frontend looks good */}
             {categories
               .filter(({ number }) => number > 10)
               .slice(0, 3)
               .map(({ number }, index, catArray) => (
                 <Typography
-                  // eslint-disable-next-line react/no-array-index-key
-                  key={`${number}-${index}-bigArticleCard-category`}
+                  key={`${number}-bigArticleCard-category`}
                   variant='body2'
                   className={classes.category}
                 >
@@ -73,14 +75,7 @@ const ArticleItem = ({ article, isLarge, className }) => {
           <div className={classes.metaDetailsContainer}>
             <div className={classes.authorsList}>
               {authors.map(({ name }, index, authorArray) => {
-                let authorName = name.split(' ');
-                if (authorName.length > 1) {
-                  authorName.splice(
-                    Math.round(authorName.length / 2),
-                    authorName.length,
-                  );
-                }
-                authorName = authorName.reduce((a, b) => `${a} ${b}`);
+                let authorName = limitAuthor(name);
                 if (index < authorArray.length - 1) authorName += ', ';
                 return (
                   <Typography

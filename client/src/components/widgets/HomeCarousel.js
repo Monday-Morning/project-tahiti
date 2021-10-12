@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+// libraries
 import { makeStyles } from '@material-ui/core';
 import { useSwipeable } from 'react-swipeable';
 import { ArrowBack, ArrowForward } from '@material-ui/icons';
@@ -8,20 +9,20 @@ const HomeCarousel = ({ links }) => {
   const classes = useStyles();
   const [activeIndex, setactiveIndex] = useState(0);
 
-  const updateIndex = (newIndex) => {
-    let index = newIndex;
+  useEffect(() => {
+    let index = activeIndex;
     if (index < 0) {
       index = links.length - 1;
-    } else if (newIndex >= links.length) {
+    } else if (activeIndex >= links.length) {
       index = 0;
     }
 
     setactiveIndex(index);
-  };
+  }, [activeIndex, links.length]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      updateIndex(activeIndex + 1);
+      setactiveIndex((prevState) => prevState + 1);
     }, 10000);
     return () => {
       if (interval) {
@@ -31,8 +32,8 @@ const HomeCarousel = ({ links }) => {
   });
 
   const handlers = useSwipeable({
-    onSwipedLeft: () => updateIndex(activeIndex + 1),
-    onSwipedRight: () => updateIndex(activeIndex - 1),
+    onSwipedLeft: () => setactiveIndex((prevState) => prevState + 1),
+    onSwipedRight: () => setactiveIndex((prevState) => prevState - 1),
   });
 
   return (
@@ -58,7 +59,7 @@ const HomeCarousel = ({ links }) => {
         <button
           type='button'
           onClick={() => {
-            updateIndex(activeIndex - 1);
+            setactiveIndex((prevState) => prevState - 1);
           }}
           className={classes.button}
         >
@@ -67,7 +68,7 @@ const HomeCarousel = ({ links }) => {
         <button
           type='button'
           onClick={() => {
-            updateIndex(activeIndex + 1);
+            setactiveIndex((prevState) => prevState + 1);
           }}
           className={classes.button}
         >
