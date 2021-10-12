@@ -1,14 +1,14 @@
 import React from 'react';
 
 // libraries
-import { Container, Grid } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 import { useQuery } from '@apollo/client';
 
 // Components
 import Squiggles from '../components/widgets/Squiggles';
 import ArticleCardStack from '../components/widgets/article/ArticleCardStack';
-import Pulse from '../components/widgets/Pulse';
-import Calendar from '../components/homepage/Calendar';
+// import Pulse from '../components/widgets/Pulse';
+// import Calendar from '../components/homepage/Calendar';
 import Banner from '../components/homepage/Banner';
 import Trending from '../components/homepage/Trending';
 import ActivityIndicator from '../components/shared/ActivityIndicator';
@@ -70,14 +70,14 @@ function Home() {
         <Squiggles loading={squigglesLoading} data={squigglesData} />
         <ArticleCardStack articleList={firstArticleStack} />
 
-        <Grid container spacing={4} style={{ marginTop: 25 }}>
+        {/* <Grid container spacing={4} style={{ marginTop: 25 }}>
           <Grid item sm={8}>
             <Pulse />
           </Grid>
           <Grid item sm={4}>
             <Calendar />
           </Grid>
-        </Grid>
+        </Grid> */}
 
         <ArticleCardStack articleList={secondArticleStack} />
       </Container>

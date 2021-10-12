@@ -9,10 +9,13 @@ import NewTabLink from '../../shared/links/NewTabLink';
 
 // Utils
 import limitString from '../../../utils/limitString';
+import getCategory from '../../../utils/determineCategory';
+import limitAuthor from '../../../utils/limitAuthor';
 
-const ArticleItem = ({ article, className }) => {
+const ArticleItem = ({ article, isLarge, className }) => {
   const {
     id,
+    categories,
     title,
     readTime,
     authors,
@@ -22,6 +25,7 @@ const ArticleItem = ({ article, className }) => {
   } = article;
   const classes = useStylesItem({
     storePath: storePath.split(' ').join('%20'),
+    isLarge,
   });
 
   return (
@@ -36,26 +40,63 @@ const ArticleItem = ({ article, className }) => {
           {limitString(title, 48)}
         </Typography>
         <section className={classes.articleDetailsContainer}>
+          <div className={classes.categoriesContainer}>
+            {/* filter is done to get the categories as below 10 there are only navbar categories */}
+            {/* slice is done reduce the amount of categories so that frontend looks good */}
+            {categories
+              .filter(({ number }) => number > 10)
+              .slice(0, 3)
+              .map(({ number }, index, catArray) => (
+                <Typography
+                  key={`${number}-bigArticleCard-category`}
+                  variant='body2'
+                  className={classes.category}
+                >
+                  {getCategory(number)}
+                  {index === catArray.length - 1 ? null : (
+                    <span
+                      style={{
+                        textDecoration: 'none',
+                        paddingLeft: '10px',
+                        paddingRight: '10px',
+                      }}
+                    >
+                      |
+                    </span>
+                  )}
+                </Typography>
+              ))}
+          </div>
+
           <Typography variant='h3' className={classes.articleTitle}>
             {limitString(title, 48)}
           </Typography>
 
           <div className={classes.metaDetailsContainer}>
             <div className={classes.authorsList}>
-              {authors.map(({ name }) => (
-                <Typography
-                  variant='body2'
-                  key={name}
-                  className={classes.author}
-                >
-                  {name}
-                </Typography>
-              ))}
+              {authors.map(({ name }, index, authorArray) => {
+                let authorName = limitAuthor(name);
+                if (index < authorArray.length - 1) authorName += ', ';
+                return (
+                  <Typography
+                    variant='body2'
+                    key={name}
+                    className={classes.author}
+                  >
+                    {authorName}
+                  </Typography>
+                );
+              })}
             </div>
 
-            <Typography variant='body2' className={classes.readTime}>
-              {moment.duration(readTime, 'seconds').humanize()}
-            </Typography>
+            <div className={classes.readTime}>
+              <i className={`far fa-clock ${classes.clockIcon}`} />
+              <Typography variant='body2'>
+                {moment
+                  .utc(moment.duration(readTime, 'seconds').asMilliseconds())
+                  .format('m [mins]')}
+              </Typography>
+            </div>
           </div>
         </section>
       </article>
@@ -93,9 +134,28 @@ const useStylesItem = makeStyles((theme) => ({
     padding: '10px',
     paddingBottom: '20px',
   },
+  categoriesContainer: {
+    width: '100%',
+    height: 'auto',
+
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    flexWrap: 'wrap',
+
+    marginBottom: '10px',
+  },
+  category: {
+    width: 'auto',
+    fontFamily: 'Source Sans Pro',
+    fontSize: '12px',
+    fontWeight: '400',
+    lineHeight: '20px',
+    color: theme.palette.secondary.neutral40,
+  },
   articleTitle: {
     marginTop: '4px',
-    fontSize: '18px',
+    fontSize: (_) => (_.isLarge ? '22px' : '18px'),
     lineHeight: '24px',
     fontWeight: '600',
     fontFamily: 'IBM Plex Sans',
@@ -115,14 +175,24 @@ const useStylesItem = makeStyles((theme) => ({
   },
   author: {
     display: 'inline',
-    color: theme.palette.secondary.neutral60,
+    fontSize: '12px',
+    color: theme.palette.secondary.neutral20,
     fontWeight: '400',
     marginRight: '10px',
   },
+  clockIcon: {
+    marginRight: '5px',
+    color: theme.palette.secondary.neutral20,
+    width: '10px',
+    height: '10px',
+  },
   readTime: {
-    width: 'auto',
-    height: 'auto',
-    minWidth: '60px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    fontWeight: '400',
+    fontSize: '12px',
+    color: theme.palette.secondary.neutral20,
   },
 }));
 
@@ -133,6 +203,7 @@ function ArticleGrid({ articles }) {
     <section className={classes.articleGrid}>
       <ArticleItem
         className={`${classes.article} ${classes.large}`}
+        isLarge
         article={articles[0]}
       />
 
@@ -140,6 +211,7 @@ function ArticleGrid({ articles }) {
         <ArticleItem
           key={number}
           className={`${classes.article} ${classes.small}`}
+          isLarge={false}
           article={articles[number + 1]}
         />
       ))}

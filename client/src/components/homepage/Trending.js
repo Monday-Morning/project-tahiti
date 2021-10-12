@@ -3,16 +3,12 @@ import React from 'react';
 // libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+
+// Helpers
+import ROUTES from '../../utils/getRoutes';
 
 function Trending() {
-  const Categories = [
-    'Academics',
-    'Campus Buzz',
-    'Student Activities',
-    'Halls',
-    'Poll Analysis',
-    'Forum',
-  ];
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
@@ -20,14 +16,18 @@ function Trending() {
         <Typography variant='h2' className={classes.title}>
           Trending
         </Typography>
-        <div className={classes.underline}></div>
+        <div className={classes.underline} />
       </div>
       <div className={classes.CategoryWrapper}>
-        {Categories.map((category, index) => (
-          <Typography variant='h3' key={index} className={classes.category}>
-            {category}
-          </Typography>
-        ))}
+        {ROUTES.SUB_CATEGORIES.OBJECT.CAMPUS.map(
+          ({ name, shortName, path, idNumber }) => (
+            <Link to={path} key={`${shortName}-${idNumber}`}>
+              <Typography variant='h3' className={classes.category}>
+                {name}
+              </Typography>
+            </Link>
+          ),
+        )}
       </div>
     </div>
   );
@@ -62,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '10px',
     marginTop: '10px',
     backgroundColor: theme.palette.primary.blue10,
+    color: theme.palette.common.black,
     borderRadius: '4px',
     padding: '12px 16px',
     cursor: 'pointer',

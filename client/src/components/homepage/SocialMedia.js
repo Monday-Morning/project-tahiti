@@ -4,6 +4,9 @@ import React from 'react';
 import { Button, makeStyles, Typography, Grid, Paper } from '@material-ui/core';
 import { Youtube, Instagram } from 'react-feather';
 
+// Components
+import HomeCarousel from '../widgets/HomeCarousel';
+
 // Assets
 import insta1 from '../../assets/images/instagram/insta1.jpeg';
 import insta2 from '../../assets/images/instagram/insta2.jpeg';
@@ -11,20 +14,13 @@ import insta3 from '../../assets/images/instagram/insta3.jpeg';
 import insta4 from '../../assets/images/instagram/insta4.jpeg';
 import insta5 from '../../assets/images/instagram/insta5.jpeg';
 import insta6 from '../../assets/images/instagram/insta6.jpeg';
-import insta7 from '../../assets/images/instagram/insta7.jpeg';
-import insta8 from '../../assets/images/instagram/insta8.jpeg';
-import insta9 from '../../assets/images/instagram/insta9.jpeg';
 
-const INSTA_LINKS = [
-  insta1,
-  insta2,
-  insta3,
-  insta4,
-  insta5,
-  insta6,
-  insta7,
-  insta8,
-  insta9,
+const INSTA_LINKS = [insta1, insta2, insta3, insta4, insta5, insta6];
+
+const YOUTUBE_LINKS = [
+  'https://www.youtube.com/embed/_KJlm1mafGo',
+  'https://www.youtube.com/embed/btc-_kqkdpc',
+  'https://www.youtube.com/embed/c6SglPpwmVg',
 ];
 
 const Header = ({ Icon, title, buttonText, onClick }) => {
@@ -103,7 +99,7 @@ const Socials = () => {
           </Paper>
         </Grid>
 
-        <Grid item sm={12} md={6} lg={6}>
+        <Grid item sm={12} md={6} lg={6} className={classes.grid}>
           <Paper className={classes.card}>
             <Header
               Icon={Youtube}
@@ -111,41 +107,7 @@ const Socials = () => {
               buttonText='Subscribe'
               onClick={openYoutube}
             />
-            {/* <div className={classes.iframeContainer}> */}
-            <iframe
-              width='520'
-              height='292'
-              src='https://www.youtube.com/embed/_KJlm1mafGo'
-              title='YouTube video player'
-              frameBorder='0'
-              allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-              allowFullScreen
-              className={classes.largeVideo}
-            />
-
-            <div className={classes.subVideoContainer}>
-              <iframe
-                width='248'
-                height='139'
-                src='https://www.youtube.com/embed/btc-_kqkdpc'
-                title='YouTube video player'
-                frameBorder='0'
-                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                allowFullScreen
-                className={classes.smallVideo}
-              />
-              <iframe
-                width='248'
-                height='139'
-                src='https://www.youtube.com/embed/c6SglPpwmVg'
-                title='YouTube video player'
-                frameBorder='0'
-                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                allowFullScreen
-                className={classes.smallVideo}
-              />
-            </div>
-            {/* </div> */}
+            <HomeCarousel links={YOUTUBE_LINKS} />
           </Paper>
         </Grid>
       </Grid>
@@ -163,6 +125,7 @@ const useStyles = makeStyles(() => ({
     width: '100%',
     height: '100%',
     padding: '20px',
+    margin: '0px',
     borderRadius: '10px',
     boxShadow:
       '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
@@ -183,6 +146,9 @@ const useStyles = makeStyles(() => ({
     '&:hover': {
       cursor: 'pointer',
     },
+  },
+  grid: {
+    width: '100%',
   },
   title: {
     fontSize: '16px',
@@ -205,30 +171,6 @@ const useStyles = makeStyles(() => ({
     lineHeight: '28px',
     textAlign: 'center',
     textTransform: 'capitalize',
-  },
-  iframeContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    height: '100%',
-  },
-  largeVideo: {
-    width: '100%',
-    height: '66%',
-    borderRadius: '10px',
-    marginBottom: '10px',
-  },
-  subVideoContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '100%',
-  },
-  smallVideo: {
-    width: '48%',
-    height: '33%',
-    borderRadius: '10px',
   },
   instaImage: {
     width: '100%',
