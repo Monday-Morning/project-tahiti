@@ -7,18 +7,18 @@ import { makeStyles } from '@material-ui/core';
 import RegularArticleCard from './RegularArticleCard';
 
 // Assets
-import { DEFAULT_ARTICLE } from '../../../assets/placeholder/article';
-import { CallReceived } from '@material-ui/icons';
+// import { DEFAULT_ARTICLE } from '../../../assets/placeholder/article';
+
+const renderArticles = (article) => {
+  const isValidArticle = !article?.title;
+
+  return isValidArticle ? null : (
+    <RegularArticleCard key={article.id} article={article} carousel />
+  );
+};
 
 const Carousel = ({ articleList }) => {
   const classes = useStyles();
-
-  const renderArticles = (articleParam) => {
-    const isDefaultArticle = !articleParam?.title;
-    const article = isDefaultArticle ? DEFAULT_ARTICLE : articleParam;
-
-    return <RegularArticleCard key={article.id} article={article} carousel />;
-  };
 
   return (
     <div className={classes.wrapper}>
@@ -48,9 +48,9 @@ const useStyles = makeStyles((theme) => ({
     bottom: '0',
     left: '0',
     right: '0',
-    height: '286px',
+    height: '273px',
     [theme.breakpoints.up('sm')]: {
-      height: '230px',
+      height: '266px',
     },
   },
 
@@ -63,24 +63,20 @@ const useStyles = makeStyles((theme) => ({
   articleRow: {
     marginTop: '2.25rem',
     zIndex: '1',
-    paddingLeft: '1.5rem',
     [theme.breakpoints.up('lg')]: {
-      paddingLeft: '7rem',
+      paddingLeft: 'calc((100% - 1280px)/2 - 8px)',
     },
   },
 
   articles: {
-    
-    "@media (max-width : 1280px)":{
-      marginLeft: '0%',
-    },
-    "@media (min-width : 1281px)":{
-      marginLeft: 'calc(((100vw - 1465px)/2))',
+    marginLeft: '24px',
+    [theme.breakpoints.up('lg')]: {
+      marginLeft: '33px',
     },
     display: 'flex',
     paddingBottom: '1.5rem',
     [theme.breakpoints.up('sm')]: {
-      paddingBottom: '0.5rem',
+      paddingBottom: '1rem',
     },
   },
 }));
