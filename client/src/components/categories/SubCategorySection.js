@@ -23,40 +23,29 @@ const SubCategorySection = ({
 }) => {
   const classes = useStyles();
 
+  if (articleList.length <= 0) return null;
+
   if (forum) {
     // eslint-disable-next-line no-param-reassign
     heading = null;
   }
-  if (articleList.length > 2) {
-    return (
-      <div className={classes.root}>
-        {forum && <Forum />}
-        {heading && <Title path={path} heading={heading} />}
-        {pulse && <Pulse />}
-        {pniData && <PnIData />}
-  
-        {bigCards && <BigArticleCard article={articleList[0]} />}
+  return (
+    <div className={classes.root}>
+      {forum && <Forum />}
+      {heading && <Title path={path} heading={heading} />}
+      {pulse && <Pulse />}
+      {pniData && <PnIData />}
+
+      {bigCards && <BigArticleCard article={articleList[0]} />}
+      {articleList.length > 2 ? (
         <Grid>
           {smallCards && (
             <ArticleCardStack articleList={articleList.slice(1, 4)} />
           )}
         </Grid>
-      </div>
-    );
-    
-  } else {
-    return (
-      <div className={classes.root}>
-        {forum && <Forum />}
-        {heading && <Title path={path} heading={heading} />}
-        {pulse && <Pulse />}
-        {pniData && <PnIData />}
-  
-        {bigCards && <BigArticleCard article={articleList[0]} />}
-      
-      </div>
-    );
-  }
+      ) : null}
+    </div>
+  );
 };
 
 const useStyles = makeStyles((theme) => ({
