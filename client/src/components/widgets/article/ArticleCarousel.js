@@ -57,6 +57,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     overflowX: 'scroll',
     overflowY: 'hidden',
+    [theme.breakpoints.up('lg')]: {
+      maxWidth: '1360px',
+    },
   },
 
   articleRow: {
