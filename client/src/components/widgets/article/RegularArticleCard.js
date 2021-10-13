@@ -12,9 +12,11 @@ import NewTabLink from '../../shared/links/NewTabLink';
 import getCategory from '../../../utils/determineCategory';
 import getArticleLink from '../../../utils/getArticleLink';
 import limitString from '../../../utils/limitString';
+// import limitAuthor from '../../../utils/limitAuthor';
 
 // Assets
 import { DEFAULT_ARTICLE } from '../../../assets/placeholder/article';
+import limitAuthor from '../../../utils/limitAuthor';
 
 const ArticleCard = ({
   className,
@@ -28,7 +30,6 @@ const ArticleCard = ({
 
   const isDefaultArticle = !articleProp?.title;
   const article = isDefaultArticle ? DEFAULT_ARTICLE : articleProp;
-
   return (
     <Card className={`${classes.root} ${className}`}>
       <NewTabLink
@@ -44,27 +45,26 @@ const ArticleCard = ({
       >
         <img
           className={classes.featuredImage}
-          src={article.coverMedia?.rectangle.storePath.split(' ').join('%20')}
+          src={article.coverMedia.rectangle.storePath.split(' ').join('%20')}
           alt='Featured'
         />
       </NewTabLink>
 
       <CardContent className={classes.cardContent}>
         <div className={classes.categoriesContainer}>
+          {/* filter is done to get the categories where subcategory is true */}
+          {/* slice is done to reduce the amount of categories so that frontend looks good */}
           {article.categories
-            ?.filter(({ number }) => number > 10)
+            .filter(({ subcategory }) => subcategory === true)
             .slice(0, 3)
-            .map(({ number }, index) => (
+            .map(({ number }, index, catArray) => (
               <Typography
-                // eslint-disable-next-line react/no-array-index-key
-                key={`${number}-${index}-bigArticleCard-category`}
+                key={`${number}-bigArticleCard-category`}
                 variant='body2'
                 className={classes.category}
               >
                 {getCategory(number)}
-                {index === article.categories.length - 1 ? (
-                  ''
-                ) : (
+                {index === catArray.length - 1 ? null : (
                   <span
                     style={{
                       textDecoration: 'none',
@@ -87,29 +87,38 @@ const ArticleCard = ({
           })}
         >
           <Typography className={classes.title} variant='h2'>
-            {limitString(article.title, 40)}
+            {limitString(article.title, 60)}
           </Typography>
         </NewTabLink>
 
         <div className={classes.detailsContainer}>
           <div className={classes.authorList}>
-            {article.authors.map(({ name, id }, index) => (
-              <NewTabLink to={`/portfolio/${id}/${name}`} key={name}>
-                <Typography
-                  variant='body2'
-                  key={name}
-                  className={classes.author}
-                >
-                  {`${name}${index === article.authors.length - 1 ? ' ' : ','}`}
-                </Typography>
-              </NewTabLink>
-            ))}
+            {article.authors.map(({ name, id }, index) => {
+              let authorName = limitAuthor(name);
+              if (index < article.authors.length - 1) authorName += ', ';
+
+              return (
+                <NewTabLink to={`/portfolio/${id}/${name}`} key={name}>
+                  <Typography
+                    variant='body2'
+                    key={name}
+                    className={classes.author}
+                  >
+                    {authorName}
+                  </Typography>
+                </NewTabLink>
+              );
+            })}
           </div>
 
           <div className={classes.readTime}>
             <i className={`far fa-clock ${classes.clockIcon}`} />
             <Typography variant='body2'>
-              {moment.duration(article.readTime, 'seconds').humanize()}
+              {moment
+                .utc(
+                  moment.duration(article.readTime, 'seconds').asMilliseconds(),
+                )
+                .format('m [mins]')}
             </Typography>
           </div>
         </div>
@@ -129,7 +138,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[0],
     backgroundColor: theme.palette.common.white,
     overflow: 'hidden',
-    width: ({ carousel }) => (carousel ? '400px' : 'auto'),
+    width: ({ carousel }) => (carousel ? '400px' : '100%'),
     height: '470px',
 
     marginTop: ({ carousel }) => (carousel ? '10px' : '0px'),
@@ -139,7 +148,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.between('xs', 'sm')]: {
       margin: '0px',
-      width: ({ carousel }) => (carousel ? '300px' : 'auto'),
+      width: ({ carousel }) => (carousel ? '300px' : '100%'),
       height: ({ carousel }) => (carousel ? '470px' : '470px'),
     },
   },
@@ -183,13 +192,13 @@ const useStyles = makeStyles((theme) => ({
 
   title: {
     marginTop: '0.25rem',
-    fontSize: '1.5rem',
+    fontSize: '1.25rem',
     lineHeight: '2rem',
     textAlign: 'left',
 
     [theme.breakpoints.down('sm')]: {
       lineHeight: '1.75rem',
-      fontSize: '1.25rem',
+      fontSize: '1rem',
     },
   },
 

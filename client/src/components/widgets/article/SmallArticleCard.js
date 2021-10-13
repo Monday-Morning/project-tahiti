@@ -12,6 +12,7 @@ import { DEFAULT_ARTICLE } from '../../../assets/placeholder/article';
 
 // Utils
 import getArticleLink from '../../../utils/getArticleLink';
+import limitAuthor from '../../../utils/limitAuthor';
 
 const SmallArticleCard = ({
   isWitsdom,
@@ -36,7 +37,7 @@ const SmallArticleCard = ({
         className={classes.imgContainer}
       >
         <img
-          src={article.coverMedia?.rectangle.storePath}
+          src={article.coverMedia.rectangle.storePath}
           alt='Cover'
           className={classes.img}
         />
@@ -60,21 +61,28 @@ const SmallArticleCard = ({
         </Typography> */}
 
         <div className={classes.authorList}>
-          {article.authors.map(({ name, id }, index) => (
-            <NewTabLink to={`/portfolio/${id}/${name}`} key={name}>
-              <Typography
-                variant='body2'
-                key={name}
-                className={classes.authors}
-              >
-                {`${name}${index === article.authors.length - 1 ? ' ' : ','}`}
-              </Typography>
-            </NewTabLink>
-          ))}
+          {article.authors.map(({ name, id }, index) => {
+            let authorName = limitAuthor(name);
+            if (index < article.authors.length - 1) authorName += ', ';
+
+            return (
+              <NewTabLink to={`/portfolio/${id}/${name}`} key={name}>
+                <Typography
+                  variant='body2'
+                  key={name}
+                  className={classes.author}
+                >
+                  {authorName}
+                </Typography>
+              </NewTabLink>
+            );
+          })}
         </div>
 
         <Typography variant='body1' className={classes.readTime}>
-          {moment.duration(article.readTime, 'seconds').humanize()}
+          {moment
+            .utc(moment.duration(article.readTime, 'seconds').asMilliseconds())
+            .format('m [mins]')}
         </Typography>
       </div>
     </Card>
@@ -121,7 +129,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '10px',
   },
   title: {
-    fontSize: '14px',
+    fontSize: '0.75rem',
     fontWeight: '700',
     lineHeight: '16px',
     fontFamily: 'IBM Plex Sans',
@@ -134,16 +142,16 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
-  authors: {
+  author: {
     color: theme.palette.secondary.neutral70,
     fontFamily: 'Source Sans Pro',
-    fontSize: '12px',
+    fontSize: '0.65rem',
     lineHeight: '16px',
     fontWeight: '400',
     marginRight: '2px',
   },
   readTime: {
-    fontSize: '12px',
+    fontSize: '0.65rem',
     fontWeight: '400',
     lineHeight: '16px',
     fontFamily: 'Source Sans Pro',
