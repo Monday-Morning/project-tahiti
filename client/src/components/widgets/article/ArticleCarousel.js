@@ -8,6 +8,7 @@ import RegularArticleCard from './RegularArticleCard';
 
 // Assets
 import { DEFAULT_ARTICLE } from '../../../assets/placeholder/article';
+import { CallReceived } from '@material-ui/icons';
 
 const Carousel = ({ articleList }) => {
   const classes = useStyles();
@@ -69,7 +70,13 @@ const useStyles = makeStyles((theme) => ({
   },
 
   articles: {
-    marginLeft: '33px',
+    
+    "@media (max-width : 1280px)":{
+      marginLeft: '0%',
+    },
+    "@media (min-width : 1281px)":{
+      marginLeft: 'calc(((100vw - 1465px)/2))',
+    },
     display: 'flex',
     paddingBottom: '1.5rem',
     [theme.breakpoints.up('sm')]: {
