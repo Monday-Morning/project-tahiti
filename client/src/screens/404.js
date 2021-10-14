@@ -80,11 +80,14 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     minHeight: '100vh',
     height: '100%',
-    padding: '100px',
+    padding: '50px',
     textAlign: 'center',
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
+    [theme.breakpoints.down('md')]: {
+      padding: '20px',
+    },
   },
   gridContainer: {
     marginTop: '70px',
