@@ -7,7 +7,7 @@ import BackLink from '../components/portfolio/Backlink';
 import UserCard from '../components/portfolio/UserCard';
 import Works from '../components/portfolio/Works';
 
-//placeholders
+// placeholders
 
 function Portfolio() {
   return (

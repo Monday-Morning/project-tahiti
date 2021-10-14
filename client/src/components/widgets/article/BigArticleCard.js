@@ -21,6 +21,7 @@ import getArticleLink from '../../../utils/getArticleLink';
 
 // Assets
 import { DEFAULT_ARTICLE } from '../../../assets/placeholder/article';
+import limitAuthor from '../../../utils/limitAuthor';
 
 const BigArticleCard = ({
   isWitsdom,
@@ -102,25 +103,34 @@ const BigArticleCard = ({
 
             <div className={classes.wrapper}>
               <div className={classes.authorList}>
-                {article.authors.map(({ name, id }, index) => (
-                  <NewTabLink to={`/portfolio/${id}/${name}`} key={name}>
-                    <Typography
-                      variant='body2'
-                      key={name}
-                      className={classes.author}
-                    >
-                      {`${name}${
-                        index === article.authors.length - 1 ? ' ' : ','
-                      }`}
-                    </Typography>
-                  </NewTabLink>
-                ))}
+                {article.authors.map(({ name, id }, index) => {
+                  let authorName = limitAuthor(name);
+                  if (index < article.authors.length - 1) authorName += ', ';
+
+                  return (
+                    <NewTabLink to={`/portfolio/${id}/${name}`} key={name}>
+                      <Typography
+                        variant='body2'
+                        key={name}
+                        className={classes.author}
+                      >
+                        {authorName}
+                      </Typography>
+                    </NewTabLink>
+                  );
+                })}
               </div>
 
               <div className={classes.readTime}>
                 <i className='far fa-clock' />
                 <Typography variant='body2' style={{ width: 'auto' }}>
-                  {moment.duration(article.readTime, 'seconds').humanize()}
+                  {moment
+                    .utc(
+                      moment
+                        .duration(article.readTime, 'seconds')
+                        .asMilliseconds(),
+                    )
+                    .format('m [mins]')}
                 </Typography>
               </div>
             </div>
@@ -238,6 +248,7 @@ const useStyles = makeStyles((theme) => ({
   readTime: {
     width: 'auto',
     display: 'flex',
+    alignItems: 'center',
     '& i': {
       marginRight: '5px',
     },
