@@ -7,9 +7,8 @@ import { makeStyles } from '@material-ui/core';
 import ArticleCard from './ArticleCard';
 import TitleWrapper from '../../shared/TitleWrapper';
 
-function ArticleCardStack({ articleList }) {
+function ArticleCardStack({ articleList, title }) {
   const classes = useStyles();
-  const title = true;
   return (
     <div>
       {title ? <TitleWrapper title='This Issue' /> : false}

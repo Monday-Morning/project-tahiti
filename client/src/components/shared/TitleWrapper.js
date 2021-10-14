@@ -8,7 +8,7 @@ function TitleWrapper({ title }) {
       <Typography variant='h2' className={classes.title}>
         {title}
       </Typography>
-      <div className={classes.underline} />
+      <hr className={classes.underline} />
     </div>
   );
 }
@@ -18,6 +18,7 @@ export default TitleWrapper;
 const useStyles = makeStyles((theme) => ({
   titleWrapper: {
     display: 'flex',
+    marginTop: '2rem',
   },
   title: {
     display: 'inline',
