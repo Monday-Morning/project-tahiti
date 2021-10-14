@@ -8,7 +8,7 @@ function TitleWrapper({ title }) {
       <Typography variant='h2' className={classes.title}>
         {title}
       </Typography>
-      <hr className={classes.underline} />
+      <div className={classes.underline} />
     </div>
   );
 }

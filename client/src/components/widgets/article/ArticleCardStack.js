@@ -11,7 +11,7 @@ function ArticleCardStack({ articleList, title }) {
   const classes = useStyles();
   return (
     <div>
-      {title ? <TitleWrapper title='This Issue' /> : false}
+      {title ? <TitleWrapper title={title} /> : false}
       <div className={classes.root}>
         {articleList.map((article, index) => (
           <ArticleCard
