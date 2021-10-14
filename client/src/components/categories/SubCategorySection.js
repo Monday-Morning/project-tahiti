@@ -23,6 +23,8 @@ const SubCategorySection = ({
 }) => {
   const classes = useStyles();
 
+  if (articleList.length <= 0) return null;
+
   if (forum) {
     // eslint-disable-next-line no-param-reassign
     heading = null;
@@ -35,12 +37,13 @@ const SubCategorySection = ({
       {pniData && <PnIData />}
 
       {bigCards && <BigArticleCard article={articleList[0]} />}
-
-      <Grid>
-        {smallCards && (
-          <ArticleCardStack articleList={articleList.slice(1, 4)} />
-        )}
-      </Grid>
+      {articleList.length > 2 ? (
+        <Grid>
+          {smallCards && (
+            <ArticleCardStack articleList={articleList.slice(1, 4)} />
+          )}
+        </Grid>
+      ) : null}
     </div>
   );
 };

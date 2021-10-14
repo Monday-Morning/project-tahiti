@@ -144,7 +144,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: ({ carousel }) => (carousel ? '10px' : '0px'),
     marginRight: ({ carousel }) => (carousel ? '24px' : '0px'),
     [theme.breakpoints.up('lg')]: {
-      maxWidth: '400px',
+      maxWidth: 'auto',
     },
     [theme.breakpoints.between('xs', 'sm')]: {
       margin: '0px',
