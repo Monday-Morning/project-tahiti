@@ -7,17 +7,13 @@ import { Link } from 'react-router-dom';
 
 // Helpers
 import ROUTES from '../../utils/getRoutes';
+import TitleWrapper from '../shared/TitleWrapper';
 
 function Trending() {
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
-      <div className={classes.titleWrapper}>
-        <Typography variant='h2' className={classes.title}>
-          Trending
-        </Typography>
-        <div className={classes.underline} />
-      </div>
+      <TitleWrapper title='Trending' />
       <div className={classes.CategoryWrapper}>
         {ROUTES.SUB_CATEGORIES.OBJECT.CAMPUS.map(
           ({ name, shortName, path, idNumber }) => (
