@@ -68,7 +68,7 @@ function Home() {
       <Container>
         <ArticleGrid articles={featured} />
         <Squiggles loading={squigglesLoading} data={squigglesData} />
-        <ArticleCardStack articleList={firstArticleStack} />
+        <ArticleCardStack articleList={firstArticleStack} title='This Issue' />
 
         {/* <Grid container spacing={4} style={{ marginTop: 25 }}>
           <Grid item sm={8}>

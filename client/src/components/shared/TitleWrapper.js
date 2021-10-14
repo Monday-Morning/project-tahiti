@@ -8,14 +8,14 @@ function TitleWrapper({ title }) {
       <Typography variant='h2' className={classes.title}>
         {title}
       </Typography>
-      <div className={classes.underline} />
+      <hr className={classes.underline} />
     </div>
   );
 }
 
 export default TitleWrapper;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   titleWrapper: {
     display: 'flex',
     marginTop: '2rem',
@@ -25,11 +25,11 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: 'nowrap',
   },
   underline: {
-    borderBottom: '1px solid black',
-    marginLeft: '20px',
+    border: 'none',
+    backgroundColor: 'black',
+    height: '1.5px',
+    marginLeft: '10px',
+    marginTop: '25px',
     width: '100%',
-    [theme.breakpoints.down('sm')]: {
-      marginLeft: '10px',
-    },
   },
 }));

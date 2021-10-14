@@ -70,7 +70,17 @@ function Category() {
             )}
           </div>
         </Container>
-        <ArticleCarousel articleList={articleList[0].slice(0, 10)} />
+        <ArticleCarousel
+          articleList={articleList
+            .reduce((prev, curr) => [...prev, ...curr])
+            .slice(0, 15)
+            .reduce((prev, curr) => {
+              if (prev instanceof Array)
+                return prev.includes(curr) ? prev : [...prev, curr];
+              return [prev, curr];
+            })
+            .slice(0, 10)}
+        />
       </div>
 
       <div>
