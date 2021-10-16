@@ -69,7 +69,7 @@ const GENERAL = {
   GUIDE: '/guide',
   CONTACT: '/contact',
   ARCHIVE: '/archive',
-  TERMS_POLICIES: '/terms&policies',
+  LEGAL: '/legal',
   SAC_CLUBS: '/sac&clubs',
   HEALTH: '/health',
   EMERGENCY: '/emergency',

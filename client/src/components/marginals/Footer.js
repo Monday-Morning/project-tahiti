@@ -15,7 +15,9 @@ const Footer = () => {
         <Grid container direction='row'>
           <Grid item sm={4}>
             <div className={classes.aboutInfo}>
-              <img src={logo} alt='Monday Morning' className={classes.logo} />
+              <a href='/'>
+                <img src={logo} alt='Monday Morning' className={classes.logo} />
+              </a>
               <Typography variant='body2' className={classes.aboutText}>
                 Monday Morning is the student Media Body of National Institute
                 Of Technology Rourkela. We cover all the events, issues and
@@ -107,10 +109,10 @@ const Footer = () => {
                     <li className={classes.links}>Subscribe</li>
                   </Typography>
                   <Typography variant='body1'>
-                    <li className={classes.links}>Terms of Use</li>
-                  </Typography>
-                  <Typography variant='body1'>
-                    <li className={classes.links}>Privacy Policy</li>
+                    <Link to='/legal' className={classes.links}>
+                      Legal
+                    </Link>
+                    <li className={classes.links}></li>
                   </Typography>
                   <Typography variant='body1'>
                     <li className={classes.links}>Sitemap</li>
@@ -159,19 +161,49 @@ const Footer = () => {
           </div>
           <div className={classes.socialIcons}>
             <span className={classes.socialIcon}>
-              <i className='fab fa-facebook-f' />
+              <a
+                className={classes.socialIconLink}
+                href='https://www.facebook.com/mondaymorningnitr/'
+                target='_blank'
+              >
+                <i className='fab fa-facebook-f' />
+              </a>
             </span>
             <span className={classes.socialIcon}>
-              <i className='fab fa-twitter' />
+              <a
+                className={classes.socialIconLink}
+                href='https://twitter.com/mmnitrkl'
+                target='_blank'
+              >
+                <i className='fab fa-twitter' />
+              </a>
             </span>
             <span className={classes.socialIcon}>
-              <i className='fab fa-youtube' />
+              <a
+                className={classes.socialIconLink}
+                href='https://www.youtube.com/MondayMorningNITR'
+                target='_blank'
+              >
+                <i className='fab fa-youtube' />
+              </a>
             </span>
             <span className={classes.socialIcon}>
-              <i className='fab fa-linkedin' />
+              <a
+                className={classes.socialIconLink}
+                href='https://twitter.com/mmnitrkl'
+                target='_blank'
+              >
+                <i className='fab fa-linkedin' />
+              </a>
             </span>
             <span className={classes.socialIcon}>
-              <i className='fab fa-instagram' />
+              <a
+                className={classes.socialIconLink}
+                href='https://www.instagram.com/mondaymorningnitrofficial/'
+                target='_blank'
+              >
+                <i className='fab fa-instagram' />
+              </a>
             </span>
           </div>
         </div>
@@ -269,7 +301,7 @@ const useStyles = makeStyles((theme) => ({
     // Container Properties
     maxWidth: '1280px',
     paddingLeft: '16px',
-    paddingRight: '16px',
+    paddingRight: '50px',
     marginLeft: 'auto',
     marginRight: 'auto',
     [theme.breakpoints.down('sm')]: {
@@ -299,6 +331,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       marginLeft: '10px',
     },
+  },
+  socialIconLink: {
+    color: theme.palette.common.white,
   },
   links: {
     textDecoration: 'none',

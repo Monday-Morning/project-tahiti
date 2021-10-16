@@ -20,7 +20,7 @@ const LiveData = () => {
   return (
     <>
       <div className={classes.title}>
-        <Typography variant='h1'>Terms and Policies</Typography>
+        <Typography variant='h1'>Legal</Typography>
       </div>
       {Desktop ? (
         <div className={classes.typeWrapper}>

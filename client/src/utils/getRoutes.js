@@ -381,13 +381,14 @@ const GENERAL = [
     exact: true,
   },
   {
-    name: 'Terms & Policies',
-    shortName: LINKS.GENERAL.TERMS_POLICIES.split('/')[1],
-    path: LINKS.GENERAL.TERMS_POLICIES,
-    asyncRoutePath: './Policy',
+    name: 'Legal',
+    shortName: LINKS.GENERAL.LEGAL.split('/')[1],
+    path: LINKS.GENERAL.LEGAL,
+    asyncRoutePath: './Legal',
     idNumber: 204,
     exact: true,
   },
+
   // TODO: Add the remaining general routes: Archive, Terms & Policies, SAC and Clubs, Health, Emergency
 ];
 
