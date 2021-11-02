@@ -18,7 +18,7 @@ import ActivityIndicator from '../components/shared/ActivityIndicator';
 import ROUTES from '../utils/getRoutes';
 
 // Graphql
-import GetArticlesByCategories from '../graphql/queries/getArticlesByCategories';
+import getArticlesByCategories from '../graphql/queries/category/getArticlesByCategories';
 
 function Witsdom() {
   // 1. Determine category from the url.
@@ -38,7 +38,7 @@ function Witsdom() {
   const isGallery = subCategory === 'gallery';
   const commonArticleProps = { isWitsdom, isPhotostory, isGallery };
 
-  const { loading, error, data } = useQuery(GetArticlesByCategories, {
+  const { loading, error, data } = useQuery(getArticlesByCategories, {
     variables: {
       categoryNumbers: [subCategoryDetails.idNumber],
       limit: 7,
