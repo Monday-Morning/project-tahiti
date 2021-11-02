@@ -1,7 +1,7 @@
 import React from 'react';
 
 // libraries
-import { makeStyles, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import { Element } from 'react-scroll';
 
 // Components
