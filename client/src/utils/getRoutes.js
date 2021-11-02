@@ -352,9 +352,11 @@ const INDIVIDUALS = [
   },
 ];
 
+// ========================= INTERACTIONS =========================
 // TODO: Add the route objects for Interactions: Calendar, Polls, Forums Pages.
 const INTERACTIONS = [];
 
+// ========================= GENERAL =========================
 const GENERAL = [
   {
     name: 'About',
@@ -391,6 +393,7 @@ const GENERAL = [
   // TODO: Add the remaining general routes: Archive, Terms & Policies, SAC and Clubs, Health, Emergency
 ];
 
+// ========================= USER =========================
 const USER = [
   {
     name: 'Onboarding',
@@ -407,6 +410,15 @@ const USER = [
     asyncRoutePath: './UserProfile',
     idNumber: 301,
     exact: true,
+  },
+];
+
+// ========================= REDIRECTS =========================
+const REDIRECTS = [
+  {
+    name: '404 Not Found',
+    path: '*',
+    to: LINKS.ERROR.NOT_FOUND,
   },
 ];
 
@@ -428,4 +440,5 @@ export default Object.freeze({
   INTERACTIONS,
   GENERAL,
   USER,
+  REDIRECTS,
 });
