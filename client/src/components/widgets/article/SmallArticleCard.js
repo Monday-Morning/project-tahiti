@@ -13,6 +13,7 @@ import { DEFAULT_ARTICLE } from '../../../assets/placeholder/article';
 // Utils
 import getArticleLink from '../../../utils/getArticleLink';
 import limitAuthor from '../../../utils/limitAuthor';
+import STORES from '../../../utils/getStores';
 
 const SmallArticleCard = ({
   isWitsdom,
@@ -37,7 +38,10 @@ const SmallArticleCard = ({
         className={classes.imgContainer}
       >
         <img
-          src={article.coverMedia.rectangle.storePath}
+          src={
+            STORES[article.coverMedia.rectangle.store] +
+            encodeURI(article.coverMedia.rectangle.storePath)
+          }
           alt='Cover'
           className={classes.img}
         />
