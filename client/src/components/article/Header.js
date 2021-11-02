@@ -81,10 +81,10 @@ const ArticleHeader = ({ article, articleTitle }) => {
 
           <div className={classes.wrapper}>
             <div className={classes.authorList}>
-              {authors.map(({ name }) => (
+              {authors.map(({ name, details }) => (
                 <Link
-                  to='/portfolio/id/title'
-                  key={name}
+                  to={`/portfolio/${details}/${encodeURI(name)}`}
+                  key={details}
                   target='_blank'
                   rel='noreferrer'
                   style={{ textDecoration: 'none' }}
