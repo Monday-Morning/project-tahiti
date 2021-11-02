@@ -22,12 +22,12 @@ const ReactionIcon = () => {
   );
 };
 
-const SidePanel = ({ structuredContent, toggleSidebar, articleTitle }) => {
+const SidePanel = ({ content, toggleSidebar, articleTitle }) => {
   const classes = useStyles();
 
   return (
     <div className={toggleSidebar ? classes.expanded : classes.wrapper}>
-      <TableOfContent structuredContent={structuredContent} />
+      <TableOfContent content={content} />
 
       {/* Reactions */}
       <div className={classes.reactionsWrapper}>
