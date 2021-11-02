@@ -2,7 +2,10 @@ import React from 'react';
 
 // Libraries
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardContent, Button } from '@material-ui/core';
+import { Card, CardContent, Button, Typography } from '@material-ui/core';
+
+// Components
+import MarkdownWrapper from '../shared/MarkdownWrapper';
 
 // Theme
 import theme from '../../config/themes/light';
@@ -21,9 +24,13 @@ function Squiggles({ loading, data }) {
           </div>
           <div>
             <p className={classes.squigglesText}>
-              {loading
-                ? 'Loading...'
-                : data.listSquiggles[0].content[0].plaintext}
+              {loading ? (
+                'Loading...'
+              ) : (
+                <MarkdownWrapper variant='p' styles={classes.squigglesText}>
+                  {data.getLatestSquiggle.content}
+                </MarkdownWrapper>
+              )}
             </p>
           </div>
         </div>
