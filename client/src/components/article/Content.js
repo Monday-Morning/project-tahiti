@@ -4,103 +4,122 @@ import React from 'react';
 import { makeStyles, Typography } from '@material-ui/core';
 import { Element } from 'react-scroll';
 
+// Components
+import MarkdownWrapper from '../shared/MarkdownWrapper';
+
 // Utils
 import { CONTENT_TYPE } from '../../utils/articleContentParser';
+import STORES from '../../utils/getStores';
 
-const ArticleContent = ({ structuredContent }) => {
+const ArticleContent = ({ content }) => {
   const classes = useStyles();
 
-  const getClassName = (styles) => {
-    const classNames = [];
-    if (styles.bold) classNames.push(`${classes.boldText}`);
-    if (styles.italic) classNames.push(`${classes.italicText}`);
-    if (styles.underline) classNames.push(`${classes.underlineText}`);
-    if (styles.strikethrough) classNames.push(`${classes.strikethroughText}`);
-
-    return classNames.join(' ');
-  };
-
-  const renderContent = (contentObj, index) => {
-    const { contentType, data } = contentObj;
+  const renderContent = (contentItem, index) => {
+    const { contentType, text } = contentItem;
 
     switch (contentType) {
-      case CONTENT_TYPE.h1 || CONTENT_TYPE.h2 || CONTENT_TYPE.h3:
+      case CONTENT_TYPE.h1:
         return (
           <Element
             key={`${contentType}-${index}`}
             name={`${contentType}-${index}`}
           >
-            <Typography
-              className={classes.heading}
-              variant={contentType.toLowerCase()}
-            >
-              {data.map(({ text, styles }) => (
-                <span key={text} className={getClassName(styles)}>
-                  {text}
-                </span>
-              ))}
-            </Typography>
+            <MarkdownWrapper styles={classes.heading} variant='h1'>
+              {text}
+            </MarkdownWrapper>
           </Element>
         );
+
+      case CONTENT_TYPE.h2:
+        return (
+          <Element
+            key={`${contentType}-${index}`}
+            name={`${contentType}-${index}`}
+          >
+            <MarkdownWrapper styles={classes.heading} variant='h2'>
+              {text}
+            </MarkdownWrapper>
+          </Element>
+        );
+
+      case CONTENT_TYPE.h3:
+        return (
+          <Element
+            key={`${contentType}-${index}`}
+            name={`${contentType}-${index}`}
+          >
+            <MarkdownWrapper styles={classes.heading} variant='h3'>
+              {text}
+            </MarkdownWrapper>
+          </Element>
+        );
+
       case CONTENT_TYPE.paragraph:
         return (
-          <Typography
-            className={classes.para}
+          <Element
             key={`${contentType}-${index}`}
-            variant='body1'
+            name={`${contentType}-${index}`}
           >
-            {data.map(({ text, styles }) => (
-              <span key={text} className={getClassName(styles)}>
-                {text}
-              </span>
-            ))}
-          </Typography>
+            <MarkdownWrapper styles={classes.para} variant='body1'>
+              {text}
+            </MarkdownWrapper>
+          </Element>
         );
+
       case CONTENT_TYPE.image:
-        return data.map((dataObj) => (
+        return (
           <img
-            key={dataObj.text}
-            src={dataObj.media.storePath}
-            alt={dataObj.plainText}
+            key={`${contentType}-${index}`}
+            src={
+              STORES[contentItem.media.store] +
+              encodeURI(contentItem.media.storePath)
+            }
+            alt={text}
             className={classes.articleImg}
           />
-        ));
+        );
+
       case CONTENT_TYPE.quote:
         return (
           <div key={`${contentType}-${index}`} className={classes.blockquote}>
-            {data.map((dataObj) => (
-              <Typography variant='body1' className={classes.blockquoteData}>
-                {dataObj.text}
-              </Typography>
-            ))}
+            <MarkdownWrapper variant='body1' styles={classes.blockquoteData}>
+              {text}
+            </MarkdownWrapper>
           </div>
         );
+
+      case CONTENT_TYPE.ol:
+        return (
+          <MarkdownWrapper key={`${contentType}-${index}`} variant='body1'>
+            {text}
+          </MarkdownWrapper>
+        );
+
+      case CONTENT_TYPE.ul:
+        return (
+          <MarkdownWrapper key={`${contentType}-${index}`} variant='body1'>
+            {text}
+          </MarkdownWrapper>
+        );
+
       default:
         return (
           <Element
             key={`${contentType}-${index}`}
             name={`${contentType}-${index}`}
           >
-            <Typography
+            <MarkdownWrapper
               className={classes.heading}
               variant={contentType.toLowerCase()}
             >
-              {data.map(({ text, styles }) => (
-                <span key={text} className={getClassName(styles)}>
-                  {text}
-                </span>
-              ))}
-            </Typography>
+              {text}
+            </MarkdownWrapper>
           </Element>
         );
     }
   };
 
-  return (
-    <div>
-      {structuredContent.map((obj, index) => renderContent(obj, index))}
-    </div>
-  );
+  return content.map(renderContent);
 };
 
 export default ArticleContent;
@@ -132,9 +151,6 @@ const useStyles = makeStyles((theme) => ({
     borderLeft: '4px solid',
     borderColor: theme.palette.common.black,
     minHeight: '60px',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
   },
 
   // Custom Text Styles
