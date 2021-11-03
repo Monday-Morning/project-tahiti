@@ -152,25 +152,4 @@ const useStyles = makeStyles((theme) => ({
     borderColor: theme.palette.common.black,
     minHeight: '60px',
   },
-
-  // Custom Text Styles
-  boldText: {
-    fontWeight: 'bold',
-  },
-  underlineText: {
-    textDecoration: 'underline',
-  },
-  italicText: {
-    fontStyle: 'italic',
-  },
-  strikethroughText: {
-    textDecoration: 'line-through',
-  },
-  // customSizeText: {},
-
-  // Custom Block Styles
-  // alignLeft: {},
-  // alignCenter: {},
-  // alignRight: {},
-  // alignJustify: {},
 }));
