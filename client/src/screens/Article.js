@@ -26,7 +26,6 @@ import theme from '../config/themes/light';
 import getArticleByID from '../graphql/queries/article/getArticleByID';
 
 // Utils
-import getStructuredContent from '../utils/articleContentParser';
 import getArticleLink, { getArticleSlug } from '../utils/getArticleLink';
 
 function Article() {
