@@ -13,7 +13,7 @@ function ArticleCardStack({ articleList, title }) {
     <div>
       {title ? <TitleWrapper title={title} /> : false}
       <div className={classes.root}>
-        {articleList.map((article, index) => (
+        {articleList?.map((article, index) => (
           <ArticleCard
             key={article.id}
             article={article}

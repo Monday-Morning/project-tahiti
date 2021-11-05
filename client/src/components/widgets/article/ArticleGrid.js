@@ -11,6 +11,8 @@ import NewTabLink from '../../shared/links/NewTabLink';
 import limitString from '../../../utils/limitString';
 import getCategory from '../../../utils/determineCategory';
 import limitAuthor from '../../../utils/limitAuthor';
+import STORES from '../../../utils/getStores';
+import getArticleLink from '../../../utils/getArticleLink';
 
 const ArticleItem = ({ article, isLarge, className }) => {
   const {
@@ -20,17 +22,17 @@ const ArticleItem = ({ article, isLarge, className }) => {
     readTime,
     authors,
     coverMedia: {
-      rectangle: { storePath },
+      square: { store, storePath },
     },
   } = article;
   const classes = useStylesItem({
-    storePath: storePath.split(' ').join('%20'),
+    storePath: STORES[store] + encodeURI(storePath),
     isLarge,
   });
 
   return (
     <NewTabLink
-      to={`/article/${id}/${title}`}
+      to={getArticleLink(id, title)}
       className={`${classes.link} ${className}`}
     >
       <article className={classes.articleContainer}>
@@ -207,12 +209,12 @@ function ArticleGrid({ articles }) {
         article={articles[0]}
       />
 
-      {[0, 1, 2, 3].map((number) => (
+      {[1, 2, 3, 4].map((number) => (
         <ArticleItem
           key={number}
           className={`${classes.article} ${classes.small}`}
           isLarge={false}
-          article={articles[number + 1]}
+          article={articles[number]}
         />
       ))}
     </section>

@@ -1,6 +1,9 @@
 import { useLocation } from 'react-router-dom';
 // import ROUTES from './getRoutes';
 
+export const getArticleSlug = (title) =>
+  title.replace(/\W/g, '-').replace(/-{2,}/g, '-');
+
 export default (id, title, typeObject = null) => {
   let artilceTypeObject = typeObject;
   const { pathname } = useLocation();
@@ -20,8 +23,8 @@ export default (id, title, typeObject = null) => {
   }
   const { isWitsdom, isGallery, isPhotostory } = artilceTypeObject;
 
-  if (isWitsdom) return `/article/${id}/${title}`;
-  if (isGallery) return `/gallery/${id}/${title}`;
-  if (isPhotostory) return `/photostory/${id}/${title}`;
-  return `/article/${id}/${title}`;
+  if (isWitsdom) return `/article/${id}/${getArticleSlug(title)}`;
+  if (isGallery) return `/gallery/${id}/${getArticleSlug(title)}`;
+  if (isPhotostory) return `/photostory/${id}/${getArticleSlug(title)}`;
+  return `/article/${id}/${getArticleSlug(title)}`;
 };

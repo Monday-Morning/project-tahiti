@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import theme from '../../config/themes/light';
 import getCategory from '../../utils/determineCategory';
 import Share from '../widgets/Share';
+import STORES from '../../utils/getStores';
 
 const ArticleHeader = ({ article, articleTitle }) => {
   const Desktop = useMediaQuery(theme.breakpoints.up('sm'));
@@ -28,14 +29,14 @@ const ArticleHeader = ({ article, articleTitle }) => {
     updatedAt,
     categories,
     coverMedia: {
-      rectangle: { storePath },
+      rectangle: { store, storePath },
     },
   } = article;
 
   return (
     <div className={classes.container}>
       <img
-        src={storePath}
+        src={STORES[store] + encodeURI(storePath)}
         alt={`Monday Morning Article Cover for: ${articleTitle}`}
         className={classes.coverImg}
       />
@@ -80,10 +81,10 @@ const ArticleHeader = ({ article, articleTitle }) => {
 
           <div className={classes.wrapper}>
             <div className={classes.authorList}>
-              {authors.map(({ name }) => (
+              {authors.map(({ name, details }) => (
                 <Link
-                  to='/portfolio/id/title'
-                  key={name}
+                  to={`/portfolio/${details}/${encodeURI(name)}`}
+                  key={details}
                   target='_blank'
                   rel='noreferrer'
                   style={{ textDecoration: 'none' }}

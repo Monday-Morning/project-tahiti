@@ -10,7 +10,7 @@ import { makeStyles, Typography } from '@material-ui/core';
 import { CONTENT_TYPE } from '../../utils/articleContentParser';
 import limitString from '../../utils/limitString';
 
-const TableOfContent = ({ structuredContent }) => {
+const TableOfContent = ({ content }) => {
   const classes = useStyles();
   const getIndentClasses = (contentType) => {
     if (contentType === CONTENT_TYPE.h2) return `${classes.indentH2}`;
@@ -27,11 +27,13 @@ const TableOfContent = ({ structuredContent }) => {
       <Typography variant='h3'>Table of Contents</Typography>
       <div>
         <ol>
-          {structuredContent.map(
-            ({ contentType, data }, primaryIndex) =>
-              isApplicable(contentType) &&
-              data.map(({ text }, index) => (
-                <li key={`${text}-${index}`} className={classes.indexList}>
+          {content.map(
+            ({ contentType, text }, primaryIndex) =>
+              isApplicable(contentType) && (
+                <li
+                  key={`${text}-${primaryIndex}`}
+                  className={classes.indexList}
+                >
                   <Link
                     to={`${contentType}-${primaryIndex}`}
                     className={`${classes.indexLink} ${getIndentClasses(
@@ -43,7 +45,7 @@ const TableOfContent = ({ structuredContent }) => {
                     {limitString(text, 15)}
                   </Link>
                 </li>
-              )),
+              ),
           )}
         </ol>
       </div>

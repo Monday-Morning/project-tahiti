@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 
 // libraries
 import { Container, Grid, useMediaQuery } from '@material-ui/core';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Redirect } from 'react-router-dom';
 import { useDrag } from 'react-use-gesture';
 import { useQuery } from '@apollo/client';
 
@@ -23,19 +23,18 @@ import SidePanel from '../components/article/SidePanel';
 import theme from '../config/themes/light';
 
 // Queries
-import GetArticleByID from '../graphql/queries/getArticleByID';
+import getArticleByID from '../graphql/queries/article/getArticleByID';
 
 // Utils
-import getStructuredContent from '../utils/articleContentParser';
+import getArticleLink, { getArticleSlug } from '../utils/getArticleLink';
 
 function Article() {
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const isMatch = useMediaQuery(theme.breakpoints.down('sm'));
   const location = useLocation();
   const articleID = location.pathname.split('/')[2];
-  const articleTitle = location.pathname.split('/')[3];
 
-  const { loading, error, data } = useQuery(GetArticleByID, {
+  const { loading, error, data } = useQuery(getArticleByID, {
     variables: { id: articleID },
   });
 
@@ -55,17 +54,20 @@ function Article() {
   if (loading && !data) return <ActivityIndicator size={150} />;
   if (error) return <div>{error}</div>;
 
-  const { getArticle: article } = data;
-  const structuredContent = getStructuredContent(article?.content);
+  const { getArticleByID: article } = data;
+
+  if (location.pathname.split('/')[3] !== getArticleSlug(article.title)) {
+    return <Redirect to={getArticleLink(articleID, article.title)} />;
+  }
 
   return (
     <div>
       <Container {...bind()}>
-        <ArticleHeader article={article} articleTitle={articleTitle} />
+        <ArticleHeader article={article} articleTitle={article.title} />
 
         <Grid container>
           <Grid item md={9}>
-            <ArticleContent structuredContent={structuredContent} />
+            <ArticleContent content={article.content} />
             <Disclaimer />
             <ArticleTags tags={article?.tags} />
             <hr />
@@ -74,9 +76,9 @@ function Article() {
 
           <Grid item md={3}>
             <SidePanel
-              structuredContent={structuredContent}
+              content={article.content}
               toggleSidebar={toggleSidebar}
-              articleTitle={articleTitle}
+              articleTitle={article.title}
             />
           </Grid>
         </Grid>

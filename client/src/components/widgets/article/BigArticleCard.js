@@ -22,6 +22,7 @@ import getArticleLink from '../../../utils/getArticleLink';
 // Assets
 import { DEFAULT_ARTICLE } from '../../../assets/placeholder/article';
 import limitAuthor from '../../../utils/limitAuthor';
+import STORES from '../../../utils/getStores';
 
 const BigArticleCard = ({
   isWitsdom,
@@ -55,7 +56,10 @@ const BigArticleCard = ({
       >
         <img
           className={classes.cover}
-          src={article.coverMedia.rectangle.storePath}
+          src={
+            STORES[article.coverMedia.rectangle.store] +
+            encodeURI(article.coverMedia.rectangle.storePath)
+          }
           alt='Cover'
         />
       </NewTabLink>

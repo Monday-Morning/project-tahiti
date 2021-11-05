@@ -16,11 +16,11 @@ import SocialMedia from '../components/homepage/SocialMedia';
 import ArticleGrid from '../components/widgets/article/ArticleGrid';
 
 // Queries
-import GetLatestIssue from '../graphql/queries/getLatestIssue';
-import GetSquiggles from '../graphql/queries/getSquiggles';
+import GetLatestIssues from '../graphql/queries/homepage/getLatestIssues';
+import getLatestSquiggle from '../graphql/queries/homepage/getLatestSquiggle';
 
 function Home() {
-  const { loading, error, data } = useQuery(GetLatestIssue, {
+  const { loading, error, data } = useQuery(GetLatestIssues, {
     variables: { limit: 3 },
   });
 
@@ -28,15 +28,13 @@ function Home() {
     loading: squigglesLoading,
     error: squigglesError,
     data: squigglesData,
-  } = useQuery(GetSquiggles, {
-    variables: { limit: 1 },
-  });
+  } = useQuery(getLatestSquiggle);
 
   if (loading && !data) return <ActivityIndicator size={150} />;
   if (error) return <div>{JSON.stringify(error)}</div>;
   if (squigglesError) return <div>{JSON.stringify(error)}</div>;
 
-  const { listIssues: issues } = data;
+  const { getLatestIssues: issues } = data;
 
   const latestIssue = issues[0];
   const secondLatestIssue = issues[1];

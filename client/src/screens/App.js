@@ -163,9 +163,13 @@ function App() {
                 component={AsyncRoute(ROUTES.USER[1].asyncRoutePath)}
                 exact={ROUTES.USER[1].exact}
               />
-              <Route path='*'>
-                <Redirect to='/error/404' />
-              </Route>
+
+              {/* Redirects */}
+              {ROUTES.REDIRECTS.map(({ path, to }) => (
+                <Route path={path}>
+                  <Redirect to={to} />
+                </Route>
+              ))}
             </Switch>
           </Marginals>
         </Switch>
