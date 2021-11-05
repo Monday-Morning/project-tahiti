@@ -71,3 +71,8 @@ client/dist
 
 # Next
 .next
+
+# Git Secrets
+.gitsecret/keys/random_seed
+!*.secret
+client/.env.mjs
