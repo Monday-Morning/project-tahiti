@@ -30,7 +30,7 @@ const ScrollToTopButton = () => {
   }, []);
 
   return (
-    <div>
+    <div className={classes.fab}>
       <Fab
         className={classes.fab}
         color='secondary'
