@@ -1,10 +1,11 @@
 import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
 // libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Grid, Typography } from '@material-ui/core';
 // import { ArrowRightCircle } from 'react-feather';
-import { Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 
 const Footer = () => {
@@ -15,7 +16,13 @@ const Footer = () => {
         <Grid container direction='row'>
           <Grid item sm={4}>
             <div className={classes.aboutInfo}>
-              <img src={logo} alt='Monday Morning' className={classes.logo} />
+              <div className={classes.logoContainer}>
+                <Image
+                  src={logo}
+                  alt='Monday Morning'
+                  className={classes.logo}
+                />
+              </div>
               <Typography variant='body2' className={classes.aboutText}>
                 Monday Morning is the student Media Body of National Institute
                 Of Technology Rourkela. We cover all the events, issues and
@@ -33,86 +40,125 @@ const Footer = () => {
               <Grid item xs={4}>
                 <ul className={classes.categories}>
                   <li>
-                    <Typography variant='body1'>
-                      <Link to='/campus' className={classes.links}>
+                    <Link href='/campus' className={classes.links}>
+                      <Typography
+                        variant='body1'
+                        style={{ cursor: 'pointer', fontWeight: 'bolder' }}
+                      >
                         Campus
-                      </Link>
-                    </Typography>
+                      </Typography>
+                    </Link>
                   </li>
                   <li>
-                    <Typography variant='body1'>
-                      <Link to='/connect' className={classes.links}>
+                    <Link href='/connect' className={classes.links}>
+                      <Typography
+                        variant='body1'
+                        style={{ cursor: 'pointer', fontWeight: 'bolder' }}
+                      >
                         Connect
-                      </Link>
-                    </Typography>
+                      </Typography>
+                    </Link>
                   </li>
                   <li>
-                    <Typography variant='body1'>
-                      <Link to='/ddcwc' className={classes.links}>
+                    <Link href='/ddcwc' className={classes.links}>
+                      <Typography
+                        variant='body1'
+                        style={{ cursor: 'pointer', fontWeight: 'bolder' }}
+                      >
                         DD & CWC
-                      </Link>
-                    </Typography>
+                      </Typography>
+                    </Link>
                   </li>
                   <li>
-                    <Typography variant='body1'>
-                      <Link to='/career' className={classes.links}>
+                    <Link href='/career' className={classes.links}>
+                      <Typography
+                        variant='body1'
+                        style={{ cursor: 'pointer', fontWeight: 'bolder' }}
+                      >
                         Career
-                      </Link>
-                    </Typography>
+                      </Typography>
+                    </Link>
                   </li>
                   <li>
-                    <Typography variant='body1'>
-                      <Link to='/alumni' className={classes.links}>
+                    <Link href='/alumni' className={classes.links}>
+                      <Typography
+                        variant='body1'
+                        style={{ cursor: 'pointer', fontWeight: 'bolder' }}
+                      >
                         Alumni
-                      </Link>
-                    </Typography>
+                      </Typography>
+                    </Link>
                   </li>
                   <li>
-                    <Typography variant='body1'>
-                      <Link to='/expressions' className={classes.links}>
+                    <Link href='/expressions' className={classes.links}>
+                      <Typography
+                        variant='body1'
+                        style={{ cursor: 'pointer', fontWeight: 'bolder' }}
+                      >
                         Expressions
-                      </Link>
-                    </Typography>
+                      </Typography>
+                    </Link>
                   </li>
                 </ul>
               </Grid>
               <Grid item xs={4}>
                 <ul className={classes.categories}>
                   <li>
-                    <Typography variant='body1'>
-                      <Link to='/about' className={classes.links}>
+                    <Link href='/about' className={classes.links}>
+                      <Typography
+                        variant='body1'
+                        style={{ cursor: 'pointer', fontWeight: 'bolder' }}
+                      >
                         About
-                      </Link>
-                    </Typography>
+                      </Typography>
+                    </Link>
                   </li>
                   <li>
-                    <Typography variant='body1'>
-                      <Link to='/guide' className={classes.links}>
+                    <Link href='/guide' className={classes.links}>
+                      <Typography
+                        variant='body1'
+                        style={{ cursor: 'pointer', fontWeight: 'bolder' }}
+                      >
                         Guide
-                      </Link>
-                    </Typography>
+                      </Typography>
+                    </Link>
                   </li>
                   <li>
-                    <Typography variant='body1'>
-                      <Link to='/contact' className={classes.links}>
+                    <Link href='/contact' className={classes.links}>
+                      <Typography
+                        variant='body1'
+                        style={{ cursor: 'pointer', fontWeight: 'bolder' }}
+                      >
                         Contact Us
-                      </Link>
-                    </Typography>
+                      </Typography>
+                    </Link>
                   </li>
                 </ul>
               </Grid>
               <Grid item xs={4}>
                 <ul className={classes.categories}>
-                  <Typography variant='body1'>
+                  <Typography
+                    variant='body1'
+                    style={{ cursor: 'pointer', fontWeight: 'bolder' }}
+                  >
                     <li className={classes.links}>Subscribe</li>
                   </Typography>
-                  <Typography variant='body1'>
+                  <Typography
+                    variant='body1'
+                    style={{ cursor: 'pointer', fontWeight: 'bolder' }}
+                  >
                     <li className={classes.links}>Terms of Use</li>
                   </Typography>
-                  <Typography variant='body1'>
+                  <Typography
+                    variant='body1'
+                    style={{ cursor: 'pointer', fontWeight: 'bolder' }}
+                  >
                     <li className={classes.links}>Privacy Policy</li>
                   </Typography>
-                  <Typography variant='body1'>
+                  <Typography
+                    variant='body1'
+                    style={{ cursor: 'pointer', fontWeight: 'bolder' }}
+                  >
                     <li className={classes.links}>Sitemap</li>
                   </Typography>
                 </ul>
@@ -123,11 +169,13 @@ const Footer = () => {
             <div className={classes.rightSide}>
               <div>
                 <a href='https://play.google.com/store/apps/details?id=in.ac.nitrkl.mondaymorning&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+                  {/* <div className={classes.appButtonContainer}> */}
                   <img
                     alt='Get it on Google Play'
                     src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'
                     className={classes.appButton}
                   />
+                  {/* </div> */}
                 </a>
                 {/* <div className={classes.archives}>
                   <Typography variant='body1'>Archives</Typography>
@@ -192,8 +240,19 @@ const useStyles = makeStyles((theme) => ({
       padding: '0 1rem',
     },
   },
-  logo: {
+  logoContainer: {
     width: '200px',
+    '& > div': {
+      position: 'unset !important',
+    },
+    '& > span': {
+      position: 'unset !important',
+    },
+  },
+  logo: {
+    position: 'unset !important',
+    width: 'auto !important',
+    height: 'auto !important',
   },
   aboutText: {
     marginTop: '20px',
@@ -236,7 +295,6 @@ const useStyles = makeStyles((theme) => ({
   appButton: {
     marginRight: '0',
     height: '100px',
-    objectPosition: '-17px -16px',
   },
   archives: {
     marginTop: '40px',
@@ -303,5 +361,6 @@ const useStyles = makeStyles((theme) => ({
   links: {
     textDecoration: 'none',
     fontWeight: theme.typography.fontWeightBold,
+    cursor: 'pointer',
   },
 }));
