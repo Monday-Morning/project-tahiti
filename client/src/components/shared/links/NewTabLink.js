@@ -1,20 +1,20 @@
 import React from 'react';
+import Link from 'next/link';
 
 // Libraries
 import { makeStyles } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 
 const NewTabLink = ({ to, children, className }) => {
   const classes = useStyles();
 
   return (
     <Link
-      to={to}
+      href={to}
       target='_blank'
       rel='noopener noreferrer'
       className={`${classes.link} ${className}`}
     >
-      {children}
+      <span className={`${classes.link} ${className}`}>{children}</span>
     </Link>
   );
 };
