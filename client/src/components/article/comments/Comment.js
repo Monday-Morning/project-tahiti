@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 // Libraries
 import {
@@ -20,7 +21,7 @@ function Comment({ comment }) {
       <CardContent>
         <Grid container>
           <Grid item sm={1}>
-            <img src={user} alt='User Photo' />
+            <Image src={user} alt='User' />
           </Grid>
 
           <Grid item sm={11}>

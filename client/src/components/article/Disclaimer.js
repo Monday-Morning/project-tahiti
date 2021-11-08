@@ -3,7 +3,7 @@ import React from 'react';
 // libraries
 import { makeStyles, Typography } from '@material-ui/core';
 
-//placeholder
+// placeholder
 import { DISCLAIMER } from '../../assets/placeholder/article';
 
 const Disclaimer = () => {
@@ -22,7 +22,7 @@ const Disclaimer = () => {
 
 export default Disclaimer;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   wrapper: {
     marginTop: '4rem',
     marginBottom: '2rem',
