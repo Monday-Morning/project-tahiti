@@ -1,7 +1,8 @@
 import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
 // Libraries
-import { NavLink } from 'react-router-dom';
 import { BarChart, Search } from 'react-feather';
 import {
   Container,
@@ -38,11 +39,15 @@ const MobileNavbar = () => {
         />
         {/* )} */}
 
-        <img
-          src={logoFullDark}
-          alt='Monday Morning Logo'
-          className={classes.logo}
-        />
+        <div className={classes.logoContainer}>
+          <Image
+            src={logoFullDark}
+            alt='Monday Morning Logo'
+            className={classes.logo}
+            layout='fill'
+            objectFit='cover'
+          />
+        </div>
 
         <Search
           className={classes.searchIcon}
@@ -64,9 +69,9 @@ const MobileNavbar = () => {
       >
         <nav className={classes.navContainer} aria-label='Navigation Container'>
           {ROUTES.CATEGORIES.map(({ name, shortName, path }) => (
-            <NavLink
+            <Link
               key={shortName}
-              to={path}
+              href={path}
               className={classes.navLink}
               exact
               activeClassName={classes.activeHeaderLink}
@@ -75,7 +80,7 @@ const MobileNavbar = () => {
               <Typography variant='h3' className={classes.typography}>
                 {name}
               </Typography>
-            </NavLink>
+            </Link>
           ))}
         </nav>
       </SwipeableDrawer>
@@ -101,14 +106,24 @@ const useStyles = makeStyles((theme) => ({
     transform: 'rotateY(180deg) rotate(-90deg)',
     zIndex: 10000,
   },
-  logo: {
+  logoContainer: {
     position: 'absolute',
     transform: 'translate(-50%, -50%)',
     top: '50%',
     left: '50%',
-
     width: '40%',
     height: 'auto',
+    '& > div': {
+      position: 'unset !important',
+    },
+    '& > span': {
+      position: 'unset !important',
+    },
+  },
+  logo: {
+    position: 'unset !important',
+    width: 'auto !important',
+    height: 'auto !important',
   },
 
   swipeableDrawer: {
@@ -131,6 +146,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     padding: '20px',
     textDecoration: 'none',
+    cursor: 'pointer',
     color: theme.palette.secondary.neutral70,
   },
   activeHeaderLink: {},

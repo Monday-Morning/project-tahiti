@@ -1,8 +1,8 @@
 import React from 'react';
+import Link from 'next/link';
 
 // libraries
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
 
 const TopBar = () => {
   const classes = useStyles();
@@ -11,18 +11,18 @@ const TopBar = () => {
       <div className={classes.container}>
         <ul className={classes.navList}>
           <li className={classes.navItem}>
-            <Link to='/about' className={classes.navLink}>
-              About
+            <Link href='/about' className={classes.navLink}>
+              <span className={classes.navLink}>About</span>
             </Link>
           </li>
           <li className={classes.navItem}>
-            <Link to='/guide' className={classes.navLink}>
-              Guide
+            <Link href='/guide' className={classes.navLink}>
+              <span className={classes.navLink}>Guide</span>
             </Link>
           </li>
           <li className={classes.navItem}>
-            <Link to='/contact' className={classes.navLink}>
-              Contact Us
+            <Link href='/contact' className={classes.navLink}>
+              <span className={classes.navLink}>Contact Us</span>
             </Link>
           </li>
         </ul>
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
     alignItems: 'center',
     height: '40px',
-    //Container Properties
+    // Container Properties
     maxWidth: '1280px',
     paddingLeft: '16px',
     paddingRight: '16px',
@@ -68,5 +68,6 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'IBM Plex Sans',
     textDecoration: 'none',
     color: theme.palette.common.white,
+    cursor: 'pointer',
   },
 }));

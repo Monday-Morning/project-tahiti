@@ -81,6 +81,10 @@ const client = new ApolloClient({
   },
 });
 
-export default ({ children }) => (
+const ProviderWrapper = ({ children }) => (
   <ApolloProvider client={client}>{children}</ApolloProvider>
 );
+
+export { client as GraphClient };
+
+export default ProviderWrapper;

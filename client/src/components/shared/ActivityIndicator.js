@@ -1,15 +1,25 @@
 import React from 'react';
+import Image from 'next/image';
 
 // libraries
 import { makeStyles, Typography } from '@material-ui/core';
+
+// Assets
 import logo from '../../assets/images/logo_mm.png';
 
 function ActivityIndicator({ size }) {
-  const classes = useStyles(size);
+  const classes = useStyles();
   return (
     <div className={classes.wrapper}>
       <div className={classes.subWrapper}>
-        <img src={logo} alt='MM Logo' className={classes.logo} />
+        <Image
+          src={logo}
+          alt='MM Logo'
+          className={classes.logo}
+          placeholder='blur'
+          width={`${size}px`}
+          height={`${size}px`}
+        />
         <Typography variant='h1' className={classes.text}>
           Monday Morning
         </Typography>
@@ -22,7 +32,7 @@ export default ActivityIndicator;
 
 const useStyles = makeStyles(() => ({
   wrapper: {
-    width: '100vw',
+    width: '100%',
     height: '100vh',
     display: 'grid',
     alignItems: 'center',
