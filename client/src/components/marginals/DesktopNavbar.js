@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
 // Libraries
-import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Typography, TextField } from '@material-ui/core';
 
@@ -25,11 +26,15 @@ const DesktopNavbar = () => {
           aria-label='Details Container'
           className={classes.detailsContainer}
         >
-          <img
-            src={logoFullBlack}
-            alt='Monday Morning Logo'
-            className={classes.img}
-          />
+          <div className={classes.imgContainer}>
+            <Image
+              src={logoFullBlack}
+              alt='Monday Morning Logo'
+              className={classes.img}
+              layout='fill'
+              objectFit='cover'
+            />
+          </div>
 
           <TextField
             label='Search for articles'
@@ -42,11 +47,11 @@ const DesktopNavbar = () => {
         <ul aria-label='Navbar' className={classes.menuContainer}>
           {ROUTES.CATEGORIES.map(({ name, shortName, path }) => (
             <li key={shortName} className={classes.linkContainer}>
-              <NavLink className={classes.link} aria-label='Nav Item' to={path}>
+              <Link className={classes.link} aria-label='Nav Item' href={path}>
                 <Typography variant='h2' className={`${classes.menu}`}>
                   {name}
                 </Typography>
-              </NavLink>
+              </Link>
             </li>
           ))}
         </ul>
@@ -72,9 +77,20 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: '25px',
     borderBottom: `3px solid ${theme.palette.secondary.neutral50}`,
   },
-  img: {
+  imgContainer: {
     width: '33%',
     height: 'auto',
+    '& > div': {
+      position: 'unset !important',
+    },
+    '& > span': {
+      position: 'unset !important',
+    },
+  },
+  img: {
+    position: 'unset !important',
+    width: 'auto !important',
+    height: 'auto !important',
   },
 
   menuContainer: {
@@ -88,11 +104,13 @@ const useStyles = makeStyles((theme) => ({
   linkContainer: {
     display: 'inline-block',
     width: '100%',
+    cursor: 'pointer',
     height: '100%',
   },
   link: {
     textDecoration: 'none',
     color: theme.palette.secondary.neutral60,
+    cursor: 'pointer',
   },
   menu: {
     textAlign: 'center',

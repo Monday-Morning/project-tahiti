@@ -158,3 +158,40 @@ table {
 [tabindex] {
   outline: none !important;
 }
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+.logo {
+  width: 200px;
+  height: 200px;
+  animation: rotation 2s infinite linear;
+}
+
+.text {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 2rem;
+  line-height: 3rem;
+}
+
+.subWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
