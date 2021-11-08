@@ -1,21 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 // libraries
 import { Grid, makeStyles, Typography } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Bookmark } from 'react-feather';
 import moment from 'moment';
-import { Link } from 'react-router-dom';
 
 // Config + Utilities
 import theme from '../../config/themes/light';
 import getCategory from '../../utils/determineCategory';
 import Share from '../widgets/Share';
 import STORES from '../../utils/getStores';
+import ActivityIndicator from '../shared/ActivityIndicator';
 
-const ArticleHeader = ({ article, articleTitle }) => {
+const ArticleHeader = ({ article }) => {
+  const { isFallback, pathname } = useRouter();
   const Desktop = useMediaQuery(theme.breakpoints.up('sm'));
   const classes = useStyles();
+  const [pageHref, setPageHref] = useState(pathname);
+  useEffect(() => setPageHref(window.location.href), []);
+
+  if (isFallback || !article) return <ActivityIndicator size={150} />;
 
   const categorySortFunction = (firstObj, secondObj) => {
     if (firstObj.number.toString() < secondObj.number.toString()) return -1;
@@ -24,6 +32,7 @@ const ArticleHeader = ({ article, articleTitle }) => {
   };
 
   const {
+    title,
     authors,
     readTime,
     updatedAt,
@@ -35,11 +44,15 @@ const ArticleHeader = ({ article, articleTitle }) => {
 
   return (
     <div className={classes.container}>
-      <img
-        src={STORES[store] + encodeURI(storePath)}
-        alt={`Monday Morning Article Cover for: ${articleTitle}`}
-        className={classes.coverImg}
-      />
+      <div className={classes.coverImgContainer}>
+        <Image
+          src={STORES[store] + encodeURI(storePath)}
+          alt={`Monday Morning Article Cover for: ${title}`}
+          layout='fill'
+          objectFit='cover'
+          className={classes.coverImg}
+        />
+      </div>
 
       <Grid container className={classes.container}>
         <Grid item md={9}>
@@ -70,7 +83,7 @@ const ArticleHeader = ({ article, articleTitle }) => {
           </Grid>
 
           <Typography className={classes.title} variant={Desktop ? 'h1' : 'h2'}>
-            {articleTitle}
+            {title}
           </Typography>
 
           <Typography className={classes.publishDate}>
@@ -83,11 +96,11 @@ const ArticleHeader = ({ article, articleTitle }) => {
             <div className={classes.authorList}>
               {authors.map(({ name, details }) => (
                 <Link
-                  to={`/portfolio/${details}/${encodeURI(name)}`}
+                  href={`/portfolio/${details}/${encodeURI(name)}`}
                   key={details}
                   target='_blank'
                   rel='noreferrer'
-                  style={{ textDecoration: 'none' }}
+                  style={{ textDecoration: 'none', cursor: 'pointer' }}
                 >
                   <div key={name} className={classes.authorWrapper}>
                     {/* <img
@@ -109,7 +122,7 @@ const ArticleHeader = ({ article, articleTitle }) => {
                 <Volume2 size={Desktop ? 18 : 10} />
               </span> */}
               <span className={classes.utilityIcon}>
-                <Share title={articleTitle} url={window.location.href} />
+                <Share title={title} url={pageHref} />
               </span>
               <span className={classes.utilityIcon}>
                 <Bookmark size={Desktop ? 18 : 10} />
@@ -130,10 +143,21 @@ const useStyles = makeStyles(() => ({
   container: {
     marginTop: '2rem',
   },
-  coverImg: {
+  coverImgContainer: {
     width: '100%',
     height: 'auto',
     objectFit: 'cover',
+    '& > div': {
+      position: 'unset !important',
+    },
+    '& > span': {
+      position: 'unset !important',
+    },
+  },
+  coverImg: {
+    position: 'unset !important',
+    width: 'auto !important',
+    height: 'auto !important',
     borderRadius: theme.shape.borderRadius,
   },
   tag: {
@@ -174,6 +198,7 @@ const useStyles = makeStyles(() => ({
   },
   authorWrapper: {
     display: 'flex',
+    cursor: 'pointer',
     alignItems: 'center',
   },
   authorImg: {

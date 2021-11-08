@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 // libraries
 import { makeStyles, Button } from '@material-ui/core';
@@ -13,7 +14,7 @@ const Comments = ({ handleSubmit, setComment, comment }) => {
     <form onSubmit={handleSubmit}>
       <div className={classes.commentWrapper}>
         <div className={classes.inputWrapper}>
-          <img src={user} alt='User Photo' />
+          <Image src={user} alt='User' />
           <input
             className={classes.commentInput}
             name='comment'

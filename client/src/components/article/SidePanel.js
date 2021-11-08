@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // libraries
 import { makeStyles } from '@material-ui/core';
@@ -24,6 +24,9 @@ const ReactionIcon = () => {
 
 const SidePanel = ({ content, toggleSidebar, articleTitle }) => {
   const classes = useStyles();
+  const [windowHref, setWindowHref] = useState(null);
+
+  useEffect(() => setWindowHref(window.location.href), []);
 
   return (
     <div className={toggleSidebar ? classes.expanded : classes.wrapper}>
@@ -35,7 +38,7 @@ const SidePanel = ({ content, toggleSidebar, articleTitle }) => {
           <ReactionIcon />
         </span>
         <span className={classes.icon}>
-          <Share title={articleTitle} url={window.location.href} size={28} />
+          <Share title={articleTitle} url={windowHref} size={28} />
         </span>
         <span className={classes.icon}>
           <Link

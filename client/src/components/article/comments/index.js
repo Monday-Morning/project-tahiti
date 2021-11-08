@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // libraries
-import { Container, makeStyles, Typography, Button } from '@material-ui/core';
+import { makeStyles, Typography } from '@material-ui/core';
 import { Element } from 'react-scroll';
 
 // Components
@@ -24,7 +24,7 @@ const Comments = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const commentData = { user: 'John Doe', comment: comment };
+    const commentData = { user: 'John Doe', comment };
 
     setComments(comments.concat(commentData));
     resetComment();
@@ -50,9 +50,9 @@ const Comments = () => {
               Hide all comments ({comments.length})
             </Typography>
             <div className={classes.userCommentsWrapper}>
-              {comments.map((comment, index) => {
-                return <Comment comment={comment} key={index} />;
-              })}
+              {comments.map((_comment, index) => (
+                <Comment comment={_comment} key={index} />
+              ))}
             </div>
           </>
         ) : (
@@ -70,7 +70,7 @@ const Comments = () => {
 
 export default Comments;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   container: {
     marginTop: '2rem',
   },

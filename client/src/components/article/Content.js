@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 // libraries
 import { makeStyles } from '@material-ui/core';
@@ -68,15 +69,21 @@ const ArticleContent = ({ content }) => {
 
       case CONTENT_TYPE.image:
         return (
-          <img
-            key={`${contentType}-${index}`}
-            src={
-              STORES[contentItem.media.store] +
-              encodeURI(contentItem.media.storePath)
-            }
-            alt={text}
-            className={classes.articleImg}
-          />
+          <div
+            className={classes.articleImgContainer}
+            key={`div-${contentType}-${index}`}
+          >
+            <Image
+              key={`${contentType}-${index}`}
+              src={
+                STORES[contentItem.media.store] +
+                encodeURI(contentItem.media.storePath)
+              }
+              alt={text}
+              layout='fill'
+              className={classes.articleImg}
+            />
+          </div>
         );
 
       case CONTENT_TYPE.quote:
@@ -134,9 +141,21 @@ const useStyles = makeStyles((theme) => ({
   heading: {
     marginTop: '0.5rem',
   },
-  articleImg: {
+  articleImgContainer: {
+    margin: '25px 0px',
     width: '100%',
     height: 'auto',
+    '& > div': {
+      position: 'unset !important',
+    },
+    '& > span': {
+      position: 'unset !important',
+    },
+  },
+  articleImg: {
+    position: 'unset !important',
+    width: 'auto !important',
+    height: 'auto !important',
   },
   blockquote: {
     paddingLeft: '4rem',
