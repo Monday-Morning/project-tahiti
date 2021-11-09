@@ -6,7 +6,10 @@ import Image from 'next/image';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Grid, Typography } from '@material-ui/core';
 // import { ArrowRightCircle } from 'react-feather';
+
+// Assets
 import logo from '../../assets/images/logo.png';
+import googlePlay from '../../assets/images/logos/google_play.png';
 
 const Footer = () => {
   const classes = useStyles();
@@ -299,9 +302,23 @@ const useStyles = makeStyles((theme) => ({
       padding: '0 1rem',
     },
   },
-  appButton: {
+  appButtonContainer: {
     marginRight: '0',
     height: '100px',
+    '& > span': {
+      position: 'unset !important',
+    },
+    '& > div': {
+      position: 'unset !important',
+    },
+    '& > span > span': {
+      display: 'none !important',
+    },
+  },
+  appButton: {
+    position: 'unset !important',
+    width: 'auto !important',
+    height: '100px !important',
   },
   archives: {
     marginTop: '40px',
