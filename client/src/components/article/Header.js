@@ -97,6 +97,7 @@ const ArticleHeader = ({ article }) => {
               {authors.map(({ name, details }) => (
                 <Link
                   href={`/portfolio/${details}/${encodeURI(name)}`}
+                  passHref
                   key={details}
                   target='_blank'
                   rel='noreferrer'
