@@ -22,6 +22,12 @@ const TableOfContent = ({ content }) => {
     contentType === CONTENT_TYPE.h2 ||
     contentType === CONTENT_TYPE.h3;
 
+  if (
+    content.filter(({ contentType }) => isApplicable(contentType)).length <= 0
+  ) {
+    return null;
+  }
+
   return (
     <div className={classes.wrapper}>
       <Typography variant='h3'>Table of Contents</Typography>
