@@ -24,6 +24,7 @@ const Footer = () => {
                   src={logo}
                   alt='Monday Morning'
                   className={classes.logo}
+                  layout='responsive'
                 />
               </div>
               <Typography variant='body2' className={classes.aboutText}>
@@ -37,7 +38,7 @@ const Footer = () => {
           <Grid item sm={4} className={classes.containerGrid}>
             <Grid
               container
-              justify='space-between'
+              justifyContent='space-between'
               className={classes.categoryContainer}
             >
               <Grid item xs={4}>
@@ -184,6 +185,7 @@ const Footer = () => {
                       alt='Get it on Google Play'
                       src={googlePlay}
                       className={classes.appButton}
+                      layout='responsive'
                     />
                   </div>
                 </Link>
@@ -242,6 +244,7 @@ export default Footer;
 const useStyles = makeStyles((theme) => ({
   wrapper: {
     paddingTop: '50px',
+    marginTop: '25px',
     backgroundColor: theme.palette.secondary.neutral20,
   },
   aboutInfo: {
@@ -252,17 +255,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logoContainer: {
     width: '200px',
-    '& > div': {
-      position: 'unset !important',
-    },
-    '& > span': {
-      position: 'unset !important',
-    },
-  },
-  logo: {
-    position: 'unset !important',
-    width: 'auto !important',
-    height: 'auto !important',
+    display: 'block',
   },
   aboutText: {
     marginTop: '20px',
@@ -304,21 +297,8 @@ const useStyles = makeStyles((theme) => ({
   },
   appButtonContainer: {
     marginRight: '0',
-    height: '100px',
-    '& > span': {
-      position: 'unset !important',
-    },
-    '& > div': {
-      position: 'unset !important',
-    },
-    '& > span > span': {
-      display: 'none !important',
-    },
-  },
-  appButton: {
-    position: 'unset !important',
-    width: 'auto !important',
-    height: '100px !important',
+    width: '250px',
+    display: 'block',
   },
   archives: {
     marginTop: '40px',

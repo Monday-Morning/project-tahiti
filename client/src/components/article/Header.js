@@ -147,10 +147,7 @@ const useStyles = makeStyles(() => ({
   coverImgContainer: {
     width: '100%',
     height: 'auto',
-    objectFit: 'cover',
-    '& > div': {
-      position: 'unset !important',
-    },
+    position: 'relative',
     '& > span': {
       position: 'unset !important',
     },
