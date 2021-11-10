@@ -7,6 +7,7 @@ import '../../public/index.css';
 // Libraries
 import { ThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 // Providers
 import ApolloClient from '../config/ApolloClient';
@@ -19,6 +20,8 @@ import ScrollToTopButton from '../components/shared/button/ScrollToTopButton';
 import lightTheme from '../config/themes/light';
 
 function TahitiApp({ Component, pageProps }) {
+  const classes = useStyles();
+
   return (
     <ApolloClient>
       <Head>
@@ -91,7 +94,7 @@ function TahitiApp({ Component, pageProps }) {
 
         <Component {...pageProps} />
 
-        <ScrollToTopButton />
+        <ScrollToTopButton className={classes.fab} />
         {/* <ScrollToTopOnMount /> */}
       </ThemeProvider>
     </ApolloClient>
@@ -99,3 +102,12 @@ function TahitiApp({ Component, pageProps }) {
 }
 
 export default TahitiApp;
+
+const useStyles = makeStyles((theme) => ({
+  fab: {
+    position: 'fixed',
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
+    boxShadow: `0px 0px 10px #5a5a5a`,
+  },
+}));
