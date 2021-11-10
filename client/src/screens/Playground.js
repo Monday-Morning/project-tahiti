@@ -1,12 +1,24 @@
 import React from 'react';
-
+import Image from '../components/shared/image/Image';
 import { makeStyles, Typography } from '@material-ui/core';
+
+// import src1 from 'https://mondaymorning.nitrkl.ac.in/uploads/media/WhatsApp%20Image%202020-10-05%20at%2000.32.29%20%282%29.jpeg';
+import src2 from '../assets/images/instagram/insta4.jpeg';
+import src3 from '../assets/images/instagram/insta5.jpeg';
 
 export default () => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
+      <Image src={'https://mondaymorning.nitrkl.ac.in/uploads/media/DD.jpg'} />
+      <Image src={src3} />
+      <Image
+        src={
+          'https://mondaymorning.nitrkl.ac.in/uploads/media/Instagram%20post%20-%201%20%285%29-compressed.jpg'
+        }
+      />
+      <Image src={'https://mondaymorning.nitrkl.ac.in/uploads/media/ssc.png'} />
       <div className={classes.one}>
         <h1 className={classes.h1}>This is H1 text</h1>
         <h2 className={classes.h2}>This is H2 text</h2>
@@ -29,8 +41,8 @@ export default () => {
 const useStyles = makeStyles(() => ({
   root: {
     height: '100vh',
-    display: 'flex',
-    alignItems: 'center',
+    // display: 'flex',
+    // alignItems: 'center',
     justifyContent: 'space-around',
   },
   one: {
