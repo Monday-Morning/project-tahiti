@@ -3,7 +3,7 @@ import React from 'react';
 // libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 // Helpers
 import ROUTES from '../../utils/getRoutes';
@@ -17,7 +17,7 @@ function Trending() {
       <div className={classes.CategoryWrapper}>
         {ROUTES.SUB_CATEGORIES.OBJECT.CAMPUS.map(
           ({ name, shortName, path, idNumber }) => (
-            <Link to={path} key={`${shortName}-${idNumber}`}>
+            <Link passHref href={path} key={`${shortName}-${idNumber}`}>
               <Typography variant='h3' className={classes.category}>
                 {name}
               </Typography>
