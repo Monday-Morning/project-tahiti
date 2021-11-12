@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 // libararies
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,7 +11,7 @@ function PhotoStory() {
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
-      <img className={classes.Image} src={photoStory} alt='PhotoStory' />
+      <Image className={classes.img} src={photoStory} alt='PhotoStory' />
     </div>
   );
 }
@@ -20,8 +21,9 @@ export default PhotoStory;
 const useStyles = makeStyles((theme) => ({
   wrapper: {
     borderRadius: '8px',
+    width: '100%',
   },
-  Image: {
+  img: {
     width: '100%',
     objectFit: 'cover',
   },

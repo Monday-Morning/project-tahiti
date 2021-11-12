@@ -10,7 +10,7 @@ import MarkdownWrapper from '../shared/MarkdownWrapper';
 // Theme
 import theme from '../../config/themes/light';
 
-function Squiggles({ loading, data }) {
+function Squiggles({ data }) {
   const classes = useStyles(theme);
 
   return (
@@ -24,13 +24,9 @@ function Squiggles({ loading, data }) {
           </div>
           <div>
             <p className={classes.squigglesText}>
-              {loading ? (
-                'Loading...'
-              ) : (
-                <MarkdownWrapper variant='p' styles={classes.squigglesText}>
-                  {data.getLatestSquiggle.content}
-                </MarkdownWrapper>
-              )}
+              <MarkdownWrapper variant='body1' styles={classes.squigglesText}>
+                {data.content}
+              </MarkdownWrapper>
             </p>
           </div>
         </div>

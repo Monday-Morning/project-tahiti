@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 // Libraries
 import { Card, makeStyles, Typography } from '@material-ui/core';
@@ -37,14 +38,17 @@ const SmallArticleCard = ({
         })}
         className={classes.imgContainer}
       >
-        <img
-          src={
-            STORES[article.coverMedia.rectangle.store] +
-            encodeURI(article.coverMedia.rectangle.storePath)
-          }
-          alt='Cover'
-          className={classes.img}
-        />
+        <div className={classes.imgItemContainer}>
+          <Image
+            src={
+              STORES[article.coverMedia.rectangle.store] +
+              encodeURI(article.coverMedia.rectangle.storePath)
+            }
+            alt='Cover'
+            layout='fill'
+            className={classes.img}
+          />
+        </div>
       </NewTabLink>
 
       <div className={classes.contentContainer}>
@@ -120,13 +124,26 @@ const useStyles = makeStyles((theme) => ({
     borderTopRightRadius: '0px',
     borderBottomRightRadius: '0px',
   },
-  img: {
+  imgItemContainer: {
     width: '100%',
     height: '100%',
+    '& > span': {
+      position: 'unset !important',
+    },
+    '& > span > span': {
+      display: 'none !important',
+    },
+    overflow: 'hidden',
+    position: 'relative',
+  },
+  img: {
     borderRadius: '5px',
     borderTopRightRadius: '0px',
     borderBottomRightRadius: '0px',
     objectFit: 'cover',
+    position: 'unset !important',
+    width: 'auto !important',
+    height: 'auto !important',
   },
   contentContainer: {
     flex: 1,
