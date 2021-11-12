@@ -97,6 +97,7 @@ const ArticleHeader = ({ article }) => {
               {authors.map(({ name, details }) => (
                 <Link
                   href={`/portfolio/${details}/${encodeURI(name)}`}
+                  passHref
                   key={details}
                   target='_blank'
                   rel='noreferrer'
@@ -146,10 +147,7 @@ const useStyles = makeStyles(() => ({
   coverImgContainer: {
     width: '100%',
     height: 'auto',
-    objectFit: 'cover',
-    '& > div': {
-      position: 'unset !important',
-    },
+    position: 'relative',
     '& > span': {
       position: 'unset !important',
     },

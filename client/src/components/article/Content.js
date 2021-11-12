@@ -109,20 +109,26 @@ const ArticleContent = ({ content }) => {
           </MarkdownWrapper>
         );
 
+      case CONTENT_TYPE.table:
+        return null;
+
+      case CONTENT_TYPE.barGraph:
+        return null;
+
+      case CONTENT_TYPE.columnGraph:
+        return null;
+
+      case CONTENT_TYPE.lineChart:
+        return null;
+
+      case CONTENT_TYPE.pieChart:
+        return null;
+
+      case CONTENT_TYPE.horizontalLine:
+        return <hr />;
+
       default:
-        return (
-          <Element
-            key={`${contentType}-${index}`}
-            name={`${contentType}-${index}`}
-          >
-            <MarkdownWrapper
-              className={classes.heading}
-              variant={contentType.toLowerCase()}
-            >
-              {text}
-            </MarkdownWrapper>
-          </Element>
-        );
+        return null;
     }
   };
 
@@ -145,11 +151,11 @@ const useStyles = makeStyles((theme) => ({
     margin: '25px 0px',
     width: '100%',
     height: 'auto',
-    '& > div': {
-      position: 'unset !important',
-    },
     '& > span': {
       position: 'unset !important',
+    },
+    '& > span > span': {
+      display: 'none !important',
     },
   },
   articleImg: {

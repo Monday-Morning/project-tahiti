@@ -1,9 +1,13 @@
 import React from 'react';
 import Head from 'next/head';
 
+// Styles
+import '../../public/index.css';
+
 // Libraries
 import { ThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 // Providers
 import ApolloClient from '../config/ApolloClient';
@@ -16,6 +20,8 @@ import ScrollToTopButton from '../components/shared/button/ScrollToTopButton';
 import lightTheme from '../config/themes/light';
 
 function TahitiApp({ Component, pageProps }) {
+  const classes = useStyles();
+
   return (
     <ApolloClient>
       <Head>
@@ -26,31 +32,6 @@ function TahitiApp({ Component, pageProps }) {
         <meta
           name='viewport'
           content='width=device-width, initial-scale=1, shrink-to-fit=no'
-        />
-
-        {/* <!-- =============== Icons ===============--> */}
-        <link
-          rel='apple-touch-icon'
-          sizes='180x180'
-          href='/apple-touch-icon.png'
-        />
-        <link
-          rel='icon'
-          type='image/x-icon'
-          sizes='48x48'
-          href='/favicon.ico'
-        />
-        <link
-          rel='icon'
-          type='image/png'
-          sizes='32x32'
-          href='/favicon-32x32.png'
-        />
-        <link
-          rel='icon'
-          type='image/png'
-          sizes='16x16'
-          href='/favicon-16x16.png'
         />
 
         {/* <!-- =============== Primary Meta Tags =============== --> */}
@@ -107,42 +88,13 @@ function TahitiApp({ Component, pageProps }) {
           property='twitter:description'
           content='Monday Morning is the Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students.'
         />
-
-        {/* <!-- =============== PWA Manifest =============== --> */}
-        <link
-          rel='manifest'
-          type='application/manifest+json'
-          href='/manifest.webmanifest'
-        />
-
-        {/* <!-- =============== Google Fonts + Font Aweseom =============== --> */}
-        <link rel='preconnect' href='https://fonts.gstatic.com' />
-        <link
-          href='https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap'
-          rel='stylesheet'
-        />
-        <link
-          rel='stylesheet'
-          href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css'
-          integrity='sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=='
-          crossOrigin='anonymous'
-          as='style'
-          onLoad="this.onload=null;this.rel='stylesheet'"
-        />
-        <link rel='stylesheet' href='/index.css' />
-        <noscript>
-          <link
-            rel='stylesheet'
-            href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css'
-          />
-        </noscript>
       </Head>
       <ThemeProvider theme={lightTheme}>
         <CssBaseline />
 
         <Component {...pageProps} />
 
-        <ScrollToTopButton />
+        <ScrollToTopButton className={classes.fab} />
         {/* <ScrollToTopOnMount /> */}
       </ThemeProvider>
     </ApolloClient>
@@ -150,3 +102,12 @@ function TahitiApp({ Component, pageProps }) {
 }
 
 export default TahitiApp;
+
+const useStyles = makeStyles((theme) => ({
+  fab: {
+    position: 'fixed',
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
+    boxShadow: `0px 0px 10px #5a5a5a`,
+  },
+}));
