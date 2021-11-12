@@ -47,7 +47,12 @@ const DesktopNavbar = () => {
         <ul aria-label='Navbar' className={classes.menuContainer}>
           {ROUTES.CATEGORIES.map(({ name, shortName, path }) => (
             <li key={shortName} className={classes.linkContainer}>
-              <Link className={classes.link} aria-label='Nav Item' href={path}>
+              <Link
+                className={classes.link}
+                aria-label='Nav Item'
+                href={path}
+                passHref
+              >
                 <Typography variant='h2' className={`${classes.menu}`}>
                   {name}
                 </Typography>
@@ -80,9 +85,6 @@ const useStyles = makeStyles((theme) => ({
   imgContainer: {
     width: '33%',
     height: 'auto',
-    '& > div': {
-      position: 'unset !important',
-    },
     '& > span': {
       position: 'unset !important',
     },

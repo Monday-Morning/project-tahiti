@@ -1,19 +1,32 @@
 {
-  "folders": [
+  "version": "0.2.0",
+  "configurations": [
     {
-      "path": ".."
-    }
-  ],
-  "launch": {
-    "version": "0.1.0",
-    "configurations": [
-      {
-        "type": "pwa-chrome",
-        "request": "launch",
-        "name": "Launch Chrome against localhost",
-        "url": "http://localhost:8080",
-        "webRoot": "${workspaceFolder}"
+      "name": "Next.js: debug server-side",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "yarn start",
+      "cwd": "${workspaceFolder}/client"
+    },
+    {
+      "name": "Next.js: debug client-side",
+      "type": "pwa-msedge",
+      "request": "launch",
+      "url": "http://localhost:3000",
+      "cwd": "${workspaceFolder}/client"
+    },
+    {
+      "name": "Next.js: debug full stack",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "yarn start",
+      "cwd": "${workspaceFolder}/client",
+      "console": "integratedTerminal",
+      "serverReadyAction": {
+        "pattern": "started server on .+, url: (https?://.+)",
+        "uriFormat": "%s",
+        "action": "debugWithEdge"
       }
-    ]
-  }
+    }
+  ]
 }

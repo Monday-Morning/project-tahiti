@@ -11,17 +11,17 @@ const TopBar = () => {
       <div className={classes.container}>
         <ul className={classes.navList}>
           <li className={classes.navItem}>
-            <Link href='/about' className={classes.navLink}>
+            <Link href='/about' className={classes.navLink} passHref>
               <span className={classes.navLink}>About</span>
             </Link>
           </li>
           <li className={classes.navItem}>
-            <Link href='/guide' className={classes.navLink}>
+            <Link href='/guide' className={classes.navLink} passHref>
               <span className={classes.navLink}>Guide</span>
             </Link>
           </li>
           <li className={classes.navItem}>
-            <Link href='/contact' className={classes.navLink}>
+            <Link href='/contact' className={classes.navLink} passHref>
               <span className={classes.navLink}>Contact Us</span>
             </Link>
           </li>

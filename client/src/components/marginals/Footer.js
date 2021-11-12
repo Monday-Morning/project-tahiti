@@ -6,7 +6,10 @@ import Image from 'next/image';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Grid, Typography } from '@material-ui/core';
 // import { ArrowRightCircle } from 'react-feather';
+
+// Assets
 import logo from '../../assets/images/logo.png';
+import googlePlay from '../../assets/images/logos/google_play.png';
 
 const Footer = () => {
   const classes = useStyles();
@@ -21,6 +24,7 @@ const Footer = () => {
                   src={logo}
                   alt='Monday Morning'
                   className={classes.logo}
+                  layout='responsive'
                 />
               </div>
               <Typography variant='body2' className={classes.aboutText}>
@@ -34,13 +38,13 @@ const Footer = () => {
           <Grid item sm={4} className={classes.containerGrid}>
             <Grid
               container
-              justify='space-between'
+              justifyContent='space-between'
               className={classes.categoryContainer}
             >
               <Grid item xs={4}>
                 <ul className={classes.categories}>
                   <li>
-                    <Link href='/campus' className={classes.links}>
+                    <Link href='/campus' className={classes.links} passHref>
                       <Typography
                         variant='body1'
                         style={{ cursor: 'pointer', fontWeight: 'bolder' }}
@@ -50,7 +54,7 @@ const Footer = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link href='/connect' className={classes.links}>
+                    <Link href='/connect' className={classes.links} passHref>
                       <Typography
                         variant='body1'
                         style={{ cursor: 'pointer', fontWeight: 'bolder' }}
@@ -60,7 +64,7 @@ const Footer = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link href='/ddcwc' className={classes.links}>
+                    <Link href='/ddcwc' className={classes.links} passHref>
                       <Typography
                         variant='body1'
                         style={{ cursor: 'pointer', fontWeight: 'bolder' }}
@@ -70,7 +74,7 @@ const Footer = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link href='/career' className={classes.links}>
+                    <Link href='/career' className={classes.links} passHref>
                       <Typography
                         variant='body1'
                         style={{ cursor: 'pointer', fontWeight: 'bolder' }}
@@ -80,7 +84,7 @@ const Footer = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link href='/alumni' className={classes.links}>
+                    <Link href='/alumni' className={classes.links} passHref>
                       <Typography
                         variant='body1'
                         style={{ cursor: 'pointer', fontWeight: 'bolder' }}
@@ -90,7 +94,11 @@ const Footer = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link href='/expressions' className={classes.links}>
+                    <Link
+                      href='/expressions'
+                      className={classes.links}
+                      passHref
+                    >
                       <Typography
                         variant='body1'
                         style={{ cursor: 'pointer', fontWeight: 'bolder' }}
@@ -104,7 +112,7 @@ const Footer = () => {
               <Grid item xs={4}>
                 <ul className={classes.categories}>
                   <li>
-                    <Link href='/about' className={classes.links}>
+                    <Link href='/about' className={classes.links} passHref>
                       <Typography
                         variant='body1'
                         style={{ cursor: 'pointer', fontWeight: 'bolder' }}
@@ -114,7 +122,7 @@ const Footer = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link href='/guide' className={classes.links}>
+                    <Link href='/guide' className={classes.links} passHref>
                       <Typography
                         variant='body1'
                         style={{ cursor: 'pointer', fontWeight: 'bolder' }}
@@ -124,7 +132,7 @@ const Footer = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link href='/contact' className={classes.links}>
+                    <Link href='/contact' className={classes.links} passHref>
                       <Typography
                         variant='body1'
                         style={{ cursor: 'pointer', fontWeight: 'bolder' }}
@@ -168,15 +176,19 @@ const Footer = () => {
           <Grid item sm={4}>
             <div className={classes.rightSide}>
               <div>
-                <a href='https://play.google.com/store/apps/details?id=in.ac.nitrkl.mondaymorning&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
-                  {/* <div className={classes.appButtonContainer}> */}
-                  <img
-                    alt='Get it on Google Play'
-                    src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'
-                    className={classes.appButton}
-                  />
-                  {/* </div> */}
-                </a>
+                <Link
+                  passHref
+                  href='https://play.google.com/store/apps/details?id=in.ac.nitrkl.mondaymorning&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'
+                >
+                  <div className={classes.appButtonContainer}>
+                    <Image
+                      alt='Get it on Google Play'
+                      src={googlePlay}
+                      className={classes.appButton}
+                      layout='responsive'
+                    />
+                  </div>
+                </Link>
                 {/* <div className={classes.archives}>
                   <Typography variant='body1'>Archives</Typography>
 
@@ -232,6 +244,7 @@ export default Footer;
 const useStyles = makeStyles((theme) => ({
   wrapper: {
     paddingTop: '50px',
+    marginTop: '25px',
     backgroundColor: theme.palette.secondary.neutral20,
   },
   aboutInfo: {
@@ -242,17 +255,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logoContainer: {
     width: '200px',
-    '& > div': {
-      position: 'unset !important',
-    },
-    '& > span': {
-      position: 'unset !important',
-    },
-  },
-  logo: {
-    position: 'unset !important',
-    width: 'auto !important',
-    height: 'auto !important',
+    display: 'block',
   },
   aboutText: {
     marginTop: '20px',
@@ -292,9 +295,10 @@ const useStyles = makeStyles((theme) => ({
       padding: '0 1rem',
     },
   },
-  appButton: {
+  appButtonContainer: {
     marginRight: '0',
-    height: '100px',
+    width: '250px',
+    display: 'block',
   },
   archives: {
     marginTop: '40px',

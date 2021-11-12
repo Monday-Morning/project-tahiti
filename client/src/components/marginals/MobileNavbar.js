@@ -72,6 +72,7 @@ const MobileNavbar = () => {
             <Link
               key={shortName}
               href={path}
+              passHref
               className={classes.navLink}
               exact
               activeClassName={classes.activeHeaderLink}

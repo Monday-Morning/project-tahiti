@@ -4,9 +4,9 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-  "name": "Ritesh Patil",
+  "name": "Monday Morning NITR",
   "short_name": "Monday Morning",
-  "description": "Monday Morning: The official Student Media body of National Institute of Technology Rourkela.",
+  "description": "Monday Morning: The official Student Media Body of National Institute of Technology Rourkela.",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",

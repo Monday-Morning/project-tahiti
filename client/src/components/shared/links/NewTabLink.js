@@ -9,6 +9,7 @@ const NewTabLink = ({ to, children, className }) => {
 
   return (
     <Link
+      passHref
       href={to}
       target='_blank'
       rel='noopener noreferrer'

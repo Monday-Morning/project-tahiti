@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 //libraries
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,7 +14,13 @@ const Footer = () => {
         <Grid container direction='row'>
           <Grid item sm={4}>
             <div className={classes.aboutInfo}>
-              <img src={logo} alt='Monday Morning' className={classes.logo} />
+              <div className={classes.logoWrapper}>
+                <Image
+                  src={logo}
+                  alt='Monday Morning'
+                  className={classes.logo}
+                />
+              </div>
               <Typography variant='body2' className={classes.aboutText}>
                 Monday Morning is the student Media Body of National Institute
                 Of Technology Rourkela. We cover all the events, issues and
@@ -110,6 +117,14 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     width: '200px',
+    '& > span': {
+      position: 'unset !important',
+    },
+  },
+  logo: {
+    position: 'unset !important',
+    height: 'auto !important',
+    width: 'auto !important',
   },
   aboutText: {
     marginTop: '20px',
