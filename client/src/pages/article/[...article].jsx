@@ -48,7 +48,7 @@ function ArticlePage({ article }) {
         <meta
           name='keywords'
           content={[
-            ...tags.map((item) => item.name),
+            ...article.tags.map((item) => item.name),
             'monday morning',
             'mondaymorning',
             'monday morning',
