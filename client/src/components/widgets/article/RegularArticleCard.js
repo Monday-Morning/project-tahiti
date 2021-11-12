@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 // libraries
 import { makeStyles } from '@material-ui/core/styles';
@@ -44,14 +45,17 @@ const ArticleCard = ({
           backgroundImage: `url(${DEFAULT_ARTICLE.coverMedia.rectangle.storePath})`,
         }}
       >
-        <img
-          className={classes.featuredImage}
-          src={
-            STORES[article.coverMedia.rectangle.store] +
-            encodeURI(article.coverMedia.rectangle.storePath)
-          }
-          alt='Featured'
-        />
+        <div className={classes.featuredImageContainer}>
+          <Image
+            className={classes.featuredImage}
+            src={
+              STORES[article.coverMedia.rectangle.store] +
+              encodeURI(article.coverMedia.rectangle.storePath)
+            }
+            layout='fill'
+            alt='Featured'
+          />
+        </div>
       </NewTabLink>
 
       <CardContent className={classes.cardContent}>
@@ -161,10 +165,23 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '100%',
   },
-  featuredImage: {
+  featuredImageContainer: {
     width: '100%',
     height: '220px',
+    '& > span': {
+      position: 'unset !important',
+    },
+    '& > span > span': {
+      display: 'none !important',
+    },
+    overflow: 'hidden',
+    position: 'relative',
+  },
+  featuredImage: {
     objectFit: 'cover',
+    position: 'unset !important',
+    width: 'auto !important',
+    height: 'auto !important',
   },
 
   categoriesContainer: {
