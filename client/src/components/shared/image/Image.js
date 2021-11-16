@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Tooltip, makeStyles, Backdrop } from '@material-ui/core';
+import { Tooltip, makeStyles, Backdrop, Typography } from '@material-ui/core';
 
 export default function Image({ src }) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -22,24 +22,24 @@ export default function Image({ src }) {
 
   return (
     <div>
-      <Tooltip arrow title='image' placement='right-start'>
-        <img
-          className={classes.displayImage}
-          onClick={() => (modalOpen ? close() : open())}
-          src={src}
-        />
-      </Tooltip>
+      <img
+        className={classes.displayImage}
+        onClick={() => (modalOpen ? close() : open())}
+        src={src}
+      />
 
       <Backdrop
         onClick={() => (modalOpen ? close() : open())}
         className={classes.backdrop}
         open={modalOpen}
       >
-        <div>
-          <Tooltip arrow title='image' placement='right-start'>
-            <img className={classes.backdropImage} src={src} />
-          </Tooltip>
-          <p className={classes.attributes}>Credits: Design Team</p>
+        <div className={classes.backdropImageWraper}>
+          <img className={classes.backdropImage} src={src} />
+          <div className={classes.overlayColor}>
+            <Typography variant='body1' className={classes.Caption}>
+              Image Caption
+            </Typography>
+          </div>
         </div>
       </Backdrop>
     </div>
@@ -49,25 +49,54 @@ export default function Image({ src }) {
 const useStyles = makeStyles(() => ({
   displayImage: {
     height: 'clamp(70vh,90vh ,100% )',
-    width: 'clamp(70vh,90vh ,100% )',
+    width: 'clamp(70vh,90vh ,auto )',
   },
   backdrop: {
     zIndex: '1',
   },
   backdropImage: {
-    display: 'block',
+    zIndex: '50',
     marginLeft: 'auto',
     marginRight: 'auto',
-    // height: '90vh',
-    height: 'clamp(95vh,100vh ,90vh )',
-    // width: 'clamp(95vh,100vh ,100vh )',
+    height: 'clamp(95vh,98vh ,99vh )',
+    width: 'clamp(95vh,100vh ,auto )',
+    // visbility: 'none',
+  },
+  backdropImageWraper: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    height: 'clamp(95vh,98vh ,99vh )',
+    width: 'clamp(95vh,100vh ,auto )',
+    '&:hover $overlayColor': {
+      visibility: 'visible',
+    },
   },
   attributes: {
-    position: 'absolute',
+    // position: 'absolute',
     bottom: '2px',
     left: '10px',
     color: 'black',
     fontWeight: '900',
+  },
+  overlayColor: {
+    visibility: 'hidden',
+    zIndex: '100',
+    position: 'relative',
+    marginTop: '-98.5vh',
+    // marginLeft: 'auto',
+    // marginRight: 'auto',
+    // top: '1vh',
+    height: 'clamp(95vh,98vh ,99vh )',
+    minWidth: '100%',
+    width: '100%',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    color: 'white',
+    cursor: 'pointer',
+    background: 'linear-gradient(to bottom, transparent 90%, black 100%)',
+  },
+  Caption: {
+    position: 'absolute',
+    bottom: '10vh',
   },
 }));
 //main

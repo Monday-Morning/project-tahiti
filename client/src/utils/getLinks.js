@@ -50,11 +50,11 @@ const SUB_CATEGORIES = {
 };
 
 const INDIVIDUALS = {
-  ARTICLE: '/article/:id/:title',
-  WITSDOM: '/witsdom/:id/:title',
-  GALLERY: '/gallery/:id/:title',
-  PHOTOSTORY: '/photostory/:id/:title',
-  PORTFOLIO: '/portfolio/:id/:name',
+  ARTICLE: '/article/:id/:title?',
+  WITSDOM: '/witsdom/:id/:title?',
+  GALLERY: '/gallery/:id/:title?',
+  PHOTOSTORY: '/photostory/:id/:title?',
+  PORTFOLIO: '/portfolio/:id/:name?',
   LIVE: '/live',
 };
 
@@ -80,6 +80,10 @@ const USER = {
   ONBOARDING: '/onboarding',
 };
 
+const ERROR = {
+  NOT_FOUND: '/error/404',
+};
+
 export default Object.freeze({
   CATEGORIES,
   SUB_CATEGORIES,
@@ -87,4 +91,5 @@ export default Object.freeze({
   INTERACTIONS,
   GENERAL,
   USER,
+  ERROR,
 });

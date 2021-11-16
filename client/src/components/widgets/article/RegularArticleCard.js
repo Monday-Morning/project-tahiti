@@ -13,6 +13,7 @@ import getCategory from '../../../utils/determineCategory';
 import getArticleLink from '../../../utils/getArticleLink';
 import limitString from '../../../utils/limitString';
 // import limitAuthor from '../../../utils/limitAuthor';
+import STORES from '../../../utils/getStores';
 
 // Assets
 import { DEFAULT_ARTICLE } from '../../../assets/placeholder/article';
@@ -45,7 +46,10 @@ const ArticleCard = ({
       >
         <img
           className={classes.featuredImage}
-          src={article.coverMedia.rectangle.storePath.split(' ').join('%20')}
+          src={
+            STORES[article.coverMedia.rectangle.store] +
+            encodeURI(article.coverMedia.rectangle.storePath)
+          }
           alt='Featured'
         />
       </NewTabLink>

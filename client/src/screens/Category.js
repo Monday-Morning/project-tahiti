@@ -16,7 +16,7 @@ import ActivityIndicator from '../components/shared/ActivityIndicator';
 import ROUTES from '../utils/getRoutes';
 
 // Graphql
-import GetArticlesByCategories from '../graphql/queries/getArticlesByCategories';
+import getArticlesByCategories from '../graphql/queries/category/getArticlesByCategories';
 
 function Category() {
   const classes = useStyles();
@@ -29,7 +29,7 @@ function Category() {
     ({ shortName }) => shortName === categoryShortName,
   )[0];
 
-  const { loading, error, data } = useQuery(GetArticlesByCategories, {
+  const { loading, error, data } = useQuery(getArticlesByCategories, {
     variables: {
       categoryNumbers: [category.idNumber, ...category.subCategoryIds],
       limit: 4,
