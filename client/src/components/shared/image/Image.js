@@ -36,6 +36,9 @@ export default function Image({ src }) {
         <div className={classes.backdropImageWraper}>
           <img className={classes.backdropImage} src={src} />
           <div className={classes.overlayColor}>
+            <Typography variant='body4' className={classes.Credits}>
+              Image Credits
+            </Typography>
             <Typography variant='body1' className={classes.Caption}>
               Image Caption
             </Typography>
@@ -94,9 +97,13 @@ const useStyles = makeStyles(() => ({
     cursor: 'pointer',
     background: 'linear-gradient(to bottom, transparent 90%, black 100%)',
   },
-  Caption: {
+  Credits: {
     position: 'absolute',
     bottom: '10vh',
+  },
+  Caption: {
+    position: 'absolute',
+    bottom: '5vh',
   },
 }));
 //main
