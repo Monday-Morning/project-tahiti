@@ -1,46 +1,20 @@
 import React from 'react';
+import Link from 'next/link';
 
 // Libraries
 import { Container, makeStyles, Typography } from '@material-ui/core';
-import { useLocation, Link } from 'react-router-dom';
 import { Link as ScrollLink, Element } from 'react-scroll';
-import { useQuery } from '@apollo/client';
 
 // Components
 import SubCategory from '../components/widgets/SubCategory';
 import ArticleCarousel from '../components/widgets/article/ArticleCarousel';
 import SubCategorySection from '../components/categories/SubCategorySection';
-import ActivityIndicator from '../components/shared/ActivityIndicator';
 
 // Utils
 import ROUTES from '../utils/getRoutes';
 
-// Graphql
-import getArticlesByCategories from '../graphql/queries/category/getArticlesByCategories';
-
-function Category() {
+function Category({ articleList, categoryShortName, category }) {
   const classes = useStyles();
-
-  // 1. Determine category from the url.
-  // 2. Get the title for the category from the ROUTES object.
-  const location = useLocation();
-  const categoryShortName = location.pathname.split('/')[1];
-  const category = ROUTES.CATEGORIES.filter(
-    ({ shortName }) => shortName === categoryShortName,
-  )[0];
-
-  const { loading, error, data } = useQuery(getArticlesByCategories, {
-    variables: {
-      categoryNumbers: [category.idNumber, ...category.subCategoryIds],
-      limit: 4,
-    },
-  });
-
-  if (loading && !data) return <ActivityIndicator size={150} />;
-  if (error) return <div>{JSON.stringify(error)}</div>;
-  if (!data.getArticlesByCategories) return <div>Internal Server Error</div>;
-
-  const { getArticlesByCategories: articleList } = data;
 
   return (
     <div className={classes.container}>
