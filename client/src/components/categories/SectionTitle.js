@@ -1,9 +1,9 @@
 import React from 'react';
+import Link from 'next/link';
 
 // Libraries
 import { makeStyles, Container } from '@material-ui/core';
 import { Element } from 'react-scroll';
-import { Link } from 'react-router-dom';
 
 function Title({ heading, link, path, container }) {
   const classes = useStyles();
@@ -11,7 +11,7 @@ function Title({ heading, link, path, container }) {
     <Element className={classes.root} name={link}>
       <div className={classes.head}>{heading}</div>
       <div className={classes.line} />
-      <Link to={path} style={{ textDecoration: 'none' }}>
+      <Link href={path} style={{ textDecoration: 'none' }}>
         <div className={classes.seeAll}>See All</div>
       </Link>
     </Element>
