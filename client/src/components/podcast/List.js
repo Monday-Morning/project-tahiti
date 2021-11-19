@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image'
 
 // Libraries
 import {
@@ -76,7 +77,7 @@ const PodcastList = () => {
           <Grid item sm={3}>
             <Grid container>
               <Grid item xs={3} className={classes.podcastCoverImage}>
-                <img src={podcastCover} alt='cover' />
+                <Image src={podcastCover} alt='cover' />
               </Grid>
               <Grid item xs={9}>
                 <Typography variant='body1'>Interview-01</Typography>

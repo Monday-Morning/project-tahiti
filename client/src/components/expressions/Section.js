@@ -1,8 +1,8 @@
 import React from 'react';
+import Link from 'next/link';
 
 // Libraries
 import { Box, Grid, makeStyles, useMediaQuery } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 
 // Components
 import FeatureArticle from './FeatureArticle';
@@ -23,7 +23,7 @@ function Section({ heading }) {
       <Grid container spacing={4}>
         <Grid item sm={9}>
           <Link
-            to={link}
+            href={link}
             target='_blank'
             rel='nonoopener noreferrer'
             className={classes.link}
@@ -34,7 +34,8 @@ function Section({ heading }) {
         <Grid item sm={3} className={classes.smallCards}>
           <Box>
             <Link
-              to={link}
+              passHref
+              href={link}
               target='_blank'
               rel='nonoopener noreferrer'
               className={classes.link}
@@ -44,7 +45,8 @@ function Section({ heading }) {
           </Box>
           <Box mt={3}>
             <Link
-              to={link}
+              passHref
+              href={link}
               target='_blank'
               rel='nonoopener noreferrer'
               className={classes.link}
