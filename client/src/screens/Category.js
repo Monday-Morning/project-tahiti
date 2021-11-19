@@ -34,7 +34,7 @@ function Category({ articleList, categoryShortName, category }) {
               ),
             )}
             {categoryShortName === 'career' && (
-              <Link href='/live' style={{ textDecoration: 'none' }}>
+              <Link passHref href='/live' style={{ textDecoration: 'none' }}>
                 <SubCategory
                   text='Live'
                   isRed

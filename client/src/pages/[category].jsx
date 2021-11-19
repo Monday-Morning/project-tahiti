@@ -21,30 +21,15 @@ const CategoryPage = ({ articleList, categoryShortName, category }) => {
     <>
       <Head>
         {/* <!-- =============== Primary Meta Tags =============== --> */}
-        <title>{category.name} | Monday Morning</title>
-        <meta name='title' content={`${category.name} | Monday Morning`} />
+        <title>{category?.name} | Monday Morning</title>
+        <meta name='title' content={`${category?.name} | Monday Morning`} />
         <meta
           name='description'
           content='Monday Morning is the official Student Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday Morning also serves as a link between the administration and the students.'
         />
         <meta
           name='keywords'
-          content={[
-            ...ROUTES.CATEGORIES.map(({ shortName }) => ({
-              params: { category: shortName },
-            })),
-            'monday morning',
-            'mondaymorning',
-            'monday morning',
-            'mm',
-            'nit rkl',
-            'nit',
-            'nit rourkela',
-            'nitr',
-            'nitrkl',
-            'rkl',
-            'rourkela',
-          ].join(', ')}
+          content={`${categoryShortName},monday morning, mondaymorning, monday morning, mm, nit rkl, nit, nit rourkela, nitr, nitrkl, rkl, rourkela`}
         />
 
         {/* <!-- =============== Open Graph / Facebook =============== --> */}
@@ -59,7 +44,7 @@ const CategoryPage = ({ articleList, categoryShortName, category }) => {
         />
         <meta
           property='og:title'
-          content={`${category.name} | Monday Morning`}
+          content={`${category?.name} | Monday Morning`}
         />
         <meta
           property='og:description'
@@ -116,8 +101,9 @@ export async function getStaticProps({
   preview,
 }) {
   const category = ROUTES.CATEGORIES.filter(
-    ({ shortName }) => shortName === categoryShortName,
-  )[0];
+    ({ asyncRoutePath }) => asyncRoutePath === './Category',
+  ).filter(({ shortName }) => shortName === categoryShortName)[0];
+
   const {
     data: { getArticlesByCategories: articleList },
   } = await GraphClient.query({
@@ -128,7 +114,7 @@ export async function getStaticProps({
     },
   });
 
-  if (!articleList) {
+  if (!category || !articleList) {
     return {
       notFound: true,
     };
@@ -148,7 +134,9 @@ export async function getStaticProps({
 }
 
 export async function getStaticPaths() {
-  const paths = ROUTES.CATEGORIES.map(({ shortName }) => ({
+  const paths = ROUTES.CATEGORIES.filter(
+    ({ asyncRoutePath }) => asyncRoutePath === './Category',
+  ).map(({ shortName }) => ({
     params: { category: shortName },
   }));
 

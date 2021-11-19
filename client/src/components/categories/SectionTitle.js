@@ -11,7 +11,7 @@ function Title({ heading, link, path, container }) {
     <Element className={classes.root} name={link}>
       <div className={classes.head}>{heading}</div>
       <div className={classes.line} />
-      <Link href={path} style={{ textDecoration: 'none' }}>
+      <Link passHref href={path} style={{ textDecoration: 'none' }}>
         <div className={classes.seeAll}>See All</div>
       </Link>
     </Element>
