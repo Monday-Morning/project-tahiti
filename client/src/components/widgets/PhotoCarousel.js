@@ -1,10 +1,9 @@
 import React, { useRef } from 'react';
+import Image from 'next/image';
 
 import { makeStyles } from '@material-ui/core';
 import { Typography, Grid } from '@material-ui/core';
-
-import '../../assets/css/slider.css';
-
+// img
 import Slider from 'react-slick';
 
 import 'slick-carousel/slick/slick.css';
@@ -75,7 +74,7 @@ const PhotoCarousel = ({ IMAGE, navigator }) => {
         <Slider {...config}>
           {IMAGE.map((img, key) => (
             <Grid item key={key} className={classes.img}>
-              <img src={img} alt='Icon' className={classes.img} />
+              <Image src={img} alt='Icon' className={classes.img} />
             </Grid>
           ))}
         </Slider>
