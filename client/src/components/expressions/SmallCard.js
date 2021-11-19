@@ -1,5 +1,6 @@
 import { makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
+import Image from 'next/image';
 import witsdom from '../../assets/images/witsdom.png';
 import theme from '../../config/themes/light';
 
@@ -13,7 +14,7 @@ function SmallCard() {
   const classes = useStyles(theme);
   return (
     <div>
-      <img src={witsdom} className={classes.smallCard} />
+      <Image src={witsdom} className={classes.smallCard} />
       <Typography variant='h2'>{props.article.title}</Typography>
       <div className={classes.authorList}>
         {props.article.authors.map((author) => (
