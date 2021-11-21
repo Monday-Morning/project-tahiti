@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 // libararies
 import { makeStyles } from '@material-ui/core/styles';
@@ -21,7 +22,7 @@ const Content = () => {
           </Typography>
         </Grid>
         <Grid item xs={12} md={4}>
-          <img src={about} alt='About' className={classes.image} />
+          <Image src={about} alt='About' className={classes.image} />
         </Grid>
       </Grid>
     </div>
