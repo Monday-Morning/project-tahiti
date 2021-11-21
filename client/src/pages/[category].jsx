@@ -128,6 +128,7 @@ export async function getStaticProps({
 
   return {
     props: {
+      key: categoryShortName,
       articleList,
       categoryShortName,
       category,
