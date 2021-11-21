@@ -104,6 +104,12 @@ export async function getStaticProps({
     ({ asyncRoutePath }) => asyncRoutePath === './Category',
   ).filter(({ shortName }) => shortName === categoryShortName)[0];
 
+  if (!category) {
+    return {
+      notFound: true,
+    };
+  }
+
   const {
     data: { getArticlesByCategories: articleList },
   } = await GraphClient.query({
@@ -114,7 +120,7 @@ export async function getStaticProps({
     },
   });
 
-  if (!category || !articleList) {
+  if (!articleList) {
     return {
       notFound: true,
     };
