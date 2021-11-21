@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 
 // Libraries
 import { makeStyles } from '@material-ui/core/styles';
@@ -110,11 +111,11 @@ function Member() {
         >
           {useMediaQuery(theme.breakpoints.down('sm')) ? (
             <span>
-              <img src={Content} className={classes.logo} /> C
+              <Image src={Content} className={classes.logo} /> C
             </span>
           ) : (
             <span>
-              <img src={Content} className={classes.logo} /> Content
+              <Image src={Content} className={classes.logo} /> Content
             </span>
           )}
         </Typography>
@@ -128,11 +129,11 @@ function Member() {
         >
           {useMediaQuery(theme.breakpoints.down('sm')) ? (
             <span>
-              <img src={Design} className={classes.logo} /> D
+              <Image src={Design} className={classes.logo} /> D
             </span>
           ) : (
             <span>
-              <img src={Design} className={classes.logo} /> Design
+              <Image src={Design} className={classes.logo} /> Design
             </span>
           )}
         </Typography>
@@ -146,11 +147,11 @@ function Member() {
         >
           {useMediaQuery(theme.breakpoints.down('sm')) ? (
             <span>
-              <img src={Photo} className={classes.logo} /> P
+              <Image src={Photo} className={classes.logo} /> P
             </span>
           ) : (
             <span>
-              <img src={Photo} className={classes.logo} /> Photography
+              <Image src={Photo} className={classes.logo} /> Photography
             </span>
           )}
         </Typography>
@@ -164,11 +165,11 @@ function Member() {
         >
           {useMediaQuery(theme.breakpoints.down('sm')) ? (
             <span>
-              <img src={Tech} className={classes.logo} /> T
+              <Image src={Tech} className={classes.logo} /> T
             </span>
           ) : (
             <span>
-              <img src={Tech} className={classes.logo} /> Technical
+              <Image src={Tech} className={classes.logo} /> Technical
             </span>
           )}
         </Typography>

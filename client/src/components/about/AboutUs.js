@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 // libararies
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,7 +12,7 @@ const AboutUs = () => {
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
-      <img src={about} alt='About' className={classes.image} />
+      <Image src={about} alt='About' className={classes.image} />
       <Typography variant='h1' className={classes.title1}>
         About Us
       </Typography>
@@ -30,8 +31,15 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     minHeight: '650px',
     [theme.breakpoints.down('xs')]: {
-      minHeight: '191px',
+      minHeight: '250px',
       marginTop: '1rem',
+    },
+    '& > span': {
+      minHeight: '650px',
+      [theme.breakpoints.down('xs')]: {
+        minHeight: '250px',
+        marginTop: '1rem',
+      },
     },
   },
   image: {
@@ -48,13 +56,16 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.white,
     [theme.breakpoints.down('xs')]: {
       visibility: 'hidden',
+      display: 'none',
     },
   },
   title2: {
     visibility: 'hidden',
+    display: 'none',
     color: theme.palette.common.white,
     [theme.breakpoints.down('xs')]: {
       visibility: 'visible',
+      display: 'inherit',
       position: 'absolute',
       top: '70%',
       left: '5%',
