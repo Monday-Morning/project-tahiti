@@ -176,6 +176,7 @@ export async function getStaticProps({
 
   return {
     props: {
+      key: articleId,
       article,
     },
     revalidate:
