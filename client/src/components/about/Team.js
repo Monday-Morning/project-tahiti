@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 
 // libararies
 import { makeStyles } from '@material-ui/core/styles';
@@ -17,8 +18,10 @@ import team from '../../assets/images/about/Team1.png';
 const Team = () => {
   const classes = useStyles();
   const [activeBatch, setBatch] = useState(ABOUT.batches[0]);
+  const [teamImage, setTeamImage] = useState(team);
   const selectBatch = (batch) => {
     setBatch(batch);
+    setTeamImage(team);
   };
   return (
     <div className={classes.wrapper}>
@@ -41,7 +44,7 @@ const Team = () => {
           </Grid>
         ))}
       </Grid>
-      <img src={team} alt='Team' className={classes.image} />
+      <Image src={teamImage} alt='Team' className={classes.image} />
       <div className={classes.executive}>
         <Executive />
       </div>
