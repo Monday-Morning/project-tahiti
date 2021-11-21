@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import Image from 'next/dist/client/image';
 // Libraries
 import {
   Grid,
@@ -44,7 +45,7 @@ const Feedback = () => {
     e.preventDefault();
     try {
       const feedbackData = { name, message, email };
-      resetFields();   // When adding API, make sure to refactor and reset state only when API gives success
+      resetFields(); // When adding API, make sure to refactor and reset state only when API gives success
       setError({ ...error, success: 'Send' });
     } catch {
       setError({ ...error, error: 'Failed to send' });
@@ -165,7 +166,7 @@ const Feedback = () => {
         </Grid>
         <Grid item xs={12} md={5}>
           <div className={classes.imageWrapper}>
-            <img src={image} alt='Feedback' className={classes.image} />
+            <Image src={image} alt='Feedback' className={classes.image} />
           </div>
         </Grid>
       </Grid>
