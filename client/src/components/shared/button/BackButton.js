@@ -1,14 +1,16 @@
-import { Button, makeStyles } from '@material-ui/core';
 import React from 'react';
+import Link from 'next/link';
+
+import { Button, makeStyles } from '@material-ui/core';
 import { ChevronLeft } from 'react-feather';
-import { Link } from 'react-router-dom';
+
 import theme from '../../../config/themes/light';
 
 function BackButton({ path, goTo }) {
   const classes = useStyles(theme);
   return (
     <div className={classes.root}>
-      <Link to={`${path}`} className={classes.link}>
+      <Link href={`${path}`} passHref className={classes.link}>
         <Button className={classes.backButton}>
           <ChevronLeft size={24} className={classes.backIcon} />
           <div>Back to {goTo}</div>
