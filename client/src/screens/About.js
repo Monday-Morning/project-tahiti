@@ -8,7 +8,7 @@ import BackButton from '../components/shared/button/BackButton';
 import AboutUs from '../components/about/AboutUs';
 import Content from '../components/about/Content';
 import Team from '../components/about/Team';
-import Project from '../components/about/Project';
+// import Project from '../components/about/Project';
 
 function About() {
   return (
@@ -17,7 +17,7 @@ function About() {
       <AboutUs />
       <Content />
       <Team />
-      <Project />
+      {/* <Project /> */}
     </Container>
   );
 }
