@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Image from 'next/dist/client/image';
+
 // libraries
 import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -163,7 +165,7 @@ const Details = () => {
                 </Typography>
               </Grid>
               <Grid item xs={6} className={classes.mapWrapper}>
-                <img src={map} alt='Monday Morning' className={classes.map} />
+                <Image src={map} alt='Monday Morning' className={classes.map} />
                 <a href='https://goo.gl/maps/EKwq5J2x1djPHwVB9' target='_blank'>
                   <Typography variant='body2' className={classes.mapText}>
                     See on map
