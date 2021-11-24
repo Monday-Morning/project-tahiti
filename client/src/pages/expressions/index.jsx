@@ -2,8 +2,8 @@ import React from 'react';
 import Head from 'next/head';
 
 // Components
-import Marginals from '../components/marginals/Marginals';
-import Expressions from '../screens/Expressions';
+import Marginals from '../../components/marginals/Marginals';
+import Expressions from '../../screens/Expressions';
 
 const ExpressionsPage = () => {
   return (
