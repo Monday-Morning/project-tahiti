@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 // Libraries
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Icon, Box, useMediaQuery } from '@material-ui/core';
+import { ArrowLeftTwoTone, ArrowRightTwoTone } from '@material-ui/icons';
 
 // Components
 import RegularArticleCard from './RegularArticleCard';
+import theme from '../../../config/themes/light';
 
 // Assets
 // import { DEFAULT_ARTICLE } from '../../../assets/placeholder/article';
@@ -20,17 +22,37 @@ const renderArticles = (article) => {
 const Carousel = ({ articleList }) => {
   const classes = useStyles();
 
+  const ref = useRef(null);
+  const scroll = (scrollOffset) => {
+    ref.current.scrollLeft += scrollOffset;
+  };
+
+  const hideButton = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
-    <div className={classes.wrapper}>
-      <div className={classes.black} />
-      <div className={classes.carousel}>
-        <div className={classes.articleRow}>
-          <div className={classes.articles}>
-            {articleList?.map(renderArticles)}
+    <>
+      {!hideButton && (
+        <div className={classes.LeftRightButtonWrapper}>
+          <Icon className={classes.leftButton} onClick={() => scroll(-400)}>
+            <ArrowLeftTwoTone fontSize='large' />
+          </Icon>
+
+          <Icon className={classes.rightButton} onClick={() => scroll(400)}>
+            <ArrowRightTwoTone fontSize='large' />
+          </Icon>
+        </div>
+      )}
+      <div className={classes.wrapper}>
+        <div className={classes.black} />
+        <div className={classes.carousel} ref={ref}>
+          <div className={classes.articleRow}>
+            <div className={classes.articles}>
+              {articleList?.map(renderArticles)}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -78,5 +100,11 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       paddingBottom: '1rem',
     },
+  },
+  LeftRightButtonWrapper: {
+    display: 'flex',
+    justifyContent: 'end',
+    marginRight: '20px',
+    alignItems: 'center',
   },
 }));
