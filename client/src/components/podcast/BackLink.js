@@ -1,12 +1,12 @@
 import React from 'react';
-
+import { useRouter } from 'next/router';
 // Libraries
 import { makeStyles, Typography } from '@material-ui/core';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const BackLink = ({ backTo }) => {
   const classes = useStyles();
-  const location = useLocation();
+  const location = useRouter();
   const category = location.pathname.split('/')[1];
   return (
     <div className={classes.wrapper}>
