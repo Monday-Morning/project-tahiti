@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import Image from 'next/image';
 // Libraries
 import { Container, makeStyles, Typography, Grid } from '@material-ui/core';
 import { Bookmark, Share2, Clock } from 'react-feather';
@@ -31,7 +31,7 @@ const LatestPodcast = () => {
                 <i className='fas fa-play'></i>
               )}
             </div>
-            <img
+            <Image
               className={classes.podcastImage}
               src={podcastImage}
               alt='podcast Image'
