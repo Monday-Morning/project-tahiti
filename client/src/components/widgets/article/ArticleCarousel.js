@@ -1,8 +1,14 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 // Libraries
-import { makeStyles, Icon, Box, useMediaQuery } from '@material-ui/core';
-import { ArrowLeftTwoTone, ArrowRightTwoTone } from '@material-ui/icons';
+import {
+  makeStyles,
+  IconButton,
+  Box,
+  useMediaQuery,
+  Fade,
+} from '@material-ui/core';
+import { ArrowLeftCircle, ArrowRightCircle } from 'react-feather';
 
 // Components
 import RegularArticleCard from './RegularArticleCard';
@@ -22,27 +28,38 @@ const renderArticles = (article) => {
 const Carousel = ({ articleList }) => {
   const classes = useStyles();
 
+  const [isLeftButtonDisable, setLeftButtonDisable] = useState(true);
+
   const ref = useRef(null);
   const scroll = (scrollOffset) => {
     ref.current.scrollLeft += scrollOffset;
+    if (ref.current.scrollLeft > 0) setLeftButtonDisable(false);
+    else setLeftButtonDisable(true);
   };
 
-  const hideButton = useMediaQuery(theme.breakpoints.down('sm'));
+  const showButton = useMediaQuery(theme.breakpoints.up('sm'));
 
   return (
     <>
-      {!hideButton && (
-        <div className={classes.LeftRightButtonWrapper}>
-          <Icon className={classes.leftButton} onClick={() => scroll(-400)}>
-            <ArrowLeftTwoTone fontSize='large' />
-          </Icon>
-
-          <Icon className={classes.rightButton} onClick={() => scroll(400)}>
-            <ArrowRightTwoTone fontSize='large' />
-          </Icon>
-        </div>
-      )}
       <div className={classes.wrapper}>
+        {showButton && (
+          <span className={classes.LeftRightButtonWrapper}>
+            <IconButton
+              className={classes.leftButton}
+              disabled={isLeftButtonDisable}
+              onClick={() => scroll(-340)}
+            >
+              <ArrowLeftCircle fontSize='large' />
+            </IconButton>
+
+            <IconButton
+              className={classes.rightButton}
+              onClick={() => scroll(340)}
+            >
+              <ArrowRightCircle fontSize='large' />
+            </IconButton>
+          </span>
+        )}
         <div className={classes.black} />
         <div className={classes.carousel} ref={ref}>
           <div className={classes.articleRow}>
@@ -79,7 +96,7 @@ const useStyles = makeStyles((theme) => ({
   carousel: {
     display: 'flex',
     overflowX: 'scroll',
-    overflowY: 'hidden',
+    overflowY: 'none',
   },
 
   articleRow: {
@@ -103,8 +120,16 @@ const useStyles = makeStyles((theme) => ({
   },
   LeftRightButtonWrapper: {
     display: 'flex',
+    flexWrap: 'wrap',
     justifyContent: 'end',
-    marginRight: '20px',
     alignItems: 'center',
+    marginRight: '20px',
+  },
+  leftButton: {
+    marginRight: '10px',
+    color: 'black',
+  },
+  rightButton: {
+    color: 'black',
   },
 }));
