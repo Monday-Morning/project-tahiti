@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 // libraries
 import { makeStyles } from '@material-ui/core/styles';
@@ -21,7 +22,7 @@ const Profile = ({
   return (
     <div className={classes.imgContainer}>
       <div className={classes.img}>
-        <img className={classes.img} src={member.IMG} alt={member.NAME} />
+        <Image className={classes.img} src={member.IMG} alt={member.NAME} />
       </div>
       <Typography variant={small ? 'body2' : 'body1'} className={classes.name}>
         {member.NAME}
@@ -35,10 +36,10 @@ const Profile = ({
         (useMediaQuery(theme.breakpoints.down('sm')) ? (
           <div className={classes.social}>
             <a href={`tel:${member.PHONE}`}>
-              <img src={Phone} />
+              <Image src={Phone} />
             </a>
             <a href={`mailto:${member.MAIL}`}>
-              <img src={Mail} />
+              <Image src={Mail} />
             </a>
           </div>
         ) : (

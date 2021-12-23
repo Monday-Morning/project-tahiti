@@ -1,8 +1,11 @@
 import React from 'react';
 
+import Image from 'next/dist/client/image';
+
 // libararies
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography, useMediaQuery } from '@material-ui/core';
+import theme from '../../config/themes/light';
 
 // images
 import SACimagemd from '../../assets/images/contact/sac1.png';
@@ -10,20 +13,39 @@ import SACimagexs from '../../assets/images/contact/sac2.png';
 
 const ContactUs = () => {
   const classes = useStyles();
+  const matches = useMediaQuery(theme.breakpoints.down('xs'));
   return (
     <Grid container className={classes.wrapper}>
-      <Grid item>
-        <img src={SACimagemd} alt='Failed to load' className={classes.image1} />
-      </Grid>
-      <Grid item>
-        <img src={SACimagexs} alt='Failed to load' className={classes.image2} />
-      </Grid>
-      <Typography variant='h1' className={classes.title1}>
-        CONTACT US
-      </Typography>
-      <Typography variant='h1' className={classes.title2}>
-        ↓ Contact Us
-      </Typography>
+      {!matches && (
+        <>
+          <Grid item>
+            <Image
+              src={SACimagemd}
+              alt='SACimage'
+              layout='fill'
+              className={classes.image1}
+            />
+          </Grid>
+          <Typography variant='h1' className={classes.title1}>
+            CONTACT US
+          </Typography>
+        </>
+      )}
+      {matches && (
+        <>
+          <Grid item>
+            <Image
+              src={SACimagexs}
+              alt='SACimage'
+              layout='fill'
+              className={classes.image2}
+            />
+          </Grid>
+          <Typography variant='h1' className={classes.title2}>
+            ↓ Contact Us
+          </Typography>
+        </>
+      )}
     </Grid>
   );
 };
@@ -42,34 +64,30 @@ const useStyles = makeStyles((theme) => ({
   },
   image1: {
     position: 'absolute',
-    width: '100%',
-    height: '100%',
     [theme.breakpoints.down('xs')]: {
-      visibility: 'hidden',
+      visibility: 'none',
     },
   },
   image2: {
     position: 'absolute',
-    visibility: 'hidden',
+    visibility: 'none',
     backgroundColor: theme.palette.text.disabled,
     [theme.breakpoints.down('xs')]: {
       visibility: 'visible',
       filter: 'brightness(50%)',
-      width: '100%',
-      height: '100%',
     },
   },
   title1: {
     position: 'absolute',
     top: '75%',
-    left: '45%',
+    left: '40%',
     color: theme.palette.common.white,
     [theme.breakpoints.down('xs')]: {
-      visibility: 'hidden',
+      visibility: 'none',
     },
   },
   title2: {
-    visibility: 'hidden',
+    visibility: 'none',
     color: theme.palette.common.white,
     [theme.breakpoints.down('xs')]: {
       visibility: 'visible',
