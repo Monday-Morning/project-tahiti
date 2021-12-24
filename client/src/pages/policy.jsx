@@ -12,14 +12,14 @@ function PolicyPage()
             <Head>
                         {/* <!-- =============== Primary Meta Tags =============== --> */}
                 <title>Contact | Monday Morning</title>
-                <meta name='title' content='Contact | Monday Morning' />
+                <meta name='title' content='Policy | Monday Morning' />
                 <meta
                 name='description'
                 content='Monday Morning is the official Student Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday Morning also serves as a link between the administration and the students.'
                 />
                 <meta
                 name='keywords'
-                content='contact,monday morning, mondaymorning, monday morning, mm, nit rkl, nit, nit rourkela, nitr, nitrkl, rkl, rourkela'
+                content='policy, terms and conditions, monday morning, mondaymorning, monday morning, mm, nit rkl, nit, nit rourkela, nitr, nitrkl, rkl, rourkela'
                 />
 
                 {/* <!-- =============== Open Graph / Facebook =============== --> */}
