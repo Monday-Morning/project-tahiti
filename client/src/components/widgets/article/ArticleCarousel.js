@@ -29,12 +29,25 @@ const Carousel = ({ articleList }) => {
   const classes = useStyles();
 
   const [isLeftButtonDisable, setLeftButtonDisable] = useState(true);
+  const [isRightButtonDisable, setRightButtonDisable] = useState(false);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
   const ref = useRef(null);
   const scroll = (scrollOffset) => {
     ref.current.scrollLeft += scrollOffset;
     if (ref.current.scrollLeft > 0) setLeftButtonDisable(false);
     else setLeftButtonDisable(true);
+
+    setScrollLeft((prev) => {
+      if (prev === ref.current.scrollLeft) {
+        setRightButtonDisable(true);
+        return ref.current.scrollLeft;
+      } else {
+        setRightButtonDisable(false);
+        return ref.current.scrollLeft;
+      }
+    });
+    console.log(scrollLeft);
   };
 
   const showButton = useMediaQuery(theme.breakpoints.up('sm'));
@@ -54,6 +67,7 @@ const Carousel = ({ articleList }) => {
 
             <IconButton
               className={classes.rightButton}
+              disabled={isRightButtonDisable}
               onClick={() => scroll(340)}
             >
               <ArrowRightCircle fontSize='large' />
