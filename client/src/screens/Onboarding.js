@@ -102,7 +102,8 @@ export default Onboarding;
 const useStyles = makeStyles((theme) => ({
   screen: {
     width: '100%',
-    height: window.innerHeight,
+    // height: window.innerHeight,
+    height: '100vh',
     backgroundColor: '#E5E5E5',
     display: 'flex',
     justifyContent: 'center',
