@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 
 // Library
 import { Typography, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 // Helper
-import createBrowserHistory from '../../../utils/history';
+// import createBrowserHistory from '../../../utils/history';
 
 // Components
 import Button from '../../shared/button/Regular';
@@ -17,7 +18,7 @@ import { ONBOARDING } from '../../../assets/placeholder/onboarding';
 
 function VerifyEmail(props) {
   const classes = useStyles();
-
+  const router = useRouter();
   // Local States
   const [isSigned, setIsSigned] = useState(false);
 
@@ -68,7 +69,7 @@ function VerifyEmail(props) {
               ? ONBOARDING.NEWSLETTER.BUTTON.SECONDARY
               : ONBOARDING.NEWSLETTER.BUTTON.PRIMARY
           }
-          onClick={isSigned ? () => createBrowserHistory.push('/') : onSignup}
+          onClick={isSigned ? () => router.push('/') : onSignup}
           containerStyles={classes.button}
         />
 
