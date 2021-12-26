@@ -1,9 +1,10 @@
 import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
 // Libraries
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 
 // Assets
 import logo from '../../../assets/images/logo.png';
@@ -25,7 +26,7 @@ function Welcome(props) {
 
   return (
     <div className={classes.container}>
-      <img className={classes.logo} src={logo} alt='Monday Morning' />
+      <Image className={classes.logo} src={logo} alt='Monday Morning' />
 
       <Typography className={classes.welcomeText} variant='body1'>
         {ONBOARDING.WELCOME.CONTENT}
@@ -39,7 +40,7 @@ function Welcome(props) {
         </Typography>
       </div>
 
-      <Link to='/' style={{ textDecoration: 'none' }}>
+      <Link href='/' passHref style={{ textDecoration: 'none' }}>
         <Typography className={classes.skip} variant='body1'>
           Skip
         </Typography>
