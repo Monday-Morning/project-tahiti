@@ -7,7 +7,7 @@ import { Typography } from '@material-ui/core';
 // Assets
 import logo from '../../assets/images/logo_mm.png';
 
-function ActivityIndicator({ size }) {
+function ActivityIndicator({ size = 1080 }) {
   return (
     <div className={'loadingWrapper'}>
       <div className={'loadingSubWrapper'}>
