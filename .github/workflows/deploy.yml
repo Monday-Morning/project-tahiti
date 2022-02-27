@@ -1,0 +1,58 @@
+name: Pull and Run Docker Container
+
+on:
+  workflow_call:
+    inputs:
+      node_env:
+        required: true
+        type:
+      ssh_hosts:
+        required: true
+        type: string
+      ssh_username:
+        required: true
+        type: string
+      image_name:
+        required: true
+        type: string
+      registry:
+        required: true
+        type: string
+    secrets:
+      env_vars:
+        required: true
+      ssh_private_key:
+        required: true
+
+jobs:
+  deploy:
+    name: Pull and Run Docker Container
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{ fromJson(inputs.ssh_hosts) }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Add Env File
+        run: ${{ secrets.env_vars }} > client/env/.env.${{ inputs.node_env }}
+
+      - name: Copy Required Files
+        uses: appleboy/scp-action@v0.0.1
+        with:
+          host: ${{ matrix.host }}
+          username: ${{ inputs.ssh_username }}
+          key: ${{ secrets.ssh_private_key }}
+          source: "docker-compose.yml,client/env/.env.${{ inputs.node_env }}"
+          target: "~/apps/project-tahiti"
+
+      - name: Run SSH Commands
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          host: ${{ matrix.host }}
+          username: ${{ inputs.ssh_username }}
+          key: ${{ secrets.ssh_private_key }}
+          script: |
+            cd ~/apps/project-tahiti
+            docker pull ${{ input.registry }}/${{ input.image_name }}:${{ inputs.node_env }}
+            docker-compose up

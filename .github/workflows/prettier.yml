@@ -1,0 +1,46 @@
+name: Prettier Check
+
+on:
+  workflow_call:
+    inputs:
+      file_pattern:
+        required: true
+        type: string
+      config_path:
+        required: true
+        type: string
+      ignore_path:
+        required: true
+        type: string
+      fail_on_error:
+        required: true
+        type: boolean
+
+jobs:
+  prettier:
+    name: Prettier Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Retrieve Prepared Repository
+        uses: actions/download-artifact@v2
+        with:
+          name: setup-app
+
+      - name: Unzip Artifact
+        run: unzip app.zip
+
+      - name: Run Prettier
+        id: prettier-run
+        uses: rutajdash/prettier-cli-action@v1.0.0
+        with:
+          file_pattern: ${{ inputs.file_pattern }}
+          config_path: ${{ inputs.config_path }}
+          ignore_path: ${{ inputs.ignore_path }}
+          fail_on_error: ${{ inputs.fail_on_error }}
+
+      - name: Prettier Output
+        if: ${{ failure() }}
+        shell: bash
+        run: |
+          echo "The following files are not formatted:"
+          echo "${{ steps.prettier-run.outputs.prettier_output }}"

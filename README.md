@@ -1,10 +1,3 @@
-<!-- [![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url] -->
-
-<br />
 <p align="center">
   <a href="https://github.com/Monday-Morning/project-tahiti">
     <img src="repoImages/logo.png" alt="Monday Morning Logo" width="130">
@@ -13,15 +6,53 @@
   <h3 align="center">Monday Morning</h3>
 
   <p align="center">
-    The official student media body of NIT Rourkela
+    The Official Student Media Body of <a href="https://nitrkl.ac.in">NIT Rourkela</a>
     <br />
     <br />
-    <a href="https://mondaymorning.nitrkl.ac.in">View Live</a>
-    ·
-    <a href="https://github.com/Monday-Morning/project-tahiti/issues">Report Bugs</a>
-    .
-    <a href="https://github.com/Monday-Morning/project-tahiti/issues">Add Features</a>
+		<a href="https://mondaymorning.nitrkl.ac.in">View Live</a>
+    •
+    <a href="https://github.com/Monday-Morning/project-tahiti/issues">View Issues</a>
+    •
+    <a href="https://github.com/Monday-Morning/project-tahiti/issues/new?assignees=&labels=bug&template=bug_report.md&title=bug%3A+">Report Bugs</a>
+    •
+    <a href="https://github.com/Monday-Morning/project-tahiti/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=enhancement%3A+">Suggest Features</a>
   </p>
+</p>
+
+<p align="center">
+	<h4 align="center">Release Status</h4>
+
+  <p align="center">
+		<a href="https://github.com/Monday-Morning/project-tahiti/actions/workflows/staging.yml">
+			<img src="https://github.com/Monday-Morning/project-tahiti/actions/workflows/staging.yml/badge.svg" alt="Staging Checks Status">
+		</a>
+		<a href="https://project-tahiti.netlify.app">
+			<img src="https://api.netlify.com/api/v1/badges/ed02eb09-dcdd-423f-91d1-0bb0e21063ed/deploy-status" alt="Staging Deploy Status">
+		</a>
+		<a href="https://github.com/Monday-Morning/project-tahiti/actions/workflows/production.yml">
+			<img src="https://github.com/Monday-Morning/project-tahiti/actions/workflows/production.yml/badge.svg" alt="Production Release Status">
+		</a>
+	</p>
+</p>
+
+<p align="center">
+	<h4 align="center">Project Overview</h4>
+
+  <p align="center">
+			<a href="https://github.com/Monday-Morning/project-tahiti/blob/main/LICENSE">
+    		<img src="https://img.shields.io/github/license/Monday-Morning/project-tahiti?style=plastic" alt="Project License">
+    	</a>
+			<a href="https://github.com/Monday-Morning/project-tahiti/graphs/contributors">
+    		<img src="https://img.shields.io/github/contributors/Monday-Morning/project-tahiti?style=plastic" alt="Project Contributers">
+    	</a>
+			<a href="https://github.com/Monday-Morning/project-tahiti/network/members">
+    		<img src="https://img.shields.io/github/forks/Monday-Morning/project-tahiti?style=plastic" alt="Project Forks">
+    	</a>
+			<a href="https://github.com/Monday-Morning/project-tahiti/stargazers">
+    		<img src="https://img.shields.io/github/stars/Monday-Morning/project-tahiti?style=plastic" alt="Project Stargazers">
+    	</a>
+	</p>
+
 </p>
 
 <!-- TABLE OF CONTENTS -->
