@@ -64,6 +64,8 @@ node_modules/
 
 # dotenv environment variables file
 .env
+.env.*
+!.env.sample
 
 
 # Builds
@@ -71,8 +73,3 @@ client/dist
 
 # Next
 .next
-
-# Git Secrets
-.gitsecret/keys/random_seed
-!*.secret
-client/.env.mjs
