@@ -1,13 +1,7 @@
 import React, { useRef, useState } from 'react';
 
 // Libraries
-import {
-  makeStyles,
-  IconButton,
-  Box,
-  useMediaQuery,
-  Fade,
-} from '@material-ui/core';
+import { makeStyles, IconButton, useMediaQuery } from '@material-ui/core';
 import { ArrowLeftCircle, ArrowRightCircle } from 'react-feather';
 
 // Components
@@ -114,10 +108,13 @@ const useStyles = makeStyles((theme) => ({
   },
 
   articleRow: {
-    marginTop: '2.25rem',
+    // marginTop: '2.25rem',
     zIndex: '1',
     [theme.breakpoints.up('lg')]: {
       paddingLeft: 'calc((100% - 1280px)/2 - 8px)',
+    },
+    [theme.breakpoints.down('sm')]: {
+      marginTop: '2.25rem',
     },
   },
 
