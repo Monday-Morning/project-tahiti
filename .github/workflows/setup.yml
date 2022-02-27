@@ -1,0 +1,57 @@
+name: Setup Application
+
+on:
+  workflow_call:
+    inputs:
+      setup_dev:
+        required: true
+        type: boolean
+
+jobs:
+  setup:
+    name: Setup Application
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+          cache: "yarn"
+          cache-dependency-path: "**/yarn.lock"
+
+      - name: Use Actions Dev Cache
+        uses: actions/cache@v2
+        id: yarn-dev-cache
+        if: ${{ inputs.setup_dev }}
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-dev-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install Dev Dependencies
+        if: ${{ inputs.setup_dev }} && steps.yarn-dev-cache.outputs.cache-hit != 'true'
+        run: yarn install && cd server && yarn install
+
+      - name: Use Actions Prod Cache
+        uses: actions/cache@v2
+        id: yarn-prod-cache
+        if: ${{ !inputs.setup_dev }}
+        with:
+          path: "./server/node_modules"
+          key: ${{ runner.os }}-prod-modules-${{ hashFiles('./server/yarn.lock') }}
+
+      - name: Install Prod Dependencies
+        if: ${{ !inputs.setup_dev }} && steps.yarn-prod-cache.outputs.cache-hit != 'true'
+        run: cd server && yarn install --prod --frozen-lockfile
+
+      - name: Zip Setup Application
+        run: zip app.zip . -r
+
+      - name: Store Application
+        uses: actions/upload-artifact@v2
+        with:
+          name: setup-app
+          path: app.zip
+          retention-days: 1
