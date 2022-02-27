@@ -16,6 +16,9 @@ import Share from '../widgets/Share';
 import STORES from '../../utils/getStores';
 import ActivityIndicator from '../shared/ActivityIndicator';
 
+//Image
+import user from '../../assets/images/photo.png';
+
 const ArticleHeader = ({ article }) => {
   const { isFallback, pathname } = useRouter();
   const Desktop = useMediaQuery(theme.breakpoints.up('sm'));
@@ -23,6 +26,7 @@ const ArticleHeader = ({ article }) => {
   const [pageHref, setPageHref] = useState(pathname);
   useEffect(() => setPageHref(window.location.href), []);
 
+  const matches = useMediaQuery(theme.breakpoints.down('xs'));
   if (isFallback || !article) return <ActivityIndicator size={150} />;
 
   const categorySortFunction = (firstObj, secondObj) => {
@@ -104,15 +108,20 @@ const ArticleHeader = ({ article }) => {
                   style={{ textDecoration: 'none', cursor: 'pointer' }}
                 >
                   <div key={name} className={classes.authorWrapper}>
-                    {/* <img
-                    src={user}
-                    alt={author.alt}
-                    className={classes.authorImg}
-                  /> */}
+                    {matches && (
+                      <Image
+                        src={user}
+                        alt='authorName'
+                        className={classes.authorImg}
+                        // className={classes.author}
+                      />
+                    )}
 
-                    <Typography variant='body2' className={classes.author}>
-                      {name}
-                    </Typography>
+                    {!matches && (
+                      <Typography variant='body2' className={classes.author}>
+                        {name}
+                      </Typography>
+                    )}
                   </div>
                 </Link>
               ))}
@@ -198,6 +207,8 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     cursor: 'pointer',
     alignItems: 'center',
+    width: 'max-content',
+    marginRight: '10px',
   },
   authorImg: {
     height: '1rem',
