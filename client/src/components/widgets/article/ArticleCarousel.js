@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 // Libraries
 import { makeStyles, IconButton, useMediaQuery } from '@material-ui/core';
@@ -27,21 +27,33 @@ const Carousel = ({ articleList }) => {
   const [scrollLeft, setScrollLeft] = useState(0);
 
   const ref = useRef(null);
+
+  let isFirstRightClick = true;
+
   const scroll = (scrollOffset) => {
     ref.current.scrollLeft += scrollOffset;
-    if (ref.current.scrollLeft > 0) setLeftButtonDisable(false);
-    else setLeftButtonDisable(true);
 
-    setScrollLeft((prev) => {
-      if (prev === ref.current.scrollLeft) {
-        setRightButtonDisable(true);
-        return ref.current.scrollLeft;
-      } else {
-        setRightButtonDisable(false);
-        return ref.current.scrollLeft;
-      }
-    });
-    console.log(scrollLeft);
+    let CurrentleftScroll = ref.current.scrollLeft;
+    let maxScrollWidth = ref.current.scrollWidth - ref.current.clientWidth;
+
+    if (isFirstRightClick) {
+      setLeftButtonDisable(false);
+      isFirstRightClick = false;
+      return;
+    }
+
+    if (CurrentleftScroll >= maxScrollWidth) {
+      setRightButtonDisable(true);
+      setLeftButtonDisable(false);
+    }
+
+    if (CurrentleftScroll === 0) {
+      setRightButtonDisable(false);
+      setLeftButtonDisable(true);
+    }
+    if (CurrentleftScroll !== 0) {
+      setLeftButtonDisable(false);
+    }
   };
 
   const showButton = useMediaQuery(theme.breakpoints.up('sm'));
@@ -54,7 +66,9 @@ const Carousel = ({ articleList }) => {
             <IconButton
               className={classes.leftButton}
               disabled={isLeftButtonDisable}
-              onClick={() => scroll(-340)}
+              onClick={() => {
+                setRightButtonDisable(false), scroll(-424);
+              }}
             >
               <ArrowLeftCircle fontSize='large' />
             </IconButton>
@@ -62,7 +76,9 @@ const Carousel = ({ articleList }) => {
             <IconButton
               className={classes.rightButton}
               disabled={isRightButtonDisable}
-              onClick={() => scroll(340)}
+              onClick={() => {
+                setLeftButtonDisable(false), scroll(424);
+              }}
             >
               <ArrowRightCircle fontSize='large' />
             </IconButton>
@@ -105,10 +121,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     overflowX: 'scroll',
     overflowY: 'none',
+    scrollBehavior: 'smooth',
   },
 
   articleRow: {
-    // marginTop: '2.25rem',
     zIndex: '1',
     [theme.breakpoints.up('lg')]: {
       paddingLeft: 'calc((100% - 1280px)/2 - 8px)',
