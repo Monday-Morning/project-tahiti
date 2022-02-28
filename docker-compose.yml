@@ -1,15 +1,14 @@
 version: "3.7"
 
 services:
-  sample:
-    container_name: sample
-    build:
-      context: .
-      dockerfile: Dockerfile
+  tahiti:
+    image: tahiti
     volumes:
-      - ".:/app"
-      - "/app/node_modules"
+      - "./client/logs:/client/logs:rw"
+      - "./client/env:/client/env:rw"
     ports:
-      - 3001:3000
+      - 3000:3000
     environment:
+      - NODE_ENV=production
       - CHOKIDAR_USEPOLLING=true
+    command: yarn start:prod

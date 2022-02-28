@@ -3,7 +3,6 @@ import Link from 'next/link';
 
 import { Button, makeStyles } from '@material-ui/core';
 import { ChevronLeft } from 'react-feather';
-import Link from 'next/link';
 import theme from '../../../config/themes/light';
 
 function BackButton({ path, goTo }) {
