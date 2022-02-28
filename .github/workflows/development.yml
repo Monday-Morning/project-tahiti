@@ -1,0 +1,42 @@
+name: Development CI/CD
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+permissions:
+  actions: read
+  checks: read
+  contents: read
+  deployments: read
+  issues: write
+  discussions: write
+  packages: read
+  pull-requests: write
+  repository-projects: read
+  security-events: read
+  statuses: read
+
+jobs:
+  setup:
+    uses: Monday-Morning/project-tahiti/.github/workflows/setup.yml@main
+    if: github.event.review.state == 'approved' && contains(github.event.pull_request.labels.*.name, 'safe-for-checks')
+    with:
+      setup_dev: true
+
+  eslint:
+    needs: setup
+    uses: Monday-Morning/project-tahiti/.github/workflows/eslint.yml@main
+    with:
+      config_path: ./client/.eslintrc.json
+      ignore_path: ./client/.eslintignore
+      file_path: "client/"
+
+  prettier:
+    needs: setup
+    uses: Monday-Morning/project-tahiti/.github/workflows/prettier.yml@main
+    with:
+      file_pattern: "./client/."
+      config_path: "./client/.prettierrc"
+      ignore_path: "./client/.prettierignore"
+      fail_on_error: true

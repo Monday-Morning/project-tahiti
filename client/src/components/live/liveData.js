@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
+import Image from 'next/image';
 
 // libararies
 import { makeStyles, Typography, useMediaQuery } from '@material-ui/core';
@@ -25,7 +26,7 @@ const LiveData = ({ activeCompany, setCompany, data }) => {
         <>
           <div className={classes.active}>
             <div className={classes.companyData}>
-              <img
+              <Image
                 src={data[activeCompany].image}
                 alt={data[activeCompany].name}
                 className={classes.activeImage}
@@ -71,7 +72,7 @@ const LiveData = ({ activeCompany, setCompany, data }) => {
                 }}
                 onClick={() => setCompany(key)}
               >
-                <img
+                <Image
                   src={company.image}
                   alt={company.name}
                   key={company.name}

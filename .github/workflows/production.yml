@@ -1,0 +1,31 @@
+name: Production CI/CD
+
+on:
+  release:
+    types: [released]
+
+jobs:
+  build:
+    uses: Monday-Morning/project-tahiti/.github/workflows/build.yml@main
+    with:
+      node_env: production
+      image_name: ${{ github.repository }}
+      registry: ghcr.io
+      context: .
+      dockerfile: ./Dockerfile
+      is_latest: true
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy:
+    needs: build
+    uses: Monday-Morning/project-tahiti/.github/workflows/deploy.yml@main
+    with:
+      node_env: production
+      ssh_hosts: ${{ secrets.SSH_HOSTS }}
+      ssh_username: mm
+      image_name: ${{ github.repository }}
+      registry: ghcr.io
+    secrets:
+      env_vars: ${{ secrets.PROD_ENV }}
+      ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
