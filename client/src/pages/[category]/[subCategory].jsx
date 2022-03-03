@@ -15,11 +15,7 @@ import ROUTES from '../../utils/getRoutes';
 // Graphql
 import getArticlesByCategories from '../../graphql/queries/category/getArticlesByCategories';
 
-const CategoryPage = ({
-  categoryName,
-  subCategoryDetails,
-  articleList,
-}) => {
+const CategoryPage = ({ categoryName, subCategoryDetails, articleList }) => {
   const { isFallback } = useRouter();
   return (
     <>
@@ -153,7 +149,11 @@ export async function getStaticProps({
 }
 
 export async function getStaticPaths() {
-  return { paths: [], fallback: true };
+  const paths = ROUTES.SUB_CATEGORIES.ARRAY.pop().map(({ path }) => ({
+    params: { category: path.split('/')[1], subCategory: path.split('/')[2] },
+  }));
+  return { paths, fallback: true };
 }
 
 export default CategoryPage;
+

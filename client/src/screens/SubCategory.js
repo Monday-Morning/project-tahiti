@@ -25,3 +25,4 @@ function SubCategory({ categoryName, subCategoryDetails, articleList }) {
 }
 
 export default SubCategory;
+
