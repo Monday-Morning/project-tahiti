@@ -2,18 +2,18 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
-import { GraphClient } from '../config/ApolloClient';
+import { GraphClient } from '../../config/ApolloClient';
 
 // Components
-import ActivityIndicator from '../components/shared/ActivityIndicator';
-import Category from '../screens/Category';
-import Marginals from '../components/marginals/Marginals';
+import ActivityIndicator from '../../components/shared/ActivityIndicator';
+import Category from '../../screens/Category';
+import Marginals from '../../components/marginals/Marginals';
 
 // Utils
-import ROUTES from '../utils/getRoutes';
+import ROUTES from '../../utils/getRoutes';
 
 // Graphql
-import getArticlesByCategories from '../graphql/queries/category/getArticlesByCategories';
+import getArticlesByCategories from '../../graphql/queries/category/getArticlesByCategories';
 
 const CategoryPage = ({ articleList, categoryShortName, category }) => {
   const { isFallback } = useRouter();
@@ -104,12 +104,6 @@ export async function getStaticProps({
     ({ asyncRoutePath }) => asyncRoutePath === './Category',
   ).filter(({ shortName }) => shortName === categoryShortName)[0];
 
-  if (!category) {
-    return {
-      notFound: true,
-    };
-  }
-
   const {
     data: { getArticlesByCategories: articleList },
   } = await GraphClient.query({
@@ -120,7 +114,7 @@ export async function getStaticProps({
     },
   });
 
-  if (!articleList) {
+  if (!category || !articleList) {
     return {
       notFound: true,
     };
@@ -128,7 +122,6 @@ export async function getStaticProps({
 
   return {
     props: {
-      key: categoryShortName,
       articleList,
       categoryShortName,
       category,
