@@ -1,5 +1,3 @@
-import React from 'react';
-
 //libraries
 import { Container } from '@material-ui/core';
 
@@ -12,7 +10,17 @@ import BackButton from '../components/shared/button/BackButton';
 // placeholder
 import { CAROUSEL } from '../assets/placeholder/guide';
 
-function Contact() {
+function Contact({ issues }) {
+  const latestIssue = issues[0];
+  const secondLatestIssue = issues[1];
+
+  const { featured } = latestIssue;
+
+  const articles = [
+    ...latestIssue.articles.filter((item) => !featured.includes(item.id)),
+    ...secondLatestIssue.articles,
+  ];
+
   return (
     <div>
       <Container>
@@ -20,9 +28,7 @@ function Contact() {
         <Options />
       </Container>
       <BigCarousel head='Issues' IMAGE={CAROUSEL} navigator='2020-2021' />
-      <Container>
-        <Archives />
-      </Container>
+      <Archives issues={articles} />
     </div>
   );
 }
