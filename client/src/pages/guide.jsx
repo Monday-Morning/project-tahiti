@@ -11,8 +11,12 @@ import getLatestSquiggle from '../graphql/queries/homepage/getLatestSquiggle';
 // Components
 import Marginals from '../components/marginals/Marginals';
 import Guide from '../screens/Guide';
+import { useRouter } from 'next/router';
+import ActivityIndicator from '../components/shared/ActivityIndicator';
 
-const GuidePage = ({ issues, squiggles }) => {
+const GuidePage = ({ issues }) => {
+  const { isFallback } = useRouter();
+
   return (
     <>
       <Head>
@@ -75,7 +79,11 @@ const GuidePage = ({ issues, squiggles }) => {
         />
       </Head>
       <Marginals>
-        <Guide issues={issues} />
+        {isFallback ? (
+          <ActivityIndicator size={150} />
+        ) : (
+          <Guide issues={issues} />
+        )}
       </Marginals>
     </>
   );
