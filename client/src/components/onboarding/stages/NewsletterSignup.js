@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 // Library
 import { Typography, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 // Helper
-import createBrowserHistory from '../../../utils/history';
+// import createBrowserHistory from '../../../utils/history';
 
 // Components
 import Button from '../../shared/button/Regular';
@@ -17,7 +19,7 @@ import { ONBOARDING } from '../../../assets/placeholder/onboarding';
 
 function VerifyEmail(props) {
   const classes = useStyles();
-
+  const router = useRouter();
   // Local States
   const [isSigned, setIsSigned] = useState(false);
 
@@ -68,7 +70,7 @@ function VerifyEmail(props) {
               ? ONBOARDING.NEWSLETTER.BUTTON.SECONDARY
               : ONBOARDING.NEWSLETTER.BUTTON.PRIMARY
           }
-          onClick={isSigned ? () => createBrowserHistory.push('/') : onSignup}
+          onClick={isSigned ? () => router.push('/') : onSignup}
           containerStyles={classes.button}
         />
 
@@ -78,7 +80,7 @@ function VerifyEmail(props) {
       </Grid>
 
       <Grid className={classes.imgContainer} item sm={12} md={12} lg={5}>
-        <img className={classes.img} src={newsletter} alt='Verify Email' />
+        <Image className={classes.img} src={newsletter} alt='Verify Email' />
       </Grid>
     </Grid>
   );

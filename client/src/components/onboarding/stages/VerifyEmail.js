@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 
 // Library
 import { Typography, Grid } from '@material-ui/core';
@@ -82,7 +83,11 @@ function VerifyEmail(props) {
       </Grid>
 
       <Grid className={classes.imgContainer} item sm={12} md={12} lg={5}>
-        <img className={classes.img} src={verifyEmailImg} alt='Verify Email' />
+        <Image
+          className={classes.img}
+          src={verifyEmailImg}
+          alt='Verify Email'
+        />
       </Grid>
     </Grid>
   );
