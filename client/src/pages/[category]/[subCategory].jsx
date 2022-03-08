@@ -105,13 +105,14 @@ export async function getStaticProps({
 }) {
   const categoryName = ROUTES.CATEGORIES.filter(
     ({ asyncRoutePath }) => asyncRoutePath === './Category',
-  ).filter(({ shortName }) => shortName === category)[0]?.name;
+  ).filter(({ shortName }) => shortName === category)[0]?.shortName;
+
+  // console.log(categoryName.toUpperCase());
 
   const subCategoryDetails = ROUTES.SUB_CATEGORIES.OBJECT[
     categoryName.toUpperCase()
-  ]
-    .filter(({ asyncRoutePath }) => asyncRoutePath === './SubCategory')
-    .filter(({ shortName }) => shortName === subCategory)[0];
+  ].filter(({ asyncRoutePath }) => asyncRoutePath === './SubCategory')
+  .filter(({ shortName }) => shortName === subCategory)[0];
 
   if (!subCategoryDetails) {
     return {
@@ -149,11 +150,12 @@ export async function getStaticProps({
 }
 
 export async function getStaticPaths() {
-  const paths = ROUTES.SUB_CATEGORIES.ARRAY.pop().map(({ path }) => ({
-    params: { category: path.split('/')[1], subCategory: path.split('/')[2] },
+  let routes = ROUTES.SUB_CATEGORIES.ARRAY;
+  routes.pop();
+  const paths = routes.flat().map(({ path }) => ({
+    params: { category: path?.split('/')[1], subCategory: path?.split('/')[2] },
   }));
   return { paths, fallback: true };
 }
 
 export default CategoryPage;
-
