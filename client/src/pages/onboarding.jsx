@@ -2,7 +2,6 @@ import React from 'react';
 import Head from 'next/head';
 
 //Components
-import Marginals from '../components/marginals/Marginals';
 import Onboarding from '../screens/Onboarding';
 
 const OnBoardingPage = () => {
@@ -67,9 +66,8 @@ const OnBoardingPage = () => {
         />
       </Head>
 
-      <Marginals>
-        <Onboarding />
-      </Marginals>
+      <Onboarding />
+
     </>
   );
 };
