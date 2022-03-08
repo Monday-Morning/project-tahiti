@@ -127,7 +127,10 @@ const useStyles = makeStyles((theme) => ({
   articleRow: {
     zIndex: '1',
     [theme.breakpoints.up('lg')]: {
-      paddingLeft: 'calc((100% - 1280px)/2 - 8px)',
+      paddingLeft: 'calc((100% - 1280px)/2 + 24px)',
+    },
+    [theme.breakpoints.down('md')]: {
+      padding: '0 24px',
     },
     [theme.breakpoints.down('sm')]: {
       marginTop: '2.25rem',
@@ -135,10 +138,6 @@ const useStyles = makeStyles((theme) => ({
   },
 
   articles: {
-    marginLeft: '24px',
-    [theme.breakpoints.up('lg')]: {
-      marginLeft: '33px',
-    },
     display: 'flex',
     paddingBottom: '1.5rem',
     [theme.breakpoints.up('sm')]: {
