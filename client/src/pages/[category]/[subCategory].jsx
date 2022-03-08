@@ -2,41 +2,44 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
-import { GraphClient } from '../config/ApolloClient';
+import { GraphClient } from '../../config/ApolloClient';
 
 // Components
-import ActivityIndicator from '../components/shared/ActivityIndicator';
-import Category from '../screens/Category';
-import Marginals from '../components/marginals/Marginals';
+import ActivityIndicator from '../../components/shared/ActivityIndicator';
+import SubCategory from '../../screens/SubCategory';
+import Marginals from '../../components/marginals/Marginals';
 
 // Utils
-import ROUTES from '../utils/getRoutes';
+import ROUTES from '../../utils/getRoutes';
 
 // Graphql
-import getArticlesByCategories from '../graphql/queries/category/getArticlesByCategories';
+import getArticlesByCategories from '../../graphql/queries/category/getArticlesByCategories';
 
-const CategoryPage = ({ articleList, categoryShortName, category }) => {
+const CategoryPage = ({ categoryName, subCategoryDetails, articleList }) => {
   const { isFallback } = useRouter();
   return (
     <>
       <Head>
         {/* <!-- =============== Primary Meta Tags =============== --> */}
-        <title>{category?.name} | Monday Morning</title>
-        <meta name='title' content={`${category?.name} | Monday Morning`} />
+        <title>{subCategoryDetails?.name} | Monday Morning</title>
+        <meta
+          name='title'
+          content={`${subCategoryDetails?.name} | Monday Morning`}
+        />
         <meta
           name='description'
           content='Monday Morning is the official Student Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday Morning also serves as a link between the administration and the students.'
         />
         <meta
           name='keywords'
-          content={`${categoryShortName},monday morning, mondaymorning, monday morning, mm, nit rkl, nit, nit rourkela, nitr, nitrkl, rkl, rourkela`}
+          content={`${subCategoryDetails?.shortName},monday morning, mondaymorning, monday morning, mm, nit rkl, nit, nit rourkela, nitr, nitrkl, rkl, rourkela`}
         />
 
         {/* <!-- =============== Open Graph / Facebook =============== --> */}
         <meta property='og:type' content='website' />
         <meta
           property='og:url'
-          content={`https://mondaymorning.nitrkl.ac.in/${categoryShortName}`}
+          content={`https://mondaymorning.nitrkl.ac.in/${subCategoryDetails?.shortName}`}
         />
         <meta
           property='og:site_name'
@@ -44,7 +47,7 @@ const CategoryPage = ({ articleList, categoryShortName, category }) => {
         />
         <meta
           property='og:title'
-          content={`${category?.name} | Monday Morning`}
+          content={`${subCategoryDetails?.name} | Monday Morning`}
         />
         <meta
           property='og:description'
@@ -69,7 +72,7 @@ const CategoryPage = ({ articleList, categoryShortName, category }) => {
         <meta property='twitter:card' content='summary_large_image' />
         <meta
           property='twitter:url'
-          content={`https://mondaymorning.nitrkl.ac.in/${categoryShortName}`}
+          content={`https://mondaymorning.nitrkl.ac.in/${subCategoryDetails?.shortName}`}
         />
         <meta property='twitter:title' content='Monday Morning' />
         <meta
@@ -85,10 +88,10 @@ const CategoryPage = ({ articleList, categoryShortName, category }) => {
         {isFallback && !articleList ? (
           <ActivityIndicator size={150} />
         ) : (
-          <Category
+          <SubCategory
             articleList={articleList}
-            categoryShortName={categoryShortName}
-            category={category}
+            categoryName={categoryName}
+            subCategoryDetails={subCategoryDetails}
           />
         )}
       </Marginals>
@@ -97,14 +100,21 @@ const CategoryPage = ({ articleList, categoryShortName, category }) => {
 };
 
 export async function getStaticProps({
-  params: { category: categoryShortName },
+  params: { category, subCategory },
   preview,
 }) {
-  const category = ROUTES.CATEGORIES.filter(
+  const categoryName = ROUTES.CATEGORIES.filter(
     ({ asyncRoutePath }) => asyncRoutePath === './Category',
-  ).filter(({ shortName }) => shortName === categoryShortName)[0];
+  ).filter(({ shortName }) => shortName === category)[0]?.shortName;
 
-  if (!category) {
+  // console.log(categoryName.toUpperCase());
+
+  const subCategoryDetails = ROUTES.SUB_CATEGORIES.OBJECT[
+    categoryName.toUpperCase()
+  ].filter(({ asyncRoutePath }) => asyncRoutePath === './SubCategory')
+  .filter(({ shortName }) => shortName === subCategory)[0];
+
+  if (!subCategoryDetails) {
     return {
       notFound: true,
     };
@@ -115,8 +125,8 @@ export async function getStaticProps({
   } = await GraphClient.query({
     query: getArticlesByCategories,
     variables: {
-      categoryNumbers: [category.idNumber, ...category.subCategoryIds],
-      limit: 4,
+      categoryNumbers: [subCategoryDetails.idNumber],
+      limit: 7,
     },
   });
 
@@ -128,10 +138,9 @@ export async function getStaticProps({
 
   return {
     props: {
-      key: categoryShortName,
+      categoryName,
+      subCategoryDetails,
       articleList,
-      categoryShortName,
-      category,
     },
     revalidate:
       preview || new Date(Date.now()).getDay() < 3
@@ -141,12 +150,11 @@ export async function getStaticProps({
 }
 
 export async function getStaticPaths() {
-  const paths = ROUTES.CATEGORIES.filter(
-    ({ asyncRoutePath }) => asyncRoutePath === './Category',
-  ).map(({ shortName }) => ({
-    params: { category: shortName },
+  let routes = ROUTES.SUB_CATEGORIES.ARRAY;
+  routes.pop();
+  const paths = routes.flat().map(({ path }) => ({
+    params: { category: path?.split('/')[1], subCategory: path?.split('/')[2] },
   }));
-
   return { paths, fallback: true };
 }
 
