@@ -1,14 +1,17 @@
-FROM node:alpine
+FROM node:14-alpine
+ENV NODE_ENV=production
 
-WORKDIR /app
+WORKDIR /client
+COPY ["client/package.json", "client/yarn.lock", "./"]
 
-COPY ./client/package*.json /app/
+RUN yarn install --frozen-lockfile --prod
 
-RUN npm ci
+COPY ["client", "./"]
 
-COPY ./client /app
+RUN yarn build
 
-RUN npm run build
+EXPOSE 3000
 
-RUN npm install serve -g
-CMD ["serve", "-s", "dist/"]
+RUN ls -al
+
+CMD ["yarn", "start:prod"]

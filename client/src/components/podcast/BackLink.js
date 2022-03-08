@@ -1,16 +1,16 @@
 import React from 'react';
-
+import { useRouter } from 'next/router';
 // Libraries
 import { makeStyles, Typography } from '@material-ui/core';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
 
 const BackLink = ({ backTo }) => {
   const classes = useStyles();
-  const location = useLocation();
+  const location = useRouter();
   const category = location.pathname.split('/')[1];
   return (
     <div className={classes.wrapper}>
-      <Link to={`/${category}`} className={classes.link}>
+      <Link href={`/${category}`} passHref className={classes.link}>
         <Typography variant='body1'>
           <i className='fas fa-chevron-left' />
           <span className={classes.text}>Back to {backTo}</span>
