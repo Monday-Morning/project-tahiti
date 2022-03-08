@@ -178,10 +178,10 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
   },
   featuredImage: {
-    objectFit: 'cover',
     position: 'unset !important',
     width: 'auto !important',
     height: 'auto !important',
+    objectFit: 'cover',
   },
 
   categoriesContainer: {

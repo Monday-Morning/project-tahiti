@@ -23,6 +23,8 @@ export const ARCHIVES = Object.freeze({
     '2018',
     '2019',
     '2020',
+    '2021',
+    '2022',
   ],
   months: [
     'Jan',
