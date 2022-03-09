@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
+import Router from 'next/router';
 
 // Styles
 import '../../public/index.css';
@@ -15,12 +16,25 @@ import ApolloClient from '../config/ApolloClient';
 // Components
 // import ScrollToTopOnMount from '../components/shared/ScrollToTopOnMount';
 import ScrollToTopButton from '../components/shared/button/ScrollToTopButton';
-
+import ActivityIndicator from '../components/shared/ActivityIndicator';
 // Theme
 import lightTheme from '../config/themes/light';
+import { useRouter } from 'next/router';
 
 function TahitiApp({ Component, pageProps }) {
   const classes = useStyles();
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    const handleStart = (url) => {
+      url !== router.pathname ? setLoading(true) : setLoading(false);
+    };
+    const handleComplete = (url) => setLoading(false);
+
+    router.events.on('routeChangeStart', handleStart);
+    router.events.on('routeChangeComplete', handleComplete);
+    router.events.on('routeChangeError', handleComplete);
+  }, [router]);
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
@@ -45,7 +59,11 @@ function TahitiApp({ Component, pageProps }) {
       <ThemeProvider theme={lightTheme}>
         <CssBaseline />
 
-        <Component {...pageProps} />
+        {loading ? (
+          <ActivityIndicator loading={loading} />
+        ) : (
+          <Component {...pageProps} />
+        )}
 
         <ScrollToTopButton className={classes.fab} />
         {/* <ScrollToTopOnMount /> */}
