@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Libararies
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,10 +13,14 @@ import ArticleCarousel from '../widgets/article/ArticleCarousel';
 // Assets
 import { ARCHIVES } from '../../assets/placeholder/guide';
 
-const Archives = () => {
+const Archives = ({ issues }) => {
   const classes = useStyles();
   const [activeMonth, setMonth] = useState(ARCHIVES.months[0]);
   const [activeYear, setYear] = useState(ARCHIVES.years[0]);
+  let articles;
+  useMediaQuery(theme.breakpoints.down('xs'))
+    ? (articles = issues.slice(0, 3))
+    : (articles = issues.slice(0, 6));
 
   const selectMonth = (month) => {
     setMonth(month);
@@ -34,7 +38,7 @@ const Archives = () => {
           The only guide you will need at NITR!
         </Grid>
       </div>
-      <ArticleCarousel /> {/* props missing */}
+      <ArticleCarousel articleList={articles} /> {/* props missing */}
       <div className={classes.archive}>
         <Typography variant='h1' className={classes.archivetitle}>
           Archive
@@ -76,7 +80,7 @@ const Archives = () => {
             </Button>
           </div>
         ) : (
-          <div>
+          <div className={classes.archieveWrap}>
             <Grid
               container
               direction='row'
@@ -128,18 +132,11 @@ const Archives = () => {
       </div>
       <div className={classes.postWrapper}>
         <Typography variant='h3'>
-          <span className={classes.select}>selected:</span>August 2020
+          <span className={classes.select}>Selected:</span>
+          {activeMonth} {activeYear}
         </Typography>
         <div>
-          {useMediaQuery(theme.breakpoints.down('xs')) ? (
-            <ArticleCardStack />
-          ) : (
-            <div>
-              <ArticleCardStack /> {/* props missing */}
-              <ArticleCardStack /> {/* props missing */}
-              <ArticleCardStack /> {/* props missing */}
-            </div>
-          )}
+          <ArticleCardStack articleList={articles} />
         </div>
         <div className={classes.buttonWrapper}>
           <Button type='submit' variant='contained' color='primary'>
@@ -158,13 +155,16 @@ const useStyles = makeStyles(() => ({
     overflow: 'hidden',
   },
   header: {
-    maxWidth: '1280px',
+    padding: '0 calc((100% - 1280px)/2 + 24px)',
     margin: '60px auto 0px auto',
     display: 'flex',
     direction: 'row',
+    [theme.breakpoints.down('md')]: {
+      padding: '40px 24px',
+    },
     [theme.breakpoints.down('xs')]: {
-      margin: '40px 16px 0px 24px',
       display: 'block',
+      padding: '0 24px',
     },
   },
   title: {
@@ -186,13 +186,17 @@ const useStyles = makeStyles(() => ({
       fontSize: '14px',
       lineHeight: '20px',
       marginLeft: '0px',
+      marginTop: '0.75rem',
     },
   },
   archive: {
-    padding: '40px 120px',
+    padding: '40px calc((100% - 1280px)/2 + 24px)',
     backgroundColor: theme.palette.secondary.main,
+    [theme.breakpoints.down('md')]: {
+      padding: '40px 24px',
+    },
     [theme.breakpoints.down('xs')]: {
-      padding: '0px 30px 30px 30px',
+      padding: '30px 24px',
     },
   },
   archivetitle: {
@@ -222,7 +226,7 @@ const useStyles = makeStyles(() => ({
     marginTop: '1.5rem',
     maxWidth: '1280px',
     margin: '40px auto 20px auto',
-    paddingLeft: '16px',
+    padding: '0 24px',
     [theme.breakpoints.down('xs')]: {
       marginTop: '1rem',
     },
@@ -241,6 +245,7 @@ const useStyles = makeStyles(() => ({
     fontSize: '24px',
     lineHeight: '32px',
     margin: '24px',
+    cursor: 'pointer',
   },
   active: {
     color: theme.palette.common.white,
@@ -249,11 +254,15 @@ const useStyles = makeStyles(() => ({
     fontSize: '24px',
     lineHeight: '32px',
     margin: '24px',
+    cursor: 'pointer',
   },
   buttonWrapper: {
     padding: '40px 0px',
     display: 'flex',
     justifyContent: 'center',
+  },
+  archieveWrap: {
+    marginLeft: '-24px',
   },
   archieveWrapper: {
     display: 'flex',

@@ -23,7 +23,7 @@ const PhotoCarousel = ({ IMAGE, navigator }) => {
     centerMode: true,
     arrows: false,
     slidesToShow: 1,
-    centerPadding: '370px',
+    centerPadding: '650px',
     responsive: [
       {
         breakpoint: 1500,

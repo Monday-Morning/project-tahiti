@@ -1,0 +1,56 @@
+name: Staging CI/CD
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "client/**"
+
+permissions:
+  actions: read
+  checks: read
+  contents: read
+  deployments: write
+  issues: write
+  discussions: write
+  packages: write
+  pull-requests: write
+  repository-projects: read
+  security-events: read
+  statuses: read
+
+jobs:
+  setup:
+    uses: Monday-Morning/project-tahiti/.github/workflows/setup.yml@main
+    with:
+      setup_dev: true
+
+  eslint:
+    needs: setup
+    uses: Monday-Morning/project-tahiti/.github/workflows/eslint.yml@main
+    with:
+      config_path: ./client/.eslintrc.json
+      ignore_path: ./client/.eslintignore
+      file_path: "client/"
+
+  prettier:
+    needs: setup
+    uses: Monday-Morning/project-tahiti/.github/workflows/prettier.yml@main
+    with:
+      file_pattern: "./client/."
+      config_path: "./client/.prettierrc"
+      ignore_path: "./client/.prettierignore"
+      fail_on_error: true
+
+  build:
+    needs: [eslint, prettier]
+    uses: Monday-Morning/project-tahiti/.github/workflows/build.yml@main
+    with:
+      node_env: development
+      image_name: ${{ github.repository }}
+      registry: ghcr.io
+      context: .
+      dockerfile: ./Dockerfile
+      is_latest: true
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}

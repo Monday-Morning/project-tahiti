@@ -36,12 +36,8 @@ function SelectTopics(props) {
   const classes = useStyles();
 
   // props
-  const {
-    selectedTopics,
-    addSelectedTopic,
-    removeSelectedTopic,
-    onNext,
-  } = props;
+  const { selectedTopics, addSelectedTopic, removeSelectedTopic, onNext } =
+    props;
 
   return (
     <div className={classes.container}>
@@ -90,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     fontWeight: 600,
     textAlign: 'left',
-    margin: '20px 0px',
+    margin: '0px 0px',
   },
   content: {
     fontWeight: 400,

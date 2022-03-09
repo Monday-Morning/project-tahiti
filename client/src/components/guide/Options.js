@@ -18,6 +18,7 @@ import SubCategories from '../widgets/SubCategory';
 
 // theme
 import theme from '../../config/themes/light';
+import Image from 'next/image';
 
 const Options = () => {
   const classes = useStyles(theme);
@@ -39,7 +40,7 @@ const Options = () => {
         ))}
       </Grid>
       <div className={classes.optionWrapper}>
-        <img src={icon1} alt='Icon' className={classes.icons} />
+        <Image src={icon1} alt='Icon' className={classes.icons} />
         <Typography variant='h3' className={classes.option1}>
           Communication Directory
         </Typography>
@@ -48,7 +49,7 @@ const Options = () => {
         </span>
       </div>
       <div className={classes.optionWrapper}>
-        <img src={icon2} alt='Icon' className={classes.icons} />
+        <Image src={icon2} alt='Icon' className={classes.icons} />
         <Typography variant='h3' className={classes.option2}>
           SAC and Clubs Info
         </Typography>
@@ -57,7 +58,7 @@ const Options = () => {
         </Typography>
       </div>
       <div className={classes.optionWrapper}>
-        <img src={icon3} alt='Icon' className={classes.icons} />
+        <Image src={icon3} alt='Icon' className={classes.icons} />
         <Typography variant='h3' className={classes.option2}>
           Hall Info
         </Typography>
@@ -66,7 +67,7 @@ const Options = () => {
         </Typography>
       </div>
       <div className={classes.optionWrapper}>
-        <img src={icon4} alt='Icon' className={classes.icons} />
+        <Image src={icon4} alt='Icon' className={classes.icons} />
         <Typography variant='h3' className={classes.option2}>
           Health and Emergency Info
         </Typography>
@@ -112,6 +113,7 @@ const useStyles = makeStyles((theme) => ({
     direction: 'row',
     position: 'relative',
     alignItems: 'center',
+    cursor: 'pointer',
     [theme.breakpoints.down('xs')]: {
       padding: '12px',
     },
