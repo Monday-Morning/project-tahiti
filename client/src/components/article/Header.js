@@ -48,19 +48,18 @@ const ArticleHeader = ({ article }) => {
 
   return (
     <div className={classes.container}>
-      <div className={classes.coverImgContainer}>
-        <Image
-          src={STORES[store] + encodeURI(storePath)}
-          alt={`Monday Morning Article Cover for: ${title}`}
-          layout='fill'
-          objectFit='cover'
-          className={classes.coverImg}
-        />
-      </div>
-
       <Grid container className={classes.container}>
-        <Grid item md={9}>
+        <Grid item md={12}>
           <Grid container>
+            <div className={classes.coverImgContainer}>
+              <Image
+                src={STORES[store] + encodeURI(storePath)}
+                alt={`Monday Morning Article Cover for: ${title}`}
+                layout='fill'
+                objectFit='cover'
+                className={classes.coverImg}
+              />
+            </div>
             {categories
               .slice()
               .sort(categorySortFunction)
@@ -157,6 +156,7 @@ const useStyles = makeStyles(() => ({
     width: '100%',
     height: 'auto',
     position: 'relative',
+    marginBottom: '2rem',
     '& > span': {
       position: 'unset !important',
     },
@@ -166,6 +166,7 @@ const useStyles = makeStyles(() => ({
     width: 'auto !important',
     height: 'auto !important',
     borderRadius: theme.shape.borderRadius,
+    marginBottom: '2rem',
   },
   tag: {
     fontSize: '1.25rem',

@@ -19,10 +19,9 @@ function Article({ article, bind, toggleSidebar }) {
   return (
     <>
       <Container {...bind()}>
-        <ArticleHeader article={article} />
-
         <Grid container>
           <Grid item md={9}>
+            <ArticleHeader article={article} />
             <ArticleContent content={article.content} />
             <Disclaimer />
             <ArticleTags tags={article?.tags} />
