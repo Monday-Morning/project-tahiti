@@ -1,0 +1,8 @@
+{
+  "name": "Project Tahiti",
+  "description": "The client application for Project Infinity, Monday Morning",
+  "website": "https://mondaymorning.nitrkl.ac.in/",
+  "repository": "https://github.com/Monday-Morning/project-tahiti.git",
+  "logo": "https://mondaymorning.nitrkl.ac.in/logo.png",
+  "stack": "container"
+}
