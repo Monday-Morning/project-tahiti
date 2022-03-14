@@ -166,7 +166,7 @@ const useStyles = makeStyles(() => ({
     width: 'auto !important',
     height: 'auto !important',
     borderRadius: theme.shape.borderRadius,
-    marginBottom: '2rem',
+    marginBottom: '1.5rem',
   },
   tag: {
     fontSize: '1.25rem',
