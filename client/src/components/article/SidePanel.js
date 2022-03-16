@@ -30,8 +30,6 @@ const SidePanel = ({ content, toggleSidebar, articleTitle }) => {
 
   return (
     <div className={toggleSidebar ? classes.expanded : classes.wrapper}>
-      <TableOfContent content={content} />
-
       {/* Reactions */}
       <div className={classes.reactionsWrapper}>
         <span className={classes.icon}>
@@ -51,6 +49,8 @@ const SidePanel = ({ content, toggleSidebar, articleTitle }) => {
           </Link>
         </span>
       </div>
+
+      <TableOfContent content={content} className={classes.toc} />
     </div>
   );
 };
@@ -58,9 +58,13 @@ const SidePanel = ({ content, toggleSidebar, articleTitle }) => {
 export default SidePanel;
 
 const useStyles = makeStyles((theme) => ({
+  toc: {
+    // position: 'sticky',
+  },
+
   wrapper: {
     marginTop: '1rem',
-    paddingLeft: '4rem',
+    paddingLeft: '1.5rem',
     position: 'sticky',
     top: 20,
     zIndex: '10',
@@ -94,7 +98,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   reactionsWrapper: {
-    marginTop: '4rem',
+    marginTop: '3rem',
+    marginBottom: '3rem',
     display: 'flex',
     flexDirection: 'column',
     justify: 'center',
