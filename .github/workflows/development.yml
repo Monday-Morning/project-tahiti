@@ -1,8 +1,8 @@
 name: Development CI/CD
 
 on:
-  pull_request_review:
-    types: [submitted]
+  pull_request_target:
+    types: [opened, reopened, ready_for_review, labeled, synchronize]
 
 permissions:
   actions: read
@@ -14,13 +14,12 @@ permissions:
   packages: read
   pull-requests: write
   repository-projects: read
-  security-events: read
+  security-events: write
   statuses: read
 
 jobs:
   setup:
     uses: Monday-Morning/project-tahiti/.github/workflows/setup.yml@main
-    if: github.event.review.state == 'approved' && contains(github.event.pull_request.labels.*.name, 'safe-for-checks')
     with:
       setup_dev: true
 
@@ -40,3 +39,8 @@ jobs:
       config_path: "./client/.prettierrc"
       ignore_path: "./client/.prettierignore"
       fail_on_error: true
+
+  analyze:
+    needs: [eslint, prettier]
+    if: contains(github.event.pull_request.labels.*.name, 'safe-for-checks')
+    uses: Monday-Morning/project-tahiti/.github/workflows/analyze.yml@main

@@ -26,8 +26,8 @@
 		<a href="https://github.com/Monday-Morning/project-tahiti/actions/workflows/staging.yml">
 			<img src="https://github.com/Monday-Morning/project-tahiti/actions/workflows/staging.yml/badge.svg" alt="Staging Checks Status">
 		</a>
-		<a href="https://project-tahiti.netlify.app">
-			<img src="https://api.netlify.com/api/v1/badges/ed02eb09-dcdd-423f-91d1-0bb0e21063ed/deploy-status" alt="Staging Deploy Status">
+		<a href="https://project-tahiti-staging.herokuapp.com">
+			<img src="https://heroku-badge.herokuapp.com/?app=project-tahiti-staging" alt="Staging Deploy Status">
 		</a>
 		<a href="https://github.com/Monday-Morning/project-tahiti/actions/workflows/production.yml">
 			<img src="https://github.com/Monday-Morning/project-tahiti/actions/workflows/production.yml/badge.svg" alt="Production Release Status">
