@@ -16,7 +16,7 @@ permissions:
   packages: write
   pull-requests: write
   repository-projects: read
-  security-events: read
+  security-events: write
   statuses: read
 
 jobs:
@@ -42,8 +42,12 @@ jobs:
       ignore_path: "./client/.prettierignore"
       fail_on_error: true
 
-  build:
+  analyze:
     needs: [eslint, prettier]
+    uses: Monday-Morning/project-tahiti/.github/workflows/analyze.yml@main
+
+  build:
+    needs: analyze
     uses: Monday-Morning/project-tahiti/.github/workflows/build.yml@main
     with:
       node_env: development
