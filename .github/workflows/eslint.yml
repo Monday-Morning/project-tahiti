@@ -18,13 +18,8 @@ jobs:
     name: ESLint Check
     runs-on: ubuntu-latest
     steps:
-      - name: Retrieve Prepared Repository
-        uses: actions/download-artifact@v2
-        with:
-          name: setup-app
-
-      - name: Unzip Artifact
-        run: unzip app.zip
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
@@ -32,6 +27,18 @@ jobs:
           node-version: "14"
           cache: "yarn"
           cache-dependency-path: "**/yarn.lock"
+
+      - name: Use Actions Dev Cache
+        uses: actions/cache@v2
+        id: yarn-dev-cache
+        if: ${{ inputs.setup_dev }}
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-dev-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install Dev Dependencies
+        if: ${{ inputs.setup_dev }} && steps.yarn-dev-cache.outputs.cache-hit != 'true'
+        run: cd client && yarn install
 
       - name: Install ESLint
         run: yarn global add eslint
