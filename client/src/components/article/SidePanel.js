@@ -50,7 +50,7 @@ const SidePanel = ({ content, toggleSidebar, articleTitle }) => {
         </span>
       </div>
 
-      <TableOfContent content={content} className={classes.toc} />
+      <TableOfContent content={content} />
     </div>
   );
 };
@@ -58,16 +58,11 @@ const SidePanel = ({ content, toggleSidebar, articleTitle }) => {
 export default SidePanel;
 
 const useStyles = makeStyles((theme) => ({
-  toc: {
-    // position: 'sticky',
-  },
-
   wrapper: {
     marginTop: '1rem',
     paddingLeft: '1.5rem',
-    position: 'sticky',
-    top: 20,
     zIndex: '10',
+    height: '100%',
     [theme.breakpoints.down('sm')]: {
       position: 'fixed',
       top: '-1rem',
@@ -112,4 +107,5 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '28px',
     marginTop: '2rem',
   },
+  toc: {},
 }));
