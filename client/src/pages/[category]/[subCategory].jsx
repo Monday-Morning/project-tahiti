@@ -112,7 +112,7 @@ export async function getStaticProps({
   const subCategoryDetails = ROUTES.SUB_CATEGORIES.OBJECT[
     categoryName.toUpperCase()
   ].filter(({ asyncRoutePath }) => asyncRoutePath === './SubCategory')
-  .filter(({ shortName }) => shortName === subCategory)[0];
+    .filter(({ shortName }) => shortName === subCategory)[0];
 
   if (!subCategoryDetails) {
     return {

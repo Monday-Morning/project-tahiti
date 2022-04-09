@@ -9,6 +9,7 @@ import TitleWrapper from '../../shared/TitleWrapper';
 
 function ArticleCardStack({ articleList, title }) {
   const classes = useStyles();
+  // console.log(articleList)
   return (
     <div>
       {title ? <TitleWrapper title={title} /> : false}

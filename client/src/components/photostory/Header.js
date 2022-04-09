@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 // libraries
 import { Container, Grid, makeStyles, Typography } from '@material-ui/core';
@@ -8,6 +9,9 @@ import { Bookmark, Share2, Volume2 } from 'react-feather';
 
 // Config
 import theme from '../../config/themes/light';
+
+//
+import user from '../../assets/images/photo.png';
 
 const Header = ({ DATA }) => {
   const Desktop = useMediaQuery(theme.breakpoints.up('sm'));
@@ -27,11 +31,7 @@ const Header = ({ DATA }) => {
             <div className={classes.authorList}>
               {DATA.authors.map((author, key) => (
                 <div key={key} className={classes.authorWrapper}>
-                  <img
-                    src={author.img}
-                    alt={author.alt}
-                    className={classes.authorImg}
-                  />
+                 <Image src={user} alt='User' />
                   <Typography variant='body2' className={classes.author}>
                     {author.name}
                   </Typography>

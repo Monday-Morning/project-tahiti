@@ -6,7 +6,7 @@ import { makeStyles, Container, Typography } from '@material-ui/core';
 // Components
 import ArticleCardStack from '../widgets/article/ArticleCardStack';
 
-const RecommendedArticles = ({ title }) => {
+const RecommendedArticles = ({ title, articleList }) => {
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
@@ -17,7 +17,7 @@ const RecommendedArticles = ({ title }) => {
           </Typography>
           <div className={classes.underline} />
         </div>
-        <ArticleCardStack />
+        <ArticleCardStack articleList={articleList} />
       </Container>
     </div>
   );

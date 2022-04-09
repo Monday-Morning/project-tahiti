@@ -26,6 +26,14 @@ const PhotoCarousel = ({ IMAGE, navigator }) => {
     centerPadding: '650px',
     responsive: [
       {
+        breakpoint: 1600,
+        settings: {
+          centerMode: true,
+          centerPadding: '420px',
+          slidesToShow: 1,
+        },
+      },
+      {
         breakpoint: 1500,
         settings: {
           centerMode: true,
@@ -100,7 +108,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     direction: 'row',
     justifyContent: 'center',
-    marginTop: '24px',
+    marginTop: '14px',
     [theme.breakpoints.down('xs')]: {
       marginTop: '0px',
     },
