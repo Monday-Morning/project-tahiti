@@ -53,7 +53,7 @@ const PageNotFound = () => {
           </Typography>
         </Grid>
         <Grid item className={classes.gridContainer}>
-          <Link href={LINKS.CATEGORIES.HOME} className={classes.link}>
+          <Link passHref href={LINKS.CATEGORIES.HOME} className={classes.link}>
             <Typography className={classes.homeLink}>
               Go back home <ArrowForward />
             </Typography>

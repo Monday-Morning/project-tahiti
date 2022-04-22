@@ -24,6 +24,7 @@ function Section({ heading }) {
         <Grid item sm={9}>
           <Link
             href={link}
+            passHref
             target='_blank'
             rel='nonoopener noreferrer'
             className={classes.link}

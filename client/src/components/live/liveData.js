@@ -44,12 +44,12 @@ const LiveData = ({ activeCompany, setCompany, data }) => {
               </Typography>
             </div>
             {data[activeCompany].placed.map((student) => (
-              <div className={classes.studentsData}>
+              <div key={student} className={classes.studentsData}>
                 <Typography variant='body2' className={classes.course}>
                   {student.course}
                 </Typography>
                 {student.branch.map((branches) => (
-                  <div>
+                  <div key={{ ...student, ...branches }}>
                     <Typography variant='body2' className={classes.branch}>
                       {branches.branchName}
                     </Typography>
@@ -66,6 +66,7 @@ const LiveData = ({ activeCompany, setCompany, data }) => {
           <div className={classes.imageContainer}>
             {data.map((company, key) => (
               <div
+                key={key}
                 className={classes.imageWrapper}
                 style={{
                   backgroundColor: activeCompany === key ? '#D9E9F7' : 'unset',
@@ -88,7 +89,7 @@ const LiveData = ({ activeCompany, setCompany, data }) => {
             Showing {LIVE.data.length} Companies
           </Typography>
           {data.map((company) => (
-            <CompanyBanner data={company} />
+            <CompanyBanner key={company} data={company} />
           ))}
         </>
       )}
