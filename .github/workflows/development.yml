@@ -27,9 +27,9 @@ jobs:
     needs: setup
     uses: Monday-Morning/project-tahiti/.github/workflows/eslint.yml@main
     with:
-      config_path: ./client/.eslintrc.json
-      ignore_path: ./client/.eslintignore
-      file_path: "client/"
+      config_path: ./.eslintrc.json
+      ignore_path: ./.eslintignore
+      file_path: "./"
 
   prettier:
     needs: setup
