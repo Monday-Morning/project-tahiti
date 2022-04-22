@@ -63,6 +63,9 @@ export default TableOfContent;
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
+    position: 'sticky',
+    position: '-webkit-sticky',
+    top: 20,
     marginTop: '1rem',
     paddingLeft: '4rem',
     [theme.breakpoints.down('md')]: {
