@@ -7,6 +7,7 @@ import {
   makeStyles,
   Typography,
 } from '@material-ui/core';
+import Image from 'next/image';
 import React from 'react';
 import { Bell, Bookmark, User } from 'react-feather';
 import userImage from '../../../assets/images/profile.png';
@@ -16,7 +17,7 @@ function ProfileCard() {
   const classes = useStyles(theme);
   return (
     <Card className={classes.root}>
-      <img
+      <Image
         src={userImage}
         alt="Sorry your face isn't worth showing😝"
         className={classes.userImage}

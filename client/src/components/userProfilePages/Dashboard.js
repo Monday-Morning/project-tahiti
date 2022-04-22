@@ -3,6 +3,7 @@ import React from 'react';
 import { PROFILEPAGES } from '../../assets/placeholder/profile';
 import graph from '../../assets/images/profile/profilePic.png';
 import theme from '../../config/themes/light';
+import Image from 'next/image';
 
 const Dashboard = () => {
   const a = new Date();
@@ -38,7 +39,7 @@ const Dashboard = () => {
       </div>
       <div className={classes.content}>
         <div className={classes.activityGraph}>
-          <img src={graph} alt='' className={classes.graph} />
+          <Image src={graph} alt='' className={classes.graph} />
         </div>
         <div className={classes.stats}>
           {PROFILEPAGES.DASHBOARD.map(({ head, value }, key) => (

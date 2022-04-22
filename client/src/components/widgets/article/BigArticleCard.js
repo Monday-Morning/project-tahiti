@@ -23,6 +23,7 @@ import getArticleLink from '../../../utils/getArticleLink';
 import { DEFAULT_ARTICLE } from '../../../assets/placeholder/article';
 import limitAuthor from '../../../utils/limitAuthor';
 import STORES from '../../../utils/getStores';
+import Image from 'next/image';
 
 const BigArticleCard = ({
   isWitsdom,
@@ -54,14 +55,17 @@ const BigArticleCard = ({
           isGallery,
         })}
       >
-        <img
-          className={classes.cover}
-          src={
-            STORES[article.coverMedia.rectangle.store] +
-            encodeURI(article.coverMedia.rectangle.storePath)
-          }
-          alt='Cover'
-        />
+        <div className={classes.coverContainerBox}>
+          <Image
+            className={classes.cover}
+            src={
+              STORES[article.coverMedia.rectangle.store] +
+              encodeURI(article.coverMedia.rectangle.storePath)
+            }
+            layout='fill'
+            alt='Cover'
+          />
+        </div>
       </NewTabLink>
 
       <CardContent className={classes.cardDetails}>
@@ -174,9 +178,23 @@ const useStyles = makeStyles((theme) => ({
     width: '65%',
     height: '100%',
   },
-  cover: {
+  coverContainerBox: {
     width: '100%',
     height: 'auto',
+    '& > span': {
+      position: 'unset !important',
+    },
+    '& > span > span': {
+      display: 'none !important',
+    },
+    overflow: 'hidden',
+    position: 'relative',
+  },
+  cover: {
+    position: 'unset !important',
+    width: 'auto !important',
+    height: 'auto !important',
+    objectFit: 'cover',
   },
 
   cardDetails: {

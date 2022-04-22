@@ -14,6 +14,7 @@ import theme from '../../config/themes/light';
 
 // Images
 import profile from '../../assets/images/profile.png';
+import Image from 'next/image';
 
 const UserCard = () => {
   let Desktop = useMediaQuery(theme.breakpoints.up('sm'));
@@ -27,7 +28,7 @@ const UserCard = () => {
               <Grid item md={4} sm={12} className={classes.gridPadding}>
                 <div className={classes.userWrapper}>
                   <div>
-                    <img
+                    <Image
                       className={classes.userImage}
                       src={profile}
                       alt='user photo'

@@ -7,6 +7,7 @@ import { Card, CardContent, Grid, Typography, Button } from '@material-ui/core';
 //Images
 import pulseImg from '../../assets/images/pulseImg.png';
 import { POLLS as polls } from '../../assets/placeholder/widget';
+import Image from 'next/image';
 
 const Pulse = () => {
   // const polls = POLLS
@@ -41,7 +42,11 @@ const Pulse = () => {
 
           <Grid item sm={4} className={classes.imageContainer}>
             <Grid container justify='center'>
-              <img src={pulseImg} alt='Pulse Image' className={classes.image} />
+              <Image
+                src={pulseImg}
+                alt='Pulse Image'
+                className={classes.image}
+              />
             </Grid>
           </Grid>
         </Grid>

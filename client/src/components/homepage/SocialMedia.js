@@ -14,6 +14,7 @@ import insta3 from '../../assets/images/instagram/insta3.jpeg';
 import insta4 from '../../assets/images/instagram/insta4.jpeg';
 import insta5 from '../../assets/images/instagram/insta5.jpeg';
 import insta6 from '../../assets/images/instagram/insta6.jpeg';
+import Image from 'next/image';
 
 const INSTA_LINKS = [insta1, insta2, insta3, insta4, insta5, insta6];
 
@@ -83,7 +84,7 @@ const Socials = () => {
                   xs={4}
                   className={classes.instaImageContainer}
                 >
-                  <img
+                  <Image
                     src={link}
                     className={classes.instaImage}
                     alt='Monday Morning Instagram'

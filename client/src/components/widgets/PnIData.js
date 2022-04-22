@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import pni from '../../assets/images/pni.png';
 import theme from '../../config/themes/light';
 import { Button, Grid } from '@material-ui/core';
+import Image from 'next/image';
 
 const PnIData = () => {
   const classes = useStyles(theme);
@@ -39,7 +40,7 @@ const PnIData = () => {
 
           <Grid item sm={4} className={classes.imageBlock}>
             <Grid container justify='center'>
-              <img src={pni} alt='Forum Image' className={classes.image} />
+              <Image src={pni} alt='Forum Image' className={classes.image} />
             </Grid>
           </Grid>
         </Grid>

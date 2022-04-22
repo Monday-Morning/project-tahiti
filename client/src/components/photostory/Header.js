@@ -8,6 +8,7 @@ import { Bookmark, Share2, Volume2 } from 'react-feather';
 
 // Config
 import theme from '../../config/themes/light';
+import Image from 'next/image';
 
 const Header = ({ DATA }) => {
   const Desktop = useMediaQuery(theme.breakpoints.up('sm'));
@@ -27,7 +28,7 @@ const Header = ({ DATA }) => {
             <div className={classes.authorList}>
               {DATA.authors.map((author, key) => (
                 <div key={key} className={classes.authorWrapper}>
-                  <img
+                  <Image
                     src={author.img}
                     alt={author.alt}
                     className={classes.authorImg}

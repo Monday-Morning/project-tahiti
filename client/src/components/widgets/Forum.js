@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import forum from '../../assets/images/forum.png';
 import theme from '../../config/themes/light';
 import { Button, Grid } from '@material-ui/core';
+import Image from 'next/image';
 
 const Forum = () => {
   const classes = useStyles(theme);
@@ -39,7 +40,7 @@ const Forum = () => {
 
           <Grid item sm={4} className={classes.image}>
             <Grid container justify='center'>
-              <img src={forum} alt='Forum Image' />
+              <Image src={forum} alt='Forum Image' />
             </Grid>
           </Grid>
         </Grid>

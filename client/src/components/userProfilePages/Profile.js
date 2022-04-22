@@ -6,6 +6,7 @@ import theme from '../../config/themes/light';
 import profile from '../../assets/images/profile/profilePic.png';
 import pp from '../../assets/images/profile.png';
 import ImageBox from './widgets/ImageBox';
+import Image from 'next/image';
 
 function Profile() {
   const classes = useStyles(theme);
@@ -14,7 +15,7 @@ function Profile() {
       <div className={classes.wrapper}>
         <div className={classes.content}>
           <div className={classes.profilePic}>
-            <img
+            <Image
               src={pp}
               alt=''
               height='115px'
