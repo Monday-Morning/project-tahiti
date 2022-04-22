@@ -70,6 +70,7 @@ const Details = () => {
                   <a
                     href={`${DETAILS.socialMedia.facebook.link}`}
                     target='_blank'
+                    rel='noreferrer'
                     className={classes.social}
                   >
                     {DETAILS.socialMedia.facebook.id}
@@ -82,6 +83,7 @@ const Details = () => {
                   <a
                     href={`${DETAILS.socialMedia.linkedIn.link}`}
                     target='_blank'
+                    rel='noreferrer'
                     className={classes.social}
                   >
                     {DETAILS.socialMedia.linkedIn.id}
@@ -94,6 +96,7 @@ const Details = () => {
                   <a
                     href={`${DETAILS.socialMedia.youtube.link}`}
                     target='_blank'
+                    rel='noreferrer'
                     className={classes.social}
                   >
                     {DETAILS.socialMedia.youtube.id}
@@ -108,6 +111,7 @@ const Details = () => {
                   <a
                     href={`${DETAILS.socialMedia.twitter.link}`}
                     target='_blank'
+                    rel='noreferrer'
                     className={classes.social}
                   >
                     {DETAILS.socialMedia.twitter.id}
@@ -120,6 +124,7 @@ const Details = () => {
                   <a
                     href={`${DETAILS.socialMedia.instagram.link}`}
                     target='_blank'
+                    rel='noreferrer'
                     className={classes.social}
                   >
                     {DETAILS.socialMedia.instagram.id}
@@ -132,6 +137,7 @@ const Details = () => {
                   <a
                     href={`${DETAILS.socialMedia.spotify.link}`}
                     target='_blank'
+                    rel='noreferrer'
                     className={classes.social}
                   >
                     {DETAILS.socialMedia.spotify.id}
@@ -166,7 +172,11 @@ const Details = () => {
               </Grid>
               <Grid item xs={6} className={classes.mapWrapper}>
                 <Image src={map} alt='Monday Morning' className={classes.map} />
-                <a href='https://goo.gl/maps/EKwq5J2x1djPHwVB9' target='_blank'>
+                <a
+                  href='https://goo.gl/maps/EKwq5J2x1djPHwVB9'
+                  target='_blank'
+                  rel='noreferrer'
+                >
                   <Typography variant='body2' className={classes.mapText}>
                     See on map
                   </Typography>
