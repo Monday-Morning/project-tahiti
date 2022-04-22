@@ -11,6 +11,7 @@ import { Grid } from 'react-feather';
 
 // Placeholder
 import { GALLERY } from '../../assets/placeholder/gallery';
+import Image from 'next/image';
 
 const Body = () => {
   const classes = useStyles();
@@ -46,7 +47,7 @@ const Body = () => {
         {view === 'Grid' ? (
           <div>
             <div className={classes.active}>
-              <img
+              <Image
                 src={GALLERY.gallery[activeImage]}
                 alt='image'
                 className={classes.activeImage}
@@ -54,7 +55,7 @@ const Body = () => {
             </div>
             <div className={classes.imageContainer}>
               {GALLERY.gallery.map((image, key) => (
-                <img
+                <Image
                   src={image}
                   alt='image'
                   key={key}

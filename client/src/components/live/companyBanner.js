@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 
 // libararies
 import { makeStyles, Typography } from '@material-ui/core';
+import Image from 'next/image';
 
 const CompanyBanner = ({ data }) => {
   const classes = useStyles();
@@ -15,7 +16,7 @@ const CompanyBanner = ({ data }) => {
       <div className={classes.active}>
         <div className={classes.companyData}>
           <div>
-            <img
+            <Image
               src={data.image}
               alt={data.name}
               className={classes.activeImage}
@@ -45,12 +46,12 @@ const CompanyBanner = ({ data }) => {
         {show && (
           <div className={classes.student}>
             {data.placed.map((student) => (
-              <div className={classes.studentsData}>
+              <div key={student} className={classes.studentsData}>
                 <Typography variant='body2' className={classes.course}>
                   {student.course}
                 </Typography>
                 {student.branch.map((branches) => (
-                  <div>
+                  <div key={{ ...student, ...branches }}>
                     <Typography variant='body2' className={classes.branch}>
                       {branches.branchName}
                     </Typography>

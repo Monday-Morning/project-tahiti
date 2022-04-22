@@ -4,6 +4,7 @@ import theme from '../../../config/themes/light';
 import passwdImg from '../../../assets/images/profile/passwd.png';
 import greenTick from '../../../assets/images/profile/clearedGreen.png';
 import ImageBox from '../widgets/ImageBox';
+import Image from 'next/image';
 
 function Forgot() {
   const classes = useStyles(theme);
@@ -15,7 +16,7 @@ function Forgot() {
           Your password has been changed successfully!
         </h1>
         <div className={classes.greenTickBox}>
-          <img src={greenTick} alt='' />
+          <Image src={greenTick} alt='' />
         </div>
         <div className={classes.text}>
           Your password has been successfully changed. Don’t forget to sign in

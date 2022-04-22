@@ -6,6 +6,7 @@ import { ArrowForward } from '@material-ui/icons';
 
 import logo from '../assets/images/logo_mm.png';
 import LINKS from '../utils/getLinks';
+import Image from 'next/image';
 
 const SOCIALS = [
   {
@@ -13,8 +14,7 @@ const SOCIALS = [
     icons: 'fab fa-facebook-f',
   },
   {
-    link:
-      'https://twitter.com/mmnitrkl?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor',
+    link: 'https://twitter.com/mmnitrkl?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor',
     icons: 'fab fa-twitter',
   },
   {
@@ -22,8 +22,7 @@ const SOCIALS = [
     icons: 'fab fa-youtube',
   },
   {
-    link:
-      'https://in.linkedin.com/company/monday-morning-the-official-student-media-body-of-nit-rourkela',
+    link: 'https://in.linkedin.com/company/monday-morning-the-official-student-media-body-of-nit-rourkela',
     icons: 'fab fa-linkedin',
   },
   {
@@ -43,7 +42,7 @@ const PageNotFound = () => {
         alignItems='center'
       >
         <Grid item className={classes.gridContainer}>
-          <img src={logo} alt='MM Logo' className={classes.logo} />
+          <Image src={logo} alt='MM Logo' className={classes.logo} />
         </Grid>
         <Grid item className={classes.gridContainer}>
           <Typography className={classes.main}>404 ERROR</Typography>

@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core';
+import Image from 'next/image';
 import React from 'react';
 import theme from '../../../config/themes/light';
 
@@ -6,7 +7,7 @@ function ImageBox({ widthImage, img }) {
   const classes = useStyles(theme, widthImage);
   return (
     <div className={classes.mainBox}>
-      <img src={img} alt='' className={classes.img} />
+      <Image src={img} alt='' className={classes.img} />
     </div>
   );
 }
