@@ -6,14 +6,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 function RegularButton(props) {
   const classes = useStyles();
-  const {
-    text,
-    loading,
-    containerStyles,
-    textStyles,
-    disabled,
-    onClick,
-  } = props;
+  const { text, loading, containerStyles, textStyles, disabled, onClick } =
+    props;
 
   // TODO: Change button styling when component disabled.
 

@@ -11,7 +11,11 @@ const BackLink = ({ backTo }) => {
   const category = pathname.split('/')[1];
   return (
     <div className={classes.wrapper}>
-      <Link passHref href={`/${backTo?.toLowerCase()}`} className={classes.link}>
+      <Link
+        passHref
+        href={`/${backTo?.toLowerCase()}`}
+        className={classes.link}
+      >
         <Typography variant='body1'>
           <i className='fas fa-chevron-left' />
           <span className={classes.text}>Back to {backTo}</span>

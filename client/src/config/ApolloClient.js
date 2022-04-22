@@ -19,15 +19,8 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
       console.error({ message, location, path }),
     );
   } else if (networkError) {
-    const {
-      message,
-      name,
-      respose,
-      result,
-      bodyText,
-      stack,
-      statusCode,
-    } = networkError;
+    const { message, name, respose, result, bodyText, stack, statusCode } =
+      networkError;
     console.log(
       new Error({
         message,

@@ -32,8 +32,7 @@ export const DETAILS = Object.freeze({
     },
     linkedIn: {
       id: 'mondaymorningnitr',
-      link:
-        'https://in.linkedin.com/company/monday-morning-the-official-student-media-body-of-nit-rourkela',
+      link: 'https://in.linkedin.com/company/monday-morning-the-official-student-media-body-of-nit-rourkela',
     },
     spotify: {
       id: 'MondayMorningNITRKL',

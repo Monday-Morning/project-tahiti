@@ -21,8 +21,7 @@ export const ONBOARDING = Object.freeze({
       PRIMARY: 'Get Verification Link',
       SECONDARY: 'Check again and continue',
     },
-    NOTE:
-      'Note: This only works if you’re a current student/employee of \n NIT Rourkela with a valid institute email id.',
+    NOTE: 'Note: This only works if you’re a current student/employee of \n NIT Rourkela with a valid institute email id.',
   },
   INTERESTED_TOPICS: {
     PRIMARY: {
@@ -68,7 +67,6 @@ export const ONBOARDING = Object.freeze({
       PRIMARY: 'Signup for newsletter',
       SECONDARY: 'Get Started',
     },
-    NOTE:
-      'Note: Newsletters are sent once a week or once in a fortnight \n during the working session of the institute',
+    NOTE: 'Note: Newsletters are sent once a week or once in a fortnight \n during the working session of the institute',
   },
 });
