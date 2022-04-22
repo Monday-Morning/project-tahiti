@@ -68,43 +68,36 @@ export const ARTICLE = Object.freeze({
     { type: 'heading', data: 'Introduction', id: 'intro' },
     {
       type: 'paragraph',
-      data:
-        'Delay in the curriculum may seem enthralling at the moment but the clouds of uncertainty that it casts on the future of students and academics as a whole- is an extra-ordinary issue that has to be considered. However, walking abreast of the transformations, NIT Rourkela has tried to put its best foot forward in these rather questioning times. (Excerpt)',
+      data: 'Delay in the curriculum may seem enthralling at the moment but the clouds of uncertainty that it casts on the future of students and academics as a whole- is an extra-ordinary issue that has to be considered. However, walking abreast of the transformations, NIT Rourkela has tried to put its best foot forward in these rather questioning times. (Excerpt)',
     },
     { type: 'heading', data: 'Heading 1', id: 'heading1' },
     {
       type: 'paragraph',
-      data:
-        'Delay in the curriculum may seem enthralling at the moment but the clouds of uncertainty that it casts on the future of students and academics as a whole- is an extra-ordinary issue that has to be considered. However, walking abreast of the transformations, NIT Rourkela has tried to put its best foot forward in these rather questioning times. (Excerpt) Delay in the curriculum may seem enthralling at the moment but the clouds of uncertainty that it casts on the future of students and academics as a whole- is an extra-ordinary issue that has to be considered. However, walking abreast of the transformations, NIT Rourkela has tried to put its best foot forward in these rather questioning times. (Excerpt) Delay in the curriculum may seem enthralling at the moment but the clouds of uncertainty that it casts on the future of students and academics as a whole- is an extra-ordinary issue that has to be considered. However, walking abreast of the transformations, NIT Rourkela has tried to put its best foot forward in these rather questioning times. (Excerpt) Delay in the curriculum may seem enthralling at the moment but the clouds of uncertainty that it casts on the future of students and academics as a whole- is an extra-ordinary issue that has to be considered. However, walking abreast of the transformations, NIT Rourkela has tried to put its best foot forward in these rather questioning times. (Excerpt)',
+      data: 'Delay in the curriculum may seem enthralling at the moment but the clouds of uncertainty that it casts on the future of students and academics as a whole- is an extra-ordinary issue that has to be considered. However, walking abreast of the transformations, NIT Rourkela has tried to put its best foot forward in these rather questioning times. (Excerpt) Delay in the curriculum may seem enthralling at the moment but the clouds of uncertainty that it casts on the future of students and academics as a whole- is an extra-ordinary issue that has to be considered. However, walking abreast of the transformations, NIT Rourkela has tried to put its best foot forward in these rather questioning times. (Excerpt) Delay in the curriculum may seem enthralling at the moment but the clouds of uncertainty that it casts on the future of students and academics as a whole- is an extra-ordinary issue that has to be considered. However, walking abreast of the transformations, NIT Rourkela has tried to put its best foot forward in these rather questioning times. (Excerpt) Delay in the curriculum may seem enthralling at the moment but the clouds of uncertainty that it casts on the future of students and academics as a whole- is an extra-ordinary issue that has to be considered. However, walking abreast of the transformations, NIT Rourkela has tried to put its best foot forward in these rather questioning times. (Excerpt)',
     },
     {
       type: 'image',
-      data:
-        'https://mondaymorning.nitrkl.ac.in/uploads/media/IMG-20181111-WA0052.jpg',
+      data: 'https://mondaymorning.nitrkl.ac.in/uploads/media/IMG-20181111-WA0052.jpg',
       alt: 'Abel Bhai',
     },
     { type: 'heading', data: 'Heading 2', id: 'heading2' },
     {
       type: 'paragraph',
-      data:
-        'Delay in the curriculum may seem enthralling at the moment but the clouds of uncertainty that it casts on the future of students and academics as a whole- is an extra-ordinary issue that has to be considered. However, walking abreast of the transformations, NIT Rourkela has tried to put its best foot forward in these rather questioning times. (Excerpt)',
+      data: 'Delay in the curriculum may seem enthralling at the moment but the clouds of uncertainty that it casts on the future of students and academics as a whole- is an extra-ordinary issue that has to be considered. However, walking abreast of the transformations, NIT Rourkela has tried to put its best foot forward in these rather questioning times. (Excerpt)',
     },
     {
       type: 'blockquote',
-      data:
-        'Delay in the curriculum may seem enthralling at the moment but the clouds of uncertainty that it casts on the future of students and academics as a whole- is an extra-ordinary issue that has to be considered. However, walking abreast of the transformations, NIT Rourkela has tried to put its best foot forward in these rather questioning times. (Excerpt)',
+      data: 'Delay in the curriculum may seem enthralling at the moment but the clouds of uncertainty that it casts on the future of students and academics as a whole- is an extra-ordinary issue that has to be considered. However, walking abreast of the transformations, NIT Rourkela has tried to put its best foot forward in these rather questioning times. (Excerpt)',
     },
     { type: 'heading', data: 'Heading 3', id: 'heading3' },
     {
       type: 'paragraph',
-      data:
-        'Delay in the curriculum may seem enthralling at the moment but the clouds of uncertainty that it casts on the future of students and academics as a whole- is an extra-ordinary issue that has to be considered. However, walking abreast of the transformations, NIT Rourkela has tried to put its best foot forward in these rather questioning times. (Excerpt)',
+      data: 'Delay in the curriculum may seem enthralling at the moment but the clouds of uncertainty that it casts on the future of students and academics as a whole- is an extra-ordinary issue that has to be considered. However, walking abreast of the transformations, NIT Rourkela has tried to put its best foot forward in these rather questioning times. (Excerpt)',
     },
     { type: 'heading', data: 'Heading 4', id: 'heading4' },
     {
       type: 'paragraph',
-      data:
-        'Delay in the curriculum may seem enthralling at the moment but the clouds of uncertainty that it casts on the future of students and academics as a whole- is an extra-ordinary issue that has to be considered. However, walking abreast of the transformations, NIT Rourkela has tried to put its best foot forward in these rather questioning times. (Excerpt)',
+      data: 'Delay in the curriculum may seem enthralling at the moment but the clouds of uncertainty that it casts on the future of students and academics as a whole- is an extra-ordinary issue that has to be considered. However, walking abreast of the transformations, NIT Rourkela has tried to put its best foot forward in these rather questioning times. (Excerpt)',
     },
   ],
 });
