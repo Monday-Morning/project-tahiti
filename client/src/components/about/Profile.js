@@ -19,6 +19,7 @@ const Profile = ({
   small = false,
 }) => {
   const classes = useStyles({ small });
+  const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <div className={classes.imgContainer}>
       <div className={classes.img}>
@@ -33,7 +34,7 @@ const Profile = ({
         </Typography>
       )}
       {showSocial &&
-        (useMediaQuery(theme.breakpoints.down('sm')) ? (
+        (isSmall ? (
           <div className={classes.social}>
             <a href={`tel:${member.PHONE}`}>
               <Image src={Phone} />
