@@ -4,6 +4,19 @@ on:
   release:
     types: [released]
 
+permissions:
+  actions: write
+  checks: write
+  contents: write
+  deployments: write
+  issues: write
+  discussions: write
+  packages: write
+  pull-requests: write
+  repository-projects: write
+  security-events: write
+  statuses: write
+
 jobs:
   build:
     uses: Monday-Morning/project-tahiti/.github/workflows/build.yml@main
