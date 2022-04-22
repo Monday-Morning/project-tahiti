@@ -45,8 +45,8 @@ jobs:
 
       - name: Run ESLint
         run: |
-        cd client
-        yarn next lint -c ${{ inputs.config_path }} --ignore-path ${{ inputs.ignore_path }} --output-file eslint_report.txt ${{ inputs.file_path }}
+          cd client
+          yarn next lint -c ${{ inputs.config_path }} --ignore-path ${{ inputs.ignore_path }} --output-file eslint_report.txt ${{ inputs.file_path }}
 
       - name: ESLint Output
         if: ${{ failure() }}
