@@ -107,14 +107,14 @@ const ArticleHeader = ({ article }) => {
                   style={{ textDecoration: 'none', cursor: 'pointer' }}
                 >
                   <div key={name} className={classes.authorWrapper}>
-                    {matches && (
+                    {/* {matches && (
                       <Image
                         src={user}
                         alt='authorName'
                         className={classes.authorImg}
                         // className={classes.author}
                       />
-                    )}
+                    )} */}
 
                     {!matches && (
                       <Typography variant='body2' className={classes.author}>

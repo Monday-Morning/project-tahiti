@@ -26,7 +26,7 @@ function Article({ article, bind, toggleSidebar }) {
             <Disclaimer />
             <ArticleTags tags={article?.tags} />
             <hr />
-            <Comments />
+            {/* <Comments /> */}
           </Grid>
 
           <Grid item md={3}>
