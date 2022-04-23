@@ -89,38 +89,12 @@ const GuidePage = ({ issues }) => {
   );
 };
 
-export async function getStaticProps({ preview }) {
-  const {
-    data: { getLatestIssues: issues },
-  } = await GraphClient.query({
-    query: getLatestIssues,
-    variables: { limit: 2 },
-  });
-
-  if (!issues || issues.length !== 2) {
-    return {
-      redirect: {
-        destination: '/error/internal-server-error',
-        permanent: false,
-      },
-    };
-  }
-
-  const {
-    data: { getLatestSquiggle: squiggles },
-  } = await GraphClient.query({
-    query: getLatestSquiggle,
-  });
-
+export async function getStaticProps() {
   return {
-    props: {
-      issues,
-      squiggles,
+    redirect: {
+      destination: '/comingSoon',
+      permanent: false,
     },
-    revalidate:
-      preview || new Date(Date.now()).getDay() < 3
-        ? 60 * 60 * 1
-        : 60 * 60 * 24 * 2, // 1 Hour or 2 Days
   };
 }
 

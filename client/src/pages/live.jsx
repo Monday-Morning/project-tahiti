@@ -74,4 +74,13 @@ const LivePage = () => {
   );
 };
 
+export async function getStaticProps() {
+  return {
+    redirect: {
+      destination: '/comingSoon',
+      permanent: false,
+    },
+  };
+}
+
 export default LivePage;

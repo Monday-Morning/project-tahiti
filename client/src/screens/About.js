@@ -16,7 +16,7 @@ function About() {
       <BackButton path='/' goTo='Home' />
       <AboutUs />
       <Content />
-      <Team />
+      {/* <Team /> */}
       {/* <Project /> */}
     </Container>
   );

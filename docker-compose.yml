@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   tahiti:
-    image: tahiti
+    image: ghcr.io/monday-morning/project-tahiti:production
     volumes:
       - "./client/logs:/client/logs:rw"
       - "./client/env:/client/env:rw"

@@ -67,9 +67,17 @@ const OnBoardingPage = () => {
       </Head>
 
       <Onboarding />
-
     </>
   );
 };
+
+export async function getStaticProps() {
+  return {
+    redirect: {
+      destination: '/comingSoon',
+      permanent: false,
+    },
+  };
+}
 
 export default OnBoardingPage;
