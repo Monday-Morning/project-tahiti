@@ -74,7 +74,7 @@ const ExpressionsPage = () => {
   );
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   return {
     redirect: {
       destination: '/comingSoon',
