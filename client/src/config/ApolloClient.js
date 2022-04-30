@@ -39,10 +39,11 @@ const link = from([
   errorLink,
   new HttpLink({
     // TODO: Use the production link when deployed
-    uri: 'https://project-reclamation-staging.herokuapp.com/v1/graph',
-    // process.env.NODE_ENV === 'production'
-    //   ? 'https://server.mondaymorning.nitrkl.ac.in'
-    //   : 'https://mm.server1.dashnet.in/v1/graph',
+    // uri: 'https://project-reclamation-staging.herokuapp.com/v1/graph',
+    uri:
+      process.env.NODE_ENV === 'production'
+        ? 'https://mondaymorning.nitrkl.ac.in/api/v1/graph'
+        : 'https://project-reclamation-staging.herokuapp.com/v1/graph',
   }),
 ]);
 
