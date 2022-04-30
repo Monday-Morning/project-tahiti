@@ -24,6 +24,8 @@ on:
     secrets:
       token:
         required: true
+      env_vars:
+        required: true
 
 jobs:
   build:
@@ -32,7 +34,10 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-          
+
+      - name: Add Env File
+        run: ${{ secrets.env_vars }} > client/env/.env.${{ inputs.node_env }}
+
       - name: Cache Docker layers
         uses: actions/cache@v2
         with:
@@ -51,7 +56,7 @@ jobs:
       - name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@v1
-      
+
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v3
@@ -64,7 +69,7 @@ jobs:
             type=sha,format=long
             type=raw,value=${{ inputs.node_env }}
             type=semver,pattern={{version}}
-            
+
       - name: Build and push Docker image
         id: docker_build
         uses: docker/build-push-action@v2

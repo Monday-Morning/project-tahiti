@@ -29,6 +29,7 @@ jobs:
       is_latest: true
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
+      env_vars: ${{ secrets.PROD_ENV }}
 
   deploy:
     needs: build
