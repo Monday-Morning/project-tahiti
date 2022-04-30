@@ -40,7 +40,19 @@ export const DEFAULT_ARTICLE = Object.freeze({
       ],
       mediaType: 'IMAGE',
       blurhash: null,
-      storePath: defaultArticleCoverImage,
+      storePath: '/mm-black.png',
+      store: 2,
+    },
+    square: {
+      authors: [
+        {
+          name: 'Monday Morning',
+        },
+      ],
+      mediaType: 'IMAGE',
+      blurhash: null,
+      storePath: '/mm-black.png',
+      store: 2,
     },
   },
 });

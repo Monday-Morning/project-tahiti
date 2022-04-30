@@ -13,8 +13,10 @@ import getCategory from '../../../utils/determineCategory';
 import limitAuthor from '../../../utils/limitAuthor';
 import STORES from '../../../utils/getStores';
 import getArticleLink from '../../../utils/getArticleLink';
+import { DEFAULT_ARTICLE } from '../../../assets/placeholder/article';
 
 const ArticleItem = ({ article, isLarge, className }) => {
+  if (!article) article = DEFAULT_ARTICLE;
   const {
     id,
     categories,
