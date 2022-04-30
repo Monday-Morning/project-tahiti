@@ -38,7 +38,10 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 const link = from([
   errorLink,
   new HttpLink({
-    uri: process.env.NEXT_PUBLIC_SERVER_ADDRESS,
+    uri:
+      process.env.NODE_ENV === 'production'
+        ? 'https://mondaymorning.nitrkl.ac.in/api/v1/graph'
+        : 'https://project-reclamation-staging.herokuapp.com/v1/graph',
   }),
 ]);
 

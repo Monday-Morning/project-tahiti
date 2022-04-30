@@ -1,5 +1,5 @@
 export default Object.freeze({
-  ADAMANTIUM_ARCHIVE_A: process.env.NEXT_PUBLIC_ADAMANTIUM_ARCHIVE_A,
-  ADAMANTIUM_ARCHIVE_B: process.env.NEXT_PUBLIC_ADAMANTIUM_ARCHIVE_b,
-  ACTIVE: process.env.NEXT_PUBLIC_INFINITY_A,
+  ADAMANTIUM_ARCHIVE_A: 'https://ik.imagekit.io/adamantiumA',
+  ADAMANTIUM_ARCHIVE_B: 'https://ik.imagekit.io/adamantiumB',
+  ACTIVE: 'https://ik.imagekit.io/infinityA',
 });
