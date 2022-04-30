@@ -40,7 +40,7 @@ const link = from([
   new HttpLink({
     uri:
       process.env.NODE_ENV === 'production'
-        ? 'https://mondaymorning.nitrkl.ac.in/api/v1/graph'
+        ? 'https://mm.dashnet.in/api/v1/graph'
         : 'https://project-reclamation-staging.herokuapp.com/v1/graph',
   }),
 ]);
