@@ -38,12 +38,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 const link = from([
   errorLink,
   new HttpLink({
-    // TODO: Use the production link when deployed
-    // uri: 'https://project-reclamation-staging.herokuapp.com/v1/graph',
-    uri:
-      process.env.NODE_ENV === 'production'
-        ? 'https://mondaymorning.nitrkl.ac.in/api/v1/graph'
-        : 'https://project-reclamation-staging.herokuapp.com/v1/graph',
+    uri: process.env.NEXT_PUBLIC_SERVER_ADDRESS,
   }),
 ]);
 
