@@ -186,16 +186,7 @@ export async function getStaticProps({
 
 export async function getStaticPaths() {
   return {
-    paths: [
-      {
-        params: {
-          article: [
-            '626d29bbc849aea28d531657',
-            'Re-jubin-ate-to-the-tunes-of-Celebrity-Night',
-          ],
-        },
-      },
-    ],
+    paths: [],
     fallback: 'blocking',
   };
 }
