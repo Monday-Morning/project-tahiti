@@ -1,7 +1,6 @@
 import React from 'react';
 
-// libraries
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
 import { Element } from 'react-scroll';
 
 // theme
@@ -32,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '2rem',
     whiteSpace: 'nowrap',
     fontWeight: '600',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '1.25rem',
       lineHeight: '1.75rem',
     },
@@ -53,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '400',
     color: theme.palette.secondary.main,
     textDecoration: 'underline',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '14px',
     },
   },

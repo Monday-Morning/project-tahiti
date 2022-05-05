@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 
 // Libraries
-import { Container, makeStyles, Paper } from '@material-ui/core';
-import { Table, TableHead, TableBody } from '@material-ui/core';
+import { Container, Paper } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { Table, TableHead, TableBody } from '@mui/material';
 import { Heart, PlayCircle } from 'react-feather';
 
 // Components

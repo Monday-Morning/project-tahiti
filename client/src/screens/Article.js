@@ -4,7 +4,7 @@
 import React from 'react';
 
 // libraries
-import { Container, Grid } from '@material-ui/core';
+import { Container, Grid } from '@mui/material';
 
 // Components
 import Comments from '../components/article/comments';

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-// libraries
-import { makeStyles } from '@material-ui/core/styles';
-import { Fab } from '@material-ui/core';
-import { KeyboardArrowUp } from '@material-ui/icons';
+import makeStyles from '@mui/styles/makeStyles';
+import { Fab } from '@mui/material';
+import { KeyboardArrowUp } from '@mui/icons-material';
 
 const ScrollToTopButton = () => {
   const classes = useStyles();

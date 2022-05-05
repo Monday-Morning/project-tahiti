@@ -4,7 +4,9 @@
 import React, { useState } from 'react';
 
 // libararies
-import { makeStyles, Typography, useMediaQuery } from '@material-ui/core';
+import { Typography, useMediaQuery } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 // theme
 import theme from '../../config/themes/light';
@@ -96,7 +98,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       flexWrap: 'wrap',
       justifyContent: 'flex-start',
     },
@@ -122,7 +124,7 @@ const useStyles = makeStyles(() => ({
     marginTop: '2rem',
     fontFamily: 'Source Sans Pro',
     fontWeight: 400,
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       marginTop: '1rem',
     },
   },

@@ -1,8 +1,7 @@
 import React from 'react';
 
-// Libraries
-import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardContent, Button, Typography } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import { Card, CardContent, Button, Typography } from '@mui/material';
 
 // Components
 import MarkdownWrapper from '../shared/MarkdownWrapper';
@@ -50,7 +49,7 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     paddingLeft: '25px',
     paddingRight: '25px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'block',
       padding: 'unset',
     },
@@ -63,7 +62,7 @@ const useStyles = makeStyles(() => ({
     color: '#ffffff !important',
     marginRight: '40px',
     textTransform: 'unset',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginRight: 'auto',
     },
   },

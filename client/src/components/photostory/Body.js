@@ -1,8 +1,7 @@
 import React from 'react';
 
-// libararies
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import { Typography } from '@mui/material';
 
 // Components
 import PhotoCarousel from '../widgets/PhotoCarousel';
@@ -40,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   carouselWrapper: {
     backgroundColor: theme.palette.secondary.main,
     padding: '24px 0px 48px 0px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: '12px 0px',
     },
   },
@@ -49,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     direction: 'row',
     justifyContent: 'center',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: '0px 24px',
       justifyContent: 'flex-start',
     },
@@ -61,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     maxWidth: '1280px',
     margin: '60px auto 0px auto',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       margin: '40px 16px 0px 24px',
     },
   },

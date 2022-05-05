@@ -1,15 +1,9 @@
 import React from 'react';
 
 // Libraries
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import {
-  Container,
-  Grid,
-  makeStyles,
-  Typography,
-  Card,
-  CardContent,
-} from '@material-ui/core';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { Container, Grid, Typography, Card, CardContent } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import theme from '../../config/themes/light';
 
 // Images
@@ -157,10 +151,10 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     paddingLeft: '1.5rem',
     paddingRight: '1.5rem',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginTop: '2rem',
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       paddingLeft: '1rem',
       paddingRight: '1rem',
     },
@@ -169,7 +163,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     borderLeft: '1px solid',
     borderColor: theme.palette.secondary.neutral50,
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       paddingTop: '1rem',
       borderLeft: 'unset',
       borderTop: '1px solid',
@@ -179,13 +173,13 @@ const useStyles = makeStyles((theme) => ({
   userWrapper: {
     display: 'flex',
     justifyContent: 'space-around',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       justifyContent: 'unset',
     },
   },
   userImage: {
     height: '100%',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       height: '50%',
     },
   },

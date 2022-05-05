@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 // Libraries
-import { Container, makeStyles, Typography, Grid } from '@material-ui/core';
+import { Container, Typography, Grid } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { Bookmark, Share2, Clock } from 'react-feather';
 
 // Components

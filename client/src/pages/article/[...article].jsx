@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 // Libraries
-import { useMediaQuery } from '@material-ui/core';
+import { useMediaQuery } from '@mui/material';
 import { useDrag } from 'react-use-gesture';
 import { GraphClient } from '../../config/ApolloClient';
 import STORES from '../../utils/getStores';
@@ -23,7 +23,7 @@ import getArticleLink, { getArticleSlug } from '../../utils/getArticleLink';
 function ArticlePage({ article }) {
   const { isFallback } = useRouter();
   const [toggleSidebar, setToggleSidebar] = useState(false);
-  const isMatch = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMatch = useMediaQuery(theme.breakpoints.down('md'));
 
   const bind = useDrag(({ down, movement: [mx, my] }) => {
     if (isMatch) {

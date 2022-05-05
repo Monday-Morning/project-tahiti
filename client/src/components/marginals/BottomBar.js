@@ -1,10 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
 
-//libraries
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import logo from '../../assets/images/logo.png';
-import { Container, Grid, Typography, Button } from '@material-ui/core';
+import { Container, Grid, Typography, Button } from '@mui/material';
 
 const Footer = () => {
   const classes = useStyles();

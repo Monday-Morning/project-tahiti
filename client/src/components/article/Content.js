@@ -1,8 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-// libraries
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
 import { Element } from 'react-scroll';
 
 // Components
@@ -167,7 +166,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: '4rem',
     fontStyle: 'italic',
     fontWeight: '400',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       paddingLeft: '2rem',
     },
   },

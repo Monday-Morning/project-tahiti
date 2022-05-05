@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import witsdom from '../../assets/images/witsdom.png';
 
 function Witsdom() {

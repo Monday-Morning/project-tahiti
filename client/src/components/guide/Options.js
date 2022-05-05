@@ -1,8 +1,7 @@
 import React from 'react';
 
-// libararies
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Grid } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import { Typography, Grid } from '@mui/material';
 
 // placeholder
 import { OPTIONS } from '../../assets/placeholder/guide';
@@ -31,7 +30,7 @@ const Options = () => {
       <Grid
         container
         direction='row'
-        justify='flex-start'
+        justifyContent='flex-start'
         alignItems='center'
         className={classes.tagWrapper}
       >
@@ -87,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     margin: '40px auto 0px auto',
     overflow: 'hidden',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       marginTop: '1rem',
     },
   },
@@ -96,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tagWrapper: {
     margin: '32px 0px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       margin: '16px 0px',
     },
   },
@@ -114,13 +113,13 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     alignItems: 'center',
     cursor: 'pointer',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: '12px',
     },
   },
   icons: {
     marginRight: '32px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       marginRight: '14px',
     },
   },
@@ -130,7 +129,7 @@ const useStyles = makeStyles((theme) => ({
   link: {
     fontSize: '18px',
     marginLeft: '32px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       visibility: 'hidden',
       width: '0px',
     },
@@ -144,7 +143,7 @@ const useStyles = makeStyles((theme) => ({
     right: '24px',
     color: theme.palette.secondary.main,
     fontSize: '20px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       right: '12px',
     },
   },

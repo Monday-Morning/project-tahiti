@@ -1,7 +1,7 @@
 import React from 'react';
 
 // libraries
-import { Container } from '@material-ui/core';
+import { Container } from '@mui/material';
 
 // Components
 import Terms from '../components/policy/terms';

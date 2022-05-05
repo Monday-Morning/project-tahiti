@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 
 // libraries
-import {
-  makeStyles,
-  Typography,
-  Container,
-  useMediaQuery,
-} from '@material-ui/core';
+import { Typography, Container, useMediaQuery } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 // Components
 import SessionSelector from '../components/live/sessionSelector';

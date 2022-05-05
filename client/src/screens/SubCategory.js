@@ -2,7 +2,7 @@
 import React from 'react';
 
 // Libraries
-import { Container } from '@material-ui/core';
+import { Container } from '@mui/material';
 
 // Components
 import BackLink from '../components/podcast/BackLink';

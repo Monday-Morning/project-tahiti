@@ -1,4 +1,5 @@
-import { Card, makeStyles, Typography } from '@material-ui/core';
+import { Card, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 import { PROFILEPAGES } from '../../assets/placeholder/profile';
 import graph from '../../assets/images/profile/profilePic.png';
@@ -62,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.common.white,
     paddingLeft: '40px',
     padding: '15px 0 10% 5%',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       paddingInline: '5%',
       height: 'auto',
     },
@@ -75,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     '& h3': {
       color: theme.palette.secondary.main,
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
     },
   },
@@ -96,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
     height: '432px',
     paddingTop: '98px',
     width: '100%',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       display: 'none',
     },
   },
@@ -114,7 +115,7 @@ const useStyles = makeStyles((theme) => ({
     width: '259px',
     position: 'relative',
     top: '-60px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       alignItems: 'center',
       position: 'static',
     },

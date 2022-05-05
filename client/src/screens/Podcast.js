@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container } from '@material-ui/core';
+import { Container } from '@mui/material';
 
 // Components
 import BackLink from '../components/podcast/BackLink';

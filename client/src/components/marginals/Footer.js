@@ -2,9 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-// libraries
-import { makeStyles } from '@material-ui/core/styles';
-import { Container, Grid, Typography } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import { Container, Grid, Typography } from '@mui/material';
 // import { ArrowRightCircle } from 'react-feather';
 
 // Assets
@@ -249,7 +248,7 @@ const useStyles = makeStyles((theme) => ({
   },
   aboutInfo: {
     padding: '0 100px 50px 0',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       padding: '0 1rem',
     },
   },
@@ -265,7 +264,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   categoryContainer: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginTop: '2.5rem',
       marginBottom: '1.5rem',
       padding: '0 1rem',
@@ -277,7 +276,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '24px',
     fontSize: '16px',
     fontWeight: '700',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '14px',
       lineHeight: '20px',
       padding: 'unset',
@@ -291,7 +290,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'flex-end',
     marginBottom: '1.5rem',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       padding: '0 1rem',
     },
   },
@@ -334,14 +333,14 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: '16px',
     marginLeft: 'auto',
     marginRight: 'auto',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'block',
       paddingTop: '1.5rem',
       paddingBottom: '1.5rem',
     },
   },
   copyRight: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '0.75rem',
       lineHeight: '1rem',
       textAlign: 'center',
@@ -349,7 +348,7 @@ const useStyles = makeStyles((theme) => ({
   },
   socialIcons: {
     textAlign: 'right',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       textAlign: 'center',
       marginTop: '1.25rem',
     },
@@ -358,7 +357,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '20px',
     fontSize: '18px',
     color: theme.palette.common.white,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginLeft: '10px',
     },
   },

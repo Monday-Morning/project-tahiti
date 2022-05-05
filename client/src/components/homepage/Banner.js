@@ -1,8 +1,7 @@
 import React from 'react';
 
-// libraries
-import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Container } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import { Grid, Container } from '@mui/material';
 
 // Components
 import Witsdom from '../expressions/Witsdom';

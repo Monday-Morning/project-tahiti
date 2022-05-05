@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 
-import { makeStyles } from '@material-ui/core';
-import { Typography, Grid } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import { Typography, Grid } from '@mui/material';
 // img
 import Slider from 'react-slick';
 
@@ -101,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
     direction: 'row',
     justifyContent: 'center',
     marginTop: '24px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       marginTop: '0px',
     },
   },
@@ -114,16 +114,16 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   img: {
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('xl')]: {
       height: '500px',
     },
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       height: '400px',
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       height: '300px',
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       height: '180px',
     },
   },

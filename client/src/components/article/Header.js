@@ -4,8 +4,9 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 // libraries
-import { Grid, makeStyles, Typography } from '@material-ui/core';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { Grid, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { Bookmark } from 'react-feather';
 import moment from 'moment';
 
@@ -26,7 +27,7 @@ const ArticleHeader = ({ article }) => {
   const [pageHref, setPageHref] = useState(pathname);
   useEffect(() => setPageHref(window.location.href), []);
 
-  const matches = useMediaQuery(theme.breakpoints.down('xs'));
+  const matches = useMediaQuery(theme.breakpoints.down('sm'));
   if (isFallback || !article) return <ActivityIndicator size={150} />;
 
   const categorySortFunction = (firstObj, secondObj) => {
@@ -175,7 +176,7 @@ const useStyles = makeStyles(() => ({
     color: theme.palette.secondary.neutral60,
     textDecoration: 'underline',
     textTransform: 'uppercase',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '0.75rem',
       lineHeight: '1.5rem',
     },
@@ -189,7 +190,7 @@ const useStyles = makeStyles(() => ({
     fontSize: '1rem',
     lineHeight: '1.5rem',
     color: theme.palette.secondary.neutral60,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '0.75rem',
       lineHeight: '1rem',
     },
@@ -226,7 +227,7 @@ const useStyles = makeStyles(() => ({
   utilityIcon: {
     marginLeft: '30px',
     fontSize: '18px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '12px',
       marginLeft: '5px',
     },

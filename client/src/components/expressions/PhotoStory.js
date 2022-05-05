@@ -1,8 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-// libararies
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 
 // images
 import photoStory from '../../assets/images/photoStory.png';

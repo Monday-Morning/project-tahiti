@@ -1,9 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 
-// libraries
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography, useMediaQuery } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import { Typography, useMediaQuery } from '@mui/material';
 
 // Images
 import Phone from '../../assets/images/about/Phone.png';
@@ -19,7 +18,7 @@ const Profile = ({
   small = false,
 }) => {
   const classes = useStyles({ small });
-  const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
+  const isSmall = useMediaQuery(theme.breakpoints.down('md'));
   return (
     <div className={classes.imgContainer}>
       <div className={classes.img}>
@@ -68,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: ({ small }) => (small ? 70 : 100),
       height: ({ small }) => (small ? 90 : 160),
     },
@@ -77,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     width: ({ small }) => (small ? 90 : 120),
     height: ({ small }) => (small ? 90 : 120),
     borderRadius: '100%',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: ({ small }) => (small ? 50 : 60),
       height: ({ small }) => (small ? 50 : 60),
     },

@@ -1,12 +1,5 @@
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Grid,
-  makeStyles,
-  Typography,
-} from '@material-ui/core';
+import { Box, Button, Card, CardContent, Grid, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import Image from 'next/image';
 import React from 'react';
 import { Bell, Bookmark, User } from 'react-feather';
@@ -56,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow:
       '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
     background: theme.palette.common.white,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '100%',
     },
   },

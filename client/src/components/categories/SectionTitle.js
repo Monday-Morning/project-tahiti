@@ -2,7 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 
 // Libraries
-import { makeStyles, Container } from '@material-ui/core';
+import { Container } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { Element } from 'react-scroll';
 
 function Title({ heading, link, path, container }) {
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: 'nowrap',
     fontWeight: '600',
     fontFamily: 'Source Sans Pro',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '1.25rem',
       lineHeight: '1.75rem',
     },
@@ -54,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary.main,
     fontFamily: 'Source Sans Pro',
     borderBottom: '1px solid #000000',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '14px',
     },
   },

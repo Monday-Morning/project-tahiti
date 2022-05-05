@@ -1,7 +1,9 @@
 import React from 'react';
 
 // libraries
-import { makeStyles, Container, Typography } from '@material-ui/core';
+import { Container, Typography } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 // Components
 import ArticleCardStack from '../widgets/article/ArticleCardStack';

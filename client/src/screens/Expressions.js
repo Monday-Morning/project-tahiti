@@ -1,7 +1,8 @@
 import React from 'react';
 
 // Libraries
-import { Container, makeStyles, Typography } from '@material-ui/core';
+import { Container, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { Link } from 'react-scroll';
 
 // Components

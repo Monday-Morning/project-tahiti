@@ -1,6 +1,6 @@
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme, adaptV4Theme } from '@mui/material/styles';
 
-const theme = createTheme({
+const theme = createTheme(adaptV4Theme({
   breakpoints: {
     keys: ['xs', 'sm', 'md', 'lg', 'xl'],
     value: {
@@ -12,7 +12,7 @@ const theme = createTheme({
     },
   },
   palette: {
-    type: 'light',
+    mode: 'light',
     common: {
       black: '#000000',
       white: '#FFFFFF',
@@ -184,6 +184,6 @@ const theme = createTheme({
     tooltip: 1500,
   },
   // spacing: [0, 4, 8, 16, 32, 64],
-});
+}));
 
 export default theme;

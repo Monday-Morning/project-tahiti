@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 
 // Library
-import { Typography, Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Typography, Grid } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 
 // Assets
 import verifyEmailImg from '../../../assets/images/onboarding/verifyEmail.png';
