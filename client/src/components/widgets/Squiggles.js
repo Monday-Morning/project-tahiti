@@ -2,7 +2,7 @@ import React from 'react';
 
 // Libraries
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardContent, Button, Typography } from '@material-ui/core';
+import { Card, CardContent, Button } from '@material-ui/core';
 
 // Components
 import MarkdownWrapper from '../shared/MarkdownWrapper';
@@ -43,6 +43,9 @@ const useStyles = makeStyles(() => ({
     boxShadow: theme.shadows[0],
     marginTop: 25,
     paddingTop: 10,
+    [theme.breakpoints.down('sm')]: {
+      paddingTop: 0,
+    },
   },
   squigglesWrapper: {
     display: 'flex',
@@ -65,13 +68,14 @@ const useStyles = makeStyles(() => ({
     textTransform: 'unset',
     [theme.breakpoints.down('sm')]: {
       marginRight: 'auto',
+      marginBottom: '10px',
     },
   },
   squigglesText: {
     fontSize: '20px',
     lineHeight: '28px',
     fontWeight: '400',
-    textAlign: 'justify',
+    hyphens: 'auto',
     fontFamily: 'IBM Plex Sans',
   },
 }));
