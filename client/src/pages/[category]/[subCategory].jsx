@@ -126,7 +126,7 @@ export async function getStaticProps({
     query: getArticlesByCategories,
     variables: {
       categoryNumbers: [subCategoryDetails.idNumber],
-      limit: 7,
+      limit: 10000,
     },
   });
 
