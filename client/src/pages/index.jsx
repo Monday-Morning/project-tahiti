@@ -99,6 +99,8 @@ export async function getStaticProps({ preview }) {
     variables: { limit: 2 },
   });
 
+  // console.log(issues);
+
   if (!issues || issues.length !== 2) {
     return {
       redirect: {
