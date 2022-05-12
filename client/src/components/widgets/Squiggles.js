@@ -46,6 +46,10 @@ const useStyles = makeStyles(() => ({
     [theme.breakpoints.down('sm')]: {
       paddingTop: 0,
     },
+    [theme.breakpoints.up('md')]: {
+      maxWidth: '90%',
+      margin: '25px auto 0 auto'
+    },
   },
   squigglesWrapper: {
     display: 'flex',
