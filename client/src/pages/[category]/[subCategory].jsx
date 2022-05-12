@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
@@ -14,9 +14,53 @@ import ROUTES from '../../utils/getRoutes';
 
 // Graphql
 import getArticlesByCategories from '../../graphql/queries/category/getArticlesByCategories';
+import countOfArticlesBySubCategory from '../../graphql/queries/subcategory/countOfArticlesBySubCategory';
 
-const CategoryPage = ({ categoryName, subCategoryDetails, articleList }) => {
+const CategoryPage = ({ categoryName, subCategoryDetails }) => {
   const { isFallback } = useRouter();
+
+  const [pageNo, setPageNo] = useState(1);
+  const [articleList, setArticleList] = useState(null);
+  const [isLoading, setLoading] = useState(true);
+  const [totalPages, setTotalPages] = useState(1);
+
+
+  useEffect(() => {
+    setLoading(true);
+    (async () => {
+      let { data: { countOfArticlesBySubCategory: count } } = await GraphClient.query({
+        query: countOfArticlesBySubCategory,
+        variables: {
+          categoryNumber: subCategoryDetails.idNumber
+        },
+      });
+      setTotalPages(Math.ceil(count / 7))
+    })();
+    setLoading(false);
+  }, [])
+
+  useEffect(() => {
+    setLoading(true);
+    (async () => {
+      const {
+        data: { getArticlesByCategories: articleList },
+      } = await GraphClient.query({
+        query: getArticlesByCategories,
+        variables: {
+          categoryNumbers: [subCategoryDetails.idNumber],
+          limit: 7,
+          offset: (pageNo - 1) * 7,
+        },
+      })
+      setArticleList(articleList)
+      setLoading(false);
+    })();
+  }, [pageNo])
+
+  const handleChange = (event, value) => {
+    setPageNo(value);
+  };
+
   return (
     <>
       <Head>
@@ -85,14 +129,17 @@ const CategoryPage = ({ categoryName, subCategoryDetails, articleList }) => {
         />
       </Head>
       <Marginals>
-        {isFallback && !articleList ? (
-          <ActivityIndicator size={150} />
-        ) : (
+        {!isLoading && !isFallback && articleList ? (
           <SubCategory
             articleList={articleList}
             categoryName={categoryName}
             subCategoryDetails={subCategoryDetails}
+            pageNo={pageNo}
+            totalPages={totalPages}
+            handleChange={handleChange}
           />
+        ) : (
+          <ActivityIndicator size={150} />
         )}
       </Marginals>
     </>
@@ -107,7 +154,6 @@ export async function getStaticProps({
     ({ asyncRoutePath }) => asyncRoutePath === './Category',
   ).filter(({ shortName }) => shortName === category)[0]?.shortName;
 
-  // console.log(categoryName.toUpperCase());
 
   const subCategoryDetails = ROUTES.SUB_CATEGORIES.OBJECT[
     categoryName.toUpperCase()
@@ -120,27 +166,10 @@ export async function getStaticProps({
     };
   }
 
-  const {
-    data: { getArticlesByCategories: articleList },
-  } = await GraphClient.query({
-    query: getArticlesByCategories,
-    variables: {
-      categoryNumbers: [subCategoryDetails.idNumber],
-      limit: 10000,
-    },
-  });
-
-  if (!articleList) {
-    return {
-      notFound: true,
-    };
-  }
-
   return {
     props: {
       categoryName,
       subCategoryDetails,
-      articleList,
     },
     revalidate:
       preview || new Date(Date.now()).getDay() < 3
