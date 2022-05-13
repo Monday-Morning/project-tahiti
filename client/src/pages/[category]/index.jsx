@@ -109,7 +109,7 @@ export async function getStaticProps({
   } = await GraphClient.query({
     query: getArticlesByCategories,
     variables: {
-      categoryNumbers: [category.idNumber, ...category.subCategoryIds],
+      categoryNumbers: [category?.idNumber, ...category?.subCategoryIds],
       limit: 4,
     },
   });

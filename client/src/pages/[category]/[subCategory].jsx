@@ -110,7 +110,7 @@ export async function getStaticProps({
   // console.log(categoryName.toUpperCase());
 
   const subCategoryDetails = ROUTES.SUB_CATEGORIES.OBJECT[
-    categoryName.toUpperCase()
+    categoryName?.toUpperCase()
   ].filter(({ asyncRoutePath }) => asyncRoutePath === './SubCategory')
   .filter(({ shortName }) => shortName === subCategory)[0];
 
@@ -125,7 +125,7 @@ export async function getStaticProps({
   } = await GraphClient.query({
     query: getArticlesByCategories,
     variables: {
-      categoryNumbers: [subCategoryDetails.idNumber],
+      categoryNumbers: [subCategoryDetails?.idNumber],
       limit: 7,
     },
   });

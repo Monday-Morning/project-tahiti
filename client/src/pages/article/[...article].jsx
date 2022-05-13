@@ -160,6 +160,13 @@ export async function getStaticProps({
       query: getArticleByOldID,
       variables: { id: parseInt(oldArticleLink.split('-')[0]) },
     });
+
+    if (!article) {
+      return {
+        notFound: true,
+      };
+    }
+    
     return {
       redirect: {
         destination: getArticleLink(article.id, article.title),
