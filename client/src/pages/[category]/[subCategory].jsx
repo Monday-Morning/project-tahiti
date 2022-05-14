@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
@@ -14,9 +14,41 @@ import ROUTES from '../../utils/getRoutes';
 
 // Graphql
 import getArticlesByCategories from '../../graphql/queries/category/getArticlesByCategories';
+import countOfArticlesBySubCategory from '../../graphql/queries/subcategory/countOfArticlesBySubCategory';
 
-const CategoryPage = ({ categoryName, subCategoryDetails, articleList }) => {
+const CategoryPage = ({ categoryName, subCategoryDetails, articleList, countOfArticles }) => {
   const { isFallback } = useRouter();
+
+  const [pageNo, setPageNo] = useState(1);
+  const [articleLists, setArticleLists] = useState(articleList);
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+
+    if (pageNo === 1)
+      setArticleLists(articleList);
+    else {
+      (async () => {
+        const {
+          data: { getArticlesByCategories: _articleList },
+        } = await GraphClient.query({
+          query: getArticlesByCategories,
+          variables: {
+            categoryNumbers: [subCategoryDetails.idNumber],
+            limit: 7,
+            offset: (pageNo - 1) * 7,
+          },
+        })
+        setArticleLists(_articleList)
+      })();
+    }
+    setLoading(false);
+  }, [pageNo, articleList, subCategoryDetails.idNumber])
+
+  const handleChange = (event, value) => {
+    setPageNo(value);
+  };
   return (
     <>
       <Head>
@@ -85,14 +117,17 @@ const CategoryPage = ({ categoryName, subCategoryDetails, articleList }) => {
         />
       </Head>
       <Marginals>
-        {isFallback && !articleList ? (
-          <ActivityIndicator size={150} />
-        ) : (
+        {!isLoading && !isFallback && articleLists ? (
           <SubCategory
-            articleList={articleList}
+            articleList={articleLists}
             categoryName={categoryName}
             subCategoryDetails={subCategoryDetails}
+            pageNo={pageNo}
+            totalPages={Math.ceil(countOfArticles / 7)}
+            handleChange={handleChange}
           />
+        ) : (
+          <ActivityIndicator size={150} />
         )}
       </Marginals>
     </>
@@ -107,12 +142,11 @@ export async function getStaticProps({
     ({ asyncRoutePath }) => asyncRoutePath === './Category',
   ).filter(({ shortName }) => shortName === category)[0]?.shortName;
 
-  // console.log(categoryName.toUpperCase());
 
   const subCategoryDetails = ROUTES.SUB_CATEGORIES.OBJECT[
     categoryName?.toUpperCase()
   ].filter(({ asyncRoutePath }) => asyncRoutePath === './SubCategory')
-  .filter(({ shortName }) => shortName === subCategory)[0];
+    .filter(({ shortName }) => shortName === subCategory)[0];
 
   if (!subCategoryDetails) {
     return {
@@ -127,20 +161,23 @@ export async function getStaticProps({
     variables: {
       categoryNumbers: [subCategoryDetails?.idNumber],
       limit: 7,
+      offset: 0,
+    },
+  })
+
+  const { data: { countOfArticlesBySubCategory: countOfArticles } } = await GraphClient.query({
+    query: countOfArticlesBySubCategory,
+    variables: {
+      categoryNumber: subCategoryDetails.idNumber
     },
   });
-
-  if (!articleList) {
-    return {
-      notFound: true,
-    };
-  }
 
   return {
     props: {
       categoryName,
       subCategoryDetails,
       articleList,
+      countOfArticles
     },
     revalidate:
       preview || new Date(Date.now()).getDay() < 3
