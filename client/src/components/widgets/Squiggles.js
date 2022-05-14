@@ -82,5 +82,5 @@ const useStyles = makeStyles(() => ({
   },
   squigglesTextWrapper: {
     gridArea: '1 / 2 / 2 / 6',
-  }
+  },
 }));
