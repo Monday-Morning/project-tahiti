@@ -117,13 +117,13 @@ const CategoryPage = ({ categoryName, subCategoryDetails, articleList, countOfAr
         />
       </Head>
       <Marginals>
-        {!isLoading && !isFallback  ? (
+        {!isLoading && !isFallback && articleLists ? (
           <SubCategory
             articleList={articleLists}
             categoryName={categoryName}
             subCategoryDetails={subCategoryDetails}
             pageNo={pageNo}
-            totalPages={Math.ceil(countOfArticles / 7) }
+            totalPages={Math.ceil(countOfArticles / 7)}
             handleChange={handleChange}
           />
         ) : (
