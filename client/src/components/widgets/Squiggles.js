@@ -2,7 +2,7 @@ import React from 'react';
 
 // Libraries
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardContent, Button, Typography } from '@material-ui/core';
+import { Card, CardContent, Button } from '@material-ui/core';
 
 // Components
 import MarkdownWrapper from '../shared/MarkdownWrapper';
@@ -43,10 +43,14 @@ const useStyles = makeStyles(() => ({
     boxShadow: theme.shadows[0],
     marginTop: 25,
     paddingTop: 10,
+    [theme.breakpoints.down('sm')]: {
+      paddingTop: 0,
+    },
   },
   squigglesWrapper: {
-    display: 'flex',
-    justifyContent: 'space-around',
+    display: 'grid',
+    gridTemplateRows: '1fr',
+    gridTemplateColumns: 'repeat(5,1fr)',
     alignItems: 'center',
     paddingLeft: '25px',
     paddingRight: '25px',
@@ -57,6 +61,7 @@ const useStyles = makeStyles(() => ({
   },
   buttonWrapper: {
     textAlign: 'center',
+    gridArea: '1 / 1 / 2 / 2',
   },
   squigglesButton: {
     backgroundColor: theme.palette.accent.squigglesButton,
@@ -65,13 +70,15 @@ const useStyles = makeStyles(() => ({
     textTransform: 'unset',
     [theme.breakpoints.down('sm')]: {
       marginRight: 'auto',
+      marginBottom: '10px',
     },
   },
   squigglesText: {
+    gridAarea: '1 / 2 / 2 / 6',
     fontSize: '20px',
     lineHeight: '28px',
     fontWeight: '400',
-    textAlign: 'justify',
+    hyphens: 'auto',
     fontFamily: 'IBM Plex Sans',
   },
 }));
