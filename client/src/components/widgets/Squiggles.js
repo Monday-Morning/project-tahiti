@@ -46,14 +46,11 @@ const useStyles = makeStyles(() => ({
     [theme.breakpoints.down('sm')]: {
       paddingTop: 0,
     },
-    [theme.breakpoints.up('md')]: {
-      maxWidth: '90%',
-      margin: '25px auto 0 auto'
-    },
   },
   squigglesWrapper: {
-    display: 'flex',
-    justifyContent: 'space-around',
+    display: 'grid',
+    gridTemplateRows: '1fr',
+    gridTemplateColumns: 'repeat(5,1fr)',
     alignItems: 'center',
     paddingLeft: '25px',
     paddingRight: '25px',
@@ -64,6 +61,7 @@ const useStyles = makeStyles(() => ({
   },
   buttonWrapper: {
     textAlign: 'center',
+    gridArea: '1 / 1 / 2 / 2',
   },
   squigglesButton: {
     backgroundColor: theme.palette.accent.squigglesButton,
@@ -76,6 +74,7 @@ const useStyles = makeStyles(() => ({
     },
   },
   squigglesText: {
+    gridAarea: '1 / 2 / 2 / 6',
     fontSize: '20px',
     lineHeight: '28px',
     fontWeight: '400',
