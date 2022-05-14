@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 
 // Libraries
@@ -11,8 +10,14 @@ import Title from '../components/shared/PageTitle';
 import ArticleCardStack from '../components/widgets/article/ArticleCardStack';
 import BigArticleCard from '../components/widgets/article/BigArticleCard';
 
-function SubCategory({ categoryName, subCategoryDetails, articleList, totalPages, pageNo, handleChange }) {
-
+function SubCategory({
+  categoryName,
+  subCategoryDetails,
+  articleList,
+  totalPages,
+  pageNo,
+  handleChange,
+}) {
   const classes = useStyles();
 
   return (
@@ -22,7 +27,12 @@ function SubCategory({ categoryName, subCategoryDetails, articleList, totalPages
       <BigArticleCard article={articleList[0][0]} />
       <ArticleCardStack articleList={articleList[0].slice(1, 4)} />
       <ArticleCardStack articleList={articleList[0].slice(4, 7)} />
-      <Pagination className={classes.pagination} count={totalPages} page={pageNo} onChange={handleChange} />
+      <Pagination
+        className={classes.pagination}
+        count={totalPages}
+        page={pageNo}
+        onChange={handleChange}
+      />
     </Container>
   );
 }
@@ -35,5 +45,5 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     marginTop: '20px',
     maxWidth: '90vw',
-  }
-}))
+  },
+}));

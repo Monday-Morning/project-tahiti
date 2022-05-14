@@ -1,7 +1,7 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export default gql`
-  query($categoryNumber: Int!){
-  countOfArticlesBySubCategory(categoryNumber: $categoryNumber)
-}
+  query ($categoryNumber: Int!) {
+    countOfArticlesBySubCategory(categoryNumber: $categoryNumber)
+  }
 `;
