@@ -48,9 +48,6 @@ const Details = () => {
                   <span className={classes.cc}>
                     {cc.name} : {cc.number}{' '}
                   </span>
-                  <span className={classes.messageIcon}>
-                    <i className='far fa-envelope'></i>
-                  </span>
                 </Typography>
               </Grid>
             ))}
@@ -222,13 +219,6 @@ const useStyles = makeStyles((theme) => ({
   },
   ccTitle: {
     paddingBottom: '16px',
-  },
-  messageIcon: {
-    visibility: 'hidden',
-    [theme.breakpoints.down('xs')]: {
-      visibility: 'visible',
-      paddingLeft: '16px',
-    },
   },
   mail: {
     padding: '8px 0px 8px 0px',

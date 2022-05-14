@@ -18,6 +18,7 @@ import theme from '../../config/themes/light';
 
 // Queries
 import getArticleByID from '../../graphql/queries/article/getArticleByID';
+import getArticleByOldID from '../../graphql/queries/article/getArticleByOldID';
 import getArticleLink, { getArticleSlug } from '../../utils/getArticleLink';
 
 function ArticlePage({ article }) {
@@ -148,10 +149,32 @@ function ArticlePage({ article }) {
 
 export async function getStaticProps({
   params: {
-    article: [articleId, articleSlug],
+    article: [articleId, articleSlug, _date, oldArticleLink],
   },
   preview,
 }) {
+  if (oldArticleLink) {
+    const {
+      data: { getArticleByOldID: article },
+    } = await GraphClient.query({
+      query: getArticleByOldID,
+      variables: { id: parseInt(oldArticleLink.split('-')[0]) },
+    });
+
+    if (!article) {
+      return {
+        notFound: true,
+      };
+    }
+    
+    return {
+      redirect: {
+        destination: getArticleLink(article.id, article.title),
+        permanent: false,
+      },
+    };
+  }
+
   const {
     data: { getArticleByID: article },
   } = await GraphClient.query({
