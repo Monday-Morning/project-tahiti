@@ -22,8 +22,8 @@ function Squiggles({ data }) {
               Squiggles
             </Button>
           </div>
-          <div>
-            <p className={classes.squigglesText}>
+          <div className={classes.squigglesTextWrapper}>
+            <p>
               <MarkdownWrapper variant='body1' styles={classes.squigglesText}>
                 {data.content}
               </MarkdownWrapper>
@@ -74,11 +74,13 @@ const useStyles = makeStyles(() => ({
     },
   },
   squigglesText: {
-    gridAarea: '1 / 2 / 2 / 6',
     fontSize: '20px',
     lineHeight: '28px',
     fontWeight: '400',
     hyphens: 'auto',
     fontFamily: 'IBM Plex Sans',
+  },
+  squigglesTextWrapper: {
+    gridArea: '1 / 2 / 2/ 6',
   },
 }));
