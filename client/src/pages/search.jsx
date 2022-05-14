@@ -1,225 +1,36 @@
 import React, { useEffect, useState } from 'react';
 
+// Libraries
+import { Container } from '@material-ui/core';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-// Libraries
-import { makeStyles, Container, Typography } from '@material-ui/core';
-import Head from 'next/head';
-
+// Components
 import { GraphClient } from '../config/ApolloClient';
+import ActivityIndicator from '../components/shared/ActivityIndicator';
+import SearchPage from '../screens/SearchPage';
 
+// Queries
 import searchArticles from '../graphql/queries/article/searchArticles';
-import ArticleCard from '../components/widgets/article/RegularArticleCard';
-import ArticleCardStack from '../components/widgets/article/ArticleCardStack';
-
-const articleList = [
-  {
-    __typename: 'Article',
-    id: '617af9fc86153cff9ba8178e',
-    articleType: 'STANDARD',
-    title: 'From One B To Another: The Transition From B.Tech To B-School',
-    inshort:
-      'Getting into a prestigious B-School for pursuing Management, has been one of the most sought after careers chosen by many graduates. Read the article to get insights about the CAT 2019 achievers.',
-    authors: [
-      { __typename: 'UserDetail', name: 'Chaitanya Kumar' },
-      { __typename: 'UserDetail', name: 'Utkarsh Singh' },
-      { __typename: 'UserDetail', name: 'Siddharth Kumar' },
-    ],
-    categories: [
-      { __typename: 'ArticleCategory', number: 1, isSubcategory: false },
-      { __typename: 'ArticleCategory', number: 2, isSubcategory: false },
-      { __typename: 'ArticleCategory', number: 21, isSubcategory: true },
-      { __typename: 'ArticleCategory', number: 17, isSubcategory: true },
-    ],
-    coverMedia: {
-      __typename: 'CoverMedia',
-      rectangle: {
-        __typename: 'Media',
-        store: 'ADAMANTIUM_ARCHIVE_A',
-        storePath: '/adamantium/coverMedia/617af9e186153cff9ba81773.jpeg',
-        mediaType: 'IMAGE',
-        blurhash: 'U:Kdx#xav{jvTht6jDWYN{oIt8bIrrslX9oL',
-      },
-      square: {
-        __typename: 'Media',
-        store: 'ADAMANTIUM_ARCHIVE_A',
-        storePath: '/adamantium/coverMedia/617af9dc86153cff9ba81770.jpeg',
-        mediaType: 'IMAGE',
-        blurhash: 'U~JIL;t6w[ofThs-ocoJI;jYogoIv}bFbHod',
-      },
-    },
-    readTime: 300,
-  },
-  {
-    __typename: 'Article',
-    id: '617af9fc86153cff9ba8178e',
-    articleType: 'STANDARD',
-    title: 'From One B To Another: The Transition From B.Tech To B-School',
-    inshort:
-      'Getting into a prestigious B-School for pursuing Management, has been one of the most sought after careers chosen by many graduates. Read the article to get insights about the CAT 2019 achievers.',
-    authors: [
-      { __typename: 'UserDetail', name: 'Chaitanya Kumar' },
-      { __typename: 'UserDetail', name: 'Utkarsh Singh' },
-      { __typename: 'UserDetail', name: 'Siddharth Kumar' },
-    ],
-    categories: [
-      { __typename: 'ArticleCategory', number: 1, isSubcategory: false },
-      { __typename: 'ArticleCategory', number: 2, isSubcategory: false },
-      { __typename: 'ArticleCategory', number: 21, isSubcategory: true },
-      { __typename: 'ArticleCategory', number: 17, isSubcategory: true },
-    ],
-    coverMedia: {
-      __typename: 'CoverMedia',
-      rectangle: {
-        __typename: 'Media',
-        store: 'ADAMANTIUM_ARCHIVE_A',
-        storePath: '/adamantium/coverMedia/617af9e186153cff9ba81773.jpeg',
-        mediaType: 'IMAGE',
-        blurhash: 'U:Kdx#xav{jvTht6jDWYN{oIt8bIrrslX9oL',
-      },
-      square: {
-        __typename: 'Media',
-        store: 'ADAMANTIUM_ARCHIVE_A',
-        storePath: '/adamantium/coverMedia/617af9dc86153cff9ba81770.jpeg',
-        mediaType: 'IMAGE',
-        blurhash: 'U~JIL;t6w[ofThs-ocoJI;jYogoIv}bFbHod',
-      },
-    },
-    readTime: 300,
-  },
-  {
-    __typename: 'Article',
-    id: '617af9fc86153cff9ba8178e',
-    articleType: 'STANDARD',
-    title: 'From One B To Another: The Transition From B.Tech To B-School',
-    inshort:
-      'Getting into a prestigious B-School for pursuing Management, has been one of the most sought after careers chosen by many graduates. Read the article to get insights about the CAT 2019 achievers.',
-    authors: [
-      { __typename: 'UserDetail', name: 'Chaitanya Kumar' },
-      { __typename: 'UserDetail', name: 'Utkarsh Singh' },
-      { __typename: 'UserDetail', name: 'Siddharth Kumar' },
-    ],
-    categories: [
-      { __typename: 'ArticleCategory', number: 1, isSubcategory: false },
-      { __typename: 'ArticleCategory', number: 2, isSubcategory: false },
-      { __typename: 'ArticleCategory', number: 21, isSubcategory: true },
-      { __typename: 'ArticleCategory', number: 17, isSubcategory: true },
-    ],
-    coverMedia: {
-      __typename: 'CoverMedia',
-      rectangle: {
-        __typename: 'Media',
-        store: 'ADAMANTIUM_ARCHIVE_A',
-        storePath: '/adamantium/coverMedia/617af9e186153cff9ba81773.jpeg',
-        mediaType: 'IMAGE',
-        blurhash: 'U:Kdx#xav{jvTht6jDWYN{oIt8bIrrslX9oL',
-      },
-      square: {
-        __typename: 'Media',
-        store: 'ADAMANTIUM_ARCHIVE_A',
-        storePath: '/adamantium/coverMedia/617af9dc86153cff9ba81770.jpeg',
-        mediaType: 'IMAGE',
-        blurhash: 'U~JIL;t6w[ofThs-ocoJI;jYogoIv}bFbHod',
-      },
-    },
-    readTime: 300,
-  },
-  {
-    __typename: 'Article',
-    id: '617af9fc86153cff9ba8178e',
-    articleType: 'STANDARD',
-    title: 'From One B To Another: The Transition From B.Tech To B-School',
-    inshort:
-      'Getting into a prestigious B-School for pursuing Management, has been one of the most sought after careers chosen by many graduates. Read the article to get insights about the CAT 2019 achievers.',
-    authors: [
-      { __typename: 'UserDetail', name: 'Chaitanya Kumar' },
-      { __typename: 'UserDetail', name: 'Utkarsh Singh' },
-      { __typename: 'UserDetail', name: 'Siddharth Kumar' },
-    ],
-    categories: [
-      { __typename: 'ArticleCategory', number: 1, isSubcategory: false },
-      { __typename: 'ArticleCategory', number: 2, isSubcategory: false },
-      { __typename: 'ArticleCategory', number: 21, isSubcategory: true },
-      { __typename: 'ArticleCategory', number: 17, isSubcategory: true },
-    ],
-    coverMedia: {
-      __typename: 'CoverMedia',
-      rectangle: {
-        __typename: 'Media',
-        store: 'ADAMANTIUM_ARCHIVE_A',
-        storePath: '/adamantium/coverMedia/617af9e186153cff9ba81773.jpeg',
-        mediaType: 'IMAGE',
-        blurhash: 'U:Kdx#xav{jvTht6jDWYN{oIt8bIrrslX9oL',
-      },
-      square: {
-        __typename: 'Media',
-        store: 'ADAMANTIUM_ARCHIVE_A',
-        storePath: '/adamantium/coverMedia/617af9dc86153cff9ba81770.jpeg',
-        mediaType: 'IMAGE',
-        blurhash: 'U~JIL;t6w[ofThs-ocoJI;jYogoIv}bFbHod',
-      },
-    },
-    readTime: 300,
-  },
-  {
-    __typename: 'Article',
-    id: '617af9fc86153cff9ba8178e',
-    articleType: 'STANDARD',
-    title: 'From One B To Another: The Transition From B.Tech To B-School',
-    inshort:
-      'Getting into a prestigious B-School for pursuing Management, has been one of the most sought after careers chosen by many graduates. Read the article to get insights about the CAT 2019 achievers.',
-    authors: [
-      { __typename: 'UserDetail', name: 'Chaitanya Kumar' },
-      { __typename: 'UserDetail', name: 'Utkarsh Singh' },
-      { __typename: 'UserDetail', name: 'Siddharth Kumar' },
-    ],
-    categories: [
-      { __typename: 'ArticleCategory', number: 1, isSubcategory: false },
-      { __typename: 'ArticleCategory', number: 2, isSubcategory: false },
-      { __typename: 'ArticleCategory', number: 21, isSubcategory: true },
-      { __typename: 'ArticleCategory', number: 17, isSubcategory: true },
-    ],
-    coverMedia: {
-      __typename: 'CoverMedia',
-      rectangle: {
-        __typename: 'Media',
-        store: 'ADAMANTIUM_ARCHIVE_A',
-        storePath: '/adamantium/coverMedia/617af9e186153cff9ba81773.jpeg',
-        mediaType: 'IMAGE',
-        blurhash: 'U:Kdx#xav{jvTht6jDWYN{oIt8bIrrslX9oL',
-      },
-      square: {
-        __typename: 'Media',
-        store: 'ADAMANTIUM_ARCHIVE_A',
-        storePath: '/adamantium/coverMedia/617af9dc86153cff9ba81770.jpeg',
-        mediaType: 'IMAGE',
-        blurhash: 'U~JIL;t6w[ofThs-ocoJI;jYogoIv}bFbHod',
-      },
-    },
-    readTime: 300,
-  },
-];
 
 const search = () => {
-  const classes = useStyles();
   const router = useRouter();
-  const [articles, setarticles] = useState(articleList);
-  console.log(router.query.keyword);
+  const [articles, setarticles] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  // useEffect(() => {
-  //   const {
-  //     data: { searchArticles: articleList },
-  //   } = await GraphClient.query({
-  //     query: searchArticles,
-  //     variables: {
-  //       keywords: 'Emergence',
-  //       limit: 7,
-  //     },
-  //   });
-  //   setarticles(articleList);
-  // }, [router.query.keyword, articles]);
-
-  // console.log(articles);
+  useEffect(async () => {
+    setLoading(true);
+    const {
+      data: { searchArticles: articleList },
+    } = await GraphClient.query({
+      query: searchArticles,
+      variables: {
+        keywords: router.query.keyword,
+      },
+    });
+    setarticles(articleList);
+    setLoading(false);
+  }, [router.query.keyword]);
 
   return (
     <>
@@ -290,19 +101,14 @@ const search = () => {
       </Head>
 
       <Container>
-        <Typography variant='h3' component='h3' className={classes.text}>
-          Search results for - "{router.query.keyword}"
-          <ArticleCardStack articleList={articles} />
-        </Typography>
+        {loading ? (
+          <ActivityIndicator size={150} />
+        ) : (
+          <SearchPage articles={articles} keyword={router.query.keyword} />
+        )}
       </Container>
     </>
   );
 };
-
-const useStyles = makeStyles((theme) => ({
-  text: {
-    marginTop: '40px',
-  },
-}));
 
 export default search;

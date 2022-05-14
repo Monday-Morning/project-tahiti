@@ -7,7 +7,7 @@ export default gql`
     $limit: Int
     $offset: Int
   ) {
-    getArticlesByCategories(
+    searchArticles(
       keywords: $keywords
       limit: $limit
       offset: $offset
