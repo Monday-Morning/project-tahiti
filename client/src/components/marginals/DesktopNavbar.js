@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -18,12 +18,20 @@ const DesktopNavbar = () => {
   const router = useRouter();
   const [search, setSearch] = useState('');
 
-  useEffect(() => {
-    // Always do navigations after the first render
-    router.push(`/?search=${search}`, undefined, { shallow: true });
-  }, []);
+  // console.log(search);
 
-  console.log(router.query);
+  const searchQuery = (e) => {
+    e.preventDefault();
+    setSearch(e.target.value);
+  };
+
+  const searchKeyword = (e) => {
+    if (e.key === 'Enter') {
+      if (search.length) {
+        router.push(`/search?keyword=${search}`, undefined, { shallow: true });
+      }
+    }
+  };
 
   return (
     <Container>
@@ -49,7 +57,8 @@ const DesktopNavbar = () => {
             label='Search for articles'
             placeholder='Enter related words'
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onKeyDown={searchKeyword}
+            onChange={searchQuery}
           />
         </div>
 

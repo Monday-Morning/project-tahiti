@@ -20,6 +20,7 @@ import ActivityIndicator from '../components/shared/ActivityIndicator';
 // Theme
 import lightTheme from '../config/themes/light';
 import { useRouter } from 'next/router';
+import Marginals from '../components/marginals/Marginals';
 
 function TahitiApp({ Component, pageProps }) {
   const classes = useStyles();
@@ -62,7 +63,9 @@ function TahitiApp({ Component, pageProps }) {
         {loading ? (
           <ActivityIndicator loading={loading} />
         ) : (
-          <Component {...pageProps} />
+          <Marginals>
+            <Component {...pageProps} />
+          </Marginals>
         )}
 
         <ScrollToTopButton className={classes.fab} />

@@ -132,7 +132,6 @@ function ArticlePage({ article }) {
         />
         <meta property='twitter:description' content={article.inshort} />
       </Head>
-      <Marginals>
         {isFallback || !article ? (
           <ActivityIndicator size={150} />
         ) : (
@@ -142,7 +141,6 @@ function ArticlePage({ article }) {
             toggleSidebar={toggleSidebar}
           />
         )}
-      </Marginals>
     </>
   );
 }
