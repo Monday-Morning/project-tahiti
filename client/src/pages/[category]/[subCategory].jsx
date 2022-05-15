@@ -39,7 +39,7 @@ const CategoryPage = ({
         } = await GraphClient.query({
           query: getArticlesByCategories,
           variables: {
-            categoryNumbers: [subCategoryDetails.idNumber],
+            categoryNumbers: [subCategoryDetails?.idNumber],
             limit: 7,
             offset: (pageNo - 1) * 7,
           },
@@ -48,7 +48,7 @@ const CategoryPage = ({
       })();
     }
     setLoading(false);
-  }, [pageNo, articleList, subCategoryDetails.idNumber]);
+  }, [pageNo, articleList, subCategoryDetails?.idNumber]);
 
   const handleChange = (event, value) => {
     setPageNo(value);
