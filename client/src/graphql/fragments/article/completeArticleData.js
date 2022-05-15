@@ -9,6 +9,13 @@ inshort
 authors {
 	name
 	details
+	user {
+		picture{
+			store
+			storePath
+			blurhash
+		}
+	}
 }
 photographers {
 	name

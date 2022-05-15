@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 // Libraries
 import { BarChart, Search } from 'react-feather';
+import SearchIcon from '@material-ui/icons/Search';
 import {
   Container,
   SwipeableDrawer,
   makeStyles,
   Typography,
+  InputAdornment,
+  TextField,
 } from '@material-ui/core';
 
 // Assets
@@ -23,7 +27,25 @@ import ROUTES from '../../utils/getRoutes';
 // TODO: Add signin button to the mobile nav when ready.
 const MobileNavbar = () => {
   const [isMenuOpen, toggleMenu, setMenuOpen] = useToggle(false);
+  const [search, setSearch] = useState(false);
+  const [searchText, setSearchText] = useState('');
+  const router = useRouter();
   const classes = useStyles();
+
+  const searchQuery = (e) => {
+    e.preventDefault();
+    setSearchText(e.target.value);
+  };
+
+  const searchKeyword = (e) => {
+    if (e.key === 'Enter') {
+      if (searchText.length) {
+        router.push(`/search?keyword=${searchText}`, undefined, {
+          shallow: true,
+        });
+      }
+    }
+  };
 
   return (
     <>
@@ -51,13 +73,32 @@ const MobileNavbar = () => {
 
         <Search
           className={classes.searchIcon}
-          onClick={() => {}}
+          onClick={() => setSearch(!search)}
           onKeyDown={() => {}}
           role='button'
           tabIndex={0}
           size={30}
         />
       </Container>
+      {search && (
+        <Container>
+          <TextField
+            id='search-textfield'
+            value={searchText}
+            onKeyDown={searchKeyword}
+            onChange={searchQuery}
+            className={classes.searchField}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position='start'>
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            }}
+            variant='standard'
+          />
+        </Container>
+      )}
 
       <SwipeableDrawer
         anchor='left'
@@ -149,6 +190,10 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
     cursor: 'pointer',
     color: theme.palette.secondary.neutral70,
+  },
+  searchField: {
+    width: '100%',
+    marginTop: 10,
   },
   activeHeaderLink: {},
 }));

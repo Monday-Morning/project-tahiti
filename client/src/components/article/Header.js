@@ -45,7 +45,7 @@ const ArticleHeader = ({ article }) => {
       rectangle: { store, storePath },
     },
   } = article;
-
+  
   return (
     <div className={classes.container}>
       <Grid container className={classes.container}>
@@ -97,7 +97,7 @@ const ArticleHeader = ({ article }) => {
 
           <div className={classes.wrapper}>
             <div className={classes.authorList}>
-              {authors.map(({ name, details }) => (
+              {authors.map(({ name, details, user }) => (
                 <Link
                   href={`/portfolio/${details}/${encodeURI(name)}`}
                   passHref
@@ -107,14 +107,19 @@ const ArticleHeader = ({ article }) => {
                   style={{ textDecoration: 'none', cursor: 'pointer' }}
                 >
                   <div key={name} className={classes.authorWrapper}>
-                    {/* {matches && (
+                    {matches && (
                       <Image
-                        src={user}
+                        src={
+                          STORES[user.picture.store] +
+                          encodeURI(user.picture.storePath)
+                        }
+                        height={20}
+                        width={20}
                         alt='authorName'
                         className={classes.authorImg}
                         // className={classes.author}
                       />
-                    )} */}
+                    )}
 
                     {!matches && (
                       <Typography variant='body2' className={classes.author}>
@@ -214,6 +219,7 @@ const useStyles = makeStyles(() => ({
   authorImg: {
     height: '1rem',
     width: '1rem',
+    borderRadius: '50%',
     objectFit: 'cover',
     marginRight: '10px',
   },

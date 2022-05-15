@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 // Libraries
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,7 +15,23 @@ import logoFullBlack from '../../assets/images/logos/logo_full_black.png';
 
 const DesktopNavbar = () => {
   const classes = useStyles();
+  const router = useRouter();
   const [search, setSearch] = useState('');
+
+  // console.log(search);
+
+  const searchQuery = (e) => {
+    e.preventDefault();
+    setSearch(e.target.value);
+  };
+
+  const searchKeyword = (e) => {
+    if (e.key === 'Enter') {
+      if (search.length) {
+        router.push(`/search?keyword=${search}`, undefined, { shallow: true });
+      }
+    }
+  };
 
   return (
     <Container>
@@ -40,7 +57,8 @@ const DesktopNavbar = () => {
             label='Search for articles'
             placeholder='Enter related words'
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onKeyDown={searchKeyword}
+            onChange={searchQuery}
           />
         </div>
 

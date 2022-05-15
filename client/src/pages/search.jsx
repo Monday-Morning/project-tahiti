@@ -1,42 +1,61 @@
-import React from 'react';
-import { useRouter } from 'next/router';
-import Head from 'next/head';
+import React, { useEffect, useState } from 'react';
 
-import { GraphClient } from '../../config/ApolloClient';
+// Libraries
+import { Container } from '@material-ui/core';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 // Components
-import ActivityIndicator from '../../components/shared/ActivityIndicator';
-import Category from '../../screens/Category';
-import Marginals from '../../components/marginals/Marginals';
+import { GraphClient } from '../config/ApolloClient';
+import ActivityIndicator from '../components/shared/ActivityIndicator';
+import SearchPage from '../screens/SearchPage';
+import Marginals from '../components/marginals/Marginals';
 
-// Utils
-import ROUTES from '../../utils/getRoutes';
+// Queries
+import searchArticles from '../graphql/queries/article/searchArticles';
 
-// Graphql
-import getArticlesByCategories from '../../graphql/queries/category/getArticlesByCategories';
+const search = () => {
+  const router = useRouter();
+  const [articles, setarticles] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-const CategoryPage = ({ articleList, categoryShortName, category }) => {
-  const { isFallback } = useRouter();
+  useEffect(async () => {
+    setLoading(true);
+    const {
+      data: { searchArticles: articleList },
+    } = await GraphClient.query({
+      query: searchArticles,
+      variables: {
+        keywords: router.query.keyword,
+      },
+    });
+    setarticles(articleList);
+    setLoading(false);
+  }, [router.query.keyword]);
+
   return (
     <>
       <Head>
         {/* <!-- =============== Primary Meta Tags =============== --> */}
-        <title>{category?.name} | Monday Morning</title>
-        <meta name='title' content={`${category?.name} | Monday Morning`} />
+        <title>Search "{router.query.keyword}" | Monday Morning</title>
+        <meta
+          name='title'
+          content={`Search "${router.query.keyword}" | Monday Morning`}
+        />
         <meta
           name='description'
           content='Monday Morning is the official Student Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday Morning also serves as a link between the administration and the students.'
         />
         <meta
           name='keywords'
-          content={`${categoryShortName},monday morning, mondaymorning, monday morning, mm, nit rkl, nit, nit rourkela, nitr, nitrkl, rkl, rourkela`}
+          content={`${router.query.keyword},monday morning, mondaymorning, monday morning, mm, nit rkl, nit, nit rourkela, nitr, nitrkl, rkl, rourkela`}
         />
 
         {/* <!-- =============== Open Graph / Facebook =============== --> */}
         <meta property='og:type' content='website' />
         <meta
           property='og:url'
-          content={`https://mondaymorning.nitrkl.ac.in/${categoryShortName}`}
+          content={`https://mondaymorning.nitrkl.ac.in/search?keyword=${router.query.keyword}`}
         />
         <meta
           property='og:site_name'
@@ -44,7 +63,7 @@ const CategoryPage = ({ articleList, categoryShortName, category }) => {
         />
         <meta
           property='og:title'
-          content={`${category?.name} | Monday Morning`}
+          content={`Search "${router.query.keyword}" | Monday Morning`}
         />
         <meta
           property='og:description'
@@ -69,7 +88,7 @@ const CategoryPage = ({ articleList, categoryShortName, category }) => {
         <meta property='twitter:card' content='summary_large_image' />
         <meta
           property='twitter:url'
-          content={`https://mondaymorning.nitrkl.ac.in/${categoryShortName}`}
+          content={`https://mondaymorning.nitrkl.ac.in/search?keyword=${router.query.keyword}`}
         />
         <meta property='twitter:title' content='Monday Morning' />
         <meta
@@ -81,66 +100,16 @@ const CategoryPage = ({ articleList, categoryShortName, category }) => {
           content='Monday Morning is the Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students.'
         />
       </Head>
-      {isFallback && !articleList ? (
+
+      {loading ? (
         <ActivityIndicator size={150} />
       ) : (
         <Marginals>
-          <Category
-            articleList={articleList}
-            categoryShortName={categoryShortName}
-            category={category}
-          />
+          <SearchPage articles={articles} keyword={router.query.keyword} />
         </Marginals>
       )}
     </>
   );
 };
 
-export async function getStaticProps({
-  params: { category: categoryShortName },
-  preview,
-}) {
-  const category = ROUTES.CATEGORIES.filter(
-    ({ asyncRoutePath }) => asyncRoutePath === './Category',
-  ).filter(({ shortName }) => shortName === categoryShortName)[0];
-
-  const {
-    data: { getArticlesByCategories: articleList },
-  } = await GraphClient.query({
-    query: getArticlesByCategories,
-    variables: {
-      categoryNumbers: [category?.idNumber, ...category?.subCategoryIds],
-      limit: 4,
-    },
-  });
-
-  if (!category || !articleList) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: {
-      articleList,
-      categoryShortName,
-      category,
-    },
-    revalidate:
-      preview || new Date(Date.now()).getDay() < 3
-        ? 60 * 60 * 1
-        : 60 * 60 * 24 * 2, // 1 Hour or 2 Days
-  };
-}
-
-export async function getStaticPaths() {
-  const paths = ROUTES.CATEGORIES.filter(
-    ({ asyncRoutePath }) => asyncRoutePath === './Category',
-  ).map(({ shortName }) => ({
-    params: { category: shortName },
-  }));
-
-  return { paths, fallback: true };
-}
-
-export default CategoryPage;
+export default search;
