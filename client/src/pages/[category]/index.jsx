@@ -81,15 +81,17 @@ const CategoryPage = ({ articleList, categoryShortName, category }) => {
           content='Monday Morning is the Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students.'
         />
       </Head>
-        {isFallback && !articleList ? (
-          <ActivityIndicator size={150} />
-        ) : (
+      {isFallback && !articleList ? (
+        <ActivityIndicator size={150} />
+      ) : (
+        <Marginals>
           <Category
             articleList={articleList}
             categoryShortName={categoryShortName}
             category={category}
           />
-        )}
+        </Marginals>
+      )}
     </>
   );
 };

@@ -1,12 +1,12 @@
 import React from 'react';
 import Head from 'next/head';
 
-// libraries
-import { GraphClient } from '../config/ApolloClient';
+// // libraries
+// import { GraphClient } from '../config/ApolloClient';
 
-// Queries
-import getLatestIssues from '../graphql/queries/homepage/getLatestIssues';
-import getLatestSquiggle from '../graphql/queries/homepage/getLatestSquiggle';
+// // Queries
+// import getLatestIssues from '../graphql/queries/homepage/getLatestIssues';
+// import getLatestSquiggle from '../graphql/queries/homepage/getLatestSquiggle';
 
 // Components
 import Marginals from '../components/marginals/Marginals';

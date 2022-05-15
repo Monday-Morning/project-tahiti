@@ -121,14 +121,16 @@ const CategoryPage = ({
         />
       </Head>
       {!isLoading && !isFallback && articleLists ? (
-        <SubCategory
-          articleList={articleLists}
-          categoryName={categoryName}
-          subCategoryDetails={subCategoryDetails}
-          pageNo={pageNo}
-          totalPages={Math.ceil(countOfArticles / 7)}
-          handleChange={handleChange}
-        />
+        <Marginals>
+          <SubCategory
+            articleList={articleLists}
+            categoryName={categoryName}
+            subCategoryDetails={subCategoryDetails}
+            pageNo={pageNo}
+            totalPages={Math.ceil(countOfArticles / 7)}
+            handleChange={handleChange}
+          />
+        </Marginals>
       ) : (
         <ActivityIndicator size={150} />
       )}

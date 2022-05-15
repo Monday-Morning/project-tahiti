@@ -132,15 +132,17 @@ function ArticlePage({ article }) {
         />
         <meta property='twitter:description' content={article.inshort} />
       </Head>
-        {isFallback || !article ? (
-          <ActivityIndicator size={150} />
-        ) : (
+      {isFallback || !article ? (
+        <ActivityIndicator size={150} />
+      ) : (
+        <Marginals>
           <Article
             article={article}
             bind={bind}
             toggleSidebar={toggleSidebar}
           />
-        )}
+        </Marginals>
+      )}
     </>
   );
 }
@@ -164,7 +166,7 @@ export async function getStaticProps({
         notFound: true,
       };
     }
-    
+
     return {
       redirect: {
         destination: getArticleLink(article.id, article.title),

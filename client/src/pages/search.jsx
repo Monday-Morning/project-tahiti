@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import { GraphClient } from '../config/ApolloClient';
 import ActivityIndicator from '../components/shared/ActivityIndicator';
 import SearchPage from '../screens/SearchPage';
+import Marginals from '../components/marginals/Marginals';
 
 // Queries
 import searchArticles from '../graphql/queries/article/searchArticles';
@@ -104,7 +105,9 @@ const search = () => {
         {loading ? (
           <ActivityIndicator size={150} />
         ) : (
-          <SearchPage articles={articles} keyword={router.query.keyword} />
+          <Marginals>
+            <SearchPage articles={articles} keyword={router.query.keyword} />
+          </Marginals>
         )}
       </Container>
     </>
