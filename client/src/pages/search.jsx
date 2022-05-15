@@ -101,15 +101,13 @@ const search = () => {
         />
       </Head>
 
-      <Container>
-        {loading ? (
-          <ActivityIndicator size={150} />
-        ) : (
-          <Marginals>
-            <SearchPage articles={articles} keyword={router.query.keyword} />
-          </Marginals>
-        )}
-      </Container>
+      {loading ? (
+        <ActivityIndicator size={150} />
+      ) : (
+        <Marginals>
+          <SearchPage articles={articles} keyword={router.query.keyword} />
+        </Marginals>
+      )}
     </>
   );
 };

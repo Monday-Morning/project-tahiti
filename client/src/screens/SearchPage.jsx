@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Libraries
-import { makeStyles, Typography } from '@material-ui/core';
+import { makeStyles, Container, Typography } from '@material-ui/core';
 
 // Components
 import ArticleCardStack from '../components/widgets/article/ArticleCardStack';
@@ -9,7 +9,7 @@ import ArticleCardStack from '../components/widgets/article/ArticleCardStack';
 const SearchPage = ({ articles, keyword }) => {
   const classes = useStyles();
   return (
-    <div>
+    <Container>
       <Typography variant='h3' component='h3' className={classes.text}>
         {!articles && <span>NO</span>} Search results for - "{keyword}"
       </Typography>
@@ -28,7 +28,7 @@ const SearchPage = ({ articles, keyword }) => {
           </Typography>
         </div>
       )}
-    </div>
+    </Container>
   );
 };
 
