@@ -17,7 +17,7 @@ const Footer = () => {
     <div className={classes.wrapper}>
       <Container>
         <Grid container direction='row'>
-          <Grid item sm={4}>
+          <Grid item sm={6} md={4}>
             <div className={classes.aboutInfo}>
               <div className={classes.logoContainer}>
                 <Image
@@ -35,7 +35,7 @@ const Footer = () => {
               </Typography>
             </div>
           </Grid>
-          <Grid item sm={4} className={classes.containerGrid}>
+          <Grid item sm={6} md={4} className={classes.containerGrid}>
             <Grid
               container
               justifyContent='space-between'
@@ -173,7 +173,7 @@ const Footer = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item sm={4}>
+          <Grid item sm={12} md={4}>
             <div className={classes.rightSide}>
               <div>
                 <Link
