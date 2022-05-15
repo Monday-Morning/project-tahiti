@@ -45,8 +45,7 @@ const ArticleHeader = ({ article }) => {
       rectangle: { store, storePath },
     },
   } = article;
-  const { picture } = authors;
-  console.log(authors[0].user.picture.store);
+  
   return (
     <div className={classes.container}>
       <Grid container className={classes.container}>
