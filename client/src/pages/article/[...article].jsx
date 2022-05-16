@@ -3,8 +3,6 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 // Libraries
-import { useMediaQuery } from '@material-ui/core';
-import { useDrag } from 'react-use-gesture';
 import { GraphClient } from '../../config/ApolloClient';
 import STORES from '../../utils/getStores';
 
@@ -13,9 +11,6 @@ import Marginals from '../../components/marginals/Marginals';
 import Article from '../../screens/Article';
 import ActivityIndicator from '../../components/shared/ActivityIndicator';
 
-// Assets
-import theme from '../../config/themes/light';
-
 // Queries
 import getArticleByID from '../../graphql/queries/article/getArticleByID';
 import getArticleByOldID from '../../graphql/queries/article/getArticleByOldID';
@@ -23,21 +18,6 @@ import getArticleLink, { getArticleSlug } from '../../utils/getArticleLink';
 
 function ArticlePage({ article }) {
   const { isFallback } = useRouter();
-  const [toggleSidebar, setToggleSidebar] = useState(false);
-  const isMatch = useMediaQuery(theme.breakpoints.down('sm'));
-
-  const bind = useDrag(({ down, movement: [mx, my] }) => {
-    if (isMatch) {
-      if (down && mx < -10) {
-        setToggleSidebar(true);
-      } else if (
-        (down && mx > 10 && toggleSidebar) ||
-        (down && my !== 0 && toggleSidebar)
-      ) {
-        setToggleSidebar(false);
-      }
-    }
-  });
 
   return (
     <>
@@ -138,8 +118,6 @@ function ArticlePage({ article }) {
         <Marginals>
           <Article
             article={article}
-            bind={bind}
-            toggleSidebar={toggleSidebar}
           />
         </Marginals>
       )}
