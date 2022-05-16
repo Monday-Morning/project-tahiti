@@ -29,7 +29,7 @@ const SidePanel = ({ content, toggleSidebar, articleTitle }) => {
   useEffect(() => setWindowHref(window.location.href), []);
 
   return (
-    <div className={toggleSidebar ? classes.expanded : classes.wrapper}>
+    <div>
       {/* Reactions */}
       <div className={classes.reactionsWrapper}>
         <span className={classes.icon}>
@@ -71,22 +71,6 @@ const useStyles = makeStyles((theme) => ({
       marginTop: 'unset',
       backgroundColor: theme.palette.common.white,
       paddingLeft: '0',
-      transition: theme.transitions.create('transform', {
-        duration: '0.5s',
-      }),
-    },
-  },
-  expanded: {
-    [theme.breakpoints.down('sm')]: {
-      minWidth: '250px',
-      position: 'fixed',
-      top: '-1rem',
-      bottom: '0',
-      left: '100%',
-      backgroundColor: theme.palette.common.white,
-      paddingLeft: '0',
-      boxShadow: theme.shadows[1],
-      transform: 'translateX(-100%)',
       transition: theme.transitions.create('transform', {
         duration: '0.5s',
       }),
