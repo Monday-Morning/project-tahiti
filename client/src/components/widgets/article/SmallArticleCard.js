@@ -129,6 +129,8 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     '& > span': {
       position: 'unset !important',
+      width: '100% !important',
+      height: '100% !important',
     },
     '& > span > span': {
       display: 'none !important',
