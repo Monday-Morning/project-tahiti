@@ -140,7 +140,7 @@ export async function getStaticPaths() {
     params: { category: shortName },
   }));
 
-  return { paths, fallback: true };
+  return { paths, fallback: false };
 }
 
 export default CategoryPage;
