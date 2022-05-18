@@ -98,6 +98,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   reactionsWrapper: {
+    minWidth: '200px',
     marginTop: '3rem',
     marginBottom: '3rem',
     display: 'flex',
