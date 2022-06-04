@@ -14,33 +14,35 @@ import Marginals from '../components/marginals/Marginals';
 // Queries
 import searchArticles from '../graphql/queries/article/searchArticles';
 
-const search = () => {
+const Search = () => {
   const router = useRouter();
-  const [articles, setarticles] = useState([]);
+  const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(async () => {
+  useEffect(() => {
     setLoading(true);
-    const {
-      data: { searchArticles: articleList },
-    } = await GraphClient.query({
-      query: searchArticles,
-      variables: {
-        keywords: router.query.keyword,
-      },
-    });
-    setarticles(articleList);
-    setLoading(false);
+    (async () => {
+      const {
+        data: { searchArticles: articleList },
+      } = await GraphClient.query({
+        query: searchArticles,
+        variables: {
+          keywords: router.query.keyword,
+        },
+      });
+      setArticles(articleList);
+      setLoading(false);
+    })();
   }, [router.query.keyword]);
 
   return (
     <>
       <Head>
         {/* <!-- =============== Primary Meta Tags =============== --> */}
-        <title>Search "{router.query.keyword}" | Monday Morning</title>
+        <title>{`Search ${router.query.keyword} | Monday Morning`}</title>
         <meta
           name='title'
-          content={`Search "${router.query.keyword}" | Monday Morning`}
+          content={`Search ${router.query.keyword} | Monday Morning`}
         />
         <meta
           name='description'
@@ -112,4 +114,4 @@ const search = () => {
   );
 };
 
-export default search;
+export default Search;
