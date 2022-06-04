@@ -168,6 +168,7 @@ const useStyles = makeStyles((theme) => ({
   featuredImageContainer: {
     width: '100%',
     height: '220px',
+    cursor: 'pointer',
     '& > span': {
       position: 'unset !important',
     },
@@ -216,6 +217,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.25rem',
     lineHeight: '2rem',
     textAlign: 'left',
+    cursor: 'pointer',
 
     [theme.breakpoints.down('sm')]: {
       lineHeight: '1.75rem',
@@ -237,7 +239,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '14px',
     lineHeight: '16px',
     fontWeight: '400',
-
+    cursor: 'pointer',
     marginRight: '7px',
     marginTop: '5px',
   },
