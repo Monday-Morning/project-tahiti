@@ -4,7 +4,7 @@
 import React from 'react';
 
 // libraries
-import { Container, Grid } from '@material-ui/core';
+import { Container, Grid, useMediaQuery } from '@material-ui/core';
 
 // Components
 import Comments from '../components/article/comments';
@@ -14,11 +14,17 @@ import Disclaimer from '../components/article/Disclaimer';
 import ArticleTags from '../components/article/Tags';
 import RecommendedArticles from '../components/article/RecommendedArticles';
 import SidePanel from '../components/article/SidePanel';
+import SidePanelMobile from '../components/article/SidePanelMobile';
 
-function Article({ article, bind, toggleSidebar }) {
+// Assets
+import theme from '../config/themes/light';
+
+function Article({ article }) {
+  const isMatch = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
     <>
-      <Container {...bind()}>
+      <Container>
         <Grid container>
           <Grid item md={9}>
             <ArticleHeader article={article} />
@@ -30,11 +36,17 @@ function Article({ article, bind, toggleSidebar }) {
           </Grid>
 
           <Grid item md={3}>
-            <SidePanel
-              content={article.content}
-              toggleSidebar={toggleSidebar}
-              articleTitle={article.title}
-            />
+            {isMatch ? (
+              <SidePanelMobile
+                content={article.content}
+                articleTitle={article.title}
+              />
+            ) : (
+              <SidePanel
+                content={article.content}
+                articleTitle={article.title}
+              />
+            )}
           </Grid>
         </Grid>
       </Container>
