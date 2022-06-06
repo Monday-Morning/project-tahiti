@@ -51,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'fixed',
     bottom: theme.spacing(2),
     right: theme.spacing(2),
+    marginBottom: '50px',
     boxShadow: `0px 0px 10px #5a5a5a`,
   },
 }));
