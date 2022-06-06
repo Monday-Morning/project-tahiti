@@ -127,6 +127,7 @@ const useStyles = makeStyles((theme) => ({
   imgItemContainer: {
     width: '100%',
     height: '100%',
+    cursor: 'pointer',
     '& > span': {
       position: 'unset !important',
       width: '100% !important',
@@ -156,6 +157,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '700',
     lineHeight: '16px',
     fontFamily: 'IBM Plex Sans',
+    cursor: 'pointer',
   },
   authorList: {
     width: 'auto',
@@ -172,6 +174,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '16px',
     fontWeight: '400',
     marginRight: '2px',
+    cursor: 'pointer',
   },
   readTime: {
     fontSize: '0.65rem',
