@@ -7,6 +7,7 @@ title
 inshort
 authors {
 	name
+	details
 }
 categories {
 	number
