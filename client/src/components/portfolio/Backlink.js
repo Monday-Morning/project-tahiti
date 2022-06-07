@@ -1,15 +1,15 @@
 import React from 'react';
+import Link from 'next/link';
 
 // Libraries
 import { Container, makeStyles, Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 
 const BackLink = () => {
   const classes = useStyles();
   return (
     <Container>
       <div className={classes.wrapper}>
-        <Link to='/about' className={classes.link}>
+        <Link href='/about' className={classes.link}>
           <Typography variant='body1'>
             <i className='fas fa-chevron-left'></i>
             <span className={classes.text}>Back to About Us</span>
