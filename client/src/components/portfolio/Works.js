@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 // Libraries
 import { Container, Grid, makeStyles, Typography } from '@material-ui/core';
@@ -8,8 +8,13 @@ import ArticleCardStack from '../widgets/article/ArticleCardStack';
 import Witsdom from '../expressions/Witsdom';
 import PhotoStory from '../expressions/PhotoStory';
 
+//Context
+import { UserContext } from '../../pages/portfolio/[userId]/[name]';
+
 const Works = () => {
   const classes = useStyles();
+  const { articleList } = useContext(UserContext);
+
   return (
     <Container>
       <div className={classes.wrapper}>
@@ -22,10 +27,9 @@ const Works = () => {
           >
             Content
           </Typography>
-          <ArticleCardStack />
+          <ArticleCardStack articleList={articleList} />
         </div>
-        <div className={classes.sectionWrapper}>
-          {/* Design */}
+        {/* <div className={classes.sectionWrapper}>
           <Typography
             variant='h1'
             color='primary'
@@ -42,7 +46,6 @@ const Works = () => {
           </Grid>
         </div>
         <div className={classes.sectionWrapper}>
-          {/* Photography */}
           <Typography
             variant='h1'
             color='primary'
@@ -57,7 +60,7 @@ const Works = () => {
               </Grid>
             ))}
           </Grid>
-        </div>
+        </div> */}
       </div>
     </Container>
   );
