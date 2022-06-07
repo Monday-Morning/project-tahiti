@@ -1,8 +1,4 @@
 import React from 'react';
-import { useContext } from 'react';
-
-//Context
-import { UserContext } from '../../pages/portfolio/[userId]/[name]';
 
 // Libraries
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -20,11 +16,10 @@ import theme from '../../config/themes/light';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const UserCard = () => {
+const UserCard = ({ user }) => {
   let Desktop = useMediaQuery(theme.breakpoints.up('sm'));
   const classes = useStyles();
 
-  const user = useContext(UserContext);
   const { firstName, lastName, profileImageLink, email, noOfArticle, year } =
     user;
 

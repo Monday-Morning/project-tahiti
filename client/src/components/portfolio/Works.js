@@ -1,19 +1,16 @@
 import React, { useContext } from 'react';
 
 // Libraries
-import { Container, Grid, makeStyles, Typography } from '@material-ui/core';
+import { Container, makeStyles, Typography } from '@material-ui/core';
 
 // Components
 import ArticleCardStack from '../widgets/article/ArticleCardStack';
 import Witsdom from '../expressions/Witsdom';
 import PhotoStory from '../expressions/PhotoStory';
 
-//Context
-import { UserContext } from '../../pages/portfolio/[userId]/[name]';
-
-const Works = () => {
+const Works = ({ user }) => {
   const classes = useStyles();
-  const { articleList } = useContext(UserContext);
+  const { articleList } = user;
 
   return (
     <Container>
