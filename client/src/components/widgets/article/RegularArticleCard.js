@@ -101,12 +101,11 @@ const ArticleCard = ({
 
         <div className={classes.detailsContainer}>
           <div className={classes.authorList}>
-            {article.authors.map(({ name, id }, index) => {
+            {article.authors.map(({ name, details }, index) => {
               let authorName = limitAuthor(name);
               if (index < article.authors.length - 1) authorName += ', ';
-
               return (
-                <NewTabLink to={`/portfolio/${id}/${name}`} key={name}>
+                <NewTabLink to={`/portfolio/${details}/${name}`} key={name}>
                   <Typography
                     variant='body2'
                     key={name}

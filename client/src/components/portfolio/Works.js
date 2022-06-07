@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 // Libraries
-import { Container, Grid, makeStyles, Typography } from '@material-ui/core';
+import { Container, makeStyles, Typography } from '@material-ui/core';
 
 // Components
 import ArticleCardStack from '../widgets/article/ArticleCardStack';
 import Witsdom from '../expressions/Witsdom';
 import PhotoStory from '../expressions/PhotoStory';
 
-const Works = () => {
+const Works = ({ user }) => {
   const classes = useStyles();
+  const { articleList } = user;
+
   return (
     <Container>
       <div className={classes.wrapper}>
@@ -22,10 +24,9 @@ const Works = () => {
           >
             Content
           </Typography>
-          <ArticleCardStack />
+          <ArticleCardStack articleList={articleList} />
         </div>
-        <div className={classes.sectionWrapper}>
-          {/* Design */}
+        {/* <div className={classes.sectionWrapper}>
           <Typography
             variant='h1'
             color='primary'
@@ -42,7 +43,6 @@ const Works = () => {
           </Grid>
         </div>
         <div className={classes.sectionWrapper}>
-          {/* Photography */}
           <Typography
             variant='h1'
             color='primary'
@@ -57,7 +57,7 @@ const Works = () => {
               </Grid>
             ))}
           </Grid>
-        </div>
+        </div> */}
       </div>
     </Container>
   );

@@ -9,12 +9,12 @@ import Works from '../components/portfolio/Works';
 
 // placeholders
 
-function Portfolio() {
+function Portfolio({ user }) {
   return (
     <div>
       <BackLink />
-      <UserCard />
-      <Works />
+      <UserCard user={user} />
+      <Works user={user} />
     </div>
   );
 }

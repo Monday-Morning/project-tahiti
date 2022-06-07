@@ -13,127 +13,144 @@ import {
 import theme from '../../config/themes/light';
 
 // Images
-import profile from '../../assets/images/profile.png';
 import Image from 'next/image';
+import Link from 'next/link';
 
-const UserCard = () => {
+const UserCard = ({ user }) => {
   let Desktop = useMediaQuery(theme.breakpoints.up('sm'));
   const classes = useStyles();
+
+  const { firstName, lastName, profileImageLink, email, noOfArticle, year } =
+    user;
+
   return (
     <Container>
       <div className={classes.wrapper}>
         <Card className={classes.card}>
           <CardContent>
             <Grid container>
-              <Grid item md={4} sm={12} className={classes.gridPadding}>
+              <Grid item md={5} sm={12} className={classes.gridPadding}>
                 <div className={classes.userWrapper}>
-                  <div>
+                  <div className={classes.imageWrapper}>
                     <Image
-                      className={classes.userImage}
-                      src={profile}
+                      className={classes.profileImage}
+                      src={profileImageLink}
                       alt='user photo'
+                      width={135}
+                      height={135}
                     />
                   </div>
                   <div className={classes.userData}>
                     <div className={classes.columnFlex}>
-                      <div>
-                        <Typography variant='h2'>Jonna</Typography>
+                      <div className={classes.userName}>
+                        <Typography variant='h2'>
+                          {firstName} {firstName?.length < 4 ? lastName : ''}
+                        </Typography>
                       </div>
                       <div>
-                        <Typography variant='body2'>Email</Typography>
-                        <div
-                          className={`${classes.PostText} ${classes.subtext}`}
-                        >
-                          jonna@gmail.com
-                        </div>
+                        <Typography variant='body2'>
+                          <div className={classes.boldText}>Email</div>
+                          <email>{email}</email>{' '}
+                        </Typography>
                       </div>
-                      {Desktop ? (
-                        <div>
-                          <Typography variant='body2'>Year</Typography>
-                          <div
-                            className={`${classes.PostText} ${classes.subtext}`}
-                          >
-                            2019-20
-                          </div>
-                        </div>
-                      ) : (
-                        <Grid container spacing={2}>
-                          <Grid item sm={6}>
-                            <Typography variant='body2'>Year</Typography>
-                            <div
-                              className={`${classes.PostText} ${classes.subtext}`}
-                            >
-                              2019-20
-                            </div>
-                          </Grid>
-                          <Grid item sm={6}>
-                            <Typography variant='body2'>
-                              Number Of Posts{' '}
-                            </Typography>
-                            <span
-                              className={`${classes.PostText} ${classes.subtext}`}
-                            >
-                              8
-                            </span>
-                          </Grid>
-                        </Grid>
-                      )}
+                      <div>
+                        <Typography variant='body2'>
+                          <div className={classes.boldText}> Year</div>
+                          {year}
+                        </Typography>
+                      </div>
                     </div>
                   </div>
                 </div>
               </Grid>
-              {Desktop ? (
-                <Grid
-                  item
-                  md={4}
-                  sm={6}
-                  className={`${classes.bordered} ${classes.gridPadding}`}
-                >
-                  <div className={classes.columnFlex}>
-                    <div>
-                      <Typography variant='h4'>Number Of Posts :</Typography>
-                      <span
-                        className={`${classes.PostText} ${classes.subtext}`}
-                      >
-                        8
-                      </span>
-                    </div>
-                    <div>
-                      <div className={classes.subtext}>
-                        Content : <span className={classes.PostText}>5</span>
-                      </div>
-                      <div className={classes.subtext}>
-                        Design : <span className={classes.PostText}>2</span>
-                      </div>
-                      <div className={classes.subtext}>
-                        Photography :{' '}
-                        <span className={classes.PostText}>1</span>
-                      </div>
-                    </div>
-                  </div>
-                </Grid>
-              ) : (
-                ''
-              )}
 
+              <Grid
+                item
+                md={3}
+                sm={6}
+                className={`${classes.bordered} ${classes.gridPadding} ${classes.postDetailsWrapper}`}
+              >
+                <div className={classes.postDetails}>
+                  <div>
+                    <Typography variant='body2' className={classes.boldText}>
+                      Number Of Posts
+                    </Typography>
+                  </div>
+                  <div>
+                    <Typography variant='body2'>{noOfArticle}</Typography>
+                  </div>
+                </div>
+                <div className={classes.postDetails}>
+                  <Typography variant='body2'>
+                    <span className={classes.boldText}>Content: </span>
+                    {noOfArticle}
+                  </Typography>
+
+                  <Typography variant='body2'>
+                    <span className={classes.boldText}>Design: </span>0
+                  </Typography>
+
+                  <Typography variant='body2'>
+                    <span className={classes.boldText}>Photography: </span>0
+                  </Typography>
+                </div>
+              </Grid>
               <Grid
                 item
                 md={4}
                 sm={6}
-                className={`${classes.bordered} ${classes.gridPadding}`}
+                className={`${classes.bordered} ${classes.gridPadding} ${classes.postDetailsWrapper}`}
               >
-                <div className={classes.columnFlex}>
+                <div className={classes.postDetails}>
                   <div>
-                    <Typography variant='h4'>Teams</Typography>
-                    <div className={`${classes.PostText} ${classes.subtext}`}>
-                      Tech • Design • Content • Photography
-                    </div>
+                    <Typography variant='body2' className={classes.boldText}>
+                      Teams
+                    </Typography>
                   </div>
                   <div>
-                    <Typography variant='h4'>Links</Typography>
-                    <div className={`${classes.PostText} ${classes.subtext}`}>
-                      https://linkedin.com/en/jonna-4578
-                    </div>
+                    <Typography variant='body2'>Content</Typography>
+                  </div>
+                </div>
+
+                <div className={classes.postDetails}>
+                  <div>
+                    <Typography variant='body2' className={classes.boldText}>
+                      Links
+                    </Typography>
+                  </div>
+                  <div className={classes.socialIcon}>
+                    <span>
+                      <Link
+                        href='https://www.linkedin.com/company/monday-morning-the-official-student-media-body-of-nit-rourkela/mycompany/'
+                        passHref={true}
+                      >
+                        <i className='fab fa-linkedin' />
+                      </Link>
+                    </span>
+                    <span>
+                      <Link
+                        passHref
+                        href='https://www.facebook.com/mondaymorningnitr'
+                      >
+                        <i className='fab fa-facebook-f' />
+                      </Link>
+                    </span>
+                    <span>
+                      <Link
+                        passHref
+                        href='https://www.instagram.com/mondaymorningnitrofficial/?hl=en'
+                      >
+                        <i className='fab fa-instagram' />
+                      </Link>
+                    </span>
+                    <span>
+                      <Link
+                        passHref
+                        href='https://twitter.com/mmnitrkl?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor'
+                      >
+                        <i className='fab fa-twitter' />
+                      </Link>
+                    </span>
                   </div>
                 </div>
               </Grid>
@@ -153,6 +170,12 @@ const useStyles = makeStyles((theme) => ({
   card: {
     boxShadow: theme.shadows[0],
   },
+  boldText: {
+    fontFamily: 'Source Sans Pro',
+    fontStyle: 'normal',
+    fontWeight: '700',
+    fontSize: '16px',
+  },
   gridPadding: {
     width: '100%',
     paddingLeft: '1.5rem',
@@ -170,7 +193,8 @@ const useStyles = makeStyles((theme) => ({
     borderLeft: '1px solid',
     borderColor: theme.palette.secondary.neutral50,
     [theme.breakpoints.down('xs')]: {
-      paddingTop: '1rem',
+      paddingTop: '2rem',
+      paddingBottom: '2rem',
       borderLeft: 'unset',
       borderTop: '1px solid',
       borderColor: theme.palette.secondary.neutral50,
@@ -180,34 +204,52 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-around',
     [theme.breakpoints.down('sm')]: {
-      justifyContent: 'unset',
+      flexDirection: 'column',
     },
   },
-  userImage: {
-    height: '100%',
-    [theme.breakpoints.down('sm')]: {
-      height: '50%',
-    },
+  imageWrapper: {
+    alignSelf: 'center',
+  },
+  profileImage: {
+    borderRadius: '50%',
   },
   columnFlex: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     height: '100%',
   },
-  flex: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    width: '100%',
-  },
-  subtext: {
-    lineHeight: '1.5rem',
-    fontWeight: theme.typography.fontWeightBold,
-    '& span': {
-      marginLeft: '0.25rem',
+  userName: {
+    [theme.breakpoints.down('md')]: {
+      textAlign: 'center',
     },
   },
-  PostText: {
-    fontWeight: theme.typography.fontWeightRegular,
+  postDetailsWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+  postDetails: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+  },
+  postInfo: {
+    display: 'flex',
+    justifyContent: 'center',
+    [theme.breakpoints.down('md')]: {
+      fontSize: '1.5rem',
+      alignText: 'center',
+    },
+  },
+  postInfoNumber: {
+    alignSelf: 'center',
+    marginTop: '20px',
+  },
+  socialIcon: {
+    maxWidth: '40%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginTop: '2px',
   },
 }));
