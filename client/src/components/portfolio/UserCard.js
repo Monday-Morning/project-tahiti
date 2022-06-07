@@ -118,26 +118,38 @@ const UserCard = ({ user }) => {
                       Links
                     </Typography>
                   </div>
-                  <div>
+                  <div className={classes.socialIcon}>
                     <span>
-                      <Typography variant='body2'>
-                        <Link
-                          href='https://www.linkedin.com/company/monday-morning-the-official-student-media-body-of-nit-rourkela/mycompany/'
-                          passHref={true}
-                        >
-                          <a>linkedin </a>
-                        </Link>
-                      </Typography>
+                      <Link
+                        href='https://www.linkedin.com/company/monday-morning-the-official-student-media-body-of-nit-rourkela/mycompany/'
+                        passHref={true}
+                      >
+                        <i className='fab fa-linkedin' />
+                      </Link>
                     </span>
                     <span>
-                      <Typography variant='body2'>
-                        <Link
-                          href='https://www.instagram.com/mondaymorningnitrofficial/?hl=en'
-                          passHref={true}
-                        >
-                          <a> Instagram</a>
-                        </Link>
-                      </Typography>
+                      <Link
+                        passHref
+                        href='https://www.facebook.com/mondaymorningnitr'
+                      >
+                        <i className='fab fa-facebook-f' />
+                      </Link>
+                    </span>
+                    <span>
+                      <Link
+                        passHref
+                        href='https://www.instagram.com/mondaymorningnitrofficial/?hl=en'
+                      >
+                        <i className='fab fa-instagram' />
+                      </Link>
+                    </span>
+                    <span>
+                      <Link
+                        passHref
+                        href='https://twitter.com/mmnitrkl?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor'
+                      >
+                        <i className='fab fa-twitter' />
+                      </Link>
                     </span>
                   </div>
                 </div>
@@ -233,5 +245,11 @@ const useStyles = makeStyles((theme) => ({
   postInfoNumber: {
     alignSelf: 'center',
     marginTop: '20px',
+  },
+  socialIcon: {
+    maxWidth: '40%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginTop: '2px',
   },
 }));
