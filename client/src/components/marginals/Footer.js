@@ -214,25 +214,48 @@ const Footer = () => {
         <div className={classes.bottomBar}>
           <div>
             <Typography variant='body1' className={classes.copyRight}>
-              © 2015 - 2020 Monday Morning. All rights reserved.
+              © 2015 - {new Date().getFullYear()} Monday Morning. All rights
+              reserved.
             </Typography>
           </div>
           <div className={classes.socialIcons}>
-            <span className={classes.socialIcon}>
-              <i className='fab fa-facebook-f' />
-            </span>
-            <span className={classes.socialIcon}>
-              <i className='fab fa-twitter' />
-            </span>
-            <span className={classes.socialIcon}>
-              <i className='fab fa-youtube' />
-            </span>
-            <span className={classes.socialIcon}>
-              <i className='fab fa-linkedin' />
-            </span>
-            <span className={classes.socialIcon}>
-              <i className='fab fa-instagram' />
-            </span>
+            <Link passHref href='https://www.facebook.com/mondaymorningnitr'>
+              <span className={classes.socialIcon}>
+                <i className='fab fa-facebook-f' />
+              </span>
+            </Link>
+            <Link
+              passHref
+              href='https://twitter.com/mmnitrkl?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor'
+            >
+              <span className={classes.socialIcon}>
+                <i className='fab fa-twitter' />
+              </span>
+            </Link>
+
+            <Link passHref href='https://www.youtube.com/c/MondayMorningNITR'>
+              <span className={classes.socialIcon}>
+                <i className='fab fa-youtube' />
+              </span>
+            </Link>
+
+            <Link
+              passHref
+              href='https://in.linkedin.com/company/monday-morning-the-official-student-media-body-of-nit-rourkela'
+            >
+              <span className={classes.socialIcon}>
+                <i className='fab fa-linkedin' />
+              </span>
+            </Link>
+
+            <Link
+              passHref
+              href='https://www.instagram.com/mondaymorningnitrofficial/?hl=en'
+            >
+              <span className={classes.socialIcon}>
+                <i className='fab fa-instagram' />
+              </span>
+            </Link>
           </div>
         </div>
       </div>
