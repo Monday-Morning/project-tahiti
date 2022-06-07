@@ -48,10 +48,10 @@ const Custom500 = () => {
                 <Grid item className={classes.gridContainer}>
                     <Typography className={classes.main}>500 ERROR</Typography>
                     <Typography className={classes.subTitle}>
-                        We are working on it.
+                        Something went wrong.
                     </Typography>
                     <Typography className={classes.body}>
-                        Sorry, we couldn’t find the page you are looking for.
+                        Sorry, we're looking into the issue. Please check back in a little.
                     </Typography>
                 </Grid>
                 <Grid item className={classes.gridContainer}>
