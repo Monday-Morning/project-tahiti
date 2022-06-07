@@ -9,6 +9,7 @@ function MarkdownWrapper({ children, variant, styles }) {
 
   return (
     <ReactMarkdown
+      ordered='true'
       remarkPlugins={[remarkGfm]}
       components={{
         // h1: ({ node, ...props }) => <h1 className={styles} {...props} />,
