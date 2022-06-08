@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 
 // libraries
-import { Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
 
 // Assets
 import logo from '../../assets/images/logo_mm.png';

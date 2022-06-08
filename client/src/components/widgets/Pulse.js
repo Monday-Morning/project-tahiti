@@ -1,8 +1,7 @@
 import React from 'react';
 
-//libraries
-import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardContent, Grid, Typography, Button } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import { Card, CardContent, Grid, Typography, Button } from '@mui/material';
 
 //Images
 import pulseImg from '../../assets/images/pulseImg.png';
@@ -41,7 +40,7 @@ const Pulse = () => {
           </Grid>
 
           <Grid item sm={4} className={classes.imageContainer}>
-            <Grid container justify='center'>
+            <Grid container justifyContent='center'>
               <Image
                 src={pulseImg}
                 alt='Pulse Image'
@@ -83,24 +82,24 @@ const useStyles = makeStyles((theme) => ({
   },
   voteButton: {
     marginTop: '55px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'flex',
       justifyContent: 'center',
     },
   },
   content: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       order: 2,
     },
   },
   image: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'flex',
       justifyContent: 'center',
     },
   },
   imageContainer: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       order: 1,
     },
   },

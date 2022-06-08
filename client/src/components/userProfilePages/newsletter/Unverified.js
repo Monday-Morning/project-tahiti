@@ -1,4 +1,5 @@
-import { Button, Card, Input, makeStyles, Typography } from '@material-ui/core';
+import { Button, Card, Input, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React, { useState } from 'react';
 import theme from '../../../config/themes/light';
 import newsletter from '../../../assets/images/profile/newsletterPic.png';
@@ -51,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     paddingInline: '6%',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       paddingBottom: '7%',
     },
   },
@@ -61,11 +62,11 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     marginTop: '52px',
     width: '47%',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       width: '100%',
     },
 
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
       alignItems: 'center',
     },
@@ -87,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     width: '90%',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
     },
   },

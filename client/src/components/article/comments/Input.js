@@ -2,7 +2,9 @@ import React from 'react';
 import Image from 'next/image';
 
 // libraries
-import { makeStyles, Button } from '@material-ui/core';
+import { Button } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 // Images
 import user from '../../../assets/images/photo.png';

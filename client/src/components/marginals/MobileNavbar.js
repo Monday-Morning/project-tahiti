@@ -5,15 +5,16 @@ import { useRouter } from 'next/router';
 
 // Libraries
 import { BarChart, Search } from 'react-feather';
-import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from '@mui/icons-material/Search';
 import {
   Container,
   SwipeableDrawer,
-  makeStyles,
   Typography,
   InputAdornment,
   TextField,
-} from '@material-ui/core';
+} from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 // Assets
 import logoFullDark from '../../assets/images/logos/logo_full_black.png';

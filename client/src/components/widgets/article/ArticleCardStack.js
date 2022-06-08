@@ -1,7 +1,6 @@
 import React from 'react';
 
-// Libraries
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
 
 // Components
 import ArticleCard from './ArticleCard';

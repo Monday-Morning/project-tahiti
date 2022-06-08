@@ -1,9 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 
-// libararies
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Grid } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import { Typography, Grid } from '@mui/material';
 
 // Placeholder
 import { ABOUT } from '../../assets/placeholder/about';
@@ -35,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     maxWidth: '1280px',
     margin: '40px auto 0px auto',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       marginTop: '24px',
       padding: '0px 24px 0px 24px',
     },
@@ -43,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   text: {
     fontSize: '20px',
     lineHeight: '28px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '14px',
       lineHeight: '20px',
     },

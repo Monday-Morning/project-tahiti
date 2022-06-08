@@ -2,13 +2,9 @@ import React, { useState } from 'react';
 
 import Image from 'next/dist/client/image';
 // Libraries
-import {
-  Grid,
-  makeStyles,
-  Typography,
-  Button,
-  TextField,
-} from '@material-ui/core';
+import { Grid, Typography, Button, TextField } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 // Images
 import image from '../../assets/images/contact/contact-us.png';
@@ -63,6 +59,7 @@ const Feedback = () => {
           <form onSubmit={handleSubmit}>
             <div className={classes.nameWrapper}>
               <TextField
+                variant='standard'
                 className={classes.nameInput}
                 name='name'
                 type='text'
@@ -86,6 +83,7 @@ const Feedback = () => {
 
             <div className={classes.emailWrapper}>
               <TextField
+                variant='standard'
                 className={classes.emailInput}
                 name='email'
                 type='email'
@@ -110,6 +108,7 @@ const Feedback = () => {
 
             <div className={classes.messageWrapper}>
               <TextField
+                variant='standard'
                 multiline
                 className={classes.messageInput}
                 rows='8'
@@ -141,7 +140,7 @@ const Feedback = () => {
 
             <Grid
               container
-              justify='flex-end'
+              justifyContent='flex-end'
               spacing={3}
               className={classes.buttonWrapper}
             >
@@ -179,7 +178,7 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     maxWidth: '1248px',
     margin: '40px auto 40px auto',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       marginTop: '24px',
       padding: '0px 40px 0px 40px',
     },
@@ -188,7 +187,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '18px 0px 24px 24px',
     boxShadow: theme.shadows[0],
     borderRadius: '8px',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       padding: '18px 6px 24px 6px',
     },
   },
@@ -280,7 +279,7 @@ const useStyles = makeStyles((theme) => ({
     margin: '0px 0px 15px 0px',
   },
   buttonText: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       fontSize: '16px',
     },
   },

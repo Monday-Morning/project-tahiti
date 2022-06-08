@@ -3,8 +3,8 @@ import React from 'react';
 import Image from 'next/dist/client/image';
 
 // libraries
-import { Grid, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Grid, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 
 //placeholder
 import { DETAILS } from '../../assets/placeholder/contact';
@@ -146,7 +146,7 @@ const Details = () => {
         </Grid>
         <Grid item xs={12} md={5}>
           <div className={classes.locationWrapper}>
-            <Grid container justify='center'>
+            <Grid container justifyContent='center'>
               <Grid item xs={6}>
                 <Typography variant='h3' className={classes.locationTitle}>
                   {DETAILS.location.title}
@@ -193,7 +193,7 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     maxWidth: '1280px',
     margin: '40px auto 0px auto',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       marginTop: '24px',
       padding: '0px 24px 0px 24px',
     },
@@ -202,7 +202,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '18px 0px 24px 24px',
     boxShadow: theme.shadows[0],
     borderRadius: '8px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       paddingBottom: '12px',
     },
   },
@@ -210,7 +210,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '18px 0px 40px 24px',
     boxShadow: theme.shadows[0],
     borderRadius: '8px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       paddingBottom: '20px',
     },
   },
@@ -222,7 +222,7 @@ const useStyles = makeStyles((theme) => ({
   },
   mail: {
     padding: '8px 0px 8px 0px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       paddingBottom: '4px',
     },
   },
@@ -230,13 +230,13 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '18px',
     color: theme.palette.common.black,
     textDecorationLine: 'underline',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '15px',
     },
   },
   mailFor1: {
     fontSize: '18px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       visibility: 'hidden',
       fontSize: '0px',
     },
@@ -245,7 +245,7 @@ const useStyles = makeStyles((theme) => ({
     visibility: 'hidden',
     position: 'absolute',
     color: theme.palette.secondary.neutral70,
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       visibility: 'visible',
       position: 'relative',
     },
@@ -255,7 +255,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cc: {
     fontSize: '18px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '15px',
     },
   },
@@ -270,7 +270,7 @@ const useStyles = makeStyles((theme) => ({
   },
   socialLine: {
     paddingBottom: '24px',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       paddingBottom: '0px',
     },
   },
@@ -279,7 +279,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: '4px',
     color: theme.palette.common.black,
     textDecorationLine: 'none',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       paddingLeft: '26px',
       fontSize: '14px',
       textDecorationLine: 'underline',
@@ -294,7 +294,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: '12px',
   },
   mapWrapper: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       paddingTop: '16px',
     },
   },
@@ -303,7 +303,7 @@ const useStyles = makeStyles((theme) => ({
     height: '155px',
     paddingTop: '4px',
     marginLeft: '16px',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       width: '114px',
       height: '101px',
     },
@@ -314,14 +314,14 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: '16px',
     textDecorationLine: 'underline',
     textAlign: 'center',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       paddingTop: '8px',
       paddingRight: '4px',
     },
   },
   location: {
     fontSize: '18px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '12px',
     },
   },

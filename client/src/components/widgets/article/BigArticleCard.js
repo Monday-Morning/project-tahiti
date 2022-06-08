@@ -1,13 +1,12 @@
 import React from 'react';
 
-// Libraries
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import {
   Card,
   CardContent,
   Typography,
   useMediaQuery,
-} from '@material-ui/core';
+} from '@mui/material';
 import moment from 'moment';
 // import { Bookmark, Share2 } from 'react-feather';
 

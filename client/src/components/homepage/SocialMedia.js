@@ -1,7 +1,8 @@
 import React from 'react';
 
 // Libraries
-import { Button, makeStyles, Typography, Grid, Paper } from '@material-ui/core';
+import { Button, Typography, Grid, Paper } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { Youtube, Instagram } from 'react-feather';
 
 // Components

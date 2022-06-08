@@ -1,7 +1,9 @@
 import React from 'react';
 
 // libraries
-import { makeStyles, Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 // placeholder
 import { DISCLAIMER } from '../../assets/placeholder/article';

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
 // libraries
-import { makeStyles, SwipeableDrawer } from '@material-ui/core';
+import { SwipeableDrawer } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { Link } from 'react-scroll';
 
 // Components
@@ -84,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: '1.5rem',
     zIndex: '10',
     height: '100%',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       position: 'fixed',
       top: '-1rem',
       bottom: '0',
@@ -105,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justify: 'center',
     paddingLeft: '4rem',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       paddingLeft: '1rem',
     },
   },

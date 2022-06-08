@@ -1,7 +1,9 @@
 import React from 'react';
 
 // libararies
-import { makeStyles, Button, useMediaQuery } from '@material-ui/core';
+import { Button, useMediaQuery } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 // theme
 import theme from '../../config/themes/light';
@@ -43,7 +45,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       justifyContent: 'center',
     },
   },
@@ -58,7 +60,7 @@ const useStyles = makeStyles(() => ({
     borderRadius: '4px',
     padding: '4px 16px',
     marginRight: '8px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       maxWidth: '156px',
     },
   },
@@ -71,13 +73,13 @@ const useStyles = makeStyles(() => ({
     height: '34px',
     width: '90px',
     margin: '0px 8px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '40px',
       margin: '0px 4px',
     },
   },
   buttonText: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '14px',
       lineHeight: '20px',
       fontWeight: theme.typography.fontWeightRegular,

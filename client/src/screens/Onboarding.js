@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 
-// Libraries
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import { Typography } from '@mui/material';
 
 // Components
 import Welcome from '../components/onboarding/stages/Welcome';

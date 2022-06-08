@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 
 // Libraries
-import { Container, makeStyles } from '@material-ui/core';
-import Pagination from '@material-ui/lab/Pagination';
+import { Container } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import Pagination from '@mui/material/Pagination';
 
 // Components
 import BackLink from '../components/podcast/BackLink';

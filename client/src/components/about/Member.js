@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 
-// Libraries
-import { makeStyles } from '@material-ui/core/styles';
-import { Container, Typography, useMediaQuery } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import { Container, Typography, useMediaQuery } from '@mui/material';
 
 // Components
 import Profile from './Profile';
@@ -109,7 +108,7 @@ function Member() {
             color: stage === STAGE.CONTENT ? '#000' : '#999999',
           }}
         >
-          {useMediaQuery(theme.breakpoints.down('sm')) ? (
+          {useMediaQuery(theme.breakpoints.down('md')) ? (
             <span>
               <Image src={Content} className={classes.logo} /> C
             </span>
@@ -127,7 +126,7 @@ function Member() {
             color: stage === STAGE.DESIGN ? '#000' : '#999999',
           }}
         >
-          {useMediaQuery(theme.breakpoints.down('sm')) ? (
+          {useMediaQuery(theme.breakpoints.down('md')) ? (
             <span>
               <Image src={Design} className={classes.logo} /> D
             </span>
@@ -145,7 +144,7 @@ function Member() {
             color: stage === STAGE.PHOTO ? '#000' : '#999999',
           }}
         >
-          {useMediaQuery(theme.breakpoints.down('sm')) ? (
+          {useMediaQuery(theme.breakpoints.down('md')) ? (
             <span>
               <Image src={Photo} className={classes.logo} /> P
             </span>
@@ -163,7 +162,7 @@ function Member() {
             color: stage === STAGE.TECH ? '#000' : '#999999',
           }}
         >
-          {useMediaQuery(theme.breakpoints.down('sm')) ? (
+          {useMediaQuery(theme.breakpoints.down('md')) ? (
             <span>
               <Image src={Tech} className={classes.logo} /> T
             </span>
@@ -195,7 +194,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'flex-start',
     margin: '40px 0px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       margin: '15px 0px',
       flexDirection: 'row',
       justifyContent: 'center',
@@ -203,7 +202,7 @@ const useStyles = makeStyles((theme) => ({
   },
   navContainer: {
     width: '25%',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '20%',
     },
   },
@@ -213,7 +212,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     padding: '30px',
     position: 'relative',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '90%',
       padding: '8px',
     },
@@ -225,7 +224,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       justifyContent: 'space-around',
     },
   },
@@ -237,7 +236,7 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       cursor: 'pointer',
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontFamily: 'IBM Plex Sans',
       fontWeight: theme.typography.fontWeightBold,
       fontSize: '24px',
@@ -246,7 +245,7 @@ const useStyles = makeStyles((theme) => ({
   },
   teamName: {
     marginBottom: '20px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       visibility: 'hidden',
       width: '0px',
       height: '0px',
@@ -254,7 +253,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     marginRight: '16px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginRight: '0px',
     },
   },

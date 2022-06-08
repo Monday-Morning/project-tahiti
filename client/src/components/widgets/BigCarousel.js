@@ -1,8 +1,7 @@
 import React from 'react';
 
-// libararies
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import { Typography } from '@mui/material';
 
 import PhotoCarousel from './PhotoCarousel';
 
@@ -29,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '2rem',
     backgroundColor: theme.palette.secondary.main,
     padding: '24px 0px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: '12px 0px',
     },
   },

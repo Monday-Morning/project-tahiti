@@ -3,7 +3,9 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 // Libraries
-import { makeStyles, Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 const BackLink = ({ backTo }) => {
   const classes = useStyles();

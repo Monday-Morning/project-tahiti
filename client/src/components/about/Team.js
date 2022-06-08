@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 
-// libararies
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Grid } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import { Typography, Grid } from '@mui/material';
 
 // Component
 import Executive from './Executive';
@@ -29,7 +28,7 @@ const Team = () => {
       <Grid
         container
         direction='row'
-        justify='flex-start'
+        justifyContent='flex-start'
         alignItems='center'
         className={classes.batchWrapper}
       >
@@ -61,14 +60,14 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     maxWidth: '1280px',
     margin: '40px auto 0px auto',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       marginTop: '24px',
       padding: '0px 24px 0px 24px',
     },
   },
   batchWrapper: {
     margin: '32px 0px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       margin: '16px 0px',
     },
   },
@@ -78,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
     margin: '0px 8px',
     cursor: 'pointer',
     userSelect: 'none',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: '8px 3px',
       margin: '4px',
     },
@@ -90,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
     margin: '0px 8px',
     cursor: 'pointer',
     userSelect: 'none',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: '8px 3px',
       margin: '4px',
     },

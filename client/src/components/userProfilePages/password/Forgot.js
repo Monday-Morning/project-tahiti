@@ -1,4 +1,5 @@
-import { Button, Card, Input, makeStyles, Typography } from '@material-ui/core';
+import { Button, Card, Input, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React, { useState } from 'react';
 import theme from '../../../config/themes/light';
 import passwd from '../../../assets/images/profile/passwd.png';
@@ -50,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     paddingInline: '6%',
     height: '-webkit-fill-available',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       paddingBottom: '7%',
     },
   },
@@ -61,10 +62,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-start',
     marginTop: '70px',
     width: '47%',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       width: '100%',
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
       alignItems: 'center',
     },
@@ -85,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     width: '90%',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
     },
   },

@@ -1,9 +1,8 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
 
-// Libararies
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Grid, Button, useMediaQuery } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import { Typography, Grid, Button, useMediaQuery } from '@mui/material';
 import theme from '../../config/themes/light';
 
 // Components
@@ -18,7 +17,7 @@ const Archives = ({ issues }) => {
   const [activeMonth, setMonth] = useState(ARCHIVES.months[0]);
   const [activeYear, setYear] = useState(ARCHIVES.years[0]);
   let articles;
-  useMediaQuery(theme.breakpoints.down('xs'))
+  useMediaQuery(theme.breakpoints.down('sm'))
     ? (articles = issues.slice(0, 3))
     : (articles = issues.slice(0, 6));
 
@@ -43,7 +42,7 @@ const Archives = ({ issues }) => {
         <Typography variant='h1' className={classes.archivetitle}>
           Archive
         </Typography>
-        {useMediaQuery(theme.breakpoints.down('xs')) ? (
+        {useMediaQuery(theme.breakpoints.down('sm')) ? (
           <div className={classes.archieveWrapper}>
             <select
               name='year'
@@ -84,7 +83,7 @@ const Archives = ({ issues }) => {
             <Grid
               container
               direction='row'
-              justify='flex-start'
+              justifyContent='flex-start'
               alignItems='center'
               className={classes.timeWrapper}
             >
@@ -107,7 +106,7 @@ const Archives = ({ issues }) => {
             <Grid
               container
               direction='row'
-              justify='flex-start'
+              justifyContent='flex-start'
               alignItems='center'
               className={classes.timeWrapper}
             >
@@ -159,10 +158,10 @@ const useStyles = makeStyles(() => ({
     margin: '60px auto 0px auto',
     display: 'flex',
     direction: 'row',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       padding: '40px 24px',
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       display: 'block',
       padding: '0 24px',
     },
@@ -182,7 +181,7 @@ const useStyles = makeStyles(() => ({
     opacity: '75%',
     marginTop: '1.5rem',
     textAlign: 'justify',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '14px',
       lineHeight: '20px',
       marginLeft: '0px',
@@ -192,10 +191,10 @@ const useStyles = makeStyles(() => ({
   archive: {
     padding: '40px calc((100% - 1280px)/2 + 24px)',
     backgroundColor: theme.palette.secondary.main,
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       padding: '40px 24px',
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: '30px 24px',
     },
   },
@@ -204,7 +203,7 @@ const useStyles = makeStyles(() => ({
     borderTop: '4px solid',
     borderColor: theme.palette.common.white,
     width: '205px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       borderTop: '0px',
       marginBottom: '12px',
     },
@@ -227,7 +226,7 @@ const useStyles = makeStyles(() => ({
     maxWidth: '1280px',
     margin: '40px auto 20px auto',
     padding: '0 24px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       marginTop: '1rem',
     },
   },

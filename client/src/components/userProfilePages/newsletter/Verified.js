@@ -1,6 +1,7 @@
 import React from 'react';
 import { PROFILEPAGES } from '../../../assets/placeholder/profile';
-import { Button, Card, Input, makeStyles, Typography } from '@material-ui/core';
+import { Button, Card, Input, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import theme from '../../../config/themes/light';
 import newsletter from '../../../assets/images/profile/newsletterPic.png';
 import { ChevronsLeft } from 'react-feather';
@@ -48,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 
     height: '542px',
     paddingInline: '6%',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       flexWrap: 'wrap',
       height: 'auto',
       flexDirection: 'column',
@@ -66,11 +67,11 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     marginTop: '52px',
     width: '47%',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       width: '100%',
     },
 
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
       alignItems: 'center',
     },

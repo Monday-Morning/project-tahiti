@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 
 // Library
-import { Typography, Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Typography, Grid } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 
 // Helper
 // import createBrowserHistory from '../../../utils/history';

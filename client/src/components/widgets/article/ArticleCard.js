@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Libraries
-import { useMediaQuery } from '@material-ui/core';
+import { useMediaQuery } from '@mui/material';
 
 // Components
 import RegularArticleCard from './RegularArticleCard';

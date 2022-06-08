@@ -1,8 +1,7 @@
 import React from 'react';
 
-// libraries
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import { Typography } from '@mui/material';
 import Link from 'next/link';
 
 // Helpers
@@ -46,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     borderBottom: '1px solid black',
     marginLeft: '20px',
     width: '100%',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginLeft: '10px',
     },
   },

@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Card, CardContent, makeStyles, Typography } from '@material-ui/core';
+import { Card, CardContent, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { ChevronLeft, ChevronRight } from 'react-feather';
 
 function Calendar() {

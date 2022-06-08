@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import { Container } from '@material-ui/core';
+import { Container } from '@mui/material';
 import BackButton from '../components/shared/button/BackButton';
 import ContactUs from '../components/contact/ContactUs';
 import Details from '../components/contact/Details';

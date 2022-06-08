@@ -2,13 +2,9 @@ import React from 'react';
 import Image from 'next/image';
 
 // Libraries
-import {
-  Card,
-  CardContent,
-  Grid,
-  Typography,
-  makeStyles,
-} from '@material-ui/core';
+import { Card, CardContent, Grid, Typography } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 // Assets
 import user from '../../../assets/images/photo.png';

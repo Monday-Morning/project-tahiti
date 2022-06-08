@@ -1,8 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-// Libraries
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
 
 const NewTabLink = ({ to, children, className }) => {
   const classes = useStyles();

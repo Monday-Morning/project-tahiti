@@ -1,12 +1,12 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Typography from '@material-ui/core/Typography';
+import makeStyles from '@mui/styles/makeStyles';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import Typography from '@mui/material/Typography';
 import forum from '../../assets/images/forum.png';
 import theme from '../../config/themes/light';
-import { Button, Grid } from '@material-ui/core';
+import { Button, Grid } from '@mui/material';
 import Image from 'next/image';
 
 const Forum = () => {
@@ -39,7 +39,7 @@ const Forum = () => {
           </Grid>
 
           <Grid item sm={4} className={classes.image}>
-            <Grid container justify='center'>
+            <Grid container justifyContent='center'>
               <Image src={forum} alt='Forum Image' />
             </Grid>
           </Grid>
@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   image: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       order: 1,
     },
   },
@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '14px',
     color: '#333333',
 
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       order: 2,
     },
   },

@@ -3,7 +3,9 @@
 import React from 'react';
 
 // libararies
-import { makeStyles, Typography, useMediaQuery } from '@material-ui/core';
+import { Typography, useMediaQuery } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 // theme
 import theme from '../../config/themes/light';
@@ -65,7 +67,7 @@ const useStyles = makeStyles(() => ({
   switch: {
     padding: '2px 18px',
     cursor: 'pointer',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       padding: '2px 8px',
       width: '64px',
     },

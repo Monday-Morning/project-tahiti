@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
 import Image from 'next/image';
 import React from 'react';
 import theme from '../../../config/themes/light';
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme, widthImage) => ({
     alignContent: 'right',
     width: widthImage,
 
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'none',
     },
   },

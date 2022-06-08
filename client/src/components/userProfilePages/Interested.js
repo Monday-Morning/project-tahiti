@@ -1,7 +1,7 @@
 import React from 'react';
 import useToggle from '../../hooks/useToggle';
-import { Button, Card, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Button, Card, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { ONBOARDING } from '../../assets/placeholder/onboarding';
 
 const Topic = (props) => {
@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '26px',
     fontWeight: '400',
     margin: '30px 40px 0px 30px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       textAlign: 'center',
     },
   },
@@ -104,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
     flexWrap: 'wrap',
     width: '80%',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       justifyContent: 'center',
     },
   },
@@ -121,7 +121,7 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.secondary.neutral70,
       },
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '1rem',
       lineHeight: '1.25rem',
     },

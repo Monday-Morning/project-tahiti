@@ -1,8 +1,7 @@
 import React from 'react';
 
-// libararies
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Grid } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import { Typography, Grid } from '@mui/material';
 
 // Component
 import ArticleCard from '../widgets/article/ArticleCard';
@@ -41,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     maxWidth: '1280px',
     margin: '40px auto 24px auto',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       marginTop: '24px',
       padding: '0px 24px 16px 24px',
     },
@@ -51,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     margin: '60px auto 0px auto',
     display: 'flex',
     direction: 'row',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       margin: '40px 16px 0px 24px',
       display: 'block',
     },
@@ -65,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '400',
     opacity: 0.75,
     textAlign: 'justify',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '14px',
       lineHeight: '20px',
       marginLeft: '0px',
