@@ -175,7 +175,7 @@ const DDCWC = [
     exact: true,
   },
   {
-    name: "Chief Warden's Desk",
+    name: "Chief Warden's Column",
     shortName: LINKS.SUB_CATEGORIES.DDCWC.CHIEF_WARDENS_DESK.split('/')[2],
     path: LINKS.SUB_CATEGORIES.DDCWC.CHIEF_WARDENS_DESK,
     asyncRoutePath: './SubCategory',
