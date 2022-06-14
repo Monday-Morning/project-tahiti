@@ -1,12 +1,7 @@
 import React from 'react';
 
 import makeStyles from '@mui/styles/makeStyles';
-import {
-  Card,
-  CardContent,
-  Typography,
-  useMediaQuery,
-} from '@mui/material';
+import { Card, CardContent, Typography, useMediaQuery } from '@mui/material';
 import moment from 'moment';
 // import { Bookmark, Share2 } from 'react-feather';
 
@@ -110,12 +105,12 @@ const BigArticleCard = ({
 
             <div className={classes.wrapper}>
               <div className={classes.authorList}>
-                {article.authors.map(({ name, id }, index) => {
+                {article.authors.map(({ name, details }, index) => {
                   let authorName = limitAuthor(name);
                   if (index < article.authors.length - 1) authorName += ', ';
 
                   return (
-                    <NewTabLink to={`/portfolio/${id}/${name}`} key={name}>
+                    <NewTabLink to={`/portfolio/${details}/${name}`} key={name}>
                       <Typography
                         variant='body2'
                         key={name}
