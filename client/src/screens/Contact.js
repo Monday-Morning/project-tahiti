@@ -12,9 +12,7 @@ function Contact() {
     <div>
       <Container maxWidth={false}>
         <BackButton path='/' goTo='Home' />
-      </Container>
-      <ContactUs />
-      <Container maxWidth={false}>
+        <ContactUs />
         <Details />
         <Feedback />
       </Container>

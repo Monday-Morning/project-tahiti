@@ -191,7 +191,7 @@ export default Details;
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
-    maxWidth: '1280px',
+    maxWidth: '1200px',
     margin: '40px auto 0px auto',
     [theme.breakpoints.down('lg')]: {
       marginTop: '24px',
@@ -260,6 +260,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   socialWrapper: {
+    marginTop: '18px',
     padding: '18px 0px 24px 24px',
     boxShadow: theme.shadows[0],
     borderRadius: '8px',
@@ -286,6 +287,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   locationWrapper: {
+    marginTop: '18px',
     padding: '18px 0px 24px 24px',
     boxShadow: theme.shadows[0],
     borderRadius: '8px',

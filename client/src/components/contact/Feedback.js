@@ -176,7 +176,7 @@ export default Feedback;
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
-    maxWidth: '1248px',
+    maxWidth: '1200px',
     margin: '40px auto 40px auto',
     [theme.breakpoints.down('lg')]: {
       marginTop: '24px',
