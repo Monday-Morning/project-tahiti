@@ -51,7 +51,7 @@ function Category({ articleList, categoryShortName, category }) {
             .slice(0, 30)
             .reduce((prev, curr) => {
               if (prev instanceof Array)
-                return prev.filter((val) => val.id == curr.id).length > 0
+                return prev.some((item2) => item1.id === item2.id)
                   ? prev
                   : [...prev, curr];
               if (prev.id == curr.id) return prev;
