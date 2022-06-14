@@ -20,7 +20,9 @@ function Home({ issues, squiggles }) {
   const { featured } = latestIssue;
 
   const articles = [
-    ...latestIssue.articles.filter((item) => !featured.includes(item.id)),
+    ...latestIssue.articles.filter(
+      (item1) => !featured.some((item2) => item1.id === item2.id),
+    ),
     ...secondLatestIssue.articles,
   ];
 

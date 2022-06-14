@@ -48,10 +48,13 @@ function Category({ articleList, categoryShortName, category }) {
         <ArticleCarousel
           articleList={articleList
             .reduce((prev, curr) => [...prev, ...curr])
-            .slice(0, 15)
+            .slice(0, 30)
             .reduce((prev, curr) => {
               if (prev instanceof Array)
-                return prev.includes(curr) ? prev : [...prev, curr];
+                return prev.some((item2) => item1.id === item2.id)
+                  ? prev
+                  : [...prev, curr];
+              if (prev.id == curr.id) return prev;
               return [prev, curr];
             })
             .slice(0, 10)}
