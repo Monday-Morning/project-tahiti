@@ -46,7 +46,7 @@ function Live() {
   };
 
   return (
-    <Container>
+    <Container maxWidth={false}>
       <Typography variant='h2' className={classes.title}>
         Live
       </Typography>

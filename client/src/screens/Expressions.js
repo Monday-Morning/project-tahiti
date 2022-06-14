@@ -68,7 +68,7 @@ function Expressions() {
 
   return (
     <div className={classes.root}>
-      <Container>
+      <Container maxWidth={false}>
         <div className={classes.header}>
           <Typography variant='h1' className={classes.head}>
             Expressions
@@ -102,7 +102,9 @@ function Expressions() {
           );
 
           return container ? (
-            <Container key={shortName}>{element}</Container>
+            <Container maxWidth={false} key={shortName}>
+              {element}
+            </Container>
           ) : (
             element
           );

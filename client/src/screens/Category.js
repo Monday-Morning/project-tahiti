@@ -20,7 +20,7 @@ function Category({ articleList, categoryShortName, category }) {
   return (
     <div className={classes.container}>
       <div className={classes.navbarContainer}>
-        <Container>
+        <Container maxWidth={false}>
           <Typography variant='h1' className={classes.title}>
             {category.name}
           </Typography>
@@ -59,7 +59,7 @@ function Category({ articleList, categoryShortName, category }) {
       </div>
 
       <div>
-        <Container>
+        <Container maxWidth={false}>
           <div className={classes.articlesCards}>
             {ROUTES.SUB_CATEGORIES.OBJECT[categoryShortName.toUpperCase()].map(
               ({ name, shortName, path }, index) => (

@@ -18,7 +18,7 @@ function PhotoStory() {
       <Header DATA={PHOTOSTORY} />
       <Body />
       <hr />
-      <Container>
+      <Container maxWidth={false}>
         <Comments />
       </Container>
 

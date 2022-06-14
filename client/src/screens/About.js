@@ -12,7 +12,7 @@ import Team from '../components/about/Team';
 
 function About() {
   return (
-    <Container>
+    <Container maxWidth={false}>
       <BackButton path='/' goTo='Home' />
       <AboutUs />
       <Content />

@@ -11,7 +11,7 @@ import ArticleCardStack from '../components/widgets/article/ArticleCardStack';
 const SearchPage = ({ articles, keyword }) => {
   const classes = useStyles();
   return (
-    <Container>
+    <Container maxWidth={false}>
       <Typography variant='h3' component='h3' className={classes.text}>
         {!articles && <span>NO</span>} Search results for - "{keyword}"
       </Typography>
