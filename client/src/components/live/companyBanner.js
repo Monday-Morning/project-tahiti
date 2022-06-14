@@ -4,7 +4,8 @@
 import React, { useState } from 'react';
 
 // libararies
-import { makeStyles, Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import Image from 'next/image';
 
 const CompanyBanner = ({ data }) => {

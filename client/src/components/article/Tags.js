@@ -1,7 +1,6 @@
 import React from 'react';
 
-// Libraries
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
 
 const ArticleTags = ({ tags }) => {
   const classes = useStyles();
@@ -36,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.blue40,
     marginLeft: '10px',
     borderRadius: '4px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginLeft: '4px',
       padding: '1.5px 8px',
     },

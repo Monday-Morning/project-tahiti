@@ -2,7 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 
 // Libraries
-import { Container, makeStyles, Typography } from '@material-ui/core';
+import { Container, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { Link as ScrollLink, Element } from 'react-scroll';
 
 // Components
@@ -19,7 +20,7 @@ function Category({ articleList, categoryShortName, category }) {
   return (
     <div className={classes.container}>
       <div className={classes.navbarContainer}>
-        <Container>
+        <Container maxWidth={false}>
           <Typography variant='h1' className={classes.title}>
             {category.name}
           </Typography>
@@ -58,7 +59,7 @@ function Category({ articleList, categoryShortName, category }) {
       </div>
 
       <div>
-        <Container>
+        <Container maxWidth={false}>
           <div className={classes.articlesCards}>
             {ROUTES.SUB_CATEGORIES.OBJECT[categoryShortName.toUpperCase()].map(
               ({ name, shortName, path }, index) => (

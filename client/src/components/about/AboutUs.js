@@ -1,9 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 
-// libararies
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import { Typography } from '@mui/material';
 
 // images
 import about from '../../assets/images/about/about1.png';
@@ -30,13 +29,13 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '1.5rem',
     position: 'relative',
     minHeight: '650px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       minHeight: '250px',
       marginTop: '1rem',
     },
     '& > span': {
       minHeight: '650px',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         minHeight: '250px',
         marginTop: '1rem',
       },
@@ -54,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     left: '5%',
     fontSize: '64px',
     color: theme.palette.common.white,
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       visibility: 'hidden',
       display: 'none',
     },
@@ -63,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     visibility: 'hidden',
     display: 'none',
     color: theme.palette.common.white,
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       visibility: 'visible',
       display: 'inherit',
       position: 'absolute',

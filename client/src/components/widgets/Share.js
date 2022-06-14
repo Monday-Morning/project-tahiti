@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
 
 // libraries
-import {
-  makeStyles,
-  useMediaQuery,
-  Menu,
-  MenuItem,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from '@material-ui/core';
+import { useMediaQuery, Menu, MenuItem, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { Share2 } from 'react-feather';
 import {
   FacebookShareButton,

@@ -4,8 +4,8 @@ import React from 'react';
 import useToggle from '../../../hooks/useToggle';
 
 // Libraries
-import { Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 
 // Components
 import Button from '../../shared/button/Regular';

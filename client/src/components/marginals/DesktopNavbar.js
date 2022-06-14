@@ -3,9 +3,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-// Libraries
-import { makeStyles } from '@material-ui/core/styles';
-import { Container, Typography, TextField } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import { Container, Typography, TextField } from '@mui/material';
 
 // Utils
 import ROUTES from '../../utils/getRoutes';
@@ -34,7 +33,7 @@ const DesktopNavbar = () => {
   };
 
   return (
-    <Container>
+    <Container maxWidth={false}>
       <nav
         aria-label='Monday Morning Navigation'
         className={classes.navContainer}
@@ -54,6 +53,7 @@ const DesktopNavbar = () => {
           </div>
 
           <TextField
+            variant='standard'
             label='Search for articles'
             placeholder='Enter related words'
             value={search}

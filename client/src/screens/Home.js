@@ -1,7 +1,7 @@
 import React from 'react';
 
 // libraries
-import { Container } from '@material-ui/core';
+import { Container } from '@mui/material';
 
 // Components
 import Squiggles from '../components/widgets/Squiggles';
@@ -26,7 +26,7 @@ function Home({ issues, squiggles }) {
 
   return (
     <>
-      <Container>
+      <Container maxWidth={false}>
         <ArticleGrid articles={featured} />
         <Squiggles data={squiggles} />
 
@@ -51,7 +51,7 @@ function Home({ issues, squiggles }) {
 
       {/* <Banner /> */}
 
-      <Container style={{ marginTop: 35 }}>
+      <Container maxWidth={false} style={{ marginTop: 35 }}>
         {/* <SocialMedia /> */}
         <Trending />
       </Container>

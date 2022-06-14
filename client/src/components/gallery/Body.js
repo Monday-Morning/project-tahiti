@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
-// libararies
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 
 // Components
 import Disclaimer from '../article/Disclaimer';
@@ -85,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
   imageWrapper: {
     backgroundColor: theme.palette.secondary.main,
     padding: '24px 0px 48px 0px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: '12px 0px',
     },
   },
@@ -106,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     maxWidth: '1280px',
     margin: '60px auto 0px auto',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       margin: '40px 16px 0px 24px',
     },
   },

@@ -1,4 +1,4 @@
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   breakpoints: {
@@ -6,13 +6,13 @@ const theme = createTheme({
     value: {
       xs: 0,
       sm: 600,
-      md: 960,
-      lg: 1280,
-      xl: 1920,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
     },
   },
   palette: {
-    type: 'light',
+    mode: 'light',
     common: {
       black: '#000000',
       white: '#FFFFFF',

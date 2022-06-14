@@ -1,8 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-// libraries
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 
 const TopBar = () => {
   const classes = useStyles();
@@ -59,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '20px',
     lineHeight: '28px',
     fontWeight: '400',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginLeft: '20px',
       fontSize: '1rem',
     },

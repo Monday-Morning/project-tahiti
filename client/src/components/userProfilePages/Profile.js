@@ -1,4 +1,5 @@
-import { makeStyles, Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 import { Edit2 } from 'react-feather';
 import { PROFILEPAGES } from '../../assets/placeholder/profile';
@@ -62,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       flexWrap: 'wrap',
       paddingInline: '5%',
       paddingBottom: '7%',
@@ -73,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     marginTop: '2rem',
     width: '84%',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       justifyContent: 'center',
       marginLeft: '0',
     },
@@ -81,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     display: 'flex',
     flexDirection: 'column',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       alignItems: 'center',
     },
   },
@@ -104,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       alignItems: 'center',
     },
   },
@@ -115,7 +116,7 @@ const useStyles = makeStyles((theme) => ({
   },
   infoHead: {
     display: 'flex',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       justifyContent: 'center',
     },
   },
@@ -129,7 +130,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.5rem',
     fontWeight: '400',
     marginTop: '0.25rem',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '1.25rem',
     },
   },
@@ -143,7 +144,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     color: theme.palette.common.black,
 
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginTop: '1rem',
       flexDirection: 'column',
       justifyContent: 'space-around',
@@ -155,7 +156,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '1.75rem',
     fontWeight: '400',
     color: theme.palette.secondary.neutral80,
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '1rem',
       whiteSpace: 'wrap',
       textAlign: 'center',

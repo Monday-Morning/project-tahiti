@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-// libraries
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
 import { useSwipeable } from 'react-swipeable';
-import { ArrowBack, ArrowForward } from '@material-ui/icons';
+import { ArrowBack, ArrowForward } from '@mui/icons-material';
 
 const HomeCarousel = ({ links }) => {
   const classes = useStyles();
@@ -92,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
   },
   inner: {
     flexGrow: '1',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       flexBasis: '50vw',
     },
     display: 'inline-block',

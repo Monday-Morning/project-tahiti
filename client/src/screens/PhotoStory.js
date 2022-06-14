@@ -1,7 +1,7 @@
 import React from 'react';
 
 // libraries
-import { Container } from '@material-ui/core';
+import { Container } from '@mui/material';
 
 // Components
 import Header from '../components/photostory/Header';
@@ -18,7 +18,7 @@ function PhotoStory() {
       <Header DATA={PHOTOSTORY} />
       <Body />
       <hr />
-      <Container>
+      <Container maxWidth={false}>
         <Comments />
       </Container>
 

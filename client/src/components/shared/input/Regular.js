@@ -1,7 +1,6 @@
 import React from 'react';
 
-// Library
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 
 function RegularInput(props) {
   const classes = useStyles();

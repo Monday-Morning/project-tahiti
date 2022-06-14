@@ -1,7 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { Button, makeStyles } from '@material-ui/core';
+import { Button } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { ChevronLeft } from 'react-feather';
 import theme from '../../../config/themes/light';
 
@@ -35,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '400',
     color: theme.palette.secondary.neutral80,
     '& div': {
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         display: 'none',
       },
     },

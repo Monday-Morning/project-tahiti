@@ -11,7 +11,8 @@ import Forgot from './password/Forgot';
 import LinkSent from './password/LinkSent';
 import NewPasswd from './password/NewPasswd';
 import Changed from './password/Changed';
-import { Card, makeStyles, Typography } from '@material-ui/core';
+import { Card, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import theme from '../../config/themes/light';
 
 function MainBox({
@@ -97,17 +98,17 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     marginLeft: '2rem',
     width: '90%',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginLeft: 'unset',
       marginTop: '1rem',
     },
     '& h2': {
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         marginLeft: '0',
         textAlign: 'center',
       },
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       marginLeft: '1rem',
     },
   },
@@ -119,7 +120,7 @@ const useStyles = makeStyles((theme) => ({
       '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
     background: theme.palette.common.white,
 
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       height: 'auto',
     },
   },

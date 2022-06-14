@@ -4,7 +4,9 @@
 import React from 'react';
 
 // libararies
-import { makeStyles, Typography, useMediaQuery } from '@material-ui/core';
+import { Typography, useMediaQuery } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 // theme
 import theme from '../../config/themes/light';
@@ -94,7 +96,7 @@ const useStyles = makeStyles(() => ({
     borderColor: theme.palette.primary.blue50,
     borderRadius: '4px',
     padding: '2px 16px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       padding: '1px 0px',
       maxWidth: '156px',
     },

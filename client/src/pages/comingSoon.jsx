@@ -3,8 +3,9 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { Grid, makeStyles, Typography } from '@material-ui/core';
-import { ArrowForward } from '@material-ui/icons';
+import { Grid, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { ArrowForward } from '@mui/icons-material';
 
 import logo from '../assets/images/logo_mm.png';
 import LINKS from '../utils/getLinks';
@@ -89,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       padding: '20px',
     },
   },
@@ -103,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     height: 100,
     width: 100,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       height: 60,
       width: 60,
     },
@@ -112,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '24px',
     fontWeight: '600',
     color: '#006DCC',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '18px',
     },
   },
@@ -120,7 +121,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '28px',
     fontSize: '72px',
     fontWeight: '700',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '30px',
     },
   },
@@ -128,7 +129,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '28px',
     fontSize: '24px',
     color: '#6E6E6E',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '19px',
     },
   },
@@ -144,7 +145,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     cursor: 'default',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '18px',
     },
   },
@@ -159,7 +160,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '21px',
     color: '#999999',
     cursor: 'pointer',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginLeft: '10px',
       fontSize: '15px',
     },

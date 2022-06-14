@@ -2,9 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-// Libraries
-import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Typography } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import { Grid, Typography } from '@mui/material';
 
 // Assets
 import logo from '../../../assets/images/logo.png';

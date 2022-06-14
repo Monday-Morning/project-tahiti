@@ -1,7 +1,9 @@
 import React from 'react';
 
 // Libraries
-import { makeStyles, Container, Typography } from '@material-ui/core';
+import { Container, Typography } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 // Components
 import ArticleCardStack from '../components/widgets/article/ArticleCardStack';
@@ -9,7 +11,7 @@ import ArticleCardStack from '../components/widgets/article/ArticleCardStack';
 const SearchPage = ({ articles, keyword }) => {
   const classes = useStyles();
   return (
-    <Container>
+    <Container maxWidth={false}>
       <Typography variant='h3' component='h3' className={classes.text}>
         {!articles && <span>NO</span>} Search results for - "{keyword}"
       </Typography>
@@ -35,7 +37,7 @@ const SearchPage = ({ articles, keyword }) => {
 const useStyles = makeStyles((theme) => ({
   text: {
     marginTop: '40px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '15px',
     },
   },
@@ -50,14 +52,14 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     fontSize: '100px',
     marginBottom: '50px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '50px',
     },
   },
   heading: {
     fontSize: '30px',
     marginTop: '50px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '20px',
       marginTop: '0px',
     },
@@ -65,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   desc: {
     fontSize: '20px',
     marginTop: '20px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '15px',
       marginTop: '5px',
     },

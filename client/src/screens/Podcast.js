@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container } from '@material-ui/core';
+import { Container } from '@mui/material';
 
 // Components
 import BackLink from '../components/podcast/BackLink';
@@ -9,7 +9,7 @@ import PodcastList from '../components/podcast/List';
 
 const Podcast = () => (
   <>
-    <Container>
+    <Container maxWidth={false}>
       <BackLink />
     </Container>
     <LatestPodcast />

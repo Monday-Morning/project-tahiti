@@ -1,10 +1,5 @@
-import {
-  Button,
-  Card,
-  Container,
-  makeStyles,
-  Typography,
-} from '@material-ui/core';
+import { Button, Card, Container, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React, { useState } from 'react';
 import theme from '../config/themes/light';
 
@@ -49,7 +44,7 @@ function UserProfile() {
 
   return (
     <div className={classes.root}>
-      <Container>
+      <Container maxWidth={false}>
         <BackButton path='/' goTo='Guide' />
         <Typography variant='h1' className={classes.head}>
           User Account
@@ -102,14 +97,14 @@ const useStyles = makeStyles((theme) => ({
   head: {
     color: theme.palette.primary.blue60,
     marginTop: '2rem',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       textAlign: 'center',
       marginTop: '0.75rem',
     },
   },
   body: {
     display: 'flex',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       // display: 'none',
       justifyContent: 'center',
       flexWrap: 'wrap',
@@ -118,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
   menu: {
     display: 'flex',
     flexDirection: 'column',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '90%',
     },
   },
@@ -129,7 +124,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     marginTop: '1.5rem',
     maxWidth: '276px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       maxWidth: '100%',
     },
     borderRadius: '6px',
@@ -147,7 +142,7 @@ const useStyles = makeStyles((theme) => ({
     borderTop: '1px solid',
     borderColor: theme.palette.secondary.neutral60,
     borderRadius: '0',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '100%',
     },
   },
@@ -159,7 +154,7 @@ const useStyles = makeStyles((theme) => ({
     width: '276px',
     height: '49px',
     borderRadius: '0',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '100%',
     },
   },

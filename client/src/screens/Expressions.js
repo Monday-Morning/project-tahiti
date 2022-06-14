@@ -1,7 +1,8 @@
 import React from 'react';
 
 // Libraries
-import { Container, makeStyles, Typography } from '@material-ui/core';
+import { Container, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { Link } from 'react-scroll';
 
 // Components
@@ -67,7 +68,7 @@ function Expressions() {
 
   return (
     <div className={classes.root}>
-      <Container>
+      <Container maxWidth={false}>
         <div className={classes.header}>
           <Typography variant='h1' className={classes.head}>
             Expressions
@@ -101,7 +102,9 @@ function Expressions() {
           );
 
           return container ? (
-            <Container key={shortName}>{element}</Container>
+            <Container maxWidth={false} key={shortName}>
+              {element}
+            </Container>
           ) : (
             element
           );

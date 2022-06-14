@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 import theme from '../../../config/themes/light';
 import passwd from '../../../assets/images/profile/passwd.png';
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     paddingInline: '6%',
     height: '-webkit-fill-available',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       paddingBottom: '7%',
     },
   },
@@ -45,11 +45,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-start',
     marginTop: '70px',
     width: '47%',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       width: '100%',
       marginTop: '40px',
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
       alignItems: 'center',
     },
@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
   head: {
     lineHeight: '2.25rem',
     color: theme.palette.common.black,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       textAlign: 'center',
     },
   },
@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '1rem',
       lineHeight: '26px',
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginTop: '2.5rem',
       textAlign: 'center',
     },

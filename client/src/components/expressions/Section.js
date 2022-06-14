@@ -2,7 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 
 // Libraries
-import { Box, Grid, makeStyles, useMediaQuery } from '@material-ui/core';
+import { Box, Grid, useMediaQuery } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 // Components
 import FeatureArticle from './FeatureArticle';

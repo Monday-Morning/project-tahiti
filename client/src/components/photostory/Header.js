@@ -1,8 +1,9 @@
 import React from 'react';
 
 // libraries
-import { Container, Grid, makeStyles, Typography } from '@material-ui/core';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { Container, Grid, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { Bookmark, Share2, Volume2 } from 'react-feather';
 
@@ -73,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1rem',
     lineHeight: '1.5rem',
     color: theme.palette.secondary.neutral60,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '0.75rem',
       lineHeight: '1rem',
     },
@@ -107,7 +108,7 @@ const useStyles = makeStyles((theme) => ({
   utilityIcon: {
     marginLeft: '30px',
     fontSize: '18px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '12px',
       marginLeft: '5px',
     },

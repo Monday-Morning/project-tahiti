@@ -4,7 +4,9 @@ import React from 'react';
 
 // libraries
 import { Link } from 'react-scroll';
-import { makeStyles, Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 // Utils
 import { CONTENT_TYPE } from '../../utils/articleContentParser';
@@ -68,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     top: 20,
     marginTop: '1rem',
     paddingLeft: '4rem',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       marginTop: '2rem',
       paddingLeft: '1rem',
       paddingRight: '2rem',
@@ -78,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.375rem',
     lineHeight: '1.75rem',
     fontWeight: '400',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       fontSize: '1.125rem',
       lineHeight: '1.5rem',
     },

@@ -1,7 +1,9 @@
 import React from 'react';
 
 // libraries
-import { Grid, makeStyles } from '@material-ui/core';
+import { Grid } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 // Components
 import Forum from '../widgets/Forum';

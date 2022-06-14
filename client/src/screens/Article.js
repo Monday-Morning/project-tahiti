@@ -4,7 +4,7 @@
 import React from 'react';
 
 // libraries
-import { Container, Grid, useMediaQuery } from '@material-ui/core';
+import { Container, Grid, useMediaQuery } from '@mui/material';
 
 // Components
 import Comments from '../components/article/comments';
@@ -20,11 +20,11 @@ import SidePanelMobile from '../components/article/SidePanelMobile';
 import theme from '../config/themes/light';
 
 function Article({ article }) {
-  const isMatch = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMatch = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <>
-      <Container>
+      <Container maxWidth={false}>
         <Grid container>
           <Grid item md={9}>
             <ArticleHeader article={article} />

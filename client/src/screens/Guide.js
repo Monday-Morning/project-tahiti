@@ -1,5 +1,5 @@
 //libraries
-import { Container } from '@material-ui/core';
+import { Container } from '@mui/material';
 
 // Components
 import Options from '../components/guide/Options';
@@ -23,7 +23,7 @@ function Contact({ issues }) {
 
   return (
     <div>
-      <Container>
+      <Container maxWidth={false}>
         <BackButton path='/' goTo='Home' />
         <Options />
       </Container>

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 
 // Libraries
-import { Container, makeStyles } from '@material-ui/core';
-import Pagination from '@material-ui/lab/Pagination';
+import { Container } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import Pagination from '@mui/material/Pagination';
 
 // Components
 import BackLink from '../components/podcast/BackLink';
@@ -21,7 +22,7 @@ function SubCategory({
   const classes = useStyles();
 
   return (
-    <Container>
+    <Container maxWidth={false}>
       <BackLink backTo={categoryName} />
       <Title title={subCategoryDetails.name} />
       <BigArticleCard article={articleList[0][0]} />

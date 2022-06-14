@@ -1,9 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 
-// libraries
-import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardContent, Typography } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import { Card, CardContent, Typography } from '@mui/material';
 import moment from 'moment';
 
 // Components
@@ -153,7 +152,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('lg')]: {
       maxWidth: 'auto',
     },
-    [theme.breakpoints.between('xs', 'sm')]: {
+    [theme.breakpoints.between('xs', 'md')]: {
       margin: '0px',
       width: ({ carousel }) => (carousel ? '300px' : '100%'),
       height: ({ carousel }) => (carousel ? '470px' : '470px'),
@@ -218,7 +217,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'left',
     cursor: 'pointer',
 
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       lineHeight: '1.75rem',
       fontSize: '1rem',
     },

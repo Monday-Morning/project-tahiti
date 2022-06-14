@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 // Libraries
-import { makeStyles, IconButton, useMediaQuery } from '@material-ui/core';
+import { IconButton, useMediaQuery } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { ArrowLeftCircle, ArrowRightCircle } from 'react-feather';
 
 // Components
@@ -58,43 +59,41 @@ const Carousel = ({ articleList }) => {
 
   const showButton = useMediaQuery(theme.breakpoints.up('sm'));
 
-  return (
-    <>
-      <div className={classes.wrapper}>
-        {showButton && (
-          <span className={classes.LeftRightButtonWrapper}>
-            <IconButton
-              className={classes.leftButton}
-              disabled={isLeftButtonDisable}
-              onClick={() => {
-                setRightButtonDisable(false), scroll(-424);
-              }}
-            >
-              <ArrowLeftCircle fontSize='large' />
-            </IconButton>
+  return <>
+    <div className={classes.wrapper}>
+      {showButton && (
+        <span className={classes.LeftRightButtonWrapper}>
+          <IconButton
+            className={classes.leftButton}
+            disabled={isLeftButtonDisable}
+            onClick={() => {
+              setRightButtonDisable(false), scroll(-424);
+            }}
+            size="large">
+            <ArrowLeftCircle fontSize='large' />
+          </IconButton>
 
-            <IconButton
-              className={classes.rightButton}
-              disabled={isRightButtonDisable}
-              onClick={() => {
-                setLeftButtonDisable(false), scroll(424);
-              }}
-            >
-              <ArrowRightCircle fontSize='large' />
-            </IconButton>
-          </span>
-        )}
-        <div className={classes.black} />
-        <div className={classes.carousel} ref={ref}>
-          <div className={classes.articleRow}>
-            <div className={classes.articles}>
-              {articleList?.map(renderArticles)}
-            </div>
+          <IconButton
+            className={classes.rightButton}
+            disabled={isRightButtonDisable}
+            onClick={() => {
+              setLeftButtonDisable(false), scroll(424);
+            }}
+            size="large">
+            <ArrowRightCircle fontSize='large' />
+          </IconButton>
+        </span>
+      )}
+      <div className={classes.black} />
+      <div className={classes.carousel} ref={ref}>
+        <div className={classes.articleRow}>
+          <div className={classes.articles}>
+            {articleList?.map(renderArticles)}
           </div>
         </div>
       </div>
-    </>
-  );
+    </div>
+  </>;
 };
 
 export default Carousel;
@@ -129,10 +128,10 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('lg')]: {
       paddingLeft: 'calc((100% - 1280px)/2 + 24px)',
     },
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       padding: '0 24px',
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginTop: '2.25rem',
     },
   },

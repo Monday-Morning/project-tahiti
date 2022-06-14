@@ -1,7 +1,9 @@
 import React from 'react';
 
 // Libraries
-import { makeStyles, ButtonBase } from '@material-ui/core';
+import { ButtonBase } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 const SubCategories = ({ text, isRed }) => {
   const classes = useStyles({ isRed });
@@ -30,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '4px',
     margin: '8px 8px 0px 0px',
     padding: '12px 16px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       padding: '3px 8px',
     },
   },
@@ -44,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
     color: ({ isRed }) =>
       isRed ? theme.palette.secondary.neutral20 : theme.palette.secondary.main,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '14px',
       lineHeight: '20px',
     },

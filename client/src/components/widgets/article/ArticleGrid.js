@@ -2,7 +2,9 @@ import React from 'react';
 
 // Libraries
 import moment from 'moment';
-import { makeStyles, Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 // Components
 import NewTabLink from '../../shared/links/NewTabLink';
@@ -235,10 +237,10 @@ const useStylesGrid = makeStyles((theme) => ({
     gridTemplateColumns: 'repeat(4, 1fr)',
     gridTemplateRows: 'repeat(5, 175px)',
 
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       gap: '10px',
     },
-    [theme.breakpoints.between('sm', 'md')]: {
+    [theme.breakpoints.between('sm', 'lg')]: {
       gridTemplateRows: 'repeat(4, 175px)',
     },
     [theme.breakpoints.up('md')]: {
@@ -248,7 +250,7 @@ const useStylesGrid = makeStyles((theme) => ({
   large: {
     gridColumn: 'span 5',
 
-    [theme.breakpoints.between('sm', 'md')]: {
+    [theme.breakpoints.between('sm', 'lg')]: {
       gridColumn: '1/5',
       gridRow: '1/3',
     },
@@ -260,7 +262,7 @@ const useStylesGrid = makeStyles((theme) => ({
   small: {
     gridColumn: 'span 5',
 
-    [theme.breakpoints.between('sm', 'md')]: {
+    [theme.breakpoints.between('sm', 'lg')]: {
       gridColumn: 'span 2',
       gridRow: 'span 1',
     },

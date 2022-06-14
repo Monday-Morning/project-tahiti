@@ -1,7 +1,7 @@
 import React from 'react';
 
 // libraries
-import { Container } from '@material-ui/core';
+import { Container } from '@mui/material';
 
 // Components
 import BackButton from '../components/shared/button/BackButton';
@@ -12,7 +12,7 @@ import Team from '../components/about/Team';
 
 function About() {
   return (
-    <Container>
+    <Container maxWidth={false}>
       <BackButton path='/' goTo='Home' />
       <AboutUs />
       <Content />
