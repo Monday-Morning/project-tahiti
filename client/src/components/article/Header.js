@@ -46,7 +46,7 @@ const ArticleHeader = ({ article }) => {
       rectangle: { store, storePath },
     },
   } = article;
-  
+
   return (
     <div className={classes.container}>
       <Grid container className={classes.container}>
@@ -209,6 +209,7 @@ const useStyles = makeStyles(() => ({
   authorList: {
     display: 'flex',
     alignItems: 'center',
+    zIndex: '2000',
   },
   authorWrapper: {
     display: 'flex',
