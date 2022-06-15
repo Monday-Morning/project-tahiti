@@ -2,30 +2,33 @@ import React from 'react';
 import Link from 'next/link';
 
 import makeStyles from '@mui/styles/makeStyles';
+import { Container } from '@mui/material';
 
 const TopBar = () => {
   const classes = useStyles();
   return (
     <div className={classes.topBar}>
-      <div className={classes.container}>
-        <ul className={classes.navList}>
-          <li className={classes.navItem}>
-            <Link href='/about' className={classes.navLink} passHref>
-              <span className={classes.navLink}>About</span>
-            </Link>
-          </li>
-          <li className={classes.navItem}>
-            <Link href='/guide' className={classes.navLink} passHref>
-              <span className={classes.navLink}>Guide</span>
-            </Link>
-          </li>
-          <li className={classes.navItem}>
-            <Link href='/contact' className={classes.navLink} passHref>
-              <span className={classes.navLink}>Contact Us</span>
-            </Link>
-          </li>
-        </ul>
-      </div>
+      <Container fixed={true} maxWidth={false}>
+        <div className={classes.container}>
+          <ul className={classes.navList}>
+            <li className={classes.navItem}>
+              <Link href='/about' className={classes.navLink} passHref>
+                <span className={classes.navLink}>About</span>
+              </Link>
+            </li>
+            <li className={classes.navItem}>
+              <Link href='/guide' className={classes.navLink} passHref>
+                <span className={classes.navLink}>Guide</span>
+              </Link>
+            </li>
+            <li className={classes.navItem}>
+              <Link href='/contact' className={classes.navLink} passHref>
+                <span className={classes.navLink}>Contact Us</span>
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </Container>
     </div>
   );
 };
@@ -42,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     height: '40px',
     // Container Properties
-    maxWidth: '1280px',
     paddingLeft: '16px',
     paddingRight: '16px',
     marginLeft: 'auto',

@@ -22,7 +22,7 @@ function SubCategory({
   const classes = useStyles();
 
   return (
-    <Container maxWidth={false}>
+    <Container fixed={true} maxWidth={false}>
       <BackLink backTo={categoryName} />
       <Title title={subCategoryDetails.name} />
       <BigArticleCard article={articleList[0][0]} />

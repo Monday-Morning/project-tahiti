@@ -28,7 +28,7 @@ function Home({ issues, squiggles }) {
 
   return (
     <>
-      <Container maxWidth={false}>
+      <Container disableGutters={true} fixed={true} maxWidth={false}>
         <ArticleGrid articles={featured} />
         <Squiggles data={squiggles} />
 
@@ -53,7 +53,7 @@ function Home({ issues, squiggles }) {
 
       {/* <Banner /> */}
 
-      <Container maxWidth={false} style={{ marginTop: 35 }}>
+      <Container fixed={true} maxWidth={false} style={{ marginTop: 35 }}>
         {/* <SocialMedia /> */}
         <Trending />
       </Container>
