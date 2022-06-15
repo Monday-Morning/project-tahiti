@@ -28,7 +28,7 @@ function Home({ issues, squiggles }) {
 
   return (
     <>
-      <Container disableGutters={true} fixed={true} maxWidth={false}>
+      <Container fixed={true} style={{ maxWidth: '90%' }}>
         <ArticleGrid articles={featured} />
         <Squiggles data={squiggles} />
 
@@ -49,11 +49,9 @@ function Home({ issues, squiggles }) {
         {articles.length > 3 && (
           <ArticleCardStack articleList={articles.slice(3, 6)} />
         )}
-      </Container>
 
-      {/* <Banner /> */}
+        {/* <Banner /> */}
 
-      <Container fixed={true} maxWidth={false} style={{ marginTop: 35 }}>
         {/* <SocialMedia /> */}
         <Trending />
       </Container>
