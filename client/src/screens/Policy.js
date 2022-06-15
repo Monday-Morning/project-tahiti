@@ -9,7 +9,7 @@ import BackButton from '../components/shared/button/BackButton';
 
 function Policy() {
   return (
-    <Container maxWidth={false}>
+    <Container fixed={true} maxWidth={false}>
       <BackButton path='/' goTo='Home' />
       <Terms />
     </Container>
