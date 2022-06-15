@@ -10,7 +10,7 @@ import Feedback from '../components/contact/Feedback';
 function Contact() {
   return (
     <div>
-      <Container fixed={true} maxWidth={false}>
+      <Container maxWidth='xl'>
         <BackButton path='/' goTo='Home' />
         <ContactUs />
         <Details />

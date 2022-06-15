@@ -9,7 +9,7 @@ import PodcastList from '../components/podcast/List';
 
 const Podcast = () => (
   <>
-    <Container fixed={true} maxWidth={false}>
+    <Container maxWidth='xl'>
       <BackLink />
     </Container>
     <LatestPodcast />

@@ -18,139 +18,141 @@ const UserCard = ({ user }) => {
     user;
 
   return (
-    <div className={classes.wrapper}>
-      <Card className={classes.card}>
-        <CardContent>
-          <Grid container>
-            <Grid item md={5} sm={12} className={classes.gridPadding}>
-              <div className={classes.userWrapper}>
-                <div className={classes.imageWrapper}>
-                  <Image
-                    className={classes.profileImage}
-                    src={profileImageLink}
-                    alt='user photo'
-                    width={135}
-                    height={135}
-                  />
-                </div>
-                <div className={classes.userData}>
-                  <div className={classes.columnFlex}>
-                    <div className={classes.userName}>
-                      <Typography variant='h2'>
-                        {firstName} {firstName?.length < 4 ? lastName : ''}
-                      </Typography>
-                    </div>
-                    <div>
-                      <Typography variant='body2'>
-                        <div className={classes.boldText}>Email</div>
-                        <email>{email}</email>{' '}
-                      </Typography>
-                    </div>
-                    <div>
-                      <Typography variant='body2'>
-                        <div className={classes.boldText}> Year</div>
-                        {year}
-                      </Typography>
+    <Container maxWidth='xl'>
+      <div className={classes.wrapper}>
+        <Card className={classes.card}>
+          <CardContent>
+            <Grid container>
+              <Grid item md={5} sm={12} className={classes.gridPadding}>
+                <div className={classes.userWrapper}>
+                  <div className={classes.imageWrapper}>
+                    <Image
+                      className={classes.profileImage}
+                      src={profileImageLink}
+                      alt='user photo'
+                      width={135}
+                      height={135}
+                    />
+                  </div>
+                  <div className={classes.userData}>
+                    <div className={classes.columnFlex}>
+                      <div className={classes.userName}>
+                        <Typography variant='h2'>
+                          {firstName} {firstName?.length < 4 ? lastName : ''}
+                        </Typography>
+                      </div>
+                      <div>
+                        <Typography variant='body2'>
+                          <div className={classes.boldText}>Email</div>
+                          <email>{email}</email>{' '}
+                        </Typography>
+                      </div>
+                      <div>
+                        <Typography variant='body2'>
+                          <div className={classes.boldText}> Year</div>
+                          {year}
+                        </Typography>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </Grid>
+              </Grid>
 
-            <Grid
-              item
-              md={3}
-              sm={6}
-              className={`${classes.bordered} ${classes.gridPadding} ${classes.postDetailsWrapper}`}
-            >
-              <div className={classes.postDetails}>
-                <div>
-                  <Typography variant='body2' className={classes.boldText}>
-                    Number Of Posts
+              <Grid
+                item
+                md={3}
+                sm={6}
+                className={`${classes.bordered} ${classes.gridPadding} ${classes.postDetailsWrapper}`}
+              >
+                <div className={classes.postDetails}>
+                  <div>
+                    <Typography variant='body2' className={classes.boldText}>
+                      Number Of Posts
+                    </Typography>
+                  </div>
+                  <div>
+                    <Typography variant='body2'>{noOfArticle}</Typography>
+                  </div>
+                </div>
+                <div className={classes.postDetails}>
+                  <Typography variant='body2'>
+                    <span className={classes.boldText}>Content: </span>
+                    {noOfArticle}
+                  </Typography>
+
+                  <Typography variant='body2'>
+                    <span className={classes.boldText}>Design: </span>0
+                  </Typography>
+
+                  <Typography variant='body2'>
+                    <span className={classes.boldText}>Photography: </span>0
                   </Typography>
                 </div>
-                <div>
-                  <Typography variant='body2'>{noOfArticle}</Typography>
+              </Grid>
+              <Grid
+                item
+                md={4}
+                sm={6}
+                className={`${classes.bordered} ${classes.gridPadding} ${classes.postDetailsWrapper}`}
+              >
+                <div className={classes.postDetails}>
+                  <div>
+                    <Typography variant='body2' className={classes.boldText}>
+                      Teams
+                    </Typography>
+                  </div>
+                  <div>
+                    <Typography variant='body2'>Content</Typography>
+                  </div>
                 </div>
-              </div>
-              <div className={classes.postDetails}>
-                <Typography variant='body2'>
-                  <span className={classes.boldText}>Content: </span>
-                  {noOfArticle}
-                </Typography>
 
-                <Typography variant='body2'>
-                  <span className={classes.boldText}>Design: </span>0
-                </Typography>
-
-                <Typography variant='body2'>
-                  <span className={classes.boldText}>Photography: </span>0
-                </Typography>
-              </div>
+                <div className={classes.postDetails}>
+                  <div>
+                    <Typography variant='body2' className={classes.boldText}>
+                      Links
+                    </Typography>
+                  </div>
+                  <div className={classes.socialIcon}>
+                    <span>
+                      <Link
+                        href='https://www.linkedin.com/company/monday-morning-the-official-student-media-body-of-nit-rourkela/mycompany/'
+                        passHref={true}
+                      >
+                        <i className='fab fa-linkedin' />
+                      </Link>
+                    </span>
+                    <span>
+                      <Link
+                        passHref
+                        href='https://www.facebook.com/mondaymorningnitr'
+                      >
+                        <i className='fab fa-facebook-f' />
+                      </Link>
+                    </span>
+                    <span>
+                      <Link
+                        passHref
+                        href='https://www.instagram.com/mondaymorningnitrofficial/?hl=en'
+                      >
+                        <i className='fab fa-instagram' />
+                      </Link>
+                    </span>
+                    <span>
+                      <Link
+                        passHref
+                        href='https://twitter.com/mmnitrkl?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor'
+                      >
+                        <i className='fab fa-twitter' />
+                      </Link>
+                    </span>
+                  </div>
+                </div>
+              </Grid>
             </Grid>
-            <Grid
-              item
-              md={4}
-              sm={6}
-              className={`${classes.bordered} ${classes.gridPadding} ${classes.postDetailsWrapper}`}
-            >
-              <div className={classes.postDetails}>
-                <div>
-                  <Typography variant='body2' className={classes.boldText}>
-                    Teams
-                  </Typography>
-                </div>
-                <div>
-                  <Typography variant='body2'>Content</Typography>
-                </div>
-              </div>
-
-              <div className={classes.postDetails}>
-                <div>
-                  <Typography variant='body2' className={classes.boldText}>
-                    Links
-                  </Typography>
-                </div>
-                <div className={classes.socialIcon}>
-                  <span>
-                    <Link
-                      href='https://www.linkedin.com/company/monday-morning-the-official-student-media-body-of-nit-rourkela/mycompany/'
-                      passHref={true}
-                    >
-                      <i className='fab fa-linkedin' />
-                    </Link>
-                  </span>
-                  <span>
-                    <Link
-                      passHref
-                      href='https://www.facebook.com/mondaymorningnitr'
-                    >
-                      <i className='fab fa-facebook-f' />
-                    </Link>
-                  </span>
-                  <span>
-                    <Link
-                      passHref
-                      href='https://www.instagram.com/mondaymorningnitrofficial/?hl=en'
-                    >
-                      <i className='fab fa-instagram' />
-                    </Link>
-                  </span>
-                  <span>
-                    <Link
-                      passHref
-                      href='https://twitter.com/mmnitrkl?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor'
-                    >
-                      <i className='fab fa-twitter' />
-                    </Link>
-                  </span>
-                </div>
-              </div>
-            </Grid>
-          </Grid>
-        </CardContent>
-      </Card>
-    </div>
+          </CardContent>
+        </Card>
+      </div>
+    </Container>
   );
 };
 export default UserCard;
@@ -158,7 +160,6 @@ export default UserCard;
 const useStyles = makeStyles((theme) => ({
   wrapper: {
     margin: '1.5rem auto 0 auto ',
-    maxWidth: '1200px',
   },
   card: {
     boxShadow: theme.shadows[0],
