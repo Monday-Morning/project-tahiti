@@ -3,17 +3,25 @@ import Link from 'next/link';
 
 // Libraries
 import { Box, Grid, useMediaQuery } from '@mui/material';
-
 import makeStyles from '@mui/styles/makeStyles';
 
 // Components
 import FeatureArticle from './FeatureArticle';
 import SmallCard from './SmallCard';
-import SmallArticleCard from '../widgets/SmallArticleCard';
+import SmallArticleCard from '../widgets/article/SmallArticleCard';
 
-function Section({ heading }) {
+//Utils
+import NewTabLink from '../shared/links/NewTabLink';
+import getArticleLink from '../../utils/getArticleLink';
+
+function Section({ heading, article }) {
   const matches = useMediaQuery('(min-width:600px');
   const classes = useStyles();
+
+  const featuredArticle = article[0][0];
+  const { id, title } = featuredArticle;
+
+  article = article[0].slice(1, 3);
 
   const link =
     heading === 'Photostory'
@@ -24,39 +32,28 @@ function Section({ heading }) {
     <div className={classes.root}>
       <Grid container spacing={4}>
         <Grid item sm={9}>
-          <Link
-            href={link}
-            passHref
-            target='_blank'
-            rel='nonoopener noreferrer'
-            className={classes.link}
-          >
-            <FeatureArticle className={classes.feature} />
-          </Link>
+          <NewTabLink to={getArticleLink(id, title)} className={classes.link}>
+            <FeatureArticle
+              className={classes.feature}
+              article={featuredArticle}
+            />
+          </NewTabLink>
         </Grid>
         <Grid item sm={3} className={classes.smallCards}>
-          <Box>
-            <Link
-              passHref
-              href={link}
-              target='_blank'
-              rel='nonoopener noreferrer'
-              className={classes.link}
-            >
-              {matches ? <SmallCard /> : <SmallArticleCard />}
-            </Link>
-          </Box>
-          <Box mt={3}>
-            <Link
-              passHref
-              href={link}
-              target='_blank'
-              rel='nonoopener noreferrer'
-              className={classes.link}
-            >
-              {matches ? <SmallCard /> : <SmallArticleCard />}
-            </Link>
-          </Box>
+          {article.map((item) => (
+            <Box mt={3}>
+              <NewTabLink
+                to={getArticleLink(item.id, item.title)}
+                className={classes.link}
+              >
+                {matches ? (
+                  <SmallCard article={item} />
+                ) : (
+                  <SmallArticleCard isWitsdom={true} article={item} />
+                )}
+              </NewTabLink>
+            </Box>
+          ))}
         </Grid>
       </Grid>
     </div>

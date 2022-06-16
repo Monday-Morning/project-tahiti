@@ -4,8 +4,10 @@ import Head from 'next/head';
 // Components
 import Marginals from '../../components/marginals/Marginals';
 import Expressions from '../../screens/Expressions';
+import { GraphClient } from '../../config/ApolloClient';
+import getArticlesByCategories from '../../graphql/queries/category/getArticlesByCategories';
 
-const ExpressionsPage = () => {
+const ExpressionsPage = ({ witsdom, editorial, miscellaneous }) => {
   return (
     <>
       <Head>
@@ -68,19 +70,52 @@ const ExpressionsPage = () => {
         />
       </Head>
       <Marginals>
-        <Expressions />
+        <Expressions
+          witsdom={witsdom}
+          editorial={editorial}
+          miscellaneous={miscellaneous}
+        />
       </Marginals>
     </>
   );
 };
 
-export async function getServerSideProps() {
-  return {
-    redirect: {
-      destination: '/comingSoon',
-      permanent: false,
+// export async function getServerSideProps() {
+//   return {
+//     redirect: {
+//       destination: '/comingSoon',
+//       permanent: false,
+//     },
+//   };
+// }
+
+export async function getStaticProps() {
+  const {
+    data: { getArticlesByCategories: witsdom },
+  } = await GraphClient.query({
+    query: getArticlesByCategories,
+    variables: { categoryNumbers: 61, limit: 3 },
+  });
+
+  const {
+    data: {
+      getArticlesByCategories: [editorial],
     },
-  };
+  } = await GraphClient.query({
+    query: getArticlesByCategories,
+    variables: { categoryNumbers: 66, limit: 3 },
+  });
+
+  const {
+    data: {
+      getArticlesByCategories: [miscellaneous],
+    },
+  } = await GraphClient.query({
+    query: getArticlesByCategories,
+    variables: { categoryNumbers: 67, limit: 3 },
+  });
+
+  return { props: { witsdom, editorial, miscellaneous } };
 }
 
 export default ExpressionsPage;

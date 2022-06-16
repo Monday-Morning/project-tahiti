@@ -4,23 +4,33 @@ import React from 'react';
 import Image from 'next/image';
 import witsdom from '../../assets/images/witsdom.png';
 import theme from '../../config/themes/light';
+import STORES from '../../utils/getStores';
 
-function SmallCard() {
-  const props = {
-    article: {
-      title: 'The Never-Ending Cycle of Online Class',
-      authors: ['Debabrata Malik', 'Rama Krushna Behera'],
-    },
-  };
+function SmallCard({ article }) {
   const classes = useStyles(theme);
+  const {
+    title,
+    authors,
+    coverMedia: {
+      rectangle: { store, storePath },
+    },
+  } = article;
   return (
     <div>
-      <Image src={witsdom} className={classes.smallCard} />
-      <Typography variant='h2'>{props.article.title}</Typography>
+      <Image
+        width={276}
+        height={155}
+        src={
+          STORES[article.coverMedia.rectangle.store] +
+          encodeURI(article.coverMedia.rectangle.storePath)
+        }
+        className={classes.smallCard}
+      />
+      <Typography variant='h2'>{title}</Typography>
       <div className={classes.authorList}>
-        {props.article.authors.map((author) => (
-          <Typography variant='body2' key={author} className={classes.author}>
-            {author}
+        {authors.map(({ name, details }) => (
+          <Typography variant='body2' key={details} className={classes.author}>
+            {name.split(' ')[0]}
           </Typography>
         ))}
       </div>
@@ -36,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
   smallCard: {
     width: '100%',
+    borderRadius: '8px',
   },
   authorList: {
     display: 'flex',

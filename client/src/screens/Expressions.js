@@ -12,6 +12,7 @@ import SubCategories from '../components/widgets/SubCategory';
 import ArticleCardStack from '../components/widgets/article/ArticleCardStack.js';
 import BigCarousel from '../components/widgets/BigCarousel';
 import SectionTitle from '../components/categories/SectionTitle';
+import Witsdom from '../components/expressions/Witsdom';
 // import FeaturedArticles from '../components/homepage/FeaturedArticles';
 
 // Utils
@@ -20,51 +21,70 @@ import ROUTES from '../utils/getRoutes';
 // Placeholders
 import { CAROUSEL } from '../assets/placeholder/guide';
 
-const CONTENT = [
-  {
-    name: 'Witsdom',
-    container: true,
-    section: <Section heading='Witsdom' />,
-  },
-  {
-    name: 'Photostory',
-    container: true,
-    section: <Section heading='Photostory' />,
-  },
-  {
-    name: 'Gallery',
-    container: false,
-    section: (
-      <BigCarousel
-        head='Gallery'
-        navigator='XVII Convocation'
-        IMAGE={CAROUSEL}
-      />
-    ),
-  },
-  {
-    name: 'Podcasts',
-    container: true,
-    section: <PodcastList />,
-  },
-  {
-    name: 'Editorial',
-    container: true,
-    section: <ArticleCardStack />,
-  },
-];
-
-const EXPRESSIONS_CONTENT = ROUTES.SUB_CATEGORIES.OBJECT.EXPRESSIONS.map(
-  ({ name, shortName, path }, index) => ({
-    name,
-    shortName,
-    path,
-    ...CONTENT[index],
-  }),
-);
-
-function Expressions() {
+function Expressions({ witsdom, editorial, miscellaneous }) {
   const classes = useStyles();
+
+  const CONTENT = [
+    {
+      name: 'Witsdom',
+      container: true,
+      section: (
+        <>
+          <Section
+            heading='Witsdom'
+            article={witsdom}
+            articleContiner={<Witsdom />}
+          />
+        </>
+      ),
+    },
+    {
+      name: 'Photostory',
+      container: true,
+      section: (
+        <Section
+          heading='Photostory'
+          article={witsdom}
+          articleContiner={<Witsdom />}
+        />
+      ),
+    },
+    {
+      name: 'Gallery',
+      container: false,
+      section: (
+        <BigCarousel
+          head='Gallery'
+          navigator='XVII Convocation'
+          IMAGE={CAROUSEL}
+        />
+      ),
+    },
+    {
+      name: 'Editorial',
+      container: true,
+      section: <ArticleCardStack articleList={editorial} />,
+    },
+    {
+      name: 'Podcasts',
+      container: true,
+      section: <PodcastList />,
+    },
+    {
+      name: 'Miscellaneous',
+      container: true,
+      section: <ArticleCardStack articleList={miscellaneous} />,
+    },
+  ];
+
+  const EXPRESSIONS_CONTENT = ROUTES.SUB_CATEGORIES.OBJECT.EXPRESSIONS.map(
+    ({ name, shortName, path }, index) => ({
+      name,
+      shortName,
+      path,
+      ...CONTENT[index],
+    }),
+  );
 
   return (
     <div className={classes.root}>
