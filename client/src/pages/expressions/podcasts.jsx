@@ -1,8 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
 
-import Podcast from '../screens/Podcast';
-import Marginals from '../components/marginals/Marginals';
+import Podcast from '../../screens/Podcast';
+import Marginals from '../../components/marginals/Marginals';
 
 const PodcastPage = () => (
   <>
@@ -67,13 +67,13 @@ const PodcastPage = () => (
   </>
 );
 
-export async function getServerSideProps() {
-  return {
-    redirect: {
-      destination: '/comingSoon',
-      permanent: false,
-    },
-  };
-}
+// export async function getServerSideProps() {
+//   return {
+//     redirect: {
+//       destination: '/comingSoon',
+//       permanent: false,
+//     },
+//   };
+// }
 
 export default PodcastPage;
