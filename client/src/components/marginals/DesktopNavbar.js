@@ -33,7 +33,7 @@ const DesktopNavbar = () => {
   };
 
   return (
-    <Container disableGutters={true} fixed={true} maxWidth={false}>
+    <Container maxWidth='xl'>
       <nav
         aria-label='Monday Morning Navigation'
         className={classes.navContainer}
