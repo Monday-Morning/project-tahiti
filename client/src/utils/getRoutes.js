@@ -279,7 +279,7 @@ const EXPRESSIONS = [
     shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.EDITORIAL.split('/')[2],
     path: LINKS.SUB_CATEGORIES.EXPRESSIONS.EDITORIAL,
     asyncRoutePath: './SubCategory',
-    idNumber: 65,
+    idNumber: 66,
     exact: true,
   },
   // {
@@ -287,7 +287,7 @@ const EXPRESSIONS = [
   //   shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.PODCASTS.split('/')[2],
   //   path: LINKS.SUB_CATEGORIES.EXPRESSIONS.PODCASTS,
   //   asyncRoutePath: './Podcast',
-  //   idNumber: 66,
+  //   idNumber: 65,
   //   exact: true,
   // },
   {
