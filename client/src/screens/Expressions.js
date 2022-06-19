@@ -38,38 +38,38 @@ function Expressions({ witsdom, editorial, miscellaneous }) {
         </>
       ),
     },
-    {
-      name: 'Photostory',
-      container: true,
-      section: (
-        <Section
-          heading='Photostory'
-          article={witsdom}
-          articleContiner={<Witsdom />}
-        />
-      ),
-    },
-    {
-      name: 'Gallery',
-      container: false,
-      section: (
-        <BigCarousel
-          head='Gallery'
-          navigator='XVII Convocation'
-          IMAGE={CAROUSEL}
-        />
-      ),
-    },
+    // {
+    //   name: 'Photostory',
+    //   container: true,
+    //   section: (
+    //     <Section
+    //       heading='Photostory'
+    //       article={witsdom}
+    //       articleContiner={<Witsdom />}
+    //     />
+    //   ),
+    // },
+    // {
+    //   name: 'Gallery',
+    //   container: false,
+    //   section: (
+    //     <BigCarousel
+    //       head='Gallery'
+    //       navigator='XVII Convocation'
+    //       IMAGE={CAROUSEL}
+    //     />
+    //   ),
+    // },
     {
       name: 'Editorial',
       container: true,
       section: <ArticleCardStack articleList={editorial} />,
     },
-    {
-      name: 'Podcasts',
-      container: true,
-      section: <PodcastList />,
-    },
+    // {
+    //   name: 'Podcasts',
+    //   container: true,
+    //   section: <PodcastList />,
+    // },
     {
       name: 'Miscellaneous',
       container: true,
