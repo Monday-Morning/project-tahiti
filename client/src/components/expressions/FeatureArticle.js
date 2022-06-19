@@ -74,6 +74,9 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       cursor: 'pointer',
     },
+    [theme.breakpoints.down('sm')]: {
+      width: '90vw',
+    },
   },
   title: {
     marginTop: '4px',
@@ -82,10 +85,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     marginTop: '4px',
     justifyContent: 'flex-start',
-  },
-  img: {
-    width: '100%',
-    objectFit: 'cover',
   },
   author: {
     display: 'inline',

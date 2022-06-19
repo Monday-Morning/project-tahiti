@@ -2,7 +2,6 @@ import { Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 import Image from 'next/image';
-import witsdom from '../../assets/images/witsdom.png';
 import theme from '../../config/themes/light';
 import STORES from '../../utils/getStores';
 
@@ -50,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
   authorList: {
     display: 'flex',
-    marginTop: '4px',
+    margin: '4px 0px',
     justifyContent: 'flex-start',
   },
   author: {
