@@ -44,7 +44,7 @@ function UserProfile() {
 
   return (
     <div className={classes.root}>
-      <Container fixed={true} maxWidth={false}>
+      <Container maxWidth='xl'>
         <BackButton path='/' goTo='Guide' />
         <Typography variant='h1' className={classes.head}>
           User Account

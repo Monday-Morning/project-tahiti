@@ -12,7 +12,7 @@ import Team from '../components/about/Team';
 
 function About() {
   return (
-    <Container fixed={true} maxWidth={false}>
+    <Container maxWidth='xl'>
       <BackButton path='/' goTo='Home' />
       <AboutUs />
       <Content />

@@ -14,7 +14,7 @@ const Footer = () => {
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
-      <Container fixed={true} maxWidth={false}>
+      <Container maxWidth='xl'>
         <Grid container direction='row'>
           <Grid item sm={6} md={4}>
             <div className={classes.aboutInfo}>

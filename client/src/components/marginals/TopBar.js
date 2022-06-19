@@ -8,7 +8,7 @@ const TopBar = () => {
   const classes = useStyles();
   return (
     <div className={classes.topBar}>
-      <Container fixed={true} maxWidth={false}>
+      <Container maxWidth='xl'>
         <div className={classes.container}>
           <ul className={classes.navList}>
             <li className={classes.navItem}>

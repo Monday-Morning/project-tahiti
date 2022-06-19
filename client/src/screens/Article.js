@@ -24,7 +24,7 @@ function Article({ article }) {
 
   return (
     <>
-      <Container fixed={true} maxWidth={false}>
+      <Container maxWidth='xl'>
         <Grid container>
           <Grid item md={9}>
             <ArticleHeader article={article} />

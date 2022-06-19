@@ -23,7 +23,7 @@ function Contact({ issues }) {
 
   return (
     <div>
-      <Container fixed={true} maxWidth={false}>
+      <Container maxWidth='xl'>
         <BackButton path='/' goTo='Home' />
         <Options />
       </Container>
