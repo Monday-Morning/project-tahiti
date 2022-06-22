@@ -1,11 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 
-// material-ui
+// libraries
 import { useTheme } from '@mui/material/styles';
 import { Box, Drawer, useMediaQuery } from '@mui/material';
 
-// project imports
+// components
 import MenuList from './menulist/Menulist';
 
 const drawerWidth = 260;
@@ -18,7 +18,9 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
     <>
       <Box sx={{ display: { xs: 'block', md: 'none' } }}>
         <Box sx={{ display: 'flex', p: 2, mx: 'auto' }}>
-          <h2>Monday Morning</h2>
+          <Link href='/' passHref>
+            <h2>Monday Morning</h2>
+          </Link>
         </Box>
       </Box>
       {matchUpMd ? (

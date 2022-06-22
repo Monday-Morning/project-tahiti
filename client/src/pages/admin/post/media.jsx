@@ -1,5 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
+
+// components
 import Media from '../../../screens/admin/Media';
 import Admin from '../../../screens/admin/Admin';
 

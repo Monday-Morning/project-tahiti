@@ -1,7 +1,6 @@
 import { useEffect, useContext } from 'react';
-import { Outlet } from 'react-router-dom';
 
-// material-ui
+// libraries
 import { styled, useTheme } from '@mui/material/styles';
 import {
   AppBar,
@@ -11,11 +10,12 @@ import {
   useMediaQuery,
 } from '@mui/material';
 
-// project imports
+// context
+import { SidebarContext } from '../../context/SidebarContext';
+
+// components
 import Header from '../../components/admin/Header';
 import Sidebar from '../../components/admin/Sidebar/Sidebar';
-import AddNew from './AddNew';
-import { SidebarContext } from '../../context/SidebarContext';
 
 const drawerWidth = 260;
 
@@ -71,8 +71,6 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   }),
 );
 
-// ==============================|| MAIN LAYOUT ||============================== //
-
 const Admin = ({ children }) => {
   const theme = useTheme();
   const matchDownMd = useMediaQuery(theme.breakpoints.down('lg'));
@@ -90,7 +88,6 @@ const Admin = ({ children }) => {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      {/* header */}
       <AppBar
         enableColorOnDark
         position='fixed'
@@ -106,13 +103,11 @@ const Admin = ({ children }) => {
         </Toolbar>
       </AppBar>
 
-      {/* drawer */}
       <Sidebar
         drawerOpen={state.opened}
         drawerToggle={handleLeftDrawerToggle}
       />
 
-      {/* main content */}
       <Main theme={theme} open={state.opened}>
         {children}
       </Main>

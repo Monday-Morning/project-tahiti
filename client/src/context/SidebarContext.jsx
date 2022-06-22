@@ -1,7 +1,9 @@
 import React, { createContext, useState } from 'react';
 
+// context
 export const SidebarContext = createContext();
 
+// provider
 const SidebarContextProvider = ({ children }) => {
   const [state, setState] = useState({
     opened: true,

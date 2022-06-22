@@ -1,14 +1,19 @@
 import * as React from 'react';
+
+// libraries
 import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import CardContent from '@mui/material/CardContent';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import {
+  Box,
+  Card,
+  OutlinedInput,
+  CardContent,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+} from '@mui/material';
 import { styled } from '@mui/system';
+import { useEffect } from 'react';
 
 const Title = styled('span')(() => ({
   fontSize: '1rem',
@@ -22,9 +27,8 @@ const select = {
   marginTop: '5px',
 };
 
-const categoryNames = [
-  {
-    id: 'department',
+const categoryNames = {
+  department: {
     title: 'Department',
     children: [
       'Biotechnology & Biomedical Engineering',
@@ -34,23 +38,19 @@ const categoryNames = [
       'Computer Science and Engineering',
     ],
   },
-  {
-    id: 'campus',
+  campus: {
     title: 'Campus',
     children: ['SAC Speaks', 'Campus Buzz', 'Clubs', 'Halls', 'Sports'],
   },
-  {
-    id: 'ddcwc',
+  ddcwc: {
     title: 'DD & CWC',
     children: ["Director's Desk", "Cheif Warden's Column"],
   },
-  {
-    id: 'views',
+  views: {
     title: 'Views',
     children: ['Interview', 'The CGPA', 'Student Pulse'],
   },
-  {
-    id: 'carrer',
+  carrer: {
     title: 'Carrer',
     children: [
       'Placements',
@@ -59,17 +59,15 @@ const categoryNames = [
       'Internship Database',
     ],
   },
-  {
-    id: 'alumini',
+  alumini: {
     title: 'Alumini',
     children: ['Alumni Speaks', 'Happenings'],
   },
-  {
-    id: 'editorial',
+  editorial: {
     title: 'Editorial',
     children: ['Opinion', 'Science and Society', 'Anecdotes', 'Miscellaneous'],
   },
-];
+};
 
 function getStyles(name, personName, theme) {
   return {
@@ -95,6 +93,7 @@ export default function CategoryCards() {
   const theme = useTheme();
   const [category, setCategory] = React.useState([]);
   const [subCategory, setSubCategory] = React.useState([]);
+  const [subCategoryList, setSubCategoryList] = React.useState([]);
 
   const handleChange = (event) => {
     const {
@@ -116,13 +115,13 @@ export default function CategoryCards() {
     );
   };
 
-  let sub = [];
-  categoryNames.map(({ id, children }) => {
-    if (category.includes(id)) {
-      children.map((child) => sub.push(child));
-    }
-  });
-
+  useEffect(() => {
+    category.map((cat) => {
+      setSubCategoryList([subCategoryList, categoryNames[cat].children].flat())
+    });
+  }, [category]);
+  const allCategory = Object.keys(categoryNames);
+  console.log(category);
   return (
     <Box sx={{ minWidth: 275 }}>
       <Card variant='outlined'>
@@ -139,18 +138,18 @@ export default function CategoryCards() {
               input={<OutlinedInput label='Category' />}
               MenuProps={MenuProps}
             >
-              {categoryNames.map(({ id, title }) => (
+              {allCategory.map((key) => (
                 <MenuItem
-                  key={id}
-                  value={id}
-                  style={getStyles(title, title, theme)}
+                  key={key}
+                  value={key}
+                  style={getStyles(categoryNames[key].title, categoryNames[key].title, theme)}
                 >
-                  {title}
+                  {categoryNames[key].title}
                 </MenuItem>
               ))}
             </Select>
           </FormControl>
-          {category.length != 0 && (
+          {subCategoryList.length != 0 && (
             <FormControl
               sx={{ width: 300, minWidth: '100%', marginTop: '10px' }}
             >
@@ -166,7 +165,7 @@ export default function CategoryCards() {
                 input={<OutlinedInput label='Sub Category' />}
                 MenuProps={MenuProps}
               >
-                {sub.map((title, index) => (
+                {subCategoryList.map((title, index) => (
                   <MenuItem
                     key={index}
                     value={index}

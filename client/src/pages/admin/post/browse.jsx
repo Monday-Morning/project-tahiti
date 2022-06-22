@@ -1,9 +1,10 @@
 import React from 'react';
 import Head from 'next/head';
+
+// components
 import Browse from '../../../screens/admin/Browse';
 import Admin from '../../../screens/admin/Admin';
 
-//Components
 
 const BrowsePage = () => {
   return (

@@ -1,30 +1,35 @@
 /* eslint-disable no-nested-ternary */
 import * as React from 'react';
-import PropTypes from 'prop-types';
+
+// libraries
 import { alpha } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import TableSortLabel from '@mui/material/TableSortLabel';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
-import DeleteIcon from '@mui/icons-material/Delete';
-import FilterListIcon from '@mui/icons-material/FilterList';
+import {
+  Box,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TablePagination,
+  TableRow,
+  TableSortLabel,
+  Toolbar,
+  Typography,
+  Paper,
+  Checkbox,
+  IconButton,
+  Tooltip,
+} from '@mui/material';
+import {
+  Delete,
+  FilterList,
+  Edit,
+  Publish,
+  Archive,
+  Comment,
+  CircleSharp,
+} from '@mui/icons-material';
 import { visuallyHidden } from '@mui/utils';
-import EditIcon from '@mui/icons-material/Edit';
-import PublishIcon from '@mui/icons-material/Publish';
-import ArchiveIcon from '@mui/icons-material/Archive';
-import CommentIcon from '@mui/icons-material/Comment';
-import CircleSharpIcon from '@mui/icons-material/CircleSharp';
 
 function createData(name, calories, fat, carbs, protein, status) {
   return {
@@ -152,8 +157,6 @@ function getComparator(order, orderBy) {
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-// This method is created for cross-browser compatibility, if you don't
-// need to support IE11, you can use Array.prototype.sort() directly
 function stableSort(array, comparator) {
   const stabilizedThis = array.map((el, index) => [el, index]);
   stabilizedThis.sort((a, b) => {
@@ -196,7 +199,7 @@ const headCells = [
     numeric: true,
     disablePadding: false,
     label: '',
-    icon: <CommentIcon />,
+    icon: <Comment />,
   },
   {
     id: 'status',
@@ -265,15 +268,6 @@ function EnhancedTableHead(props) {
   );
 }
 
-EnhancedTableHead.propTypes = {
-  numSelected: PropTypes.number.isRequired,
-  onRequestSort: PropTypes.func.isRequired,
-  onSelectAllClick: PropTypes.func.isRequired,
-  order: PropTypes.oneOf(['asc', 'desc']).isRequired,
-  orderBy: PropTypes.string.isRequired,
-  rowCount: PropTypes.number.isRequired,
-};
-
 const EnhancedTableToolbar = (props) => {
   const { numSelected } = props;
 
@@ -281,22 +275,22 @@ const EnhancedTableToolbar = (props) => {
     <>
       <Tooltip title='Edit'>
         <IconButton>
-          <EditIcon />
+          <Edit />
         </IconButton>
       </Tooltip>
       <Tooltip title='Publish'>
         <IconButton>
-          <PublishIcon />
+          <Publish />
         </IconButton>
       </Tooltip>
       <Tooltip title='Archive'>
         <IconButton>
-          <ArchiveIcon />
+          <Archive />
         </IconButton>
       </Tooltip>
       <Tooltip title='Delete'>
         <IconButton>
-          <DeleteIcon />
+          <Delete />
         </IconButton>
       </Tooltip>
     </>
@@ -339,7 +333,7 @@ const EnhancedTableToolbar = (props) => {
       {numSelected <= 0 ? (
         <Tooltip title='Filter list'>
           <IconButton>
-            <FilterListIcon />
+            <FilterList />
           </IconButton>
         </Tooltip>
       ) : numSelected === 1 ? (
@@ -347,7 +341,7 @@ const EnhancedTableToolbar = (props) => {
       ) : (
         <Tooltip title='Delete'>
           <IconButton>
-            <DeleteIcon />
+            <Delete />
           </IconButton>
         </Tooltip>
       )}
@@ -356,13 +350,9 @@ const EnhancedTableToolbar = (props) => {
 };
 <Tooltip title='Filter list'>
   <IconButton>
-    <FilterListIcon />
+    <FilterList />
   </IconButton>
 </Tooltip>;
-
-EnhancedTableToolbar.propTypes = {
-  numSelected: PropTypes.number.isRequired,
-};
 
 export default function Browse() {
   const [order, setOrder] = React.useState('asc');
@@ -425,13 +415,8 @@ export default function Browse() {
     return 'green';
   };
 
-  // const handleChangeDense = (event) => {
-  //     setDense(event.target.checked);
-  // };
-
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
-  // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
@@ -454,8 +439,6 @@ export default function Browse() {
               rowCount={rows.length}
             />
             <TableBody>
-              {/* if you don't need to support IE11, you can replace the `stableSort` call with:
-                 rows.slice().sort(getComparator(order, orderBy)) */}
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
@@ -497,7 +480,7 @@ export default function Browse() {
                         style={{ color: `${statusColor(row.status)}` }}
                       >
                         <Tooltip title={row.status}>
-                          <CircleSharpIcon />
+                          <CircleSharp />
                         </Tooltip>
                       </TableCell>
                       <TableCell
@@ -506,7 +489,7 @@ export default function Browse() {
                       >
                         <Tooltip title='Edit'>
                           <IconButton>
-                            <EditIcon />
+                            <Edit />
                           </IconButton>
                         </Tooltip>
                       </TableCell>

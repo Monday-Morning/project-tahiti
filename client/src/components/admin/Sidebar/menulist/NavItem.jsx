@@ -1,7 +1,7 @@
 import { forwardRef, useEffect, useContext } from 'react';
 import Link from 'next/link';
 
-// material-ui
+// libraries
 import { useTheme } from '@mui/material/styles';
 import {
   ListItemButton,
@@ -10,10 +10,8 @@ import {
   useMediaQuery,
 } from '@mui/material';
 
-// project imports
+// context
 import { SidebarContext } from '../../../../context/SidebarContext';
-
-// ==============================|| SIDEBAR MENU LIST ITEMS ||============================== //
 
 const NavItem = ({ item, level }) => {
   const theme = useTheme();

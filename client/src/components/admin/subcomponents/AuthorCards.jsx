@@ -1,11 +1,15 @@
 import * as React from 'react';
+
+// libraries
 import { useTheme } from '@mui/material/styles';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import { Card } from '@mui/material';
+import {
+  Card,
+  Select,
+  FormControl,
+  MenuItem,
+  InputLabel,
+  OutlinedInput,
+} from '@mui/material';
 import { styled } from '@mui/system';
 
 const Title = styled('span')(() => ({

@@ -1,11 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 
-// material-ui
+// components
 import { useTheme } from '@mui/material/styles';
 import { Avatar, Box, ButtonBase } from '@mui/material';
-
-// assets
 import MenuIcon from '@mui/icons-material/Menu';
 
 const Header = ({ handleLeftDrawerToggle }) => {

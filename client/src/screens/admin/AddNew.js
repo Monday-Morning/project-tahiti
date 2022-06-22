@@ -1,6 +1,7 @@
-import { Grid } from '@mui/material';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+// libraries
+import { Grid, TextField, Box } from '@mui/material';
+
+// Components
 import AuthorCard from '../../components/admin/subcomponents/AuthorCards';
 import CategoryCards from '../../components/admin/subcomponents/CategoryCards';
 import FeaturedMedia from '../../components/admin/subcomponents/FeaturedMedia';

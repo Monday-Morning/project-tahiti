@@ -1,6 +1,6 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-// material-ui
+// library
 import {
   Collapse,
   List,
@@ -9,23 +9,18 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material';
-
-// project imports
-import NavItem from './NavItem';
-
-// assets
 import {
   FiberManualRecord,
   KeyboardArrowDown,
   KeyboardArrowUp,
 } from '@mui/icons-material';
 
-// ==============================|| SIDEBAR MENU LIST COLLAPSE ITEMS ||============================== //
+// components
+import NavItem from './NavItem';
 
 const NavCollapse = ({ menu, level }) => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(null);
-  console.log(selected);
 
   const handleClick = () => {
     setOpen(!open);
