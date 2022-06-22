@@ -5,12 +5,8 @@ import Link from 'next/link';
 import { useTheme } from '@mui/material/styles';
 import { Box, Drawer, useMediaQuery } from '@mui/material';
 
-// third-party
-import { BrowserView, MobileView } from 'react-device-detect';
-
 // project imports
-import MenuList from './MenuList';
-import LogoSection from '../LogoSection';
+import MenuList from './menulist/Menulist';
 
 const drawerWidth = 260;
 
@@ -22,19 +18,20 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
     <>
       <Box sx={{ display: { xs: 'block', md: 'none' } }}>
         <Box sx={{ display: 'flex', p: 2, mx: 'auto' }}>
-          <ButtonBase disableRipple component={Link} passHref href='/'>
-            <h2>Monday Morning</h2>
-          </ButtonBase>
+          <h2>Monday Morning</h2>
         </Box>
       </Box>
-      <BrowserView>
-        <MenuList />
-      </BrowserView>
-      <MobileView>
-        <Box sx={{ px: 2 }}>
+      {matchUpMd ? (
+        <>
           <MenuList />
-        </Box>
-      </MobileView>
+        </>
+      ) : (
+        <>
+          <Box sx={{ px: 2 }}>
+            <MenuList />
+          </Box>
+        </>
+      )}
     </>
   );
 
@@ -71,12 +68,6 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
       </Drawer>
     </Box>
   );
-};
-
-Sidebar.propTypes = {
-  drawerOpen: PropTypes.bool,
-  drawerToggle: PropTypes.func,
-  window: PropTypes.object,
 };
 
 export default Sidebar;

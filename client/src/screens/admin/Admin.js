@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useContext } from 'react';
 import { Outlet } from 'react-router-dom';
 
 // material-ui
@@ -13,9 +12,10 @@ import {
 } from '@mui/material';
 
 // project imports
-import { SET_MENU } from 'store/actions';
 import Header from '../../components/admin/Header';
 import Sidebar from '../../components/admin/Sidebar/Sidebar';
+import AddNew from './AddNew';
+import { SidebarContext } from '../../context/SidebarContext';
 
 const drawerWidth = 260;
 
@@ -73,19 +73,17 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
 
 // ==============================|| MAIN LAYOUT ||============================== //
 
-const Admin = () => {
+const Admin = ({ children }) => {
   const theme = useTheme();
   const matchDownMd = useMediaQuery(theme.breakpoints.down('lg'));
-
+  const { state, setState } = useContext(SidebarContext);
   // Handle left drawer
-  const leftDrawerOpened = useSelector((state) => state.customization.opened);
-  const dispatch = useDispatch();
   const handleLeftDrawerToggle = () => {
-    dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
+    setState({ opened: !state.opened });
   };
 
   useEffect(() => {
-    dispatch({ type: SET_MENU, opened: !matchDownMd });
+    setState({ opened: !matchDownMd });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [matchDownMd]);
 
@@ -100,9 +98,7 @@ const Admin = () => {
         elevation={0}
         sx={{
           bgcolor: '#fff',
-          transition: leftDrawerOpened
-            ? theme.transitions.create('width')
-            : 'none',
+          transition: state.opened ? theme.transitions.create('width') : 'none',
         }}
       >
         <Toolbar>
@@ -112,13 +108,13 @@ const Admin = () => {
 
       {/* drawer */}
       <Sidebar
-        drawerOpen={leftDrawerOpened}
+        drawerOpen={state.opened}
         drawerToggle={handleLeftDrawerToggle}
       />
 
       {/* main content */}
-      <Main theme={theme} open={leftDrawerOpened}>
-        <Outlet />
+      <Main theme={theme} open={state.opened}>
+        {children}
       </Main>
     </Box>
   );

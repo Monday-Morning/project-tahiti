@@ -6,6 +6,7 @@ const SidebarContextProvider = ({ children }) => {
   const [state, setState] = useState({
     opened: true,
     isOpen: [],
+    navOpened: [],
   });
 
   return (

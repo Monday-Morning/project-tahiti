@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
-import AddNew from '../../screens/admin/AddNew';
-
+import AddNew from '../../../screens/admin/AddNew';
+import Admin from '../../../screens/admin/Admin';
 
 const AddNewPage = () => {
   return (
@@ -15,7 +15,9 @@ const AddNewPage = () => {
           content='Monday Morning is the official Student Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday Morning also serves as a link between the administration and the students.'
         />
       </Head>
-      <AddNew />
+      <Admin>
+        <AddNew />
+      </Admin>
     </>
   );
 };

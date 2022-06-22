@@ -60,7 +60,7 @@ const rejectStyle = {
   borderColor: '#ff1744',
 };
 
-function Previews() {
+export default function Media() {
   const [files, setFiles] = useState([]);
   const {
     getRootProps,
@@ -122,8 +122,4 @@ function Previews() {
       <aside style={thumbsContainer}>{thumbs}</aside>
     </section>
   );
-}
-
-export default function App() {
-  return <Previews />;
 }

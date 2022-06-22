@@ -1,7 +1,5 @@
-import PropTypes from 'prop-types';
-import { forwardRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { forwardRef, useEffect, useContext } from 'react';
+import Link from 'next/link';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -13,16 +11,15 @@ import {
 } from '@mui/material';
 
 // project imports
-import { MENU_OPEN, SET_MENU } from 'store/actions';
-import config from 'config';
+import { SidebarContext } from '../../../../context/SidebarContext';
 
 // ==============================|| SIDEBAR MENU LIST ITEMS ||============================== //
 
 const NavItem = ({ item, level }) => {
   const theme = useTheme();
-  const dispatch = useDispatch();
-  const customization = useSelector((state) => state.customization);
   const matchesSM = useMediaQuery(theme.breakpoints.down('lg'));
+
+  const { state, setState } = useContext(SidebarContext);
 
   let itemTarget = '_self';
   if (item.target) {
@@ -34,7 +31,8 @@ const NavItem = ({ item, level }) => {
       <Link
         ref={ref}
         {...props}
-        to={`${config.basename}${item.url}`}
+        passHref
+        href={`${item.url}`}
         target={itemTarget}
       />
     )),
@@ -44,8 +42,8 @@ const NavItem = ({ item, level }) => {
   }
 
   const itemHandler = (id) => {
-    dispatch({ type: MENU_OPEN, id });
-    if (matchesSM) dispatch({ type: SET_MENU, opened: false });
+    setState({ ...state, isOpen: [id] });
+    if (matchesSM) setState({ ...state, opened: false });
   };
 
   // active menu item on page load
@@ -55,71 +53,67 @@ const NavItem = ({ item, level }) => {
       .split('/')
       .findIndex((id) => id === item.id);
     if (currentIndex > -1) {
-      dispatch({ type: MENU_OPEN, id: item.id });
+      setState({ ...state, isOpen: [item.id] });
     }
     // eslint-disable-next-line
   }, []);
 
   return (
-    <ListItemButton
-      {...listItemProps}
-      disabled={item.disabled}
-      sx={{
-        mb: 0.5,
-        alignItems: 'flex-start',
-        backgroundColor: level > 1 ? 'transparent !important' : 'inherit',
-        py: level > 1 ? 1 : 1.25,
-        pl: `${level * 24}px`,
-      }}
-      selected={customization.isOpen.findIndex((id) => id === item.id) > -1}
-      onClick={() => itemHandler(item.id)}
-    >
-      <ListItemText
-        primary={
-          <Typography
-            variant='body1'
-            sx={{
-              my: 'auto',
-              fontSize: '0.875rem',
-              color:
-                customization.isOpen.findIndex((id) => id === item.id) > -1
-                  ? '#000'
-                  : '#212121',
-              fontWeight:
-                customization.isOpen.findIndex((id) => id === item.id) > -1
-                  ? 500
-                  : 400,
-            }}
-            color='inherit'
-          >
-            {item.title}
-          </Typography>
-        }
-        secondary={
-          item.caption && (
+    <Link passHref href={`${item.url}`} target={itemTarget}>
+      <ListItemButton
+        disabled={item.disabled}
+        sx={{
+          mb: 0.5,
+          alignItems: 'flex-start',
+          backgroundColor: level > 1 ? 'transparent !important' : 'inherit',
+          py: level > 1 ? 1 : 1.25,
+          pl: `${level * 24}px`,
+        }}
+        selected={state.isOpen?.findIndex((id) => id === item.id) > -1}
+        onClick={() => itemHandler(item.id)}
+      >
+        <ListItemText
+          primary={
             <Typography
-              variant='caption'
+              variant='body1'
               sx={{
-                fontSize: '0.6875rem',
-                fontWeight: 500,
-                color: '#9e9e9e',
-                textTransform: 'capitalize',
+                my: 'auto',
+                fontSize: '0.875rem',
+                color:
+                  state.isOpen?.findIndex((id) => id === item.id) > -1
+                    ? '#000'
+                    : '#212121',
+                fontWeight:
+                  state.isOpen?.findIndex((id) => id === item.id) > -1
+                    ? 500
+                    : 400,
               }}
-              display='block'
-              gutterBottom
+              color='inherit'
             >
-              {item.caption}
+              {item.title}
             </Typography>
-          )
-        }
-      />
-    </ListItemButton>
+          }
+          secondary={
+            item.caption && (
+              <Typography
+                variant='caption'
+                sx={{
+                  fontSize: '0.6875rem',
+                  fontWeight: 500,
+                  color: '#9e9e9e',
+                  textTransform: 'capitalize',
+                }}
+                display='block'
+                gutterBottom
+              >
+                {item.caption}
+              </Typography>
+            )
+          }
+        />
+      </ListItemButton>
+    </Link>
   );
-};
-
-NavItem.propTypes = {
-  item: PropTypes.object,
-  level: PropTypes.number,
 };
 
 export default NavItem;

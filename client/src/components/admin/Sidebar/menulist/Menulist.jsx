@@ -4,36 +4,35 @@ import { Typography } from '@mui/material';
 // project imports
 import NavGroup from './NavGroup';
 
+import CreateIcon from '@mui/icons-material/Create';
+
 const utilities = {
   id: 'utilities',
   type: 'group',
   children: [
     {
-      id: 'icons',
+      id: 'post',
       title: 'Posts',
       type: 'collapse',
-      icon: icons.IconWindmill,
+      icon: <CreateIcon />,
       children: [
         {
           id: 'browse',
           title: 'Browse',
           type: 'item',
-          url: '/admin/browse',
-          breadcrumbs: false,
+          url: '/admin/post/browse',
         },
         {
           id: 'add-new',
           title: 'Add New',
           type: 'item',
-          url: '/admin/add-new',
-          breadcrumbs: false,
+          url: '/admin/post/add-new',
         },
         {
           id: 'media',
           title: 'Media',
           type: 'item',
-          url: '/admin/media',
-          breadcrumbs: false,
+          url: '/admin/post/media',
         },
       ],
     },

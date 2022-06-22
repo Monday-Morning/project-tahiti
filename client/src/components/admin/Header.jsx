@@ -25,9 +25,9 @@ const Header = ({ handleLeftDrawerToggle }) => {
           component='span'
           sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1 }}
         >
-          <ButtonBase disableRipple component={Link} passHref href='/'>
+          <Link passHref href='/'>
             <h2>Monday Morning</h2>
-          </ButtonBase>
+          </Link>
         </Box>
         <ButtonBase sx={{ borderRadius: '12px', overflow: 'hidden' }}>
           <Avatar
