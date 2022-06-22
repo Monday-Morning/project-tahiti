@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 // components
 import { useTheme } from '@mui/material/styles';
-import { Avatar, Box, ButtonBase } from '@mui/material';
+import { Avatar, Box, ButtonBase, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
 const Header = ({ handleLeftDrawerToggle }) => {
@@ -24,7 +24,9 @@ const Header = ({ handleLeftDrawerToggle }) => {
           sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1 }}
         >
           <Link passHref href='/'>
-            <h2>Monday Morning</h2>
+            <Typography variant='h3' sx={{ fontWeight: 700, mt: 1 }}>
+              Monday Morning
+            </Typography>
           </Link>
         </Box>
         <ButtonBase sx={{ borderRadius: '12px', overflow: 'hidden' }}>

@@ -121,7 +121,7 @@ export default function CategoryCards() {
     });
   }, [category]);
   const allCategory = Object.keys(categoryNames);
-  console.log(category);
+
   return (
     <Box sx={{ minWidth: 275 }}>
       <Card variant='outlined'>

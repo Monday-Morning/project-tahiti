@@ -89,10 +89,9 @@ const Admin = ({ children }) => {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar
-        enableColorOnDark
         position='fixed'
-        color='inherit'
         elevation={0}
+        color='inherit'
         sx={{
           bgcolor: '#fff',
           transition: state.opened ? theme.transitions.create('width') : 'none',
