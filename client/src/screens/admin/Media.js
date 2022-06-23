@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
+import { Typography } from '@mui/material';
+
 // media imports
-import SharedMedia, { thumb, thumbInner, img } from '../../components/admin/subcomponents/sharedMedia';
+import SharedMedia, {
+  thumb,
+  thumbInner,
+  img,
+} from '../../components/admin/subcomponents/sharedMedia';
 
 export default function Media() {
   const [files, setFiles] = useState([]);
@@ -36,7 +42,9 @@ export default function Media() {
           <p>Drag drop some files here, or click to select files</p>
         )}
       </div>
-      <h1>Uploaded Images</h1>
+      <Typography variant='h5' sx={{ mt: 5 }}>
+        Uploaded Images
+      </Typography>
       <aside
         style={{
           display: 'flex',

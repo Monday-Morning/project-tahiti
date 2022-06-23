@@ -12,6 +12,7 @@ import {
   FormGroup,
   FormControlLabel,
   Checkbox,
+  Typography,
 } from '@mui/material';
 import { styled } from '@mui/system';
 
@@ -39,7 +40,7 @@ export default function PublishCards() {
     <Box sx={{ minWidth: 275 }}>
       <Card variant='outlined'>
         <CardContent>
-          <Title>Publish</Title>
+          <Typography variant='h6'>Publish</Typography>
           <div>
             <FormControl style={select}>
               <InputLabel id='demo-simple-select-autowidth-label'>

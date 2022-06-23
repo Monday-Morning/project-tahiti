@@ -9,14 +9,10 @@ import {
   MenuItem,
   InputLabel,
   OutlinedInput,
+  Stack,
+  Typography,
 } from '@mui/material';
-import { styled } from '@mui/system';
 
-const Title = styled('span')(() => ({
-  fontSize: '1rem',
-  fontWeight: '500',
-  textTransform: 'capitalize',
-}));
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -59,16 +55,13 @@ export default function AuthorCard() {
     const {
       target: { value },
     } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
-    );
+    setPersonName(typeof value === 'string' ? value.split(',') : value);
   };
-
+  console.log(personName);
   return (
     <div>
       <Card sx={{ px: 3, py: 2, mb: 3, mt: 3 }}>
-        <Title>Authors</Title>
+        <Typography variant='h6'>Authors</Typography>
         <FormControl sx={{ width: 300, minWidth: '100%', marginTop: '10px' }}>
           <InputLabel id='demo-multiple-name-label'>Name</InputLabel>
           <Select
@@ -91,6 +84,11 @@ export default function AuthorCard() {
             ))}
           </Select>
         </FormControl>
+        <Stack direction='column' spacing={2}>
+          {personName.map((name) => (
+            <Typography variant='subtitle1'>{name}</Typography>
+          ))}
+        </Stack>
       </Card>
     </div>
   );

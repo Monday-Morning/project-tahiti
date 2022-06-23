@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 
 // libraries
-import { Card } from '@mui/material';
+import { Card, Typography } from '@mui/material';
 
 // media imports
 import SharedMedia, { img, thumb, thumbInner, Title } from './sharedMedia';
@@ -32,7 +32,7 @@ export default function FeaturedMedia() {
 
   return (
     <Card sx={{ px: 3, py: 2, mb: 3, mt: 3 }}>
-      <Title>Featured Media</Title>
+      <Typography variant='h6'>Featured Media</Typography>
       <section style={{ marginTop: '10px' }} className='container'>
         <div {...getRootProps({ className: 'dropzone', style })}>
           <input {...getInputProps()} />
