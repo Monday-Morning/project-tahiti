@@ -16,12 +16,12 @@ export default async function handler(req, res) {
       return;
     }
 
-    const articleId = body.articleId;
-    if (articleId) {
-      await res.unstable_revalidate(`/article/${articleId}`);
+    const url = body.url;
+    if (url) {
+      await res.unstable_revalidate(`${url}`);
       return res.json({
         revalidate: true,
-        articleId: articleId,
+        revalidatedURL: `https://mondaymorning.nitrkl.ac.in${url}`,
       });
     }
   } catch (err) {
