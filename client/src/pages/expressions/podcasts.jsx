@@ -67,13 +67,13 @@ const PodcastPage = () => (
   </>
 );
 
-// export async function getServerSideProps() {
-//   return {
-//     redirect: {
-//       destination: '/comingSoon',
-//       permanent: false,
-//     },
-//   };
-// }
+export async function getServerSideProps() {
+  return {
+    redirect: {
+      destination: '/comingSoon',
+      permanent: false,
+    },
+  };
+}
 
 export default PodcastPage;
