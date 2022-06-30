@@ -18,7 +18,7 @@ export default async function handler(req, res) {
 
     const url = body.url;
     if (url) {
-      await res.unstable_revalidate(`${url}`);
+      await res.revalidate(`${url}`);
       return res.json({
         revalidate: true,
         revalidatedURL: `https://mondaymorning.nitrkl.ac.in${url}`,
