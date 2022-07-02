@@ -17,9 +17,11 @@ import ApolloClient from '../config/ApolloClient';
 // import ScrollToTopOnMount from '../components/shared/ScrollToTopOnMount';
 import ScrollToTopButton from '../components/shared/button/ScrollToTopButton';
 import ActivityIndicator from '../components/shared/ActivityIndicator';
+import SidebarContextProvider from '../context/SidebarContext';
 // Theme
 import lightTheme from '../config/themes/light';
 import { useRouter } from 'next/router';
+import { BrowserRouter } from 'react-router-dom';
 
 function TahitiApp({ Component, pageProps }) {
   const classes = useStyles();
@@ -46,30 +48,32 @@ function TahitiApp({ Component, pageProps }) {
 
   return (
     <ApolloClient>
-      <Head>
-        {/* <!-- =============== Standard Meta Tags =============== --> */}
-        <meta charSet='utf-8' />
-        <base href='/' />
-        <meta httpEquiv='Content-Type' content='text/html;charset=UTF-8' />
-        <meta
-          name='viewport'
-          content='width=device-width, initial-scale=1, shrink-to-fit=no'
-        />
-      </Head>
-      <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={lightTheme}>
-          <CssBaseline />
+      <SidebarContextProvider>
+        <Head>
+          {/* <!-- =============== Standard Meta Tags =============== --> */}
+          <meta charSet='utf-8' />
+          <base href='/' />
+          <meta httpEquiv='Content-Type' content='text/html;charset=UTF-8' />
+          <meta
+            name='viewport'
+            content='width=device-width, initial-scale=1, shrink-to-fit=no'
+          />
+        </Head>
+        <StyledEngineProvider injectFirst>
+          <ThemeProvider theme={lightTheme}>
+            <CssBaseline />
 
-          {loading ? (
-            <ActivityIndicator loading={loading} />
-          ) : (
-            <Component {...pageProps} />
-          )}
+            {loading ? (
+              <ActivityIndicator loading={loading} />
+            ) : (
+              <Component {...pageProps} />
+            )}
 
-          <ScrollToTopButton className={classes.fab} />
-          {/* <ScrollToTopOnMount /> */}
-        </ThemeProvider>
-      </StyledEngineProvider>
+            <ScrollToTopButton className={classes.fab} />
+            {/* <ScrollToTopOnMount /> */}
+          </ThemeProvider>
+        </StyledEngineProvider>
+      </SidebarContextProvider>
     </ApolloClient>
   );
 }
