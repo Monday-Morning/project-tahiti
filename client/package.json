@@ -33,7 +33,7 @@
     "graphql": "^15.5.0",
     "history": "4.10.1",
     "moment": "^2.29.2",
-    "next": "^12.1.0",
+    "next": "^12.2.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-feather": "^2.0.9",
