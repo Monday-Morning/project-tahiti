@@ -7,7 +7,7 @@ import { Typography } from '@mui/material';
 // Assets
 import logo from '../../assets/images/logo_mm.png';
 
-function ActivityIndicator({ size = 1080 }) {
+function ActivityIndicator({ size = 512 }) {
   return (
     <div className={'loadingWrapper'}>
       <div className={'loadingSubWrapper'}>
@@ -16,7 +16,6 @@ function ActivityIndicator({ size = 1080 }) {
             src={logo}
             alt='MM Logo'
             className={'loadingLogo'}
-            placeholder='blur'
             width={`${size}px`}
             height={`${size}px`}
           />
