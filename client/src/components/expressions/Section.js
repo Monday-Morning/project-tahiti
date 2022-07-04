@@ -41,9 +41,8 @@ function Section({ heading, article }) {
         </Grid>
         <Grid item sm={3} xs={12} className={classes.smallCards}>
           {article.map((item) => (
-            <Box>
+            <Box key={item.id}>
               <NewTabLink
-                key={item.id}
                 to={getArticleLink(item.id, item.title)}
                 className={classes.link}
               >
