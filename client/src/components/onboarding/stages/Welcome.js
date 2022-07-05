@@ -25,15 +25,22 @@ function Welcome(props) {
 
   return (
     <div className={classes.container}>
-      <Image className={classes.logo} src={logo} alt='Monday Morning' />
+      <Image
+        className={classes.logo}
+        width={390}
+        height={68}
+        src={logo}
+        alt='Monday Morning'
+      />
 
       <Typography className={classes.welcomeText} variant='body1'>
         {ONBOARDING.WELCOME.CONTENT}
       </Typography>
 
       <div className={classes.loginButton} onClick={onSignupClick}>
-        <i className='fab fa-google fa-2x' />
-
+        <div className={classes.googleIcon}>
+          <i className='fab fa-google fa-2x' />
+        </div>
         <Typography variant='body1' className={classes.signupText}>
           Sign up with Google
         </Typography>
@@ -66,17 +73,16 @@ const useStyles = makeStyles((theme) => ({
     padding: 10,
   },
   logo: {
-    width: '45%',
-    height: 'auto',
-    marginBottom: 50,
-    marginTop: 30,
+    marginTop: '48px',
   },
   welcomeText: {
-    width: '60%',
+    width: '330px',
+    height: '56px',
     height: 'auto',
     color: theme.palette.secondary.neutral70,
     textAlign: 'center',
-    marginBottom: 40,
+    marginTop: '48px',
+    marginBottom: '56px',
   },
   loginButton: {
     // width: '25%',
@@ -91,6 +97,14 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       cursor: 'pointer',
     },
+  },
+  googleIcon: {
+    background:
+      'conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat',
+    '-webkit-background-clip': 'text',
+    'background-clip': 'text',
+    color: 'transparent',
+    '-webkit-text-fill-color': 'transparent',
   },
   signupText: {
     marginLeft: 20,
