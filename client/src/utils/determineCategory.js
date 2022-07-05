@@ -12,25 +12,25 @@ const CATEGORY_MAP = {
 
   // Campus => Academics => Department
   1101: 'Biotechnology and Biomedical',
-  1102: 'Civil',
+  1102: 'Ceramic',
   1103: 'Chemical',
-  1104: 'Ceramic',
+  1104: 'Civil',
   1105: 'Computer Science',
-  1106: 'Electrical',
-  1107: 'Electronics and Communication',
-  1108: 'Earth and Atmospheric',
-  1109: 'Food Process',
-  1110: 'Life Science',
-  1111: 'Mathematics',
-  1112: 'Humanities and Social Sciences',
-  1113: 'Industrial Design',
-  1114: 'Mechanical',
-  1115: 'Metallurgical and Materials',
-  1116: 'Mining',
-  1117: 'Planning and Architecture',
-  1118: 'Physics and Astronomy',
+  1106: 'Chemistry',
+  1107: 'Humanities and Social Sciences',
+  1108: 'Life Science',
+  1109: 'Mathematics',
+  1110: 'Physics and Astronomy',
+  1111: 'Electrical',
+  1112: 'Electronics and Communication',
+  1113: 'Food Process',
+  1114: 'Industrial Design',
+  1115: 'Mechanical',
+  1116: 'Metallurgical and Materials',
+  1117: 'Mining',
+  1118: 'Planning and Architecture',
   1119: 'School of Management',
-  1120: 'Chemistry',
+  1120: 'Earth and Atmospheric',
 
   2: 'Connect',
   21: 'Interviews',
@@ -40,14 +40,14 @@ const CATEGORY_MAP = {
 
   3: 'DD & CWC',
   31: "Director's Desk",
-  32: "Chief Warden's Desk",
+  32: "Chief Warden's Column",
 
   4: 'Career',
   41: 'Placements',
   42: 'Internships',
   43: 'Higher Eduction',
-  44: 'Live',
-  45: 'Guidance',
+  44: 'Guidance',
+  45: 'Live',
 
   5: 'Alumni',
   51: 'Alumni Speaks',
@@ -64,8 +64,8 @@ const CATEGORY_MAP = {
 
   // Expressions => Editorial => Type
   661: 'Opinion',
-  662: 'Science',
-  663: 'Society',
+  662: 'Science and Society',
+  663: 'Anecdotes',
 };
 
 export default (number) => CATEGORY_MAP[number];
