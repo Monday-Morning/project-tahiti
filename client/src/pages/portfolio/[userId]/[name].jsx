@@ -81,8 +81,6 @@ export async function getStaticProps({ params: { userId } }) {
     .filter(({ model }) => model === 'Article')
     .reduce((prev, curr) => [...prev, curr.reference], []);
 
-  const noOfArticle = articleIdList.length;
-
   const {
     data: { getListOfArticles: articleList },
   } = await GraphClient.query({
@@ -92,6 +90,8 @@ export async function getStaticProps({ params: { userId } }) {
       limit: 40,
     },
   });
+
+  const noOfArticle = articleList.length;
 
   let { store, storePath } = picture;
   let profileImageLink = getStores[store] + storePath;
