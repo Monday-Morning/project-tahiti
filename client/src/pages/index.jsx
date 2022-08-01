@@ -9,6 +9,7 @@ import { GraphClient } from '../config/ApolloClient';
 import Marginals from '../components/marginals/Marginals';
 import ActivityIndicator from '../components/shared/ActivityIndicator';
 import Home from '../screens/Home';
+import Events from '../components/homepage/Events';
 
 // Queries
 import getLatestIssues from '../graphql/queries/homepage/getLatestIssues';
@@ -84,6 +85,7 @@ function HomePage({ issues, squiggles }) {
         <ActivityIndicator size={150} />
       ) : (
         <Marginals>
+          <Events />
           <Home issues={issues} squiggles={squiggles} />
         </Marginals>
       )}
@@ -98,7 +100,6 @@ export async function getStaticProps({ preview }) {
     query: getLatestIssues,
     variables: { limit: 2 },
   });
-
 
   if (!issues || issues.length !== 2) {
     return {
