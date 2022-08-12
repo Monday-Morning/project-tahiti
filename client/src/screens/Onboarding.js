@@ -55,7 +55,7 @@ function Onboarding() {
   const renderStages = () => {
     switch (stage) {
       case STAGES.WELCOME:
-        return <Welcome onNext={setStageToVerifyEmail} onLogin={onLogin} />;
+        return <Welcome onNext={setStageToNewsletter} onLogin={onLogin} />;
       case STAGES.VERIFY_EMAIL:
         return (
           <VerifyEmail
@@ -111,8 +111,8 @@ const useStyles = makeStyles((theme) => ({
   box: {
     minWidth: 350,
     minHeight: 500,
-    width: '55%',
-    height: '55%',
+    width: '790px',
+    height: '468px',
     backgroundColor: theme.palette.background.default,
     borderRadius: 5,
     overflow: 'hidden',
