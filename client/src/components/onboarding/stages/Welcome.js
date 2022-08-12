@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 import makeStyles from '@mui/styles/makeStyles';
-import { Grid, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 
 // Assets
 import logo from '../../../assets/images/logo.png';
@@ -11,17 +11,31 @@ import logo from '../../../assets/images/logo.png';
 // Constants
 import { ONBOARDING } from '../../../assets/placeholder/onboarding';
 
-function Welcome(props) {
+//Context
+import authCotext from '../../../context/auth/AuthContext';
+
+function Welcome() {
   const classes = useStyles();
 
-  // Props
-  const { onNext, onLogin } = props;
-
-  // Helper Functions
-  const onSignupClick = () => {
-    onLogin();
-    onNext();
-  };
+  const { loginWithToken } = useContext(authCotext);
+  useEffect(() => {
+    function handleCredentialResponse(response) {
+      loginWithToken(response.credential);
+      // onNext();
+    }
+    function gis() {
+      google.accounts.id.initialize({
+        client_id: process.env.GOOGLE_CLIENT_ID,
+        callback: handleCredentialResponse,
+      });
+      google.accounts.id.renderButton(document.getElementById('buttonDiv'), {
+        theme: 'outline',
+        size: 'large',
+      });
+      google.accounts.id.prompt();
+    }
+    gis();
+  }, []);
 
   return (
     <div className={classes.container}>
@@ -37,21 +51,12 @@ function Welcome(props) {
         {ONBOARDING.WELCOME.CONTENT}
       </Typography>
 
-      <div className={classes.loginButton} onClick={onSignupClick}>
-        <div className={classes.googleIcon}>
-          <i className='fab fa-google fa-2x' />
-        </div>
-        <Typography variant='body1' className={classes.signupText}>
-          Sign up with Google
-        </Typography>
-      </div>
-
+      <div id='buttonDiv'></div>
       <Link href='/' passHref style={{ textDecoration: 'none' }}>
         <Typography className={classes.skip} variant='body1'>
           Skip
         </Typography>
       </Link>
-
       <Typography className={classes.terms} variant='body2'>
         {ONBOARDING.WELCOME.TERMS}
       </Typography>
@@ -97,14 +102,6 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       cursor: 'pointer',
     },
-  },
-  googleIcon: {
-    background:
-      'conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat',
-    '-webkit-background-clip': 'text',
-    'background-clip': 'text',
-    color: 'transparent',
-    '-webkit-text-fill-color': 'transparent',
   },
   signupText: {
     marginLeft: 20,
