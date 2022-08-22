@@ -89,8 +89,8 @@ Monday Morning is the student media body of National Institute of Technology, Ro
 Project Infinity is about updating the Monday Morning website using modern technologies which is divided accross 3 main sub-projects.
 
 1. [project-tahiti](https://github.com/Monday-Morning/project-tahiti): The Client side application of the website.
-1. [project-reclamation](https://github.com/Monday-Morning/project-tahiti): The Server application of the website.
-1. [project-pegasus](https://github.com/Monday-Morning/project-tahiti): The cross-platform Mobile application of the Monday Morning.
+1. [project-reclamation](https://github.com/Monday-Morning/project-reclamation): The Server application of the website.
+1. [project-pegasus](https://github.com/Monday-Morning/project-pegasus): The cross-platform Mobile application of the Monday Morning.
 
 ## Built With
 
