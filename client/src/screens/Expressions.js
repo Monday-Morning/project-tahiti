@@ -68,7 +68,7 @@ function Expressions() {
 
   return (
     <div className={classes.root}>
-      <Container maxWidth='xl'>
+      <Container>
         <div className={classes.header}>
           <Typography variant='h1' className={classes.head}>
             Expressions

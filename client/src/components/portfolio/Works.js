@@ -15,7 +15,7 @@ const Works = ({ user }) => {
   const { articleList } = user;
 
   return (
-    <Container maxWidth='xl'>
+    <Container>
       <div className={classes.wrapper}>
         <div className={classes.sectionWrapper}>
           {/* Content */}
