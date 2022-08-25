@@ -18,7 +18,7 @@ const UserCard = ({ user }) => {
     user;
 
   return (
-    <Container maxWidth='xl'>
+    <Container>
       <div className={classes.wrapper}>
         <Card className={classes.card}>
           <CardContent>
