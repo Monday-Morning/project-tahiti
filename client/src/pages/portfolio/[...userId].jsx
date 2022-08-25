@@ -188,5 +188,6 @@ export async function getStaticProps({
       noOfArticle,
       year,
     },
+    revalidate: 60 * 60 * 24 * 7,
   };
 }
