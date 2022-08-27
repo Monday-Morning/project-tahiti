@@ -6,6 +6,7 @@ export default gql`
       id
       firstName
       lastName
+      fullName
       email
       picture {
         store
