@@ -60,7 +60,7 @@ export async function getStaticProps({
 }) {
   /**** to bring the portfolio URL in correct format - start ****/
 
-  if (!userSlug) {
+  if (!userSlug && !portfolioId.match(/^[0-9a-f]{24}$/g)) {
     try {
       const {
         data: {
