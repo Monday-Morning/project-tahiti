@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 import makeStyles from '@mui/styles/makeStyles';
-import { Grid, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 
 // Assets
 import logo from '../../../assets/images/logo.png';
@@ -11,40 +11,52 @@ import logo from '../../../assets/images/logo.png';
 // Constants
 import { ONBOARDING } from '../../../assets/placeholder/onboarding';
 
-function Welcome(props) {
+//Context
+import authCotext from '../../../context/auth/AuthContext';
+
+function Welcome() {
   const classes = useStyles();
 
-  // Props
-  const { onNext, onLogin } = props;
-
-  // Helper Functions
-  const onSignupClick = () => {
-    onLogin();
-    onNext();
-  };
+  const { loginWithToken } = useContext(authCotext);
+  useEffect(() => {
+    function handleCredentialResponse(response) {
+      loginWithToken(response.credential);
+      // onNext();
+    }
+    function gis() {
+      google.accounts.id.initialize({
+        client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+        callback: handleCredentialResponse,
+      });
+      google.accounts.id.renderButton(document.getElementById('buttonDiv'), {
+        theme: 'outline',
+        size: 'large',
+      });
+      google.accounts.id.prompt();
+    }
+    gis();
+  }, []);
 
   return (
     <div className={classes.container}>
-      <Image className={classes.logo} src={logo} alt='Monday Morning' />
+      <Image
+        className={classes.logo}
+        width={390}
+        height={68}
+        src={logo}
+        alt='Monday Morning'
+      />
 
       <Typography className={classes.welcomeText} variant='body1'>
         {ONBOARDING.WELCOME.CONTENT}
       </Typography>
 
-      <div className={classes.loginButton} onClick={onSignupClick}>
-        <i className='fab fa-google fa-2x' />
-
-        <Typography variant='body1' className={classes.signupText}>
-          Sign up with Google
-        </Typography>
-      </div>
-
+      <div id='buttonDiv'></div>
       <Link href='/' passHref style={{ textDecoration: 'none' }}>
         <Typography className={classes.skip} variant='body1'>
           Skip
         </Typography>
       </Link>
-
       <Typography className={classes.terms} variant='body2'>
         {ONBOARDING.WELCOME.TERMS}
       </Typography>
@@ -66,17 +78,16 @@ const useStyles = makeStyles((theme) => ({
     padding: 10,
   },
   logo: {
-    width: '45%',
-    height: 'auto',
-    marginBottom: 50,
-    marginTop: 30,
+    marginTop: '48px',
   },
   welcomeText: {
-    width: '60%',
+    width: '330px',
+    height: '56px',
     height: 'auto',
     color: theme.palette.secondary.neutral70,
     textAlign: 'center',
-    marginBottom: 40,
+    marginTop: '48px',
+    marginBottom: '56px',
   },
   loginButton: {
     // width: '25%',
