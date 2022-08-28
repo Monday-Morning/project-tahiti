@@ -183,7 +183,7 @@ export async function getStaticProps({ params: { subCategory }, preview }) {
 }
 
 export async function getStaticPaths() {
-  let routes = ROUTES.SUB_CATEGORIES.ARRAY[5];
+  let routes = ROUTES.SUB_CATEGORIES.OBJECT.EXPRESSIONS;
 
   const paths = routes.flat().map(({ path }) => ({
     params: { subCategory: path?.split('/')[2] },
