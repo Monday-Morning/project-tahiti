@@ -28,7 +28,7 @@ function Home({ issues, squiggles }) {
 
   return (
     <>
-      <Container maxWidth='xl'>
+      <Container>
         <ArticleGrid articles={featured} />
         <Squiggles data={squiggles} />
 

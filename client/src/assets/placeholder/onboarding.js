@@ -1,8 +1,7 @@
 /* eslint-disable */
 export const ONBOARDING = Object.freeze({
   WELCOME: {
-    CONTENT:
-      'Welcome to Monday Morning, \n the student media body of NIT Rourkela, \n and India’s 2nd largest student media body !',
+    CONTENT: 'Welcome to Monday Morning, student media body of NIT Rourkela',
     TERMS: 'By creating an account, I accept \n MM’s Terms of Use',
   },
   VERIFY_EMAIL: {

@@ -45,16 +45,19 @@ const link = from([
   }),
 ]);
 
-const authLink = setContext((_, { headers }) => ({
-  headers: {
-    ...headers,
-    Authorization: '',
-  },
-}));
+const getApolloLink = (token) => {
+  const authLink = setContext((_, { headers }) => ({
+    headers: {
+      ...headers,
+      Authorization: token ? token : '',
+    },
+  }));
+  return authLink.concat(link);
+};
 
 const client = new ApolloClient({
   cache,
-  link: authLink.concat(link),
+  link: getApolloLink(),
   name: 'monday-morning-client',
   version: '1.3',
   queryDeduplication: false,
@@ -73,10 +76,10 @@ const client = new ApolloClient({
   },
 });
 
-const ProviderWrapper = ({ children }) => (
-  <ApolloProvider client={client}>{children}</ApolloProvider>
-);
+const ProviderWrapper = ({ children }) => {
+  return <ApolloProvider client={client}>{children}</ApolloProvider>;
+};
 
-export { client as GraphClient };
+export { client as GraphClient, getApolloLink };
 
 export default ProviderWrapper;
