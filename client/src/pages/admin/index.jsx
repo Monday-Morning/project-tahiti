@@ -2,6 +2,8 @@ import React from 'react';
 import Head from 'next/head';
 import Admin from '../../screens/admin/Admin';
 
+import { parseCookies } from 'nookies';
+
 //Components
 
 const AdminPage = () => {
@@ -21,13 +23,15 @@ const AdminPage = () => {
   );
 };
 
-// export async function getServerSideProps() {
-//   return {
-//     redirect: {
-//       destination: '/comingSoon',
-//       permanent: false,
-//     },
-//   };
-// }
+export async function getServerSideProps(ctx) {
+  // const cookies = parseCookies(ctx);
+  // console.log(cookies);
+  return {
+    redirect: {
+      destination: '/comingSoon',
+      permanent: false,
+    },
+  };
+}
 
 export default AdminPage;
