@@ -188,6 +188,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[0],
     borderRadius: '8px',
     [theme.breakpoints.down('lg')]: {
+      marginTop: '10px',
       padding: '18px 6px 24px 6px',
     },
   },
