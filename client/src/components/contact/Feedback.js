@@ -182,12 +182,16 @@ const useStyles = makeStyles((theme) => ({
       marginTop: '24px',
       padding: '0px 40px 0px 40px',
     },
+    [theme.breakpoints.down('sm')]: {
+      padding: '0px 10px 0px 35px',
+    },
   },
   elementWrapper: {
     padding: '18px 0px 24px 24px',
     boxShadow: theme.shadows[0],
     borderRadius: '8px',
     [theme.breakpoints.down('lg')]: {
+      marginTop: '10px',
       padding: '18px 6px 24px 6px',
     },
   },
