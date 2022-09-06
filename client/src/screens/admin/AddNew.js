@@ -1,38 +1,50 @@
 // libraries
-import { Grid, TextField, Box } from '@mui/material';
+import { Grid, TextField, Button } from '@mui/material';
 
 // Components
 import AuthorCard from '../../components/admin/subcomponents/AuthorCards';
 import CategoryCards from '../../components/admin/subcomponents/CategoryCards';
 import FeaturedMedia from '../../components/admin/subcomponents/FeaturedMedia';
-import PublishCard from '../../components/admin/subcomponents/PublishCards';
 
 const AddNew = () => (
   <div>
-    <Grid container spacing={3}>
+    <TextField
+      style={{ width: '100%', backgroundColor: '#fff' }}
+      id='outlined-basic'
+      label='Title'
+      variant='outlined'
+    />
+    <Grid sx={{ mt: '10px' }} container spacing={3}>
+      <Grid item lg={4} md={4} sm={12} xs={12}>
+        <Button sx={{ width: '100%', height: '50px' }} variant='contained'>
+          Create
+        </Button>
+      </Grid>
       <Grid item lg={8} md={8} sm={12} xs={12}>
-        <Box
-          component='form'
-          sx={{
-            '& > :not(style)': { m: 1, width: '25ch' },
-          }}
-          noValidate
-          autoComplete='off'
-        >
-          <TextField
-            style={{ width: '100%' }}
-            id='outlined-basic'
-            label='Title'
-            variant='outlined'
-          />
-        </Box>
+        <TextField
+          style={{ width: '100%', backgroundColor: '#fff' }}
+          id='outlined-basic'
+          label='Title'
+          variant='outlined'
+        />
+      </Grid>
+    </Grid>
+    <Grid container spacing={3}>
+      <Grid item lg={4} md={4} sm={12} xs={12}>
+        <CategoryCards />
       </Grid>
 
-      <Grid item lg={4} md={4} sm={12} xs={12}>
-        <PublishCard />
+      <Grid item lg={8} md={8} sm={12} xs={12}>
+        <Grid container spacing={1}>
+          <Grid item xs={6} md={5}>
+            <FeaturedMedia />
+          </Grid>
+          <Grid item xs={6} md={7}>
+            <FeaturedMedia />
+          </Grid>
+        </Grid>
+
         <AuthorCard />
-        <CategoryCards />
-        <FeaturedMedia />
       </Grid>
     </Grid>
   </div>
