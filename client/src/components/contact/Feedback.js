@@ -52,121 +52,126 @@ const Feedback = () => {
   return (
     <div className={classes.wrapper}>
       <Grid container className={classes.elementWrapper} spacing={4}>
-        <Grid item xs={12} md={7}>
-          <Typography variant='h3' className={classes.title}>
-            We’d love to hear from you
-          </Typography>
-          <form onSubmit={handleSubmit}>
-            <div className={classes.nameWrapper}>
-              <TextField
-                variant='standard'
-                className={classes.nameInput}
-                name='name'
-                type='text'
-                placeholder='Name'
-                disableUnderline={true}
-                value={name}
-                onChange={(event) => setName(event.target.value)}
-                onFocus={() => setError({ ...error, nameError: '' })}
-                onBlur={() => {
-                  setName(name.trim()),
-                    name.length <= 0
-                      ? setError({ ...error, nameError: 'Name Required' })
-                      : setError({ ...error, nameError: '' });
-                }}
-                InputProps={{ disableUnderline: true }}
-              />
-            </div>
-            <Typography className={classes.errorMessage}>
-              {error.nameError}
+        <Grid container className={classes.testingWrapper}>
+          <Grid item xs={12} md={7}>
+            <Typography variant='h3' className={classes.title}>
+              We’d love to hear from you
             </Typography>
+            <form onSubmit={handleSubmit}>
+              <div className={classes.nameWrapper}>
+                <TextField
+                  variant='standard'
+                  className={classes.nameInput}
+                  name='name'
+                  type='text'
+                  placeholder='Name'
+                  disableUnderline={true}
+                  value={name}
+                  onChange={(event) => setName(event.target.value)}
+                  onFocus={() => setError({ ...error, nameError: '' })}
+                  onBlur={() => {
+                    setName(name.trim()),
+                      name.length <= 0
+                        ? setError({ ...error, nameError: 'Name Required' })
+                        : setError({ ...error, nameError: '' });
+                  }}
+                  InputProps={{ disableUnderline: true }}
+                />
+              </div>
+              <Typography className={classes.errorMessage}>
+                {error.nameError}
+              </Typography>
 
-            <div className={classes.emailWrapper}>
-              <TextField
-                variant='standard'
-                className={classes.emailInput}
-                name='email'
-                type='email'
-                placeholder='Email'
-                InputProps={{ disableUnderline: true }}
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                onFocus={() => setError({ ...error, emailError: '' })}
-                onBlur={() => {
-                  !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
-                    ? setError({
-                        ...error,
-                        emailError: 'Valid Email-Id Required',
-                      })
-                    : setError({ ...error, emailError: '' });
-                }}
-              />
-            </div>
-            <Typography className={classes.errorMessage}>
-              {error.emailError}
-            </Typography>
+              <div className={classes.emailWrapper}>
+                <TextField
+                  variant='standard'
+                  className={classes.emailInput}
+                  name='email'
+                  type='email'
+                  placeholder='Email'
+                  InputProps={{ disableUnderline: true }}
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  onFocus={() => setError({ ...error, emailError: '' })}
+                  onBlur={() => {
+                    !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+                      ? setError({
+                          ...error,
+                          emailError: 'Valid Email-Id Required',
+                        })
+                      : setError({ ...error, emailError: '' });
+                  }}
+                />
+              </div>
+              <Typography className={classes.errorMessage}>
+                {error.emailError}
+              </Typography>
 
-            <div className={classes.messageWrapper}>
-              <TextField
-                variant='standard'
-                multiline
-                className={classes.messageInput}
-                rows='8'
-                name='message'
-                placeholder='Write your message here'
-                InputProps={{ disableUnderline: true }}
-                value={message}
-                onChange={(event) => setMessage(event.target.value)}
-                onFocus={() => setError({ ...error, messageError: '' })}
-                onBlur={() => {
-                  setMessage(message.trim()),
-                    message.length <= 0
-                      ? setError({ ...error, messageError: 'Message Required' })
-                      : setError({ ...error, messageError: '' });
-                }}
-              />
-            </div>
+              <div className={classes.messageWrapper}>
+                <TextField
+                  variant='standard'
+                  multiline
+                  className={classes.messageInput}
+                  rows='8'
+                  name='message'
+                  placeholder='Write your message here'
+                  InputProps={{ disableUnderline: true }}
+                  value={message}
+                  onChange={(event) => setMessage(event.target.value)}
+                  onFocus={() => setError({ ...error, messageError: '' })}
+                  onBlur={() => {
+                    setMessage(message.trim()),
+                      message.length <= 0
+                        ? setError({
+                            ...error,
+                            messageError: 'Message Required',
+                          })
+                        : setError({ ...error, messageError: '' });
+                  }}
+                />
+              </div>
 
-            <Typography className={classes.errorMessage}>
-              {error.messageError}
-            </Typography>
+              <Typography className={classes.errorMessage}>
+                {error.messageError}
+              </Typography>
 
-            <div container className={classes.errorMessage}>
-              <Typography>{error.error}</Typography>
-            </div>
-            <div container className={classes.successMessage}>
-              <Typography>{error.success}</Typography>
-            </div>
+              <div container className={classes.errorMessage}>
+                <Typography>{error.error}</Typography>
+              </div>
+              <div container className={classes.successMessage}>
+                <Typography>{error.success}</Typography>
+              </div>
 
-            <Grid
-              container
-              justifyContent='flex-end'
-              spacing={3}
-              className={classes.buttonWrapper}
-            >
-              <Grid item>
-                <Button onClick={resetFields} variant='contained'>
-                  <span className={classes.buttonText}>Cancel</span>
-                </Button>
+              <Grid
+                container
+                justifyContent='flex-end'
+                spacing={3}
+                className={classes.buttonWrapper}
+              >
+                <Grid item>
+                  <Button onClick={resetFields} variant='contained'>
+                    <span className={classes.buttonText}>Cancel</span>
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button
+                    type='submit'
+                    variant='contained'
+                    color='primary'
+                    className={classes.submitButton}
+                    disabled={!enabled}
+                  >
+                    <span className={classes.buttonText}>send Message</span>
+                  </Button>
+                </Grid>
               </Grid>
-              <Grid item>
-                <Button
-                  type='submit'
-                  variant='contained'
-                  color='primary'
-                  className={classes.submitButton}
-                  disabled={!enabled}
-                >
-                  <span className={classes.buttonText}>send Message</span>
-                </Button>
-              </Grid>
-            </Grid>
-          </form>
-        </Grid>
-        <Grid item xs={12} md={5}>
-          <div className={classes.imageWrapper}>
-            <Image src={image} alt='Feedback' className={classes.image} />
-          </div>
+            </form>
+          </Grid>
+          <Grid item xs={12} md={5}>
+            <div className={classes.imageWrapper}>
+              <Image src={image} alt='Feedback' className={classes.image} />
+            </div>
+          </Grid>
         </Grid>
       </Grid>
     </div>
@@ -186,13 +191,26 @@ const useStyles = makeStyles((theme) => ({
       padding: '0px 10px 0px 35px',
     },
   },
+  testingWrapper: {
+    padding: '40px',
+    [theme.breakpoints.down('sm')]: {
+      padding: '20px',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+  },
   elementWrapper: {
-    padding: '18px 0px 24px 24px',
     boxShadow: theme.shadows[0],
     borderRadius: '8px',
     [theme.breakpoints.down('lg')]: {
       marginTop: '10px',
       padding: '18px 6px 24px 6px',
+    },
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
   },
   title: {
@@ -281,6 +299,12 @@ const useStyles = makeStyles((theme) => ({
   buttonWrapper: {
     padding: '10px 16px 5px 5px',
     margin: '0px 0px 15px 0px',
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
   },
   buttonText: {
     [theme.breakpoints.down('lg')]: {
