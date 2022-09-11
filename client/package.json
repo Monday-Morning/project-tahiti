@@ -33,6 +33,8 @@
     "firebase": "^9.8.4",
     "graphql": "^15.5.0",
     "history": "4.10.1",
+    "imagekit": "^4.1.1",
+    "imagekit-javascript": "^1.5.2",
     "moment": "^2.29.4",
     "next": "^12.2.0",
     "nookies": "^2.5.2",
