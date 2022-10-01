@@ -25,13 +25,7 @@ function Archive() {
       </Container>
       <Calendar />
       <Container>
-        <ArticleCardStack articleList={ARTICLES.slice(0, 3)} />
-        {ARTICLES.length > 3 && (
-          <ArticleCardStack articleList={ARTICLES.slice(3, 6)} />
-        )}
-        {ARTICLES.length > 6 && (
-          <ArticleCardStack articleList={ARTICLES.slice(6, 9)} />
-        )}
+        <ArticleCardStack articleList={ARTICLES} />
       </Container>
     </div>
   );
