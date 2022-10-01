@@ -21,7 +21,7 @@ function ArchivePage({}) {
           content='Monday Morning is the official Student Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday Morning also serves as a link between the administration and the students.'
         />
         <meta
-          name='keywords' 
+          name='keywords'
           content='archieve, monday morning, mondaymorning, monday morning, mm, nit rkl, nit, nit rourkela, nitr, nitrkl, rkl, rourkela'
         />
 
@@ -72,11 +72,7 @@ function ArchivePage({}) {
         />
       </Head>
       <Marginals>
-        {isFallback ? (
-          <ActivityIndicator size={150} />
-        ) : (
-          <Archive/>
-        )}
+        {isFallback ? <ActivityIndicator size={150} /> : <Archive />}
       </Marginals>
     </>
   );
