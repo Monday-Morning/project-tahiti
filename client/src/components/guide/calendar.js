@@ -1,7 +1,13 @@
 import { React, useState } from 'react';
 
 // libraries
-import { Typography, Grid, Button, useMediaQuery } from '@mui/material';
+import {
+  Typography,
+  Grid,
+  Button,
+  useMediaQuery,
+  Container,
+} from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 
 //Theme
@@ -63,52 +69,54 @@ function Calendar() {
           </div>
         ) : (
           <div className={classes.archiveWrap}>
-            <Grid
-              container
-              direction='row'
-              justifyContent='flex-start'
-              alignItems='center'
-              className={classes.timeWrapper}
-            >
-              {ARCHIVES.years.map((year, key) => (
-                <Grid item key={key}>
-                  <span
-                    className={
-                      activeYear === year ? classes.active : classes.time
-                    }
-                    onClick={() => selectYear(year)}
-                    onKeyDown={() => selectYear(year)}
-                    role='button'
-                    tabIndex={0}
-                  >
-                    {year}
-                  </span>
-                </Grid>
-              ))}
-            </Grid>
-            <Grid
-              container
-              direction='row'
-              justifyContent='flex-start'
-              alignItems='center'
-              className={classes.timeWrapper}
-            >
-              {ARCHIVES.months.map((month, key) => (
-                <Grid item key={key}>
-                  <span
-                    className={
-                      activeMonth === month ? classes.active : classes.time
-                    }
-                    onClick={() => selectMonth(month)}
-                    onKeyDown={() => selectMonth(month)}
-                    role='button'
-                    tabIndex={0}
-                  >
-                    {month}
-                  </span>
-                </Grid>
-              ))}
-            </Grid>
+            <Container>
+              <Grid
+                container
+                direction='row'
+                justifyContent='flex-start'
+                alignItems='center'
+                className={classes.timeWrapper}
+              >
+                {ARCHIVES.years.map((year, key) => (
+                  <Grid item key={key}>
+                    <span
+                      className={
+                        activeYear === year ? classes.active : classes.time
+                      }
+                      onClick={() => selectYear(year)}
+                      onKeyDown={() => selectYear(year)}
+                      role='button'
+                      tabIndex={0}
+                    >
+                      {year}
+                    </span>
+                  </Grid>
+                ))}
+              </Grid>
+              <Grid
+                container
+                direction='row'
+                justifyContent='flex-start'
+                alignItems='center'
+                className={classes.timeWrapper}
+              >
+                {ARCHIVES.months.map((month, key) => (
+                  <Grid item key={key}>
+                    <span
+                      className={
+                        activeMonth === month ? classes.active : classes.time
+                      }
+                      onClick={() => selectMonth(month)}
+                      onKeyDown={() => selectMonth(month)}
+                      role='button'
+                      tabIndex={0}
+                    >
+                      {month}
+                    </span>
+                  </Grid>
+                ))}
+              </Grid>
+            </Container>
           </div>
         )}
       </div>
@@ -116,7 +124,7 @@ function Calendar() {
       <div className={classes.postWrapper}>
         <Typography variant='h3'>
           <span className={classes.select}>Selected:</span>
-          {activeMonth} {activeYear}
+          {activeMonth === 'All' ? activeMonth : `${activeMonth} ${activeYear}`}
         </Typography>
       </div>
     </>
@@ -158,6 +166,7 @@ const useStyles = makeStyles((theme) => ({
   select: {
     color: theme.palette.grey[400],
     marginRight: '26px',
+    marginLeft: '5px',
   },
   timeWrapper: {
     margin: '24px 0px',

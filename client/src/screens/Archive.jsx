@@ -16,7 +16,7 @@ function Archive() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <>
       <Container>
         <BackButton path='/' goTo='Home' />
         <Typography variant='h1' className={classes.head}>
@@ -27,20 +27,16 @@ function Archive() {
       <Container>
         <ArticleCardStack articleList={ARTICLES} />
       </Container>
-    </div>
+    </>
   );
 }
 
 export default Archive;
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    marginTop: '2rem',
-    marginBottom: '2rem',
-  },
   head: {
     color: theme.palette.primary.blue60,
     lineHeight: '2rem',
-    margin: '2.7rem 0 2rem 0',
+    margin: '2.7rem 0 2rem 0.7rem',
   },
 }));
