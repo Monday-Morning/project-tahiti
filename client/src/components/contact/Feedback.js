@@ -52,7 +52,7 @@ const Feedback = () => {
   return (
     <div className={classes.wrapper}>
       <Grid container className={classes.elementWrapper} spacing={4}>
-        <Grid container className={classes.testingWrapper}>
+        <Grid container className={classes.feedbackWrapper}>
           <Grid item xs={12} md={7}>
             <Typography variant='h3' className={classes.title}>
               We’d love to hear from you
@@ -191,7 +191,7 @@ const useStyles = makeStyles((theme) => ({
       padding: '0px 10px 0px 35px',
     },
   },
-  testingWrapper: {
+  feedbackWrapper: {
     padding: '40px',
     [theme.breakpoints.down('sm')]: {
       padding: '20px',
