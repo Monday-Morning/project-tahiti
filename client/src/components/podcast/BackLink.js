@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     textDecoration: 'none',
+    cursor: 'pointer',
     color: theme.palette.secondary.neutral70,
   },
   text: {
