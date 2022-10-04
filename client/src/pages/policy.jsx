@@ -10,7 +10,7 @@ function PolicyPage() {
     <>
       <Head>
         {/* <!-- =============== Primary Meta Tags =============== --> */}
-        <title>Contact | Monday Morning</title>
+        <title>Policy | Monday Morning</title>
         <meta name='title' content='Policy | Monday Morning' />
         <meta
           name='description'
@@ -25,13 +25,13 @@ function PolicyPage() {
         <meta property='og:type' content='website' />
         <meta
           property='og:url'
-          content='https://mondaymorning.nitrkl.ac.in/contact'
+          content='https://mondaymorning.nitrkl.ac.in/policy'
         />
         <meta
           property='og:site_name'
           content='Monday Morning | The Student Media Body of NIT Rourkela, India'
         />
-        <meta property='og:title' content='Contact | Monday Morning' />
+        <meta property='og:title' content='Policy | Monday Morning' />
         <meta
           property='og:description'
           content='Monday Morning is the Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students.'
@@ -55,7 +55,7 @@ function PolicyPage() {
         <meta property='twitter:card' content='summary_large_image' />
         <meta
           property='twitter:url'
-          content='https://mondaymorning.nitrkl.ac.in/Contact'
+          content='https://mondaymorning.nitrkl.ac.in/Policy'
         />
         <meta property='twitter:title' content='Monday Morning' />
         <meta
