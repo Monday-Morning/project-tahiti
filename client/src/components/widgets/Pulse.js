@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import makeStyles from '@mui/styles/makeStyles';
 import { Card, CardContent, Grid, Typography, Button } from '@mui/material';
@@ -7,11 +7,16 @@ import { Card, CardContent, Grid, Typography, Button } from '@mui/material';
 import pulseImg from '../../assets/images/pulseImg.png';
 import { POLLS as polls } from '../../assets/placeholder/widget';
 import Image from 'next/image';
+import PieChart from "../homepage/PieChart";
 
 const Pulse = () => {
-  // const polls = POLLS
 
+  // const polls = POLLS
   const classes = useStyles();
+  const[buttonClick, setButtonClick]=useState(false)
+  const handleButtonClick=()=>{
+    setButtonClick(!buttonClick)
+  }
   return (
     <Card className={classes.pulseCard}>
       <CardContent>
@@ -33,19 +38,14 @@ const Pulse = () => {
               </div>
             ))}
             <Grid className={classes.voteButton}>
-              <Button variant='contained' color='primary'>
-                Vote
+              <Button variant='contained' color='primary' onClick={handleButtonClick}>
+                {buttonClick?<p>Hide Results</p>:<p>Vote</p>}
               </Button>
             </Grid>
           </Grid>
-
           <Grid item sm={4} className={classes.imageContainer}>
             <Grid container justifyContent='center'>
-              <Image
-                src={pulseImg}
-                alt='Pulse Image'
-                className={classes.image}
-              />
+              {buttonClick?<PieChart/>:<Image src={pulseImg} alt='Pulse Image' className={classes.image}/>}
             </Grid>
           </Grid>
         </Grid>
