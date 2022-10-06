@@ -4,7 +4,7 @@ import { Card, CardContent, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { ChevronLeft, ChevronRight } from 'react-feather';
 
-function Calendar() {
+const Calendar = () => {
   const classes = useStyles();
   return (
     <Card className={classes.calendar}>
@@ -103,7 +103,7 @@ function Calendar() {
       </CardContent>
     </Card>
   );
-}
+};
 export default Calendar;
 
 const useStyles = makeStyles((theme) => ({

@@ -1,13 +1,13 @@
 import React from 'react';
 
 // libraries
-import { Container } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 
 // Components
 import Squiggles from '../components/widgets/Squiggles';
 import ArticleCardStack from '../components/widgets/article/ArticleCardStack';
-import Pulse from '../components/widgets/Pulse';
-// import Calendar from '../components/homepage/Calendar';
+//import Pulse from '../components/widgets/Pulse';
+//import Calendar from '../components/homepage/Calendar';
 // import Banner from '../components/homepage/Banner';
 import Trending from '../components/homepage/Trending';
 // import SocialMedia from '../components/homepage/SocialMedia';
@@ -44,7 +44,7 @@ function Home({ issues, squiggles }) {
           <Grid item sm={4}>
             <Calendar />
           </Grid>
-        </Grid> */}
+          </Grid> */}
 
         {articles.length > 3 && (
           <ArticleCardStack articleList={articles.slice(3, 6)} />
@@ -56,7 +56,6 @@ function Home({ issues, squiggles }) {
         {/* <SocialMedia /> */}
         <Trending />
         {/* </div> */}
-        <Pulse/>
       </Container>
     </>
   );
