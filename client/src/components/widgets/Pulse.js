@@ -14,7 +14,7 @@ const Pulse = () => {
   const classes = useStyles();
   const [buttonClick, setButtonClick] = useState(false);
   const handleButtonClick = () => {
-    setButtonClick(!buttonClick);
+    setButtonClick((prev) => !prev);
   };
   return (
     <Card className={classes.pulseCard}>
@@ -42,7 +42,7 @@ const Pulse = () => {
                 color='primary'
                 onClick={handleButtonClick}
               >
-                {buttonClick ? <p>Hide Results</p> : <p>Vote</p>}
+                Vote
               </Button>
             </Grid>
           </Grid>
@@ -97,12 +97,12 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '10px',
   },
   voteButton: {
+    fontFamily: 'Source Sans Pro',
     marginTop: '55px',
     [theme.breakpoints.down('md')]: {
       display: 'flex',
       justifyContent: 'center',
     },
-    fontFamily: 'Source Sans Pro',
   },
   content: {
     [theme.breakpoints.down('md')]: {
