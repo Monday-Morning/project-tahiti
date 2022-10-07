@@ -6,8 +6,8 @@ import { Container, Grid } from '@mui/material';
 // Components
 import Squiggles from '../components/widgets/Squiggles';
 import ArticleCardStack from '../components/widgets/article/ArticleCardStack';
-//import Pulse from '../components/widgets/Pulse';
-//import Calendar from '../components/homepage/Calendar';
+import Pulse from '../components/widgets/Pulse';
+import Calendar from '../components/homepage/Calendar';
 // import Banner from '../components/homepage/Banner';
 import Trending from '../components/homepage/Trending';
 // import SocialMedia from '../components/homepage/SocialMedia';
@@ -37,14 +37,14 @@ function Home({ issues, squiggles }) {
           title='This Issue'
         />
 
-        {/* <Grid container spacing={4} style={{ marginTop: 25 }}>
+        {/*<Grid container spacing={4} style={{ marginTop: 25 }}>
           <Grid item sm={8}>
             <Pulse />
           </Grid>
           <Grid item sm={4}>
             <Calendar />
           </Grid>
-          </Grid> */}
+          </Grid>*/}
 
         {articles.length > 3 && (
           <ArticleCardStack articleList={articles.slice(3, 6)} />
