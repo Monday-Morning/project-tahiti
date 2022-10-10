@@ -234,6 +234,7 @@ const useStyles = makeStyles(() => ({
   utilityIcon: {
     marginLeft: '30px',
     fontSize: '18px',
+    cursor: 'pointer',
     [theme.breakpoints.down('md')]: {
       fontSize: '12px',
       marginLeft: '5px',
