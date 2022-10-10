@@ -19,11 +19,13 @@ const AuthState = ({ children }) => {
   const [firebaseToken, setFirebaseToken] = useState('');
 
   useEffect(() => {
-    onAuthStateChanged(auth, async (_user) => {
-      setUser(_user);
-      setFirebaseToken(await getIdToken(_user, false));
-      console.log('auth state changed', _user);
-    });
+    if (auth) {
+      onAuthStateChanged(auth, async (_user) => {
+        setUser(_user);
+        setFirebaseToken(await getIdToken(_user, false));
+        console.log('auth state changed', _user);
+      });
+    }
   }, []);
 
   useEffect(() => {
