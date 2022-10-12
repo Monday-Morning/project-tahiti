@@ -39,7 +39,6 @@ const AuthState = ({ children }) => {
       sameSite: true,
       maxAge: 3600,
     });
-    console.log('LOGIN/LOGOUT');
   }, [firebaseToken]);
 
   const loginWithToken = async (_token) => {
