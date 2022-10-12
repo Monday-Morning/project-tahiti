@@ -26,10 +26,12 @@ const AuthState = ({ children }) => {
   const [firebaseToken, setFirebaseToken] = useState('');
 
   useEffect(() => {
-    onAuthStateChanged(auth, async (_user) => {
-      setUser(_user);
-      if (_user) setFirebaseToken(await getIdToken(_user, false));
-    });
+    if (auth) {
+      onAuthStateChanged(auth, async (_user) => {
+        setUser(_user);
+        if (_user) setFirebaseToken(await getIdToken(_user, false));
+      });
+    }
   }, []);
 
   useEffect(() => {
