@@ -25,12 +25,12 @@ const ArticleItem = ({ article, isLarge, className }) => {
     title,
     readTime,
     authors,
-    coverMedia: {
-      square: { store, storePath },
-    },
+    coverMedia: { square, rectangle },
   } = article;
   const classes = useStylesItem({
-    storePath: STORES[store] + encodeURI(storePath),
+    storePathSquare: STORES[square.store] + encodeURI(square.storePath),
+    storePathRectangle:
+      STORES[rectangle.store] + encodeURI(rectangle.storePath),
     isLarge,
   });
 
@@ -128,9 +128,12 @@ const useStylesItem = makeStyles((theme) => ({
     color: theme.palette.common.white,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    backgroundImage: ({ storePath }) =>
-      `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2),  rgba(0,0,0,0.9)), url(${storePath})`,
-
+    backgroundImage: ({ storePathSquare }) =>
+      `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2),  rgba(0,0,0,0.9)), url(${storePathSquare})`,
+    [theme.breakpoints.down('md')]: {
+      backgroundImage: ({ storePathRectangle }) =>
+        `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2),  rgba(0,0,0,0.9)), url(${storePathRectangle})`,
+    },
     '&:hover': {
       cursor: 'pointer',
     },
@@ -239,6 +242,7 @@ const useStylesGrid = makeStyles((theme) => ({
 
     [theme.breakpoints.down('sm')]: {
       gap: '10px',
+      gridTemplateRows: 'repeat(5, calc(9/16 * 100vw))',
     },
     [theme.breakpoints.between('sm', 'lg')]: {
       gridTemplateRows: 'repeat(4, 175px)',
