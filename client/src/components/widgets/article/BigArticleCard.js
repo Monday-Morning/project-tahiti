@@ -183,6 +183,7 @@ const useStyles = makeStyles((theme) => ({
     },
     overflow: 'hidden',
     position: 'relative',
+    cursor: 'pointer',
   },
   cover: {
     position: 'unset !important',
@@ -231,6 +232,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.5rem',
     lineHeight: '2rem',
     color: theme.palette.common.black,
+    cursor: 'pointer',
   },
 
   wrapper: {
@@ -256,7 +258,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '14px',
     lineHeight: '16px',
     fontWeight: '400',
-
+    cursor: 'pointer',
     marginRight: '7px',
     marginTop: '5px',
   },
