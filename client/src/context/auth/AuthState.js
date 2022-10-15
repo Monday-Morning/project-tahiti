@@ -3,14 +3,21 @@ import React, { useState, useEffect } from 'react';
 //context
 import authContext from './AuthContext';
 
+//firebase
 import {
   GoogleAuthProvider,
   signInWithCredential,
   getIdToken,
   onAuthStateChanged,
+  getAdditionalUserInfo,
 } from 'firebase/auth';
 import { auth } from '../../config/firebase';
+
+//graphql
 import { getApolloLink, GraphClient } from '../../config/ApolloClient';
+import registerUser from '../../graphql/mutations/user/registerUser';
+
+import ImageKit from 'imagekit-javascript';
 import { setCookie } from 'nookies';
 
 const AuthState = ({ children }) => {
@@ -19,11 +26,12 @@ const AuthState = ({ children }) => {
   const [firebaseToken, setFirebaseToken] = useState('');
 
   useEffect(() => {
-    onAuthStateChanged(auth, async (_user) => {
-      setUser(_user);
-      setFirebaseToken(await getIdToken(_user, false));
-      console.log('auth state changed', _user);
-    });
+    if (auth) {
+      onAuthStateChanged(auth, async (_user) => {
+        setUser(_user);
+        if (_user) setFirebaseToken(await getIdToken(_user, false));
+      });
+    }
   }, []);
 
   useEffect(() => {
@@ -33,29 +41,58 @@ const AuthState = ({ children }) => {
       sameSite: true,
       maxAge: 3600,
     });
-    console.log('graph client auth', firebaseToken);
   }, [firebaseToken]);
 
-  const loginWithToken = (token) => {
-    const credential = GoogleAuthProvider.credential(token);
+  const loginWithToken = async (_token) => {
+    const credential = GoogleAuthProvider.credential(_token);
 
-    signInWithCredential(auth, credential)
-      .then((res) => {
-        setUser(res.user);
-        setFirebaseToken(res.user.accessToken);
-        setRefreshToken(res.user.refreshToken);
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.email;
-        // The credential that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-        console.log(errorMessage);
-      });
+    const res = await signInWithCredential(auth, credential);
+
+    const { user, _tokenResponse } = res;
+    setUser(user);
+    setFirebaseToken(user.accessToken);
+    setRefreshToken(user.refreshToken);
+
+    if (getAdditionalUserInfo(res).isNewUser) {
+      try {
+        const imagekit = new ImageKit({
+          publicKey: process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY,
+          urlEndpoint: process.env.NEXT_PUBLIC_IMAGEKIT_URLENDPOINT,
+          authenticationEndpoint:
+            process.env.NEXT_PUBLIC_AUTHENTICATION_ENDPOINT,
+        });
+
+        const userPicture = await (await fetch(user.photoURL)).blob();
+
+        if (!['image/png', 'image/jpeg'].includes(userPicture.type)) {
+          // throw error
+        }
+
+        const imageUpload = await imagekit
+          .upload({
+            file: userPicture,
+            folder: '/profile',
+            fileName: `${user.uid}.${
+              userPicture.type.toString().split('/')[1]
+            }`,
+            tags: [user.uid, 'user', 'profilePicture'],
+          })
+          .then((result) => {
+            console.log('Upload Success', result);
+          });
+
+        const newAccount = await GraphClient.mutate({
+          mutation: registerUser,
+          variables: {
+            fullName: user.displayName,
+            email: user.email,
+          },
+        });
+        console.log('Account Created ', newAccount);
+      } catch (err) {
+        console.log(err);
+      }
+    }
   };
 
   const logout = () => {

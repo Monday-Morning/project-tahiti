@@ -122,9 +122,7 @@ function Expressions({ witsdom, editorial, miscellaneous }) {
           );
 
           return container ? (
-            <Container maxWidth='xl' key={shortName}>
-              {element}
-            </Container>
+            <Container key={shortName}>{element}</Container>
           ) : (
             element
           );

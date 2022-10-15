@@ -3,7 +3,8 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 // Libraries
-import { Typography } from '@mui/material';
+import { Button } from '@mui/material';
+import { ChevronLeft } from 'react-feather';
 
 import makeStyles from '@mui/styles/makeStyles';
 
@@ -18,10 +19,10 @@ const BackLink = ({ backTo }) => {
         href={`/${backTo?.toLowerCase()}`}
         className={classes.link}
       >
-        <Typography variant='body1'>
-          <i className='fas fa-chevron-left' />
-          <span className={classes.text}>Back to {backTo}</span>
-        </Typography>
+        <Button className={classes.backButton}>
+          <ChevronLeft className={classes.backIcon} />
+          <div>Back to {backTo}</div>
+        </Button>
       </Link>
     </div>
   );
@@ -34,9 +35,19 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     textDecoration: 'none',
+    cursor: 'pointer',
     color: theme.palette.secondary.neutral70,
   },
-  text: {
-    marginLeft: '1rem',
+  backButton: {
+    textTransform: 'unset',
+    fontFamily: 'Source Sans Pro',
+    fontSize: '1.25rem',
+    lineHeight: '1.25rem',
+    padding: '5px',
+    fontWeight: '400',
+    color: theme.palette.secondary.neutral80,
+  },
+  backIcon: {
+    marginRight: '1rem',
   },
 }));
