@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 
 import makeStyles from '@mui/styles/makeStyles';
-import { Card, CardContent, Grid, Typography, Button } from '@mui/material';
+import {
+  Card,
+  CardContent,
+  Grid,
+  Typography,
+  Button,
+  ButtonBase,
+} from '@mui/material';
 
 //Images
 import pulseImg from '../../assets/images/pulseImg.png';
@@ -27,13 +34,15 @@ const Pulse = () => {
             {console.log()}
             {polls.votes.map((option, key) => (
               <div key={key} className={classes.optionWrapper}>
-                <input
-                  className={classes.voteOption}
-                  type='radio'
-                  name='votes'
-                  value={option.value}
-                />
-                <label htmlFor={option.value}>{option.option}</label>
+                <label className={classes.voteOptionText}>
+                  <input
+                    className={classes.voteOption}
+                    type='radio'
+                    name='votes'
+                    value={option.value}
+                  />
+                  {option.option}
+                </label>
               </div>
             ))}
             <Grid className={classes.voteButton}>
@@ -71,7 +80,12 @@ const useStyles = makeStyles((theme) => ({
   pulseCard: {
     boxShadow: theme.shadows[0],
     backgroundColor: theme.palette.common.white,
-    height: '100%',
+    height: '400px',
+    width: '789px',
+    [theme.breakpoints.down('sm')]: {
+      height: '600px',
+      maxWidth: '95vw',
+    },
   },
   pulseQuestion: {
     fontFamily: 'Source Sans Pro',
@@ -85,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1rem',
     lineHeight: '1.5rem',
     marginTop: '0.5rem',
-    display: 'inline-flex',
+    display: 'flex',
   },
   votes: {
     marginTop: '12px',
@@ -96,9 +110,13 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '12px',
     marginRight: '10px',
   },
+  voteOptionText: {
+    fontFamily: 'Source Sans Pro',
+    display: 'inline-flex',
+  },
   voteButton: {
     fontFamily: 'Source Sans Pro',
-    marginTop: '55px',
+    marginTop: '40px',
     [theme.breakpoints.down('md')]: {
       display: 'flex',
       justifyContent: 'center',
