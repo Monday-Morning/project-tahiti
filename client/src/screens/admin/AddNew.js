@@ -2,7 +2,7 @@
 import { Grid, TextField, Box } from '@mui/material';
 
 // Components
-import AuthorCard from '../../components/admin/subcomponents/AuthorCards';
+import AuthorCardNew from '../../components/admin/subcomponents/AuthorCardNew';
 import CategoryCards from '../../components/admin/subcomponents/CategoryCards';
 import FeaturedMedia from '../../components/admin/subcomponents/FeaturedMedia';
 import PublishCard from '../../components/admin/subcomponents/PublishCards';
@@ -30,7 +30,7 @@ const AddNew = () => (
 
       <Grid item lg={4} md={4} sm={12} xs={12}>
         <PublishCard />
-        <AuthorCard />
+        <AuthorCardNew />
         <CategoryCards />
         <FeaturedMedia />
       </Grid>
