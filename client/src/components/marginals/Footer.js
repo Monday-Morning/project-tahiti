@@ -321,6 +321,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '0',
     width: '250px',
     display: 'block',
+    cursor: 'pointer',
   },
   archives: {
     marginTop: '40px',
@@ -379,6 +380,7 @@ const useStyles = makeStyles((theme) => ({
   socialIcon: {
     marginLeft: '20px',
     fontSize: '18px',
+    cursor: 'pointer',
     color: theme.palette.common.white,
     [theme.breakpoints.down('md')]: {
       marginLeft: '10px',

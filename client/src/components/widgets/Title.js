@@ -52,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '400',
     color: theme.palette.secondary.main,
     textDecoration: 'underline',
+    cursor: 'pointer',
     [theme.breakpoints.down('md')]: {
       fontSize: '14px',
     },
