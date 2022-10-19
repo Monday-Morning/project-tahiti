@@ -9,6 +9,6 @@
   "endOfLine": "auto",
   "proseWrap": "preserve",
   "quoteProps": "as-needed",
-  "jsxBracketSameLine": false,
-  "jsxSingleQuote": true
+  "jsxSingleQuote": true,
+  "bracketSameLine": false
 }

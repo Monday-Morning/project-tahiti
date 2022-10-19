@@ -8,11 +8,8 @@
     "start:prod": "next start",
     "build": "next build",
     "lint": "next lint",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage --colors",
-    "lint:fix": "eslint --fix '**/*.js'",
-    "format": "prettier --write '**/*.js'"
+    "format:check": "prettier --list-different --config \"./client/.prettierrc\" --ignore-path \"./client/.prettierignore\" --no-error-on-unmatched-pattern \"./client/.\"",
+    "format": "prettier --write --config \"./client/.prettierrc\" --ignore-path \"./client/.prettierignore\" --no-error-on-unmatched-pattern \"./client/.\""
   },
   "keywords": [],
   "author": "",
