@@ -5,5 +5,8 @@ export default (ctx, permissions) => {
   if (!ctx || !permissions) return false;
   const cookies = parseCookies(ctx);
   const { roles } = jwt.decode(cookies.firebaseToken);
-  return { isAccessPermited: roles?.includes(permissions), roles };
+  return {
+    isAccessPermited: roles?.some((role) => permissions.includes(role)),
+    roles,
+  };
 };
