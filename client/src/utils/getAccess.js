@@ -1,12 +1,27 @@
-import jwt from 'jsonwebtoken';
 import { parseCookies } from 'nookies';
 
-export default (ctx, permissions) => {
+export default async function getAccess(ctx, permissions) {
   if (!ctx || !permissions) return false;
-  const cookies = parseCookies(ctx);
-  const { roles } = jwt.decode(cookies.firebaseToken);
-  return {
-    isAccessPermited: roles?.some((role) => permissions.includes(role)),
-    roles,
-  };
-};
+  try {
+    const cookies = parseCookies(ctx);
+    const { data, error } = await fetch(
+      process.env.NODE_ENV === 'production'
+        ? 'https://mm.dashnet.in/api/auth/check'
+        : 'http://localhost:5000/auth/check',
+      {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: {
+          authorization: cookies.firebaseToken,
+        },
+      },
+    );
+    if (error) {
+      throw error;
+    }
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
