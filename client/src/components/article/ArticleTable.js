@@ -1,6 +1,6 @@
 import React from 'react';
 
-// libraries
+// Libraries
 import makeStyles from '@mui/styles/makeStyles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -19,44 +19,43 @@ const ArticleTable = ({ data, blockFormatting }) => {
     .map((row) => row.split(','));
 
   const column = Object.keys(table);
-  const columnh = Object.values(table[0]);
 
-  const ThData = () => {
-    return columnh.map((data) => {
-      if (!blockFormatting.hasHeaderRow) {
-        return (
-          <TableCell className={classes.lighter} key={data}>
-            {data}
-          </TableCell>
-        );
-      } else {
-        return (
-          <TableCell className={classes.bolder} key={data}>
-            {data}
-          </TableCell>
-        );
-      }
-    });
-  };
-
-  const tdData = () => {
+  const createTable = () => {
     return table.map((data) => {
       if (table.indexOf(data)) {
         return (
           <TableRow>
-            {column.map((v) => {
-              if (data[v]) {
+            {column.map((colData) => {
+              if (data[colData]) {
                 if (!blockFormatting.hasHeaderColumn) {
-                  return <TableCell>{data[v]}</TableCell>;
+                  return <TableCell>{data[colData]}</TableCell>;
                 } else {
-                  if (!v) {
+                  return (
+                    <TableCell className={!parseInt(colData)? classes.bolder : classes.lighter}>
+                      {data[colData]}
+                    </TableCell>
+                  );
+                }
+              }
+            })}
+          </TableRow>
+        );
+      }else{
+        return (
+          <TableRow>
+            {column.map((colData) => {
+              if (data[colData]) {
+                if (!blockFormatting.hasHeaderColumn) {
+                  return <TableCell className={!blockFormatting.hasHeaderRow? classes.lighter:classes.bolder}>{data[colData]}</TableCell>;
+                } else {
+                  if (!parseInt(colData)) {
                     return (
                       <TableCell className={classes.bolder}>
-                        {data[v]}
+                        {data[colData]}
                       </TableCell>
                     );
                   } else {
-                    return <TableCell>{data[v]}</TableCell>;
+                    return <TableCell className={!blockFormatting.hasHeaderRow? classes.lighter:classes.bolder}>{data[colData]}</TableCell>;
                   }
                 }
               }
@@ -72,10 +71,7 @@ const ArticleTable = ({ data, blockFormatting }) => {
   return (
     <TableContainer className={classes.wrapper} component={Paper}>
       <Table aria-label='simple table'>
-        <TableBody>
-          <TableRow>{ThData()}</TableRow>
-          {tdData()}
-        </TableBody>
+        <TableBody>{createTable()}</TableBody>
       </Table>
     </TableContainer>
   );
@@ -85,7 +81,6 @@ export default ArticleTable;
 const useStyles = makeStyles(() => ({
   wrapper: {
     margin: '3rem',
-    // width: '95%'
     maxWidth: '90%',
   },
   bolder: {
