@@ -11,6 +11,7 @@ import {
   OutlinedInput,
   Stack,
   Typography,
+  Grid,
 } from '@mui/material';
 
 const ITEM_HEIGHT = 48;
@@ -61,33 +62,41 @@ export default function AuthorCard() {
     <div>
       <Card sx={{ px: 3, py: 2, mb: 3, mt: 3 }}>
         <Typography variant='h6'>Authors</Typography>
-        <FormControl sx={{ width: 300, minWidth: '100%', marginTop: '10px' }}>
-          <InputLabel id='demo-multiple-name-label'>Name</InputLabel>
-          <Select
-            labelId='demo-multiple-name-label'
-            id='demo-multiple-name'
-            multiple
-            value={personName}
-            onChange={handleChange}
-            input={<OutlinedInput label='Name' />}
-            MenuProps={MenuProps}
-          >
-            {names.map((name) => (
-              <MenuItem
-                key={name}
-                value={name}
-                style={getStyles(name, personName, theme)}
+        <Grid container spacing={2}>
+          <Grid item xs={6} md={6}>
+            <FormControl
+              sx={{ width: 300, minWidth: '100%', marginTop: '10px' }}
+            >
+              <InputLabel id='demo-multiple-name-label'>Name</InputLabel>
+              <Select
+                labelId='demo-multiple-name-label'
+                id='demo-multiple-name'
+                multiple
+                value={personName}
+                onChange={handleChange}
+                input={<OutlinedInput label='Name' />}
+                MenuProps={MenuProps}
               >
-                {name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <Stack direction='column' spacing={2}>
-          {personName.map((name) => (
-            <Typography variant='subtitle1'>{name}</Typography>
-          ))}
-        </Stack>
+                {names.map((name) => (
+                  <MenuItem
+                    key={name}
+                    value={name}
+                    style={getStyles(name, personName, theme)}
+                  >
+                    {name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={6} md={6}>
+            <Stack direction='column' spacing={2}>
+              {personName.map((name) => (
+                <Typography variant='subtitle1'>{name}</Typography>
+              ))}
+            </Stack>
+          </Grid>
+        </Grid>
       </Card>
     </div>
   );

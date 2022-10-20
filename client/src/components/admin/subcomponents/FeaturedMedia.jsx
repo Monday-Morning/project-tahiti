@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, Typography } from '@mui/material';
 
 // media imports
-import SharedMedia, { img, thumb, thumbInner, Title } from './sharedMedia';
+import SharedMedia, { img, thumb, thumbInner } from './sharedMedia';
 
 export default function FeaturedMedia() {
   const [files, setFiles] = useState([]);
@@ -31,7 +31,7 @@ export default function FeaturedMedia() {
   );
 
   return (
-    <Card sx={{ px: 3, py: 2, mb: 3, mt: 3 }}>
+    <Card sx={{ px: 3, py: 2, mb: 3, mt: 3, minHeight: '180px' }}>
       <Typography variant='h6'>Featured Media</Typography>
       <section style={{ marginTop: '10px' }} className='container'>
         <div {...getRootProps({ className: 'dropzone', style })}>
@@ -46,9 +46,11 @@ export default function FeaturedMedia() {
               {thumbs}
             </aside>
           ) : isDragActive ? (
-            <p>Drop the files here ...</p>
+            <p style={{ fontSize: '15px' }}>Drop the files here ...</p>
           ) : (
-            <p>Drag drop some files here, or click to select files</p>
+            <p style={{ fontSize: '15px' }}>
+              Drag drop some files here, or click to select files
+            </p>
           )}
         </div>
       </section>

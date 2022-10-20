@@ -10,14 +10,8 @@ import {
   Checkbox,
   Collapse,
   Typography,
+  styled,
 } from '@mui/material';
-import { styled } from '@mui/system';
-
-const Title = styled('span')(() => ({
-  fontSize: '1rem',
-  fontWeight: '500',
-  textTransform: 'capitalize',
-}));
 
 const select = {
   minWidth: '100%',
@@ -78,14 +72,20 @@ export default function CategoryCards() {
 
   const allCategory = Object.keys(categoryNames);
 
+  const FormLabel = styled(FormControlLabel)({
+    '& .MuiFormControlLabel-label': {
+      fontSize: '18px',
+    },
+  });
+
   return (
-    <Box sx={{ minWidth: 275 }}>
+    <Box sx={{ minWidth: 275, mt: '20px' }}>
       <Card variant='outlined'>
         <CardContent>
           <Typography variant='h6'>Category</Typography>
           {allCategory.map((key) => (
             <FormGroup key={categoryNames[key].title}>
-              <FormControlLabel
+              <FormLabel
                 control={<Checkbox onClick={handleChange(key)} />}
                 label={categoryNames[key].title}
               />
@@ -97,7 +97,7 @@ export default function CategoryCards() {
               >
                 {categoryNames[key].children.map((sub, index) => (
                   <FormGroup key={`${index} - ${sub}`}>
-                    <FormControlLabel control={<Checkbox />} label={sub} />
+                    <FormLabel control={<Checkbox />} label={sub} />
                   </FormGroup>
                 ))}
               </Collapse>
