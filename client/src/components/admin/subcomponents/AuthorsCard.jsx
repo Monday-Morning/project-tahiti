@@ -7,7 +7,7 @@ import {
   TextField,
 } from '@mui/material';
 
-export default function AuthorCards2() {
+export default function AuthorsCard() {
   return (
     <>
       <Card variant='outlined' sx={{ px: 3, py: 2, mb: 3, mt: 3 }}>
