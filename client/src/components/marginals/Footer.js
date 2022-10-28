@@ -150,18 +150,26 @@ const Footer = () => {
                   >
                     <li className={classes.links}>Subscribe</li>
                   </Typography>
-                  <Typography
-                    variant='body1'
-                    style={{ cursor: 'pointer', fontWeight: 'bolder' }}
-                  >
-                    <li className={classes.links}>Terms of Use</li>
-                  </Typography>
-                  <Typography
-                    variant='body1'
-                    style={{ cursor: 'pointer', fontWeight: 'bolder' }}
-                  >
-                    <li className={classes.links}>Privacy Policy</li>
-                  </Typography>
+                  <li>
+                    <Link href='/policy' className={classes.links} passHref>
+                      <Typography
+                        variant='body1'
+                        style={{ cursor: 'pointer', fontWeight: 'bolder' }}
+                      >
+                        Terms of Use
+                      </Typography>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href='/policy' className={classes.links} passHref>
+                      <Typography
+                        variant='body1'
+                        style={{ cursor: 'pointer', fontWeight: 'bolder' }}
+                      >
+                        Privacy Policy
+                      </Typography>
+                    </Link>
+                  </li>
                   <Typography
                     variant='body1'
                     style={{ cursor: 'pointer', fontWeight: 'bolder' }}
