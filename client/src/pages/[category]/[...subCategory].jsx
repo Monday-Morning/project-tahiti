@@ -37,7 +37,7 @@ const CategoryPage = ({
     setLoading((_val) => true);
 
     push(
-      `/${categoryName?.toLowerCase()}/${subCategoryDetails?.shortName?.toLowerCase()}/${
+      `/${categoryName}/${subCategoryDetails?.shortName}/${
         pageNo ?? pageNumber
       }`,
       undefined,
