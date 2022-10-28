@@ -68,7 +68,7 @@ function Category({ articleList, categoryShortName, category }) {
               ({ name, shortName, path }, index) => (
                 <Element name={shortName} key={shortName}>
                   <SubCategorySection
-                    path={path}
+                    path={path + '/1'}
                     heading={name}
                     smallCards
                     bigCards
