@@ -44,7 +44,7 @@ const AddNew = () => (
           </Grid>
         </Grid>
 
-        <AuthorCard />
+        <AuthorCards />
       </Grid>
     </Grid>
   </div>
