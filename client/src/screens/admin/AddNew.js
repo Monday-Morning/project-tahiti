@@ -2,7 +2,7 @@
 import { Grid, TextField, Button } from '@mui/material';
 
 // Components
-import AuthorCard from '../../components/admin/subcomponents/AuthorCards';
+import AuthorCards from '../../components/admin/subcomponents/AuthorCards';
 import CategoryCards from '../../components/admin/subcomponents/CategoryCards';
 import FeaturedMedia from '../../components/admin/subcomponents/FeaturedMedia';
 
