@@ -11,7 +11,8 @@ import {
   onAuthStateChanged,
   getAdditionalUserInfo,
 } from 'firebase/auth';
-import { auth } from '../../config/firebase';
+import { getAnalytics, isSupported } from 'firebase/analytics';
+import { auth, firebaseApp } from '../../config/firebase';
 
 //graphql
 import { getApolloLink, GraphClient } from '../../config/ApolloClient';
@@ -26,6 +27,9 @@ const AuthState = ({ children }) => {
   const [firebaseToken, setFirebaseToken] = useState('');
 
   useEffect(() => {
+    if (isSupported()) {
+      getAnalytics(firebaseApp);
+    }
     if (auth) {
       onAuthStateChanged(auth, async (_user) => {
         setUser(_user);
