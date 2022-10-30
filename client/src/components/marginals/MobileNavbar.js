@@ -34,12 +34,12 @@ const MobileNavbar = () => {
   const [isMenuOpen, toggleMenu, setMenuOpen] = useToggle(false);
   const [search, setSearch] = useState(false);
   const [searchText, setSearchText] = useState('');
-  const [IsSearchActive, setIsSearchActive] = useState(false);
-  const [IsInputActive, setIsInputActive] = useState(false);
+  const [isSearchActive, setIsSearchActive] = useState(false);
+  const [isInputActive, setIsInputActive] = useState(false);
 
 
   const router = useRouter();
-  const classes = useStyles();
+  const classes = useStyles({isSearchActive, isInputActive});
 
   const searchQuery = (e) => {
     e.preventDefault();
@@ -67,12 +67,7 @@ const MobileNavbar = () => {
 
   return (
     <>
-          <div
-        className={classes.searchMenu}
-        style={{
-          display: IsSearchActive ? 'block' : 'none',
-        }}
-      >
+          <div        className={classes.searchMenu}>
         <div className={classes.blackBackground} onClick={searchActive}></div>
         <div className={classes.searchBar}>
           <div className={classes.searchBox}>
@@ -94,7 +89,7 @@ const MobileNavbar = () => {
             <div
               className={classes.searchSuggestions}
               style={{
-                display: IsInputActive ? 'block' : 'none',
+                display: isInputActive ? 'block' : 'none',
               }}
             >
               <ul>
@@ -290,10 +285,12 @@ const useStyles = makeStyles((theme) => ({
   },
   activeHeaderLink: {},
   searchMenu: {
-    zIndex: '2001',
+    position: 'absolute',
     width: '100%',
     height: '100%',
     transition: '1s',
+    opacity: (_) => (_.isSearchActive ? '1':'0'),
+    zIndex: (_) => (_.isSearchActive ? '200001':'-2001'),
   },
   searchBar: {
     paddingLeft: '20px',
@@ -342,6 +339,7 @@ const useStyles = makeStyles((theme) => ({
     border: '1px #ECEDEC',
     borderStyle: 'none solid solid',
     boxShadow: '0px 0px 5px grey',
+    display: (_) => (_.isInputActive ? 'block':'none'),
   },
   trendingList: {
     alignItems: 'center',

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+
+// MUI
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -16,14 +18,14 @@ import ROUTES from '../../utils/getRoutes';
 
 // Assets
 import logoFullBlack from '../../assets/images/logos/logo_full_black.png';
-import { height } from '@mui/system';
 
 const DesktopNavbar = () => {
-  const classes = useStyles();
+
   const router = useRouter();
   const [search, setSearch] = useState('');
-  const [IsSearchActive, setIsSearchActive] = useState(false);
-  const [IsInputActive, setIsInputActive] = useState(false);
+  const [isSearchActive, setIsSearchActive] = useState(false);
+  const [isInputActive, setIsInputActive] = useState(false);
+  const classes = useStyles({isSearchActive, isInputActive});
 
   // console.log(search);
 
@@ -43,6 +45,7 @@ const DesktopNavbar = () => {
   const searchActive = () => {
     setIsInputActive();
     setIsSearchActive((current) => !current);
+    console.log(isSearchActive);
   };
 
   const inputActive = () => {
@@ -51,12 +54,7 @@ const DesktopNavbar = () => {
 
   return (
     <>
-      <div
-        className={classes.searchMenu}
-        style={{
-          display: IsSearchActive ? 'block' : 'none',
-        }}
-      >
+      <div className={classes.searchMenu}>
         <div className={classes.blackBackground} onClick={searchActive}></div>
         <div className={classes.searchBar}>
           <div className={classes.searchBox}>
@@ -64,7 +62,7 @@ const DesktopNavbar = () => {
               className={classes.searchField}
               id='input-with-icon-textfield'
               placeholder='Search for articles'
-              onClick={setIsInputActive}
+              onClick={inputActive}
               color='primary'
               InputProps={{
                 endAdornment: (
@@ -75,12 +73,7 @@ const DesktopNavbar = () => {
               }}
               variant='standard'
             />
-            <div
-              className={classes.searchSuggestions}
-              style={{
-                display: IsInputActive ? 'block' : 'none',
-              }}
-            >
+            <div className={classes.searchSuggestions}>
               <ul>
                 <div className={classes.trendingList}>
                   <li className={classes.trendingHeading}>
@@ -230,10 +223,13 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
   },
   searchMenu: {
-    zIndex: '2001',
     width: '100%',
+    position: 'absolute',
     height: '100%',
     transition: '1s',
+    top: '0px',
+    opacity: (_) => (_.isSearchActive ? '1':'0'),
+    zIndex: (_) => (_.isSearchActive ? '2001':'-2001'),
   },
   searchBar: {
     paddingLeft: '120px',
@@ -282,6 +278,7 @@ const useStyles = makeStyles((theme) => ({
     border: '1px #ECEDEC',
     borderStyle: 'none solid solid',
     boxShadow: '0px 0px 5px grey',
+    display: (_) => (_.isInputActive ? 'block':'none'),
   },
   trendingList: {
     alignItems: 'center',
