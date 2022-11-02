@@ -31,14 +31,15 @@ jobs:
       - name: Use Actions Dev Cache
         uses: actions/cache@v2
         id: yarn-dev-cache
-        if: ${{ inputs.setup_dev }}
         with:
           path: "**/node_modules"
           key: ${{ runner.os }}-dev-modules-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install Dev Dependencies
-        if: ${{ inputs.setup_dev }} && steps.yarn-dev-cache.outputs.cache-hit != 'true'
-        run: cd client && yarn install
+        if: steps.yarn-dev-cache.outputs.cache-hit != 'true'
+        run: |
+          cd client
+          yarn install
 
       - name: Install ESLint
         run: yarn global add eslint
@@ -52,4 +53,5 @@ jobs:
         if: ${{ failure() }}
         shell: bash
         run: |
+          cd client
           cat eslint_report.txt

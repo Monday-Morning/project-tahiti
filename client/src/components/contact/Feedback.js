@@ -2,7 +2,14 @@ import React, { useState } from 'react';
 
 import Image from 'next/dist/client/image';
 // Libraries
-import { Grid, Typography, Button, TextField } from '@mui/material';
+import {
+  Grid,
+  Typography,
+  Button,
+  TextField,
+  Snackbar,
+  Alert,
+} from '@mui/material';
 
 import makeStyles from '@mui/styles/makeStyles';
 
@@ -36,15 +43,29 @@ const Feedback = () => {
 
   const enabled =
     error.emailError.length === 0 && name.length > 0 && message.length > 0;
-
+  const [open, setOpen] = useState(false);
+  const [status, sentStatus] = useState(false);
+  const handleClick = () => {
+    setOpen(true);
+  };
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const feedbackData = { name, message, email };
       resetFields(); // When adding API, make sure to refactor and reset state only when API gives success
-      setError({ ...error, success: 'Send' });
+      setError({
+        ...error,
+        success: 'Sent',
+        status: sentStatus(true),
+      });
     } catch {
-      setError({ ...error, error: 'Failed to send' });
+      setError({ ...error, error: 'Failed to Send' });
     }
   }; //API to be added later
 
@@ -131,17 +152,6 @@ const Feedback = () => {
                 />
               </div>
 
-              <Typography className={classes.errorMessage}>
-                {error.messageError}
-              </Typography>
-
-              <div container className={classes.errorMessage}>
-                <Typography>{error.error}</Typography>
-              </div>
-              <div container className={classes.successMessage}>
-                <Typography>{error.success}</Typography>
-              </div>
-
               <Grid
                 container
                 justifyContent='flex-end'
@@ -155,6 +165,7 @@ const Feedback = () => {
                 </Grid>
                 <Grid item>
                   <Button
+                    onClick={handleClick}
                     type='submit'
                     variant='contained'
                     color='primary'
@@ -163,6 +174,20 @@ const Feedback = () => {
                   >
                     <span className={classes.buttonText}>send Message</span>
                   </Button>
+                  <Snackbar
+                    open={open}
+                    autoHideDuration={6000}
+                    onClose={handleClose}
+                  >
+                    <Alert
+                      onClose={handleClose}
+                      severity={sentStatus ? 'success' : 'error'}
+                    >
+                      <div className={classes.snackBar}>
+                        {sentStatus ? 'Sent' : 'Failed to Send'}
+                      </div>
+                    </Alert>
+                  </Snackbar>
                 </Grid>
               </Grid>
             </form>
@@ -295,6 +320,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '14px',
     margin: '0px 0px 0px 8px',
     color: 'green',
+  },
+  snackBar: {
+    fontFamily: 'Source Sans Pro',
   },
   buttonWrapper: {
     padding: '10px 16px 5px 5px',

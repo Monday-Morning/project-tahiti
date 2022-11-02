@@ -116,9 +116,7 @@ function ArticlePage({ article }) {
         <ActivityIndicator size={150} />
       ) : (
         <Marginals>
-          <Article
-            article={article}
-          />
+          <Article article={article} />
         </Marginals>
       )}
     </>
