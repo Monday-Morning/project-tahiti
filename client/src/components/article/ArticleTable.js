@@ -18,70 +18,43 @@ const ArticleTable = ({ data, blockFormatting }) => {
     .split('],[')
     .map((row) => row.split(','));
 
-  const column = Object.keys(table);
-
-  const createTable = () => {
-    return table.map((data) => {
-      if (table.indexOf(data)) {
-        return (
-          <TableRow>
-            {column.map((colData) => {
-              if (data[colData]) {
-                if (!blockFormatting.hasHeaderColumn) {
-                  return <TableCell>{data[colData]}</TableCell>;
-                } else {
-                  return (
-                    <TableCell className={!parseInt(colData)? classes.bolder : classes.lighter}>
-                      {data[colData]}
-                    </TableCell>
-                  );
-                }
-              }
-            })}
-          </TableRow>
-        );
-      }else{
-        return (
-          <TableRow>
-            {column.map((colData) => {
-              if (data[colData]) {
-                if (!blockFormatting.hasHeaderColumn) {
-                  return <TableCell className={!blockFormatting.hasHeaderRow? classes.lighter:classes.bolder}>{data[colData]}</TableCell>;
-                } else {
-                  if (!parseInt(colData)) {
-                    return (
-                      <TableCell className={classes.bolder}>
-                        {data[colData]}
-                      </TableCell>
-                    );
-                  } else {
-                    return <TableCell className={!blockFormatting.hasHeaderRow? classes.lighter:classes.bolder}>{data[colData]}</TableCell>;
-                  }
-                }
-              }
-            })}
-          </TableRow>
-        );
-      }
-    });
-  };
+  const { hasHeaderColumn, hasHeaderRow } = blockFormatting;
 
   const classes = useStyles();
 
   return (
     <TableContainer className={classes.wrapper} component={Paper}>
       <Table aria-label='simple table'>
-        <TableBody>{createTable()}</TableBody>
+        <TableBody>
+          {table.map((row, _index) => (
+            <TableRow>
+              {row.map((data, index) => (
+                <TableCell
+                  className={
+                    (_index === 0 && hasHeaderRow) ||
+                    (index === 0 && hasHeaderColumn)
+                      ? classes.bolder
+                      : classes.lighter
+                  }
+                >
+                  {data}
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
       </Table>
     </TableContainer>
   );
 };
 export default ArticleTable;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   wrapper: {
-    margin: '3rem',
-    maxWidth: '90%',
+    margin: '2rem 0',
+    [theme.breakpoints.down('sm')]: {
+      width: '80vw',
+    },
   },
   bolder: {
     fontWeight: 'bold',
