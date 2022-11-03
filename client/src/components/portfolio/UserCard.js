@@ -112,13 +112,15 @@ const UserCard = ({ user }) => {
                       Links
                     </Typography>
                   </div>
-                  <div className={classes.socialIcon}>
+                  <div className={classes.socialIcons}>
                     <span>
                       <Link
                         href='https://www.linkedin.com/company/monday-morning-the-official-student-media-body-of-nit-rourkela/mycompany/'
                         passHref={true}
                       >
-                        <i className='fab fa-linkedin' />
+                        <div className={classes.socialIcon}>
+                          <i className='fab fa-linkedin' />
+                        </div>
                       </Link>
                     </span>
                     <span>
@@ -126,7 +128,9 @@ const UserCard = ({ user }) => {
                         passHref
                         href='https://www.facebook.com/mondaymorningnitr'
                       >
-                        <i className='fab fa-facebook-f' />
+                        <div className={classes.socialIcon}>
+                          <i className='fab fa-facebook-f' />
+                        </div>
                       </Link>
                     </span>
                     <span>
@@ -134,7 +138,9 @@ const UserCard = ({ user }) => {
                         passHref
                         href='https://www.instagram.com/mondaymorningnitrofficial/?hl=en'
                       >
-                        <i className='fab fa-instagram' />
+                        <div className={classes.socialIcon}>
+                          <i className='fab fa-instagram' />
+                        </div>
                       </Link>
                     </span>
                     <span>
@@ -142,7 +148,9 @@ const UserCard = ({ user }) => {
                         passHref
                         href='https://twitter.com/mmnitrkl?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor'
                       >
-                        <i className='fab fa-twitter' />
+                        <div className={classes.socialIcon}>
+                          <i className='fab fa-twitter' />
+                        </div>
                       </Link>
                     </span>
                   </div>
@@ -240,11 +248,14 @@ const useStyles = makeStyles((theme) => ({
     alignSelf: 'center',
     marginTop: '20px',
   },
-  socialIcon: {
+  socialIcons: {
     maxWidth: '60%',
     display: 'flex',
     justifyContent: 'space-between',
     marginTop: '2px',
     fontSize: '20px',
+  },
+  socialIcon: {
+    cursor: 'pointer',
   },
 }));

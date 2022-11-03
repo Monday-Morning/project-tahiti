@@ -216,26 +216,70 @@ const useStyles = makeStyles((theme) => ({
   },
   emailTitle: {
     paddingBottom: '12px',
+    fontSize: '22px',
+    [theme.breakpoints.up('xs')]: {
+      fontSize: '22px',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '15px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '22px',
+    },
   },
   ccTitle: {
     paddingBottom: '16px',
+    [theme.breakpoints.up('xs')]: {
+      fontSize: '22px',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '15px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '22px',
+    },
   },
   mail: {
     padding: '8px 0px 8px 0px',
+    fontSize: '18px',
+    [theme.breakpoints.up('xs')]: {
+      fontSize: '18px',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '13px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '18px',
+    },
     [theme.breakpoints.down('sm')]: {
       paddingBottom: '4px',
     },
   },
   mailid: {
-    fontSize: '18px',
     color: theme.palette.common.black,
     textDecorationLine: 'underline',
+    fontSize: '18px',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '15px',
+      fontSize: '11px',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '13px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '18px',
     },
   },
   mailFor1: {
     fontSize: '18px',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '18px',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '13px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '18px',
+    },
     [theme.breakpoints.down('sm')]: {
       visibility: 'hidden',
       fontSize: '0px',
@@ -244,6 +288,16 @@ const useStyles = makeStyles((theme) => ({
   mailFor2: {
     visibility: 'hidden',
     position: 'absolute',
+    fontSize: '18px',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '18px',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '13px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '18px',
+    },
     color: theme.palette.secondary.neutral70,
     [theme.breakpoints.down('sm')]: {
       visibility: 'visible',
@@ -258,6 +312,12 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       fontSize: '15px',
     },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '13px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '18px',
+    },
   },
   socialWrapper: {
     marginTop: '18px',
@@ -268,6 +328,16 @@ const useStyles = makeStyles((theme) => ({
   },
   socialTitle: {
     paddingBottom: '30px',
+    fontSize: '22px',
+    [theme.breakpoints.up('xs')]: {
+      fontSize: '22px',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '15px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '22px',
+    },
   },
   socialLine: {
     paddingBottom: '24px',
@@ -276,7 +346,16 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   social: {
-    fontSize: '16px',
+    fontSize: '15px',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '15px',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '10px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '15px',
+    },
     paddingLeft: '4px',
     color: theme.palette.common.black,
     textDecorationLine: 'none',
@@ -294,6 +373,16 @@ const useStyles = makeStyles((theme) => ({
   },
   locationTitle: {
     paddingBottom: '12px',
+    fontSize: '22px',
+    [theme.breakpoints.up('xs')]: {
+      fontSize: '22px',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '15px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '22px',
+    },
   },
   mapWrapper: {
     [theme.breakpoints.down('lg')]: {
@@ -316,6 +405,16 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: '16px',
     textDecorationLine: 'underline',
     textAlign: 'center',
+    fontSize: '18px',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '18px',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '13px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '18px',
+    },
     [theme.breakpoints.down('sm')]: {
       paddingTop: '8px',
       paddingRight: '4px',

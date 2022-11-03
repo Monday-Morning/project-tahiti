@@ -55,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary.main,
     fontFamily: 'Source Sans Pro',
     borderBottom: '1px solid #000000',
+    cursor: 'pointer',
     [theme.breakpoints.down('md')]: {
       fontSize: '14px',
     },
