@@ -1,95 +1,100 @@
-import React from 'react';
-
-import { Card, CardContent, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useDate } from '../../hooks/useDate';
+import { Card, CardContent, Link, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { ChevronLeft, ChevronRight } from 'react-feather';
 
 function Calendar() {
+  const [nav, setNav] = useState(0);
+  const { days, currentMonthYear } = useDate(nav);
+  const [weekDays, setWeekDays] = useState([]);
+
+  useEffect(() => {
+    const newDays = [];
+    const _days = days;
+    for (let i = _days.length / 7; i >= 0; i--)
+      newDays.push(_days.splice(0, 7));
+
+    setWeekDays(newDays);
+    console.log('hello');
+  }, [nav, days]);
+
   const classes = useStyles();
   return (
     <Card className={classes.calendar}>
       <CardContent>
-        <Typography variant='h1'>Events</Typography>
+        <div className={classes.events}>
+          <Typography variant='h1'>Events</Typography>
+          <Link href='#' className={classes.eventDetails}>
+            Event Details
+          </Link>
+        </div>
         <div className={classes.monthRow}>
-          <Typography variant='h4'>May 2021</Typography>
+          <div className={classes.month}>{currentMonthYear}</div>
+
           <div className={classes.calendarActions}>
-            <ChevronLeft className={classes.calendarAction} />
-            <ChevronRight className={classes.calendarAction} />
+            <ChevronLeft
+              className={classes.calendarAction}
+              onClick={() => setNav((prev) => prev - 1)}
+            />
+
+            <ChevronRight
+              className={classes.calendarAction}
+              onClick={() => setNav((prev) => prev + 1)}
+            />
           </div>
         </div>
-        <table className={classes.table}>
-          <thead>
-            <tr>
-              <th>Mo</th>
-              <th>Tu</th>
-              <th>We</th>
-              <th>Th</th>
-              <th>Fr</th>
-              <th>Sa</th>
-              <th>Su</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>1</td>
-              <td>2</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>4</td>
-              <td>5</td>
-              <td>6</td>
-              <td className={classes.today}>7</td>
-              <td>8</td>
-              <td>9</td>
-            </tr>
-            <tr>
-              <td>10</td>
-              <td>11</td>
-              <td>12</td>
-              <td>13</td>
-              <td>14</td>
-              <td>15</td>
-              <td>16</td>
-            </tr>
-            <tr>
-              <td>17</td>
-              <td>18</td>
-              <td>19</td>
-              <td>20</td>
-              <td>21</td>
-              <td>22</td>
-              <td>23</td>
-            </tr>
-            <tr>
-              <td>24</td>
-              <td>25</td>
-              <td>26</td>
-              <td>27</td>
-              <td>28</td>
-              <td>29</td>
-              <td>30</td>
-            </tr>
-            <tr>
-              <td>31</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+
+        <div className={classes.weekRow}>
+          <div className={classes.dayOfTheWeek}>Mo</div>
+          <div className={classes.dayOfTheWeek}>Tu</div>
+          <div className={classes.dayOfTheWeek}>We</div>
+          <div className={classes.dayOfTheWeek}>Th</div>
+          <div className={classes.dayOfTheWeek}>Fr</div>
+          <div className={classes.dayOfTheWeek}>Sa</div>
+          <div className={classes.dayOfTheWeek}>Su</div>
+        </div>
+        <div>
+          {weekDays.map((week, index) => (
+            <div className={classes.tableRow} key={index}>
+              {week.map((day, index) => (
+                <div
+                  className={classes.dayValue}
+                  key={parseInt(day.value) + index}
+                >
+                  <div
+                    className={
+                      day.isCurrentDay
+                        ? `${classes.today} ${classes.day}`
+                        : `${classes.day}`
+                    }
+                  >
+                    {day.value}
+                  </div>
+
+                  <div className={classes.eventColors}>
+                    {day.isInstituteEvent && (
+                      <div className={classes.dateRed}></div>
+                    )}
+
+                    {day.isClubEvent && (
+                      <div className={classes.dateGreen}></div>
+                    )}
+
+                    {day.isInstituteHoliday && (
+                      <div className={classes.dateYellow}></div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+
         <div className={classes.eventIndex}>
           <div className={classes.eventType}>
             <div className={classes.redDot}></div>
-            Insti Events
+            Insti Holidays
           </div>
           <div className={classes.eventType}>
             <div className={classes.yellowDot}></div>
@@ -97,7 +102,7 @@ function Calendar() {
           </div>
           <div className={classes.eventType}>
             <div className={classes.greenDot}></div>
-            Insti Holidays
+            Insti Events
           </div>
         </div>
       </CardContent>
@@ -110,44 +115,85 @@ const useStyles = makeStyles((theme) => ({
   calendar: {
     boxShadow: theme.shadows[0],
     backgroundColor: theme.palette.common.white,
-    height: '100%',
+    width: '379px',
+    height: '423px',
   },
+  weekRow: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(7,1fr)',
+    textAlign: 'center',
+    margin: '1.625rem 0 1rem 0',
+    fontWeight: 700,
+    color: theme.palette.secondary.neutral50,
+  },
+  dayOfTheWeek: {
+    fontFamily: theme.typography.fontFamily,
+  },
+  events: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    margin: '0 0.5rem 0 0.5rem',
+  },
+  eventDetails: {
+    fontFamily: 'Source Sans Pro',
+    color: 'black',
+    width: '109px',
+    height: '28px',
+    fontWeight: '400',
+    fontSize: '20px',
+    lineHeight: '28px',
+  },
+
   monthRow: {
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
     marginTop: '1.5rem',
+    height: '19px',
+    fontSize: '16px',
+    fontWeight: '700',
+    lineHeight: '19px',
+    margin: '1.5rem 0.5rem 0 0.5rem',
+  },
+  month: {
+    fontSize: '16px',
+    fontFamily: theme.typography.fontFamily,
   },
   calendarAction: {
     marginLeft: '1rem',
   },
-  table: {
-    marginTop: '1.5rem',
-    width: '100%',
-    '& th': {
-      // textAlign: 'left',
-      color: theme.palette.secondary.neutral50,
-    },
-    '& td': {
-      fontSize: '14px',
-      fontWeight: '500',
-      paddingTop: '0.85rem',
-      paddingBottom: '0.85rem',
-      textAlign: 'center',
-    },
+  day: {
+    height: '17px',
+    width: '17.5px',
+    fontFamily: theme.typography.fontFamily,
   },
   today: {
     background: theme.palette.primary.blue50,
     color: theme.palette.common.white,
     borderRadius: '50%',
+    width: '1rem',
   },
   eventIndex: {
     display: 'flex',
     justifyContent: 'space-between',
     marginTop: '1rem',
   },
+  eventColors: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    height: '10px',
+    width: '15px',
+  },
   eventType: {
     display: 'flex',
     alignItems: 'center',
+    fontSize: '12px',
+    lineHeight: '16px',
+    fontWeight: '400',
+    fontFamily: 'Source Sans Pro',
   },
   redDot: {
     backgroundColor: theme.palette.accent.red,
@@ -169,5 +215,39 @@ const useStyles = makeStyles((theme) => ({
     height: '10px',
     borderRadius: '50%',
     marginRight: '0.5rem',
+  },
+  dateRed: {
+    backgroundColor: theme.palette.accent.red,
+    width: '13.14px',
+    height: '0.1rem',
+    marginBottom: '2px',
+  },
+  dateGreen: {
+    backgroundColor: theme.palette.accent.green,
+    width: '13.14px',
+    height: '0.1rem',
+    marginBottom: '2px',
+  },
+  dateYellow: {
+    backgroundColor: theme.palette.accent.yellow,
+    width: '13.14px',
+    height: '0.1rem',
+  },
+
+  dayValue: {
+    display: 'flex',
+    flexDirection: 'column',
+    boxSizing: 'border-box',
+    width: '15px',
+    fontSize: '14px',
+    fontWeight: '600',
+    paddingTop: '0.65rem',
+    textAlign: 'center',
+    fontFamily: 'Inter',
+  },
+  tableRow: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(7,1fr)',
+    justifyItems: 'center',
   },
 }));
