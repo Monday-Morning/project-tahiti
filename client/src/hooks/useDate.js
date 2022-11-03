@@ -47,9 +47,9 @@ export const useDate = (nav) => {
         daysArr.push({
           value: i - paddingDays,
           isCurrentDay: i - paddingDays === day && nav === 0,
-          isInstituteEvent: i % 6 === 0 && i > 15,
-          isClubEvent: i % 3 === 0,
-          isInstituteHoliday: i % 4 === 0,
+          isInstituteEvent: false,
+          isClubEvent: false,
+          isInstituteHoliday: false,
           date: dayString,
           day: i % 7,
         });
