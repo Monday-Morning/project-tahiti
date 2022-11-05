@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 
 // libraries
-import { useMediaQuery, Menu, MenuItem, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import {
+  useMediaQuery,
+  Menu,
+  MenuItem,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { Share2 } from 'react-feather';
 import {
