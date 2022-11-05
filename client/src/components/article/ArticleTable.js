@@ -17,7 +17,11 @@ const ArticleTable = ({ data, blockFormatting }) => {
     .replace(/\\\"/g, '')
     .split('],[')
     .map((row) => row.split(','))
-    .map((row) => row.map((cell) => cell.slice(1, -1)));
+    .map((row, index) =>
+      row.map((cell, _index) =>
+        index === 0 && _index === 0 ? cell.slice(0, -1) : cell.slice(1, -1),
+      ),
+    );
 
   const { hasHeaderColumn, hasHeaderRow } = blockFormatting;
 
