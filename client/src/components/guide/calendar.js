@@ -122,10 +122,14 @@ function Calendar() {
       </div>
 
       <div className={classes.postWrapper}>
-        <Typography variant='h3'>
-          <span className={classes.select}>Selected:</span>
-          {activeMonth === 'All' ? activeMonth : `${activeMonth} ${activeYear}`}
-        </Typography>
+        <Container>
+          <Typography variant='h3'>
+            <span className={classes.select}>Selected:</span>
+            {activeMonth === 'All'
+              ? activeMonth
+              : `${activeMonth} ${activeYear}`}
+          </Typography>
+        </Container>
       </div>
     </>
   );
