@@ -75,7 +75,7 @@ const AuthState = ({ children }) => {
         const imageUpload = await imagekit
           .upload({
             file: userPicture,
-            folder: '/profile',
+            folder: '/user',
             fileName: `${user.uid}.${
               userPicture.type.toString().split('/')[1]
             }`,
