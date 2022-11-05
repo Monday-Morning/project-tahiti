@@ -11,7 +11,8 @@ import {
   onAuthStateChanged,
   getAdditionalUserInfo,
 } from 'firebase/auth';
-import { auth } from '../../config/firebase';
+import { getAnalytics, isSupported } from 'firebase/analytics';
+import { auth, firebaseApp } from '../../config/firebase';
 
 //graphql
 import { getApolloLink, GraphClient } from '../../config/ApolloClient';
@@ -26,6 +27,9 @@ const AuthState = ({ children }) => {
   const [firebaseToken, setFirebaseToken] = useState('');
 
   useEffect(() => {
+    if (isSupported()) {
+      getAnalytics(firebaseApp);
+    }
     if (auth) {
       onAuthStateChanged(auth, async (_user) => {
         setUser(_user);
@@ -59,7 +63,7 @@ const AuthState = ({ children }) => {
           publicKey: process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY,
           urlEndpoint: process.env.NEXT_PUBLIC_IMAGEKIT_URLENDPOINT,
           authenticationEndpoint:
-            process.env.NEXT_PUBLIC_AUTHENTICATION_ENDPOINT,
+            process.env.NEXT_PUBLIC_IMAGEKIT_AUTHENTICATION_ENDPOINT,
         });
 
         const userPicture = await (await fetch(user.photoURL)).blob();
