@@ -7,10 +7,13 @@ import CallIcon from '@mui/icons-material/Call';
 import makeStyles from '@mui/styles/makeStyles';
 
 //placeholder
-import { INFO } from '../../assets/placeholder/healthAndEmergencyInfo';
+import { INFO } from '../../assets/placeholder/healthInfo';
 
 //image
-import map from '../../assets/images/contact/map.png';
+import cws from '../../assets/images/healthAndEmergencyInfo/cws.png';
+import health from '../../assets/images/healthAndEmergencyInfo/health.png';
+
+//Components
 import DropDownCard from '../widgets/DropDownCard';
 
 const Info = () => {
@@ -62,6 +65,22 @@ const Info = () => {
                       Designation: {item.designation}
                     </Typography>
                   )}
+                  {item.address && (
+                    <Typography
+                      variant='body1'
+                      className={classes.dropdownTypography}
+                    >
+                      Address: {item.address}
+                    </Typography>
+                  )}
+                  {item.services && (
+                    <Typography
+                      variant='body1'
+                      className={classes.dropdownTypography}
+                    >
+                      Services: {item.services}
+                    </Typography>
+                  )}
                   {item.phone && (
                     <Typography
                       variant='body1'
@@ -78,50 +97,94 @@ const Info = () => {
         ))}
       </div>
       <Grid container spacing={4}>
-        {INFO.location.map((place, key) => (
-          <Grid item xs={12} md={6} key={key}>
-            <div className={classes.locationWrapper}>
-              <Grid container justifyContent='center'>
-                <Grid item xs={6}>
-                  <Typography variant='h3' className={classes.locationTitle}>
-                    {place.title}
-                  </Typography>
-                  <Typography variant='body1' className={classes.location}>
-                    {place.location1}
-                  </Typography>
-                  <Typography variant='body1' className={classes.location}>
-                    {place.location2}
-                  </Typography>
-                  <Typography variant='body1' className={classes.location}>
-                    {place.location3}
-                  </Typography>
-                  <Typography variant='body1' className={classes.location}>
-                    {place.location4}
-                  </Typography>
-                  <Typography variant='body1' className={classes.location}>
-                    {place.pin}
-                  </Typography>
-                </Grid>
-                <Grid item xs={6} className={classes.mapWrapper}>
-                  <Image
-                    src={map}
-                    alt='Monday Morning'
-                    className={classes.map}
-                  />
-                  <a
-                    href='https://goo.gl/maps/EKwq5J2x1djPHwVB9'
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    <Typography variant='body2' className={classes.mapText}>
-                      See on map
-                    </Typography>
-                  </a>
-                </Grid>
+        <Grid item xs={12} md={6}>
+          <div className={classes.locationWrapper}>
+            <Grid container justifyContent='center'>
+              <Grid item xs={6}>
+                <Typography variant='h3' className={classes.locationTitle}>
+                  {INFO.location.health.title}
+                </Typography>
+                <Typography variant='body1' className={classes.location}>
+                  {INFO.location.health.location1}
+                </Typography>
+                <Typography variant='body1' className={classes.location}>
+                  {INFO.location.health.location2}
+                </Typography>
+                <Typography variant='body1' className={classes.location}>
+                  {INFO.location.health.location3}
+                </Typography>
+                <Typography variant='body1' className={classes.location}>
+                  {INFO.location.health.location4}
+                </Typography>
+                <Typography variant='body1' className={classes.location}>
+                  {INFO.location.health.pin}
+                </Typography>
               </Grid>
-            </div>
-          </Grid>
-        ))}
+              <Grid item xs={6} className={classes.mapWrapper}>
+                <Image
+                  src={health}
+                  alt={INFO.location.health.imageAlt}
+                  className={classes.map}
+                  width={220}
+                  height={180}
+                />
+                <a
+                  href={INFO.location.health.url}
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  <Typography variant='body2' className={classes.mapText}>
+                    See on map
+                  </Typography>
+                </a>
+              </Grid>
+            </Grid>
+          </div>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <div className={classes.locationWrapper}>
+            <Grid container justifyContent='center'>
+              <Grid item xs={6}>
+                <Typography variant='h3' className={classes.locationTitle}>
+                  {INFO.location.cws.title}
+                </Typography>
+                <Typography variant='body1' className={classes.location}>
+                  {INFO.location.cws.location1}
+                </Typography>
+                <Typography variant='body1' className={classes.location}>
+                  {INFO.location.cws.location2}
+                </Typography>
+                <Typography variant='body1' className={classes.location}>
+                  {INFO.location.cws.location3}
+                </Typography>
+                <Typography variant='body1' className={classes.location}>
+                  {INFO.location.cws.location4}
+                </Typography>
+                <Typography variant='body1' className={classes.location}>
+                  {INFO.location.cws.pin}
+                </Typography>
+              </Grid>
+              <Grid item xs={6} className={classes.mapWrapper}>
+                <Image
+                  src={cws}
+                  alt={INFO.location.cws.imageAlt}
+                  className={classes.map}
+                  width={220}
+                  height={180}
+                />
+                <a
+                  href={INFO.location.cws.url}
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  <Typography variant='body2' className={classes.mapText}>
+                    See on map
+                  </Typography>
+                </a>
+              </Grid>
+            </Grid>
+          </div>
+        </Grid>
       </Grid>
     </div>
   );
@@ -150,6 +213,10 @@ const useStyles = makeStyles((theme) => ({
   dropdownDetails: {
     paddingTop: '18px',
     paddingBottom: '18px',
+    paddingRight: '8px',
+    [theme.breakpoints.down('md')]: {
+      paddingRight: '0px',
+    },
   },
 
   dropdownTypography: {
@@ -195,8 +262,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   map: {
-    width: '174px',
-    height: '155px',
     paddingTop: '4px',
     marginLeft: '16px',
     [theme.breakpoints.down('lg')]: {

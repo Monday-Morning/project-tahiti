@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 // Components
 import Marginals from '../components/marginals/Marginals';
-import HealthAndEmergency from '../screens/HealthAndEmergency';
+import HealthInfo from '../screens/HealthInfo';
 
 function HealthAndEmergencyInfo() {
   return (
@@ -74,7 +74,7 @@ function HealthAndEmergencyInfo() {
         />
       </Head>
       <Marginals>
-        <HealthAndEmergency />
+        <HealthInfo />
       </Marginals>
     </>
   );
