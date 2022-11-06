@@ -1,5 +1,6 @@
 /* eslint-disable no-nested-ternary */
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 // libraries
 import { alpha } from '@mui/material/styles';
@@ -31,143 +32,14 @@ import {
 } from '@mui/icons-material';
 import { visuallyHidden } from '@mui/utils';
 
-function createData(name, calories, fat, carbs, protein, status) {
-  return {
-    name,
-    calories,
-    fat,
-    carbs,
-    protein,
-    status,
-  };
-}
+import determineCategory from '../../utils/determineCategory';
+import limitAuthor from '../../utils/limitAuthor';
 
-const rows = [
-  createData(
-    'RamaKruna Behera and Debabrata',
-    '05/04/2022, 12:25pm',
-    'Siddharth, Sriram, Rishika',
-    'Fests, Campus Buzz',
-    0,
-    'Unpublished',
-  ),
-  createData(
-    'RamaKrushna Behera and Debabrata',
-    '05/04/2022, 12:25pm',
-    'Siddharth, Sriram, Rishika',
-    'Fests, Campus Buzz',
-    0,
-    'Unpublished',
-  ),
-  createData(
-    'RamaKrushna Behera and Debabrata',
-    '05/04/2022, 12:25pm',
-    'Siddharth, Sriram, Rishika',
-    'Fests, Campus Buzz',
-    0,
-    'Unpublished and Approved',
-  ),
-  createData(
-    'RamaKrushna Behera and Debabrata',
-    '05/04/2022, 12:25pm',
-    'Siddharth, Sriram, Rishika',
-    'Fests, Campus Buzz',
-    0,
-    'Unpublished',
-  ),
-  createData(
-    'RamaKrushna Behera and Debabrata',
-    '05/04/2022, 12:25pm',
-    'Siddharth, Sriram, Rishika',
-    'Fests, Campus Buzz',
-    0,
-    'Published',
-  ),
-  createData(
-    'RamaKrushna Behera and Debabrata',
-    '05/04/2022, 12:25pm',
-    'Siddharth, Sriram, Rishika',
-    'Fests, Campus Buzz',
-    0,
-    'Unpublished and Approved',
-  ),
-  createData(
-    'RamaKrushna Behera and Debabrata',
-    '05/04/2022, 12:25pm',
-    'Siddharth, Sriram, Rishika',
-    'Fests, Campus Buzz',
-    0,
-    'Published',
-  ),
-  createData(
-    'RamaKrushna Behera and Debabrata',
-    '05/04/2022, 12:25pm',
-    'Siddharth, Sriram, Rishika',
-    'Fests, Campus Buzz',
-    0,
-    'Unpublished',
-  ),
-  createData(
-    'RamaKrushna Behera and Debabrata',
-    '05/04/2022, 12:25pm',
-    'Siddharth, Sriram, Rishika',
-    'Fests, Campus Buzz',
-    0,
-    'Unpublished',
-  ),
-  createData(
-    'RamaKrushna Behera and Debabrata',
-    '05/04/2022, 12:25pm',
-    'Siddharth, Sriram, Rishika',
-    'Fests, Campus Buzz',
-    0,
-    'Unpublished and Approved',
-  ),
-  createData(
-    'RamaKrushna Behera and Debabrata',
-    '05/04/2022, 12:25pm',
-    'Siddharth, Sriram, Rishika',
-    'Fests, Campus Buzz',
-    0,
-    'Unpublished',
-  ),
-  createData(
-    'RamaKrushna Behera and Debabrata',
-    '05/04/2022, 12:25pm',
-    'Siddharth, Sriram, Rishika',
-    'Fests, Campus Buzz',
-    0,
-    'Unpublished',
-  ),
-];
-
-function descendingComparator(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
-}
-
-function getComparator(order, orderBy) {
-  return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
-}
-
-function stableSort(array, comparator) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) {
-      return order;
-    }
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
-}
+//graphql
+import { GraphClient } from '../../config/ApolloClient';
+import listAllArticles from '../../graphql/queries/article/listAllArticles';
+import countTotalArticles from '../../graphql/queries/article/countTotalArticles';
+import getArticleLink from '../../utils/getArticleLink';
 
 const headCells = [
   {
@@ -178,39 +50,39 @@ const headCells = [
   },
   {
     id: 'timestamps',
-    numeric: true,
+    numeric: false,
     disablePadding: false,
     label: 'Timestamps',
   },
   {
     id: 'authors',
-    numeric: true,
+    numeric: false,
     disablePadding: false,
     label: 'Authors',
   },
   {
     id: 'category',
-    numeric: true,
+    numeric: false,
     disablePadding: false,
     label: 'Category',
   },
   {
     id: 'comments',
-    numeric: true,
+    numeric: false,
     disablePadding: false,
     label: '',
     icon: <Comment />,
   },
   {
     id: 'status',
-    numeric: true,
-    disablePadding: false,
+    numeric: false,
+    disablePadding: true,
     label: 'Status',
   },
   {
     id: 'actions',
-    numeric: true,
-    disablePadding: false,
+    numeric: false,
+    disablePadding: true,
     label: 'Actions',
   },
 ];
@@ -355,11 +227,101 @@ const EnhancedTableToolbar = (props) => {
 </Tooltip>;
 
 export default function Browse() {
-  const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('calories');
-  const [selected, setSelected] = React.useState([]);
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [order, setOrder] = useState('asc');
+  const [orderBy, setOrderBy] = useState('calories');
+  const [selected, setSelected] = useState([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(25);
+  const [rowData, setRowData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [noOfArticles, setNoOfArticles] = useState(0);
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+
+      try {
+        const {
+          data: { countTotalArticles: articleCount },
+        } = await GraphClient.query({
+          query: countTotalArticles,
+          variables: {
+            onlyPublished: true,
+          },
+        });
+        setNoOfArticles(articleCount);
+      } catch (error) {
+        console.log(error);
+      }
+
+      const {
+        data: { listAllArticles: articleArray },
+      } = await GraphClient.query({
+        query: listAllArticles,
+        variables: {
+          onlyPublished: false,
+          limit: rowsPerPage,
+          offset: page * rowsPerPage,
+        },
+      });
+      const data = articleArray?.reduce(
+        (
+          acc,
+          {
+            id,
+            title,
+            createdAt,
+            authors,
+            categories,
+            comments,
+            publishStatus,
+          },
+        ) => [
+          ...acc,
+          [
+            id,
+            title,
+            new Date(createdAt).toDateString(),
+            authors
+              .map(({ name }) => limitAuthor(name))
+              .reduce((acc, red) => acc + red + ', ', '')
+              .slice(0, -2),
+            categories
+              .filter(({ number }) => number < 10)
+              .map(({ number }) => determineCategory(number))
+              .reduce((acc, red) => acc + red + ', ', '')
+              .slice(0, -2),
+            comments,
+            publishStatus,
+          ],
+        ],
+        [],
+      );
+
+      const rows = data?.map((row) => {
+        const [
+          id,
+          title,
+          createdAt,
+          authors,
+          categories,
+          comments,
+          publishStatus,
+        ] = row;
+        return {
+          id,
+          title,
+          createdAt,
+          authors,
+          categories,
+          comments,
+          publishStatus,
+        };
+      });
+      setRowData(rows);
+      setLoading(false);
+    })();
+  }, [page, rowsPerPage]);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -369,7 +331,7 @@ export default function Browse() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((n, index) => index);
+      const newSelecteds = rowData.map((n, index) => index);
       setSelected(newSelecteds);
       return;
     }
@@ -398,6 +360,7 @@ export default function Browse() {
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
+    console.log(newPage);
   };
 
   const handleChangeRowsPerPage = (event) => {
@@ -406,19 +369,21 @@ export default function Browse() {
   };
 
   const statusColor = (status) => {
-    if (status === 'Unpublished') {
-      return 'red';
-    }
-    if (status === 'Unpublished and Approved') {
+    if (status === 'UNPUBLISHED') {
       return 'yellow';
+    }
+    if (status === 'ARCHIVED') {
+      return 'blue';
+    }
+    if (status === 'TRASHED') {
+      return 'red';
     }
     return 'green';
   };
 
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - 2000) : 0;
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -436,12 +401,13 @@ export default function Browse() {
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              rowCount={rows.length}
+              rowCount={noOfArticles}
             />
-            <TableBody>
-              {stableSort(rows, getComparator(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
+            {loading ? (
+              <>loading</>
+            ) : (
+              <TableBody>
+                {rowData?.map((row, index) => {
                   const isItemSelected = isSelected(index);
                   const labelId = `enhanced-table-checkbox-${index}`;
                   return (
@@ -451,7 +417,7 @@ export default function Browse() {
                       role='checkbox'
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={index}
+                      key={row.id}
                       selected={isItemSelected}
                     >
                       <TableCell padding='checkbox'>
@@ -469,14 +435,19 @@ export default function Browse() {
                         scope='row'
                         padding='none'
                       >
-                        {row.name}
+                        <a
+                          href={getArticleLink(row.id, row.title)}
+                          target='_blank'
+                        >
+                          {row.title}
+                        </a>
                       </TableCell>
-                      <TableCell align='right'>{row.calories}</TableCell>
-                      <TableCell align='right'>{row.fat}</TableCell>
-                      <TableCell align='right'>{row.carbs}</TableCell>
-                      <TableCell align='right'>{row.protein}</TableCell>
+                      <TableCell align='left'>{row.createdAt}</TableCell>
+                      <TableCell align='left'>{row.authors}</TableCell>
+                      <TableCell align='left'>{row.categories}</TableCell>
+                      <TableCell align='left'>{row.comments}</TableCell>
                       <TableCell
-                        align='right'
+                        align='center'
                         style={{ color: `${statusColor(row.status)}` }}
                       >
                         <Tooltip title={row.status}>
@@ -484,7 +455,7 @@ export default function Browse() {
                         </Tooltip>
                       </TableCell>
                       <TableCell
-                        align='right'
+                        align='center'
                         style={{ color: `${statusColor(row.status)}` }}
                       >
                         <Tooltip title='Edit'>
@@ -496,22 +467,23 @@ export default function Browse() {
                     </TableRow>
                   );
                 })}
-              {emptyRows > 0 && (
-                <TableRow
-                  style={{
-                    height: 53 * emptyRows,
-                  }}
-                >
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
-            </TableBody>
+                {emptyRows > 0 && (
+                  <TableRow
+                    style={{
+                      height: 53 * emptyRows,
+                    }}
+                  >
+                    <TableCell colSpan={6} />
+                  </TableRow>
+                )}
+              </TableBody>
+            )}
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPageOptions={[10, 25, 50]}
           component='div'
-          count={rows.length}
+          count={noOfArticles}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}

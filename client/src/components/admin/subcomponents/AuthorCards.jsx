@@ -7,35 +7,32 @@ import {
   TextField,
 } from '@mui/material';
 
-export default function AuthorsCard() {
+export default function AuthorsCard({ title, users, setTeam }) {
   return (
     <>
-      <Card variant='outlined' sx={{ px: 3, py: 2, mb: 3, mt: 3 }}>
-        <Typography variant='h6'>Authors</Typography>
-        <FormControl sx={{ width: '100', minWidth: '100%', marginTop: '10px' }}>
+      <div>
+        <Typography variant='h6'>{title}</Typography>
+        <FormControl sx={{ width: '100', minWidth: '100%', margin: '10px 0' }}>
           <Autocomplete
             multiple
-            id='tags-outlined'
-            options={names}
-            getOptionLabel={(option) => option}
-            filterSelectedOptions
-            renderInput={(params) => <TextField {...params} label='Name' />}
+            id='multiple-limit-tags'
+            options={users}
+            isOptionEqualToValue={(option, value) => option.id === value.id}
+            renderOption={(props, users) => (
+              <li {...props} key={users.id}>
+                {users.fullName}
+              </li>
+            )}
+            onChange={(e, value) => {
+              setTeam(value);
+              console.log(value);
+            }}
+            renderInput={(params) => (
+              <TextField required={true} {...params} label='Name' />
+            )}
           />
         </FormControl>
-      </Card>
+      </div>
     </>
   );
 }
-
-const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
-];

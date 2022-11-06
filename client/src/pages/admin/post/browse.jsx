@@ -4,6 +4,7 @@ import Head from 'next/head';
 // components
 import Browse from '../../../screens/admin/Browse';
 import Admin from '../../../screens/admin/Admin';
+import getAccess from '../../../utils/getAccess';
 
 const BrowsePage = () => {
   return (
@@ -24,13 +25,27 @@ const BrowsePage = () => {
   );
 };
 
-// export async function getServerSideProps() {
-//   return {
-//     redirect: {
-//       destination: '/comingSoon',
-//       permanent: false,
-//     },
-//   };
-// }
+export async function getServerSideProps(ctx) {
+  const userPermissions = await getAccess(ctx);
+
+  const requiredPermissions = ['article.write.self'];
+
+  const permissionCheckPass = userPermissions.some((permission) =>
+    requiredPermissions.includes(permission),
+  );
+
+  if (!permissionCheckPass) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { userPermissions },
+  };
+}
 
 export default BrowsePage;

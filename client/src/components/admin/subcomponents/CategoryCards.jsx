@@ -21,43 +21,50 @@ const select = {
 
 const categoryNames = {
   department: {
-    title: 'Department',
+    title: 'Campus',
     children: [
-      'Biotechnology & Biomedical Engineering',
-      'Ceramic Engineering',
-      'Chemical Engineering',
-      'Civil Engineering',
-      'Computer Science and Engineering',
+      'Academics',
+      'Campus Buzz',
+      'Forum',
+      'Student Activities',
+      'Halls',
+      'Poll Analysis',
+      'Admission',
     ],
   },
-  campus: {
-    title: 'Campus',
-    children: ['SAC Speaks', 'Campus Buzz', 'Clubs', 'Halls', 'Sports'],
+  connect: {
+    title: 'Connect',
+    children: ['Interviews', 'SAC Speaks', 'CGPA', 'Guest Interview'],
   },
   ddcwc: {
     title: 'DD & CWC',
     children: ["Director's Desk", "Cheif Warden's Column"],
   },
   views: {
-    title: 'Views',
-    children: ['Interview', 'The CGPA', 'Student Pulse'],
-  },
-  carrer: {
-    title: 'Carrer',
+    title: 'Career',
     children: [
       'Placements',
-      'Higher Education',
-      'Placement Database',
-      'Internship Database',
+      'Internships',
+      'Higher Eduction',
+      'Guidance',
+      'Live',
     ],
   },
   alumini: {
-    title: 'Alumini',
-    children: ['Alumni Speaks', 'Happenings'],
+    title: 'Alumni',
+    children: ['Alumni Speaks', 'Alumni Affairs'],
   },
-  editorial: {
-    title: 'Editorial',
-    children: ['Opinion', 'Science and Society', 'Anecdotes', 'Miscellaneous'],
+  alumini: {
+    title: 'Expressions',
+    children: [
+      'Witsdom',
+      'Photostory',
+      'Gallery',
+      'NITR in Motion',
+      'Podcasts',
+      'Editorial',
+      'Miscellaneous',
+    ],
   },
 };
 

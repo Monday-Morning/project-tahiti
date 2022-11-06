@@ -33,7 +33,9 @@ const AuthState = ({ children }) => {
     if (auth) {
       onAuthStateChanged(auth, async (_user) => {
         setUser(_user);
-        if (_user) setFirebaseToken(await getIdToken(_user, false));
+        const _fbToken = await getIdToken(_user, false);
+        GraphClient.setLink(getApolloLink(firebaseToken));
+        if (_user) setFirebaseToken(_fbToken);
       });
     }
   }, []);

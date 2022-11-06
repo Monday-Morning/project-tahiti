@@ -41,7 +41,7 @@ const link = from([
     uri:
       process.env.NODE_ENV === 'production'
         ? 'https://mm.dashnet.in/api/v1/graph'
-        : 'https://project-reclamation-staging.herokuapp.com/v1/graph',
+        : 'http://localhost:5000/v1/graph',
   }),
 ]);
 

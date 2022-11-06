@@ -1,10 +1,9 @@
 import { parseCookies } from 'nookies';
 
 export default async function getAccess(ctx, permissions) {
-  if (!ctx || !permissions) return false;
   try {
     const cookies = parseCookies(ctx);
-    const { data, error } = await fetch(
+    const res = await fetch(
       process.env.NODE_ENV === 'production'
         ? 'https://mm.dashnet.in/api/auth/check'
         : 'http://localhost:5000/auth/check',
@@ -17,6 +16,9 @@ export default async function getAccess(ctx, permissions) {
         },
       },
     );
+
+    const { data, error } = await res.json();
+
     if (error) {
       throw error;
     }

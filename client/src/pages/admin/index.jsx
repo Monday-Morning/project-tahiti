@@ -2,9 +2,8 @@ import React from 'react';
 import Head from 'next/head';
 import Admin from '../../screens/admin/Admin';
 
-import { parseCookies } from 'nookies';
-
 //Components
+import getAccess from '../../utils/getAccess';
 
 const AdminPage = () => {
   return (
@@ -24,13 +23,25 @@ const AdminPage = () => {
 };
 
 export async function getServerSideProps(ctx) {
-  // const cookies = parseCookies(ctx);
-  // console.log(cookies);
+  const userPermissions = await getAccess(ctx);
+
+  const requiredPermissions = ['article.write.self'];
+
+  const permissionCheckPass = userPermissions.some((permission) =>
+    requiredPermissions.includes(permission),
+  );
+
+  if (!permissionCheckPass) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+
   return {
-    redirect: {
-      destination: '/comingSoon',
-      permanent: false,
-    },
+    props: { userPermissions },
   };
 }
 

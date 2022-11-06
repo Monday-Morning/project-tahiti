@@ -1,11 +1,16 @@
 import React from 'react';
 import Head from 'next/head';
+import { parseCookies } from 'nookies';
 
 // components
 import AddNew from '../../../screens/admin/AddNew';
 import Admin from '../../../screens/admin/Admin';
 
-const AddNewPage = () => {
+import getAccess from '../../../utils/getAccess';
+import { getApolloLink, GraphClient } from '../../../config/ApolloClient';
+import listAllUser from '../../../graphql/queries/user/listAllUser';
+
+const AddNewPage = ({ userPermissions, allUsers }) => {
   return (
     <>
       <Head>
@@ -18,19 +23,42 @@ const AddNewPage = () => {
         />
       </Head>
       <Admin>
-        <AddNew />
+        <AddNew userPermissions={userPermissions} allUsers={allUsers} />
       </Admin>
     </>
   );
 };
 
-// export async function getServerSideProps() {
-//   return {
-//     redirect: {
-//       destination: '/comingSoon',
-//       permanent: false,
-//     },
-//   };
-// }
+export async function getServerSideProps(ctx) {
+  const userPermissions = await getAccess(ctx);
+
+  const requiredPermissions = ['article.write.new'];
+
+  const permissionCheckPass = userPermissions.some((permission) =>
+    requiredPermissions.includes(permission),
+  );
+
+  if (!permissionCheckPass) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+
+  const cookies = parseCookies(ctx);
+  GraphClient.setLink(getApolloLink(cookies.firebaseToken));
+  const {
+    data: { listAllUsers: allUsers },
+  } = await GraphClient.query({
+    query: listAllUser,
+    variables: { accountType: 2, limit: 10000 },
+  });
+
+  return {
+    props: { userPermissions, allUsers }, // will be passed to the page component as props
+  };
+}
 
 export default AddNewPage;
