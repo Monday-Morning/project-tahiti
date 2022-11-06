@@ -16,14 +16,6 @@ import { ExpandMore } from '@mui/icons-material';
 import PostHolders from '../widgets/PostHolder';
 
 
-// const Socities = [
-//    {title:'Film and Music'},
-//    {title: 'Games and Sports'},
-//    {title:'Literary and Cultural'},
-//    {title:'Technical'},
-// ];
-
-
 const SocietyCards = (
   {society}
 ) => {
@@ -100,6 +92,11 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'IBM Plex Sans',
     fontSize: '24px',
     fontWeight: 600,
+    [theme.breakpoints.down('sm')]: {
+    fontSize: '18px',
+    fontWeight: 600,
+      
+      },
   },
   position: {
     color: theme.palette.secondary.neutral80,
@@ -124,11 +121,10 @@ const useStyles = makeStyles((theme) => ({
   hallDetails: {
     padding: '30px 70px',
     display: 'flex',
-   flexDirection:'column',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    [theme.breakpoints.up('sm')]: {
-    flexDirection:'row',
+    [theme.breakpoints.down('sm')]: {
+    flexDirection:'column',
   justifyContent: 'center',
    alignItems: 'center',
     },

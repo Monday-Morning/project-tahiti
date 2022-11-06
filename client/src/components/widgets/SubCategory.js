@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       padding: '3px 8px',
     },
+    
   },
 
   label: {
@@ -47,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     color: ({ isRed }) =>
       isRed ? theme.palette.secondary.neutral20 : theme.palette.secondary.main,
     [theme.breakpoints.down('md')]: {
-      fontSize: '14px',
+      fontSize: '16px',
       lineHeight: '20px',
     },
   },

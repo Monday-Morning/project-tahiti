@@ -7,7 +7,6 @@ import Link from 'next/link';
 import ROUTES from '../utils/getRoutes';
 // import SacClub from '../assets/placeholder/sac';
 
-
 import Image from 'next/dist/client/image';
 
 import theme from '../config/themes/light';
@@ -15,16 +14,14 @@ import theme from '../config/themes/light';
 // images
 import SACimagexs from '../assets/images/contact/sac2.png';
 
-import SectionNavbars from '../components/widgets/SectionNavbars';
-import SectionNavbar1 from '../components/widgets/SectionNavbar1';
+import SectionNavbars from '../components/widgets/ClubInfoNavbar';
+import SectionNavbar1 from '../components/widgets/SacInfoNavbar';
 
-// import 
+// import
 
 const SacAndClub = () => {
   const classes = useStyles();
   const matches = useMediaQuery(theme.breakpoints.down('sm'));
-  
- 
 
   return (
     <Container>
@@ -51,7 +48,12 @@ const SacAndClub = () => {
             students, faculty, staff, alumni, and guests.
           </Typography>
           <div className={classes.image}>
-            <Image className={classes.image} src={SACimagexs} alt='SACimage' layout='responsive' />
+            <Image
+              className={classes.image}
+              src={SACimagexs}
+              alt='SACimage'
+              layout='responsive'
+            />
           </div>
         </div>
       </div>
@@ -76,12 +78,12 @@ const SacAndClub = () => {
 export default SacAndClub;
 
 const useStyles = makeStyles((theme) => ({
-  down:{marginTop:'1.5rem'},
+  down: { marginTop: '1.5rem', marginLeft: '10px' },
   CategoryWrapper: {
     maxWidth: '1200px',
     borderRadius: '8px',
     marginTop: '2rem',
-    padding:'10px',
+    padding: '10px',
     margin: '40px auto 40px auto',
     [theme.breakpoints.down('lg')]: {
       marginTop: '24px',
@@ -113,7 +115,10 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       lineHeight: '5px',
       fontSize: '24px',
-      paddingTop:'10px'
+      paddingTop: '10px',
+      marginLeft: '10px',
+
+      width: '90%',
     },
   },
   title1: {
@@ -135,7 +140,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     width: '100%',
     height: 'auto',
-
   },
   text1: {
     width: '50%',
@@ -150,7 +154,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '18px',
       lineHeight: '24px',
       fontWeight: '400',
-      width:'100%'
+      width: '100%',
     },
   },
   image: {
@@ -161,11 +165,11 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
- 
+
   hr: {
     display: 'flex',
     marginTop: '6%',
-    marginBottom:'1.8rem'
+    marginBottom: '1.8rem',
   },
 
   underline: {
@@ -177,10 +181,10 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     opacity: '30%',
     flex: 1,
-
   },
   title: {
     display: 'inline',
     whiteSpace: 'nowrap',
+    marginLeft: '10px',
   },
 }));
