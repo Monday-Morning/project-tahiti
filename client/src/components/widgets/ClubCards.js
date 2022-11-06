@@ -1,60 +1,28 @@
 import React, { useState } from 'react';
 
-import { Card, Stack, Typography } from '@mui/material';
+import { Card, Stack, Typography, useMediaQuery } from '@mui/material';
 import SubCategory from './SubCategory';
 
 import Image from 'next/image';
 import makeStyles from '@mui/styles/makeStyles';
+import theme from '../../config/themes/light';
 
 import logoFullBlack from '../../assets/images/logo_mm.png';
 import PostHolders from '../widgets/PostHolder';
-// import { useState } from 'react';
-const ClubCards = () => {
-  const [clubsTheme, setClubsTheme] = useState({
-    title: 'akriti',
-    text: 'AKRITI is an art club of NIT Rourkela registered under the Literary & Cultural Society, SAC.This club is dedicated to promote and support art enthusiasts in different forms of art existing in India as well as different parts of the globe.Apart from this ,AKRITI club also conducts regular workshops,various events.',
-  });
-  const classes = useStyles();
-  const clubs = [
-    {
-      title: 'akriti',
-      text: 'AKRITI is an art club of NIT Rourkela registered under the Literary & Cultural Society, SAC.This club is dedicated to promote and support art enthusiasts in different forms of art existing in India as well as different parts of the globe.Apart from this ,AKRITI club also conducts regular workshops,various events.',
-    },
-    {
-      title: 'Cinematics',
-      text: 'KRITI is an art club of NIT Rourkela registered under the Literary & Cultural Society, SAC.This club is dedicated to promote and support art enthusiasts in different forms of art existing in India as well as different parts of the globe.Apart from this ,AKRITI club also conducts regular workshops,various events.',
-    },
-    {
-      title: 'Cinematics',
-      text: 'KRITI is an art club of NIT Rourkela registered under the Literary & Cultural Society, SAC.This club is dedicated to promote and support art enthusiasts in different forms of art existing in India as well as different parts of the globe.Apart from this ,AKRITI club also conducts regular workshops,various events.',
-    },
-    {
-      title: 'Cinematics',
-      text: 'KRITI is an art club of NIT Rourkela registered under the Literary & Cultural Society, SAC.This club is dedicated to promote and support art enthusiasts in different forms of art existing in India as well as different parts of the globe.Apart from this ,AKRITI club also conducts regular workshops,various events.',
-    },
-    {
-      title: 'Cinematics',
-      text: 'KRITI is an art club of NIT Rourkela registered under the Literary & Cultural Society, SAC.This club is dedicated to promote and support art enthusiasts in different forms of art existing in India as well as different parts of the globe.Apart from this ,AKRITI club also conducts regular workshops,various events.',
-    },
-    {
-      title: 'Cinematics',
-      text: 'KRITI is an art club of NIT Rourkela registered under the Literary & Cultural Society, SAC.This club is dedicated to promote and support art enthusiasts in different forms of art existing in India as well as different parts of the globe.Apart from this ,AKRITI club also conducts regular workshops,various events.',
-    },
-    // 'Third Eye',
-    // 'Drill n Bass',
-    // 'Hall Info',
-    // 'Health Info',
-    // 'NITR-101',
-    // 'Commn. Directory',
-  ];
+import { club } from '../../assets/placeholder/sac';
 
+const ClubCards = ({ category }) => {
+  const [clubsTheme, setClubsTheme] = useState(club[category][0]);
+  const classes = useStyles();
+  const matches = useMediaQuery(theme.breakpoints.down('sm'));
+  // console.log(data);
   return (
     <Card className={classes.root}>
-      {clubs.map((value, index) => {
+      {club[category].map((value, index) => {
         return (
           <SubCategory
+            key={`${index}-${value.title}`}
             text={value.title}
-            theme={value}
             className={classes.subCategory}
             xyz={() => {
               setClubsTheme(value);
@@ -63,23 +31,54 @@ const ClubCards = () => {
         );
       })}
 
-      <Stack direction='row' spacing={2} sx={{ mt: 4 }}>
-        <Image className={classes.image} src={logoFullBlack} alt='logo' width={210} height={200} />
-        <Stack direction='column' spacing={1}>
-          <Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>
-            {/* Akriti */}
-            {clubsTheme.title}
-          </Typography>
-          <Typography variant='body2'>
-            {/* "AKRITI" is an art club of NIT Rourkela registered under the
-            Literary & Cultural Society, SAC.This club is dedicated to promote
-            and support art enthusiasts in different forms of art existing in
-            India as well as different parts of the globe.Apart from this
-            ,AKRITI club also conducts regular workshops,various events. */}
-            {clubsTheme.text}
-          </Typography>
-        </Stack>
-      </Stack>
+      {!matches ? (
+        <>
+          <Stack direction='row' spacing={2} sx={{ mt: 4 }}>
+            <Image
+              className={classes.image}
+              src={logoFullBlack}
+              alt='logo'
+              width={138}
+              height={138}
+            />
+            <Stack direction='column' spacing={1}>
+              <Typography variant='subtitle1' className={classes.clubTitle}>
+                {clubsTheme.title}
+              </Typography>
+              <Typography variant='body2'>{clubsTheme.text}</Typography>
+            </Stack>
+          </Stack>
+        </>
+      ) : (
+        <>
+          <Stack direction='column' spacing={2} sx={{ mt: 4 }}>
+            <Stack direction='row' spacing={2}>
+              <Image
+                className={classes.image}
+                src={logoFullBlack}
+                alt='logo'
+                width={73}
+                height={57}
+              />
+              <Stack direction='column' spacing={1}>
+                <Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>
+                  {clubsTheme.title}
+                </Typography>
+                <Typography variant='body1' sx={{ marginTop: '0px' }}>
+                  Formed in: 20XX
+                </Typography>
+                <Typography variant='body1' sx={{ marginTop: '0px' }}>
+                  Location: TI-214
+                </Typography>
+              </Stack>
+            </Stack>
+            <Typography variant='body2' sx={{ marginTop: '5px' }}>
+              {clubsTheme.text}
+            </Typography>
+          </Stack>
+        </>
+      )}
+
       <div className={classes.titleWrapper}>
         <Typography variant='h2' className={classes.subTitle}>
           Postholders
@@ -99,14 +98,11 @@ const ClubCards = () => {
 export default ClubCards;
 
 const useStyles = makeStyles((theme) => ({
+  clubTitle: {
+    fontWeight: 'bold',
+  },
   root: {
     padding: '28px 41px',
-  },
-  image:{
-    [theme.breakpoints.up('sm')]: {
-    width:'20px',
-    height:'20px'
-    },
   },
   navbarContainer: {
     backgroundColor: theme.palette.secondary.neutral20,
@@ -173,12 +169,12 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    flexDirection:'column',
+    flexDirection: 'column',
     [theme.breakpoints.up('sm')]: {
-      flexDirection:'row',
-    justifyContent: 'center',
-     alignItems: 'center',
-    //  padding:'3px'
-      },
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      //  padding:'3px'
+    },
   },
 }));

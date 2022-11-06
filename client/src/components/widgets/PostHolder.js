@@ -22,19 +22,19 @@ const PostHolders = () => {
         style={{ marginBottom: '5px' }}
         className={classes.holderDetails}
       >
-        name:abc
+        name: Anish Patro
       </Typography>
       <Typography
         variant='body2'
         style={{ marginBottom: '5px' }}
         className={classes.holderDetails}
       >
-        Roll: 121xy0000
+        Roll: 121CE0877
       </Typography>
       <div className={classes.phoneDetails}>
         <PhoneOutlined className={classes.phone} />
         <Typography style={{ marginLeft: '10px' }} variant='body2'>
-          999999999
+          9999999999
         </Typography>
       </div>
     </Grid>
@@ -50,21 +50,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '16px',
     marginBottom: '5px',
     marginTop: '5px',
-
-    // [theme.breakpoints.up('sm')]: {
-    // fontSize: '10px',
-     
-    // },
   },
   holderDetails: {
+    fontFamily: theme.typography.fontFamily,
     fontSize: '20px',
     color: '#000',
-    // marginTop: '5px',
-
-    // [theme.breakpoints.up('sm')]: {
-    //   fontSize: '12px',
-       
-    //   },
   },
   phoneDetails: {
     display: 'flex',
@@ -75,11 +65,7 @@ const useStyles = makeStyles((theme) => ({
   phone: {
     fontSize: '20px',
     color: '#000',
-    marginTop: '5px',
+    marginTop: '10px',
     marginBottom: '10px',
-    // [theme.breakpoints.up('sm')]: {
-    //   fontSize: '1px',
-       
-    //   },
   },
 }));
