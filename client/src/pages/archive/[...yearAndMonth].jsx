@@ -2,12 +2,21 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
-//components
-import Archive from '../screens/Archive';
-import ActivityIndicator from '../components/shared/ActivityIndicator';
-import Marginals from '../components/marginals/Marginals';
+//liberaries
+import { GraphClient } from '../../config/ApolloClient';
 
-function ArchivePage({}) {
+//components
+import Archive from '../../screens/Archive';
+import ActivityIndicator from '../../components/shared/ActivityIndicator';
+import Marginals from '../../components/marginals/Marginals';
+
+//gql
+import listArticlesByYearAndMonth from '../../graphql/queries/article/listArticleByYearAndMonth';
+
+//routes
+import { ARCHIVES } from '../../assets/placeholder/guide';
+
+function ArchivePage({ archiveArticles, year, month }) {
   const { isFallback } = useRouter();
 
   return (
@@ -72,10 +81,61 @@ function ArchivePage({}) {
         />
       </Head>
       <Marginals>
-        {isFallback ? <ActivityIndicator size={150} /> : <Archive />}
+        {isFallback ? (
+          <ActivityIndicator size={150} />
+        ) : (
+          <Archive
+            archiveArticles={archiveArticles}
+            year={parseInt(year)}
+            month={month}
+          />
+        )}
       </Marginals>
     </>
   );
 }
 
 export default ArchivePage;
+
+export async function getStaticProps({
+  params: {
+    yearAndMonth: [year, month],
+  },
+}) {
+  const {
+    data: { listArticlesByYearAndMonth: archiveArticles },
+  } = await GraphClient.query({
+    query: listArticlesByYearAndMonth,
+    variables: {
+      onlyPublished: true,
+      year: parseInt(year),
+      month: ARCHIVES.months.indexOf(month),
+      limit: 9,
+    },
+  });
+  return {
+    props: { archiveArticles, year, month },
+    revalidate: 7 * 24 * 60 * 60,
+  };
+}
+
+export async function getStaticPaths() {
+  const { years, months } = ARCHIVES;
+
+  const paths = years
+    .map((year) =>
+      months.map((month) => {
+        return {
+          params: {
+            yearAndMonth: [`${year}`, month],
+          },
+        };
+      }),
+    )
+    .flat();
+
+  return {
+    paths,
+    fallback: true,
+  };
+}

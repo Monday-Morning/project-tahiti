@@ -1,7 +1,10 @@
-import { React } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 // libraries
+import { GraphClient } from '../config/ApolloClient';
 import { Container, Typography } from '@mui/material';
+import Button from '@mui/material/Button';
 import makeStyles from '@mui/styles/makeStyles';
 
 // Components
@@ -10,10 +13,64 @@ import ArticleCardStack from '../components/widgets/article/ArticleCardStack';
 import Calendar from '../components/guide/calendar';
 
 // Assets
-import { ARTICLES } from '../assets/placeholder/articleCard';
+import { ARCHIVES } from '../assets/placeholder/guide';
 
-function Archive() {
+//gql
+import listArticlesByYearAndMonth from '../graphql/queries/article/listArticleByYearAndMonth';
+
+function Archive({ archiveArticles, year, month }) {
   const classes = useStyles();
+
+  const { push } = useRouter();
+
+  const [articles, setArticles] = useState(archiveArticles);
+  const [activeMonth, setMonth] = useState(month);
+  const [activeYear, setYear] = useState(year);
+  const [isActive, setIsActive] = useState(true);
+  const [offset, setOffset] = useState(0);
+
+  const handleRouteChange = (_year, _month) => {
+    push(`/archive/${_year}/${_month}`, undefined, {
+      shallow: false,
+    });
+  };
+
+  const selectMonth = (month) => {
+    setArticles([]);
+    setMonth(month);
+    handleRouteChange(activeYear, month);
+  };
+  const selectYear = (year) => {
+    setArticles([]);
+    setYear(year);
+    handleRouteChange(year, activeMonth);
+  };
+
+  useEffect(() => {
+    if (offset === 0) return;
+
+    (async () => {
+      setIsActive(false);
+      try {
+        const {
+          data: { listArticlesByYearAndMonth: archiveArticles },
+        } = await GraphClient.query({
+          query: listArticlesByYearAndMonth,
+          variables: {
+            onlyPublished: true,
+            year: activeYear,
+            month: ARCHIVES.months.indexOf(activeMonth),
+            limit: 9,
+            offset: offset,
+          },
+        });
+        setArticles([...articles, ...archiveArticles]);
+        setIsActive(true);
+      } catch (err) {
+        setIsActive(false);
+      }
+    })();
+  }, [offset]);
 
   return (
     <>
@@ -23,9 +80,23 @@ function Archive() {
           Archive
         </Typography>
       </Container>
-      <Calendar />
+      <Calendar
+        activeMonth={activeMonth}
+        activeYear={activeYear}
+        selectMonth={selectMonth}
+        selectYear={selectYear}
+      />
       <Container>
-        <ArticleCardStack articleList={ARTICLES} />
+        <ArticleCardStack articleList={articles} />
+        <div className={classes.showMoreButton}>
+          <Button
+            onClick={() => setOffset((prev) => prev + 9)}
+            disabled={!isActive}
+            variant='contained'
+          >
+            Show More
+          </Button>
+        </div>
       </Container>
     </>
   );
@@ -38,5 +109,10 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.blue60,
     lineHeight: '2rem',
     margin: '2.7rem 0 2rem 0.7rem',
+  },
+  showMoreButton: {
+    display: 'flex',
+    justifyContent: 'center',
+    margin: '2rem 0',
   },
 }));
