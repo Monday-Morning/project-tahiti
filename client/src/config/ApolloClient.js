@@ -38,10 +38,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 const link = from([
   errorLink,
   new HttpLink({
-    uri:
-      process.env.NODE_ENV === 'production'
-        ? 'https://mm.dashnet.in/api/v1/graph'
-        : 'https://project-reclamation-staging.herokuapp.com/v1/graph',
+    uri: process.env.NEXT_PUBLIC_SERVER_ADDRESS,
   }),
 ]);
 

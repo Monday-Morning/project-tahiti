@@ -12,21 +12,16 @@ export const OPTIONS = Object.freeze({
     'Archives',
   ],
 });
+
+const years = [];
+for (let i = 2015; i <= new Date().getFullYear(); i++) {
+  years.push(i);
+}
+
 export const ARCHIVES = Object.freeze({
-  years: [
-    '2012',
-    '2013',
-    '2014',
-    '2015',
-    '2016',
-    '2017',
-    '2018',
-    '2019',
-    '2020',
-    '2021',
-    '2022',
-  ],
+  years,
   months: [
+    'All',
     'Jan',
     'Feb',
     'Mar',
@@ -41,4 +36,5 @@ export const ARCHIVES = Object.freeze({
     'Dec',
   ],
 });
+
 export const CAROUSEL = Object.freeze([img, img, img, img, img]);
