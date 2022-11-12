@@ -16,17 +16,8 @@ import theme from '../../config/themes/light';
 // Assets
 import { ARCHIVES } from '../../assets/placeholder/guide';
 
-function Calendar() {
+function Calendar({ activeMonth, activeYear, selectMonth, selectYear }) {
   const classes = useStyles();
-  const [activeMonth, setMonth] = useState(ARCHIVES.months[0]);
-  const [activeYear, setYear] = useState(ARCHIVES.years[0]);
-
-  const selectMonth = (month) => {
-    setMonth(month);
-  };
-  const selectYear = (year) => {
-    setYear(year);
-  };
 
   return (
     <>
