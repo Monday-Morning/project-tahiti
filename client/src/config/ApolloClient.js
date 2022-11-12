@@ -38,10 +38,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 const link = from([
   errorLink,
   new HttpLink({
-    uri:
-      process.env.NODE_ENV === 'production'
-        ? 'http://localhost:5000/v1/graph'
-        : 'http://localhost:5000/v1/graph',
+    uri: process.env.NEXT_PUBLIC_SERVER_ADDRESS,
   }),
 ]);
 

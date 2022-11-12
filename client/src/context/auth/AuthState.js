@@ -27,7 +27,7 @@ const AuthState = ({ children }) => {
   const [firebaseToken, setFirebaseToken] = useState('');
 
   useEffect(() => {
-    if (isSupported()) {
+    if (isSupported() && process.env.NODE_ENV === 'production') {
       getAnalytics(firebaseApp);
     }
     if (auth) {
