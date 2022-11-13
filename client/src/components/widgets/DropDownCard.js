@@ -35,10 +35,11 @@ const useStyles = makeStyles((theme) => ({
     boxShadow:
       '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
     padding: '20px',
-    marginTop: '32px',
+    marginTop: '22px',
+    borderRadius: '8px',
     cursor: 'pointer',
     [theme.breakpoints.down('md')]: {
-      flexWrap: 'wrap-reverse',
+      flexDirection: 'row-reverse',
     },
   },
   DropDownIcon: {
