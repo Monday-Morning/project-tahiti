@@ -1,0 +1,136 @@
+import React, { useState } from 'react';
+
+import clsx from 'clsx';
+import {
+  Typography,
+  Card,
+  CardActions,
+  IconButton,
+  Collapse,
+  CardContent,
+  Grid,
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+
+import { ExpandMore } from '@mui/icons-material';
+import PostHolders from '../widgets/PostHolder';
+
+
+// const Socities = [
+//    {title:'Film and Music'},
+//    {title: 'Games and Sports'},
+//    {title:'Literary and Cultural'},
+//    {title:'Technical'},
+// ];
+
+
+const SocietyCards = (
+  {society}
+) => {
+  const classes = useStyles();
+  const [expanded, setExpanded] = useState(false);
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+  return (
+
+    <Card className={classes.root}>
+      <CardActions disableSpacing>
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label='show more'
+        >
+          <ExpandMore />
+        </IconButton>
+        <Typography variant='h3' className={classes.heading}>
+         {society}
+        </Typography>
+      </CardActions>
+      <Collapse in={expanded} timeout='auto' unmountOnExit>
+        <CardContent className={classes.hallDetails}>
+          <PostHolders />
+          <PostHolders />
+          <PostHolders />
+          <PostHolders />
+        </CardContent>
+      </Collapse>
+    </Card>
+  );
+};
+
+export default SocietyCards;
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    marginTop: '20px',
+  },
+  container: {
+    maxWidth: '100%',
+    marginTop: '1.5rem',
+  },
+  title: {
+    display: 'inline-block',
+    color: theme.palette.primary.blue60,
+    fontFamily: 'IBM Plex Sans',
+    minWidth: '124px',
+    width: 'auto',
+    marginTop: '36px',
+    [theme.breakpoints.up('sm')]: {
+      minWidth: '205px',
+    },
+  },
+  expand: {
+    transform: 'rotate(0deg)',
+    color: '#000',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    color: '#000',
+    transform: 'rotate(180deg)',
+  },
+  heading: {
+    color: '#000',
+    fontFamily: 'IBM Plex Sans',
+    fontSize: '24px',
+    fontWeight: 600,
+  },
+  position: {
+    color: theme.palette.secondary.neutral80,
+    fontFamily: 'Source Sans Pro',
+    fontSize: '16px',
+    marginBottom: '5px',
+  },
+  holderDetails: {
+    fontSize: '20px',
+    color: '#000',
+  },
+  phoneDetails: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  phone: {
+    fontSize: '20px',
+    color: '#000',
+  },
+  hallDetails: {
+    padding: '30px 70px',
+    display: 'flex',
+   flexDirection:'column',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    [theme.breakpoints.up('sm')]: {
+    flexDirection:'row',
+  justifyContent: 'center',
+   alignItems: 'center',
+    },
+  },
+}));

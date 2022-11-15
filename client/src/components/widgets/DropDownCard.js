@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import makeStyles from '@mui/styles/makeStyles';
 import theme from '../../config/themes/light';
 import { ChevronDown, ChevronUp } from 'react-feather';
-
 function DropDownCard({ children, title }) {
   const [expanded, setExpanded] = useState(false);
 

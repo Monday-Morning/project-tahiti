@@ -11,15 +11,15 @@ import BackButton from '../components/shared/button/BackButton';
 import { CAROUSEL } from '../assets/placeholder/guide';
 
 function Contact({ issues }) {
-  const latestIssue = issues[0];
-  const secondLatestIssue = issues[1];
+  // const latestIssue = issues[0];
+  // const secondLatestIssue = issues[1];
 
-  const { featured } = latestIssue;
+  // const { featured } = latestIssue;
 
-  const articles = [
-    ...latestIssue.articles.filter((item) => !featured.includes(item.id)),
-    ...secondLatestIssue.articles,
-  ];
+  // const articles = [
+  //   ...latestIssue.articles.filter((item) => !featured.includes(item.id)),
+  //   ...secondLatestIssue.articles,
+  // ];
 
   return (
     <div>
@@ -28,7 +28,7 @@ function Contact({ issues }) {
         <Options />
       </Container>
       <BigCarousel head='Issues' IMAGE={CAROUSEL} navigator='2020-2021' />
-      <Archives issues={articles} />
+      {/* <Archives issues={articles} /> */}
     </div>
   );
 }
