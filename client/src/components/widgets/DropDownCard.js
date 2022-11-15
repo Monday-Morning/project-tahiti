@@ -14,11 +14,11 @@ function DropDownCard({ children, title }) {
       }}
       className={classes.root}
     >
-      <div className={classes.DropDownIcon}>
+      <div className={classes.dropDownIcon}>
         {expanded ? <ChevronUp size={32} /> : <ChevronDown size={32} />}
       </div>
-      <div className={classes.CardDetails}>
-        <h2 className={classes.CardHeading}>{title}</h2>
+      <div className={classes.cardDetails}>
+        <h2 className={classes.cardHeading}>{title}</h2>
         {expanded && children}
       </div>
     </div>
@@ -41,15 +41,15 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: 'row-reverse',
     },
   },
-  DropDownIcon: {
+  dropDownIcon: {
     '&>svg': {
       marginTop: '6px',
     },
   },
-  CardDetails: {
+  cardDetails: {
     width: '100%',
   },
-  CardHeading: {
+  cardHeading: {
     fontFamily: 'IBM Plex Sans',
     fontWeight: 600,
     fontSize: '24px',

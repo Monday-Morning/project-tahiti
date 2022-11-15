@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import {
   ButtonBase,
   Container,
@@ -10,9 +9,6 @@ import theme from '../../config/themes/light';
 
 import makeStyles from '@mui/styles/makeStyles';
 import SocietyCards from './SocietyCards';
-// import DropDownCard from './DropDownCard';
-import SubCategory from './SubCategory';
-// import { ButtonBase } from '@mui/material';
 
 const STAGE = {
   SOB: 'SAC Office Bearers',
@@ -21,7 +17,7 @@ const STAGE = {
   FC: 'Fest Convenors',
 };
 
-const SectionNavbar1 = () => {
+const SacInfoNavbar = () => {
   const [stage, setStage] = useState(STAGE.SOB);
   const classes = useStyles();
   const matches = useMediaQuery(theme.breakpoints.down('md'));
@@ -137,7 +133,7 @@ const SectionNavbar1 = () => {
   );
 };
 
-export default SectionNavbar1;
+export default SacInfoNavbar;
 
 const useStyles = makeStyles(() => ({
   navbar: {
@@ -156,7 +152,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'flex-start',
     flexWrap: 'wrap',
     borderRadius: '20px',
-    marginLeft:'15px'
+    marginLeft: '15px',
   },
   label: {
     textTransform: 'capitalize',

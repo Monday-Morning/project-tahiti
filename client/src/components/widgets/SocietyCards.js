@@ -8,17 +8,12 @@ import {
   IconButton,
   Collapse,
   CardContent,
-  Grid,
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-
 import { ExpandMore } from '@mui/icons-material';
 import PostHolders from '../widgets/PostHolder';
 
-
-const SocietyCards = (
-  {society}
-) => {
+const SocietyCards = ({ society }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
 
@@ -26,7 +21,6 @@ const SocietyCards = (
     setExpanded(!expanded);
   };
   return (
-
     <Card className={classes.root}>
       <CardActions disableSpacing>
         <IconButton
@@ -40,7 +34,7 @@ const SocietyCards = (
           <ExpandMore />
         </IconButton>
         <Typography variant='h3' className={classes.heading}>
-         {society}
+          {society}
         </Typography>
       </CardActions>
       <Collapse in={expanded} timeout='auto' unmountOnExit>
@@ -93,10 +87,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '24px',
     fontWeight: 600,
     [theme.breakpoints.down('sm')]: {
-    fontSize: '18px',
-    fontWeight: 600,
-      
-      },
+      fontSize: '18px',
+      fontWeight: 600,
+    },
   },
   position: {
     color: theme.palette.secondary.neutral80,
@@ -124,9 +117,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'flex-start',
     [theme.breakpoints.down('sm')]: {
-    flexDirection:'column',
-  justifyContent: 'center',
-   alignItems: 'center',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
   },
 }));

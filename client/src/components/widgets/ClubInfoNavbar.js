@@ -35,40 +35,6 @@ const SectionNavbars = () => {
     }
   };
 
-  //     <div className={classes.navbar}>
-  //       {Object.keys(STAGE).map((key, index) => (
-  //         <Typography
-  //           key={key}
-  //           variant='subtitle1'
-  //           className={classes.navItems}
-  //           sx={{
-  //             border:
-  //               stage === STAGE[key] ? '1px solid #005299' : '1px solid #000',
-  //             borderRadius:
-  //               index === 0
-  //                 ? '30px 0px 0px 30px'
-  //                 : index === Object.keys(STAGE).length - 1
-  //                 ? '0px 30px 30px 0px'
-  //                 : '0px',
-
-  //             bgcolor: stage === STAGE[key] && '#005299',
-  //             color: stage === STAGE[key] && '#fff',
-  //           }}
-  //           onClick={() => {
-  //             setStage(STAGE[key]);
-  //           }}
-  //         >
-  //           {STAGE[key]}
-  //         </Typography>
-  //       ))}
-
-  //       <Container maxWidth='xm' sx={{ mt: 5 }}>
-  //         <div>{renderTeam()}</div>
-  //       </Container>
-  //     </div>
-
-  //   </>
-  // );
   return (
     <>
       {!matches ? (
@@ -185,17 +151,4 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// { <div className={classes.navbar}>
-// {Object.keys(STAGE).map((key, index) => (
-//   <SubCategory
-//     key={key}
-//     className={classes.subCategory}
-//     onClick={() => {
-//       setStage(STAGE[key]);
-//     }}
-//   />
-// ))}
-// <Container maxWidth='xm' sx={{ mt: 5 }}>
-//   <div>{renderTeam()}</div>
-// </Container>
-// </div> }
+

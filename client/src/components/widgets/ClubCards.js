@@ -15,7 +15,6 @@ const ClubCards = ({ category }) => {
   const [clubsTheme, setClubsTheme] = useState(club[category][0]);
   const classes = useStyles();
   const matches = useMediaQuery(theme.breakpoints.down('sm'));
-  // console.log(data);
   return (
     <Card className={classes.root}>
       {club[category].map((value, index) => {
@@ -24,7 +23,7 @@ const ClubCards = ({ category }) => {
             key={`${index}-${value.title}`}
             text={value.title}
             className={classes.subCategory}
-            xyz={() => {
+            onclick={() => {
               setClubsTheme(value);
             }}
           />
@@ -33,7 +32,7 @@ const ClubCards = ({ category }) => {
 
       {!matches ? (
         <>
-          <Stack direction='row' spacing={2} sx={{ mt: 4 }}>
+          <Stack direction='row' spacing={2} className={classes.clubInfoStack}>
             <Image
               className={classes.image}
               src={logoFullBlack}
@@ -51,7 +50,11 @@ const ClubCards = ({ category }) => {
         </>
       ) : (
         <>
-          <Stack direction='column' spacing={2} sx={{ mt: 4 }}>
+          <Stack
+            direction='column'
+            spacing={2}
+            className={classes.clubInfoStack}
+          >
             <Stack direction='row' spacing={2}>
               <Image
                 className={classes.image}
@@ -61,20 +64,14 @@ const ClubCards = ({ category }) => {
                 height={57}
               />
               <Stack direction='column' spacing={1}>
-                <Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>
+                <Typography variant='subtitle1' className={classes.clubTitle}>
                   {clubsTheme.title}
                 </Typography>
-                <Typography variant='body1' sx={{ marginTop: '0px' }}>
-                  Formed in: 20XX
-                </Typography>
-                <Typography variant='body1' sx={{ marginTop: '0px' }}>
-                  Location: TI-214
-                </Typography>
+                <Typography variant='body1'>Formed in: 20XX</Typography>
+                <Typography variant='body1'>Location: TI-214</Typography>
               </Stack>
             </Stack>
-            <Typography variant='body2' sx={{ marginTop: '5px' }}>
-              {clubsTheme.text}
-            </Typography>
+            <Typography variant='body2'>{clubsTheme.text}</Typography>
           </Stack>
         </>
       )}
@@ -85,7 +82,7 @@ const ClubCards = ({ category }) => {
         </Typography>
         <div className={classes.underline} />
       </div>
-      <div className={classes.hallDetails}>
+      <div className={classes.holderDetails}>
         <PostHolders />
         <PostHolders />
         <PostHolders />
@@ -98,6 +95,9 @@ const ClubCards = ({ category }) => {
 export default ClubCards;
 
 const useStyles = makeStyles((theme) => ({
+  clubInfoStack: {
+    marginTop: '10px',
+  },
   clubTitle: {
     fontWeight: 'bold',
   },
@@ -164,7 +164,7 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
     opacity: '30%',
   },
-  hallDetails: {
+  holderDetails: {
     padding: '5px 0px',
     display: 'flex',
     alignItems: 'center',
@@ -174,7 +174,6 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
-      //  padding:'3px'
     },
   },
 }));

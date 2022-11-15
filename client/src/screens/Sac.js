@@ -1,11 +1,7 @@
-import React, { useState } from 'react';
-import { Container, useMediaQuery, Typography } from '@mui/material';
+import React from 'react';
+import { Container, Typography } from '@mui/material';
 import BackButton from '../components/shared/button/BackButton';
 import makeStyles from '@mui/styles/makeStyles';
-import Link from 'next/link';
-
-import ROUTES from '../utils/getRoutes';
-// import SacClub from '../assets/placeholder/sac';
 
 import Image from 'next/dist/client/image';
 
@@ -14,20 +10,18 @@ import theme from '../config/themes/light';
 // images
 import SACimagexs from '../assets/images/contact/sac2.png';
 
+// import
 import SectionNavbars from '../components/widgets/ClubInfoNavbar';
 import SectionNavbar1 from '../components/widgets/SacInfoNavbar';
 
-// import
-
 const SacAndClub = () => {
   const classes = useStyles();
-  const matches = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <Container>
       <BackButton path='/guide' goTo='Guide' />
 
-      <Typography variant='h1' className={classes.sacandclubsinfo}>
+      <Typography variant='h1' className={classes.sacAndClubsInfo}>
         SAC and Clubs Info
       </Typography>
       <div className={classes.down}>
@@ -78,32 +72,11 @@ const SacAndClub = () => {
 export default SacAndClub;
 
 const useStyles = makeStyles((theme) => ({
-  down: { marginTop: '1.5rem', marginLeft: '10px' },
-  CategoryWrapper: {
-    maxWidth: '1200px',
-    borderRadius: '8px',
-    marginTop: '2rem',
-    padding: '10px',
-    margin: '40px auto 40px auto',
-    [theme.breakpoints.down('lg')]: {
-      marginTop: '24px',
-      padding: '0px 40px 0px 40px',
-    },
-    [theme.breakpoints.down('sm')]: {
-      padding: '0px 10px 0px 35px',
-    },
+  down: {
+    marginTop: '1.5rem',
+    marginLeft: '10px',
   },
-  category: {
-    display: 'inline-block',
-    marginRight: '10px',
-    marginTop: '10px',
-    backgroundColor: theme.palette.primary.blue10,
-    color: theme.palette.common.black,
-    borderRadius: '4px',
-    padding: '12px 16px',
-    cursor: 'pointer',
-  },
-  sacandclubsinfo: {
+  sacAndClubsInfo: {
     width: '70%',
     height: '48px',
     fontFamily: 'IBM Plex Sans',
@@ -165,13 +138,11 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
-
   hr: {
     display: 'flex',
     marginTop: '6%',
     marginBottom: '1.8rem',
   },
-
   underline: {
     border: '1px solid #000000',
     backgroundColor: 'black',
