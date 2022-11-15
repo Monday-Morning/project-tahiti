@@ -73,12 +73,5 @@ function SacinfoPage() {
     </>
   );
 }
-export async function getServerSideProps() {
-  return {
-    redirect: {
-      destination: '/comingSoon',
-      permanent: false,
-    },
-  };
-}
+
 export default SacinfoPage;
