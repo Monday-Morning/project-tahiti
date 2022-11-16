@@ -124,7 +124,7 @@ const ArticleHeader = ({ article }) => {
 
                     {!matches && (
                       <Typography variant='body2' className={classes.author}>
-                        {name}
+                        {name.replace(/ null( |$)/g, '')}
                       </Typography>
                     )}
                   </div>
