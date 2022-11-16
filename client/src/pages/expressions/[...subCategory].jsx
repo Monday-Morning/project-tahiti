@@ -186,7 +186,7 @@ export async function getStaticPaths() {
   let routes = ROUTES.SUB_CATEGORIES.OBJECT.EXPRESSIONS;
 
   const paths = routes.flat().map(({ path }) => ({
-    params: { subCategory: [path?.split('/')[2].toString(), '20'] },
+    params: { subCategory: [path?.split('/')[2].toString(), '1'] },
   }));
   return { paths, fallback: true };
 }
