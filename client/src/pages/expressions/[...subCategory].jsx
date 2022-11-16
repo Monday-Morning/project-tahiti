@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 import Head from 'next/head';
 
 // Components
@@ -26,8 +26,14 @@ const EditorialPage = ({
   const { isFallback, push } = useRouter();
 
   const [pageNo, setPageNo] = useState(pageNumber);
-  const [articleLists] = useState(articleList);
   const [isLoading, setLoading] = useState(true);
+  const router = useRouter();
+
+  if (router.asPath == `/${categoryName}/${subCategoryDetails?.shortName}`) {
+    useEffect(() => {
+      push(`/${categoryName}/${subCategoryDetails?.shortName}/${pageNo ?? 1}`);
+    });
+  }
 
   useEffect(() => {
     if (isLoading ?? true === true) {
@@ -37,19 +43,15 @@ const EditorialPage = ({
 
     setLoading((_val) => true);
 
-    push(
-      `/${categoryName}/${subCategoryDetails?.shortName}/${
-        pageNo ?? pageNumber
-      }`,
-      undefined,
-      { shallow: false },
-    );
+    push(`/${categoryName}/${subCategoryDetails?.shortName}/${pageNo ?? 1}`);
+
     setLoading(false);
   }, [pageNo, articleList, subCategoryDetails?.idNumber]);
 
   const handleChange = (event, value) => {
     setPageNo(value);
   };
+
   return (
     <>
       <Head>
@@ -117,13 +119,13 @@ const EditorialPage = ({
           content='Monday Morning is the Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students.'
         />
       </Head>
-      {!isLoading && !isFallback && articleLists ? (
+      {!isLoading && !isFallback ? (
         <Marginals>
           <SubCategory
-            articleList={articleLists}
+            articleList={articleList}
             categoryName={categoryName}
             subCategoryDetails={subCategoryDetails}
-            pageNo={pageNo}
+            pageNo={pageNo ?? 1}
             totalPages={Math.ceil(countOfArticles / 7)}
             handleChange={handleChange}
           />
@@ -186,7 +188,7 @@ export async function getStaticPaths() {
   let routes = ROUTES.SUB_CATEGORIES.OBJECT.EXPRESSIONS;
 
   const paths = routes.flat().map(({ path }) => ({
-    params: { subCategory: [path?.split('/')[2].toString(), '1'] },
+    params: { subCategory: [path?.split('/')[2], '1'] },
   }));
   return { paths, fallback: true };
 }
