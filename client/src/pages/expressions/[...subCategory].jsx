@@ -21,33 +21,29 @@ const EditorialPage = ({
   subCategoryDetails,
   articleList,
   countOfArticles,
+  pageNumber,
 }) => {
-  const { isFallback } = useRouter();
+  const { isFallback, push } = useRouter();
 
-  const [pageNo, setPageNo] = useState(1);
+  const [pageNo, setPageNo] = useState(pageNumber);
   const [articleLists, setArticleLists] = useState(articleList);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
-
-    if (pageNo === 1) setArticleLists(articleList);
-    else {
-      (async () => {
-        const {
-          data: { getArticlesByCategories: _articleList },
-        } = await GraphClient.query({
-          query: getArticlesByCategories,
-          variables: {
-            categoryNumbers: [subCategoryDetails?.idNumber],
-            limit: 7,
-            offset: (pageNo - 1) * 7,
-          },
-        });
-        setArticleLists(_articleList);
-        console.log(_articleList);
-      })();
+    if (isLoading ?? true === true) {
+      setLoading((_val) => false);
+      return;
     }
+
+    setLoading((_val) => true);
+
+    push(
+      `/${categoryName}/${subCategoryDetails?.shortName}/${
+        pageNo ?? pageNumber
+      }`,
+      undefined,
+      { shallow: false },
+    );
     setLoading(false);
   }, [pageNo, articleList, subCategoryDetails?.idNumber]);
 
@@ -141,12 +137,15 @@ const EditorialPage = ({
 
 export default EditorialPage;
 
-export async function getStaticProps({ params: { subCategory }, preview }) {
+export async function getStaticProps({
+  params: {
+    subCategory: [subCategory, pageNumber],
+  },
+  preview,
+}) {
   let subCategoryDetails = ROUTES.SUB_CATEGORIES.OBJECT.EXPRESSIONS.filter(
     ({ shortName }) => shortName === subCategory,
-  );
-
-  subCategoryDetails = subCategoryDetails[0];
+  )[0];
 
   const {
     data: { getArticlesByCategories: articleList },
@@ -155,7 +154,7 @@ export async function getStaticProps({ params: { subCategory }, preview }) {
     variables: {
       categoryNumbers: [subCategoryDetails?.idNumber],
       limit: 7,
-      offset: 0,
+      offset: 7 * (parseInt(pageNumber) - 1),
     },
   });
 
@@ -174,6 +173,7 @@ export async function getStaticProps({ params: { subCategory }, preview }) {
       subCategoryDetails,
       articleList,
       countOfArticles,
+      pageNumber: parseInt(pageNumber),
     },
     revalidate:
       preview || new Date(Date.now()).getDay() < 3
@@ -186,7 +186,7 @@ export async function getStaticPaths() {
   let routes = ROUTES.SUB_CATEGORIES.OBJECT.EXPRESSIONS;
 
   const paths = routes.flat().map(({ path }) => ({
-    params: { subCategory: path?.split('/')[2] },
+    params: { subCategory: [path?.split('/')[2].toString(), '20'] },
   }));
   return { paths, fallback: true };
 }
