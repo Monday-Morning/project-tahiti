@@ -2,8 +2,8 @@ import React from 'react';
 import Head from 'next/head';
 
 // Components
-import Marginals from '../components/marginals/Marginals';
-import HealthInfo from '../screens/HealthInfo';
+import Marginals from '../../components/marginals/Marginals';
+import HealthInfo from '../../screens/HealthInfo';
 
 function HealthAndEmergencyInfo() {
   return (

@@ -66,7 +66,7 @@ const Options = () => {
           <i className='fas fa-chevron-right'></i>
         </Typography>
       </div>
-      <Link href='/healthInfo' passHref>
+      <Link href='/info/health' passHref>
         <div className={classes.optionWrapper}>
           <Image src={icon4} alt='Icon' className={classes.icons} />
           <Typography variant='h3' className={classes.option2}>

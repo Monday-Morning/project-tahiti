@@ -121,12 +121,9 @@ const Info = () => {
                 </Typography>
               </Grid>
               <Grid item xs={6} className={classes.mapWrapper}>
-                <Image
-                  src={health}
-                  alt={INFO.location.health.imageAlt}
+                <iframe
+                  src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d871.3716109469301!2d84.89938098586723!3d22.249787975118394!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a201e7e44dcc8f7%3A0xb3160b17c38444ff!2sHealth%20Centre%20And%20Institute%20Dispensary!5e0!3m2!1sen!2sin!4v1668607339040!5m2!1sen!2sin'
                   className={classes.map}
-                  width={220}
-                  height={180}
                 />
                 <a
                   href={INFO.location.health.url}
@@ -165,12 +162,9 @@ const Info = () => {
                 </Typography>
               </Grid>
               <Grid item xs={6} className={classes.mapWrapper}>
-                <Image
-                  src={cws}
-                  alt={INFO.location.cws.imageAlt}
+                <iframe
+                  src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1793.739654522927!2d84.89996820268661!3d22.255236347219036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a201c2ca6e5da79%3A0xd1e929836dc72b94!2sCWS%20Hospital!5e0!3m2!1sen!2sin!4v1668606369985!5m2!1sen!2sin'
                   className={classes.map}
-                  width={220}
-                  height={180}
                 />
                 <a
                   href={INFO.location.cws.url}
@@ -263,11 +257,8 @@ const useStyles = makeStyles((theme) => ({
   },
   map: {
     paddingTop: '4px',
-    marginLeft: '16px',
-    [theme.breakpoints.down('lg')]: {
-      width: '114px',
-      height: '101px',
-    },
+    width: '90%',
+    height: '80%',
   },
   mapText: {
     color: theme.palette.common.black,
