@@ -114,7 +114,7 @@ function Expressions({ witsdom, editorial, miscellaneous }) {
               <SectionTitle
                 heading={name}
                 link={shortName}
-                path={path}
+                path={path + '/1'}
                 container={!container}
               />
               {section}
