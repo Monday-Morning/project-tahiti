@@ -26,7 +26,7 @@ const EditorialPage = ({
   const { isFallback, push } = useRouter();
 
   const [pageNo, setPageNo] = useState(pageNumber);
-  const [articleLists, setArticleLists] = useState(articleList);
+  const [articleLists] = useState(articleList);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
