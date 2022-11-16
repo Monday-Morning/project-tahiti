@@ -6,7 +6,7 @@ import makeStyles from '@mui/styles/makeStyles';
 
 // Components
 import BackButton from '../components/shared/button/BackButton';
-import Info from '../components/healthAndEmergencyInfo/Info';
+import Info from '../components/healthInfo/Info';
 
 function Contact() {
   const classes = useStyles();
