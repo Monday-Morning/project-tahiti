@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 // Components
@@ -27,13 +27,6 @@ const EditorialPage = ({
 
   const [pageNo, setPageNo] = useState(pageNumber);
   const [isLoading, setLoading] = useState(true);
-  const router = useRouter();
-
-  if (router.asPath == `/${categoryName}/${subCategoryDetails?.shortName}`) {
-    useEffect(() => {
-      push(`/${categoryName}/${subCategoryDetails?.shortName}/${pageNo ?? 1}`);
-    });
-  }
 
   useEffect(() => {
     if (isLoading ?? true === true) {
