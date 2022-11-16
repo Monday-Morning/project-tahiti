@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import TrendingUpSharpIcon from '@mui/icons-material/TrendingUpSharp';
 
 // Libraries
 import { BarChart, Search } from 'react-feather';
@@ -10,7 +14,7 @@ import {
   Container,
   SwipeableDrawer,
   Typography,
-  InputAdornment,
+  // InputAdornment,
   TextField,
 } from '@mui/material';
 
@@ -30,8 +34,12 @@ const MobileNavbar = () => {
   const [isMenuOpen, toggleMenu, setMenuOpen] = useToggle(false);
   const [search, setSearch] = useState(false);
   const [searchText, setSearchText] = useState('');
+  const [isSearchActive, setIsSearchActive] = useState(false);
+  const [isInputActive, setIsInputActive] = useState(false);
+
+
   const router = useRouter();
-  const classes = useStyles();
+  const classes = useStyles({isSearchActive, isInputActive});
 
   const searchQuery = (e) => {
     e.preventDefault();
@@ -48,8 +56,86 @@ const MobileNavbar = () => {
     }
   };
 
+  const searchActive = () => {
+    setIsInputActive();
+    setIsSearchActive(current => !current);
+  };
+
+  const inputActive = () => {
+    setIsInputActive((current) => !current);
+  };
+
   return (
     <>
+          <div        className={classes.searchMenu}>
+        <div className={classes.blackBackground} onClick={searchActive}></div>
+        <div className={classes.searchBar}>
+          <div className={classes.searchBox}>
+            <TextField
+              className={classes.searchField}
+              id='input-with-icon-textfield'
+              placeholder='Search for articles'
+              onClick={setIsInputActive}
+              color='primary'
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position='start'>
+                    <SearchIcon />
+                  </InputAdornment>
+                ),
+              }}
+              variant='standard'
+            />
+            <div
+              className={classes.searchSuggestions}
+              style={{
+                display: isInputActive ? 'block' : 'none',
+              }}
+            >
+              <ul>
+                <div className={classes.trendingList}>
+                  <li className={classes.trendingHeading}>
+                    Innovision Techfest
+                  </li>
+                </div>
+                <div className={classes.trendingList}>
+                  <li className={classes.trendingHeading}>Innovision 2019</li>
+                </div>
+                <div className={classes.trendingList}>
+                  <TrendingUpSharpIcon className={classes.trendingSymbol} />
+                  <li className={classes.trendingHeading}>Innovision 2021</li>
+                </div>
+                <div className={classes.trendingList}>
+                  <li className={classes.trendingHeading}>
+                    Innovsion Post-Fest
+                  </li>
+                </div>
+                <div className={classes.trendingList}>
+                  <li className={classes.trendingHeading}>
+                    Innovision Pre-Fest
+                  </li>
+                </div>
+                <div className={classes.trendingList}>
+                  <TrendingUpSharpIcon className={classes.trendingSymbol} />
+                  <li className={classes.trendingHeading}>
+                    Innovision Pro-shows
+                  </li>
+                </div>
+              </ul>
+            </div>
+          </div>
+
+          {/* <div className={classes.trendingArticles}>
+            <TrendingUpSharpIcon />
+            <h3 className={classes.trendingArticleHeading}>Trending Tags :</h3>
+            <h3 className={classes.trendingArticleName}>Departments</h3>
+            <h3 className={classes.trendingArticleName}>Clubs</h3>
+            <h3 className={classes.trendingArticleName}>SAC</h3>
+            <h3 className={classes.trendingArticleName}>Interview</h3>
+            <h3 className={classes.trendingArticleName}>Placement</h3>
+          </div> */}
+        </div>
+      </div>
       <Container className={classes.header}>
         {/* {!isMenuOpen && ( */}
         <BarChart
@@ -74,7 +160,8 @@ const MobileNavbar = () => {
 
         <Search
           className={classes.searchIcon}
-          onClick={() => setSearch(!search)}
+          onClick={searchActive}
+          // onClick={() => setSearch(!search)}
           onKeyDown={() => {}}
           role='button'
           tabIndex={0}
@@ -197,4 +284,76 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 10,
   },
   activeHeaderLink: {},
+  searchMenu: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    transition: '1s',
+    opacity: (_) => (_.isSearchActive ? '1':'0'),
+    zIndex: (_) => (_.isSearchActive ? '200001':'-2001'),
+  },
+  searchBar: {
+    paddingLeft: '20px',
+    paddingRight: '20px',
+    position: 'absolute',
+    display: 'block',
+    marginRight: 'auto',
+    width: '100%',
+    paddingBottom: '20px',
+    paddingTop: '20px',
+    background: '#FEFEFF',
+    zIndex: '20000',
+  },
+  searchBox: {
+    position: 'relative',
+  },
+  searchField: {
+    width: '100%',
+    color: theme.palette.primary.blue50,
+    paddingBottom: '0px',
+  },
+  trendingArticles: {
+    position: 'absoulte',
+    display: 'flex',
+    alignItems: 'center',
+    paddingTop: '20px',
+  },
+  trendingArticleHeading: {
+    paddingLeft: '10px',
+    opacity: '0.5',
+    zIndex: '2001',
+  },
+  trendingArticleName: {
+    paddingLeft: '10px',
+  },
+  trendingSymbol: {
+    position: 'absolute',
+  },
+  searchSuggestions: {
+    position: 'absolute',
+    background: '#FEFEFF',
+    width: '100%',
+    padding: '20px',
+    zIndex: '20022',
+    borderRadius: '0px 0px 5px 5px',
+    border: '1px #ECEDEC',
+    borderStyle: 'none solid solid',
+    boxShadow: '0px 0px 5px grey',
+    display: (_) => (_.isInputActive ? 'block':'none'),
+  },
+  trendingList: {
+    alignItems: 'center',
+    paddingBottom: '8px',
+    paddingTop: '8px',
+  },
+  trendingHeading: {
+    paddingLeft: '50px',
+  },
+  blackBackground: {
+    position: 'fixed',
+    background: '#000',
+    width: '100%',
+    height: '100%',
+    opacity: '0.7',
+  },
 }));
