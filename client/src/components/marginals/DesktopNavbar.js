@@ -1,33 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 // MUI
-import Input from '@mui/material/Input';
-import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
-import TrendingUpSharpIcon from '@mui/icons-material/TrendingUpSharp';
-
 import makeStyles from '@mui/styles/makeStyles';
 import { Container, Typography, TextField } from '@mui/material';
+// import TrendingUpSharpIcon from '@mui/icons-material/TrendingUpSharp';
 
 // Utils
 import ROUTES from '../../utils/getRoutes';
+import NewTabLink from '../shared/links/NewTabLink';
+import getArticleLink from '../../utils/getArticleLink';
 
 // Assets
 import logoFullBlack from '../../assets/images/logos/logo_full_black.png';
 
-const DesktopNavbar = () => {
+//hooks
+import useAutoComplete from '../../hooks/useAutoComplete';
 
+const DesktopNavbar = () => {
   const router = useRouter();
   const [search, setSearch] = useState('');
   const [isSearchActive, setIsSearchActive] = useState(false);
-  const [isInputActive, setIsInputActive] = useState(false);
-  const classes = useStyles({isSearchActive, isInputActive});
+  const inputRef = useRef(null);
+  const classes = useStyles({ isSearchActive });
 
-  // console.log(search);
+  const autoCompleteData = useAutoComplete(search, 10);
+
+  useEffect(() => {
+    if (isSearchActive) {
+      inputRef.current.focus();
+    }
+  }, [isSearchActive]);
 
   const searchQuery = (e) => {
     e.preventDefault();
@@ -43,13 +50,8 @@ const DesktopNavbar = () => {
   };
 
   const searchActive = () => {
-    setIsInputActive();
     setIsSearchActive((current) => !current);
     console.log(isSearchActive);
-  };
-
-  const inputActive = () => {
-    setIsInputActive((current) => !current);
   };
 
   return (
@@ -62,7 +64,10 @@ const DesktopNavbar = () => {
               className={classes.searchField}
               id='input-with-icon-textfield'
               placeholder='Search for articles'
-              onClick={inputActive}
+              value={search}
+              onKeyDown={searchKeyword}
+              onChange={searchQuery}
+              inputRef={inputRef}
               color='primary'
               InputProps={{
                 endAdornment: (
@@ -72,42 +77,20 @@ const DesktopNavbar = () => {
                 ),
               }}
               variant='standard'
+              autoFocus
             />
             <div className={classes.searchSuggestions}>
-              <ul>
-                <div className={classes.trendingList}>
-                  <li className={classes.trendingHeading}>
-                    Innovision Techfest
-                  </li>
+              {autoCompleteData?.map(({ id, title }) => (
+                <div key={id} className={classes.trendingList}>
+                  <NewTabLink to={getArticleLink(id, title)}>
+                    {title}
+                  </NewTabLink>
                 </div>
-                <div className={classes.trendingList}>
-                  <li className={classes.trendingHeading}>Innovision 2019</li>
-                </div>
-                <div className={classes.trendingList}>
-                  <TrendingUpSharpIcon className={classes.trendingSymbol} />
-                  <li className={classes.trendingHeading}>Innovision 2021</li>
-                </div>
-                <div className={classes.trendingList}>
-                  <li className={classes.trendingHeading}>
-                    Innovsion Post-Fest
-                  </li>
-                </div>
-                <div className={classes.trendingList}>
-                  <li className={classes.trendingHeading}>
-                    Innovision Pre-Fest
-                  </li>
-                </div>
-                <div className={classes.trendingList}>
-                  <TrendingUpSharpIcon className={classes.trendingSymbol} />
-                  <li className={classes.trendingHeading}>
-                    Innovision Pro-shows
-                  </li>
-                </div>
-              </ul>
+              ))}
             </div>
           </div>
 
-          <div className={classes.trendingArticles}>
+          {/* <div className={classes.trendingArticles}>
             <TrendingUpSharpIcon />
             <h3 className={classes.trendingArticleHeading}>Trending Tags :</h3>
             <h3 className={classes.trendingArticleName}>Departments</h3>
@@ -115,7 +98,7 @@ const DesktopNavbar = () => {
             <h3 className={classes.trendingArticleName}>SAC</h3>
             <h3 className={classes.trendingArticleName}>Interview</h3>
             <h3 className={classes.trendingArticleName}>Placement</h3>
-          </div>
+          </div> */}
         </div>
       </div>
       <Container>
@@ -141,9 +124,6 @@ const DesktopNavbar = () => {
               variant='standard'
               label='Search for articles'
               placeholder='Enter related words'
-              value={search}
-              onKeyDown={searchKeyword}
-              onChange={searchQuery}
               onClick={searchActive}
             />
           </div>
@@ -199,11 +179,9 @@ const useStyles = makeStyles((theme) => ({
     width: 'auto !important',
     height: 'auto !important',
   },
-
   menuContainer: {
     width: '100%',
     marginTop: '20px',
-
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -228,8 +206,8 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     transition: '1s',
     top: '0px',
-    opacity: (_) => (_.isSearchActive ? '1':'0'),
-    zIndex: (_) => (_.isSearchActive ? '2001':'-2001'),
+    opacity: (_) => (_.isSearchActive ? '1' : '0'),
+    zIndex: (_) => (_.isSearchActive ? '2001' : '-2001'),
   },
   searchBar: {
     paddingLeft: '120px',
@@ -239,7 +217,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 'auto',
     width: '100%',
     paddingBottom: '20px',
-    paddingTop: '60px',
+    paddingTop: '70px',
     background: '#FEFEFF',
     zIndex: '2000',
   },
@@ -265,9 +243,6 @@ const useStyles = makeStyles((theme) => ({
   trendingArticleName: {
     paddingLeft: '10px',
   },
-  trendingSymbol: {
-    position: 'absolute',
-  },
   searchSuggestions: {
     position: 'absolute',
     background: '#FEFEFF',
@@ -278,15 +253,14 @@ const useStyles = makeStyles((theme) => ({
     border: '1px #ECEDEC',
     borderStyle: 'none solid solid',
     boxShadow: '0px 0px 5px grey',
-    display: (_) => (_.isInputActive ? 'block':'none'),
+    display: (_) => (_.isSearchActive ? 'block' : 'none'),
   },
   trendingList: {
+    typography: theme.typography.fontFamily,
     alignItems: 'center',
     paddingBottom: '8px',
     paddingTop: '8px',
-  },
-  trendingHeading: {
-    paddingLeft: '50px',
+    cursor: 'pointer',
   },
   blackBackground: {
     position: 'fixed',

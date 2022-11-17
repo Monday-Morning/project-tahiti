@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import Input from '@mui/material/Input';
-import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import TrendingUpSharpIcon from '@mui/icons-material/TrendingUpSharp';
 
@@ -14,7 +12,6 @@ import {
   Container,
   SwipeableDrawer,
   Typography,
-  // InputAdornment,
   TextField,
 } from '@mui/material';
 
@@ -25,9 +22,12 @@ import logoFullDark from '../../assets/images/logos/logo_full_black.png';
 
 // Hooks
 import useToggle from '../../hooks/useToggle';
+import useAutoComplete from '../../hooks/useAutoComplete';
 
 // Utils
 import ROUTES from '../../utils/getRoutes';
+import NewTabLink from '../shared/links/NewTabLink';
+import getArticleLink from '../../utils/getArticleLink';
 
 // TODO: Add signin button to the mobile nav when ready.
 const MobileNavbar = () => {
@@ -36,15 +36,22 @@ const MobileNavbar = () => {
   const [searchText, setSearchText] = useState('');
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [isInputActive, setIsInputActive] = useState(false);
-
+  const inputRef = useRef(null);
 
   const router = useRouter();
-  const classes = useStyles({isSearchActive, isInputActive});
+  const classes = useStyles({ isSearchActive, isInputActive });
+  const data = useAutoComplete(searchText, 6);
 
   const searchQuery = (e) => {
     e.preventDefault();
     setSearchText(e.target.value);
   };
+
+  useEffect(() => {
+    if (isSearchActive) {
+      inputRef.current.focus();
+    }
+  }, [isSearchActive]);
 
   const searchKeyword = (e) => {
     if (e.key === 'Enter') {
@@ -58,20 +65,20 @@ const MobileNavbar = () => {
 
   const searchActive = () => {
     setIsInputActive();
-    setIsSearchActive(current => !current);
-  };
-
-  const inputActive = () => {
-    setIsInputActive((current) => !current);
+    setIsSearchActive((current) => !current);
   };
 
   return (
     <>
-          <div        className={classes.searchMenu}>
+      <div className={classes.searchMenu}>
         <div className={classes.blackBackground} onClick={searchActive}></div>
         <div className={classes.searchBar}>
           <div className={classes.searchBox}>
             <TextField
+              onChange={searchQuery}
+              value={searchText}
+              onKeyDown={searchKeyword}
+              inputRef={inputRef}
               className={classes.searchField}
               id='input-with-icon-textfield'
               placeholder='Search for articles'
@@ -92,40 +99,17 @@ const MobileNavbar = () => {
                 display: isInputActive ? 'block' : 'none',
               }}
             >
-              <ul>
-                <div className={classes.trendingList}>
-                  <li className={classes.trendingHeading}>
-                    Innovision Techfest
-                  </li>
+              {data?.map(({ id, title }) => (
+                <div key={id} className={classes.trendingList}>
+                  <NewTabLink to={getArticleLink(id, title)}>
+                    {title}
+                  </NewTabLink>
                 </div>
-                <div className={classes.trendingList}>
-                  <li className={classes.trendingHeading}>Innovision 2019</li>
-                </div>
-                <div className={classes.trendingList}>
-                  <TrendingUpSharpIcon className={classes.trendingSymbol} />
-                  <li className={classes.trendingHeading}>Innovision 2021</li>
-                </div>
-                <div className={classes.trendingList}>
-                  <li className={classes.trendingHeading}>
-                    Innovsion Post-Fest
-                  </li>
-                </div>
-                <div className={classes.trendingList}>
-                  <li className={classes.trendingHeading}>
-                    Innovision Pre-Fest
-                  </li>
-                </div>
-                <div className={classes.trendingList}>
-                  <TrendingUpSharpIcon className={classes.trendingSymbol} />
-                  <li className={classes.trendingHeading}>
-                    Innovision Pro-shows
-                  </li>
-                </div>
-              </ul>
+              ))}
             </div>
           </div>
 
-          <div className={classes.trendingArticles}>
+          {/* <div className={classes.trendingArticles}>
             <TrendingUpSharpIcon />
             <h3 className={classes.trendingArticleHeading}>Trending Tags :</h3>
             <h3 className={classes.trendingArticleName}>Departments</h3>
@@ -133,7 +117,7 @@ const MobileNavbar = () => {
             <h3 className={classes.trendingArticleName}>SAC</h3>
             <h3 className={classes.trendingArticleName}>Interview</h3>
             <h3 className={classes.trendingArticleName}>Placement</h3>
-          </div>
+          </div> */}
         </div>
       </div>
       <Container className={classes.header}>
@@ -161,7 +145,6 @@ const MobileNavbar = () => {
         <Search
           className={classes.searchIcon}
           onClick={searchActive}
-          // onClick={() => setSearch(!search)}
           onKeyDown={() => {}}
           role='button'
           tabIndex={0}
@@ -172,9 +155,6 @@ const MobileNavbar = () => {
         <Container>
           <TextField
             id='search-textfield'
-            value={searchText}
-            onKeyDown={searchKeyword}
-            onChange={searchQuery}
             className={classes.searchField}
             InputProps={{
               startAdornment: (
@@ -289,8 +269,8 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '100%',
     transition: '1s',
-    opacity: (_) => (_.isSearchActive ? '1':'0'),
-    zIndex: (_) => (_.isSearchActive ? '200001':'-2001'),
+    opacity: (_) => (_.isSearchActive ? '1' : '0'),
+    zIndex: (_) => (_.isSearchActive ? '200001' : '-2001'),
   },
   searchBar: {
     paddingLeft: '20px',
@@ -339,15 +319,14 @@ const useStyles = makeStyles((theme) => ({
     border: '1px #ECEDEC',
     borderStyle: 'none solid solid',
     boxShadow: '0px 0px 5px grey',
-    display: (_) => (_.isInputActive ? 'block':'none'),
+    display: (_) => (_.isInputActive ? 'block' : 'none'),
   },
   trendingList: {
+    fontFamily: theme.typography.fontFamily,
     alignItems: 'center',
     paddingBottom: '8px',
     paddingTop: '8px',
-  },
-  trendingHeading: {
-    paddingLeft: '50px',
+    cursor: 'pointer',
   },
   blackBackground: {
     position: 'fixed',
