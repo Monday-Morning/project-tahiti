@@ -5,11 +5,12 @@ import makeStyles from '@mui/styles/makeStyles';
 // Components
 import ArticleCard from './ArticleCard';
 import TitleWrapper from '../../shared/TitleWrapper';
+import { Container } from '@mui/system';
 
 function ArticleCardStack({ articleList, title }) {
   const classes = useStyles();
   return (
-    <div>
+    <Container>
       {title ? <TitleWrapper title={title} /> : false}
       <div className={classes.root}>
         {articleList?.map((article, index) => (
@@ -22,7 +23,7 @@ function ArticleCardStack({ articleList, title }) {
           />
         ))}
       </div>
-    </div>
+    </Container>
   );
 }
 
@@ -38,17 +39,17 @@ const useStyles = makeStyles((theme) => ({
 
     [theme.breakpoints.up('sm')]: {
       justifyContent: 'center',
-      gridTemplateColumns: 'repeat(1, minmax(400px, 600px))',
+      gridTemplateColumns: 'repeat(1, minmax(370px, 600px))',
     },
 
     [theme.breakpoints.up('md')]: {
       justifyContent: 'center',
-      gridTemplateColumns: 'repeat(2, minmax(400px, 600px))',
+      gridTemplateColumns: 'repeat(2, minmax(370px, 600px))',
     },
 
     [theme.breakpoints.up('lg')]: {
       justifyItems: 'start',
-      gridTemplateColumns: 'repeat(3, minmax(400px, 600px))',
+      gridTemplateColumns: 'repeat(3, minmax(370px, 600px))',
     },
   },
   smallArticle: {

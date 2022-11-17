@@ -150,18 +150,26 @@ const Footer = () => {
                   >
                     <li className={classes.links}>Subscribe</li>
                   </Typography>
-                  <Typography
-                    variant='body1'
-                    style={{ cursor: 'pointer', fontWeight: 'bolder' }}
-                  >
-                    <li className={classes.links}>Terms of Use</li>
-                  </Typography>
-                  <Typography
-                    variant='body1'
-                    style={{ cursor: 'pointer', fontWeight: 'bolder' }}
-                  >
-                    <li className={classes.links}>Privacy Policy</li>
-                  </Typography>
+                  <li>
+                    <Link href='/policy' className={classes.links} passHref>
+                      <Typography
+                        variant='body1'
+                        style={{ cursor: 'pointer', fontWeight: 'bolder' }}
+                      >
+                        Terms of Use
+                      </Typography>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href='/policy' className={classes.links} passHref>
+                      <Typography
+                        variant='body1'
+                        style={{ cursor: 'pointer', fontWeight: 'bolder' }}
+                      >
+                        Privacy Policy
+                      </Typography>
+                    </Link>
+                  </li>
                   <Typography
                     variant='body1'
                     style={{ cursor: 'pointer', fontWeight: 'bolder' }}
@@ -321,6 +329,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '0',
     width: '250px',
     display: 'block',
+    cursor: 'pointer',
   },
   archives: {
     marginTop: '40px',
@@ -379,6 +388,7 @@ const useStyles = makeStyles((theme) => ({
   socialIcon: {
     marginLeft: '20px',
     fontSize: '18px',
+    cursor: 'pointer',
     color: theme.palette.common.white,
     [theme.breakpoints.down('md')]: {
       marginLeft: '10px',

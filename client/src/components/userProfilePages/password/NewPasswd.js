@@ -1,4 +1,10 @@
-import { Button, IconButton, Input, InputAdornment, TextField } from '@mui/material';
+import {
+  Button,
+  IconButton,
+  Input,
+  InputAdornment,
+  TextField,
+} from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import React, { useState } from 'react';
 import theme from '../../../config/themes/light';
@@ -35,7 +41,8 @@ function NewPasswd(props) {
                   <IconButton
                     aria-label='toggle password visibility'
                     onClick={handleClickShowPassword}
-                    size="large">
+                    size='large'
+                  >
                     {showPasswd ? <Eye /> : <EyeOff />}
                   </IconButton>
                 </InputAdornment>
@@ -59,7 +66,8 @@ function NewPasswd(props) {
                   <IconButton
                     aria-label='toggle password visibility'
                     onClick={handleClickShowPassword}
-                    size="large">
+                    size='large'
+                  >
                     {showPasswd ? <Eye /> : <EyeOff />}
                   </IconButton>
                 </InputAdornment>

@@ -21,38 +21,34 @@ const CategoryPage = ({
   subCategoryDetails,
   articleList,
   countOfArticles,
+  pageNumber,
 }) => {
-  const { isFallback } = useRouter();
+  const { isFallback, push } = useRouter();
 
-  const [pageNo, setPageNo] = useState(1);
-  const [articleLists, setArticleLists] = useState(articleList);
+  const [pageNo, setPageNo] = useState(pageNumber);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
-
-    if (pageNo === 1) setArticleLists(articleList);
-    else {
-      (async () => {
-        const {
-          data: { getArticlesByCategories: _articleList },
-        } = await GraphClient.query({
-          query: getArticlesByCategories,
-          variables: {
-            categoryNumbers: [subCategoryDetails?.idNumber],
-            limit: 7,
-            offset: (pageNo - 1) * 7,
-          },
-        });
-        setArticleLists(_articleList);
-      })();
+    if (isLoading ?? true === true) {
+      setLoading((_val) => false);
+      return;
     }
-    setLoading(false);
+
+    setLoading((_val) => true);
+
+    push(
+      `/${categoryName}/${subCategoryDetails?.shortName}/${
+        pageNo ?? pageNumber
+      }`,
+      undefined,
+      { shallow: false },
+    );
   }, [pageNo, articleList, subCategoryDetails?.idNumber]);
 
   const handleChange = (event, value) => {
     setPageNo(value);
   };
+
   return (
     <>
       <Head>
@@ -120,13 +116,13 @@ const CategoryPage = ({
           content='Monday Morning is the Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students.'
         />
       </Head>
-      {!isLoading && !isFallback && articleLists ? (
+      {!isLoading && !isFallback && articleList ? (
         <Marginals>
           <SubCategory
-            articleList={articleLists}
+            articleList={articleList}
             categoryName={categoryName}
             subCategoryDetails={subCategoryDetails}
-            pageNo={pageNo}
+            pageNo={pageNo ?? pageNumber}
             totalPages={Math.ceil(countOfArticles / 7)}
             handleChange={handleChange}
           />
@@ -139,7 +135,10 @@ const CategoryPage = ({
 };
 
 export async function getStaticProps({
-  params: { category, subCategory },
+  params: {
+    category,
+    subCategory: [subCategory, pageNumber],
+  },
   preview,
 }) {
   const categoryName = ROUTES.CATEGORIES.filter(
@@ -165,7 +164,7 @@ export async function getStaticProps({
     variables: {
       categoryNumbers: [subCategoryDetails?.idNumber],
       limit: 7,
-      offset: 0,
+      offset: 7 * (parseInt(pageNumber) - 1),
     },
   });
 
@@ -184,6 +183,7 @@ export async function getStaticProps({
       subCategoryDetails,
       articleList,
       countOfArticles,
+      pageNumber: parseInt(pageNumber),
     },
     revalidate:
       preview || new Date(Date.now()).getDay() < 3
@@ -196,7 +196,10 @@ export async function getStaticPaths() {
   let routes = ROUTES.SUB_CATEGORIES.ARRAY;
   routes.pop();
   const paths = routes.flat().map(({ path }) => ({
-    params: { category: path?.split('/')[1], subCategory: path?.split('/')[2] },
+    params: {
+      category: path?.split('/')[1],
+      subCategory: [path?.split('/')[2], '1'],
+    },
   }));
   return { paths, fallback: true };
 }

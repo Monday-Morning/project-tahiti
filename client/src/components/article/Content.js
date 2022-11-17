@@ -6,6 +6,7 @@ import { Element } from 'react-scroll';
 
 // Components
 import MarkdownWrapper from '../shared/MarkdownWrapper';
+import ArticleTable from './ArticleTable';
 
 // Utils
 import { CONTENT_TYPE } from '../../utils/articleContentParser';
@@ -15,8 +16,7 @@ const ArticleContent = ({ content }) => {
   const classes = useStyles();
 
   const renderContent = (contentItem, index) => {
-    const { contentType, text } = contentItem;
-
+    const { contentType, text, data, blockFormatting } = contentItem;
     switch (contentType) {
       case CONTENT_TYPE.h1:
         return (
@@ -109,7 +109,7 @@ const ArticleContent = ({ content }) => {
         );
 
       case CONTENT_TYPE.table:
-        return null;
+        return <ArticleTable data={data} blockFormatting={blockFormatting} />;
 
       case CONTENT_TYPE.barGraph:
         return null;

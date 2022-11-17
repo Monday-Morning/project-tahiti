@@ -62,8 +62,8 @@ const LiveData = () => {
           {POLICY[activeType].text}
         </Typography>
         <ol style={{ listStyleType: 'decimal' }}>
-          {POLICY[activeType].terms.map((term) => (
-            <li key={term.body} className={classes.bodyItem}>
+          {POLICY[activeType].terms.map((term, index) => (
+            <li key={(term.body, index)} className={classes.bodyItem}>
               <Typography
                 variant='body1'
                 className={classes.bodyText}

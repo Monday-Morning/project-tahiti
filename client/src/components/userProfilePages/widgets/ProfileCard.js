@@ -1,4 +1,11 @@
-import { Box, Button, Card, CardContent, Grid, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Grid,
+  Typography,
+} from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import Image from 'next/image';
 import React from 'react';
