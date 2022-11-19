@@ -51,7 +51,6 @@ const DesktopNavbar = () => {
 
   const searchActive = () => {
     setIsSearchActive((current) => !current);
-    console.log(isSearchActive);
   };
 
   return (
