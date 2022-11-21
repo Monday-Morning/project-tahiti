@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import InputAdornment from '@mui/material/InputAdornment';
-// import TrendingUpSharpIcon from '@mui/icons-material/TrendingUpSharp';
 
 // Libraries
 import { BarChart, Search } from 'react-feather';
@@ -14,8 +12,9 @@ import {
   Typography,
   TextField,
 } from '@mui/material';
-
+import InputAdornment from '@mui/material/InputAdornment';
 import makeStyles from '@mui/styles/makeStyles';
+// import TrendingUpSharpIcon from '@mui/icons-material/TrendingUpSharp';
 
 // Assets
 import logoFullDark from '../../assets/images/logos/logo_full_black.png';
@@ -129,8 +128,6 @@ const MobileNavbar = () => {
           className={classes.menuIcon}
           size={30}
         />
-        {/* )} */}
-
         <div className={classes.logoContainer}>
           <Image
             src={logoFullDark}
@@ -144,7 +141,6 @@ const MobileNavbar = () => {
         <Search
           className={classes.searchIcon}
           onClick={searchActive}
-          onKeyDown={() => {}}
           role='button'
           tabIndex={0}
           size={30}
