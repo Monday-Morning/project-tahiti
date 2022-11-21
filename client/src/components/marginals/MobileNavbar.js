@@ -121,7 +121,6 @@ const MobileNavbar = () => {
         </div>
       </div>
       <Container className={classes.header}>
-        {/* {!isMenuOpen && ( */}
         <BarChart
           onClick={toggleMenu}
           onKeyDown={toggleMenu}
