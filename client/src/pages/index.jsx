@@ -163,43 +163,6 @@ export async function getStaticProps({ preview }) {
       },
     };
   }
-
-  const {
-    data: { getLatestSquiggle: squiggles },
-  } = await GraphClient.query({
-    query: getLatestSquiggle,
-  });
-
-  const {
-    data: {
-      getArticlesByCategories: [witsdom],
-    },
-  } = await GraphClient.query({
-    query: getArticlesByCategories,
-    variables: { categoryNumbers: 61, limit: 1 },
-  });
-
-  const {
-    data: {
-      getArticlesByCategories: [photostory],
-    },
-  } = await GraphClient.query({
-    query: getArticlesByCategories,
-    variables: { categoryNumbers: 62, limit: 1 },
-  });
-
-  return {
-    props: {
-      issues,
-      squiggles,
-      witsdom,
-      photostory,
-    },
-    revalidate:
-      preview || new Date(Date.now()).getDay() < 3
-        ? 60 * 60 * 1
-        : 60 * 60 * 24 * 2, // 1 Hour or 2 Days
-  };
 }
 
 export default HomePage;

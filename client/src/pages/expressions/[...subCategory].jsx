@@ -118,7 +118,7 @@ const EditorialPage = ({
           content='Monday Morning is the Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students.'
         />
       </Head>
-      {!isLoading && !isFallback ? (
+      {!isLoading && !isError && !isFallback ? (
         <Marginals>
           <SubCategory
             articleList={articleList}
