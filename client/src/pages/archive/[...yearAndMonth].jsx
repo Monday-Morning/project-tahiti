@@ -16,7 +16,7 @@ import listArticlesByYearAndMonth from '../../graphql/queries/article/listArticl
 //routes
 import { ARCHIVES } from '../../assets/placeholder/guide';
 
-function ArchivePage({ archiveArticles, year, month }) {
+function ArchivePage({ archiveArticles, year, month, isError, error }) {
   const { isFallback } = useRouter();
 
   return (
@@ -102,40 +102,57 @@ export async function getStaticProps({
     yearAndMonth: [year, month],
   },
 }) {
-  const {
-    data: { listArticlesByYearAndMonth: archiveArticles },
-  } = await GraphClient.query({
-    query: listArticlesByYearAndMonth,
-    variables: {
-      onlyPublished: true,
-      year: parseInt(year),
-      month: ARCHIVES.months.indexOf(month),
-      limit: 9,
-    },
-  });
-  return {
-    props: { archiveArticles, year, month },
-    revalidate: 7 * 24 * 60 * 60,
-  };
+  try {
+    const {
+      data: { listArticlesByYearAndMonth: archiveArticles },
+    } = await GraphClient.query({
+      query: listArticlesByYearAndMonth,
+      variables: {
+        onlyPublished: true,
+        year: parseInt(year),
+        month: ARCHIVES.months.indexOf(month),
+        limit: 9,
+      },
+    });
+    return {
+      props: { archiveArticles, year, month },
+      revalidate: 7 * 24 * 60 * 60,
+    };
+  } catch (err) {
+    return {
+      props: {
+        isError: true,
+        error: err,
+      },
+      notFound: true,
+    };
+  }
 }
 
 export async function getStaticPaths() {
   const { years, months } = ARCHIVES;
 
-  const paths = years
-    .map((year) =>
-      months.map((month) => {
-        return {
-          params: {
-            yearAndMonth: [`${year}`, month],
-          },
-        };
-      }),
-    )
-    .flat();
+  try {
+    const paths = years
+      .map((year) =>
+        months.map((month) => {
+          return {
+            params: {
+              yearAndMonth: [`${year}`, month],
+            },
+          };
+        }),
+      )
+      .flat();
 
-  return {
-    paths,
-    fallback: true,
-  };
+    return {
+      paths,
+      fallback: true,
+    };
+  } catch (e) {
+    return {
+      paths: { params: { subCategory: ['error', 'error'] } },
+      fallback: true,
+    };
+  }
 }

@@ -22,6 +22,8 @@ const CategoryPage = ({
   articleList,
   countOfArticles,
   pageNumber,
+  isError,
+  error,
 }) => {
   const { isFallback, push } = useRouter();
 
@@ -141,55 +143,65 @@ export async function getStaticProps({
   },
   preview,
 }) {
-  const categoryName = ROUTES.CATEGORIES.filter(
-    ({ asyncRoutePath }) => asyncRoutePath === './Category',
-  ).filter(({ shortName }) => shortName === category)[0]?.shortName;
+  try {
+    const categoryName = ROUTES.CATEGORIES.filter(
+      ({ asyncRoutePath }) => asyncRoutePath === './Category',
+    ).filter(({ shortName }) => shortName === category)[0]?.shortName;
 
-  const subCategoryDetails = ROUTES.SUB_CATEGORIES.OBJECT[
-    categoryName?.toUpperCase()
-  ]
-    ?.filter(({ asyncRoutePath }) => asyncRoutePath === './SubCategory')
-    .filter(({ shortName }) => shortName === subCategory)[0];
+    const subCategoryDetails = ROUTES.SUB_CATEGORIES.OBJECT[
+      categoryName?.toUpperCase()
+    ]
+      ?.filter(({ asyncRoutePath }) => asyncRoutePath === './SubCategory')
+      .filter(({ shortName }) => shortName === subCategory)[0];
 
-  if (!subCategoryDetails) {
+    if (!subCategoryDetails) {
+      return {
+        notFound: true,
+      };
+    }
+
+    const {
+      data: { getArticlesByCategories: articleList },
+    } = await GraphClient.query({
+      query: getArticlesByCategories,
+      variables: {
+        categoryNumbers: [subCategoryDetails?.idNumber],
+        limit: 7,
+        offset: 7 * (parseInt(pageNumber) - 1),
+      },
+    });
+
+    const {
+      data: { countOfArticlesBySubCategory: countOfArticles },
+    } = await GraphClient.query({
+      query: countOfArticlesBySubCategory,
+      variables: {
+        categoryNumber: subCategoryDetails?.idNumber,
+      },
+    });
+
     return {
+      props: {
+        categoryName,
+        subCategoryDetails,
+        articleList,
+        countOfArticles,
+        pageNumber: parseInt(pageNumber),
+      },
+      revalidate:
+        preview || new Date(Date.now()).getDay() < 3
+          ? 60 * 60 * 1
+          : 60 * 60 * 24 * 2, // 1 Hour or 2 Days
+    };
+  } catch (err) {
+    return {
+      props: {
+        isError: true,
+        error: err,
+      },
       notFound: true,
     };
   }
-
-  const {
-    data: { getArticlesByCategories: articleList },
-  } = await GraphClient.query({
-    query: getArticlesByCategories,
-    variables: {
-      categoryNumbers: [subCategoryDetails?.idNumber],
-      limit: 7,
-      offset: 7 * (parseInt(pageNumber) - 1),
-    },
-  });
-
-  const {
-    data: { countOfArticlesBySubCategory: countOfArticles },
-  } = await GraphClient.query({
-    query: countOfArticlesBySubCategory,
-    variables: {
-      categoryNumber: subCategoryDetails?.idNumber,
-    },
-  });
-
-  return {
-    props: {
-      categoryName,
-      subCategoryDetails,
-      articleList,
-      countOfArticles,
-      pageNumber: parseInt(pageNumber),
-    },
-    revalidate:
-      preview || new Date(Date.now()).getDay() < 3
-        ? 60 * 60 * 1
-        : 60 * 60 * 24 * 2, // 1 Hour or 2 Days
-  };
 }
 
 export async function getStaticPaths() {

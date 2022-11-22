@@ -14,7 +14,7 @@ import Home from '../screens/Home';
 import getLatestIssues from '../graphql/queries/homepage/getLatestIssues';
 import getLatestSquiggle from '../graphql/queries/homepage/getLatestSquiggle';
 
-function HomePage({ issues, squiggles }) {
+function HomePage({ issues, squiggles, isError, error }) {
   const { isFallback } = useRouter();
 
   return (
@@ -92,38 +92,48 @@ function HomePage({ issues, squiggles }) {
 }
 
 export async function getStaticProps({ preview }) {
-  const {
-    data: { getLatestIssues: issues },
-  } = await GraphClient.query({
-    query: getLatestIssues,
-    variables: { limit: 2 },
-  });
+  try {
+    const {
+      data: { getLatestIssues: issues },
+    } = await GraphClient.query({
+      query: getLatestIssues,
+      variables: { limit: 2 },
+    });
 
-  if (!issues || issues.length !== 2) {
+    if (!issues || issues.length !== 2) {
+      return {
+        redirect: {
+          destination: '/error/internal-server-error',
+          permanent: false,
+        },
+      };
+    }
+
+    const {
+      data: { getLatestSquiggle: squiggles },
+    } = await GraphClient.query({
+      query: getLatestSquiggle,
+    });
+
     return {
-      redirect: {
-        destination: '/error/internal-server-error',
-        permanent: false,
+      props: {
+        issues,
+        squiggles,
       },
+      revalidate:
+        preview || new Date(Date.now()).getDay() < 3
+          ? 60 * 60 * 1
+          : 60 * 60 * 24 * 2, // 1 Hour or 2 Days
+    };
+  } catch (err) {
+    return {
+      props: {
+        isError: true,
+        error: err,
+      },
+      notFound: true,
     };
   }
-
-  const {
-    data: { getLatestSquiggle: squiggles },
-  } = await GraphClient.query({
-    query: getLatestSquiggle,
-  });
-
-  return {
-    props: {
-      issues,
-      squiggles,
-    },
-    revalidate:
-      preview || new Date(Date.now()).getDay() < 3
-        ? 60 * 60 * 1
-        : 60 * 60 * 24 * 2, // 1 Hour or 2 Days
-  };
 }
 
 export default HomePage;
