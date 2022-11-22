@@ -23,6 +23,8 @@ const PortfolioPage = ({
   articleList,
   noOfArticle,
   year,
+  isError,
+  error,
 }) => {
   const { isFallback } = useRouter();
 
@@ -60,106 +62,116 @@ export async function getStaticProps({
 }) {
   /**** to bring the portfolio URL in correct format - start ****/
 
-  if (!userSlug && !portfolioId.match(/^[0-9a-f]{24}$/g)) {
-    try {
-      const {
-        data: {
-          getUserByOldUserName: { id, fullName },
-        },
-      } = await GraphClient.query({
-        query: getUserByOldUserName,
-        variables: {
-          oldUserName: portfolioId,
-        },
-      });
+  try {
+    if (!userSlug && !portfolioId.match(/^[0-9a-f]{24}$/g)) {
+      try {
+        const {
+          data: {
+            getUserByOldUserName: { id, fullName },
+          },
+        } = await GraphClient.query({
+          query: getUserByOldUserName,
+          variables: {
+            oldUserName: portfolioId,
+          },
+        });
 
-      return {
-        redirect: {
-          destination: `/portfolio/${id}/${getUserSlug(fullName)}`,
-          permanent: false,
-        },
-      };
-    } catch {
+        return {
+          redirect: {
+            destination: `/portfolio/${id}/${getUserSlug(fullName)}`,
+            permanent: false,
+          },
+        };
+      } catch {
+        return {
+          notFound: true,
+        };
+      }
+    }
+
+    const {
+      data: { getUserByID: user },
+    } = await GraphClient.query({
+      query: getUserById,
+      variables: {
+        getUserById: portfolioId,
+      },
+    });
+
+    if (!user) {
       return {
         notFound: true,
       };
     }
-  }
 
-  const {
-    data: { getUserByID: user },
-  } = await GraphClient.query({
-    query: getUserById,
-    variables: {
-      getUserById: portfolioId,
-    },
-  });
+    if (userSlug !== getUserSlug(user.fullName)) {
+      return {
+        redirect: {
+          destination: `/portfolio/${user.id}/${getUserSlug(user.fullName)}`,
+          permanent: false,
+        },
+      };
+    }
 
-  if (!user) {
-    return {
-      notFound: true,
-    };
-  }
+    /**** to bring the portfolio URL in correct format - end ****/
 
-  if (userSlug !== getUserSlug(user.fullName)) {
-    return {
-      redirect: {
-        destination: `/portfolio/${user.id}/${getUserSlug(user.fullName)}`,
-        permanent: false,
+    const { firstName, lastName, email, picture, contributions } = user;
+
+    const noProfilePage = ['Guest', 'Team'];
+
+    if (noProfilePage.includes(firstName)) {
+      return {
+        notFound: true,
+      };
+    }
+
+    const articleIdList = contributions
+      .filter(({ model }) => model === 'Article')
+      .reduce((prev, curr) => [...prev, curr.reference], []);
+
+    const {
+      data: { getListOfArticles: articleList },
+    } = await GraphClient.query({
+      query: getListOfArticles,
+      variables: {
+        ids: articleIdList,
+        limit: 40,
       },
-    };
-  }
+    });
 
-  /**** to bring the portfolio URL in correct format - end ****/
+    const _articleList = articleList.filter((article) => article);
+    const noOfArticle = _articleList.length;
 
-  const { firstName, lastName, email, picture, contributions } = user;
+    let { store, storePath } = picture;
+    let profileImageLink = getStores[store] + storePath;
 
-  const noProfilePage = ['Guest', 'Team'];
+    let year = ' ';
 
-  if (noProfilePage.includes(firstName)) {
+    if (noOfArticle) {
+      year = _articleList[noOfArticle - 1].createdAt.substring(0, 4);
+      year += '-' + (Number(year.substring(2)) + 1).toString();
+    }
+
     return {
+      props: {
+        userId: portfolioId,
+        firstName,
+        lastName,
+        email,
+        profileImageLink,
+        articleList: _articleList,
+        noOfArticle,
+        year,
+      },
+      revalidate: 60 * 60 * 24 * 7,
+    };
+  } catch (err) {
+    return {
+      props: {
+        isError: true,
+        error: err,
+      },
       notFound: true,
     };
   }
-
-  const articleIdList = contributions
-    .filter(({ model }) => model === 'Article')
-    .reduce((prev, curr) => [...prev, curr.reference], []);
-
-  const {
-    data: { getListOfArticles: articleList },
-  } = await GraphClient.query({
-    query: getListOfArticles,
-    variables: {
-      ids: articleIdList,
-      limit: 40,
-    },
-  });
-
-  const _articleList = articleList.filter((article) => article);
-  const noOfArticle = _articleList.length;
-
-  let { store, storePath } = picture;
-  let profileImageLink = getStores[store] + storePath;
-
-  let year = ' ';
-
-  if (noOfArticle) {
-    year = _articleList[noOfArticle - 1].createdAt.substring(0, 4);
-    year += '-' + (Number(year.substring(2)) + 1).toString();
-  }
-
-  return {
-    props: {
-      userId: portfolioId,
-      firstName,
-      lastName,
-      email,
-      profileImageLink,
-      articleList: _articleList,
-      noOfArticle,
-      year,
-    },
-    revalidate: 60 * 60 * 24 * 7,
-  };
 }

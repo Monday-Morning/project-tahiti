@@ -16,7 +16,7 @@ import getArticleByID from '../../graphql/queries/article/getArticleByID';
 import getArticleByOldID from '../../graphql/queries/article/getArticleByOldID';
 import getArticleLink, { getArticleSlug } from '../../utils/getArticleLink';
 
-function ArticlePage({ article }) {
+function ArticlePage({ article, isError, error }) {
   const { isFallback } = useRouter();
 
   return (
@@ -129,12 +129,34 @@ export async function getStaticProps({
   },
   preview,
 }) {
-  if (oldArticleLink) {
+  try {
+    if (oldArticleLink) {
+      const {
+        data: { getArticleByOldID: article },
+      } = await GraphClient.query({
+        query: getArticleByOldID,
+        variables: { id: parseInt(oldArticleLink.split('-')[0]) },
+      });
+
+      if (!article) {
+        return {
+          notFound: true,
+        };
+      }
+
+      return {
+        redirect: {
+          destination: getArticleLink(article.id, article.title),
+          permanent: false,
+        },
+      };
+    }
+
     const {
-      data: { getArticleByOldID: article },
+      data: { getArticleByID: article },
     } = await GraphClient.query({
-      query: getArticleByOldID,
-      variables: { id: parseInt(oldArticleLink.split('-')[0]) },
+      query: getArticleByID,
+      variables: { id: articleId },
     });
 
     if (!article) {
@@ -143,44 +165,34 @@ export async function getStaticProps({
       };
     }
 
+    if (articleSlug !== getArticleSlug(article.title)) {
+      return {
+        redirect: {
+          destination: getArticleLink(articleId, article.title),
+          permanent: false,
+        },
+      };
+    }
+
     return {
-      redirect: {
-        destination: getArticleLink(article.id, article.title),
-        permanent: false,
+      props: {
+        key: articleId,
+        article,
       },
+      revalidate:
+        preview || article.publishStatus === 'PUBLISHED'
+          ? 10
+          : 60 * 60 * 24 * 30, // 30 Days
     };
-  }
-
-  const {
-    data: { getArticleByID: article },
-  } = await GraphClient.query({
-    query: getArticleByID,
-    variables: { id: articleId },
-  });
-
-  if (!article) {
+  } catch (err) {
     return {
+      props: {
+        isError: true,
+        error: err,
+      },
       notFound: true,
     };
   }
-
-  if (articleSlug !== getArticleSlug(article.title)) {
-    return {
-      redirect: {
-        destination: getArticleLink(articleId, article.title),
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {
-      key: articleId,
-      article,
-    },
-    revalidate:
-      preview || article.publishStatus === 'PUBLISHED' ? 10 : 60 * 60 * 24 * 30, // 30 Days
-  };
 }
 
 export async function getStaticPaths() {

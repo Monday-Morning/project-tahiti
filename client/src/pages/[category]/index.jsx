@@ -15,7 +15,13 @@ import ROUTES from '../../utils/getRoutes';
 // Graphql
 import getArticlesByCategories from '../../graphql/queries/category/getArticlesByCategories';
 
-const CategoryPage = ({ articleList, categoryShortName, category }) => {
+const CategoryPage = ({
+  articleList,
+  categoryShortName,
+  category,
+  isError,
+  error,
+}) => {
   const { isFallback } = useRouter();
   return (
     <>
@@ -100,47 +106,64 @@ export async function getStaticProps({
   params: { category: categoryShortName },
   preview,
 }) {
-  const category = ROUTES.CATEGORIES.filter(
-    ({ asyncRoutePath }) => asyncRoutePath === './Category',
-  ).filter(({ shortName }) => shortName === categoryShortName)[0];
+  try {
+    const category = ROUTES.CATEGORIES.filter(
+      ({ asyncRoutePath }) => asyncRoutePath === './Category',
+    ).filter(({ shortName }) => shortName === categoryShortName)[0];
 
-  const {
-    data: { getArticlesByCategories: articleList },
-  } = await GraphClient.query({
-    query: getArticlesByCategories,
-    variables: {
-      categoryNumbers: [category?.idNumber, ...category?.subCategoryIds],
-      limit: 4,
-    },
-  });
+    const {
+      data: { getArticlesByCategories: articleList },
+    } = await GraphClient.query({
+      query: getArticlesByCategories,
+      variables: {
+        categoryNumbers: [category?.idNumber, ...category?.subCategoryIds],
+        limit: 4,
+      },
+    });
 
-  if (!category || !articleList) {
+    if (!category || !articleList) {
+      return {
+        notFound: true,
+      };
+    }
+
     return {
+      props: {
+        articleList,
+        categoryShortName,
+        category,
+      },
+      revalidate:
+        preview || new Date(Date.now()).getDay() < 3
+          ? 60 * 60 * 1
+          : 60 * 60 * 24 * 2, // 1 Hour or 2 Days
+    };
+  } catch (err) {
+    return {
+      props: {
+        isError: true,
+        error: err,
+      },
       notFound: true,
     };
   }
-
-  return {
-    props: {
-      articleList,
-      categoryShortName,
-      category,
-    },
-    revalidate:
-      preview || new Date(Date.now()).getDay() < 3
-        ? 60 * 60 * 1
-        : 60 * 60 * 24 * 2, // 1 Hour or 2 Days
-  };
 }
 
 export async function getStaticPaths() {
-  const paths = ROUTES.CATEGORIES.filter(
-    ({ asyncRoutePath }) => asyncRoutePath === './Category',
-  ).map(({ shortName }) => ({
-    params: { category: shortName },
-  }));
+  try {
+    const paths = ROUTES.CATEGORIES.filter(
+      ({ asyncRoutePath }) => asyncRoutePath === './Category',
+    ).map(({ shortName }) => ({
+      params: { category: shortName },
+    }));
 
-  return { paths, fallback: false };
+    return { paths, fallback: false };
+  } catch (e) {
+    return {
+      paths: { params: { subCategory: ['error', 'error'] } },
+      fallback: true,
+    };
+  }
 }
 
 export default CategoryPage;

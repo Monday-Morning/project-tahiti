@@ -90,32 +90,35 @@ const ExpressionsPage = ({ witsdom, editorial, miscellaneous }) => {
 // }
 
 export async function getStaticProps() {
-  const {
-    data: { getArticlesByCategories: witsdom },
-  } = await GraphClient.query({
-    query: getArticlesByCategories,
-    variables: { categoryNumbers: 61, limit: 3 },
-  });
+  try {
+    const {
+      data: { getArticlesByCategories: witsdom },
+    } = await GraphClient.query({
+      query: getArticlesByCategories,
+      variables: { categoryNumbers: 61, limit: 3 },
+    });
 
-  const {
-    data: {
-      getArticlesByCategories: [editorial],
-    },
-  } = await GraphClient.query({
-    query: getArticlesByCategories,
-    variables: { categoryNumbers: 66, limit: 3 },
-  });
+    const {
+      data: {
+        getArticlesByCategories: [editorial],
+      },
+    } = await GraphClient.query({
+      query: getArticlesByCategories,
+      variables: { categoryNumbers: 66, limit: 3 },
+    });
 
-  const {
-    data: {
-      getArticlesByCategories: [miscellaneous],
-    },
-  } = await GraphClient.query({
-    query: getArticlesByCategories,
-    variables: { categoryNumbers: 67, limit: 3 },
-  });
+    const {
+      data: {
+        getArticlesByCategories: [miscellaneous],
+      },
+    } = await GraphClient.query({
+      query: getArticlesByCategories,
+      variables: { categoryNumbers: 67, limit: 3 },
+    });
 
-  return { props: { witsdom, editorial, miscellaneous } };
+    return { props: { witsdom, editorial, miscellaneous } };
+  } catch (e) {
+    return { props: {}, notFound: true };
+  }
 }
-
 export default ExpressionsPage;

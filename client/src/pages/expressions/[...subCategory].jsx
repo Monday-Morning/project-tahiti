@@ -22,6 +22,8 @@ const EditorialPage = ({
   articleList,
   countOfArticles,
   pageNumber,
+  isError,
+  error,
 }) => {
   const { isFallback, push } = useRouter();
 
@@ -112,7 +114,7 @@ const EditorialPage = ({
           content='Monday Morning is the Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students.'
         />
       </Head>
-      {!isLoading && !isFallback ? (
+      {!isLoading && !isError && !isFallback ? (
         <Marginals>
           <SubCategory
             articleList={articleList}
@@ -138,50 +140,71 @@ export async function getStaticProps({
   },
   preview,
 }) {
-  let subCategoryDetails = ROUTES.SUB_CATEGORIES.OBJECT.EXPRESSIONS.filter(
-    ({ shortName }) => shortName === subCategory,
-  )[0];
+  try {
+    if (subCategory == 'length') {
+      throw 'Paths not found';
+    }
 
-  const {
-    data: { getArticlesByCategories: articleList },
-  } = await GraphClient.query({
-    query: getArticlesByCategories,
-    variables: {
-      categoryNumbers: [subCategoryDetails?.idNumber],
-      limit: 7,
-      offset: 7 * (parseInt(pageNumber) - 1),
-    },
-  });
+    let subCategoryDetails = ROUTES.SUB_CATEGORIES.OBJECT.EXPRESSIONS.filter(
+      ({ shortName }) => shortName === subCategory,
+    )[0];
 
-  const {
-    data: { countOfArticlesBySubCategory: countOfArticles },
-  } = await GraphClient.query({
-    query: countOfArticlesBySubCategory,
-    variables: {
-      categoryNumber: subCategoryDetails?.idNumber,
-    },
-  });
+    const {
+      data: { getArticlesByCategories: articleList },
+    } = await GraphClient.query({
+      query: getArticlesByCategories,
+      variables: {
+        categoryNumbers: [subCategoryDetails?.idNumber],
+        limit: 7,
+        offset: 7 * (parseInt(pageNumber) - 1),
+      },
+    });
 
-  return {
-    props: {
-      categoryName: 'expressions',
-      subCategoryDetails,
-      articleList,
-      countOfArticles,
-      pageNumber: parseInt(pageNumber),
-    },
-    revalidate:
-      preview || new Date(Date.now()).getDay() < 3
-        ? 60 * 60 * 1
-        : 60 * 60 * 24 * 2, // 1 Hour or 2 Days
-  };
+    const {
+      data: { countOfArticlesBySubCategory: countOfArticles },
+    } = await GraphClient.query({
+      query: countOfArticlesBySubCategory,
+      variables: {
+        categoryNumber: subCategoryDetails?.idNumber,
+      },
+    });
+
+    return {
+      props: {
+        categoryName: 'expressions',
+        subCategoryDetails,
+        articleList,
+        countOfArticles,
+        pageNumber: parseInt(pageNumber),
+      },
+      revalidate:
+        preview || new Date(Date.now()).getDay() < 3
+          ? 60 * 60 * 1
+          : 60 * 60 * 24 * 2, // 1 Hour or 2 Days
+    };
+  } catch (err) {
+    return {
+      props: {
+        isError: true,
+        error: err,
+      },
+      notFound: true,
+    };
+  }
 }
 
 export async function getStaticPaths() {
   let routes = ROUTES.SUB_CATEGORIES.OBJECT.EXPRESSIONS;
 
-  const paths = routes.flat().map(({ path }) => ({
-    params: { subCategory: [path?.split('/')[2], '1'] },
-  }));
-  return { paths, fallback: true };
+  try {
+    const paths = routes.flat().map(({ path }) => ({
+      params: { subCategory: [path?.split('/')[2], '1'] },
+    }));
+    return { paths, fallback: true };
+  } catch (e) {
+    return {
+      paths: { params: { subCategory: ['error', 'error'] } },
+      fallback: true,
+    };
+  }
 }
