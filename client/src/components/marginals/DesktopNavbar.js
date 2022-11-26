@@ -76,7 +76,6 @@ const DesktopNavbar = () => {
                 ),
               }}
               variant='standard'
-              autoFocus
             />
             <div className={classes.searchSuggestions}>
               {autoCompleteData?.map(({ id, title }) => (
@@ -124,6 +123,14 @@ const DesktopNavbar = () => {
               label='Search for articles'
               placeholder='Enter related words'
               onClick={searchActive}
+              disabled={true}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position='start'>
+                    <SearchIcon />
+                  </InputAdornment>
+                ),
+              }}
             />
           </div>
 
