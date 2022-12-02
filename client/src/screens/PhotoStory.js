@@ -1,8 +1,5 @@
 import React from 'react';
 
-// libraries
-import { Container } from '@mui/material';
-
 // Components
 import Header from '../components/photostory/Header';
 import Body from '../components/photostory/Body';
@@ -11,19 +8,16 @@ import RecommendedArticles from '../components/article/RecommendedArticles';
 
 // Placeholder
 import { PHOTOSTORY } from '../assets/placeholder/photostory';
+import { ARTICLES } from '../assets/placeholder/articleCard';
 
 function PhotoStory() {
   return (
-    <div>
+    <>
       <Header DATA={PHOTOSTORY} />
       <Body />
-      <hr />
-      <Container maxWidth='xl'>
-        <Comments />
-      </Container>
-
-      <RecommendedArticles title='More Photostories' />
-    </div>
+      <Comments />
+      <RecommendedArticles title='More from Photostories' articles={ARTICLES} />
+    </>
   );
 }
 

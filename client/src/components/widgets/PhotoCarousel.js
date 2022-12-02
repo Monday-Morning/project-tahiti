@@ -1,15 +1,15 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 
-import makeStyles from '@mui/styles/makeStyles';
 import { Typography, Grid } from '@mui/material';
-// img
+import makeStyles from '@mui/styles/makeStyles';
+import ArrowLeft from '@mui/icons-material/ArrowCircleLeftOutlined';
+import ArrowRight from '@mui/icons-material/ArrowCircleRightOutlined';
+
 import Slider from 'react-slick';
-
 import 'slick-carousel/slick/slick.css';
-import { ArrowLeftCircle, ArrowRightCircle } from 'react-feather';
 
-const PhotoCarousel = ({ IMAGE, navigator }) => {
+const PhotoCarousel = ({ IMAGE, navigator, Text }) => {
   const slider = useRef();
   const next = () => {
     slider.current.slickNext();
@@ -23,13 +23,13 @@ const PhotoCarousel = ({ IMAGE, navigator }) => {
     centerMode: true,
     arrows: false,
     slidesToShow: 1,
-    centerPadding: '650px',
+    centerPadding: '400px',
     responsive: [
       {
         breakpoint: 1500,
         settings: {
           centerMode: true,
-          centerPadding: '320px',
+          centerPadding: '520px',
           slidesToShow: 1,
         },
       },
@@ -37,7 +37,7 @@ const PhotoCarousel = ({ IMAGE, navigator }) => {
         breakpoint: 1280,
         settings: {
           centerMode: true,
-          centerPadding: '200px',
+          centerPadding: '65px',
           slidesToShow: 1,
         },
       },
@@ -45,7 +45,7 @@ const PhotoCarousel = ({ IMAGE, navigator }) => {
         breakpoint: 960,
         settings: {
           centerMode: true,
-          centerPadding: '150px',
+          centerPadding: '75px',
           slidesToShow: 1,
         },
       },
@@ -53,7 +53,7 @@ const PhotoCarousel = ({ IMAGE, navigator }) => {
         breakpoint: 600,
         settings: {
           centerMode: true,
-          centerPadding: '70px',
+          centerPadding: '50px',
           slidesToShow: 1,
         },
       },
@@ -61,7 +61,7 @@ const PhotoCarousel = ({ IMAGE, navigator }) => {
         breakpoint: 350,
         settings: {
           centerMode: true,
-          centerPadding: '50px',
+          centerPadding: '40px',
           slidesToShow: 1,
         },
       },
@@ -70,21 +70,24 @@ const PhotoCarousel = ({ IMAGE, navigator }) => {
 
   return (
     <div className={classes.wrapper}>
-      <div>
-        <Slider {...config}>
-          {IMAGE.map((img, key) => (
-            <Grid item key={key} className={classes.img}>
-              <Image src={img} alt='Icon' className={classes.img} />
-            </Grid>
-          ))}
-        </Slider>
-      </div>
-      <div className={classes.textWrapper}>
-        <Typography variant='h3' className={classes.text}>
-          <ArrowLeftCircle onClick={previous} />
-          <div>{navigator}</div>
-          <ArrowRightCircle onClick={next} />
-        </Typography>
+      <Slider {...config}>
+        {IMAGE.map((img, key) => (
+          <Grid item key={key} className={classes.imgWrapper}>
+            <Image src={img} alt='Icon' className={classes.img} />
+          </Grid>
+        ))}
+      </Slider>
+      {Text && (
+        <div className={classes.textWrapper}>
+          <Typography variant='body2' className={classes.text}>
+            {Text}
+          </Typography>
+        </div>
+      )}
+      <div className={classes.navIconWrapper}>
+        <ArrowLeft onClick={previous} className={classes.navIcon} />
+        <div>{navigator}</div>
+        <ArrowRight onClick={next} className={classes.navIcon} />
       </div>
     </div>
   );
@@ -97,13 +100,29 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '24px',
   },
   textWrapper: {
+    marginTop: '12px',
+    display: 'flex',
+    direction: 'row',
+    justifyContent: 'center',
+    [theme.breakpoints.down('sm')]: {
+      padding: '0px 24px',
+      justifyContent: 'flex-start',
+    },
+  },
+  text: {
+    color: theme.palette.common.white,
+    alignSelf: 'center',
+  },
+  navIconWrapper: {
     display: 'flex',
     direction: 'row',
     justifyContent: 'center',
     marginTop: '24px',
-    [theme.breakpoints.down('sm')]: {
-      marginTop: '0px',
-    },
+    gap: 10,
+  },
+  navIcon: {
+    color: theme.palette.secondary.neutral70,
+    cursor: 'pointer',
   },
   text: {
     display: 'flex',
@@ -111,20 +130,6 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.white,
     '& div': {
       marginInline: '0.3rem',
-    },
-  },
-  img: {
-    [theme.breakpoints.down('xl')]: {
-      height: '500px',
-    },
-    [theme.breakpoints.down('lg')]: {
-      height: '400px',
-    },
-    [theme.breakpoints.down('md')]: {
-      height: '300px',
-    },
-    [theme.breakpoints.down('sm')]: {
-      height: '180px',
     },
   },
 }));
