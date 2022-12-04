@@ -11,24 +11,35 @@ const getEnv = (phase) => {
   return parsed;
 };
 
-const nextConfig = (phase, { defaultConfig }) => ({
-  ...defaultConfig,
-  reactStrictMode: !isDev(phase),
-  env: getEnv(phase),
-  devIndicators: {
-    buildActivityPosition: 'bottom-left',
-  },
-  images: {
-    domains: ['ik.imagekit.io', 'mondaymorning.nitrkl.ac.in', 'mm.dashnet.in'],
-  },
-  eslint: {
-    /**
-     * Warning!
-     * This allows production builds to successfully complete even if your project has ESLint errors.
-     * Do not enable for production builds.
-     */
-    ignoreDuringBuilds: true,
-  },
-});
+const nextConfig = (phase, { defaultConfig }) => {
+  /**
+   * @type {import('next').NextConfig}
+   */
+  const _config = {
+    reactStrictMode: !isDev(phase),
+    env: getEnv(phase),
+    devIndicators: {
+      buildActivityPosition: 'bottom-left',
+    },
+    images: {
+      domains: [
+        'ik.imagekit.io',
+        'mondaymorning.nitrkl.ac.in',
+        'mm.dashnet.in',
+      ],
+    },
+    eslint: {
+      /**
+       * Warning!
+       * This allows production builds to successfully complete even if your project has ESLint errors.
+       * Do not enable for production builds.
+       */
+      ignoreDuringBuilds: true,
+      dirs: ['src'],
+    },
+    poweredByHeader: false,
+  };
+  return _config;
+};
 
 export default nextConfig;

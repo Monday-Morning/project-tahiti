@@ -80,10 +80,10 @@ const useStyles = makeStyles((theme) => ({
   pulseCard: {
     boxShadow: theme.shadows[0],
     backgroundColor: theme.palette.common.white,
-    height: '400px',
-    width: '789px',
+    height: '423px',
+    maxWidth: '789px',
     [theme.breakpoints.down('sm')]: {
-      height: '600px',
+      height: '100%',
       maxWidth: '95vw',
     },
   },
@@ -97,8 +97,8 @@ const useStyles = makeStyles((theme) => ({
   optionWrapper: {
     fontFamily: 'Source Sans Pro',
     fontSize: '1rem',
-    lineHeight: '1.5rem',
-    marginTop: '0.5rem',
+    lineHeight: '1.50rem',
+    marginTop: '1.0rem',
     display: 'flex',
   },
   votes: {
@@ -118,6 +118,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Source Sans Pro',
     marginTop: '40px',
     [theme.breakpoints.down('md')]: {
+      marginTop: '20px',
       display: 'flex',
       justifyContent: 'center',
     },

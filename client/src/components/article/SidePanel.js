@@ -89,6 +89,7 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     fontSize: '28px',
     marginTop: '2rem',
+    cursor: 'pointer',
   },
   toc: {},
 }));

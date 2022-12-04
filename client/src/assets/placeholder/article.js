@@ -40,8 +40,8 @@ export const DEFAULT_ARTICLE = Object.freeze({
       ],
       mediaType: 'IMAGE',
       blurhash: null,
-      storePath: '/mm-black.png',
-      store: 2,
+      storePath: '/article/cover/62c28a30431d76f7e5a43d5a.jpeg',
+      store: 'ADAMANTIUM_ARCHIVE_A',
     },
     square: {
       authors: [
@@ -51,8 +51,8 @@ export const DEFAULT_ARTICLE = Object.freeze({
       ],
       mediaType: 'IMAGE',
       blurhash: null,
-      storePath: '/mm-black.png',
-      store: 2,
+      storePath: '/article/cover/62c28a30431d76f7e5a43d5a.jpeg',
+      store: 'ADAMANTIUM_ARCHIVE_A',
     },
   },
 });

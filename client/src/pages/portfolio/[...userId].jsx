@@ -136,7 +136,8 @@ export async function getStaticProps({
     },
   });
 
-  const noOfArticle = articleList.length;
+  const _articleList = articleList.filter((article) => article);
+  const noOfArticle = _articleList.length;
 
   let { store, storePath } = picture;
   let profileImageLink = getStores[store] + storePath;
@@ -144,7 +145,7 @@ export async function getStaticProps({
   let year = ' ';
 
   if (noOfArticle) {
-    year = articleList[noOfArticle - 1].createdAt.substring(0, 4);
+    year = _articleList[noOfArticle - 1].createdAt.substring(0, 4);
     year += '-' + (Number(year.substring(2)) + 1).toString();
   }
 
@@ -155,7 +156,7 @@ export async function getStaticProps({
       lastName,
       email,
       profileImageLink,
-      articleList,
+      articleList: _articleList,
       noOfArticle,
       year,
     },

@@ -32,7 +32,9 @@ jobs:
 
       - name: Install Dev Dependencies
         if: ${{ inputs.setup_dev }} && steps.yarn-dev-cache.outputs.cache-hit != 'true'
-        run: cd client && yarn install
+        run: |
+          cd client
+          yarn install
 
       - name: Use Actions Prod Cache
         uses: actions/cache@v2
@@ -44,7 +46,9 @@ jobs:
 
       - name: Install Prod Dependencies
         if: ${{ !inputs.setup_dev }} && steps.yarn-prod-cache.outputs.cache-hit != 'true'
-        run: cd client && yarn install --prod --frozen-lockfile
+        run: |
+          cd client
+          yarn install --prod --frozen-lockfile
 
       - name: Zip Setup Application
         run: zip app.zip . -r

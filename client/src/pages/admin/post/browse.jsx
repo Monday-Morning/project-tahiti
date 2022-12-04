@@ -5,7 +5,6 @@ import Head from 'next/head';
 import Browse from '../../../screens/admin/Browse';
 import Admin from '../../../screens/admin/Admin';
 
-
 const BrowsePage = () => {
   return (
     <>

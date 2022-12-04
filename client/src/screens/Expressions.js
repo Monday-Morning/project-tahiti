@@ -114,7 +114,7 @@ function Expressions({ witsdom, editorial, miscellaneous }) {
               <SectionTitle
                 heading={name}
                 link={shortName}
-                path={path}
+                path={path + '/1'}
                 container={!container}
               />
               {section}
@@ -122,9 +122,7 @@ function Expressions({ witsdom, editorial, miscellaneous }) {
           );
 
           return container ? (
-            <Container maxWidth='xl' key={shortName}>
-              {element}
-            </Container>
+            <Container key={shortName}>{element}</Container>
           ) : (
             element
           );

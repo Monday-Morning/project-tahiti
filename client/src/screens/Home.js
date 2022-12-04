@@ -37,14 +37,14 @@ function Home({ issues, squiggles }) {
           title='This Issue'
         />
 
-        {/*<Grid container spacing={4} style={{ marginTop: 25 }}>
+        {<Grid container spacing={4} style={{ marginTop: 25 }}>
             <Grid item sm={8}>
               <Pulse />
             </Grid>
             <Grid item sm={4}>
             <Calendar />
             </Grid>
-          </Grid>*/}
+          </Grid>}
 
         {articles.length > 3 && (
           <ArticleCardStack articleList={articles.slice(3, 6)} />

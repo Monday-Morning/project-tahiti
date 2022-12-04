@@ -59,41 +59,45 @@ const Carousel = ({ articleList }) => {
 
   const showButton = useMediaQuery(theme.breakpoints.up('sm'));
 
-  return <>
-    <div className={classes.wrapper}>
-      {showButton && (
-        <span className={classes.LeftRightButtonWrapper}>
-          <IconButton
-            className={classes.leftButton}
-            disabled={isLeftButtonDisable}
-            onClick={() => {
-              setRightButtonDisable(false), scroll(-424);
-            }}
-            size="large">
-            <ArrowLeftCircle fontSize='large' />
-          </IconButton>
+  return (
+    <>
+      <div className={classes.wrapper}>
+        {showButton && (
+          <span className={classes.LeftRightButtonWrapper}>
+            <IconButton
+              className={classes.leftButton}
+              disabled={isLeftButtonDisable}
+              onClick={() => {
+                setRightButtonDisable(false), scroll(-424);
+              }}
+              size='large'
+            >
+              <ArrowLeftCircle fontSize='large' />
+            </IconButton>
 
-          <IconButton
-            className={classes.rightButton}
-            disabled={isRightButtonDisable}
-            onClick={() => {
-              setLeftButtonDisable(false), scroll(424);
-            }}
-            size="large">
-            <ArrowRightCircle fontSize='large' />
-          </IconButton>
-        </span>
-      )}
-      <div className={classes.black} />
-      <div className={classes.carousel} ref={ref}>
-        <div className={classes.articleRow}>
-          <div className={classes.articles}>
-            {articleList?.map(renderArticles)}
+            <IconButton
+              className={classes.rightButton}
+              disabled={isRightButtonDisable}
+              onClick={() => {
+                setLeftButtonDisable(false), scroll(424);
+              }}
+              size='large'
+            >
+              <ArrowRightCircle fontSize='large' />
+            </IconButton>
+          </span>
+        )}
+        <div className={classes.black} />
+        <div className={classes.carousel} ref={ref}>
+          <div className={classes.articleRow}>
+            <div className={classes.articles}>
+              {articleList?.map(renderArticles)}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </>;
+    </>
+  );
 };
 
 export default Carousel;
