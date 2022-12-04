@@ -1,7 +1,8 @@
 import React from 'react';
 
 // libraries
-import { Container } from '@mui/material';
+import { Container, useMediaQuery } from '@mui/material';
+import theme from '../config/themes/light';
 
 // Components
 import Squiggles from '../components/widgets/Squiggles';
@@ -14,6 +15,8 @@ import Trending from '../components/homepage/Trending';
 import ArticleGrid from '../components/widgets/article/ArticleGrid';
 
 function Home({ issues, squiggles }) {
+  const mobMatches = useMediaQuery(theme.breakpoints.down('md'));
+  const tabletMatches = useMediaQuery(theme.breakpoints.down('lg'));
   const latestIssue = issues[0];
   const secondLatestIssue = issues[1];
 
@@ -32,12 +35,16 @@ function Home({ issues, squiggles }) {
         <ArticleGrid articles={featured} />
         <Squiggles data={squiggles} />
 
-        <ArticleCardStack
-          articleList={articles.slice(0, 3)}
-          title='This Issue'
-        />
-
-        {/* <Grid container spacing={4} style={{ marginTop: 25 }}>
+        {!tabletMatches ? (
+          <>
+            <ArticleCardStack
+              articleList={articles.slice(0, 3)}
+              title='This Issue'
+            />
+            {articles.length > 3 && (
+              <ArticleCardStack articleList={articles.slice(3, 6)} />
+            )}
+            {/* <Grid container spacing={4} style={{ marginTop: 25 }}>
           <Grid item sm={8}>
             <Pulse />
           </Grid>
@@ -45,9 +52,27 @@ function Home({ issues, squiggles }) {
             <Calendar />
           </Grid>
         </Grid> */}
-
-        {articles.length > 3 && (
-          <ArticleCardStack articleList={articles.slice(3, 6)} />
+            {articles.length > 6 && (
+              <ArticleCardStack
+                articleList={articles.slice(6, articles.length)}
+              />
+            )}
+          </>
+        ) : (
+          <>
+            <ArticleCardStack
+              articleList={articles.slice(0, 4)}
+              title='This Issue'
+            />
+            {articles.length > 4 && (
+              <ArticleCardStack articleList={articles.slice(4, 8)} />
+            )}
+            {articles.length > 8 && (
+              <ArticleCardStack
+                articleList={articles.slice(8, articles.length)}
+              />
+            )}
+          </>
         )}
 
         {/* <Banner /> */}
