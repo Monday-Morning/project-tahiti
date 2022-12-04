@@ -15,8 +15,7 @@ import Trending from '../components/homepage/Trending';
 import ArticleGrid from '../components/widgets/article/ArticleGrid';
 
 function Home({ issues, squiggles }) {
-  const mobMatches = useMediaQuery(theme.breakpoints.down('md'));
-  const tabletMatches = useMediaQuery(theme.breakpoints.down('lg'));
+  const tabletMatches = useMediaQuery(theme.breakpoints.between('sm', 'lg'));
   const latestIssue = issues[0];
   const secondLatestIssue = issues[1];
 
@@ -34,17 +33,19 @@ function Home({ issues, squiggles }) {
       <Container>
         <ArticleGrid articles={featured} />
         <Squiggles data={squiggles} />
-
-        {!tabletMatches ? (
-          <>
+        <>
+          <ArticleCardStack
+            articleList={articles.slice(0, !tabletMatches ? 3 : 4)}
+            title='This Issue'
+          />
+          {(articles.length > !tabletMatches ? 3 : 4) && (
             <ArticleCardStack
-              articleList={articles.slice(0, 3)}
-              title='This Issue'
+              articleList={
+                !tabletMatches ? articles.slice(3, 6) : articles.slice(4, 8)
+              }
             />
-            {articles.length > 3 && (
-              <ArticleCardStack articleList={articles.slice(3, 6)} />
-            )}
-            {/* <Grid container spacing={4} style={{ marginTop: 25 }}>
+          )}
+          {/* <Grid container spacing={4} style={{ marginTop: 25 }}>
           <Grid item sm={8}>
             <Pulse />
           </Grid>
@@ -52,28 +53,15 @@ function Home({ issues, squiggles }) {
             <Calendar />
           </Grid>
         </Grid> */}
-            {articles.length > 6 && (
-              <ArticleCardStack
-                articleList={articles.slice(6, articles.length)}
-              />
-            )}
-          </>
-        ) : (
-          <>
+          {(articles.length > !tabletMatches ? 6 : 8) && (
             <ArticleCardStack
-              articleList={articles.slice(0, 4)}
-              title='This Issue'
+              articleList={articles.slice(
+                !tabletMatches ? 6 : 8,
+                articles.length,
+              )}
             />
-            {articles.length > 4 && (
-              <ArticleCardStack articleList={articles.slice(4, 8)} />
-            )}
-            {articles.length > 8 && (
-              <ArticleCardStack
-                articleList={articles.slice(8, articles.length)}
-              />
-            )}
-          </>
-        )}
+          )}
+        </>
 
         {/* <Banner /> */}
 
