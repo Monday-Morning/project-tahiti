@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 import makeStyles from '@mui/styles/makeStyles';
 import { Container, Grid, Typography } from '@mui/material';
-// import { ArrowRightCircle } from 'react-feather';
+import { ArrowRightCircle } from 'react-feather';
 
 // Assets
 import logo from '../../assets/images/logo.png';
 import googlePlay from '../../assets/images/logos/google_play.png';
+import { ARCHIVES } from '../../assets/placeholder/guide';
 
 const Footer = () => {
   const classes = useStyles();
+  const [activeMonth, setMonth] = useState(ARCHIVES.months[0]);
+  const [activeYear, setYear] = useState(ARCHIVES.years[0]);
   return (
     <div className={classes.wrapper}>
       <Container>
@@ -196,21 +199,54 @@ const Footer = () => {
                     />
                   </div>
                 </Link>
-                {/* <div className={classes.archives}>
-                  <Typography variant='body1'>Archives</Typography>
+                <div className={classes.archives}>
+                  <Typography variant='body1' style={{ fontWeight: 'bolder' }}>
+                    Archives
+                  </Typography>
 
-                  <div className={classes.archivesWrapper}>
-                    <select name='month' className={classes.archivesSelect}>
-                      <option value='Month'>Month</option>
+                  <form className={classes.archivesWrapper}>
+                    <select
+                      name='month'
+                      className={classes.archivesSelect}
+                      onChange={(e) => setMonth(e.target.value)}
+                    >
+                      <option value='' selected disabled hidden>
+                        Month
+                      </option>
+                      {ARCHIVES.months.map((month, key) => (
+                        <option key={key} value={month}>
+                          {month}
+                        </option>
+                      ))}
                     </select>
-                    <select name='year' className={classes.archivesSelect}>
-                      <option value='Year'>Year</option>
+                    <select
+                      name='year'
+                      className={classes.archivesSelect}
+                      onChange={(e) => setYear(e.target.value)}
+                    >
+                      <option value='' selected disabled hidden>
+                        Year
+                      </option>
+                      {ARCHIVES.years.map((year, key) => (
+                        <option
+                          key={key}
+                          value={year}
+                          className={classes.selectItem}
+                        >
+                          {year}
+                        </option>
+                      ))}
                     </select>
                     <div className={classes.archiveIcon}>
-                      <ArrowRightCircle size={18} />
+                      <Link
+                        passHref
+                        href={`/archive/${activeYear}/${activeMonth}`}
+                      >
+                        <ArrowRightCircle size={24} cursor='pointer' />
+                      </Link>
                     </div>
-                  </div>
-                </div> */}
+                  </form>
+                </div>
               </div>
             </div>
           </Grid>
@@ -332,11 +368,13 @@ const useStyles = makeStyles((theme) => ({
     cursor: 'pointer',
   },
   archives: {
-    marginTop: '40px',
-    marginRight: '0',
+    marginTop: '20px',
+    marginLeft: '18px',
   },
   archivesSelect: {
     marginRight: '0.75rem',
+    fontSize: '20px',
+    cursor: 'pointer',
     padding: '4px 12px',
     border: '1px solid',
     borderColor: theme.palette.common.black,
