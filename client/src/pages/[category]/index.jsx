@@ -14,15 +14,20 @@ import ROUTES from '../../utils/getRoutes';
 
 // Graphql
 import getArticlesByCategories from '../../graphql/queries/category/getArticlesByCategories';
+import Custom500 from '../500';
 
 const CategoryPage = ({
   articleList,
   categoryShortName,
   category,
   isError,
-  error,
 }) => {
   const { isFallback } = useRouter();
+
+  if (isError) {
+    return <Custom500 />;
+  }
+
   return (
     <>
       <Head>
@@ -142,9 +147,8 @@ export async function getStaticProps({
     return {
       props: {
         isError: true,
-        error: err,
+        // error: err,
       },
-      notFound: true,
     };
   }
 }

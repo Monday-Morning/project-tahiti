@@ -15,9 +15,14 @@ import listArticlesByYearAndMonth from '../../graphql/queries/article/listArticl
 
 //routes
 import { ARCHIVES } from '../../assets/placeholder/guide';
+import Custom500 from '../500';
 
-function ArchivePage({ archiveArticles, year, month, isError, error }) {
+function ArchivePage({ archiveArticles, year, month, isError }) {
   const { isFallback } = useRouter();
+
+  if (isError) {
+    return <Custom500 />;
+  }
 
   return (
     <>
@@ -122,9 +127,8 @@ export async function getStaticProps({
     return {
       props: {
         isError: true,
-        error: err,
+        // error: err,
       },
-      notFound: true,
     };
   }
 }

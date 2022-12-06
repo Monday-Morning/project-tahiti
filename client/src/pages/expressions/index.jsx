@@ -6,8 +6,13 @@ import Marginals from '../../components/marginals/Marginals';
 import Expressions from '../../screens/Expressions';
 import { GraphClient } from '../../config/ApolloClient';
 import getArticlesByCategories from '../../graphql/queries/category/getArticlesByCategories';
+import Custom500 from '../500';
 
-const ExpressionsPage = ({ witsdom, editorial, miscellaneous }) => {
+const ExpressionsPage = ({ witsdom, editorial, miscellaneous, isError }) => {
+  if (isError) {
+    return <Custom500 />;
+  }
+
   return (
     <>
       <Head>
@@ -117,8 +122,12 @@ export async function getStaticProps() {
     });
 
     return { props: { witsdom, editorial, miscellaneous } };
-  } catch (e) {
-    return { props: {}, notFound: true };
+  } catch (err) {
+    return {
+      props: {
+        isError: true,
+      },
+    };
   }
 }
 export default ExpressionsPage;

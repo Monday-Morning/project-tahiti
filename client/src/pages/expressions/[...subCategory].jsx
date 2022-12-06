@@ -15,6 +15,7 @@ import ROUTES from '../../utils/getRoutes';
 // Graphql
 import getArticlesByCategories from '../../graphql/queries/category/getArticlesByCategories';
 import countOfArticlesBySubCategory from '../../graphql/queries/subcategory/countOfArticlesBySubCategory';
+import Custom500 from '../500';
 
 const EditorialPage = ({
   categoryName,
@@ -23,7 +24,6 @@ const EditorialPage = ({
   countOfArticles,
   pageNumber,
   isError,
-  error,
 }) => {
   const { isFallback, push } = useRouter();
 
@@ -46,6 +46,10 @@ const EditorialPage = ({
   const handleChange = (event, value) => {
     setPageNo(value);
   };
+
+  if (isError) {
+    return <Custom500 />;
+  }
 
   return (
     <>
@@ -186,9 +190,8 @@ export async function getStaticProps({
     return {
       props: {
         isError: true,
-        error: err,
+        // error: err,
       },
-      notFound: true,
     };
   }
 }

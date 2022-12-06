@@ -13,6 +13,7 @@ import { getUserSlug } from '../../utils/getUserSlug';
 
 //Store
 import getStores from '../../utils/getStores';
+import Custom500 from '../500';
 
 const PortfolioPage = ({
   userId,
@@ -24,7 +25,6 @@ const PortfolioPage = ({
   noOfArticle,
   year,
   isError,
-  error,
 }) => {
   const { isFallback } = useRouter();
 
@@ -38,6 +38,10 @@ const PortfolioPage = ({
     noOfArticle,
     year,
   };
+
+  if (isError) {
+    return <Custom500 />;
+  }
 
   return (
     <>

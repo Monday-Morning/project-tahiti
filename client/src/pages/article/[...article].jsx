@@ -15,9 +15,14 @@ import ActivityIndicator from '../../components/shared/ActivityIndicator';
 import getArticleByID from '../../graphql/queries/article/getArticleByID';
 import getArticleByOldID from '../../graphql/queries/article/getArticleByOldID';
 import getArticleLink, { getArticleSlug } from '../../utils/getArticleLink';
+import Custom500 from '../500';
 
-function ArticlePage({ article, isError, error }) {
+function ArticlePage({ article, isError }) {
   const { isFallback } = useRouter();
+
+  if (isError) {
+    return <Custom500 />;
+  }
 
   return (
     <>
