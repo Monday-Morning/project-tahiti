@@ -194,7 +194,6 @@ export async function getStaticProps({
       props: {
         isError: true,
       },
-      notFound: true,
     };
   }
 }
