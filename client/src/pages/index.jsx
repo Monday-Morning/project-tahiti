@@ -14,9 +14,14 @@ import Home from '../screens/Home';
 import getLatestIssues from '../graphql/queries/homepage/getLatestIssues';
 import getLatestSquiggle from '../graphql/queries/homepage/getLatestSquiggle';
 import getArticlesByCategories from '../graphql/queries/category/getArticlesByCategories';
+import Custom500 from './500';
 
-function HomePage({ issues, squiggles, witsdom, photostory, isError, error }) {
+function HomePage({ issues, squiggles, witsdom, photostory, isError }) {
   const { isFallback } = useRouter();
+
+  if (isError) {
+    return <Custom500 />;
+  }
 
   return (
     <>
