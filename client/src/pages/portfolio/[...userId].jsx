@@ -173,9 +173,7 @@ export async function getStaticProps({
     return {
       props: {
         isError: true,
-        error: err,
       },
-      notFound: true,
     };
   }
 }
