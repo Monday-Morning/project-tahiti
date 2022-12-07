@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 
 import makeStyles from '@mui/styles/makeStyles';
-import {
-  Card,
-  CardContent,
-  Grid,
-  Typography,
-  Button,
-} from '@mui/material';
+import { Card, CardContent, Grid, Typography, Button } from '@mui/material';
 
 //Images
 import pulseImg from '../../assets/images/pulseImg.png';
@@ -130,11 +124,17 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       display: 'flex',
       justifyContent: 'center',
-    },   
+    },
   },
   imageContainer: {
     [theme.breakpoints.down('md')]: {
       order: 1,
+    },
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      justifyContent: 'center',
+      marginTop: '10px',
+      width: '100%',
     },
   },
 }));
