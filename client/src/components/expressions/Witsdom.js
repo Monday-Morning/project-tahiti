@@ -1,13 +1,26 @@
 import React from 'react';
 import Image from 'next/image';
 import makeStyles from '@mui/styles/makeStyles';
-import witsdom from '../../assets/images/witsdom.png';
+import STORES from '../../utils/getStores';
+import NewTabLink from '../shared/links/NewTabLink';
+import getArticleLink from '../../utils/getArticleLink';
 
-function Witsdom() {
+function Witsdom({ witsdom }) {
   const classes = useStyles();
+
   return (
     <div className={classes.wrapper}>
-      <Image className={classes.img} src={witsdom} alt='Witsdom' />
+      <NewTabLink to={getArticleLink(witsdom[0].id, witsdom[0].title)} className={classes.link}>
+        <Image
+          width={584}
+          height={328}
+          src={
+            STORES[witsdom[0].coverMedia.rectangle.store] +
+            encodeURI(witsdom[0].coverMedia.rectangle.storePath)
+          }
+          alt='Witsdom'
+        />
+      </NewTabLink>
     </div>
   );
 }
@@ -18,9 +31,5 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     borderRadius: '8px',
     width: '100%',
-  },
-  img: {
-    width: '100%',
-    objectFit: 'cover',
   },
 }));
