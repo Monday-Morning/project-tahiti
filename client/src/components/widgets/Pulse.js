@@ -7,7 +7,6 @@ import {
   Grid,
   Typography,
   Button,
-  ButtonBase,
 } from '@mui/material';
 
 //Images
@@ -31,7 +30,6 @@ const Pulse = () => {
         <Grid container alignItems='center'>
           <Grid item sm={8} className={classes.content}>
             <p className={classes.pulseQuestion}>{polls.question}</p>
-            {console.log()}
             {polls.votes.map((option, key) => (
               <div key={key} className={classes.optionWrapper}>
                 <label className={classes.voteOptionText}>
@@ -132,7 +130,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       display: 'flex',
       justifyContent: 'center',
-    },
+    },   
   },
   imageContainer: {
     [theme.breakpoints.down('md')]: {
