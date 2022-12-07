@@ -14,11 +14,24 @@ import Tabs from '@mui/material/Tabs';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
+import authContext from '../../../context/auth/AuthContext';
 
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
 function Header(props) {
   const { onDrawerToggle } = props;
+  const user = useContext(authContext);
+
+  const [profilePicture, setProfilePicture] = useState(null);
+
+  useEffect(() => {
+    if (user) {
+      const {
+        user: { photoURL },
+      } = user;
+      setProfilePicture(photoURL);
+    }
+  }, [user]);
 
   return (
     <React.Fragment>
@@ -62,7 +75,10 @@ function Header(props) {
             </Grid>
             <Grid item>
               <IconButton color='inherit' sx={{ p: 0.5 }}>
-                <Avatar src='/static/images/avatar/1.jpg' alt='My Avatar' />
+                <Avatar
+                  src={profilePicture ?? '/static/images/avatar/1.jpg'}
+                  alt='My Avatar'
+                />
               </IconButton>
             </Grid>
           </Grid>
