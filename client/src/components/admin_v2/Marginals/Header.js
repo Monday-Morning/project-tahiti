@@ -20,15 +20,13 @@ const lightColor = 'rgba(255, 255, 255, 0.7)';
 
 function Header(props) {
   const { onDrawerToggle } = props;
-  const user = useContext(authContext);
+  const { user } = useContext(authContext);
 
   const [profilePicture, setProfilePicture] = useState(null);
 
   useEffect(() => {
     if (user) {
-      const {
-        user: { photoURL },
-      } = user;
+      const { photoURL } = user;
       setProfilePicture(photoURL);
     }
   }, [user]);
