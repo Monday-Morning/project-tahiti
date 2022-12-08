@@ -97,6 +97,7 @@ Project Infinity is about updating the Monday Morning website using modern techn
 Following technologies and libraries are used for the development of this website
 
 - [React](https://reactjs.org/)
+- [Next](https://nextjs.org/)
 - [Webpack](https://webpack.js.org/)
 - [Material-UI](https://material-ui.com/)
 - [Firebase](https://firebase.google.com/)
