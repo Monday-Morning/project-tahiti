@@ -28,7 +28,6 @@ export default function AuthorsCard({ title, users, setTeam }) {
             )}
             onChange={(e, value) => {
               setTeam(value);
-              console.log(value);
             }}
             renderInput={(params) => (
               <TextField required={true} {...params} label='Name' />
