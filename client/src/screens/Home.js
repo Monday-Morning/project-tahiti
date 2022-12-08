@@ -49,9 +49,11 @@ function Home({ issues, squiggles, witsdom, photostory }) {
         {articles.length > 3 && (
           <ArticleCardStack articleList={articles.slice(3, 6)} />
         )}
+      </Container>
 
-        <Banner photostory={photostory} witsdom={witsdom} />
+      <Banner photostory={photostory} witsdom={witsdom} />
 
+      <Container>
         {/* <div style={{ marginTop: 35 }}> */}
         {/* <SocialMedia /> */}
         <Trending />

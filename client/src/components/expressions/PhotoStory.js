@@ -15,6 +15,7 @@ function PhotoStory({ photostory }) {
         className={classes.link}
       >
         <Image
+          className={classes.img}
           width={584}
           height={328}
           src={
@@ -32,7 +33,10 @@ export default PhotoStory;
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
-    borderRadius: '8px',
     width: '100%',
+  },
+  img: {
+    borderRadius: '8px',
+    cursor: 'pointer',
   },
 }));

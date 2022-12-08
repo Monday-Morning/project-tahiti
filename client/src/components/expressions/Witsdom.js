@@ -10,8 +10,12 @@ function Witsdom({ witsdom }) {
 
   return (
     <div className={classes.wrapper}>
-      <NewTabLink to={getArticleLink(witsdom[0].id, witsdom[0].title)} className={classes.link}>
+      <NewTabLink
+        to={getArticleLink(witsdom[0].id, witsdom[0].title)}
+        className={classes.link}
+      >
         <Image
+          className={classes.img}
           width={584}
           height={328}
           src={
@@ -29,7 +33,10 @@ export default Witsdom;
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
-    borderRadius: '8px',
     width: '100%',
+  },
+  img: {
+    borderRadius: '8px',
+    cursor: 'pointer',
   },
 }));
