@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Typography, Grid } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';

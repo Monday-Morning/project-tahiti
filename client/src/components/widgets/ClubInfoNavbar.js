@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { club } from '../../assets/placeholder/sac';
 import { Container, Typography, useMediaQuery } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import theme from '../../config/themes/light';
-import SubCategory from './SubCategory';
 import { ButtonBase } from '@mui/material';
 
 import ClubCards from './ClubCards';
@@ -150,5 +148,4 @@ const useStyles = makeStyles((theme) => ({
     cursor: 'pointer',
   },
 }));
-
 

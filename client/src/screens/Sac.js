@@ -5,14 +5,12 @@ import makeStyles from '@mui/styles/makeStyles';
 
 import Image from 'next/dist/client/image';
 
-import theme from '../config/themes/light';
-
 // images
 import SACimagexs from '../assets/images/contact/sac2.png';
 
 // import
-import SectionNavbars from '../components/widgets/ClubInfoNavbar';
-import SectionNavbar1 from '../components/widgets/SacInfoNavbar';
+import ClubInfoNavbar from '../components/widgets/ClubInfoNavbar';
+import SacInfoNavbar from '../components/widgets/SacInfoNavbar';
 
 const SacAndClub = () => {
   const classes = useStyles();
@@ -57,14 +55,14 @@ const SacAndClub = () => {
         </Typography>
         <div className={classes.underline} />
       </div>
-      <SectionNavbar1 />
+      <SacInfoNavbar />
       <div className={classes.hr}>
         <Typography variant='h2' className={classes.title}>
           Club Info
         </Typography>
         <div className={classes.underline} />
       </div>
-      <SectionNavbars />
+      <ClubInfoNavbar />
     </Container>
   );
 };
