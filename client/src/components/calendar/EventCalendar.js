@@ -260,6 +260,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'grid',
     gridTemplateColumns: 'repeat(7,1fr)',
     justifyItems: 'center',
+    marginBottom: '12px',
   },
 
   dayOfTheWeek: {
