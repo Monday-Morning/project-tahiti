@@ -4,7 +4,7 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { Typography } from '@mui/material';
 
-export default function CategoryCard({ explorer }) {
+export default function CategoryCard({ explorer, addCategories }) {
   const [expand, setExpand] = useState(explorer.name ? false : true);
   return (
     <>
@@ -16,7 +16,7 @@ export default function CategoryCard({ explorer }) {
               alignItems: 'center',
             }}
           >
-            <Checkbox />
+            <Checkbox onClick={() => addCategories(explorer.id)} />
             <Typography
               onClick={() => setExpand((exp) => !exp)}
               style={{
@@ -30,7 +30,13 @@ export default function CategoryCard({ explorer }) {
       )}
       <div style={{ display: expand ? 'block' : 'none', paddingLeft: '20px' }}>
         {explorer.items.map((item) => {
-          return <CategoryCard explorer={item} key={item.id} />;
+          return (
+            <CategoryCard
+              explorer={item}
+              key={item.id}
+              addCategories={addCategories}
+            />
+          );
         })}
       </div>
     </>
