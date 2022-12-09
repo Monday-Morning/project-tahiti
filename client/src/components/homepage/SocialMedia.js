@@ -19,8 +19,13 @@ import { YouTube, Instagram } from '@mui/icons-material';
 
 const INSTA_LINKS = [insta1, insta2, insta3, insta4, insta5, insta6];
 
+<<<<<<< HEAD
 const Header = ({ Icon, title, buttonText, onClick, ...color }) => {
   const classes = useStyles(color);
+=======
+const Header = ({ Icon, title, buttonText, onClick }) => {
+  const classes = useStyles();
+>>>>>>> 8c65f8b (feat: add youtube api)
 
   return (
     <div className={classes.header}>
@@ -45,7 +50,11 @@ const Header = ({ Icon, title, buttonText, onClick, ...color }) => {
   );
 };
 
+<<<<<<< HEAD
 const Socials = ({ youtubeLink }) => {
+=======
+const Socials = ({ YOUTUBE_LINKS }) => {
+>>>>>>> 8c65f8b (feat: add youtube api)
   const classes = useStyles();
 
   const openYoutube = () =>
