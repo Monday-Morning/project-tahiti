@@ -178,30 +178,29 @@ const EventCalendar = () => {
               ))}
             </div>
           </div>
-
-          <div className={classes.eventIndex}>
-            <div className={classes.eventFooter}>
-              <div className={classes.eventType}>
-                <div className={classes.redDot}></div>
-                Insti Holidays
-              </div>
-              <div className={classes.eventType}>
-                <div className={classes.yellowDot}></div>
-                Club Events
-              </div>
-              <div className={classes.eventType}>
-                <div className={classes.greenDot}></div>
-                Insti Events
-              </div>
-            </div>
-            <div>
-              <Button variant='contained' className={classes.syncButton}>
-                Sync with Google Calender
-              </Button>
-            </div>
-          </div>
         </CardContent>
       </Card>
+      <div className={classes.eventIndex}>
+        <div className={classes.eventFooter}>
+          <div className={classes.eventType}>
+            <div className={classes.redDot}></div>
+            Insti Holidays
+          </div>
+          <div className={classes.eventType}>
+            <div className={classes.yellowDot}></div>
+            Club Events
+          </div>
+          <div className={classes.eventType}>
+            <div className={classes.greenDot}></div>
+            Insti Events
+          </div>
+        </div>
+        <div>
+          <Button variant='contained' className={classes.syncButton}>
+            Sync with Google Calender
+          </Button>
+        </div>
+      </div>
     </Container>
   );
 };
