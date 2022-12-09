@@ -7,7 +7,11 @@ import {
   TextField,
 } from '@mui/material';
 
-export default function AuthorsCard({ title, users, setTeam }) {
+export default function AuthorsCard({ title, users, setTeam, defaultUsers }) {
+  const _defaultUsers = defaultUsers?.map((user) => {
+    return { ...user, label: user.name, id: user.details };
+  });
+
   return (
     <>
       <div>
@@ -20,6 +24,7 @@ export default function AuthorsCard({ title, users, setTeam }) {
             multiple
             id='multiple-limit-tags'
             options={users}
+            defaultValue={_defaultUsers}
             isOptionEqualToValue={(option, value) => option.id === value.id}
             renderOption={(props, users) => (
               <li {...props} key={users.id}>
