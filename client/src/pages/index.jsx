@@ -16,7 +16,14 @@ import getLatestSquiggle from '../graphql/queries/homepage/getLatestSquiggle';
 import getArticlesByCategories from '../graphql/queries/category/getArticlesByCategories';
 import Custom500 from './500';
 
-function HomePage({ issues, squiggles, witsdom, photostory, isError }) {
+function HomePage({
+  issues,
+  squiggles,
+  witsdom,
+  photostory,
+  isError,
+  YOUTUBE_LINKS,
+}) {
   const { isFallback } = useRouter();
 
   if (isError) {
@@ -163,6 +170,7 @@ function HomePage({ issues, squiggles, witsdom, photostory, isError }) {
             squiggles={squiggles}
             witsdom={witsdom}
             photostory={photostory}
+            YOUTUBE_LINKS={YOUTUBE_LINKS}
           />
         </Marginals>
       )}
@@ -231,6 +239,33 @@ export async function getStaticProps({ preview }) {
       },
     };
   }
+
+  const {
+    data: { getLatestSquiggle: squiggles },
+  } = await GraphClient.query({
+    query: getLatestSquiggle,
+  });
+
+  const youtubeResponse = await fetch(
+    `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&maxResults=25&playlistId=${process.env.NEXT_PUBLIC_YOUTUBE_PLAYLIST_ID}&key=${process.env.NEXT_PUBLIC_YOUTUBE_API_KEY}`,
+  );
+  const youtubeData = await youtubeResponse.json();
+  const YOUTUBE_LINKS = youtubeData.items.map(
+    (item) =>
+      'https://www.youtube.com/embed/' + item.snippet.resourceId.videoId,
+  );
+
+  return {
+    props: {
+      issues,
+      squiggles,
+      YOUTUBE_LINKS,
+    },
+    revalidate:
+      preview || new Date(Date.now()).getDay() < 3
+        ? 60 * 60 * 1
+        : 60 * 60 * 24 * 2, // 1 Hour or 2 Days
+  };
 }
 
 export default HomePage;

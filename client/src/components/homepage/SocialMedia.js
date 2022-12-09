@@ -19,12 +19,6 @@ import Image from 'next/image';
 
 const INSTA_LINKS = [insta1, insta2, insta3, insta4, insta5, insta6];
 
-const YOUTUBE_LINKS = [
-  'https://www.youtube.com/embed/_KJlm1mafGo',
-  'https://www.youtube.com/embed/btc-_kqkdpc',
-  'https://www.youtube.com/embed/c6SglPpwmVg',
-];
-
 const Header = ({ Icon, title, buttonText, onClick }) => {
   const classes = useStyles();
 
@@ -51,7 +45,7 @@ const Header = ({ Icon, title, buttonText, onClick }) => {
   );
 };
 
-const Socials = () => {
+const Socials = ({ YOUTUBE_LINKS }) => {
   const classes = useStyles();
 
   const openYoutube = () =>
