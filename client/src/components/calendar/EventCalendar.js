@@ -30,7 +30,6 @@ const EventCalendar = () => {
   var day = newSelectedDate.toLocaleString('default', { day: '2-digit' });
 
   var formattedDate = day + '/' + month + '/' + year;
-  // console.log(formattedDate);
   const handleChange = (days) => {
     setOpen((prev) => !prev);
     setDate(days);
@@ -109,73 +108,75 @@ const EventCalendar = () => {
       </div>
       <Card className={classes.calendar}>
         <CardContent>
-          <div className={classes.weekRow}>
-            <div className={classes.dayOfTheWeek}>MON</div>
-            <div className={classes.dayOfTheWeek}>TUE</div>
-            <div className={classes.dayOfTheWeek}>WED</div>
-            <div className={classes.dayOfTheWeek}>THU</div>
-            <div className={classes.dayOfTheWeek}>FRI</div>
-            <div className={classes.dayOfTheWeek}>SAT</div>
-            <div className={classes.dayOfTheWeek}>SUN</div>
-          </div>
-          <div className={classes.dayContainer}>
-            {weekDays.map((week, index) => (
-              <div className={classes.tableRow} key={index}>
-                {week.map((day, index) => (
-                  <div
-                    className={classes.dayValue}
-                    key={parseInt(day.value) + index}
-                    onClick={() => handleChange(day.value)}
-                  >
+          <div className={classes.calendarBox}>
+            <div className={classes.weekRow}>
+              <div className={classes.dayOfTheWeek}>MON</div>
+              <div className={classes.dayOfTheWeek}>TUE</div>
+              <div className={classes.dayOfTheWeek}>WED</div>
+              <div className={classes.dayOfTheWeek}>THU</div>
+              <div className={classes.dayOfTheWeek}>FRI</div>
+              <div className={classes.dayOfTheWeek}>SAT</div>
+              <div className={classes.dayOfTheWeek}>SUN</div>
+            </div>
+            <div className={classes.dayContainer}>
+              {weekDays.map((week, index) => (
+                <div className={classes.tableRow} key={index}>
+                  {week.map((day, index) => (
                     <div
-                      className={
-                        day.isCurrentDay
-                          ? `${classes.today} ${classes.dayValue}`
-                          : `${classes.day}`
-                      }
+                      className={classes.dayValue}
+                      key={parseInt(day.value) + index}
+                      onClick={() => handleChange(day.value)}
                     >
-                      {day.value}
-                      <div className={classes.eventColors}>
-                        {day.isCurrentDay && day.isInstituteHoliday && (
-                          <div className={classes.redDot}></div>
-                        )}
-                        {day.isCurrentDay && day.isInstituteHoliday && (
-                          <div>
-                            <Typography className={classes.eventsTitle}>
-                              Holiday
-                            </Typography>
-                          </div>
-                        )}
-                      </div>
-                      <div className={classes.eventColors}>
-                        {day.isCurrentDay && day.isInstituteEvent && (
-                          <div className={classes.greenDot}></div>
-                        )}
-                        {day.isCurrentDay && day.isInstituteEvent && (
-                          <div>
-                            <Typography className={classes.eventsTitle}>
-                              Independence Day
-                            </Typography>
-                          </div>
-                        )}
-                      </div>
-                      <div className={classes.eventColors}>
-                        {day.isCurrentDay && day.isClubEvent && (
-                          <div className={classes.yellowDot}></div>
-                        )}
-                        {day.isCurrentDay && day.isClubEvent && (
-                          <div>
-                            <Typography className={classes.eventsTitle}>
-                              Webinar
-                            </Typography>
-                          </div>
-                        )}
+                      <div
+                        className={
+                          day.isCurrentDay
+                            ? `${classes.today} ${classes.dayValue}`
+                            : `${classes.day}`
+                        }
+                      >
+                        {day.value}
+                        <div className={classes.eventColors}>
+                          {day.isCurrentDay && day.isInstituteHoliday && (
+                            <div className={classes.redDot}></div>
+                          )}
+                          {day.isCurrentDay && day.isInstituteHoliday && (
+                            <div>
+                              <Typography className={classes.eventsTitle}>
+                                Holiday
+                              </Typography>
+                            </div>
+                          )}
+                        </div>
+                        <div className={classes.eventColors}>
+                          {day.isCurrentDay && day.isInstituteEvent && (
+                            <div className={classes.greenDot}></div>
+                          )}
+                          {day.isCurrentDay && day.isInstituteEvent && (
+                            <div>
+                              <Typography className={classes.eventsTitle}>
+                                Independence Day
+                              </Typography>
+                            </div>
+                          )}
+                        </div>
+                        <div className={classes.eventColors}>
+                          {day.isCurrentDay && day.isClubEvent && (
+                            <div className={classes.yellowDot}></div>
+                          )}
+                          {day.isCurrentDay && day.isClubEvent && (
+                            <div>
+                              <Typography className={classes.eventsTitle}>
+                                Webinar
+                              </Typography>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            ))}
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className={classes.eventIndex}>
@@ -255,6 +256,9 @@ const useStyles = makeStyles((theme) => ({
     color: 'black',
     fontWeight: 400,
     fontSize: '16px',
+  },
+  calendarBox: {
+    minHeight: '963px',
   },
   weekRow: {
     display: 'grid',
