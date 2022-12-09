@@ -6,12 +6,12 @@ import makeStyles from '@mui/styles/makeStyles';
 // Components
 import ArticleCardStack from '../widgets/article/ArticleCardStack';
 
-const RecommendedArticles = ({ articles }) => {
+const RecommendedArticles = ({ articles, title }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.wrapper}>
-      <ArticleCardStack articleList={articles.slice(0, 3)} />
+      <ArticleCardStack articleList={articles.slice(0, 3)} title={title} />
     </div>
   );
 };

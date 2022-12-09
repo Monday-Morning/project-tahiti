@@ -2,12 +2,20 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
-//components
-import ActivityIndicator from '../../src/components/shared/ActivityIndicator';
-import Marginals from '../../src/components/marginals/Marginals';
-import PhotoStory from '../../src/screens/PhotoStory';
+// Libraries
+import { GraphClient } from '../../config/ApolloClient';
 
-function PhotostoryPage() {
+// Components
+import Marginals from '../../components/marginals/Marginals';
+import Photostory from '../../screens/Photostory';
+import ActivityIndicator from '../../components/shared/ActivityIndicator';
+
+// Queries
+import getArticleByID from '../../graphql/queries/article/getArticleByID';
+import getArticleByOldID from '../../graphql/queries/article/getArticleByOldID';
+import getArticleLink, { getArticleSlug } from '../../utils/getArticleLink';
+
+function PhotostoryPage({ photostory }) {
   const { isFallback } = useRouter();
 
   return (
@@ -71,19 +79,83 @@ function PhotostoryPage() {
           content='Monday Morning is the Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students.'
         />
       </Head>
-      <Marginals>
-        {isFallback ? <ActivityIndicator size={150} /> : <PhotoStory />}
-      </Marginals>
+      {isFallback || !photostory ? (
+        <ActivityIndicator size={150} />
+      ) : (
+        <Marginals>
+          <Photostory photostory={photostory} />
+        </Marginals>
+      )}
     </>
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps({
+  params: {
+    photostory: [articleId, articleSlug, _date, oldArticleLink],
+  },
+  preview,
+}) {
+  if (oldArticleLink) {
+    const {
+      data: { getArticleByOldID: photostory },
+    } = await GraphClient.query({
+      query: getArticleByOldID,
+      variables: { id: parseInt(oldArticleLink.split('-')[0]) },
+    });
+
+    if (!photostory) {
+      return {
+        notFound: true,
+      };
+    }
+
+    return {
+      redirect: {
+        destination: getArticleLink(photostory.id, photostory.title),
+        permanent: false,
+      },
+    };
+  }
+
+  const {
+    data: { getArticleByID: photostory },
+  } = await GraphClient.query({
+    query: getArticleByID,
+    variables: { id: articleId },
+  });
+
+  if (!photostory) {
+    return {
+      notFound: true,
+    };
+  }
+
+  if (articleSlug !== getArticleSlug(photostory.title)) {
+    return {
+      redirect: {
+        destination: getArticleLink(articleId, photostory.title),
+        permanent: false,
+      },
+    };
+  }
+
   return {
-    redirect: {
-      destination: '/comingSoon',
-      permanent: false,
+    props: {
+      key: articleId,
+      photostory,
     },
+    revalidate:
+      preview || photostory.publishStatus === 'PUBLISHED'
+        ? 10
+        : 60 * 60 * 24 * 30, // 30 Days
+  };
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: 'blocking',
   };
 }
 

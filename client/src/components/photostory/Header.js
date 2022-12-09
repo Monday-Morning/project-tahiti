@@ -1,63 +1,86 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 // libraries
-import { Container, Grid, Typography, useMediaQuery } from '@mui/material';
+import { Box, Container, Grid, Typography, useMediaQuery } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { Bookmark, Volume2 } from 'react-feather';
+import moment from 'moment';
 
 // Config + Utilities
 import Share from '../widgets/Share';
 import theme from '../../config/themes/light';
 import { useRouter } from 'next/router';
+import STORES from '../../utils/getStores';
+import Link from 'next/link';
 
-const Header = ({ DATA }) => {
-  const { pathname } = useRouter();
-  const Desktop = useMediaQuery(theme.breakpoints.up('sm'));
+const Header = ({ title, authors, readTime, updatedAt }) => {
   const classes = useStyles();
+  const { isFallback, pathname } = useRouter();
+
+  const Desktop = useMediaQuery(theme.breakpoints.up('sm'));
   const [pageHref, setPageHref] = useState(pathname);
+  useEffect(() => setPageHref(window.location.href), []);
+
+  if (isFallback) return <ActivityIndicator size={150} />;
 
   return (
     <Container className={classes.container}>
       <Grid item xs={12}>
         <Typography className={classes.title} variant={Desktop ? 'h1' : 'h2'}>
-          {DATA.title}
+          {title}
         </Typography>
+
         <Typography className={classes.publishDate}>
-          {DATA.publishDate}
+          {moment(updatedAt).format('ll')}
+          <span style={{ marginRight: 10, marginLeft: 10 }}>|</span>
+          {moment.duration(readTime, 'seconds').humanize()}
         </Typography>
-        <div className={classes.wrapper}>
-          <div className={classes.authorList}>
-            {DATA.authors.map((author, key) => (
-              <div key={key} className={classes.authorWrapper}>
-                {!Desktop ? (
-                  <Image
-                    src={author.img}
-                    alt={author.alt}
-                    className={classes.authorImg}
-                    height={20}
-                    width={20}
-                  />
-                ) : (
-                  <Typography variant='body2' className={classes.author}>
-                    {author.name?.replace(/ null( |$)/g, '')}
-                  </Typography>
-                )}
-              </div>
+
+        <Box className={classes.wrapper}>
+          <Box className={classes.authorList}>
+            {authors.map(({ name, details, user }) => (
+              <Link
+                href={`/portfolio/${details}/${encodeURI(name)}`}
+                passHref
+                key={details}
+                target='_blank'
+                rel='noreferrer'
+                style={{ textDecoration: 'none', cursor: 'pointer' }}
+              >
+                <Box key={name} className={classes.authorWrapper}>
+                  {!Desktop ? (
+                    <Image
+                      src={
+                        STORES[user.picture.store] +
+                        encodeURI(user.picture.storePath)
+                      }
+                      alt='authorName'
+                      className={classes.authorImg}
+                      height={20}
+                      width={20}
+                    />
+                  ) : (
+                    <Typography variant='body2' className={classes.author}>
+                      {name?.replace(/ null( |$)/g, '')}
+                    </Typography>
+                  )}
+                </Box>
+              </Link>
             ))}
-          </div>
-          <div className={classes.utilityList}>
+          </Box>
+          <Box className={classes.utilityList}>
             <span className={classes.utilityIcon}>
               <Volume2 size={Desktop ? 18 : 10} />
             </span>
             <span className={classes.utilityIcon}>
-              <Share title={DATA.title} url={pageHref} />
+              <Share title={title} url={pageHref} />
             </span>
             <span className={classes.utilityIcon}>
               <Bookmark size={Desktop ? 18 : 10} />
             </span>
-          </div>
-        </div>
+          </Box>
+        </Box>
       </Grid>
     </Container>
   );

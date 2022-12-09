@@ -7,14 +7,20 @@ import Comments from '../components/article/comments';
 import RecommendedArticles from '../components/article/RecommendedArticles';
 
 // Placeholder
-import { PHOTOSTORY } from '../assets/placeholder/photostory';
 import { ARTICLES } from '../assets/placeholder/articleCard';
 
-function PhotoStory() {
+function PhotoStory({ photostory }) {
+  const { title, authors, readTime, updatedAt, content } = photostory;
+
   return (
     <>
-      <Header DATA={PHOTOSTORY} />
-      <Body />
+      <Header
+        title={title}
+        authors={authors}
+        readTime={readTime}
+        updatedAt={updatedAt}
+      />
+      <Body content={content} />
       <Comments />
       <RecommendedArticles title='More from Photostories' articles={ARTICLES} />
     </>
