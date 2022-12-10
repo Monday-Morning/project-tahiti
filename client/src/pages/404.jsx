@@ -43,8 +43,8 @@ const PageNotFound = () => {
         justifyContent='center'
         alignItems='center'
       >
-        <Grid item className={classes.gridContainer}>
-          <Image src={logo} alt='MM Logo' className={classes.logo} />
+        <Grid item className={classes.gridContainerLogo}>
+          <Image src={logo} alt='MM Logo' />
         </Grid>
         <Grid item className={classes.gridContainer}>
           <Typography className={classes.main}>404 ERROR</Typography>
@@ -92,19 +92,28 @@ const useStyles = makeStyles((theme) => ({
       padding: '20px',
     },
   },
+  gridContainerLogo: {
+    marginTop: '70px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    height: 84,
+    width: 86,
+    [theme.breakpoints.down('lg')]: {
+      height: 60,
+      width: 60,
+      marginTop: '20px',
+    },
+  },
   gridContainer: {
     marginTop: '70px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-  },
-  logo: {
-    height: 100,
-    width: 100,
-    [theme.breakpoints.down('md')]: {
-      height: 60,
-      width: 60,
+    [theme.breakpoints.down('lg')]: {
+      marginTop: '20px',
     },
   },
   main: {
@@ -151,7 +160,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-end',
-    marginTop: '150px',
+    marginTop: '105px',
+    [theme.breakpoints.down('lg')]: {
+      marginTop: '20px',
+    },
   },
   socialIcon: {
     marginLeft: '20px',
