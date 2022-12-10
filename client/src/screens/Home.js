@@ -11,7 +11,7 @@ import ArticleCardStack from '../components/widgets/article/ArticleCardStack';
 // import Calendar from '../components/homepage/Calendar';
 import Banner from '../components/homepage/Banner';
 import Trending from '../components/homepage/Trending';
-import SocialMedia from '../components/homepage/SocialMedia';
+// import SocialMedia from '../components/homepage/SocialMedia';
 import ArticleGrid from '../components/widgets/article/ArticleGrid';
 
 function Home({ issues, squiggles, witsdom, photostory, youtubeLink }) {
@@ -67,10 +67,10 @@ function Home({ issues, squiggles, witsdom, photostory, youtubeLink }) {
       <Container>
         <Banner photostory={photostory} witsdom={witsdom} />
 
-        {/* <div style={{ marginTop: 35 }}>
-          <SocialMedia youtubeLink={youtubeLink} />
-          <Trending />
-        </div> */}
+        {/* <div style={{ marginTop: 35 }}> */}
+        {/* <SocialMedia youtubeLink={youtubeLink} /> */}
+        <Trending />
+        {/* </div> */}
       </Container>
     </>
   );
