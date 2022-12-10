@@ -34,11 +34,10 @@ const MobileNavbar = () => {
   const [search, setSearch] = useState(false);
   const [searchText, setSearchText] = useState('');
   const [isSearchActive, setIsSearchActive] = useState(false);
-  const [isInputActive, setIsInputActive] = useState(false);
   const inputRef = useRef(null);
 
   const router = useRouter();
-  const classes = useStyles({ isSearchActive, isInputActive });
+  const classes = useStyles({ isSearchActive });
   const data = useAutoComplete(searchText, 6);
 
   const searchQuery = (e) => {
@@ -63,7 +62,6 @@ const MobileNavbar = () => {
   };
 
   const searchActive = () => {
-    setIsInputActive();
     setIsSearchActive((current) => !current);
   };
 
@@ -81,7 +79,6 @@ const MobileNavbar = () => {
               className={classes.searchField}
               id='input-with-icon-textfield'
               placeholder='Search for articles'
-              onClick={setIsInputActive}
               color='primary'
               InputProps={{
                 endAdornment: (
@@ -92,12 +89,7 @@ const MobileNavbar = () => {
               }}
               variant='standard'
             />
-            <div
-              className={classes.searchSuggestions}
-              style={{
-                display: isInputActive ? 'block' : 'none',
-              }}
-            >
+            <div className={classes.searchSuggestions}>
               {data?.map(({ id, title }) => (
                 <div key={id} className={classes.trendingList}>
                   <NewTabLink to={getArticleLink(id, title)}>
@@ -314,7 +306,7 @@ const useStyles = makeStyles((theme) => ({
     border: '1px #ECEDEC',
     borderStyle: 'none solid solid',
     boxShadow: '0px 0px 5px grey',
-    display: (_) => (_.isInputActive ? 'block' : 'none'),
+    display: (_) => (_.isSearchActive ? 'block' : 'none'),
   },
   trendingList: {
     fontFamily: theme.typography.fontFamily,
