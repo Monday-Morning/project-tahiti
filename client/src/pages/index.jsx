@@ -13,8 +13,9 @@ import Home from '../screens/Home';
 // Queries
 import getLatestIssues from '../graphql/queries/homepage/getLatestIssues';
 import getLatestSquiggle from '../graphql/queries/homepage/getLatestSquiggle';
+import getArticlesByCategories from '../graphql/queries/category/getArticlesByCategories';
 
-function HomePage({ issues, squiggles }) {
+function HomePage({ issues, squiggles, witsdom, photostory }) {
   const { isFallback } = useRouter();
 
   return (
@@ -84,7 +85,12 @@ function HomePage({ issues, squiggles }) {
         <ActivityIndicator size={150} />
       ) : (
         <Marginals>
-          <Home issues={issues} squiggles={squiggles} />
+          <Home
+            issues={issues}
+            squiggles={squiggles}
+            witsdom={witsdom}
+            photostory={photostory}
+          />
         </Marginals>
       )}
     </>
@@ -114,10 +120,30 @@ export async function getStaticProps({ preview }) {
     query: getLatestSquiggle,
   });
 
+  const {
+    data: {
+      getArticlesByCategories: [witsdom],
+    },
+  } = await GraphClient.query({
+    query: getArticlesByCategories,
+    variables: { categoryNumbers: 61, limit: 1 },
+  });
+
+  const {
+    data: {
+      getArticlesByCategories: [photostory],
+    },
+  } = await GraphClient.query({
+    query: getArticlesByCategories,
+    variables: { categoryNumbers: 62, limit: 1 },
+  });
+
   return {
     props: {
       issues,
       squiggles,
+      witsdom,
+      photostory,
     },
     revalidate:
       preview || new Date(Date.now()).getDay() < 3
