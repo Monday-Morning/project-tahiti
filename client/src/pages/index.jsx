@@ -22,7 +22,7 @@ function HomePage({
   witsdom,
   photostory,
   isError,
-  YoutubeLink,
+  youtubeLink,
 }) {
   const { isFallback } = useRouter();
 
@@ -170,7 +170,7 @@ function HomePage({
             squiggles={squiggles}
             witsdom={witsdom}
             photostory={photostory}
-            youtubeLink={YoutubeLink}
+            youtubeLink={youtubeLink}
           />
         </Marginals>
       )}
@@ -224,7 +224,7 @@ export async function getStaticProps({ preview }) {
       `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&maxResults=25&playlistId=${process.env.NEXT_PUBLIC_YOUTUBE_PLAYLIST_ID}&key=${process.env.NEXT_PUBLIC_YOUTUBE_API_KEY}`,
     );
     const youtubeData = await youtubeResponse.json();
-    const YoutubeLink = youtubeData.items.map(
+    const youtubeLink = youtubeData.items.map(
       (item) =>
         'https://www.youtube.com/embed/' + item.snippet.resourceId.videoId,
     );
@@ -235,7 +235,7 @@ export async function getStaticProps({ preview }) {
         squiggles,
         witsdom,
         photostory,
-        YoutubeLink,
+        youtubeLink,
       },
       revalidate:
         preview || new Date(Date.now()).getDay() < 3

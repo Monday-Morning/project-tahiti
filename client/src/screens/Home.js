@@ -67,10 +67,10 @@ function Home({ issues, squiggles, witsdom, photostory, youtubeLink }) {
       <Container>
         <Banner photostory={photostory} witsdom={witsdom} />
 
-        <div style={{ marginTop: 35 }}>
+        {/* <div style={{ marginTop: 35 }}>
           <SocialMedia youtubeLink={youtubeLink} />
           <Trending />
-        </div>
+        </div> */}
       </Container>
     </>
   );
