@@ -9,13 +9,14 @@ import Squiggles from '../components/widgets/Squiggles';
 import ArticleCardStack from '../components/widgets/article/ArticleCardStack';
 // import Pulse from '../components/widgets/Pulse';
 // import Calendar from '../components/homepage/Calendar';
-// import Banner from '../components/homepage/Banner';
+import Banner from '../components/homepage/Banner';
 import Trending from '../components/homepage/Trending';
 // import SocialMedia from '../components/homepage/SocialMedia';
 import ArticleGrid from '../components/widgets/article/ArticleGrid';
 
-function Home({ issues, squiggles }) {
+function Home({ issues, squiggles, witsdom, photostory }) {
   const tabletMatches = useMediaQuery(theme.breakpoints.between('sm', 'lg'));
+
   const latestIssue = issues[0];
   const secondLatestIssue = issues[1];
 
@@ -62,9 +63,10 @@ function Home({ issues, squiggles }) {
             />
           )}
         </>
+      </Container>
+      <Banner photostory={photostory} witsdom={witsdom} />
 
-        {/* <Banner /> */}
-
+      <Container>
         {/* <div style={{ marginTop: 35 }}> */}
         {/* <SocialMedia /> */}
         <Trending />

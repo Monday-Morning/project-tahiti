@@ -1,16 +1,30 @@
 import React from 'react';
 import Image from 'next/image';
-
 import makeStyles from '@mui/styles/makeStyles';
+import STORES from '../../utils/getStores';
+import NewTabLink from '../shared/links/NewTabLink';
+import getArticleLink from '../../utils/getArticleLink';
 
-// images
-import photoStory from '../../assets/images/photoStory.png';
-
-function PhotoStory() {
+function PhotoStory({ photostory }) {
   const classes = useStyles();
+
   return (
     <div className={classes.wrapper}>
-      <Image className={classes.img} src={photoStory} alt='PhotoStory' />
+      <NewTabLink
+        to={getArticleLink(photostory[0].id, photostory[0].title)}
+        className={classes.link}
+      >
+        <Image
+          className={classes.img}
+          width={584}
+          height={328}
+          src={
+            STORES[photostory[0].coverMedia.rectangle.store] +
+            encodeURI(photostory[0].coverMedia.rectangle.storePath)
+          }
+          alt='PhotoStory'
+        />
+      </NewTabLink>
     </div>
   );
 }
@@ -19,11 +33,10 @@ export default PhotoStory;
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
-    borderRadius: '8px',
     width: '100%',
   },
   img: {
-    width: '100%',
-    objectFit: 'cover',
+    borderRadius: '8px',
+    cursor: 'pointer',
   },
 }));
