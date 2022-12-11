@@ -44,7 +44,7 @@ const Custom500 = () => {
         alignItems='center'
       >
         <Grid item className={classes.gridContainerLogo}>
-          <Image src={logo} alt='MM Logo'/>
+          <Image src={logo} alt='MM Logo' />
         </Grid>
         <Grid item className={classes.gridContainer}>
           <Typography className={classes.main}>500 ERROR</Typography>
