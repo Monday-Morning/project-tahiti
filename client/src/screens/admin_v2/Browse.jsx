@@ -118,7 +118,7 @@ const BrowseArticle = ({ articles, totalArticles }) => {
                         <Typography style={{ fontSize: '10px' }}>
                           Created On: {createdAt}
                         </Typography>
-                        <Link href={''} passHref>
+                        <Link href={`/admin_v2/edit/${id}`} passHref>
                           <a
                             target='_blank'
                             rel='noreferrer'
