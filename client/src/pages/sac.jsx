@@ -68,17 +68,9 @@ function SacinfoPage() {
         />
       </Head>
       <Marginals>
-        <SAC/>
+        <SAC />
       </Marginals>
     </>
   );
-}
-export async function getServerSideProps() {
-  return {
-    redirect: {
-      destination: '/comingSoon',
-      permanent: false,
-    },
-  };
 }
 export default SacinfoPage;

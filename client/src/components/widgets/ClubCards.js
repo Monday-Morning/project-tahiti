@@ -33,13 +33,13 @@ const ClubCards = ({ category }) => {
       {!matches ? (
         <>
           <Stack direction='row' spacing={2} className={classes.clubInfoStack}>
-            <Image
+            {/* <Image
               className={classes.image}
               src={logoFullBlack}
               alt='logo'
               width={138}
               height={138}
-            />
+            /> */}
             <Stack direction='column' spacing={1}>
               <Typography variant='subtitle1' className={classes.clubTitle}>
                 {clubsTheme.title}
@@ -56,19 +56,19 @@ const ClubCards = ({ category }) => {
             className={classes.clubInfoStack}
           >
             <Stack direction='row' spacing={2}>
-              <Image
+              {/* <Image
                 className={classes.image}
                 src={logoFullBlack}
                 alt='logo'
                 width={73}
                 height={57}
-              />
+              /> */}
               <Stack direction='column' spacing={1}>
                 <Typography variant='subtitle1' className={classes.clubTitle}>
                   {clubsTheme.title}
                 </Typography>
-                <Typography variant='body1'>Formed in: 20XX</Typography>
-                <Typography variant='body1'>Location: TI-214</Typography>
+                {/* <Typography variant='body1'>Formed in: 20XX</Typography>
+                <Typography variant='body1'>Location: TI-214</Typography> */}
               </Stack>
             </Stack>
             <Typography variant='body2'>{clubsTheme.text}</Typography>
@@ -76,7 +76,7 @@ const ClubCards = ({ category }) => {
         </>
       )}
 
-      <div className={classes.titleWrapper}>
+      {/* <div className={classes.titleWrapper}>
         <Typography variant='h2' className={classes.subTitle}>
           Postholders
         </Typography>
@@ -87,7 +87,7 @@ const ClubCards = ({ category }) => {
         <PostHolders />
         <PostHolders />
         <PostHolders />
-      </div>
+      </div> */}
     </Card>
   );
 };
@@ -175,5 +175,9 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: 'center',
       alignItems: 'center',
     },
+  },
+  image: {
+    width: '100%',
+    height: '100%',
   },
 }));

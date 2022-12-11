@@ -37,14 +37,14 @@ const SocietyCards = ({ society }) => {
           {society}
         </Typography>
       </CardActions>
-      <Collapse in={expanded} timeout='auto' unmountOnExit>
+      {/* <Collapse in={expanded} timeout='auto' unmountOnExit>
         <CardContent className={classes.hallDetails}>
           <PostHolders />
           <PostHolders />
           <PostHolders />
           <PostHolders />
         </CardContent>
-      </Collapse>
+      </Collapse> */}
     </Card>
   );
 };
