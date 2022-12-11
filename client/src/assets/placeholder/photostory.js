@@ -9,7 +9,7 @@ export const PHOTOSTORY = Object.freeze({
     { alt: 'Rama', name: 'Amelia Earhart', img: user },
   ],
   publishDate: 'September 20, 2020',
-  tags: [{ name: 'BM-BT' }, { name: 'Department' }],
+  tags: ['BM-BT', 'Department'],
   carousel:
     'We could take our lives to the next level if we had the courage to travel the undiscovered path.',
   image: [img, img, img, img, img],

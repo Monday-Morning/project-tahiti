@@ -12,7 +12,6 @@ import ActivityIndicator from '../../components/shared/ActivityIndicator';
 
 // Queries
 import getArticleByID from '../../graphql/queries/article/getArticleByID';
-import getArticleByOldID from '../../graphql/queries/article/getArticleByOldID';
 import getArticleLink, { getArticleSlug } from '../../utils/getArticleLink';
 
 function PhotostoryPage({ photostory }) {
@@ -96,38 +95,46 @@ export async function getStaticProps({
   },
   preview,
 }) {
-  const {
-    data: { getArticleByID: photostory },
-  } = await GraphClient.query({
-    query: getArticleByID,
-    variables: { id: photostoryId },
-  });
+  try {
+    const {
+      data: { getArticleByID: photostory },
+    } = await GraphClient.query({
+      query: getArticleByID,
+      variables: { id: photostoryId },
+    });
 
-  if (!photostory) {
+    if (!photostory) {
+      return {
+        notFound: true,
+      };
+    }
+
+    if (photostorySlug !== getArticleSlug(photostory.title)) {
+      return {
+        redirect: {
+          destination: getArticleLink(photostoryId, photostory.title),
+          permanent: false,
+        },
+      };
+    }
+
     return {
-      notFound: true,
+      props: {
+        key: photostoryId,
+        photostory,
+      },
+      revalidate:
+        preview || photostory.publishStatus === 'PUBLISHED'
+          ? 10
+          : 60 * 60 * 24 * 30, // 30 Days
     };
-  }
-
-  if (photostorySlug !== getArticleSlug(photostory.title)) {
+  } catch (err) {
     return {
-      redirect: {
-        destination: getArticleLink(photostoryId, photostory.title),
-        permanent: false,
+      props: {
+        isError: true,
       },
     };
   }
-
-  return {
-    props: {
-      key: photostoryId,
-      photostory,
-    },
-    revalidate:
-      preview || photostory.publishStatus === 'PUBLISHED'
-        ? 10
-        : 60 * 60 * 24 * 30, // 30 Days
-  };
 }
 
 export async function getStaticPaths() {
