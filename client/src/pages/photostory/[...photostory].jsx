@@ -92,37 +92,15 @@ function PhotostoryPage({ photostory }) {
 
 export async function getStaticProps({
   params: {
-    photostory: [articleId, articleSlug, _date, oldArticleLink],
+    photostory: [photostoryId, photostorySlug],
   },
   preview,
 }) {
-  if (oldArticleLink) {
-    const {
-      data: { getArticleByOldID: photostory },
-    } = await GraphClient.query({
-      query: getArticleByOldID,
-      variables: { id: parseInt(oldArticleLink.split('-')[0]) },
-    });
-
-    if (!photostory) {
-      return {
-        notFound: true,
-      };
-    }
-
-    return {
-      redirect: {
-        destination: getArticleLink(photostory.id, photostory.title),
-        permanent: false,
-      },
-    };
-  }
-
   const {
     data: { getArticleByID: photostory },
   } = await GraphClient.query({
     query: getArticleByID,
-    variables: { id: articleId },
+    variables: { id: photostoryId },
   });
 
   if (!photostory) {
@@ -131,10 +109,10 @@ export async function getStaticProps({
     };
   }
 
-  if (articleSlug !== getArticleSlug(photostory.title)) {
+  if (photostorySlug !== getArticleSlug(photostory.title)) {
     return {
       redirect: {
-        destination: getArticleLink(articleId, photostory.title),
+        destination: getArticleLink(photostoryId, photostory.title),
         permanent: false,
       },
     };
@@ -142,7 +120,7 @@ export async function getStaticProps({
 
   return {
     props: {
-      key: articleId,
+      key: photostoryId,
       photostory,
     },
     revalidate:
