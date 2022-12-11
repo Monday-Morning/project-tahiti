@@ -14,7 +14,7 @@ import Trending from '../components/homepage/Trending';
 import SocialMedia from '../components/homepage/SocialMedia';
 import ArticleGrid from '../components/widgets/article/ArticleGrid';
 
-function Home({ issues, squiggles, witsdom, photostory, youtubeLink }) {
+function Home({ issues, squiggles, witsdom, photostory, youtubeLinks }) {
   const tabletMatches = useMediaQuery(theme.breakpoints.between('sm', 'lg'));
 
   const latestIssue = issues[0];
@@ -68,7 +68,7 @@ function Home({ issues, squiggles, witsdom, photostory, youtubeLink }) {
         <Banner photostory={photostory} witsdom={witsdom} />
 
         {/* <div style={{ marginTop: 35 }}> */}
-        {/* <SocialMedia youtubeLink={youtubeLink} /> */}
+        {/* <SocialMedia youtubeLinks={youtubeLinks} /> */}
         <Trending />
         {/* </div> */}
       </Container>

@@ -21,6 +21,7 @@ const INSTA_LINKS = [insta1, insta2, insta3, insta4, insta5, insta6];
 
 const Header = ({ Icon, title, buttonText, onClick, ...color }) => {
   const classes = useStyles(color);
+
   return (
     <div className={classes.header}>
       <span
@@ -44,7 +45,7 @@ const Header = ({ Icon, title, buttonText, onClick, ...color }) => {
   );
 };
 
-const Socials = ({ youtubeLink }) => {
+const Socials = ({ youtubeLinks }) => {
   const classes = useStyles();
 
   const openYoutube = () =>
@@ -104,7 +105,7 @@ const Socials = ({ youtubeLink }) => {
               onClick={openYoutube}
               color='red'
             />
-            <HomeCarousel links={youtubeLink} />
+            <HomeCarousel links={youtubeLinks} />
           </Paper>
         </Grid>
       </Grid>
