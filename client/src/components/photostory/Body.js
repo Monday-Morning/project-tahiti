@@ -8,16 +8,13 @@ import Carousel from '../../components/photostory/Carousel';
 import Disclaimer from '../article/Disclaimer';
 import ArticleTags from '../article/Tags';
 
-// Placeholder
-import { PHOTOSTORY } from '../../assets/placeholder/photostory';
-
-const Body = ({ content }) => {
+const Body = ({ content, tags }) => {
   return (
     <>
       <Carousel content={content} />
       <Container>
         <Disclaimer />
-        <ArticleTags tags={PHOTOSTORY.tags} />
+        <ArticleTags tags={tags} />
         <hr />
       </Container>
     </>

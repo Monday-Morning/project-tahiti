@@ -20,9 +20,9 @@ function PhotoStory({ photostory }) {
         readTime={readTime}
         updatedAt={updatedAt}
       />
-      <Body content={content} />
-      <Comments />
-      <RecommendedArticles title='More from Photostories' articles={ARTICLES} />
+      <Body content={content} tags={photostory?.tags} />
+      {/* <Comments />
+      <RecommendedArticles title='More from Photostories' articles={ARTICLES} /> */}
     </>
   );
 }
