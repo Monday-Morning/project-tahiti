@@ -16,7 +16,14 @@ import getLatestSquiggle from '../graphql/queries/homepage/getLatestSquiggle';
 import getArticlesByCategories from '../graphql/queries/category/getArticlesByCategories';
 import Custom500 from './500';
 
-function HomePage({ issues, squiggles, witsdom, photostory, isError }) {
+function HomePage({
+  issues,
+  squiggles,
+  witsdom,
+  photostory,
+  isError,
+  youtubeLinks,
+}) {
   const { isFallback } = useRouter();
 
   if (isError) {
@@ -161,6 +168,7 @@ function HomePage({ issues, squiggles, witsdom, photostory, isError }) {
           <Home
             issues={issues}
             squiggles={squiggles}
+            youtubeLinks={youtubeLinks}
             witsdom={witsdom}
             photostory={photostory}
           />
@@ -212,12 +220,22 @@ export async function getStaticProps({ preview }) {
       variables: { categoryNumbers: 62, limit: 1 },
     });
 
+    const youtubeResponse = await fetch(
+      `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&maxResults=25&playlistId=${process.env.YOUTUBE_PLAYLIST_ID}&key=${process.env.YOUTUBE_API_KEY}`,
+    );
+    const youtubeData = await youtubeResponse.json();
+    const youtubeLinks = youtubeData.items.map(
+      (item) =>
+        'https://www.youtube.com/embed/' + item.snippet.resourceId.videoId,
+    );
+
     return {
       props: {
         issues,
         squiggles,
         witsdom,
         photostory,
+        youtubeLinks,
       },
       revalidate:
         preview || new Date(Date.now()).getDay() < 3
