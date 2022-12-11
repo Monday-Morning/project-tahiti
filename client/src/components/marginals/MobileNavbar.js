@@ -90,13 +90,14 @@ const MobileNavbar = () => {
               variant='standard'
             />
             <div className={classes.searchSuggestions}>
-              {data?.map(({ id, title }) => (
-                <div key={id} className={classes.trendingList}>
-                  <NewTabLink to={getArticleLink(id, title)}>
-                    {title}
-                  </NewTabLink>
-                </div>
-              ))}
+              {searchText.length > 0 &&
+                data?.map(({ id, title }) => (
+                  <div key={id} className={classes.trendingList}>
+                    <NewTabLink to={getArticleLink(id, title)}>
+                      {title}
+                    </NewTabLink>
+                  </div>
+                ))}
             </div>
           </div>
 

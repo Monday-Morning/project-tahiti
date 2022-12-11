@@ -78,13 +78,14 @@ const DesktopNavbar = () => {
               variant='standard'
             />
             <div className={classes.searchSuggestions}>
-              {autoCompleteData?.map(({ id, title }) => (
-                <div key={id} className={classes.trendingList}>
-                  <NewTabLink to={getArticleLink(id, title)}>
-                    {title}
-                  </NewTabLink>
-                </div>
-              ))}
+              {search.length > 0 &&
+                autoCompleteData?.map(({ id, title }) => (
+                  <div key={id} className={classes.trendingList}>
+                    <NewTabLink to={getArticleLink(id, title)}>
+                      {title}
+                    </NewTabLink>
+                  </div>
+                ))}
             </div>
           </div>
 
