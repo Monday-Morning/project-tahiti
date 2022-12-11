@@ -11,7 +11,9 @@ function PhotoStory({ photostory }) {
   return (
     <div className={classes.wrapper}>
       <NewTabLink
-        to={getArticleLink(photostory[0].id, photostory[0].title)}
+        to={getArticleLink(photostory[0].id, photostory[0].title, {
+          isPhotostory: true,
+        })}
         className={classes.link}
       >
         <Image
