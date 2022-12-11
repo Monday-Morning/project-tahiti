@@ -262,7 +262,7 @@ const useStyles = makeStyles((theme) => ({
     display: (_) => (_.isSearchActive ? 'block' : 'none'),
   },
   trendingList: {
-    typography: theme.typography.fontFamily,
+    fontFamily: theme.typography.fontFamily,
     alignItems: 'center',
     paddingBottom: '8px',
     paddingTop: '8px',
