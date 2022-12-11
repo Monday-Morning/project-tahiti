@@ -27,7 +27,6 @@ export async function getServerSideProps(context) {
       variables: { accountType: 2, limit: 10000 },
     });
 
-    console.log('allUsers:', allUsers);
     return {
       props: { allUsers, token: cookies.firebaseToken, cookies },
     };
