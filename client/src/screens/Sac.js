@@ -49,13 +49,13 @@ const SacAndClub = () => {
           </div>
         </div>
       </div>
-      <div className={classes.hr}>
+      {/* <div className={classes.hr}>
         <Typography variant='h2' className={classes.title}>
           SAC Info
         </Typography>
         <div className={classes.underline} />
-      </div>
-      <SacInfoNavbar />
+      </div> */}
+      {/* <SacInfoNavbar /> */}
       <div className={classes.hr}>
         <Typography variant='h2' className={classes.title}>
           Club Info

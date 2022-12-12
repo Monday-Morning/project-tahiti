@@ -3,7 +3,6 @@ import Link from 'next/link';
 
 import makeStyles from '@mui/styles/makeStyles';
 import { Typography, Grid } from '@mui/material';
-import Link from 'next/link';
 
 // placeholder
 import { OPTIONS } from '../../assets/placeholder/guide';
@@ -50,15 +49,16 @@ const Options = () => {
         </span>
       </div>
       <Link href='/sac' className={classes.links} passHref>
-      <div className={classes.optionWrapper}>
-        <Image src={icon2} alt='Icon' className={classes.icons} />
-        <Typography variant='h3' className={classes.option2}>
-          SAC and Clubs Info
-        </Typography>
-        <Typography variant='h3' className={classes.arrow}>
-          <i className='fas fa-chevron-right'></i>
-        </Typography>
-      </div></Link>
+        <div className={classes.optionWrapper}>
+          <Image src={icon2} alt='Icon' className={classes.icons} />
+          <Typography variant='h3' className={classes.option2}>
+            SAC and Clubs Info
+          </Typography>
+          <Typography variant='h3' className={classes.arrow}>
+            <i className='fas fa-chevron-right'></i>
+          </Typography>
+        </div>
+      </Link>
       <div className={classes.optionWrapper}>
         <Image src={icon3} alt='Icon' className={classes.icons} />
         <Typography variant='h3' className={classes.option2}>
