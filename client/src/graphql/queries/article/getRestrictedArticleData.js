@@ -6,6 +6,30 @@ const getRestricedArticleData = gql`
     getArticleByID(id: $id) {
       ${completeArticleData}
       isInstituteRestricted
+      coverMedia {
+        rectangle {
+          authors {
+            details
+            name
+          }
+          imageKitFileID
+          storePath
+          store
+          id
+        }
+        square {
+          authors {
+            details
+            name
+          }
+          imageKitFileID
+          storePath
+          store
+          id
+        }
+        rectangleID
+        squareID
+      }
     }
   }
 `;
