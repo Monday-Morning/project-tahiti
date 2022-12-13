@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 //context
 import authContext from './AuthContext';
@@ -22,6 +23,8 @@ import ImageKit from 'imagekit-javascript';
 import { setCookie } from 'nookies';
 
 const AuthState = ({ children }) => {
+  const { push } = useRouter();
+
   const [refreshToken, setRefreshToken] = useState('');
   const [user, setUser] = useState(null);
   const [firebaseToken, setFirebaseToken] = useState('');
@@ -97,6 +100,8 @@ const AuthState = ({ children }) => {
         console.log(err);
       }
     }
+
+    push('/admin_v2');
   };
 
   const logout = () => {
