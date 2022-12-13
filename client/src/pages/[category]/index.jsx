@@ -14,9 +14,83 @@ import ROUTES from '../../utils/getRoutes';
 
 // Graphql
 import getArticlesByCategories from '../../graphql/queries/category/getArticlesByCategories';
+import Custom500 from '../500';
 
-const CategoryPage = ({ articleList, categoryShortName, category }) => {
+const CategoryPage = ({
+  articleList,
+  categoryShortName,
+  category,
+  isError,
+}) => {
   const { isFallback } = useRouter();
+
+  if (isError) {
+    return (
+      <>
+        <Head>
+          {/* <!-- =============== Primary Meta Tags =============== --> */}
+          <title> Monday Morning </title>
+          <meta name='title' content={`Monday Morning`} />
+          <meta
+            name='description'
+            content='Monday Morning is the official Student Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday Morning also serves as a link between the administration and the students.'
+          />
+          <meta
+            name='keywords'
+            content={`monday morning, mondaymorning, monday morning, mm, nit rkl, nit, nit rourkela, nitr, nitrkl, rkl, rourkela`}
+          />
+
+          {/* <!-- =============== Open Graph / Facebook =============== --> */}
+          <meta property='og:type' content='website' />
+          <meta
+            property='og:url'
+            content={`https://mondaymorning.nitrkl.ac.in/`}
+          />
+          <meta
+            property='og:site_name'
+            content='Monday Morning | The Student Media Body of NIT Rourkela, India'
+          />
+          <meta property='og:title' content={`Monday Morning`} />
+          <meta
+            property='og:description'
+            content='Monday Morning is the Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students.'
+          />
+          <meta
+            property='og:image'
+            itemProp='image'
+            content='/icon-256x256.png'
+          />
+          <meta
+            property='og:image:url'
+            content='https://mondaymorning.nitrkl.ac.in/icon-256x256.png'
+          />
+          <meta
+            property='og:image:secure_url'
+            content='https://mondaymorning.nitrkl.ac.in/icon-256x256.png'
+          />
+          <meta property='og:image:type' content='image/png' />
+
+          {/* <!-- =============== Twitter =============== --> */}
+          <meta property='twitter:card' content='summary_large_image' />
+          <meta
+            property='twitter:url'
+            content={`https://mondaymorning.nitrkl.ac.in`}
+          />
+          <meta property='twitter:title' content='Monday Morning' />
+          <meta
+            property='twitter:image'
+            content='https://mondaymorning.nitrkl.ac.in/icon-256x256.png'
+          />
+          <meta
+            property='twitter:description'
+            content='Monday Morning is the Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students.'
+          />
+        </Head>
+        <Custom500 />
+      </>
+    );
+  }
+
   return (
     <>
       <Head>
@@ -100,47 +174,62 @@ export async function getStaticProps({
   params: { category: categoryShortName },
   preview,
 }) {
-  const category = ROUTES.CATEGORIES.filter(
-    ({ asyncRoutePath }) => asyncRoutePath === './Category',
-  ).filter(({ shortName }) => shortName === categoryShortName)[0];
+  try {
+    const category = ROUTES.CATEGORIES.filter(
+      ({ asyncRoutePath }) => asyncRoutePath === './Category',
+    ).filter(({ shortName }) => shortName === categoryShortName)[0];
 
-  const {
-    data: { getArticlesByCategories: articleList },
-  } = await GraphClient.query({
-    query: getArticlesByCategories,
-    variables: {
-      categoryNumbers: [category?.idNumber, ...category?.subCategoryIds],
-      limit: 4,
-    },
-  });
+    const {
+      data: { getArticlesByCategories: articleList },
+    } = await GraphClient.query({
+      query: getArticlesByCategories,
+      variables: {
+        categoryNumbers: [category?.idNumber, ...category?.subCategoryIds],
+        limit: 4,
+      },
+    });
 
-  if (!category || !articleList) {
+    if (!category || !articleList) {
+      return {
+        notFound: true,
+      };
+    }
+
     return {
-      notFound: true,
+      props: {
+        articleList,
+        categoryShortName,
+        category,
+      },
+      revalidate:
+        preview || new Date(Date.now()).getDay() < 3
+          ? 60 * 60 * 1
+          : 60 * 60 * 24 * 2, // 1 Hour or 2 Days
+    };
+  } catch (err) {
+    return {
+      props: {
+        isError: true,
+      },
     };
   }
-
-  return {
-    props: {
-      articleList,
-      categoryShortName,
-      category,
-    },
-    revalidate:
-      preview || new Date(Date.now()).getDay() < 3
-        ? 60 * 60 * 1
-        : 60 * 60 * 24 * 2, // 1 Hour or 2 Days
-  };
 }
 
 export async function getStaticPaths() {
-  const paths = ROUTES.CATEGORIES.filter(
-    ({ asyncRoutePath }) => asyncRoutePath === './Category',
-  ).map(({ shortName }) => ({
-    params: { category: shortName },
-  }));
+  try {
+    const paths = ROUTES.CATEGORIES.filter(
+      ({ asyncRoutePath }) => asyncRoutePath === './Category',
+    ).map(({ shortName }) => ({
+      params: { category: shortName },
+    }));
 
-  return { paths, fallback: false };
+    return { paths, fallback: false };
+  } catch (e) {
+    return {
+      paths: { params: { subCategory: ['error', 'error'] } },
+      fallback: true,
+    };
+  }
 }
 
 export default CategoryPage;
