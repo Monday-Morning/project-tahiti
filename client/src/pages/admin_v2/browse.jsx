@@ -1,3 +1,6 @@
+import { useRouter } from 'next/router';
+
+import ActivityIndicator from '../../components/shared/ActivityIndicator';
 import BrowseArticle from '../../screens/admin_v2/Browse';
 import Custom500 from '../500';
 
@@ -8,7 +11,11 @@ import countTotalArticles from '../../graphql/queries/article/countTotalArticles
 import Head from 'next/head';
 
 const browseArticlePage = ({ articles, totalArticles, isError, error }) => {
+  const { isFallback } = useRouter();
+  console.log(articles, totalArticles);
   if (isError) return <Custom500 error={error} />;
+  console.log(isFallback);
+  console.log(!isFallback && articles && totalArticles);
 
   return (
     <>
@@ -16,7 +23,11 @@ const browseArticlePage = ({ articles, totalArticles, isError, error }) => {
         <title>Browse</title>
         <meta name='title' content='Browse | Monday Morning ' />
       </Head>
-      <BrowseArticle articles={articles} totalArticles={totalArticles} />
+      {!isFallback && articles && totalArticles ? (
+        <BrowseArticle articles={articles} totalArticles={totalArticles} />
+      ) : (
+        <ActivityIndicator size={150} />
+      )}
     </>
   );
 };
