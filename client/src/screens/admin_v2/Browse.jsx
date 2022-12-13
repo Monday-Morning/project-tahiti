@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+
+// Material UI
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -12,6 +14,10 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import MenuList from '@mui/material/MenuList';
 
 import determineCategory from '../../utils/determineCategory';
 import Marginals from '../../components/admin_v2/Marginals/Marginals';
@@ -43,6 +49,16 @@ const BrowseArticle = ({ articles, totalArticles }) => {
   const [row, setRow] = useState([]);
   const [page, setPage] = useState(0);
 
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const handleChangePage = (_event, newPage) => {
     setPage(newPage);
   };
@@ -69,7 +85,7 @@ const BrowseArticle = ({ articles, totalArticles }) => {
         };
       },
     );
-    setRow(rowData);
+    if (rowData) setRow(rowData);
   }, [articles, _articles]);
 
   useEffect(() => {
@@ -137,12 +153,34 @@ const BrowseArticle = ({ articles, totalArticles }) => {
                     </StyledTableCell>
                     <StyledTableCell align='right'>
                       <Chip
-                        sx={{ fontSize: '12px' }}
+                        deleteIcon={<ArrowDropDownIcon />}
+                        onDelete={handleClick}
+                        sx={{
+                          fontSize: '12px',
+                          display: 'flex',
+                          flexDirection: 'reverse',
+                        }}
                         label={publishStatus.toLowerCase()}
                         color={
                           publishStatus === 'PUBLISHED' ? 'success' : 'error'
                         }
                       />
+                      <Menu
+                        open={open}
+                        onClose={handleClose}
+                        anchorEl={anchorEl}
+                      >
+                        <MenuList
+                          sx={{
+                            boxShadow: 'none',
+                          }}
+                        >
+                          <MenuItem>Published</MenuItem>
+                          <MenuItem>Unpublished</MenuItem>
+                          <MenuItem>Archived</MenuItem>
+                          <MenuItem>Trashed</MenuItem>
+                        </MenuList>
+                      </Menu>
                     </StyledTableCell>
                   </StyledTableRow>
                 ),
