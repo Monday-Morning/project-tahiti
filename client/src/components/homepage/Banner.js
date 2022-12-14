@@ -7,17 +7,18 @@ import { Grid, Container } from '@mui/material';
 import Witsdom from '../expressions/Witsdom';
 import PhotoStory from '../expressions/PhotoStory';
 
-function Banner() {
+function Banner({ witsdom, photostory }) {
   const classes = useStyles();
+
   return (
     <div className={classes.wrapper}>
       <Container>
         <Grid container spacing={4}>
           <Grid item sm={6}>
-            <Witsdom />
+            <Witsdom witsdom={witsdom} />
           </Grid>
           <Grid item sm={6}>
-            <PhotoStory />
+            <PhotoStory photostory={photostory} />
           </Grid>
         </Grid>
       </Container>
