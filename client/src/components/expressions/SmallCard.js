@@ -25,7 +25,9 @@ function SmallCard({ article }) {
         }
         className={classes.smallCard}
       />
-      <Typography variant='h2'>{title}</Typography>
+      <Typography variant='h2' className={classes.title}>
+        {title}
+      </Typography>
       <div className={classes.authorList}>
         {authors.map(({ name, details }) => (
           <Typography variant='body2' key={details} className={classes.author}>
@@ -46,6 +48,10 @@ const useStyles = makeStyles((theme) => ({
   smallCard: {
     width: '100%',
     borderRadius: '8px',
+    cursor: 'pointer',
+  },
+  title: {
+    cursor: 'pointer',
   },
   authorList: {
     display: 'flex',
@@ -57,5 +63,6 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary.neutral60,
     fontWeight: '400',
     marginRight: '10px',
+    cursor: 'pointer',
   },
 }));

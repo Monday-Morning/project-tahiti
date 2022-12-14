@@ -21,6 +21,7 @@ const ArticleItem = ({ article, isLarge, className }) => {
   if (!article) article = DEFAULT_ARTICLE;
   const {
     id,
+    articleType,
     categories,
     title,
     readTime,
@@ -36,7 +37,13 @@ const ArticleItem = ({ article, isLarge, className }) => {
 
   return (
     <NewTabLink
-      to={getArticleLink(id, title)}
+      to={
+        articleType === 'PHOTOSTORY'
+          ? getArticleLink(id, title, {
+              isPhotostory: true,
+            })
+          : getArticleLink(id, title)
+      }
       className={`${classes.link} ${className}`}
     >
       <article className={classes.articleContainer}>

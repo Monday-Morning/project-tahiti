@@ -8,7 +8,13 @@ import { GraphClient } from '../../config/ApolloClient';
 import getArticlesByCategories from '../../graphql/queries/category/getArticlesByCategories';
 import Custom500 from '../500';
 
-const ExpressionsPage = ({ witsdom, editorial, miscellaneous, isError }) => {
+const ExpressionsPage = ({
+  witsdom,
+  photostory,
+  editorial,
+  miscellaneous,
+  isError,
+}) => {
   if (isError) {
     return (
       <>
@@ -140,6 +146,7 @@ const ExpressionsPage = ({ witsdom, editorial, miscellaneous, isError }) => {
       <Marginals>
         <Expressions
           witsdom={witsdom}
+          photostory={photostory}
           editorial={editorial}
           miscellaneous={miscellaneous}
         />
@@ -167,6 +174,13 @@ export async function getStaticProps() {
     });
 
     const {
+      data: { getArticlesByCategories: photostory },
+    } = await GraphClient.query({
+      query: getArticlesByCategories,
+      variables: { categoryNumbers: 62, limit: 5 },
+    });
+
+    const {
       data: {
         getArticlesByCategories: [editorial],
       },
@@ -184,7 +198,7 @@ export async function getStaticProps() {
       variables: { categoryNumbers: 67, limit: 3 },
     });
 
-    return { props: { witsdom, editorial, miscellaneous } };
+    return { props: { witsdom, photostory, editorial, miscellaneous } };
   } catch (err) {
     return {
       props: {
