@@ -3,7 +3,6 @@ import React from 'react';
 // Libraries
 import { Button, Typography, Grid, Paper } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import { Youtube, Instagram } from 'react-feather';
 
 // Components
 import HomeCarousel from '../widgets/HomeCarousel';
@@ -16,17 +15,12 @@ import insta4 from '../../assets/images/instagram/insta4.jpeg';
 import insta5 from '../../assets/images/instagram/insta5.jpeg';
 import insta6 from '../../assets/images/instagram/insta6.jpeg';
 import Image from 'next/image';
+import { YouTube, Instagram } from '@mui/icons-material';
 
 const INSTA_LINKS = [insta1, insta2, insta3, insta4, insta5, insta6];
 
-const YOUTUBE_LINKS = [
-  'https://www.youtube.com/embed/_KJlm1mafGo',
-  'https://www.youtube.com/embed/btc-_kqkdpc',
-  'https://www.youtube.com/embed/c6SglPpwmVg',
-];
-
-const Header = ({ Icon, title, buttonText, onClick }) => {
-  const classes = useStyles();
+const Header = ({ Icon, title, buttonText, onClick, ...color }) => {
+  const classes = useStyles(color);
 
   return (
     <div className={classes.header}>
@@ -37,7 +31,7 @@ const Header = ({ Icon, title, buttonText, onClick }) => {
         role='button'
         tabIndex='0'
       >
-        <Icon className={classes.icon} />
+        <Icon className={classes.icon} color='red' />
 
         <Typography variant='body1' className={classes.title}>
           {title}
@@ -51,7 +45,7 @@ const Header = ({ Icon, title, buttonText, onClick }) => {
   );
 };
 
-const Socials = () => {
+const Socials = ({ youtubeLinks }) => {
   const classes = useStyles();
 
   const openYoutube = () =>
@@ -75,6 +69,7 @@ const Socials = () => {
               title='mondaymorningnitr'
               buttonText='Follow'
               onClick={openInstagram}
+              color='#F56040'
             />
 
             <Grid container spacing={3}>
@@ -104,12 +99,13 @@ const Socials = () => {
         <Grid item sm={12} md={6} lg={6} className={classes.grid}>
           <Paper className={classes.card}>
             <Header
-              Icon={Youtube}
+              Icon={YouTube}
               title='Monday Morning'
               buttonText='Subscribe'
               onClick={openYoutube}
+              color='red'
             />
-            <HomeCarousel links={YOUTUBE_LINKS} />
+            <HomeCarousel links={youtubeLinks} />
           </Paper>
         </Grid>
       </Grid>
@@ -131,6 +127,7 @@ const useStyles = makeStyles(() => ({
     borderRadius: '10px',
     boxShadow:
       '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
+    backgroundColor: '#ffffff',
   },
   header: {
     width: '100%',
@@ -142,7 +139,9 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  icon: {},
+  icon: {
+    color: (props) => props.color,
+  },
   titleContainer: {
     display: 'flex',
     '&:hover': {

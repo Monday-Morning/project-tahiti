@@ -15,6 +15,7 @@ import ROUTES from '../../utils/getRoutes';
 // Graphql
 import getArticlesByCategories from '../../graphql/queries/category/getArticlesByCategories';
 import countOfArticlesBySubCategory from '../../graphql/queries/subcategory/countOfArticlesBySubCategory';
+import Custom500 from '../500';
 
 const EditorialPage = ({
   categoryName,
@@ -22,6 +23,7 @@ const EditorialPage = ({
   articleList,
   countOfArticles,
   pageNumber,
+  isError,
 }) => {
   const { isFallback, push } = useRouter();
 
@@ -44,6 +46,73 @@ const EditorialPage = ({
   const handleChange = (event, value) => {
     setPageNo(value);
   };
+
+  if (isError) {
+    return (
+      <>
+        <Head>
+          {/* <!-- =============== Primary Meta Tags =============== --> */}
+          <title> Monday Morning </title>
+          <meta name='title' content={`Monday Morning`} />
+          <meta
+            name='description'
+            content='Monday Morning is the official Student Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday Morning also serves as a link between the administration and the students.'
+          />
+          <meta
+            name='keywords'
+            content={`monday morning, mondaymorning, monday morning, mm, nit rkl, nit, nit rourkela, nitr, nitrkl, rkl, rourkela`}
+          />
+
+          {/* <!-- =============== Open Graph / Facebook =============== --> */}
+          <meta property='og:type' content='website' />
+          <meta
+            property='og:url'
+            content={`https://mondaymorning.nitrkl.ac.in/`}
+          />
+          <meta
+            property='og:site_name'
+            content='Monday Morning | The Student Media Body of NIT Rourkela, India'
+          />
+          <meta property='og:title' content={`Monday Morning`} />
+          <meta
+            property='og:description'
+            content='Monday Morning is the Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students.'
+          />
+          <meta
+            property='og:image'
+            itemProp='image'
+            content='/icon-256x256.png'
+          />
+          <meta
+            property='og:image:url'
+            content='https://mondaymorning.nitrkl.ac.in/icon-256x256.png'
+          />
+          <meta
+            property='og:image:secure_url'
+            content='https://mondaymorning.nitrkl.ac.in/icon-256x256.png'
+          />
+          <meta property='og:image:type' content='image/png' />
+
+          {/* <!-- =============== Twitter =============== --> */}
+          <meta property='twitter:card' content='summary_large_image' />
+          <meta
+            property='twitter:url'
+            content={`https://mondaymorning.nitrkl.ac.in`}
+          />
+          <meta property='twitter:title' content='Monday Morning' />
+          <meta
+            property='twitter:image'
+            content='https://mondaymorning.nitrkl.ac.in/icon-256x256.png'
+          />
+          <meta
+            property='twitter:description'
+            content='Monday Morning is the Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students.'
+          />
+        </Head>
+        <Custom500 />
+      </>
+    );
+  }
 
   return (
     <>
@@ -138,48 +207,55 @@ export async function getStaticProps({
   },
   preview,
 }) {
-  let subCategoryDetails = ROUTES.SUB_CATEGORIES.OBJECT.EXPRESSIONS.filter(
-    ({ shortName }) => shortName === subCategory,
-  )[0];
+  try {
+    let subCategoryDetails = ROUTES.SUB_CATEGORIES.OBJECT.EXPRESSIONS.filter(
+      ({ shortName }) => shortName === subCategory,
+    )[0];
 
-  const {
-    data: { getArticlesByCategories: articleList },
-  } = await GraphClient.query({
-    query: getArticlesByCategories,
-    variables: {
-      categoryNumbers: [subCategoryDetails?.idNumber],
-      limit: 7,
-      offset: 7 * (parseInt(pageNumber) - 1),
-    },
-  });
+    const {
+      data: { getArticlesByCategories: articleList },
+    } = await GraphClient.query({
+      query: getArticlesByCategories,
+      variables: {
+        categoryNumbers: [subCategoryDetails?.idNumber],
+        limit: 7,
+        offset: 7 * (parseInt(pageNumber) - 1),
+      },
+    });
 
-  const {
-    data: { countOfArticlesBySubCategory: countOfArticles },
-  } = await GraphClient.query({
-    query: countOfArticlesBySubCategory,
-    variables: {
-      categoryNumber: subCategoryDetails?.idNumber,
-    },
-  });
+    const {
+      data: { countOfArticlesBySubCategory: countOfArticles },
+    } = await GraphClient.query({
+      query: countOfArticlesBySubCategory,
+      variables: {
+        categoryNumber: subCategoryDetails?.idNumber,
+      },
+    });
 
-  return {
-    props: {
-      categoryName: 'expressions',
-      subCategoryDetails,
-      articleList,
-      countOfArticles,
-      pageNumber: parseInt(pageNumber),
-    },
-    revalidate:
-      preview || new Date(Date.now()).getDay() < 3
-        ? 60 * 60 * 1
-        : 60 * 60 * 24 * 2, // 1 Hour or 2 Days
-  };
+    return {
+      props: {
+        categoryName: 'expressions',
+        subCategoryDetails,
+        articleList,
+        countOfArticles,
+        pageNumber: parseInt(pageNumber),
+      },
+      revalidate:
+        preview || new Date(Date.now()).getDay() < 3
+          ? 60 * 60 * 1
+          : 60 * 60 * 24 * 2, // 1 Hour or 2 Days
+    };
+  } catch (err) {
+    return {
+      props: {
+        isError: true,
+      },
+    };
+  }
 }
 
 export async function getStaticPaths() {
   let routes = ROUTES.SUB_CATEGORIES.OBJECT.EXPRESSIONS;
-
   const paths = routes.flat().map(({ path }) => ({
     params: { subCategory: [path?.split('/')[2], '1'] },
   }));

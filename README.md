@@ -78,13 +78,13 @@
 
 ## About Monday Morning
 
-[![Monday Morning][repo-cover]](https://mondaymonrning.nitrkl.ac.in)
+[![Monday Morning][repo-cover]](https://mondaymorning.nitrkl.ac.in)
 
 Monday Morning is the student media body of National Institute of Technology, Rourkela. Since its inception in 2006, it has constantly served as a vital link between the student community and the administration. The weekly e-newsletter serves as a news feed for the students, professors and alumni of the institute, featuring campus activities, department updates, recruitment information, SAC happenings, alumni news, weekly polls and interviews of the Director, Chief Warden, professors, distinguished alumni and dignitaries and exceptional students. Apart from the online weekly edition, Monday Morning also publishes print editions and organises the Open House Discussion.
 
 ## About the Project
 
-[![Monday Morning Home Screen][home-screen]](https://mondaymonrning.nitrkl.ac.in)
+[![Monday Morning Home Screen][home-screen]](https://mondaymorning.nitrkl.ac.in)
 
 Project Infinity is about updating the Monday Morning website using modern technologies which is divided accross 3 main sub-projects.
 
