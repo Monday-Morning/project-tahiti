@@ -41,10 +41,12 @@ const ClubCards = ({ category }) => {
               height={138}
             /> */}
             <Stack direction='column' spacing={1}>
-              <Typography variant='subtitle1' className={classes.clubTitle}>
+              <Typography variant='subtitle1' className={classes.clubTitleLap}>
                 {clubsTheme.title}
               </Typography>
-              <Typography variant='body2'>{clubsTheme.text}</Typography>
+              <Typography variant='body2' className={classes.clubTextLap}>
+                {clubsTheme.text}
+              </Typography>
             </Stack>
           </Stack>
         </>
@@ -64,14 +66,19 @@ const ClubCards = ({ category }) => {
                 height={57}
               /> */}
               <Stack direction='column' spacing={1}>
-                <Typography variant='subtitle1' className={classes.clubTitle}>
+                <Typography
+                  variant='subtitle1'
+                  className={classes.clubTitleMob}
+                >
                   {clubsTheme.title}
                 </Typography>
                 {/* <Typography variant='body1'>Formed in: 20XX</Typography>
                 <Typography variant='body1'>Location: TI-214</Typography> */}
               </Stack>
             </Stack>
-            <Typography variant='body2'>{clubsTheme.text}</Typography>
+            <Typography variant='body2' className={classes.clubTextMob}>
+              {clubsTheme.text}
+            </Typography>
           </Stack>
         </>
       )}
@@ -98,8 +105,19 @@ const useStyles = makeStyles((theme) => ({
   clubInfoStack: {
     marginTop: '10px',
   },
-  clubTitle: {
+  clubTitleLap: {
     fontWeight: 'bold',
+    fontSize: '24px',
+  },
+  clubTextLap: {
+    fontSize: '20px',
+  },
+  clubTitleMob: {
+    fontWeight: 'bold',
+    fontSize: '18px',
+  },
+  clubTextMob: {
+    fontSize: '16px',
   },
   root: {
     padding: '28px 41px',
