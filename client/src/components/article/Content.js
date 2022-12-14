@@ -140,6 +140,7 @@ const useStyles = makeStyles((theme) => ({
   para: {
     marginTop: '1rem',
     marginBottom: '1rem',
+    textAlign: 'justify',
     hyphens: 'auto',
     fontWeight: 'normal',
   },
