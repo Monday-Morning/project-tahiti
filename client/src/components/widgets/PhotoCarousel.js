@@ -9,7 +9,7 @@ import ArrowRight from '@mui/icons-material/ArrowCircleRightOutlined';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 
-const PhotoCarousel = ({ IMAGE, navigator, Text }) => {
+const PhotoCarousel = ({ IMAGE, navigator, TEXT }) => {
   const slider = useRef();
   const next = () => {
     slider.current.slickNext();
@@ -77,10 +77,10 @@ const PhotoCarousel = ({ IMAGE, navigator, Text }) => {
           </Grid>
         ))}
       </Slider>
-      {Text && (
+      {TEXT && (
         <div className={classes.textWrapper}>
           <Typography variant='body2' className={classes.text}>
-            {Text}
+            {TEXT}
           </Typography>
         </div>
       )}
