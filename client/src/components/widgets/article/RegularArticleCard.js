@@ -34,13 +34,9 @@ const ArticleCard = ({
   return (
     <Card className={`${classes.root} ${className}`}>
       <NewTabLink
-        to={
-          article.articleType === 'PHOTOSTORY'
-            ? getArticleLink(article.id, article.title, {
-                isPhotostory: true,
-              })
-            : getArticleLink(article.id, article.title)
-        }
+        to={getArticleLink(article.id, article.title, {
+          isPhotostory: article.articleType === 'PHOTOSTORY' ? true : false,
+        })}
         className={classes.coverContainer}
         style={{
           backgroundImage: `url(${DEFAULT_ARTICLE.coverMedia.rectangle.storePath})`,
@@ -89,13 +85,9 @@ const ArticleCard = ({
         </div>
 
         <NewTabLink
-          to={
-            article.articleType === 'PHOTOSTORY'
-              ? getArticleLink(article.id, article.title, {
-                  isPhotostory: true,
-                })
-              : getArticleLink(article.id, article.title)
-          }
+          to={getArticleLink(article.id, article.title, {
+            isPhotostory: article.articleType === 'PHOTOSTORY' ? true : false,
+          })}
         >
           <Typography className={classes.title} variant='h2'>
             {limitString(article.title, 60)}

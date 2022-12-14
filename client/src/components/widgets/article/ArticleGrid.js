@@ -37,13 +37,9 @@ const ArticleItem = ({ article, isLarge, className }) => {
 
   return (
     <NewTabLink
-      to={
-        articleType === 'PHOTOSTORY'
-          ? getArticleLink(id, title, {
-              isPhotostory: true,
-            })
-          : getArticleLink(id, title)
-      }
+      to={getArticleLink(id, title, {
+        isPhotostory: articleType === 'PHOTOSTORY' ? true : false,
+      })}
       className={`${classes.link} ${className}`}
     >
       <article className={classes.articleContainer}>

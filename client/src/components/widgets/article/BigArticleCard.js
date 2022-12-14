@@ -43,13 +43,9 @@ const BigArticleCard = ({
     <Card className={classes.root}>
       <NewTabLink
         className={classes.coverContainer}
-        to={
-          article.articleType === 'PHOTOSTORY'
-            ? getArticleLink(article.id, article.title, {
-                isPhotostory: true,
-              })
-            : getArticleLink(article.id, article.title)
-        }
+        to={getArticleLink(article.id, article.title, {
+          isPhotostory: article.articleType === 'PHOTOSTORY' ? true : false,
+        })}
       >
         <div className={classes.coverContainerBox}>
           <Image
@@ -94,13 +90,10 @@ const BigArticleCard = ({
             </div>
 
             <NewTabLink
-              to={
-                article.articleType === 'PHOTOSTORY'
-                  ? getArticleLink(article.id, article.title, {
-                      isPhotostory: true,
-                    })
-                  : getArticleLink(article.id, article.title)
-              }
+              to={getArticleLink(article.id, article.title, {
+                isPhotostory:
+                  article.articleType === 'PHOTOSTORY' ? true : false,
+              })}
             >
               <Typography className={classes.title} variant='h2'>
                 {article.title}
