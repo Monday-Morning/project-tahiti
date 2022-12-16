@@ -12,17 +12,16 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
-import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import MenuList from '@mui/material/MenuList';
+import ArticleStatusMenu from '../../components/admin_v2/Browse/ArticleStatusMenu';
+import DialogBox from '../../components/admin_v2/Browse/DialogBox';
 
 import determineCategory from '../../utils/determineCategory';
 import Marginals from '../../components/admin_v2/Marginals/Marginals';
 import { GraphClient } from '../../config/ApolloClient';
 import listAllArticles from '../../graphql/queries/article/listAllArticles';
+import updateArticlePublishStatus from '../../graphql/mutations/article/updateArticlePublishStatus';
+import SnackBarAleart from '../../components/admin_v2/Common/SnackBarAleart';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -49,18 +48,52 @@ const BrowseArticle = ({ articles, totalArticles }) => {
   const [row, setRow] = useState([]);
   const [page, setPage] = useState(0);
 
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
+  const [openDialog, setOpenDialog] = useState(false);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const [selectedArticle, setSelectedArticle] = useState({
+    status: '',
+    id: '',
+    title: '',
+  });
+
+  const handleDialogOpen = (status, id, title) => {
+    setSelectedArticle({ status, id, title });
+    setOpenDialog(true);
   };
-  const handleClose = () => {
-    setAnchorEl(null);
+
+  const handleDialogClose = () => {
+    setOpenDialog(false);
   };
 
   const handleChangePage = (_event, newPage) => {
     setPage(newPage);
+  };
+
+  //snack bar aleart
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [success, setSuccess] = useState(false);
+
+  const [updatePublishStatusResponse, setUpdatePublishStatusResponse] =
+    useState('');
+
+  const updatePublishStatus = async ({ id, publishStatus }) => {
+    try {
+      const data = await GraphClient.mutate({
+        mutation: updateArticlePublishStatus,
+        variables: {
+          updateArticlePublishStatusId: id,
+          publishStatus,
+        },
+      });
+      setSuccess(true);
+      setErrorMessage('Article updated successfully');
+      setError(true);
+      setUpdatePublishStatusResponse(data);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -103,6 +136,18 @@ const BrowseArticle = ({ articles, totalArticles }) => {
   return (
     <div>
       <Marginals>
+        <SnackBarAleart
+          open={error}
+          message={errorMessage}
+          setOpen={setError}
+          sentStatus={success}
+        />
+        <DialogBox
+          openDialog={openDialog}
+          handleDialogClose={handleDialogClose}
+          selectedArticle={selectedArticle}
+          updatePublishStatus={updatePublishStatus}
+        />
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} stickyHeader aria-label='sticky table'>
             <TableHead>
@@ -151,36 +196,16 @@ const BrowseArticle = ({ articles, totalArticles }) => {
                     <StyledTableCell component='th' align='left'>
                       {categoryNames}
                     </StyledTableCell>
-                    <StyledTableCell align='right'>
-                      <Chip
-                        deleteIcon={<ArrowDropDownIcon />}
-                        onDelete={handleClick}
-                        sx={{
-                          fontSize: '12px',
-                          display: 'flex',
-                          flexDirection: 'reverse',
-                        }}
-                        label={publishStatus.toLowerCase()}
-                        color={
-                          publishStatus === 'PUBLISHED' ? 'success' : 'error'
+                    <StyledTableCell align='right' key={id + '123'}>
+                      <ArticleStatusMenu
+                        handleDialogOpen={handleDialogOpen}
+                        publishStatus={publishStatus}
+                        id={id}
+                        title={title}
+                        updatePublishStatusResponse={
+                          updatePublishStatusResponse
                         }
                       />
-                      <Menu
-                        open={open}
-                        onClose={handleClose}
-                        anchorEl={anchorEl}
-                      >
-                        <MenuList
-                          sx={{
-                            boxShadow: 'none',
-                          }}
-                        >
-                          <MenuItem>Published</MenuItem>
-                          <MenuItem>Unpublished</MenuItem>
-                          <MenuItem>Archived</MenuItem>
-                          <MenuItem>Trashed</MenuItem>
-                        </MenuList>
-                      </Menu>
                     </StyledTableCell>
                   </StyledTableRow>
                 ),
