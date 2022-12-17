@@ -5,6 +5,8 @@ import { GraphClient } from '../../config/ApolloClient';
 import updateArticleProps from '../../graphql/mutations/article/updateArticleProps';
 import updateArticleUsers from '../../graphql/mutations/article/updateArticleUsers';
 import updateArticleCategories from '../../graphql/mutations/article/updateArticleCategories';
+import updateArticleRestriction from '../../graphql/mutations/article/updateArticleRestriction';
+import updateArticleApprovalStatus from '../../graphql/mutations/article/updateArticleApprovalStatus';
 
 //material ui
 import Paper from '@mui/material/Paper';
@@ -49,6 +51,7 @@ const EditArticle = ({ allUsers, article }) => {
     photographers,
     tech,
     isInstituteRestricted,
+    approvalStatus,
     coverMedia: { rectangle, square, rectangleID, squareID },
   } = article;
 
@@ -68,6 +71,11 @@ const EditArticle = ({ allUsers, article }) => {
     new Set(categories.map((c) => c.number)),
   );
 
+  const [instituteRestricted, setInstituteRestricted] = useState(
+    isInstituteRestricted,
+  );
+  const [approval, setApproval] = useState(approvalStatus);
+
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [success, setSuccess] = useState(false);
@@ -84,35 +92,35 @@ const EditArticle = ({ allUsers, article }) => {
     setCategory((prev) => prev.add(categoryNumber));
   };
 
+  const setErrorMessageAndError = (message) => {
+    setSuccess(false);
+    setError(true);
+    setErrorMessage(message);
+  };
+
   const validateArticleData = () => {
     if (articleTitle === '') {
-      setError(true);
-      setErrorMessage('Please enter a title');
+      setErrorMessageAndError('Please enter a title');
       return false;
     }
     if (contentTeam.length === 0) {
-      setError(true);
-      setErrorMessage('Please select a content team member');
+      setErrorMessageAndError('Please select a content team member');
       return false;
     }
     if (designTeam.length === 0) {
-      setError(true);
-      setErrorMessage('Please select a design team member');
+      setErrorMessageAndError('Please select a design team member');
       return false;
     }
     if (techTeam.length === 0) {
-      setError(true);
-      setErrorMessage('Please select a tech team member');
+      setErrorMessageAndError('Please select a tech team member');
       return false;
     }
     if (pnfTeam.length === 0) {
-      setError(true);
-      setErrorMessage('Please select a pnf team member');
+      setErrorMessageAndError('Please select a pnf team member');
       return false;
     }
     if (categories.size === 0) {
-      setError(true);
-      setErrorMessage('Please select a category');
+      setErrorMessageAndError('Please select a category');
       return false;
     }
     return true;
@@ -131,9 +139,7 @@ const EditArticle = ({ allUsers, article }) => {
           },
         });
       } catch (error) {
-        setSuccess(false);
-        setErrorMessage('Something went wrong');
-        setError(true);
+        setErrorMessageAndError('Something went wrong');
         return;
       }
     }
@@ -168,9 +174,7 @@ const EditArticle = ({ allUsers, article }) => {
           },
         });
       } catch (error) {
-        setSuccess(false);
-        setErrorMessage('Something went wrong');
-        setError(true);
+        setErrorMessageAndError('Something went wrong');
         return;
       }
     }
@@ -190,12 +194,42 @@ const EditArticle = ({ allUsers, article }) => {
           },
         });
       } catch (error) {
-        setSuccess(false);
-        setErrorMessage('Something went wrong');
-        setError(true);
+        setErrorMessageAndError('Something went wrong');
         return;
       }
     }
+
+    if (isInstituteRestricted !== instituteRestricted) {
+      try {
+        await GraphClient.mutate({
+          mutation: updateArticleRestriction,
+          variables: {
+            updateArticleRestrictionId: id,
+            isInstituteRestricted:
+              instituteRestricted === 'true' ? true : false,
+          },
+        });
+      } catch (error) {
+        setErrorMessageAndError('Something went wrong');
+        return;
+      }
+    }
+
+    if (approvalStatus !== approval) {
+      try {
+        await GraphClient.mutate({
+          mutation: updateArticleApprovalStatus,
+          variables: {
+            updateArticleApprovalStatusId: id,
+            approvalStatus: approval === 'true' ? true : false,
+          },
+        });
+      } catch (error) {
+        setErrorMessageAndError('Something went wrong');
+        return;
+      }
+    }
+
     setSuccess(true);
     setErrorMessage('Article updated successfully');
     setError(true);
@@ -289,8 +323,38 @@ const EditArticle = ({ allUsers, article }) => {
                 row
                 aria-labelledby='row-radio-buttons'
                 name='row-radio-buttons-group'
-                defaultValue={isInstituteRestricted}
+                value={instituteRestricted}
                 sx={{ ml: '10px' }}
+                onChange={(e) => setInstituteRestricted(e.target.value)}
+              >
+                <FormControlLabel
+                  value={true}
+                  control={<Radio />}
+                  label='Yes'
+                />
+                <FormControlLabel
+                  value={false}
+                  control={<Radio />}
+                  label='No'
+                />
+              </RadioGroup>
+            </FormControl>
+
+            <FormControl
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}
+            >
+              <FormLabel id='row-radio-buttons'>Is article approved?</FormLabel>
+              <RadioGroup
+                row
+                aria-labelledby='row-radio-buttons'
+                name='row-radio-buttons-group'
+                value={approval}
+                sx={{ ml: '10px' }}
+                onChange={(e) => setApproval(e.target.value)}
               >
                 <FormControlLabel
                   value={true}
