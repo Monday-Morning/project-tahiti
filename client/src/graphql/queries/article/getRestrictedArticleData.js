@@ -6,6 +6,7 @@ const getRestricedArticleData = gql`
     getArticleByID(id: $id) {
       ${completeArticleData}
       isInstituteRestricted
+      approvalStatus
       coverMedia {
         rectangle {
           authors {
