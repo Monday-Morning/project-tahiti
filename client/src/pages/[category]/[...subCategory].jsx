@@ -206,7 +206,7 @@ const CategoryPage = ({
 export async function getStaticProps({
   params: {
     category,
-    subCategory: [subCategory, pageNumber],
+    subCategory: [subCategory, department, pageNumber],
   },
   preview,
 }) {
@@ -221,6 +221,13 @@ export async function getStaticProps({
       ?.filter(({ asyncRoutePath }) => asyncRoutePath === './SubCategory')
       .filter(({ shortName }) => shortName === subCategory)[0];
 
+    const departmentDetails =
+      subCategory === 'academics' && department
+        ? ROUTES.DEPARTMENTS.filter(
+            ({ shortName }) => shortName === department,
+          )[0]
+        : false;
+
     if (!subCategoryDetails) {
       return {
         notFound: true,
@@ -232,7 +239,9 @@ export async function getStaticProps({
     } = await GraphClient.query({
       query: getArticlesByCategories,
       variables: {
-        categoryNumbers: [subCategoryDetails?.idNumber],
+        categoryNumbers: [
+          departmentDetails?.idNumber || subCategoryDetails?.idNumber,
+        ],
         limit: 7,
         offset: 7 * (parseInt(pageNumber) - 1),
       },
@@ -243,7 +252,8 @@ export async function getStaticProps({
     } = await GraphClient.query({
       query: countOfArticlesBySubCategory,
       variables: {
-        categoryNumber: subCategoryDetails?.idNumber,
+        categoryNumber:
+          departmentDetails?.idNumber || subCategoryDetails?.idNumber,
       },
     });
 
@@ -272,10 +282,11 @@ export async function getStaticProps({
 export async function getStaticPaths() {
   let routes = ROUTES.SUB_CATEGORIES.ARRAY;
   routes.pop();
+  routes.push(ROUTES.DEPARTMENTS);
   const paths = routes.flat().map(({ path }) => ({
     params: {
       category: path?.split('/')[1],
-      subCategory: [path?.split('/')[2], '1'],
+      subCategory: [path?.split('/')[2], path?.split('/')[3] || '', '1'],
     },
   }));
   return { paths, fallback: true };

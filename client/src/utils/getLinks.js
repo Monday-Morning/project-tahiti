@@ -80,6 +80,33 @@ const USER = {
   ONBOARDING: '/onboarding',
 };
 
+const DEPARTMENTS = {
+  BIOTECHNOLOGY_AND_BIOMEDICAL:
+    '/campus/academics/biotechnology_and_biomedical/1',
+  CERAMIC: '/campus/academics/ceramic/1',
+  CHEMICAL: '/campus/academics/chemical/1',
+  CIVIL: '/campus/academics/civil/1',
+  COMPUTER_SCIENCE: '/campus/academics/computer_science/1',
+  CHEMISTRY: '/campus/academics/chemistry/1',
+  HUMANITIES_AND_SOCIAL_SCIENCES:
+    '/campus/academics/humanities_and_social_sciences/1',
+  LIFE_SCIENCE: '/campus/academics/life_science/1',
+  MATHEMATICS: '/campus/academics/mathematics/1',
+  PHYSICS_AND_ASTRONOMY: '/campus/academics/physics_and_astronomy/1',
+  ELECTRICAL: '/campus/academics/electrical/1',
+  ELECTRONICS_AND_COMMUNICATION:
+    '/campus/academics/electronics_and_communication/1',
+  FOOD_PROCESS: '/campus/academics/food_process/1',
+  INDUSTRIAL_DESIGN: '/campus/academics/industrial_design/1',
+  MECHANICAL: '/campus/academics/mechanical/1',
+  METALLURGICAL_AND_MATERIALS:
+    '/campus/academics/metallurgical_and_materials/1',
+  MINING: '/campus/academics/mining/1',
+  PLANNING_AND_ARCHITECTURE: '/campus/academics/planning_and_architecture/1',
+  SCHOOL_OF_MANAGEMENT: '/campus/academics/school_of_management/1',
+  EARTH_AND_ATMOSPHERIC: '/campus/academics/earth_and_atmospheric/1',
+};
+
 const ERROR = {
   NOT_FOUND: '/error/404',
 };
@@ -91,5 +118,6 @@ export default Object.freeze({
   INTERACTIONS,
   GENERAL,
   USER,
+  DEPARTMENTS,
   ERROR,
 });
