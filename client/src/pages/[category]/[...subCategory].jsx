@@ -22,6 +22,7 @@ const CategoryPage = ({
   subCategoryDetails,
   articleList,
   countOfArticles,
+  department,
   pageNumber,
   isError,
 }) => {
@@ -39,9 +40,9 @@ const CategoryPage = ({
     setLoading((_val) => true);
 
     push(
-      `/${categoryName}/${subCategoryDetails?.shortName}/${
-        pageNo ?? pageNumber
-      }`,
+      `/${categoryName}/${subCategoryDetails?.shortName}${
+        department ? '/' + department : ''
+      }/${pageNo ?? pageNumber}`,
       undefined,
       { shallow: false },
     );
@@ -263,6 +264,7 @@ export async function getStaticProps({
         subCategoryDetails,
         articleList,
         countOfArticles,
+        department,
         pageNumber: parseInt(pageNumber),
       },
       revalidate:
