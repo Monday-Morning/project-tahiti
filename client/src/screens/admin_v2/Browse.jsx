@@ -15,6 +15,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import ArticleStatusMenu from '../../components/admin_v2/Browse/ArticleStatusMenu';
 import DialogBox from '../../components/admin_v2/Browse/DialogBox';
+import ArticleTags from '../../components/admin_v2/Common/Tags';
 
 import determineCategory from '../../utils/determineCategory';
 import Marginals from '../../components/admin_v2/Marginals/Marginals';
@@ -98,7 +99,15 @@ const BrowseArticle = ({ articles, totalArticles }) => {
 
   useEffect(() => {
     const rowData = _articles?.map(
-      ({ id, title, authors, categories, publishStatus, createdAt }) => {
+      ({
+        id,
+        title,
+        authors,
+        categories,
+        publishStatus,
+        createdAt,
+        adminTags,
+      }) => {
         const authorNames = authors?.map((author) => author.name).join(', ');
         const categoryNames = categories
           ?.map((category) => {
@@ -114,6 +123,7 @@ const BrowseArticle = ({ articles, totalArticles }) => {
           authorNames,
           categoryNames,
           publishStatus,
+          adminTags,
           createdAt: new Date(createdAt).toString().substring(4, 21),
         };
       },
@@ -168,6 +178,7 @@ const BrowseArticle = ({ articles, totalArticles }) => {
                   authorNames,
                   publishStatus,
                   categoryNames,
+                  adminTags,
                   createdAt,
                 }) => (
                   <StyledTableRow key={id}>
@@ -188,6 +199,14 @@ const BrowseArticle = ({ articles, totalArticles }) => {
                             edit
                           </a>
                         </Link>
+                      </Box>
+                      <Box
+                        sx={{
+                          display: 'hidden',
+                          '&:hover': { display: 'initial' },
+                        }}
+                      >
+                        <ArticleTags underlineVisible={true} tag={adminTags} />
                       </Box>
                     </StyledTableCell>
                     <StyledTableCell align='left'>

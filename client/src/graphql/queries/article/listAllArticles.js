@@ -15,6 +15,10 @@ const listAllArticles = gql`
       categories {
         number
       }
+      adminTags {
+        name
+        reference
+      }
       comments
       publishStatus
       createdAt

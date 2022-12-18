@@ -28,6 +28,7 @@ import AuthorsCard from '../../components/admin_v2/AddNew/AuthorCards';
 import CategoryCard from '../../components/admin_v2/AddNew/CategoryCard';
 import Marginals from '../../components/admin_v2/Marginals/Marginals';
 import FeaturedMedia from '../../components/admin_v2/Common/FeaturedMedia';
+import ArticleTags from '../../components/admin_v2/Common/Tags';
 
 //utils
 import explorer from '../../utils/categoryCard';
@@ -53,6 +54,7 @@ const EditArticle = ({ allUsers, article }) => {
     isInstituteRestricted,
     approvalStatus,
     coverMedia: { rectangle, square, rectangleID, squareID },
+    tags,
   } = article;
 
   const [articleTitle, setArticleTitle] = useState(title);
@@ -62,6 +64,8 @@ const EditArticle = ({ allUsers, article }) => {
   const [designTeam, setDesignTeam] = useState(designers);
   const [techTeam, setTechTeam] = useState(tech);
   const [pnfTeam, setPnfTeam] = useState(photographers);
+
+  const [tag, setTag] = useState(tags);
 
   const [coverMediaAuthors, setCoverMediaAuthors] = useState(
     rectangle?.authors || [],
@@ -277,7 +281,9 @@ const EditArticle = ({ allUsers, article }) => {
             Update
           </Button>
         </Box>
-
+        <Box sx={{ marginTop: '10px' }}>
+          <ArticleTags tag={tag} />
+        </Box>
         <Box
           style={{
             display: 'flex',
