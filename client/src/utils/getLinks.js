@@ -81,30 +81,26 @@ const USER = {
 };
 
 const DEPARTMENTS = {
-  BIOTECHNOLOGY_AND_BIOMEDICAL:
-    '/campus/academics/biotechnology_and_biomedical/1',
-  CERAMIC: '/campus/academics/ceramic/1',
-  CHEMICAL: '/campus/academics/chemical/1',
-  CIVIL: '/campus/academics/civil/1',
-  COMPUTER_SCIENCE: '/campus/academics/computer_science/1',
-  CHEMISTRY: '/campus/academics/chemistry/1',
-  HUMANITIES_AND_SOCIAL_SCIENCES:
-    '/campus/academics/humanities_and_social_sciences/1',
-  LIFE_SCIENCE: '/campus/academics/life_science/1',
-  MATHEMATICS: '/campus/academics/mathematics/1',
-  PHYSICS_AND_ASTRONOMY: '/campus/academics/physics_and_astronomy/1',
-  ELECTRICAL: '/campus/academics/electrical/1',
-  ELECTRONICS_AND_COMMUNICATION:
-    '/campus/academics/electronics_and_communication/1',
-  FOOD_PROCESS: '/campus/academics/food_process/1',
-  INDUSTRIAL_DESIGN: '/campus/academics/industrial_design/1',
-  MECHANICAL: '/campus/academics/mechanical/1',
-  METALLURGICAL_AND_MATERIALS:
-    '/campus/academics/metallurgical_and_materials/1',
-  MINING: '/campus/academics/mining/1',
-  PLANNING_AND_ARCHITECTURE: '/campus/academics/planning_and_architecture/1',
-  SCHOOL_OF_MANAGEMENT: '/campus/academics/school_of_management/1',
-  EARTH_AND_ATMOSPHERIC: '/campus/academics/earth_and_atmospheric/1',
+  BIOTECHNOLOGY_AND_BIOMEDICAL: `${SUB_CATEGORIES.CAMPUS.ACADEMICS}/biotechnology_and_biomedical`,
+  CERAMIC: `${SUB_CATEGORIES.CAMPUS.ACADEMICS}/ceramic`,
+  CHEMICAL: `${SUB_CATEGORIES.CAMPUS.ACADEMICS}/chemical`,
+  CIVIL: `${SUB_CATEGORIES.CAMPUS.ACADEMICS}/civil`,
+  COMPUTER_SCIENCE: `${SUB_CATEGORIES.CAMPUS.ACADEMICS}/computer_science`,
+  CHEMISTRY: `${SUB_CATEGORIES.CAMPUS.ACADEMICS}/chemistry`,
+  HUMANITIES_AND_SOCIAL_SCIENCES: `${SUB_CATEGORIES.CAMPUS.ACADEMICS}/humanities_and_social_sciences`,
+  LIFE_SCIENCE: `${SUB_CATEGORIES.CAMPUS.ACADEMICS}/life_science`,
+  MATHEMATICS: `${SUB_CATEGORIES.CAMPUS.ACADEMICS}/mathematics`,
+  PHYSICS_AND_ASTRONOMY: `${SUB_CATEGORIES.CAMPUS.ACADEMICS}/physics_and_astronomy`,
+  ELECTRICAL: `${SUB_CATEGORIES.CAMPUS.ACADEMICS}/electrical`,
+  ELECTRONICS_AND_COMMUNICATION: `${SUB_CATEGORIES.CAMPUS.ACADEMICS}/electronics_and_communication`,
+  FOOD_PROCESS: `${SUB_CATEGORIES.CAMPUS.ACADEMICS}/food_process`,
+  INDUSTRIAL_DESIGN: `${SUB_CATEGORIES.CAMPUS.ACADEMICS}/industrial_design`,
+  MECHANICAL: `${SUB_CATEGORIES.CAMPUS.ACADEMICS}/mechanical`,
+  METALLURGICAL_AND_MATERIALS: `${SUB_CATEGORIES.CAMPUS.ACADEMICS}/metallurgical_and_materials`,
+  MINING: `${SUB_CATEGORIES.CAMPUS.ACADEMICS}/mining`,
+  PLANNING_AND_ARCHITECTURE: `${SUB_CATEGORIES.CAMPUS.ACADEMICS}/planning_and_architecture`,
+  SCHOOL_OF_MANAGEMENT: `${SUB_CATEGORIES.CAMPUS.ACADEMICS}/school_of_management`,
+  EARTH_AND_ATMOSPHERIC: `${SUB_CATEGORIES.CAMPUS.ACADEMICS}/earth_and_atmospheric`,
 };
 
 const ERROR = {

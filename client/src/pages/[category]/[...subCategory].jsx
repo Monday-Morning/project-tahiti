@@ -205,13 +205,14 @@ const CategoryPage = ({
 };
 
 export async function getStaticProps({
-  params: {
-    category,
-    subCategory: [subCategory, department, pageNumber],
-  },
+  params: { category, subCategory },
   preview,
 }) {
   try {
+    const department = subCategory.length === 3 ? subCategory[1] : false;
+    const pageNumber =
+      subCategory.length === 3 ? subCategory[2] : subCategory[1];
+
     const categoryName = ROUTES.CATEGORIES.filter(
       ({ asyncRoutePath }) => asyncRoutePath === './Category',
     ).filter(({ shortName }) => shortName === category)[0]?.shortName;
@@ -220,10 +221,10 @@ export async function getStaticProps({
       categoryName?.toUpperCase()
     ]
       ?.filter(({ asyncRoutePath }) => asyncRoutePath === './SubCategory')
-      .filter(({ shortName }) => shortName === subCategory)[0];
+      .filter(({ shortName }) => shortName === subCategory[0])[0];
 
     const departmentDetails =
-      subCategory === 'academics' && department
+      subCategory[0] === 'academics' && department
         ? ROUTES.DEPARTMENTS.filter(
             ({ shortName }) => shortName === department,
           )[0]
@@ -288,7 +289,9 @@ export async function getStaticPaths() {
   const paths = routes.flat().map(({ path }) => ({
     params: {
       category: path?.split('/')[1],
-      subCategory: [path?.split('/')[2], path?.split('/')[3] || '', '1'],
+      subCategory: path?.split('/')[3]
+        ? [(path?.split('/')[2], path?.split('/')[3], '1')]
+        : [(path?.split('/')[2], '1')],
     },
   }));
   return { paths, fallback: true };

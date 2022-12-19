@@ -37,7 +37,7 @@ function SubCategory({
               {ROUTES.DEPARTMENTS.map(({ name, shortName, path }) => (
                 <a
                   key={shortName}
-                  href={path}
+                  href={path + '/1'}
                   style={{ textDecoration: 'none' }}
                 >
                   <SubCategories text={name} className={classes.department} />
@@ -56,7 +56,11 @@ function SubCategory({
         ) : (
           <div className={classes.departments}>
             {ROUTES.DEPARTMENTS.slice(0, 5).map(({ name, shortName, path }) => (
-              <a key={shortName} href={path} style={{ textDecoration: 'none' }}>
+              <a
+                key={shortName}
+                href={path + '/1'}
+                style={{ textDecoration: 'none' }}
+              >
                 <SubCategories text={name} className={classes.department} />
               </a>
             ))}
