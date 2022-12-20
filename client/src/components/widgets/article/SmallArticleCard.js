@@ -33,9 +33,7 @@ const SmallArticleCard = ({
     <Card className={`${classes.root} ${className}`}>
       <NewTabLink
         to={getArticleLink(article.id, article.title, {
-          isWitsdom,
-          isPhotostory,
-          isGallery,
+          isPhotostory: article.articleType === 'PHOTOSTORY' ? true : false,
         })}
         className={classes.imgContainer}
       >
@@ -55,9 +53,7 @@ const SmallArticleCard = ({
       <div className={classes.contentContainer}>
         <NewTabLink
           to={getArticleLink(article.id, article.title, {
-            isWitsdom,
-            isPhotostory,
-            isGallery,
+            isPhotostory: article.articleType === 'PHOTOSTORY' ? true : false,
           })}
         >
           <Typography variant='h3' className={classes.title}>

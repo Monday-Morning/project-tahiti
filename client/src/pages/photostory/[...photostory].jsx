@@ -1,50 +1,50 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
+
+// Libraries
+import { GraphClient } from '../../config/ApolloClient';
 
 // Components
 import Marginals from '../../components/marginals/Marginals';
-import Expressions from '../../screens/Expressions';
-import { GraphClient } from '../../config/ApolloClient';
-import getArticlesByCategories from '../../graphql/queries/category/getArticlesByCategories';
+import Photostory from '../../screens/Photostory';
+import ActivityIndicator from '../../components/shared/ActivityIndicator';
+
+// Queries
+import getArticleByID from '../../graphql/queries/article/getArticleByID';
+import getArticleLink, { getArticleSlug } from '../../utils/getArticleLink';
 import Custom500 from '../500';
 
-import getSpotifyAccessToken from '../../utils/getSpotifyAccessToken';
+function PhotostoryPage({ photostory, isError }) {
+  const { isFallback } = useRouter();
 
-const ExpressionsPage = ({
-  witsdom,
-  editorial,
-  spotify,
-  photostory,
-  miscellaneous,
-  isError,
-}) => {
   if (isError) {
     return (
       <>
         <Head>
           {/* <!-- =============== Primary Meta Tags =============== --> */}
-          <title> Monday Morning </title>
-          <meta name='title' content={`Monday Morning`} />
+          <title>Photostory | Monday Morning</title>
+          <meta name='title' content='Photostory | Monday Morning' />
           <meta
             name='description'
             content='Monday Morning is the official Student Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday Morning also serves as a link between the administration and the students.'
           />
           <meta
             name='keywords'
-            content={`monday morning, mondaymorning, monday morning, mm, nit rkl, nit, nit rourkela, nitr, nitrkl, rkl, rourkela`}
+            content='photostory, monday morning, mondaymorning, monday morning, mm, nit rkl, nit, nit rourkela, nitr, nitrkl, rkl, rourkela'
           />
 
           {/* <!-- =============== Open Graph / Facebook =============== --> */}
           <meta property='og:type' content='website' />
           <meta
             property='og:url'
-            content={`https://mondaymorning.nitrkl.ac.in/`}
+            content='https://mondaymorning.nitrkl.ac.in/photostory'
           />
           <meta
             property='og:site_name'
             content='Monday Morning | The Student Media Body of NIT Rourkela, India'
           />
-          <meta property='og:title' content={`Monday Morning`} />
+          <meta property='og:title' content='Photostory | Monday Morning' />
           <meta
             property='og:description'
             content='Monday Morning is the Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students.'
@@ -68,7 +68,7 @@ const ExpressionsPage = ({
           <meta property='twitter:card' content='summary_large_image' />
           <meta
             property='twitter:url'
-            content={`https://mondaymorning.nitrkl.ac.in`}
+            content='https://mondaymorning.nitrkl.ac.in/photostory'
           />
           <meta property='twitter:title' content='Monday Morning' />
           <meta
@@ -80,7 +80,7 @@ const ExpressionsPage = ({
             content='Monday Morning is the Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students.'
           />
         </Head>
-        <Custom500 />
+        <Custom500 />;
       </>
     );
   }
@@ -89,28 +89,28 @@ const ExpressionsPage = ({
     <>
       <Head>
         {/* <!-- =============== Primary Meta Tags =============== --> */}
-        <title>Expressions | Monday Morning</title>
-        <meta name='title' content='Expressions | Monday Morning' />
+        <title>Photostory | Monday Morning</title>
+        <meta name='title' content='Photostory | Monday Morning' />
         <meta
           name='description'
           content='Monday Morning is the official Student Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday Morning also serves as a link between the administration and the students.'
         />
         <meta
           name='keywords'
-          content='expressions,monday morning, mondaymorning, monday morning, mm, nit rkl, nit, nit rourkela, nitr, nitrkl, rkl, rourkela'
+          content='photostory, monday morning, mondaymorning, monday morning, mm, nit rkl, nit, nit rourkela, nitr, nitrkl, rkl, rourkela'
         />
 
         {/* <!-- =============== Open Graph / Facebook =============== --> */}
         <meta property='og:type' content='website' />
         <meta
           property='og:url'
-          content='https://mondaymorning.nitrkl.ac.in/expressions'
+          content='https://mondaymorning.nitrkl.ac.in/photostory'
         />
         <meta
           property='og:site_name'
           content='Monday Morning | The Student Media Body of NIT Rourkela, India'
         />
-        <meta property='og:title' content='Expressions | Monday Morning' />
+        <meta property='og:title' content='Photostory | Monday Morning' />
         <meta
           property='og:description'
           content='Monday Morning is the Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students.'
@@ -134,7 +134,7 @@ const ExpressionsPage = ({
         <meta property='twitter:card' content='summary_large_image' />
         <meta
           property='twitter:url'
-          content='https://mondaymorning.nitrkl.ac.in/expressions'
+          content='https://mondaymorning.nitrkl.ac.in/photostory'
         />
         <meta property='twitter:title' content='Monday Morning' />
         <meta
@@ -146,78 +146,55 @@ const ExpressionsPage = ({
           content='Monday Morning is the Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students.'
         />
       </Head>
-      <Marginals>
-        <Expressions
-          witsdom={witsdom}
-          photostory={photostory}
-          editorial={editorial}
-          miscellaneous={miscellaneous}
-        />
-      </Marginals>
+      {isFallback || !photostory ? (
+        <ActivityIndicator size={150} />
+      ) : (
+        <Marginals>
+          <Photostory photostory={photostory} />
+        </Marginals>
+      )}
     </>
   );
-};
+}
 
-// export async function getServerSideProps() {
-//   return {
-//     redirect: {
-//       destination: '/comingSoon',
-//       permanent: false,
-//     },
-//   };
-// }
-
-export async function getStaticProps() {
+export async function getStaticProps({
+  params: {
+    photostory: [photostoryId, photostorySlug],
+  },
+  preview,
+}) {
   try {
     const {
-      data: { getArticlesByCategories: witsdom },
+      data: { getArticleByID: photostory },
     } = await GraphClient.query({
-      query: getArticlesByCategories,
-      variables: { categoryNumbers: 61, limit: 3 },
+      query: getArticleByID,
+      variables: { id: photostoryId },
     });
 
-    const {
-      data: { getArticlesByCategories: photostory },
-    } = await GraphClient.query({
-      query: getArticlesByCategories,
-      variables: { categoryNumbers: 62, limit: 5 },
-    });
+    if (!photostory) {
+      return {
+        notFound: true,
+      };
+    }
 
-    const {
-      data: {
-        getArticlesByCategories: [editorial],
-      },
-    } = await GraphClient.query({
-      query: getArticlesByCategories,
-      variables: { categoryNumbers: 66, limit: 3 },
-    });
-
-    const {
-      data: {
-        getArticlesByCategories: [miscellaneous],
-      },
-    } = await GraphClient.query({
-      query: getArticlesByCategories,
-      variables: { categoryNumbers: 67, limit: 3 },
-    });
-
-    const accessToken = await getSpotifyAccessToken();
-    const podcastId = '7ljgcbXzt4VQRJ1SLIECNf';
-    const offset = 0;
-    const limit = 5;
-    const showUrl = `https://api.spotify.com/v1/shows/${podcastId}/episodes?offset=${offset}&limit=${limit}&market=ES`;
-
-    const { items: spotify } = await fetch(showUrl, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    }).then((res) => {
-      return res.json();
-    });
+    if (photostorySlug !== getArticleSlug(photostory.title)) {
+      return {
+        redirect: {
+          destination: getArticleLink(photostoryId, photostory.title),
+          permanent: false,
+        },
+      };
+    }
 
     return {
-      props: { witsdom, photostory, editorial, spotify, miscellaneous },
+      props: {
+        key: photostoryId,
+        photostory,
+      },
+      revalidate:
+        preview || photostory.publishStatus === 'PUBLISHED'
+          ? 10
+          : 60 * 60 * 24 * 30, // 30 Days
     };
   } catch (err) {
     return {
@@ -227,4 +204,12 @@ export async function getStaticProps() {
     };
   }
 }
-export default ExpressionsPage;
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  };
+}
+
+export default PhotostoryPage;
