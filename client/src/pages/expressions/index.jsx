@@ -8,10 +8,13 @@ import { GraphClient } from '../../config/ApolloClient';
 import getArticlesByCategories from '../../graphql/queries/category/getArticlesByCategories';
 import Custom500 from '../500';
 
+import getSpotifyAccessToken from '../../utils/getSpotifyAccessToken';
+
 const ExpressionsPage = ({
   witsdom,
-  photostory,
   editorial,
+  spotify,
+  photostory,
   miscellaneous,
   isError,
 }) => {
@@ -198,7 +201,24 @@ export async function getStaticProps() {
       variables: { categoryNumbers: 67, limit: 3 },
     });
 
-    return { props: { witsdom, photostory, editorial, miscellaneous } };
+    const accessToken = await getSpotifyAccessToken();
+    const podcastId = '7ljgcbXzt4VQRJ1SLIECNf';
+    const offset = 0;
+    const limit = 5;
+    const showUrl = `https://api.spotify.com/v1/shows/${podcastId}/episodes?offset=${offset}&limit=${limit}&market=ES`;
+
+    const { items: spotify } = await fetch(showUrl, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }).then((res) => {
+      return res.json();
+    });
+
+    return {
+      props: { witsdom, photostory, editorial, spotify, miscellaneous },
+    };
   } catch (err) {
     return {
       props: {
