@@ -22,7 +22,13 @@ import ROUTES from '../utils/getRoutes';
 // Placeholders
 import { CAROUSEL } from '../assets/placeholder/guide';
 
-function Expressions({ witsdom, photostory, editorial, miscellaneous }) {
+function Expressions({
+  witsdom,
+  photostory,
+  spotify,
+  editorial,
+  miscellaneous,
+}) {
   const classes = useStyles();
 
   const CONTENT = [
@@ -61,11 +67,11 @@ function Expressions({ witsdom, photostory, editorial, miscellaneous }) {
       container: true,
       section: <ArticleCardStack articleList={editorial} />,
     },
-    // {
-    //   name: 'Podcasts',
-    //   container: true,
-    //   section: <PodcastList />,
-    // },
+    {
+      name: 'Podcasts',
+      container: true,
+      section: <PodcastList spotify={spotify} />,
+    },
     {
       name: 'Miscellaneous',
       container: true,
@@ -110,7 +116,7 @@ function Expressions({ witsdom, photostory, editorial, miscellaneous }) {
               <SectionTitle
                 heading={name}
                 link={shortName}
-                path={path + '/1'}
+                path={path.includes('http') ? path : path + '/1'}
                 container={!container}
               />
               {section}
