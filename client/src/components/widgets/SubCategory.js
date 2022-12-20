@@ -35,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       padding: '3px 8px',
     },
-    
   },
 
   label: {
