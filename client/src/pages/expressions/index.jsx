@@ -217,7 +217,7 @@ export async function getStaticProps() {
     });
 
     return {
-      props: { witsdom, photostory, editorial, spotify, miscellaneous },
+      props: { witsdom, photostory, editorial, miscellaneous },
     };
   } catch (err) {
     return {
