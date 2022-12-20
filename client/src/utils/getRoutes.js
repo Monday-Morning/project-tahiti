@@ -250,14 +250,14 @@ const EXPRESSIONS = [
     idNumber: 61,
     exact: true,
   },
-  // {
-  //   name: 'Photostory',
-  //   shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.PHOTOSTORY.split('/')[2],
-  //   path: LINKS.SUB_CATEGORIES.EXPRESSIONS.PHOTOSTORY,
-  //   asyncRoutePath: './SubCategory',
-  //   idNumber: 62,
-  //   exact: true,
-  // },
+  {
+    name: 'Photostory',
+    shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.PHOTOSTORY.split('/')[2],
+    path: LINKS.SUB_CATEGORIES.EXPRESSIONS.PHOTOSTORY,
+    asyncRoutePath: './SubCategory',
+    idNumber: 62,
+    exact: true,
+  },
   // {
   //   name: 'Gallery',
   //   shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.GALLERY.split('/')[2],
