@@ -150,6 +150,7 @@ const ExpressionsPage = ({
         <Expressions
           witsdom={witsdom}
           photostory={photostory}
+          spotify={spotify}
           editorial={editorial}
           miscellaneous={miscellaneous}
         />
