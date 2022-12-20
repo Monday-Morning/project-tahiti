@@ -5,12 +5,12 @@ import { ButtonBase } from '@mui/material';
 
 import makeStyles from '@mui/styles/makeStyles';
 
-const SubCategories = ({ text, isRed }) => {
+const SubCategories = ({ text, isRed, onclick }) => {
   const classes = useStyles({ isRed });
 
   return (
     <div className={classes.container}>
-      <ButtonBase type='button' className={classes.button}>
+      <ButtonBase type='button' className={classes.button} onClick={onclick}>
         <span className={classes.label}> {text} </span>
       </ButtonBase>
     </div>
@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       padding: '3px 8px',
     },
+    
   },
 
   label: {
@@ -47,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     color: ({ isRed }) =>
       isRed ? theme.palette.secondary.neutral20 : theme.palette.secondary.main,
     [theme.breakpoints.down('md')]: {
-      fontSize: '14px',
+      fontSize: '16px',
       lineHeight: '20px',
     },
   },

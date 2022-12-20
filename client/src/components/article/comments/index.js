@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // libraries
-import { Typography } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { Element } from 'react-scroll';
 
@@ -32,7 +32,7 @@ const Comments = () => {
   };
 
   return (
-    <div className={classes.container}>
+    <Container className={classes.container}>
       <Element name='commentBox'>
         <Typography variant='h2'>Comment</Typography>
 
@@ -65,7 +65,7 @@ const Comments = () => {
           </Typography>
         )}
       </Element>
-    </div>
+    </Container>
   );
 };
 
@@ -74,5 +74,9 @@ export default Comments;
 const useStyles = makeStyles(() => ({
   container: {
     marginTop: '2rem',
+  },
+  commentToggle: {
+    cursor: 'pointer',
+    marginTop: '1rem',
   },
 }));

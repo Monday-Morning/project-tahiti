@@ -33,6 +33,7 @@ const useStyles = makeStyles(() => ({
     fontStyle: 'italic',
     fontWeight: '400',
     textAlign: 'justify',
+    hyphens: 'auto',
   },
   heading: {
     fontWeight: '700',

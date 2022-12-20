@@ -1,84 +1,50 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
+// Libraries
 import { GraphClient } from '../../config/ApolloClient';
 
 // Components
-import ActivityIndicator from '../../components/shared/ActivityIndicator';
-import SubCategory from '../../screens/SubCategory';
 import Marginals from '../../components/marginals/Marginals';
+import Photostory from '../../screens/Photostory';
+import ActivityIndicator from '../../components/shared/ActivityIndicator';
 
-// Utils
-import ROUTES from '../../utils/getRoutes';
-
-// Graphql
-import getArticlesByCategories from '../../graphql/queries/category/getArticlesByCategories';
-import countOfArticlesBySubCategory from '../../graphql/queries/subcategory/countOfArticlesBySubCategory';
+// Queries
+import getArticleByID from '../../graphql/queries/article/getArticleByID';
+import getArticleLink, { getArticleSlug } from '../../utils/getArticleLink';
 import Custom500 from '../500';
 
-const CategoryPage = ({
-  categoryName,
-  subCategoryDetails,
-  articleList,
-  countOfArticles,
-  department,
-  pageNumber,
-  isError,
-}) => {
-  const { isFallback, push } = useRouter();
-
-  const [pageNo, setPageNo] = useState(pageNumber);
-  const [isLoading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (isLoading ?? true === true) {
-      setLoading((_val) => false);
-      return;
-    }
-
-    setLoading((_val) => true);
-
-    push(
-      `/${categoryName}/${subCategoryDetails?.shortName}${
-        department ? '/' + department : ''
-      }/${pageNo ?? pageNumber}`,
-      undefined,
-      { shallow: false },
-    );
-  }, [pageNo, articleList, subCategoryDetails?.idNumber]);
-
-  const handleChange = (event, value) => {
-    setPageNo(value);
-  };
+function PhotostoryPage({ photostory, isError }) {
+  const { isFallback } = useRouter();
 
   if (isError) {
     return (
       <>
         <Head>
           {/* <!-- =============== Primary Meta Tags =============== --> */}
-          <title> Monday Morning </title>
-          <meta name='title' content={`Monday Morning`} />
+          <title>Photostory | Monday Morning</title>
+          <meta name='title' content='Photostory | Monday Morning' />
           <meta
             name='description'
             content='Monday Morning is the official Student Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday Morning also serves as a link between the administration and the students.'
           />
           <meta
             name='keywords'
-            content={`monday morning, mondaymorning, monday morning, mm, nit rkl, nit, nit rourkela, nitr, nitrkl, rkl, rourkela`}
+            content='photostory, monday morning, mondaymorning, monday morning, mm, nit rkl, nit, nit rourkela, nitr, nitrkl, rkl, rourkela'
           />
 
           {/* <!-- =============== Open Graph / Facebook =============== --> */}
           <meta property='og:type' content='website' />
           <meta
             property='og:url'
-            content={`https://mondaymorning.nitrkl.ac.in/`}
+            content='https://mondaymorning.nitrkl.ac.in/photostory'
           />
           <meta
             property='og:site_name'
             content='Monday Morning | The Student Media Body of NIT Rourkela, India'
           />
-          <meta property='og:title' content={`Monday Morning`} />
+          <meta property='og:title' content='Photostory | Monday Morning' />
           <meta
             property='og:description'
             content='Monday Morning is the Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students.'
@@ -102,7 +68,7 @@ const CategoryPage = ({
           <meta property='twitter:card' content='summary_large_image' />
           <meta
             property='twitter:url'
-            content={`https://mondaymorning.nitrkl.ac.in`}
+            content='https://mondaymorning.nitrkl.ac.in/photostory'
           />
           <meta property='twitter:title' content='Monday Morning' />
           <meta
@@ -114,7 +80,7 @@ const CategoryPage = ({
             content='Monday Morning is the Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students.'
           />
         </Head>
-        <Custom500 />
+        <Custom500 />;
       </>
     );
   }
@@ -123,34 +89,28 @@ const CategoryPage = ({
     <>
       <Head>
         {/* <!-- =============== Primary Meta Tags =============== --> */}
-        <title>{subCategoryDetails?.name} | Monday Morning</title>
-        <meta
-          name='title'
-          content={`${subCategoryDetails?.name} | Monday Morning`}
-        />
+        <title>Photostory | Monday Morning</title>
+        <meta name='title' content='Photostory | Monday Morning' />
         <meta
           name='description'
           content='Monday Morning is the official Student Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday Morning also serves as a link between the administration and the students.'
         />
         <meta
           name='keywords'
-          content={`${subCategoryDetails?.shortName},monday morning, mondaymorning, monday morning, mm, nit rkl, nit, nit rourkela, nitr, nitrkl, rkl, rourkela`}
+          content='photostory, monday morning, mondaymorning, monday morning, mm, nit rkl, nit, nit rourkela, nitr, nitrkl, rkl, rourkela'
         />
 
         {/* <!-- =============== Open Graph / Facebook =============== --> */}
         <meta property='og:type' content='website' />
         <meta
           property='og:url'
-          content={`https://mondaymorning.nitrkl.ac.in/${subCategoryDetails?.shortName}`}
+          content='https://mondaymorning.nitrkl.ac.in/photostory'
         />
         <meta
           property='og:site_name'
           content='Monday Morning | The Student Media Body of NIT Rourkela, India'
         />
-        <meta
-          property='og:title'
-          content={`${subCategoryDetails?.name} | Monday Morning`}
-        />
+        <meta property='og:title' content='Photostory | Monday Morning' />
         <meta
           property='og:description'
           content='Monday Morning is the Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students.'
@@ -174,7 +134,7 @@ const CategoryPage = ({
         <meta property='twitter:card' content='summary_large_image' />
         <meta
           property='twitter:url'
-          content={`https://mondaymorning.nitrkl.ac.in/${subCategoryDetails?.shortName}`}
+          content='https://mondaymorning.nitrkl.ac.in/photostory'
         />
         <meta property='twitter:title' content='Monday Morning' />
         <meta
@@ -186,92 +146,55 @@ const CategoryPage = ({
           content='Monday Morning is the Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students.'
         />
       </Head>
-      {!isLoading && !isFallback && articleList ? (
-        <Marginals>
-          <SubCategory
-            articleList={articleList}
-            categoryName={categoryName}
-            subCategoryDetails={subCategoryDetails}
-            pageNo={pageNo ?? pageNumber}
-            totalPages={Math.ceil(countOfArticles / 7)}
-            handleChange={handleChange}
-          />
-        </Marginals>
-      ) : (
+      {isFallback || !photostory ? (
         <ActivityIndicator size={150} />
+      ) : (
+        <Marginals>
+          <Photostory photostory={photostory} />
+        </Marginals>
       )}
     </>
   );
-};
+}
 
 export async function getStaticProps({
-  params: { category, subCategory },
+  params: {
+    photostory: [photostoryId, photostorySlug],
+  },
   preview,
 }) {
   try {
-    const department = subCategory.length === 3 ? subCategory[1] : false;
-    const pageNumber =
-      subCategory.length === 3 ? subCategory[2] : subCategory[1];
+    const {
+      data: { getArticleByID: photostory },
+    } = await GraphClient.query({
+      query: getArticleByID,
+      variables: { id: photostoryId },
+    });
 
-    const categoryName = ROUTES.CATEGORIES.filter(
-      ({ asyncRoutePath }) => asyncRoutePath === './Category',
-    ).filter(({ shortName }) => shortName === category)[0]?.shortName;
-
-    const subCategoryDetails = ROUTES.SUB_CATEGORIES.OBJECT[
-      categoryName?.toUpperCase()
-    ]
-      ?.filter(({ asyncRoutePath }) => asyncRoutePath === './SubCategory')
-      .filter(({ shortName }) => shortName === subCategory[0])[0];
-
-    const departmentDetails =
-      subCategory[0] === 'academics' && department
-        ? ROUTES.DEPARTMENTS.filter(
-            ({ shortName }) => shortName === department,
-          )[0]
-        : false;
-
-    if (!subCategoryDetails) {
+    if (!photostory) {
       return {
         notFound: true,
       };
     }
 
-    const {
-      data: { getArticlesByCategories: articleList },
-    } = await GraphClient.query({
-      query: getArticlesByCategories,
-      variables: {
-        categoryNumbers: [
-          departmentDetails?.idNumber || subCategoryDetails?.idNumber,
-        ],
-        limit: 7,
-        offset: 7 * (parseInt(pageNumber) - 1),
-      },
-    });
-
-    const {
-      data: { countOfArticlesBySubCategory: countOfArticles },
-    } = await GraphClient.query({
-      query: countOfArticlesBySubCategory,
-      variables: {
-        categoryNumber:
-          departmentDetails?.idNumber || subCategoryDetails?.idNumber,
-      },
-    });
+    if (photostorySlug !== getArticleSlug(photostory.title)) {
+      return {
+        redirect: {
+          destination: getArticleLink(photostoryId, photostory.title),
+          permanent: false,
+        },
+      };
+    }
 
     return {
       props: {
-        categoryName,
-        subCategoryDetails,
-        articleList,
-        countOfArticles,
-        department,
-        pageNumber: parseInt(pageNumber),
+        key: photostoryId,
+        photostory,
       },
       revalidate:
-        preview || new Date(Date.now()).getDay() < 3
-          ? 60 * 60 * 1
-          : 60 * 60 * 24 * 2, // 1 Hour or 2 Days
+        preview || photostory.publishStatus === 'PUBLISHED'
+          ? 10
+          : 60 * 60 * 24 * 30, // 30 Days
     };
   } catch (err) {
     return {
@@ -283,18 +206,10 @@ export async function getStaticProps({
 }
 
 export async function getStaticPaths() {
-  let routes = ROUTES.SUB_CATEGORIES.ARRAY;
-  routes.pop();
-  routes.push(ROUTES.DEPARTMENTS);
-  const paths = routes.flat().map(({ path }) => ({
-    params: {
-      category: path?.split('/')[1],
-      subCategory: path?.split('/')[3]
-        ? [(path?.split('/')[2], path?.split('/')[3], '1')]
-        : [(path?.split('/')[2], '1')],
-    },
-  }));
-  return { paths, fallback: true };
+  return {
+    paths: [],
+    fallback: 'blocking',
+  };
 }
 
-export default CategoryPage;
+export default PhotostoryPage;
