@@ -13,12 +13,12 @@ import { PODCAST } from '../../assets/placeholder/podcast';
 // Images
 import podcastCover from '../../assets/images/podcast_cover.png';
 
-const PodcastList = () => {
+const PodcastList = ({ spotify }) => {
   const Podcast = PODCAST;
   const classes = useStyles();
   return (
     <Container>
-      <div className={classes.wrapper}>
+      {/* <div className={classes.wrapper}>
         <Paper>
           <Table>
             <TableHead>
@@ -57,11 +57,11 @@ const PodcastList = () => {
             </TableBody>
           </Table>
         </Paper>
-      </div>
+      </div> */}
 
       <div>
         <iframe
-          src='https://open.spotify.com/embed/episode/7zq8d36zXutK0XXU5xp8kO?utm_source=generator'
+          src={`https://open.spotify.com/embed/episode/${spotify[0].id}`}
           width='100%'
           height='152'
           frameBorder='0'

@@ -99,7 +99,7 @@ function ArchivePage({ archiveArticles, year, month, isError }) {
         />
         <meta
           name='keywords'
-          content='archieve, monday morning, mondaymorning, monday morning, mm, nit rkl, nit, nit rourkela, nitr, nitrkl, rkl, rourkela'
+          content='archive, monday morning, mondaymorning, monday morning, mm, nit rkl, nit, nit rourkela, nitr, nitrkl, rkl, rourkela'
         />
 
         {/* <!-- =============== Open Graph / Facebook =============== --> */}
