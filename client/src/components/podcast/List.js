@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
+import theme from '../../config/themes/light';
 
 // Libraries
-import { Container, Paper } from '@mui/material';
+import { Container, Paper, useMediaQuery } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { Table, TableHead, TableBody } from '@mui/material';
 import { Heart, PlayCircle } from 'react-feather';
@@ -15,19 +16,20 @@ import podcastCover from '../../assets/images/podcast_cover.png';
 
 const PodcastList = ({ spotify }) => {
   const Podcast = PODCAST;
+  const smallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const mediumScreen = useMediaQuery(theme.breakpoints.down('md'));
   const classes = useStyles();
   return (
     <Container>
-      {/* <div className={classes.wrapper}>
+      <div className={classes.wrapper}>
         <Paper>
           <Table>
             <TableHead>
               <tr className={classes.headerRow}>
                 <th></th>
                 <th>Title</th>
-                <th>Tags</th>
                 <th>Time</th>
-                <th>Favorite</th>
+                <th>Fav</th>
               </tr>
             </TableHead>
             <TableBody>
@@ -37,15 +39,11 @@ const PodcastList = ({ spotify }) => {
                     <td>
                       <PlayCircle />
                     </td>
-                    <td>{podcast.title}</td>
                     <td>
-                      {podcast.tags.map((tag, key, podcast) => {
-                        if (key === podcast.length - 1) {
-                          return <span key={key}> {tag} </span>;
-                        } else {
-                          return <span key={key}> {tag}, </span>;
-                        }
-                      })}
+                      {podcast.title.substring(
+                        0,
+                        smallScreen ? 10 : mediumScreen ? 50 : 80,
+                      )}
                     </td>
                     <td>{podcast.duration}</td>
                     <td>
@@ -57,11 +55,11 @@ const PodcastList = ({ spotify }) => {
             </TableBody>
           </Table>
         </Paper>
-      </div> */}
+      </div>
 
       <div>
         <iframe
-          src={`https://open.spotify.com/embed/episode/${spotify[0].id}`}
+          // src={`https://open.spotify.com/embed/episode/${spotify[0].id}`}
           width='100%'
           height='152'
           frameBorder='0'
@@ -86,6 +84,9 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '1.5rem',
       textAlign: 'center',
       padding: '0.75rem',
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '16px',
+      },
     },
     '& th:nth-child(2)': {
       textAlign: 'start',
@@ -105,6 +106,7 @@ const useStyles = makeStyles((theme) => ({
     '& td:nth-child(1)': {
       position: 'absolute',
       botton: '0rem',
+      marginTop: '0.1rem',
     },
     '& td:nth-child(2)': {
       textAlign: 'start',
