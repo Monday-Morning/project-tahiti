@@ -11,9 +11,9 @@ const Podcast = () => (
   <>
     <Container>
       <BackLink />
+      <LatestPodcast />
+      <PodcastList />
     </Container>
-    <LatestPodcast />
-    <PodcastList />
   </>
 );
 
