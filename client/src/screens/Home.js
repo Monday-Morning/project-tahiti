@@ -22,17 +22,44 @@ function Home({ issues, squiggles, witsdom, photostory, youtubeLinks }) {
 
   const { featured } = latestIssue;
 
+  const featuredArticles = featured.filter((item) => item !== null);
+
+  {
+    let number = 0;
+    while (
+      featuredArticles.length < 5 &&
+      number < latestIssue.articles.length
+    ) {
+      !featuredArticles.some(
+        (item) => item?.id === latestIssue.articles[number]?.id,
+      )
+        ? featuredArticles.push(latestIssue.articles[number++])
+        : number++;
+    }
+
+    number = 0;
+    while (featuredArticles < 5 && number < secondLatestIssue.articles.length) {
+      featuredArticles.push(secondLatestIssue.featured[number++]);
+    }
+  }
+
   const articles = [
     ...latestIssue.articles.filter(
-      (item1) => !featured.some((item2) => item1.id === item2.id),
+      (item1) =>
+        item1 !== null &&
+        !featuredArticles.some((item2) => item1?.id === item2?.id),
     ),
-    ...secondLatestIssue.articles,
+    ...secondLatestIssue.articles.filter(
+      (item1) =>
+        item1 !== null &&
+        !featuredArticles.some((item2) => item1?.id === item2?.id),
+    ),
   ];
 
   return (
     <>
       <Container>
-        <ArticleGrid articles={featured} />
+        <ArticleGrid articles={featuredArticles} />
         <Squiggles data={squiggles} />
         <>
           <ArticleCardStack
