@@ -84,7 +84,9 @@ function MainBox({
   };
   return (
     <div className={classes.root}>
-      <Typography variant='h2'>{option__names[option]}</Typography>
+      <Typography variant='h2' className={classes.option}>
+        {option__names[option]}
+      </Typography>
       <Card className={classes.wrapper}>{renderOption()}</Card>
     </div>
   );
@@ -93,6 +95,11 @@ function MainBox({
 export default MainBox;
 
 const useStyles = makeStyles((theme) => ({
+  option: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+  },
   root: {
     display: 'flex',
     flexDirection: 'column',

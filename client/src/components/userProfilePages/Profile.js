@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { useMediaQuery } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 import { Edit2 } from 'react-feather';
@@ -6,77 +6,93 @@ import { PROFILEPAGES } from '../../assets/placeholder/profile';
 import theme from '../../config/themes/light';
 import profile from '../../assets/images/profile/profilePic.png';
 import pp from '../../assets/images/profile.png';
-import ImageBox from './widgets/ImageBox';
-import Image from 'next/image';
+import Image from 'next/dist/client/image';
+import EditTextfield from '../userProfilePages/widgets/EditTextfield';
 
 function Profile() {
   const classes = useStyles(theme);
-  return (
-    <div className={classes.root}>
-      <div className={classes.wrapper}>
-        <div className={classes.content}>
-          <div className={classes.profilePic}>
-            <Image
-              src={pp}
-              alt=''
-              height='115px'
-              width='115px'
-              className={classes.pp}
-            />
-            <Edit2 size={30} className={classes.invertedIcon} />
-          </div>
-          <div className={classes.infoBlocks}>
-            {PROFILEPAGES.PROFILE.INFO.map(({ head, value }, key) => (
-              <div className={classes.infoBlock} key={key}>
-                <div className={classes.infoHead}>
-                  <Typography variant='h2'>{head}</Typography>
-                  <div className={classes.editButton}>
-                    <Edit2 size={18} />
-                  </div>
-                </div>
-                <Typography className={classes.subInfo}>{value}</Typography>
-              </div>
-            ))}
-          </div>
-        </div>
-        <ImageBox widthImage='44.3%' img={profile} />
-      </div>
-      <div className={classes.subLine}>
-        <div className={classes.emailSub}>
-          Your email is not yet verified. <span>Verify Now</span>
-        </div>
+  const matches = useMediaQuery(theme.breakpoints.down('sm'));
 
-        <div className={classes.joined}>
-          <span>Joined on:</span> {PROFILEPAGES.PROFILE.JOINDATE}
+  return (
+    <>
+      <div className={classes.root}>
+        <div className={classes.option}>Profile</div>
+        <div className={classes.wrapper}>
+          <div className={classes.content}>
+            <div className={classes.profilePic}>
+              <Image
+                src={pp}
+                alt=''
+                height={!matches ? '115px' : '70px'}
+                width={!matches ? '115px' : '70px'}
+                className={classes.pp}
+              />
+              <Edit2
+                size={!matches ? '30' : '25'}
+                className={classes.invertedIcon}
+              />
+            </div>
+            <div className={classes.infoBlocks}>
+              {PROFILEPAGES.PROFILE.INFO.map(({ head, value }) => (
+                <EditTextfield
+                  className={classes.editTextfield}
+                  head={head}
+                  value={value}
+                />
+              ))}
+            </div>
+          </div>
+          <Image
+            width={!matches ? '400px' : '210px'}
+            height={!matches ? '400px' : '210px'}
+            src={profile}
+          />
+        </div>
+        <div className={classes.subLine}>
+          <div className={classes.emailSub}>
+            Your email is not yet verified. <span>Verify Now</span>
+          </div>
+          <div className={classes.joined}>
+            <span>Joined on:</span> {PROFILEPAGES.PROFILE.JOINDATE}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
 export default Profile;
 
 const useStyles = makeStyles((theme) => ({
+  option: {
+    display: 'none',
+    [theme.breakpoints.down('sm')]: {
+      display: 'inline-flex',
+      fontWeight: '600',
+      marginTop: '15px',
+      fontFamily: 'IBM Plex Sans',
+      fontSize: '18px',
+    },
+  },
   root: {
     display: 'flex',
-
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       flexWrap: 'wrap',
       paddingInline: '5%',
       paddingBottom: '7%',
+      alignItems: 'flex-start',
     },
   },
   wrapper: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    marginTop: '2rem',
-    width: '84%',
-    [theme.breakpoints.down('sm')]: {
-      justifyContent: 'center',
-      marginLeft: '0',
+    [theme.breakpoints.up('sm')]: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      marginTop: '2rem',
+      padding: '10px',
+      width: '84%',
     },
   },
   content: {
@@ -84,12 +100,22 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     [theme.breakpoints.down('sm')]: {
       alignItems: 'center',
+      display: 'inline-flex',
+      flexDirection: 'row-reverse',
+      alignItems: 'flex-start',
+      justifyContent: 'space-between',
+      paddingRight: '10px',
     },
   },
   profilePic: {
     height: '115px',
     width: '115px',
     position: 'relative',
+    [theme.breakpoints.down('sm')]: {
+      marginRight: '10px',
+      height: '70px',
+      width: '70px',
+    },
   },
   pp: {
     borderRadius: '50%',
@@ -100,6 +126,12 @@ const useStyles = makeStyles((theme) => ({
     right: '-3px',
     borderRadius: '50%',
     background: theme.palette.secondary.neutral50,
+    [theme.breakpoints.down('sm')]: {
+      position: 'absolute',
+      bottom: '-0.5px',
+      right: '-0.5px',
+      borderRadius: '50%',
+    },
   },
   infoBlocks: {
     display: 'flex',
@@ -107,34 +139,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     [theme.breakpoints.down('sm')]: {
       alignItems: 'center',
+      display: 'inline',
+      marginBottom: '20px',
     },
   },
-  infoBlock: {
-    marginTop: '2.5rem',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  infoHead: {
-    display: 'flex',
-    [theme.breakpoints.down('sm')]: {
-      justifyContent: 'center',
-    },
-  },
-  editButton: {
-    display: 'flex',
-    alignItems: 'center',
-    marginLeft: '0.25rem',
-  },
-  subInfo: {
-    textAlign: 'center',
-    fontSize: '1.5rem',
-    fontWeight: '400',
-    marginTop: '0.25rem',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '1.25rem',
-    },
-  },
-
   subLine: {
     fontFamily: 'Source Sans Pro',
     width: '84%',
@@ -143,8 +151,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'baseline',
     flexWrap: 'wrap',
     color: theme.palette.common.black,
-
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       marginTop: '1rem',
       flexDirection: 'column',
       justifyContent: 'space-around',
@@ -157,10 +164,10 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '400',
     color: theme.palette.secondary.neutral80,
     [theme.breakpoints.down('sm')]: {
-      fontSize: '1rem',
+      fontSize: '16px',
+      lineHeight: '24px',
       whiteSpace: 'wrap',
       textAlign: 'center',
-      marginTop: '0.4rem',
     },
     '& span': {
       '&:hover': {
@@ -169,7 +176,7 @@ const useStyles = makeStyles((theme) => ({
       whiteSpace: 'nowrap',
       fontSize: '1rem',
       textDecoration: 'underline',
-      color: theme.palette.secondary.main,
+      color: '#006DCC',
     },
   },
   joined: {
@@ -180,6 +187,11 @@ const useStyles = makeStyles((theme) => ({
     '& span': {
       fontWeight: '600',
       whiteSpace: 'nowrap',
+      [theme.breakpoints.down('sm')]: {
+        fontWeight: '700',
+        fontSize: '14px',
+        fontFamily: 'Source Sans Pro',
+      },
     },
   },
 }));
