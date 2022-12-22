@@ -16,7 +16,7 @@ function Comment({ comment }) {
     <Card className={classes.commentCard}>
       <CardContent>
         <Grid container>
-          <Grid item sm={1}>
+          <Grid item sm={1} className={classes.image}>
             <Image src={user} alt='User' />
           </Grid>
 
@@ -36,5 +36,8 @@ const useStyles = makeStyles((theme) => ({
   commentCard: {
     marginTop: '1rem',
     boxShadow: theme.shadows[0],
+  },
+  image: {
+    alignSelf: 'center',
   },
 }));

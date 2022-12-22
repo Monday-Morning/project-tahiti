@@ -13,6 +13,7 @@ import ArticleCardStack from '../components/widgets/article/ArticleCardStack.js'
 import BigCarousel from '../components/widgets/BigCarousel';
 import SectionTitle from '../components/categories/SectionTitle';
 import Witsdom from '../components/expressions/Witsdom';
+import ArticleGrid from '../components/widgets/article/ArticleGrid';
 // import FeaturedArticles from '../components/homepage/FeaturedArticles';
 
 // Utils
@@ -21,7 +22,13 @@ import ROUTES from '../utils/getRoutes';
 // Placeholders
 import { CAROUSEL } from '../assets/placeholder/guide';
 
-function Expressions({ witsdom, editorial, miscellaneous }) {
+function Expressions({
+  witsdom,
+  photostory,
+  spotify,
+  editorial,
+  miscellaneous,
+}) {
   const classes = useStyles();
 
   const CONTENT = [
@@ -38,17 +45,12 @@ function Expressions({ witsdom, editorial, miscellaneous }) {
         </>
       ),
     },
-    // {
-    //   name: 'Photostory',
-    //   container: true,
-    //   section: (
-    //     <Section
-    //       heading='Photostory'
-    //       article={witsdom}
-    //       articleContiner={<Witsdom />}
-    //     />
-    //   ),
-    // },
+    {
+      name: 'Photostory',
+      container: true,
+      section: <ArticleGrid articles={photostory[0]} />,
+    },
+
     // {
     //   name: 'Gallery',
     //   container: false,
@@ -65,11 +67,11 @@ function Expressions({ witsdom, editorial, miscellaneous }) {
       container: true,
       section: <ArticleCardStack articleList={editorial} />,
     },
-    // {
-    //   name: 'Podcasts',
-    //   container: true,
-    //   section: <PodcastList />,
-    // },
+    {
+      name: 'Podcasts',
+      container: true,
+      section: <PodcastList spotify={spotify} />,
+    },
     {
       name: 'Miscellaneous',
       container: true,
@@ -114,7 +116,7 @@ function Expressions({ witsdom, editorial, miscellaneous }) {
               <SectionTitle
                 heading={name}
                 link={shortName}
-                path={path + '/1'}
+                path={path.includes('http') ? path : path + '/1'}
                 container={!container}
               />
               {section}

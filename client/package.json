@@ -8,8 +8,8 @@
     "start:prod": "next start",
     "build": "next build",
     "lint": "next lint",
-    "format:check": "prettier --list-different --config \"./client/.prettierrc\" --ignore-path \"./client/.prettierignore\" --no-error-on-unmatched-pattern \"./client/.\"",
-    "format": "prettier --write --config \"./client/.prettierrc\" --ignore-path \"./client/.prettierignore\" --no-error-on-unmatched-pattern \"./client/.\""
+    "format:check": "prettier --list-different --config \"./.prettierrc\" --ignore-path \"./.prettierignore\" --no-error-on-unmatched-pattern \"./.\"",
+    "format": "prettier --write --config \"./.prettierrc\" --ignore-path \"./.prettierignore\" --no-error-on-unmatched-pattern \"./.\""
   },
   "keywords": [],
   "author": "",

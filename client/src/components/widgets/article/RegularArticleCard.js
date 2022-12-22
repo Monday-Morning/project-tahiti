@@ -35,9 +35,7 @@ const ArticleCard = ({
     <Card className={`${classes.root} ${className}`}>
       <NewTabLink
         to={getArticleLink(article.id, article.title, {
-          isWitsdom,
-          isPhotostory,
-          isGallery,
+          isPhotostory: article.articleType === 'PHOTOSTORY' ? true : false,
         })}
         className={classes.coverContainer}
         style={{
@@ -88,9 +86,7 @@ const ArticleCard = ({
 
         <NewTabLink
           to={getArticleLink(article.id, article.title, {
-            isWitsdom,
-            isPhotostory,
-            isGallery,
+            isPhotostory: article.articleType === 'PHOTOSTORY' ? true : false,
           })}
         >
           <Typography className={classes.title} variant='h2'>
