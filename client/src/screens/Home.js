@@ -34,13 +34,9 @@ function Home({ issues, squiggles, witsdom, photostory, youtubeLinks }) {
       ...secondLatestIssue.featured,
     ];
 
-    console.log(backupArticles);
-
     featuredArticles.push(
       ...backupArticles.slice(0, 5 - featuredArticles.length),
     );
-
-    console.log(featuredArticles);
   }
 
   const articles = [
