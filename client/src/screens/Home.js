@@ -24,23 +24,23 @@ function Home({ issues, squiggles, witsdom, photostory, youtubeLinks }) {
 
   const featuredArticles = featured.filter((item) => item !== null);
 
-  {
-    let number = 0;
-    while (
-      featuredArticles.length < 5 &&
-      number < latestIssue.articles.length
-    ) {
-      !featuredArticles.some(
-        (item) => item?.id === latestIssue.articles[number]?.id,
-      )
-        ? featuredArticles.push(latestIssue.articles[number++])
-        : number++;
-    }
+  if (featuredArticles.length < 5) {
+    const backupArticles = [
+      ...latestIssue.articles.filter(
+        (item1) =>
+          item1 !== null &&
+          !featuredArticles.some((item2) => item1?.id === item2?.id),
+      ),
+      ...secondLatestIssue.featured,
+    ];
 
-    number = 0;
-    while (featuredArticles < 5 && number < secondLatestIssue.articles.length) {
-      featuredArticles.push(secondLatestIssue.featured[number++]);
-    }
+    console.log(backupArticles);
+
+    featuredArticles.push(
+      ...backupArticles.slice(0, 5 - featuredArticles.length),
+    );
+
+    console.log(featuredArticles);
   }
 
   const articles = [
