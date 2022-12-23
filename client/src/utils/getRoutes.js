@@ -250,14 +250,14 @@ const EXPRESSIONS = [
     idNumber: 61,
     exact: true,
   },
-  // {
-  //   name: 'Photostory',
-  //   shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.PHOTOSTORY.split('/')[2],
-  //   path: LINKS.SUB_CATEGORIES.EXPRESSIONS.PHOTOSTORY,
-  //   asyncRoutePath: './SubCategory',
-  //   idNumber: 62,
-  //   exact: true,
-  // },
+  {
+    name: 'Photostory',
+    shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.PHOTOSTORY.split('/')[2],
+    path: LINKS.SUB_CATEGORIES.EXPRESSIONS.PHOTOSTORY,
+    asyncRoutePath: './SubCategory',
+    idNumber: 62,
+    exact: true,
+  },
   // {
   //   name: 'Gallery',
   //   shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.GALLERY.split('/')[2],
@@ -282,14 +282,14 @@ const EXPRESSIONS = [
     idNumber: 66,
     exact: true,
   },
-  // {
-  //   name: 'Podcasts',
-  //   shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.PODCASTS.split('/')[2],
-  //   path: LINKS.SUB_CATEGORIES.EXPRESSIONS.PODCASTS,
-  //   asyncRoutePath: './Podcast',
-  //   idNumber: 65,
-  //   exact: true,
-  // },
+  {
+    name: 'Podcasts',
+    shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.PODCASTS.split('/')[2],
+    path: LINKS.SUB_CATEGORIES.EXPRESSIONS.PODCASTS,
+    asyncRoutePath: './Podcast',
+    idNumber: 65,
+    exact: true,
+  },
   {
     name: 'Miscellaneous',
     shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.MISCELLANEOUS.split('/')[2],
@@ -413,6 +413,150 @@ const USER = [
   },
 ];
 
+// ========================= DEPARTMENTS =========================
+const DEPARTMENTS = [
+  {
+    name: 'Biotechnology and Biomedical',
+    shortName: LINKS.DEPARTMENTS.BIOTECHNOLOGY_AND_BIOMEDICAL.split('/')[3],
+    path: LINKS.DEPARTMENTS.BIOTECHNOLOGY_AND_BIOMEDICAL,
+    idNumber: 1101,
+    exact: true,
+  },
+  {
+    name: 'Ceramic',
+    shortName: LINKS.DEPARTMENTS.CERAMIC.split('/')[3],
+    path: LINKS.DEPARTMENTS.CERAMIC,
+    idNumber: 1102,
+    exact: true,
+  },
+  {
+    name: 'Chemical',
+    shortName: LINKS.DEPARTMENTS.CHEMICAL.split('/')[3],
+    path: LINKS.DEPARTMENTS.CHEMICAL,
+    idNumber: 1103,
+    exact: true,
+  },
+  {
+    name: 'Civil',
+    shortName: LINKS.DEPARTMENTS.CIVIL.split('/')[3],
+    path: LINKS.DEPARTMENTS.CIVIL,
+    idNumber: 1104,
+    exact: true,
+  },
+  {
+    name: 'Computer Science',
+    shortName: LINKS.DEPARTMENTS.COMPUTER_SCIENCE.split('/')[3],
+    path: LINKS.DEPARTMENTS.COMPUTER_SCIENCE,
+    idNumber: 1105,
+    exact: true,
+  },
+  {
+    name: 'Chemistry',
+    shortName: LINKS.DEPARTMENTS.CHEMISTRY.split('/')[3],
+    path: LINKS.DEPARTMENTS.CHEMISTRY,
+    idNumber: 1106,
+    exact: true,
+  },
+  {
+    name: 'Humanities and Social Sciences',
+    shortName: LINKS.DEPARTMENTS.HUMANITIES_AND_SOCIAL_SCIENCES.split('/')[3],
+    path: LINKS.DEPARTMENTS.HUMANITIES_AND_SOCIAL_SCIENCES,
+    idNumber: 1107,
+    exact: true,
+  },
+  {
+    name: 'Life Science',
+    shortName: LINKS.DEPARTMENTS.LIFE_SCIENCE.split('/')[3],
+    path: LINKS.DEPARTMENTS.LIFE_SCIENCE,
+    idNumber: 1108,
+    exact: true,
+  },
+  {
+    name: 'Mathematics',
+    shortName: LINKS.DEPARTMENTS.MATHEMATICS.split('/')[3],
+    path: LINKS.DEPARTMENTS.MATHEMATICS,
+    idNumber: 1109,
+    exact: true,
+  },
+  {
+    name: 'Physics and Astronomy',
+    shortName: LINKS.DEPARTMENTS.PHYSICS_AND_ASTRONOMY.split('/')[3],
+    path: LINKS.DEPARTMENTS.PHYSICS_AND_ASTRONOMY,
+    idNumber: 1110,
+    exact: true,
+  },
+  {
+    name: 'Electrical',
+    shortName: LINKS.DEPARTMENTS.ELECTRICAL.split('/')[3],
+    path: LINKS.DEPARTMENTS.ELECTRICAL,
+    idNumber: 1111,
+    exact: true,
+  },
+  {
+    name: 'Electronics and Communication',
+    shortName: LINKS.DEPARTMENTS.ELECTRONICS_AND_COMMUNICATION.split('/')[3],
+    path: LINKS.DEPARTMENTS.ELECTRONICS_AND_COMMUNICATION,
+    idNumber: 1112,
+    exact: true,
+  },
+  {
+    name: 'Food Process',
+    shortName: LINKS.DEPARTMENTS.FOOD_PROCESS.split('/')[3],
+    path: LINKS.DEPARTMENTS.FOOD_PROCESS,
+    idNumber: 1113,
+    exact: true,
+  },
+  {
+    name: 'Industrial Design',
+    shortName: LINKS.DEPARTMENTS.INDUSTRIAL_DESIGN.split('/')[3],
+    path: LINKS.DEPARTMENTS.INDUSTRIAL_DESIGN,
+    idNumber: 1114,
+    exact: true,
+  },
+  {
+    name: 'Mechanical',
+    shortName: LINKS.DEPARTMENTS.MECHANICAL.split('/')[3],
+    path: LINKS.DEPARTMENTS.MECHANICAL,
+    idNumber: 1115,
+    exact: true,
+  },
+  {
+    name: 'Metallurgical and Materials',
+    shortName: LINKS.DEPARTMENTS.METALLURGICAL_AND_MATERIALS.split('/')[3],
+    path: LINKS.DEPARTMENTS.METALLURGICAL_AND_MATERIALS,
+    idNumber: 1116,
+    exact: true,
+  },
+  {
+    name: 'Mining',
+    shortName: LINKS.DEPARTMENTS.MINING.split('/')[3],
+    path: LINKS.DEPARTMENTS.MINING,
+    idNumber: 1117,
+    exact: true,
+  },
+  {
+    name: 'Planning and Architecture',
+    shortName: LINKS.DEPARTMENTS.PLANNING_AND_ARCHITECTURE.split('/')[3],
+    path: LINKS.DEPARTMENTS.PLANNING_AND_ARCHITECTURE,
+    idNumber: 1118,
+    exact: true,
+  },
+  {
+    name: 'School of Management',
+    shortName: LINKS.DEPARTMENTS.SCHOOL_OF_MANAGEMENT.split('/')[3],
+    path: LINKS.DEPARTMENTS.SCHOOL_OF_MANAGEMENT,
+    idNumber: 1119,
+    exact: true,
+  },
+  {
+    name: 'Earth and Atmospheric',
+    shortName: LINKS.DEPARTMENTS.EARTH_AND_ATMOSPHERIC.split('/')[3],
+    path: LINKS.DEPARTMENTS.EARTH_AND_ATMOSPHERIC,
+    idNumber: 1120,
+    exact: true,
+  },
+];
+
 // ========================= REDIRECTS =========================
 const REDIRECTS = [
   {
@@ -440,5 +584,6 @@ export default Object.freeze({
   INTERACTIONS,
   GENERAL,
   USER,
+  DEPARTMENTS,
   REDIRECTS,
 });

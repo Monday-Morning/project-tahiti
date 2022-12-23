@@ -48,15 +48,17 @@ const Options = () => {
           <a href='#'>Download</a>
         </span>
       </div>
-      <div className={classes.optionWrapper}>
-        <Image src={icon2} alt='Icon' className={classes.icons} />
-        <Typography variant='h3' className={classes.option2}>
-          SAC and Clubs Info
-        </Typography>
-        <Typography variant='h3' className={classes.arrow}>
-          <i className='fas fa-chevron-right'></i>
-        </Typography>
-      </div>
+      <Link href='/sac' className={classes.links} passHref>
+        <div className={classes.optionWrapper}>
+          <Image src={icon2} alt='Icon' className={classes.icons} />
+          <Typography variant='h3' className={classes.option2}>
+            SAC and Clubs Info
+          </Typography>
+          <Typography variant='h3' className={classes.arrow}>
+            <i className='fas fa-chevron-right'></i>
+          </Typography>
+        </div>
+      </Link>
       <div className={classes.optionWrapper}>
         <Image src={icon3} alt='Icon' className={classes.icons} />
         <Typography variant='h3' className={classes.option2}>

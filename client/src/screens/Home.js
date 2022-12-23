@@ -64,9 +64,8 @@ function Home({ issues, squiggles, witsdom, photostory, youtubeLinks }) {
           )}
         </>
       </Container>
+      <Banner photostory={photostory} witsdom={witsdom} />
       <Container>
-        <Banner photostory={photostory} witsdom={witsdom} />
-
         {/* <div style={{ marginTop: 35 }}> */}
         {/* <SocialMedia youtubeLinks={youtubeLinks} /> */}
         <Trending />
