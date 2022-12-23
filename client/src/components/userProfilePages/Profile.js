@@ -1,4 +1,4 @@
-import { useMediaQuery } from '@mui/material';
+import { Container, useMediaQuery } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 import { Edit2 } from 'react-feather';
@@ -14,7 +14,7 @@ function Profile() {
   const matches = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <>
+    <Container>
       <div className={classes.root}>
         <div className={classes.option}>Profile</div>
         <div className={classes.wrapper}>
@@ -57,7 +57,7 @@ function Profile() {
           </div>
         </div>
       </div>
-    </>
+    </Container>
   );
 }
 
