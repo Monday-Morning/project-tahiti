@@ -19,10 +19,10 @@ const IssuePage = ({ isError, issues }) => {
 
 export default IssuePage;
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(ctx) {
   try {
     const requiredPermissions = ['issue.list.unpublished'];
-    const userPermissions = await getAccess({ context });
+    const userPermissions = await getAccess({ ctx });
 
     if (!userPermissions.data) {
       return {
@@ -46,7 +46,7 @@ export async function getServerSideProps(context) {
       };
     }
 
-    const cookies = parseCookies(context);
+    const cookies = parseCookies(ctx);
     GraphClient.setLink(getApolloLink(cookies.firebaseToken));
 
     const {
