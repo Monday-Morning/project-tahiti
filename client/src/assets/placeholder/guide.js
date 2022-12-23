@@ -10,9 +10,9 @@ export const OPTIONS = Object.freeze({
     'Commn. Directory',
     'Print Issue',
     'SAC & Clubs Info',
-    'Hall Info',
     'Health Info',
-    'Archives',
+    // 'Hall Info',
+    // 'Archives',
   ],
 });
 
@@ -44,13 +44,13 @@ export const CAROUSEL = Object.freeze([img, img, img, img, img]);
 
 export const MINI_PRINT = Object.freeze([
   {
-    img: nitR_1,
-    link: 'https://drive.google.com/file/d/1vs_Uel9_ARSc9w1DPnowKau5Z9OAy4Kc/view?usp=sharing',
+    img: imgPrint,
+    link: 'https://drive.google.com/file/d/1wK9g_auqkSnFZdQpKdyHCQA8ECF33FFA/view?usp=sharing',
     desc: '',
   },
   {
-    img: imgPrint,
-    link: 'https://drive.google.com/file/d/1wK9g_auqkSnFZdQpKdyHCQA8ECF33FFA/view?usp=sharing',
+    img: nitR_1,
+    link: 'https://drive.google.com/file/d/1vs_Uel9_ARSc9w1DPnowKau5Z9OAy4Kc/view?usp=sharing',
     desc: '',
   },
   {

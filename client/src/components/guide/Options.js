@@ -61,7 +61,7 @@ const Options = () => {
           </Typography>
         </div>
       </Link>
-      <div className={classes.optionWrapper}>
+      {/* <div className={classes.optionWrapper}>
         <Image src={icon3} alt='Icon' className={classes.icons} />
         <Typography variant='h3' className={classes.option2}>
           Hall Info
@@ -69,7 +69,7 @@ const Options = () => {
         <Typography variant='h3' className={classes.arrow}>
           <i className='fas fa-chevron-right'></i>
         </Typography>
-      </div>
+      </div> */}
       <Link href='/info/health' passHref>
         <div className={classes.optionWrapper}>
           <Image src={icon4} alt='Icon' className={classes.icons} />
@@ -137,8 +137,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '18px',
     marginLeft: '32px',
     [theme.breakpoints.down('sm')]: {
-      visibility: 'hidden',
-      width: '0px',
+      marginLeft: '12px',
+      marginTop: '2px',
+      fontSize: '14px',
     },
   },
   option2: {
