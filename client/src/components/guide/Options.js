@@ -45,7 +45,9 @@ const Options = () => {
           Communication Directory
         </Typography>
         <span className={classes.link}>
-          <a href='#'>Download</a>
+          <a href='https://drive.google.com/file/d/1ppdhllH19r6j7iOSYXRvJRU-pSOXhh3_/view'>
+            Download
+          </a>
         </span>
       </div>
       <Link href='/sac' className={classes.links} passHref>
