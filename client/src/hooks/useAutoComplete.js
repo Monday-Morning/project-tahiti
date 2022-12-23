@@ -11,7 +11,7 @@ const useAutoComplete = (searchText, limit) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setSearchKeyword(searchText);
-    }, 800);
+    }, 300);
 
     return () => {
       clearTimeout(timer);
