@@ -142,6 +142,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '1rem',
     textAlign: 'justify',
     hyphens: 'auto',
+    wordBreak: 'break-word',
     fontWeight: 'normal',
   },
   heading: {
