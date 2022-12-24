@@ -142,7 +142,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '1rem',
     textAlign: 'justify',
     hyphens: 'auto',
-    wordBreak: 'break-word',
+    wordBreak: 'normal',
+    overflowWrap: 'anywhere',
     fontWeight: 'normal',
   },
   heading: {
