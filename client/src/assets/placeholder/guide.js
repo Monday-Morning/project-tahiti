@@ -6,7 +6,7 @@ import nitR_2 from '../images/guide/nitR-101(2).png';
 
 export const OPTIONS = Object.freeze({
   tags: [
-    'NITR-101',
+    // 'NITR-101',
     'Commn. Directory',
     'Print Issue',
     'SAC & Clubs Info',
