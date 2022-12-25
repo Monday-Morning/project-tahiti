@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     margin: '2rem 0',
     [theme.breakpoints.down('sm')]: {
-      width: '80vw',
+      width: '100%',
     },
   },
   bolder: {
