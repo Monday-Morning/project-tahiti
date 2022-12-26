@@ -62,7 +62,7 @@ function Home({ issues, squiggles, witsdom, photostory, youtubeLinks }) {
             articleList={articles.slice(0, !tabletMatches ? 3 : 4)}
             title='This Issue'
           />
-          {(articles.length > !tabletMatches ? 3 : 4) && (
+          {articles.length >= (!tabletMatches ? 6 : 8) && (
             <ArticleCardStack
               articleList={
                 !tabletMatches ? articles.slice(3, 6) : articles.slice(4, 8)
@@ -77,7 +77,7 @@ function Home({ issues, squiggles, witsdom, photostory, youtubeLinks }) {
             <Calendar />
           </Grid>
         </Grid> */}
-          {(articles.length > !tabletMatches ? 6 : 8) && (
+          {articles.length >= (!tabletMatches ? 9 : 12) && (
             <ArticleCardStack
               articleList={articles.slice(
                 !tabletMatches ? 6 : 8,
