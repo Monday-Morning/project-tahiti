@@ -52,6 +52,8 @@ function Home({ issues, squiggles, witsdom, photostory, youtubeLinks }) {
     ),
   ];
 
+  const numberOfStacks = Math.floor(articles.length / (!tabletMatches ? 3 : 4));
+
   return (
     <>
       <Container>
@@ -77,14 +79,16 @@ function Home({ issues, squiggles, witsdom, photostory, youtubeLinks }) {
             <Calendar />
           </Grid>
         </Grid> */}
-          {articles.length >= (!tabletMatches ? 9 : 12) && (
-            <ArticleCardStack
-              articleList={articles.slice(
-                !tabletMatches ? 6 : 8,
-                articles.length,
-              )}
-            />
-          )}
+          {Array.from(Array(numberOfStacks).keys())
+            .slice(2)
+            .map((index) => (
+              <ArticleCardStack
+                articleList={articles.slice(
+                  !tabletMatches ? 3 * index : 4 * index,
+                  !tabletMatches ? 3 * (index + 1) : 4 * (index + 1),
+                )}
+              />
+            ))}
         </>
       </Container>
       <Banner photostory={photostory} witsdom={witsdom} />
