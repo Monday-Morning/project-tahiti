@@ -68,10 +68,10 @@ const useStyles = makeStyles((theme) => ({
     position: 'sticky',
     position: '-webkit-sticky',
     top: 20,
-    marginTop: '1rem',
+    marginTop: '32.5rem',
     paddingLeft: '4rem',
-    [theme.breakpoints.down('lg')]: {
-      marginTop: '2rem',
+    [theme.breakpoints.between('md', 'lg')]: {
+      marginTop: '31rem',
       paddingLeft: '1rem',
       paddingRight: '2rem',
     },
