@@ -27,6 +27,7 @@ function VerifyEmail(props) {
     toggleIsEmailVerified,
     verifyEmail,
     onNext,
+    onBack,
   } = props;
 
   return (
@@ -60,6 +61,28 @@ function VerifyEmail(props) {
           </>
         )}
 
+        {!isEmailVerified && (
+          <Typography className={classes.note} variant='body2'>
+            {ONBOARDING.VERIFY_EMAIL.NOTE}
+          </Typography>
+        )}
+      </Grid>
+
+      <Grid className={classes.imgContainer} item sm={12} md={12} lg={5}>
+        <Image
+          className={classes.img}
+          src={verifyEmailImg}
+          alt='Verify Email'
+        />
+      </Grid>
+
+      <Grid className={classes.buttonContainer} item xs={12}>
+        <Typography className={classes.back} variant='body1' onClick={onBack}>
+          Back
+        </Typography>
+        <Typography className={classes.skip} variant='body1' onClick={onNext}>
+          {isEmailVerified ? 'Resend Verification mail' : 'Skip'}
+        </Typography>
         <Button
           containerStyles={classes.button}
           text={
@@ -75,18 +98,6 @@ function VerifyEmail(props) {
                 }
               : onNext
           }
-        />
-
-        <Typography className={classes.note} variant='body2'>
-          {ONBOARDING.VERIFY_EMAIL.NOTE}
-        </Typography>
-      </Grid>
-
-      <Grid className={classes.imgContainer} item sm={12} md={12} lg={5}>
-        <Image
-          className={classes.img}
-          src={verifyEmailImg}
-          alt='Verify Email'
         />
       </Grid>
     </Grid>
@@ -104,7 +115,7 @@ const useStyles = makeStyles(() => ({
     paddingLeft: 40,
   },
   content: {
-    height: '100%',
+    height: '80%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
@@ -122,13 +133,22 @@ const useStyles = makeStyles(() => ({
   },
   emailInput: {
     width: '85%',
+    borderRadius: '20px',
+    paddingLeft: '20px',
+  },
+  buttonContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    gap: 24,
   },
   button: {
-    width: '85%',
-    padding: 10,
+    whiteSpace: 'nowrap',
+    flex: '0 1 0',
+    padding: '10px 20px',
   },
   imgContainer: {
-    height: '100%',
+    height: '80%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -139,7 +159,16 @@ const useStyles = makeStyles(() => ({
     marginRight: 10,
   },
   note: {
-    marginTop: 40,
-    color: theme.palette.common.black,
+    marginTop: 24,
+    color: theme.palette.common.neutral50,
+  },
+  skip: {
+    cursor: 'pointer',
+    color: theme.palette.secondary.neutral50,
+  },
+  back: {
+    marginRight: 'auto',
+    cursor: 'pointer',
+    color: theme.palette.secondary.neutral50,
   },
 }));

@@ -12,12 +12,13 @@ import NewsletterSignup from '../components/onboarding/stages/NewsletterSignup';
 // Hooks
 import useInput from '../hooks/useInput';
 import useToggle from '../hooks/useToggle';
+import Pagination from '../components/onboarding/Pagination';
 
 const STAGES = {
-  WELCOME: 'welcome-stage',
-  VERIFY_EMAIL: 'verify-email',
-  INTERESTED_TOPICS: 'interested-topics',
-  NEWSLETTER: 'newsletter-signup',
+  WELCOME: ['welcome-stage', 0],
+  INTERESTED_TOPICS: ['interested-topics', 1],
+  NEWSLETTER: ['newsletter-signup', 2],
+  VERIFY_EMAIL: ['verify-email', 3],
 };
 
 function Onboarding() {
@@ -53,21 +54,12 @@ function Onboarding() {
     });
 
   const renderStages = () => {
-    switch (stage) {
-      case STAGES.WELCOME:
-        return <Welcome onNext={setStageToNewsletter} onLogin={onLogin} />;
-      case STAGES.VERIFY_EMAIL:
+    switch (stage[0]) {
+      case STAGES.WELCOME[0]:
         return (
-          <VerifyEmail
-            email={email}
-            setEmail={setEmail}
-            isEmailVerified={isEmailVerified}
-            toggleIsEmailVerified={toggleIsEmailVerified}
-            verifyEmail={verifyEmail}
-            onNext={setStageToInterestedTopics}
-          />
+          <Welcome onNext={setStageToInterestedTopics} onLogin={onLogin} />
         );
-      case STAGES.INTERESTED_TOPICS:
+      case STAGES.INTERESTED_TOPICS[0]:
         return (
           <SelectTopics
             selectedTopics={selectedTopics}
@@ -76,12 +68,25 @@ function Onboarding() {
             onNext={setStageToNewsletter}
           />
         );
-      case STAGES.NEWSLETTER:
+      case STAGES.NEWSLETTER[0]:
         return (
           <NewsletterSignup
             email={newsletterEmail}
             setEmail={setNewsletterEmail}
             signupNewsletter={signupNewsletter}
+            onNext={setStageToVerifyEmail}
+            onBack={setStageToInterestedTopics}
+          />
+        );
+      case STAGES.VERIFY_EMAIL[0]:
+        return (
+          <VerifyEmail
+            email={email}
+            setEmail={setEmail}
+            isEmailVerified={isEmailVerified}
+            toggleIsEmailVerified={toggleIsEmailVerified}
+            verifyEmail={verifyEmail}
+            onBack={setStageToNewsletter}
           />
         );
       default:
@@ -92,6 +97,7 @@ function Onboarding() {
   return (
     <div className={classes.screen}>
       <div className={classes.box}>{renderStages()}</div>
+      <Pagination active={stage[1]} stages={Object.keys(STAGES)} />
     </div>
   );
 }
@@ -101,19 +107,21 @@ export default Onboarding;
 const useStyles = makeStyles((theme) => ({
   screen: {
     width: '100%',
-    // height: window.innerHeight,
     height: '100vh',
-    backgroundColor: '#E5E5E5',
+    backgroundColor: '#FDFDFD',
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    gap: '108px',
   },
   box: {
     minWidth: 350,
-    minHeight: 500,
+    minHeight: 468,
     width: '790px',
     height: '468px',
     backgroundColor: theme.palette.background.default,
+    boxShadow: theme.shadows[0],
     borderRadius: 5,
     overflow: 'hidden',
   },

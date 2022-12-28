@@ -24,7 +24,7 @@ function VerifyEmail(props) {
   const [isSigned, setIsSigned] = useState(false);
 
   // Props
-  const { email, setEmail, signupNewsletter } = props;
+  const { email, setEmail, signupNewsletter, onNext, onBack } = props;
 
   const onSignup = () => {
     setIsSigned(true);
@@ -64,16 +64,6 @@ function VerifyEmail(props) {
           </>
         )}
 
-        <Button
-          text={
-            isSigned
-              ? ONBOARDING.NEWSLETTER.BUTTON.SECONDARY
-              : ONBOARDING.NEWSLETTER.BUTTON.PRIMARY
-          }
-          onClick={isSigned ? () => router.push('/') : onSignup}
-          containerStyles={classes.button}
-        />
-
         <Typography className={classes.note} variant='body2'>
           {ONBOARDING.NEWSLETTER.NOTE}
         </Typography>
@@ -81,6 +71,36 @@ function VerifyEmail(props) {
 
       <Grid className={classes.imgContainer} item sm={12} md={12} lg={5}>
         <Image className={classes.img} src={newsletter} alt='Verify Email' />
+      </Grid>
+
+      <Grid className={classes.buttonContainer} item xs={12}>
+        {!isSigned && (
+          <>
+            <Typography
+              className={classes.back}
+              variant='body1'
+              onClick={onBack}
+            >
+              Back
+            </Typography>
+            <Typography
+              className={classes.skip}
+              variant='body1'
+              onClick={onNext}
+            >
+              Skip
+            </Typography>
+          </>
+        )}
+        <Button
+          text={
+            isSigned
+              ? ONBOARDING.NEWSLETTER.BUTTON.SECONDARY
+              : ONBOARDING.NEWSLETTER.BUTTON.PRIMARY
+          }
+          onClick={isSigned ? onNext : onSignup}
+          containerStyles={classes.button}
+        />
       </Grid>
     </Grid>
   );
@@ -97,7 +117,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: 40,
   },
   content: {
-    height: '100%',
+    height: '80%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
@@ -115,12 +135,20 @@ const useStyles = makeStyles((theme) => ({
   },
   emailInput: {
     width: '85%',
+    borderRadius: '20px',
+    paddingLeft: '20px',
+  },
+  buttonContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    gap: 24,
   },
   button: {
-    width: '85%',
+    width: '30%',
   },
   imgContainer: {
-    height: '100%',
+    height: '80%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -131,8 +159,8 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 10,
   },
   note: {
-    marginTop: 40,
-    color: theme.palette.common.black,
+    marginTop: 24,
+    color: theme.palette.common.neutral50,
   },
   iconContainer: {
     width: '80%',
@@ -143,5 +171,14 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     color: theme.palette.accent.green,
+  },
+  skip: {
+    cursor: 'pointer',
+    color: theme.palette.secondary.neutral50,
+  },
+  back: {
+    marginRight: 'auto',
+    cursor: 'pointer',
+    color: theme.palette.secondary.neutral50,
   },
 }));

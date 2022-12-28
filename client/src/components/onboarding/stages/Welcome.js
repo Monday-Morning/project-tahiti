@@ -12,12 +12,12 @@ import logo from '../../../assets/images/logo.png';
 import { ONBOARDING } from '../../../assets/placeholder/onboarding';
 
 //Context
-import authCotext from '../../../context/auth/AuthContext';
+import authContext from '../../../context/auth/AuthContext';
 
-function Welcome() {
+function Welcome({ onNext, onLogin }) {
   const classes = useStyles();
 
-  const { loginWithToken } = useContext(authCotext);
+  const { loginWithToken } = useContext(authContext);
   useEffect(() => {
     function handleCredentialResponse(response) {
       loginWithToken(response.credential);
@@ -52,11 +52,9 @@ function Welcome() {
       </Typography>
 
       <div id='buttonDiv'></div>
-      <Link href='/' passHref style={{ textDecoration: 'none' }}>
-        <Typography className={classes.skip} variant='body1'>
-          Skip
-        </Typography>
-      </Link>
+      <Typography className={classes.skip} variant='body1' onClick={onNext}>
+        Skip
+      </Typography>
       <Typography className={classes.terms} variant='body2'>
         {ONBOARDING.WELCOME.TERMS}
       </Typography>
@@ -109,6 +107,7 @@ const useStyles = makeStyles((theme) => ({
   skip: {
     marginTop: 10,
     marginBottom: 50,
+    cursor: 'pointer',
     color: theme.palette.secondary.neutral50,
   },
   terms: {

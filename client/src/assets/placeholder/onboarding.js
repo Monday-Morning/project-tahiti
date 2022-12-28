@@ -20,7 +20,7 @@ export const ONBOARDING = Object.freeze({
       PRIMARY: 'Get Verification Link',
       SECONDARY: 'Check again and continue',
     },
-    NOTE: 'Note: This only works if you’re a current student/employee of \n NIT Rourkela with a valid institute email id.',
+    NOTE: 'Note: This only works if you’re a current student/ employee of \n NIT Rourkela with a valid institute email id.',
   },
   INTERESTED_TOPICS: {
     PRIMARY: {
@@ -52,14 +52,14 @@ export const ONBOARDING = Object.freeze({
   },
   NEWSLETTER: {
     PRIMARY: {
-      TITLE: 'Newsletter Signup',
+      TITLE: 'Signup for Newsletter',
       CONTENT:
-        'Sign up for the MM newsletter and get news and \n articles delivered straight to your mailbox!',
+        'You’ve successfully signed up for the newsletter. \n Be the first to know the happenings at NITR and \n never miss out on an issue release !',
     },
     SECONDARY: {
       TITLE: 'Email',
       CONTENT:
-        'You’ve successfully signed up for the newsletter. \n Be the first to know the happenings at NITR and \n never miss out on an issue release !',
+        'Sign up for the MM newsletter and get news and \n articles delivered straight to your mailbox!',
     },
     EMAIL_PLACEHOLDER: 'instituteID@nitrkl.ac.in',
     BUTTON: {
