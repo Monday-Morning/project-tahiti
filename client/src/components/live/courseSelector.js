@@ -212,6 +212,6 @@ const useStyles = makeStyles(() => ({
   switch: {
     padding: '2px 8px',
     cursor: 'pointer',
-    width: '64px',
+    width: '80px',
   },
 }));
