@@ -14,6 +14,17 @@ const CourseSelector = ({ degree, handleChange, setDegree }) => {
   const classes = useStyles();
   const Desktop = useMediaQuery(theme.breakpoints.up('sm'));
 
+  const degrees = [
+    'B.Tech',
+    'M.Tech',
+    'M.Tech (Research)',
+    'Dual Degree M.Tech',
+    'M.Sc',
+    'Integrated M.Sc',
+    'PhD',
+    'School Of Management',
+  ];
+
   return (
     <>
       {Desktop ? (
@@ -23,6 +34,7 @@ const CourseSelector = ({ degree, handleChange, setDegree }) => {
           </Typography>
           <div className={classes.radioWrapper}>
             <div
+              key={'All Degrees'}
               style={{
                 display: 'flex',
                 flexDirection: 'row',
@@ -32,42 +44,98 @@ const CourseSelector = ({ degree, handleChange, setDegree }) => {
               <div className={classes.radioButton}>
                 <input
                   type='radio'
-                  checked={degree === 'B.Tech'}
+                  checked={degree === 'All Degrees'}
                   onChange={handleChange}
-                  value='B.Tech'
+                  value={'All Degrees'}
                   className={classes.radio}
                 />
               </div>
               <Typography variant='body1' className={classes.radioText}>
-                B.Tech
+                {'All Degrees'}
               </Typography>
             </div>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}
-            >
-              <div className={classes.radioButton}>
-                <input
-                  type='radio'
-                  checked={degree === 'M.Tech'}
-                  onChange={handleChange}
-                  value='M.Tech'
-                  className={classes.radio}
-                />
+            {degrees.map((deg) => (
+              <div
+                key={deg}
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}
+              >
+                <div className={classes.radioButton}>
+                  <input
+                    type='radio'
+                    checked={degree === deg}
+                    onChange={handleChange}
+                    value={deg}
+                    className={classes.radio}
+                    // TODO: remove after implementation
+                    disabled
+                  />
+                </div>
+                <Typography variant='body1' className={classes.radioText}>
+                  {deg}
+                </Typography>
               </div>
-              <Typography variant='body1' className={classes.radioText}>
-                M.Tech
-              </Typography>
-            </div>
+            ))}
+            {/* // <div
+            //   style={{
+            //     display: 'flex',
+            //     flexDirection: 'row',
+            //     alignItems: 'center',
+            //   }}
+            // >
+            //   <div className={classes.radioButton}>
+            //     <input
+            //       type='radio'
+            //       checked={degree === 'B.Tech'}
+            //       onChange={handleChange}
+            //       value='B.Tech'
+            //       className={classes.radio}
+            //     />
+            //   </div>
+            //   <Typography variant='body1' className={classes.radioText}>
+            //     B.Tech
+            //   </Typography>
+            // </div>
+            // <div
+            //   style={{
+            //     display: 'flex',
+            //     flexDirection: 'row',
+            //     alignItems: 'center',
+            //   }}
+            // >
+            //   <div className={classes.radioButton}>
+            //     <input
+            //       type='radio'
+            //       checked={degree === 'M.Tech'}
+            //       onChange={handleChange}
+            //       value='M.Tech'
+            //       className={classes.radio}
+            //     />
+            //   </div>
+            //   <Typography variant='body1' className={classes.radioText}>
+            //     M.Tech
+            //   </Typography>
+            // </div> */}
           </div>
         </>
       ) : (
         <>
           <div className={classes.placementWrapper}>
             <div
+              className={classes.switch}
+              onClick={() => setDegree('All')}
+              style={{
+                backgroundColor: degree === 'B.Tech' ? 'unset' : '#006DCC',
+                color: degree === 'B.Tech' ? 'black' : 'white',
+              }}
+            >
+              <Typography variant='body1'> All </Typography>
+            </div>
+            {/* TODO: implement */}
+            {/* <div
               className={classes.switch}
               onClick={() => setDegree('B.Tech')}
               style={{
@@ -86,7 +154,7 @@ const CourseSelector = ({ degree, handleChange, setDegree }) => {
               }}
             >
               <Typography variant='body1'> M.Tech </Typography>
-            </div>
+            </div> */}
           </div>
         </>
       )}
@@ -118,10 +186,13 @@ const useStyles = makeStyles(() => ({
     width: '8px',
     height: '8px',
     appearance: 'none',
+    // TODO: remove after implementation
+    backgroundColor: 'lightgrey',
     '&:checked': {
       backgroundColor: theme.palette.primary.blue50,
     },
   },
+
   radioText: {
     marginLeft: '4px',
     fontSize: '18px',
