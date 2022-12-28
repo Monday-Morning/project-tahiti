@@ -22,6 +22,8 @@ const NameFilter = ({ filterText, handleChange }) => {
             className={classes.filterField}
             value={filterText}
             onChange={handleChange}
+            // TODO: remove after implementation
+            disabled
           />
         </div>
         <div className={!Desktop && classes.buttonWrapper}>
@@ -52,6 +54,8 @@ const useStyles = makeStyles(() => ({
   filterField: {
     width: '300px',
     fontSize: '18px',
+    // TODO: remove after implementation
+    backgroundColor: 'lightgray',
     lineHeight: '24px',
     fontFamily: 'Source Sans Pro',
     fontWeight: theme.typography.fontWeightLight,

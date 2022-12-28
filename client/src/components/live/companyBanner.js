@@ -1,35 +1,55 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // libararies
 import { Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import Image from 'next/image';
+import getStores from '../../utils/getStores';
 
 const CompanyBanner = ({ data }) => {
   const classes = useStyles();
   const [show, setShow] = useState(false);
+
+  const [placedData, setPlacedData] = useState([]);
+
+  useEffect(() => {
+    let placed = {};
+    data.studentsRecruited.forEach((student) => {
+      if (!placed[student.degree]) {
+        placed[student.degree] = {};
+      }
+      if (!placed[student.degree][student.branch]) {
+        placed[student.degree][student.branch] = [];
+      }
+      placed[student.degree][student.branch].push(student.name);
+    });
+    setPlacedData(placed);
+  }, []);
 
   return (
     <>
       <div className={classes.active}>
         <div className={classes.companyData}>
           <div>
-            <Image
-              src={data.image}
-              alt={data.name}
-              className={classes.activeImage}
-            />
+            {data.company.logo.storePath && (
+              <Image
+                src={`${getStores[data.company.logo.store]}${
+                  data.company.logo.storePath
+                }`}
+                width={180}
+                height={180}
+                alt={data.company.name}
+                className={classes.activeImage}
+              />
+            )}
             <Typography variant='body1' className={classes.companyTitle}>
-              {data.name}
+              {data.company.name}
             </Typography>
           </div>
           <div>
             <Typography variant='body2' className={classes.companysubTitle}>
               <span style={{ color: '#005299' }}>Students Recruited: </span>
-              {data.students}
+              {data.recruits}
             </Typography>
             <Typography variant='body2' className={classes.companysubTitle}>
               <span style={{ color: '#005299' }}>CTC: </span>
@@ -44,20 +64,23 @@ const CompanyBanner = ({ data }) => {
             </Typography>
           </div>
         </div>
-        {show && (
+        {show && placedData && (
           <div className={classes.student}>
-            {data.placed.map((student) => (
-              <div key={student} className={classes.studentsData}>
+            {Object.keys(placedData).map((degree) => (
+              <div key={degree} className={classes.studentsData}>
                 <Typography variant='body2' className={classes.course}>
-                  {student.course}
+                  {degree}
                 </Typography>
-                {student.branch.map((branches) => (
-                  <div key={{ ...student, ...branches }}>
+                {Object.keys(placedData[degree]).map((branch) => (
+                  <div key={`${degree}--${branch}`}>
                     <Typography variant='body2' className={classes.branch}>
-                      {branches.branchName}
+                      {branch}
                     </Typography>
-                    {branches.students.map((studentName) => (
-                      <Typography variant='body2' key={studentName}>
+                    {placedData[degree][branch].map((studentName) => (
+                      <Typography
+                        variant='body2'
+                        key={`${degree}--${branch}--${studentName}`}
+                      >
                         {studentName}
                       </Typography>
                     ))}
@@ -110,6 +133,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'flex-start',
     padding: '0px 20px 20px 20px',
+    flexDirection: 'column',
   },
   course: {
     textDecoration: 'underline',
