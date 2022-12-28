@@ -93,4 +93,17 @@ const LivePage = () => {
   );
 };
 
+// export async function getServerSideProps() {
+/**
+ * For lan restriction, if ever required
+ * if (req.headers['x-forwarded-for']) {
+ *  ip = req.headers['x-forwarded-for'].split(',')[0];
+ * } else if (req.headers['x-real-ip']) {
+ *  ip = req.connection.remoteAddress;
+ * } else {
+ *  ip = req.connection.remoteAddress;
+ * }
+ */
+// }
+
 export default LivePage;
