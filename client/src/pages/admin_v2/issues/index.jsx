@@ -13,7 +13,7 @@ const IssuePage = ({ isError, issues }) => {
   if (isError) {
     return <Custom500 />;
   }
-  console.log(issues);
+
   return <Issues issues={issues} />;
 };
 
@@ -54,6 +54,7 @@ export async function getServerSideProps(ctx) {
     } = await GraphClient.query({
       query: getLatestIssues,
       variables: {
+        onlyPublished: false,
         limit: 10,
         offset: 0,
       },
