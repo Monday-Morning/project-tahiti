@@ -282,14 +282,14 @@ const EXPRESSIONS = [
     idNumber: 66,
     exact: true,
   },
-  // {
-  //   name: 'Podcasts',
-  //   shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.PODCASTS.split('/')[2],
-  //   path: LINKS.SUB_CATEGORIES.EXPRESSIONS.PODCASTS,
-  //   asyncRoutePath: './Podcast',
-  //   idNumber: 65,
-  //   exact: true,
-  // },
+  {
+    name: 'Podcasts',
+    shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.PODCASTS.split('/')[2],
+    path: LINKS.SUB_CATEGORIES.EXPRESSIONS.PODCASTS,
+    asyncRoutePath: './Podcast',
+    idNumber: 65,
+    exact: true,
+  },
   {
     name: 'Miscellaneous',
     shortName: LINKS.SUB_CATEGORIES.EXPRESSIONS.MISCELLANEOUS.split('/')[2],

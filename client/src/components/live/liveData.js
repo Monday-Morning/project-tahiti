@@ -1,7 +1,4 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 // libararies
@@ -16,47 +13,77 @@ import theme from '../../config/themes/light';
 import CompanyBanner from './companyBanner';
 
 // placeholder
-import { LIVE } from '../../assets/placeholder/live';
+import getStores from '../../utils/getStores';
 
-const LiveData = ({ activeCompany, setCompany, data }) => {
+const LiveData = ({ live }) => {
   const classes = useStyles();
   const Desktop = useMediaQuery(theme.breakpoints.up('sm'));
+
+  const [activeCompanyData, setActiveCompanyData] = useState(live[0]);
+  const [placedData, setPlacedData] = useState({});
+
+  useEffect(() => {
+    let placed = {};
+    if (!activeCompanyData) return;
+    activeCompanyData.studentsRecruited.forEach((student) => {
+      if (!placed[student.degree]) {
+        placed[student.degree] = {};
+      }
+      if (!placed[student.degree][student.branch]) {
+        placed[student.degree][student.branch] = [];
+      }
+      placed[student.degree][student.branch].push(student.name);
+    });
+    setPlacedData(placed);
+  }, [activeCompanyData]);
 
   return (
     <>
       {Desktop ? (
         <>
           <div className={classes.active}>
-            <div className={classes.companyData}>
-              <Image
-                src={data[activeCompany].image}
-                alt={data[activeCompany].name}
-                className={classes.activeImage}
-              />
-              <Typography variant='body1' className={classes.companyTitle}>
-                {LIVE.data[activeCompany].name}
-              </Typography>
-              <Typography variant='body2' className={classes.companysubTitle}>
-                <span style={{ color: '#005299' }}>Students Recruited: </span>
-                {data[activeCompany].students}
-              </Typography>
-              <Typography variant='body2' className={classes.companysubTitle}>
-                <span style={{ color: '#005299' }}>CTC: </span>
-                {data[activeCompany].ctc}
-              </Typography>
-            </div>
-            {data[activeCompany].placed.map((student) => (
-              <div key={student} className={classes.studentsData}>
-                <Typography variant='body2' className={classes.course}>
-                  {student.course}
+            {activeCompanyData && (
+              <div className={classes.companyData}>
+                {activeCompanyData.company.logo.storePath && (
+                  <Image
+                    src={`${getStores[activeCompanyData.company.logo.store]}${
+                      activeCompanyData.company.logo.storePath
+                    }`}
+                    width={180}
+                    height={180}
+                    // layout='fill'
+                    alt={`${activeCompanyData.company.name} Logo`}
+                    className={classes.activeImage}
+                  />
+                )}
+                <Typography variant='body1' className={classes.companyTitle}>
+                  {activeCompanyData.company.name}
                 </Typography>
-                {student.branch.map((branches) => (
-                  <div key={{ ...student, ...branches }}>
+                <Typography variant='body2' className={classes.companysubTitle}>
+                  <span style={{ color: '#005299' }}>Students Recruited: </span>
+                  {activeCompanyData.recruits}
+                </Typography>
+                <Typography variant='body2' className={classes.companysubTitle}>
+                  <span style={{ color: '#005299' }}>CTC: </span>
+                  {activeCompanyData.ctc}
+                </Typography>
+              </div>
+            )}
+            {Object.keys(placedData).map((degree) => (
+              <div key={degree} className={classes.studentsData}>
+                <Typography variant='body2' className={classes.course}>
+                  {degree}
+                </Typography>
+                {Object.keys(placedData[degree]).map((branch) => (
+                  <div key={`${degree}--${branch}`}>
                     <Typography variant='body2' className={classes.branch}>
-                      {branches.branchName}
+                      {branch}
                     </Typography>
-                    {branches.students.map((studentName) => (
-                      <Typography variant='body2' key={studentName}>
+                    {placedData[degree][branch].map((studentName) => (
+                      <Typography
+                        variant='body2'
+                        key={`${degree}--${branch}--${studentName}`}
+                      >
                         {studentName}
                       </Typography>
                     ))}
@@ -64,23 +91,41 @@ const LiveData = ({ activeCompany, setCompany, data }) => {
                 ))}
               </div>
             ))}
+            {!activeCompanyData && !live.length && (
+              <Typography variant='body1' className={classes.companyTitle}>
+                The data for the selected session is not available at the
+                moment.
+              </Typography>
+            )}
           </div>
           <div className={classes.imageContainer}>
-            {data.map((company, key) => (
+            {live.map((item, key) => (
               <div
                 key={key}
                 className={classes.imageWrapper}
                 style={{
-                  backgroundColor: activeCompany === key ? '#D9E9F7' : 'unset',
+                  backgroundColor:
+                    activeCompanyData?.id === item.id ? '#D9E9F7' : 'unset',
                 }}
-                onClick={() => setCompany(key)}
+                onClick={() => setActiveCompanyData(item)}
               >
-                <Image
-                  src={company.image}
-                  alt={company.name}
-                  key={company.name}
-                  className={classes.images}
-                />
+                {item.company.logo.storePath && (
+                  <Image
+                    src={`${getStores[item.company.logo.store]}${
+                      item.company.logo.storePath
+                    }`}
+                    width={180}
+                    height={180}
+                    alt={item.company.name}
+                    key={`${item.company.name}--${key}`}
+                    className={classes.images}
+                  />
+                )}
+                {!item.company.logo.storePath && (
+                  <Typography variant='body1' className={classes.companyTitle}>
+                    {item.company.name}
+                  </Typography>
+                )}
               </div>
             ))}
           </div>
@@ -88,9 +133,9 @@ const LiveData = ({ activeCompany, setCompany, data }) => {
       ) : (
         <>
           <Typography variant='body1' className={classes.companyNumber}>
-            Showing {LIVE.data.length} Companies
+            Showing {live.length} Companies
           </Typography>
-          {data.map((company) => (
+          {live.map((company) => (
             <CompanyBanner key={company} data={company} />
           ))}
         </>
