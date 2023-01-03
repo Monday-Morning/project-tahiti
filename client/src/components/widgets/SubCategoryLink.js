@@ -1,9 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-
-// Libraries
 import { ButtonBase } from '@mui/material';
-
 import makeStyles from '@mui/styles/makeStyles';
 
 const SubCategoryLink = ({ text, isRed, onclick, path }) => {
@@ -27,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'inline',
     textDecoration: 'none',
   },
-
   button: {
     textAlign: 'center',
     backgroundColor: ({ isRed }) =>
@@ -39,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
       padding: '3px 8px',
     },
   },
-
   label: {
     textTransform: 'capitalize',
     fontFamily: 'IBM Plex sans',
