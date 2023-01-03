@@ -93,6 +93,15 @@ const LivePage = () => {
   );
 };
 
+export async function getServerSideProps() {
+  return {
+    redirect: {
+      destination: '/comingSoon',
+      permanent: false,
+    },
+  };
+}
+
 // export async function getServerSideProps() {
 /**
  * For lan restriction, if ever required
