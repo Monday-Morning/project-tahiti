@@ -104,11 +104,11 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '20px',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    marginLeft:'20px'
+    marginLeft: '20px',
   },
   label: {
     textTransform: 'capitalize',
-    fontFamily: 'SOurce Sans Pro',
+    fontFamily: 'Source Sans Pro',
     textDecoration: 'none',
     [theme.breakpoints.down('md')]: {
       fontSize: '16px',
@@ -148,4 +148,3 @@ const useStyles = makeStyles((theme) => ({
     cursor: 'pointer',
   },
 }));
-

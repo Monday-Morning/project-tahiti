@@ -17,16 +17,10 @@ const PostHolders = () => {
       <Typography variant='body2' className={classes.position}>
         Second year
       </Typography>
-      <Typography
-        variant='body2'
-        className={classes.holderDetails}
-      >
+      <Typography variant='body2' className={classes.holderDetails}>
         name: Anish Patro
       </Typography>
-      <Typography
-        variant='body2'
-        className={classes.holderDetails}
-      >
+      <Typography variant='body2' className={classes.holderDetails}>
         Roll: 121CE0877
       </Typography>
       <div className={classes.phoneDetails}>
@@ -53,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: theme.typography.fontFamily,
     fontSize: '20px',
     color: '#000',
-    marginBottom:'5px'
+    marginBottom: '5px',
   },
   phoneDetails: {
     display: 'flex',
@@ -67,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '10px',
     marginBottom: '10px',
   },
-  number:{
-    marginLeft:'10px'
+  number: {
+    marginLeft: '10px',
   },
 }));
