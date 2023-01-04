@@ -192,6 +192,9 @@ const useStyles = makeStyles(() => ({
     padding: '12px',
     margin: '12px 0px',
     textAlign: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   imageContainer: {
     display: 'flex',

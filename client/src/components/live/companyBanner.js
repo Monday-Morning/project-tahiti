@@ -24,7 +24,7 @@ const CompanyBanner = ({ data }) => {
       placed[student.degree][student.branch].push(student.name);
     });
     setPlacedData(placed);
-  }, []);
+  }, [data]);
 
   return (
     <>
