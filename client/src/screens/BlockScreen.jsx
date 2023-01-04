@@ -49,7 +49,13 @@ const PageNotFound = () => {
         <Grid item className={classes.gridContainer}>
           <Typography className={classes.subTitle}>Page blocked.</Typography>
           <Typography className={classes.body}>
-            Sorry, the page is blocked by the admin.
+            This page has been temporarily closed by the{' '}
+            <Link href={'https://website.nitrkl.ac.in/Placement/'}>
+              <a target='_blank' rel='noreferrer'>
+                Career Development Center of the National Institute of
+                Technology, Rourkela.
+              </a>
+            </Link>
           </Typography>
         </Grid>
         <Grid item className={classes.gridContainer}>
@@ -126,6 +132,9 @@ const useStyles = makeStyles((theme) => ({
     color: '#6E6E6E',
     [theme.breakpoints.down('md')]: {
       fontSize: '19px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      maxWidth: '60vw',
     },
   },
   link: {
