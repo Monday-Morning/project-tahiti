@@ -1,5 +1,4 @@
 import React, { useEffect, useContext } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 
 import makeStyles from '@mui/styles/makeStyles';
@@ -80,7 +79,6 @@ const useStyles = makeStyles((theme) => ({
   },
   welcomeText: {
     maxWidth: '330px',
-    // height: '56px',
     height: 'auto',
     color: theme.palette.secondary.neutral70,
     textAlign: 'center',

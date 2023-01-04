@@ -8,7 +8,6 @@ import { Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 
 // Components
-import theme from '../../../config/themes/light';
 import Button from '../../shared/button/Regular';
 
 // Constants

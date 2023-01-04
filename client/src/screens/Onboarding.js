@@ -72,6 +72,7 @@ function Onboarding() {
             addSelectedTopic={addSelectedTopic}
             removeSelectedTopic={removeSelectedTopic}
             onNext={setStageToNewsletter}
+            onBack={setStageToWelcome}
             tabletMatches={tabletMatches}
           />
         );
