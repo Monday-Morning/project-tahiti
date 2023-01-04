@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 import makeStyles from '@mui/styles/makeStyles';
-import { Container, Typography, TextField } from '@mui/material';
+import { Container, Typography, TextField, Fade } from '@mui/material';
 // import TrendingUpSharpIcon from '@mui/icons-material/TrendingUpSharp';
 
 // Utils
@@ -55,41 +55,42 @@ const DesktopNavbar = () => {
 
   return (
     <>
-      <div className={classes.searchMenu}>
-        <div className={classes.blackBackground} onClick={searchActive}></div>
-        <div className={classes.searchBar}>
-          <div className={classes.searchBox}>
-            <TextField
-              className={classes.searchField}
-              id='input-with-icon-textfield'
-              placeholder='Search for articles'
-              value={search}
-              onKeyDown={searchKeyword}
-              onChange={searchQuery}
-              inputRef={inputRef}
-              color='primary'
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position='start'>
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-              }}
-              variant='standard'
-            />
-            <div className={classes.searchSuggestions}>
-              {search.length > 0 &&
-                autoCompleteData?.map(({ id, title }) => (
-                  <div key={id} className={classes.trendingList}>
-                    <NewTabLink to={getArticleLink(id, title)}>
-                      {title}
-                    </NewTabLink>
-                  </div>
-                ))}
+      <Fade in={isSearchActive} timeout={1000} mountOnEnter unmountOnExit>
+        <div className={classes.searchMenu}>
+          <div className={classes.blackBackground} onClick={searchActive}></div>
+          <div className={classes.searchBar}>
+            <div className={classes.searchBox}>
+              <TextField
+                className={classes.searchField}
+                id='input-with-icon-textfield'
+                placeholder='Search for articles'
+                value={search}
+                onKeyDown={searchKeyword}
+                onChange={searchQuery}
+                inputRef={inputRef}
+                color='primary'
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position='start'>
+                      <SearchIcon />
+                    </InputAdornment>
+                  ),
+                }}
+                variant='standard'
+              />
+              <div className={classes.searchSuggestions}>
+                {search.length > 0 &&
+                  autoCompleteData?.map(({ id, title }) => (
+                    <div key={id} className={classes.trendingList}>
+                      <NewTabLink to={getArticleLink(id, title)}>
+                        {title}
+                      </NewTabLink>
+                    </div>
+                  ))}
+              </div>
             </div>
-          </div>
 
-          {/* <div className={classes.trendingArticles}>
+            {/* <div className={classes.trendingArticles}>
             <TrendingUpSharpIcon />
             <h3 className={classes.trendingArticleHeading}>Trending Tags :</h3>
             <h3 className={classes.trendingArticleName}>Departments</h3>
@@ -98,8 +99,9 @@ const DesktopNavbar = () => {
             <h3 className={classes.trendingArticleName}>Interview</h3>
             <h3 className={classes.trendingArticleName}>Placement</h3>
           </div> */}
+          </div>
         </div>
-      </div>
+      </Fade>
       <Container>
         <nav
           aria-label='Monday Morning Navigation'
@@ -211,10 +213,8 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     position: 'absolute',
     height: '100%',
-    transition: '1s',
     top: '0px',
-    opacity: (_) => (_.isSearchActive ? '1' : '0'),
-    zIndex: (_) => (_.isSearchActive ? '2001' : '-2001'),
+    zIndex: '2001',
   },
   searchBar: {
     paddingLeft: '120px',
