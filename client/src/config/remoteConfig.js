@@ -6,7 +6,7 @@ export let isLivePageVisible = false;
 export async function initRemoteConfig() {
   const remote = await remoteConfig();
   if (remote) {
-    remote.settings.minimumFetchIntervalMillis = 10800000; // 3 hours,for testing set this value to 0
+    remote.settings.minimumFetchIntervalMillis = 3600000; // 3 hours,for testing set this value to 0
 
     remote.defaultConfig = {
       isLivePageVisible: false,
