@@ -103,10 +103,10 @@ function VerifyEmail(props) {
           containerStyles={classes.button}
           text={
             tabletMatches
-              ? ONBOARDING.NEWSLETTER.BUTTON.MOBILE
+              ? ONBOARDING.VERIFY_EMAIL.BUTTON.MOBILE
               : isEmailVerified
-              ? ONBOARDING.NEWSLETTER.BUTTON.SECONDARY
-              : ONBOARDING.NEWSLETTER.BUTTON.PRIMARY
+              ? ONBOARDING.VERIFY_EMAIL.BUTTON.SECONDARY
+              : ONBOARDING.VERIFY_EMAIL.BUTTON.PRIMARY
           }
           onClick={
             !isEmailVerified

@@ -110,10 +110,10 @@ function VerifyEmail(props) {
         )}
         <Button
           text={
-            tabletMatches
-              ? ONBOARDING.NEWSLETTER.BUTTON.MOBILE
-              : isSigned
+            isSigned
               ? ONBOARDING.NEWSLETTER.BUTTON.SECONDARY
+              : tabletMatches
+              ? ONBOARDING.NEWSLETTER.BUTTON.MOBILE
               : ONBOARDING.NEWSLETTER.BUTTON.PRIMARY
           }
           onClick={isSigned ? onNext : onSignup}
@@ -177,7 +177,9 @@ const useStyles = makeStyles((theme) => ({
     gap: 24,
   },
   button: {
-    width: '30%',
+    flex: '0 1 0',
+    padding: '10px 20px',
+    whiteSpace: 'nowrap',
   },
   imgContainer: {
     height: '80%',
