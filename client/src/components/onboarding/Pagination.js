@@ -17,7 +17,7 @@ const StepIconConnector = styled(StepConnector)(({ theme }) => ({
   },
   [`& .${stepConnectorClasses.line}`]: {
     width: 50,
-    border: '1px solid',
+    borderTop: '1px solid',
     borderColor: theme.palette.primary.blue30,
   },
   [`&.${stepConnectorClasses.active}, &.${stepConnectorClasses.completed}`]: {

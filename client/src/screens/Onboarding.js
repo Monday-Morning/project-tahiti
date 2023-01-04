@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
 import makeStyles from '@mui/styles/makeStyles';
-import { Typography } from '@mui/material';
+import { Typography, useMediaQuery } from '@mui/material';
+import theme from '../config/themes/light';
 
 // Components
 import Welcome from '../components/onboarding/stages/Welcome';
@@ -23,6 +24,7 @@ const STAGES = {
 
 function Onboarding() {
   const classes = useStyles();
+  const tabletMatches = useMediaQuery(theme.breakpoints.down('md'));
 
   // Local States
   const [stage, setStage] = useState(STAGES.WELCOME);
@@ -57,7 +59,11 @@ function Onboarding() {
     switch (stage[0]) {
       case STAGES.WELCOME[0]:
         return (
-          <Welcome onNext={setStageToInterestedTopics} onLogin={onLogin} />
+          <Welcome
+            onNext={setStageToInterestedTopics}
+            onLogin={onLogin}
+            tabletMatches={tabletMatches}
+          />
         );
       case STAGES.INTERESTED_TOPICS[0]:
         return (
@@ -66,6 +72,7 @@ function Onboarding() {
             addSelectedTopic={addSelectedTopic}
             removeSelectedTopic={removeSelectedTopic}
             onNext={setStageToNewsletter}
+            tabletMatches={tabletMatches}
           />
         );
       case STAGES.NEWSLETTER[0]:
@@ -76,6 +83,7 @@ function Onboarding() {
             signupNewsletter={signupNewsletter}
             onNext={setStageToVerifyEmail}
             onBack={setStageToInterestedTopics}
+            tabletMatches={tabletMatches}
           />
         );
       case STAGES.VERIFY_EMAIL[0]:
@@ -87,6 +95,7 @@ function Onboarding() {
             toggleIsEmailVerified={toggleIsEmailVerified}
             verifyEmail={verifyEmail}
             onBack={setStageToNewsletter}
+            tabletMatches={tabletMatches}
           />
         );
       default:
@@ -97,7 +106,9 @@ function Onboarding() {
   return (
     <div className={classes.screen}>
       <div className={classes.box}>{renderStages()}</div>
-      <Pagination active={stage[1]} stages={Object.keys(STAGES)} />
+      <div className={classes.pagination}>
+        <Pagination active={stage[1]} stages={Object.keys(STAGES)} />
+      </div>
     </div>
   );
 }
@@ -108,21 +119,23 @@ const useStyles = makeStyles((theme) => ({
   screen: {
     width: '100%',
     height: '100vh',
+    padding: '0 24px',
     backgroundColor: '#FDFDFD',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
-    gap: '108px',
   },
   box: {
-    minWidth: 350,
+    minWidth: 312,
     minHeight: 468,
-    width: '790px',
-    height: '468px',
+    width: '55%',
     backgroundColor: theme.palette.background.default,
     boxShadow: theme.shadows[0],
     borderRadius: 5,
     overflow: 'hidden',
+    [theme.breakpoints.down('lg')]: {
+      width: '80%',
+    },
   },
 }));

@@ -8,6 +8,7 @@ import { Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 
 // Components
+import theme from '../../../config/themes/light';
 import Button from '../../shared/button/Regular';
 
 // Constants
@@ -16,9 +17,8 @@ import { ONBOARDING } from '../../../assets/placeholder/onboarding';
 const Topic = (props) => {
   const [selected, toggleSelected] = useToggle(false);
   const classes = useStyles(selected);
-
   // Props
-  const { topic, addSelectedTopic, removeSelectedTopic } = props;
+  const { topic, addSelectedTopic, removeSelectedTopic, tabletMatches } = props;
 
   const onClick = () => {
     selected ? removeSelectedTopic(topic) : addSelectedTopic(topic);
@@ -26,7 +26,11 @@ const Topic = (props) => {
   };
 
   return (
-    <Typography onClick={onClick} className={classes.topicName} variant='body1'>
+    <Typography
+      onClick={onClick}
+      className={classes.topicName}
+      variant={tabletMatches ? 'body2' : 'body1'}
+    >
       {topic}
     </Typography>
   );
@@ -36,8 +40,13 @@ function SelectTopics(props) {
   const classes = useStyles();
 
   // props
-  const { selectedTopics, addSelectedTopic, removeSelectedTopic, onNext } =
-    props;
+  const {
+    selectedTopics,
+    addSelectedTopic,
+    removeSelectedTopic,
+    onNext,
+    tabletMatches,
+  } = props;
 
   return (
     <div className={classes.container}>
@@ -57,6 +66,7 @@ function SelectTopics(props) {
             index={index}
             addSelectedTopic={addSelectedTopic}
             removeSelectedTopic={removeSelectedTopic}
+            tabletMatches={tabletMatches}
           />
         ))}
       </div>
@@ -82,16 +92,21 @@ const useStyles = makeStyles((theme) => ({
     padding: 50,
     paddingTop: 20,
     position: 'relative',
+    textAlign: 'left',
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+      padding: 12,
+    },
   },
   title: {
     fontWeight: 600,
-    textAlign: 'left',
     margin: '0px 0px',
   },
   content: {
     fontWeight: 400,
-    textAlign: 'left',
     marginBottom: 20,
+    fontSize: '14px',
+    color: theme.palette.secondary.neutral60,
   },
   topicsContainer: {
     width: '100%',
@@ -114,6 +129,12 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       cursor: 'pointer',
     },
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '13px',
+      padding: '8px 8.5px',
+      margin: 5,
+      marginLeft: 0,
+    },
   },
   nextButton: {
     position: 'absolute',
@@ -123,5 +144,10 @@ const useStyles = makeStyles((theme) => ({
     padding: 5,
     minWidth: 80,
     width: 'auto',
+    [theme.breakpoints.down('md')]: {
+      margin: 4,
+      bottom: '2%',
+      right: '2%',
+    },
   },
 }));

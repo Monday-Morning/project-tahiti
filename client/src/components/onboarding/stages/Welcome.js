@@ -14,7 +14,7 @@ import { ONBOARDING } from '../../../assets/placeholder/onboarding';
 //Context
 import authContext from '../../../context/auth/AuthContext';
 
-function Welcome({ onNext, onLogin }) {
+function Welcome({ onNext, onLogin, tabletMatches }) {
   const classes = useStyles();
 
   const { loginWithToken } = useContext(authContext);
@@ -41,8 +41,8 @@ function Welcome({ onNext, onLogin }) {
     <div className={classes.container}>
       <Image
         className={classes.logo}
-        width={390}
-        height={68}
+        width={tabletMatches ? 232 : 390}
+        height={tabletMatches ? 40 : 68}
         src={logo}
         alt='Monday Morning'
       />
@@ -68,19 +68,19 @@ const useStyles = makeStyles((theme) => ({
   container: {
     width: '100%',
     height: '100%',
+    padding: '32px 12px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: theme.palette.background.default,
-    padding: 10,
   },
   logo: {
     marginTop: '48px',
   },
   welcomeText: {
-    width: '330px',
-    height: '56px',
+    maxWidth: '330px',
+    // height: '56px',
     height: 'auto',
     color: theme.palette.secondary.neutral70,
     textAlign: 'center',
@@ -88,7 +88,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '56px',
   },
   loginButton: {
-    // width: '25%',
     height: 'auto',
     padding: 10,
     display: 'flex',
