@@ -17,7 +17,7 @@ export const firebaseApp = initializeApp(firebaseConfig);
 export const auth = firebaseApp ? getAuth(firebaseApp) : null;
 
 export const remoteConfig = async () =>
-  (await isSupported()) && getRemoteConfig(firebaseApp);
+  (await isSupported()) && firebaseApp && getRemoteConfig(firebaseApp);
 
 if (process.env.NODE_ENV !== 'production' && auth) {
   connectAuthEmulator(auth, 'http://localhost:9099');
