@@ -69,7 +69,7 @@ const useStyles = makeStyles(() => ({
     cursor: 'pointer',
     [theme.breakpoints.down('md')]: {
       padding: '2px 8px',
-      width: '64px',
+      width: '80px',
     },
   },
 }));
