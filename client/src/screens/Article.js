@@ -5,6 +5,7 @@ import React from 'react';
 
 // libraries
 import { Container, Grid, useMediaQuery } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 
 // Components
 import Comments from '../components/article/comments';
@@ -22,8 +23,10 @@ import theme from '../config/themes/light';
 function Article({ article }) {
   const isMatch = useMediaQuery(theme.breakpoints.down('md'));
 
+  const classes = useStyles();
+
   return (
-    <>
+    <div className={classes.container}>
       <Container>
         <Grid container>
           <Grid item md={9}>
@@ -53,8 +56,16 @@ function Article({ article }) {
 
       {/* TODO: Implement reccomender */}
       {/* <RecommendedArticles title='Reading based on your history' /> */}
-    </>
+    </div>
   );
 }
 
 export default Article;
+
+const useStyles = makeStyles(() => ({
+  container: {
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '100vw',
+    },
+  },
+}));

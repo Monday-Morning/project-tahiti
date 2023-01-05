@@ -16,11 +16,11 @@ const ArticleTable = ({ data, blockFormatting }) => {
     .slice(3, -3)
     .replace(/\\\"/g, '')
     .split('],[')
-    .map((row) => row.split(','))
-    .map((row, index) =>
-      row.map((cell, _index) =>
-        index === 0 && _index === 0 ? cell.slice(0, -1) : cell.slice(1, -1),
-      ),
+    .map((row) => row.split('","'))
+    .map((row) =>
+      row.map((cell) => {
+        return cell.replace(/"/g, '');
+      }),
     );
 
   const { hasHeaderColumn, hasHeaderRow } = blockFormatting;
@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     margin: '2rem 0',
     [theme.breakpoints.down('sm')]: {
-      width: '80vw',
+      width: '90vw',
     },
   },
   bolder: {
