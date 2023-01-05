@@ -2,7 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 
 import makeStyles from '@mui/styles/makeStyles';
-import { Typography, Grid } from '@mui/material';
+import { Typography, Grid, Button } from '@mui/material';
+import DownloadIcon from '@mui/icons-material/Download';
 
 // placeholder
 import { OPTIONS } from '../../assets/placeholder/guide';
@@ -45,7 +46,9 @@ const Options = () => {
           Communication Directory
         </Typography>
         <span className={classes.link}>
-          <a href='#'>Download</a>
+          <Button href='https://drive.google.com/file/d/1ppdhllH19r6j7iOSYXRvJRU-pSOXhh3_/view'>
+            <DownloadIcon className={classes.DownloadIcon} />
+          </Button>
         </span>
       </div>
       <Link href='/sac' className={classes.links} passHref>
@@ -59,7 +62,7 @@ const Options = () => {
           </Typography>
         </div>
       </Link>
-      <div className={classes.optionWrapper}>
+      {/* <div className={classes.optionWrapper}>
         <Image src={icon3} alt='Icon' className={classes.icons} />
         <Typography variant='h3' className={classes.option2}>
           Hall Info
@@ -67,7 +70,7 @@ const Options = () => {
         <Typography variant='h3' className={classes.arrow}>
           <i className='fas fa-chevron-right'></i>
         </Typography>
-      </div>
+      </div> */}
       <Link href='/info/health' passHref>
         <div className={classes.optionWrapper}>
           <Image src={icon4} alt='Icon' className={classes.icons} />
@@ -132,11 +135,11 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary.main,
   },
   link: {
-    fontSize: '18px',
     marginLeft: '32px',
+    backgroundColor: '#f0f6fa',
+    borderRadius: '8px',
     [theme.breakpoints.down('sm')]: {
-      visibility: 'hidden',
-      width: '0px',
+      marginLeft: '12px',
     },
   },
   option2: {
