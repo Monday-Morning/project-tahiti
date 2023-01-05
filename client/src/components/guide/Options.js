@@ -2,7 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 
 import makeStyles from '@mui/styles/makeStyles';
-import { Typography, Grid } from '@mui/material';
+import { Typography, Grid, Button } from '@mui/material';
+import DownloadIcon from '@mui/icons-material/Download';
 
 // placeholder
 import { OPTIONS } from '../../assets/placeholder/guide';
@@ -45,9 +46,9 @@ const Options = () => {
           Communication Directory
         </Typography>
         <span className={classes.link}>
-          <a href='https://drive.google.com/file/d/1ppdhllH19r6j7iOSYXRvJRU-pSOXhh3_/view'>
-            Download
-          </a>
+          <Button href='https://drive.google.com/file/d/1ppdhllH19r6j7iOSYXRvJRU-pSOXhh3_/view'>
+            <DownloadIcon className={classes.DownloadIcon} />
+          </Button>
         </span>
       </div>
       <Link href='/sac' className={classes.links} passHref>
@@ -134,12 +135,11 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary.main,
   },
   link: {
-    fontSize: '18px',
     marginLeft: '32px',
+    backgroundColor: '#f0f6fa',
+    borderRadius: '8px',
     [theme.breakpoints.down('sm')]: {
       marginLeft: '12px',
-      marginTop: '2px',
-      fontSize: '14px',
     },
   },
   option2: {

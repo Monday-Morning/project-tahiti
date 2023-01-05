@@ -12,19 +12,13 @@ const Carousel = ({ content }) => {
   const classes = useStyles();
   const length = content.length;
 
-  const [left, setLeft] = useState(length - 1);
   const [current, setCurrent] = useState(0);
-  const [right, setRight] = useState(1);
 
   const nextSlide = () => {
-    setLeft(left === length - 1 ? 0 : left + 1);
     setCurrent(current === length - 1 ? 0 : current + 1);
-    setRight(right === length - 1 ? 0 : right + 1);
   };
   const prevSlide = () => {
-    setLeft(left === 0 ? length - 1 : left - 1);
     setCurrent(current === 0 ? length - 1 : current - 1);
-    setRight(right === 0 ? length - 1 : right - 1);
   };
 
   if (!Array.isArray(content) || content.length <= 0) {
@@ -39,7 +33,9 @@ const Carousel = ({ content }) => {
         {Desktop && (
           <Image
             className={classes.sideImage}
-            src={content[left].img}
+            src={
+              current === 0 ? content[length - 1].img : content[current - 1].img
+            }
             alt='image'
             width='400px'
             height='300px'
@@ -75,7 +71,9 @@ const Carousel = ({ content }) => {
         {Desktop && (
           <Image
             className={classes.sideImage}
-            src={content[right].img}
+            src={
+              current === length - 1 ? content[0].img : content[current + 1].img
+            }
             alt='image'
             width='400px'
             height='300px'
