@@ -29,11 +29,12 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey[300],
   },
   tag: {
-    display: 'inline',
+    display: 'inline-block',
     padding: '2px 8px',
     color: theme.palette.common.white,
     backgroundColor: theme.palette.primary.blue40,
     marginLeft: '10px',
+    marginBottom: '10px',
     borderRadius: '4px',
     [theme.breakpoints.down('md')]: {
       marginLeft: '4px',
