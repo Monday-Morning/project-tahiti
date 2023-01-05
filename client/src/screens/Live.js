@@ -128,7 +128,7 @@ function Live() {
             style={{
               display: 'flex',
               flexDirection: 'row',
-              justifyContent: 'space-around',
+              justifyContent: 'space-between',
               alignItems: 'center',
               margin: '0.5rem',
             }}
@@ -148,7 +148,7 @@ function Live() {
             style={{
               display: 'flex',
               flexDirection: 'row',
-              justifyContent: 'space-around',
+              justifyContent: 'space-between',
               alignItems: 'center',
               margin: '0.5rem',
             }}

@@ -19,8 +19,9 @@ export const ONBOARDING = Object.freeze({
     BUTTON: {
       PRIMARY: 'Get Verification Link',
       SECONDARY: 'Check again and continue',
+      MOBILE: 'Next',
     },
-    NOTE: 'Note: This only works if you’re a current student/employee of \n NIT Rourkela with a valid institute email id.',
+    NOTE: 'Note: This only works if you’re a current student/ employee of \n NIT Rourkela with a valid institute email id.',
   },
   INTERESTED_TOPICS: {
     PRIMARY: {
@@ -31,8 +32,8 @@ export const ONBOARDING = Object.freeze({
     TOPICS: [
       'Witsdom',
       'Campus Buzz',
-      'Student Activities',
       'Alumni Affairs',
+      'Student Activities',
       'Halls',
       'Interviews',
       'SAC Speaks',
@@ -52,19 +53,20 @@ export const ONBOARDING = Object.freeze({
   },
   NEWSLETTER: {
     PRIMARY: {
-      TITLE: 'Newsletter Signup',
+      TITLE: 'Signup for Newsletter',
       CONTENT:
-        'Sign up for the MM newsletter and get news and \n articles delivered straight to your mailbox!',
+        'You’ve successfully signed up for the newsletter. \n Be the first to know the happenings at NITR and \n never miss out on an issue release !',
     },
     SECONDARY: {
       TITLE: 'Email',
       CONTENT:
-        'You’ve successfully signed up for the newsletter. \n Be the first to know the happenings at NITR and \n never miss out on an issue release !',
+        'Sign up for the MM newsletter and get news and \n articles delivered straight to your mailbox!',
     },
     EMAIL_PLACEHOLDER: 'instituteID@nitrkl.ac.in',
     BUTTON: {
       PRIMARY: 'Signup for newsletter',
       SECONDARY: 'Get Started',
+      MOBILE: 'Next',
     },
     NOTE: 'Note: Newsletters are sent once a week or once in a fortnight \n during the working session of the institute',
   },
