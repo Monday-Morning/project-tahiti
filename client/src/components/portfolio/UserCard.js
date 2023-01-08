@@ -101,12 +101,12 @@ const UserCard = ({ user }) => {
                 ) : (
                   <>
                     <Typography variant='body2'>
-                      There are no articles under{' '}
                       <span
                         className={classes.boldText}
                       >{`${firstName} ${lastName}`}</span>{' '}
-                      at this time. <br /> Please check back again in the
-                      upcoming issue.
+                      was responsible for creating and implementing the visual
+                      elements that aid in communicating our message to the
+                      audience.
                     </Typography>
                   </>
                 )}
