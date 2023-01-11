@@ -75,6 +75,11 @@ const useStyles = makeStyles((theme) => ({
       paddingLeft: '1rem',
       paddingRight: '2rem',
     },
+    [theme.breakpoints.down('md')]: {
+      marginTop: '1rem',
+      paddingLeft: '1rem',
+      paddingRight: '2rem',
+    },
   },
   indexList: {
     fontSize: '1.375rem',
