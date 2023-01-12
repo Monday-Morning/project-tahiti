@@ -10,6 +10,7 @@ import { ArrowRightCircle } from 'react-feather';
 import logo from '../../assets/images/logo.png';
 import googlePlay from '../../assets/images/logos/google_play.png';
 import { ARCHIVES } from '../../assets/placeholder/guide';
+import AppRecommender from '../widgets/AppRecomender';
 
 const Footer = () => {
   const classes = useStyles();
@@ -302,6 +303,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      <AppRecommender />
     </div>
   );
 };
