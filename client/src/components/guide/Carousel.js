@@ -6,26 +6,19 @@ import ArrowLeft from '@mui/icons-material/ArrowCircleLeftOutlined';
 import ArrowRight from '@mui/icons-material/ArrowCircleRightOutlined';
 
 // Utils
-import STORES from '../../utils/getStores';
 import theme from '../../config/themes/light';
 
 const Carousel = ({ content }) => {
   const classes = useStyles();
   const length = content.length;
 
-  const [left, setLeft] = useState(length - 1);
   const [current, setCurrent] = useState(0);
-  const [right, setRight] = useState(1);
 
   const nextSlide = () => {
-    setLeft(left === length - 1 ? 0 : left + 1);
     setCurrent(current === length - 1 ? 0 : current + 1);
-    setRight(right === length - 1 ? 0 : right + 1);
   };
   const prevSlide = () => {
-    setLeft(left === 0 ? length - 1 : left - 1);
     setCurrent(current === 0 ? length - 1 : current - 1);
-    setRight(right === 0 ? length - 1 : right - 1);
   };
 
   if (!Array.isArray(content) || content.length <= 0) {
@@ -41,8 +34,7 @@ const Carousel = ({ content }) => {
           <Image
             className={classes.sideImage}
             src={
-              STORES[content[left].media.store] +
-              encodeURI(content[left].media.storePath)
+              current === 0 ? content[length - 1].img : content[current - 1].img
             }
             alt='image'
             width='400px'
@@ -51,25 +43,27 @@ const Carousel = ({ content }) => {
           />
         )}
         <div className={classes.midSlide}>
-          <Image
-            className={classes.centreImage}
-            src={
-              STORES[content[current].media.store] +
-              encodeURI(content[current].media.storePath)
-            }
-            alt='image'
-            width='600px'
-            height={Desktop ? '400px' : '700px'}
-            objectFit='contain'
-          />
-          {content[current].text && (
+          <a
+            target='_blank'
+            href={content[current].link}
+            rel='noopener noreferrer'
+          >
+            <Image
+              className={classes.centreImage}
+              src={content[current].img}
+              alt='image'
+              width='600px'
+              height='400px'
+            />
+          </a>
+          {content[current].desc && (
             <div className={classes.textWrapper}>
               <Typography
                 variant='body2'
                 textAlign='center'
                 className={classes.text}
               >
-                {content[current].text}
+                {content[current].desc}
               </Typography>
             </div>
           )}
@@ -78,8 +72,7 @@ const Carousel = ({ content }) => {
           <Image
             className={classes.sideImage}
             src={
-              STORES[content[right].media.store] +
-              encodeURI(content[right].media.storePath)
+              current === length - 1 ? content[0].img : content[current + 1].img
             }
             alt='image'
             width='400px'
@@ -116,7 +109,6 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '100%',
     position: 'relative',
     backgroundColor: theme.palette.secondary.main,
-    paddingTop: '0.5rem',
   },
 
   carousel: {

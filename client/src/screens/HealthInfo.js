@@ -13,7 +13,7 @@ function Contact() {
   return (
     <div>
       <Container>
-        <BackButton path='/' goTo='Home' />
+        <BackButton path='/guide' goTo='Guide' />
         <Typography variant='h1' className={classes.head}>
           Health and Emergency Info
         </Typography>
