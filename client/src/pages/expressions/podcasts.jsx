@@ -3,8 +3,9 @@ import Head from 'next/head';
 
 import Podcast from '../../screens/Podcast';
 import Marginals from '../../components/marginals/Marginals';
+import getSpotifyAccessToken from '../../utils/getSpotifyAccessToken';
 
-const PodcastPage = () => (
+const PodcastPage = ({ spotify }) => (
   <>
     <Head>
       {/* <!-- =============== Primary Meta Tags =============== --> */}
@@ -62,18 +63,47 @@ const PodcastPage = () => (
       />
     </Head>
     <Marginals>
-      <Podcast />
+      <Podcast spotify={spotify} />
     </Marginals>
   </>
 );
 
-export async function getServerSideProps() {
-  return {
-    redirect: {
-      destination: '/comingSoon',
-      permanent: false,
-    },
-  };
+// export async function getServerSideProps() {
+//   return {
+//     redirect: {
+//       destination: '/comingSoon',
+//       permanent: false,
+//     },
+//   };
+// }
+
+export async function getStaticProps() {
+  try {
+    const accessToken = await getSpotifyAccessToken();
+    const podcastId = '7ljgcbXzt4VQRJ1SLIECNf';
+    const offset = 0;
+    const limit = 5;
+    const showUrl = `https://api.spotify.com/v1/shows/${podcastId}/episodes?offset=${offset}&limit=${limit}&market=ES`;
+
+    const { items: spotify } = await fetch(showUrl, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }).then((res) => {
+      return res.json();
+    });
+
+    return {
+      props: { spotify },
+    };
+  } catch (err) {
+    return {
+      props: {
+        isError: true,
+      },
+    };
+  }
 }
 
 export default PodcastPage;

@@ -1,7 +1,7 @@
 const getSpotifyAccessToken = async () => {
   try {
     const { access_token } = await fetch(
-      process.env.NODE_ENV === 'production'
+      process.env.NODE_ENV !== 'production'
         ? 'https://mm.dashnet.in/api/admin/spotify/auth'
         : 'http://localhost:5000/admin/spotify/auth',
       {

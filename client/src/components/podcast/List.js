@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import theme from '../../config/themes/light';
 
@@ -8,17 +8,22 @@ import makeStyles from '@mui/styles/makeStyles';
 import { Table, TableHead, TableBody } from '@mui/material';
 import { Heart, PlayCircle } from 'react-feather';
 
-// Components
-import { PODCAST } from '../../assets/placeholder/podcast';
-
-// Images
-import podcastCover from '../../assets/images/podcast_cover.png';
-
 const PodcastList = ({ spotify }) => {
-  const Podcast = PODCAST;
   const smallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const mediumScreen = useMediaQuery(theme.breakpoints.down('md'));
   const classes = useStyles();
+  const [currentId, setCurrentId] = useState(spotify[0].id);
+
+  useEffect(() => {
+    console.log(window.document.querySelector('.embed-widget-container'));
+  }, [currentId]);
+
+  function millisToMinutesAndSeconds(millis) {
+    var minutes = Math.floor(millis / 60000);
+    var seconds = ((millis % 60000) / 1000).toFixed(0);
+    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+  }
+
   return (
     <Container>
       <div className={classes.wrapper}>
@@ -33,19 +38,25 @@ const PodcastList = ({ spotify }) => {
               </tr>
             </TableHead>
             <TableBody>
-              {Podcast.map((podcast, key) => {
+              {spotify.map((podcast, key) => {
                 return (
-                  <tr key={key} className={classes.ListRow}>
+                  <tr
+                    key={key}
+                    className={classes.ListRow}
+                    onClick={() => {
+                      setCurrentId(spotify[key].id);
+                    }}
+                  >
                     <td>
                       <PlayCircle />
                     </td>
                     <td>
-                      {podcast.title.substring(
+                      {podcast.name.substring(
                         0,
-                        smallScreen ? 10 : mediumScreen ? 50 : 80,
+                        smallScreen ? 10 : mediumScreen ? 50 : 100,
                       )}
                     </td>
-                    <td>{podcast.duration}</td>
+                    <td>{millisToMinutesAndSeconds(podcast.duration_ms)}</td>
                     <td>
                       <Heart size={18} />
                     </td>
@@ -59,7 +70,7 @@ const PodcastList = ({ spotify }) => {
 
       <div>
         <iframe
-          // src={`https://open.spotify.com/embed/episode/${spotify[0].id}`}
+          src={`https://open.spotify.com/embed/episode/${currentId}`}
           width='100%'
           height='152'
           frameBorder='0'
@@ -99,7 +110,12 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '400',
     fontFamily: 'Source Sans Pro',
     textAlign: 'center',
-    backgroundColor: theme.palette.secondary.neutral30,
+    backgroundColor: theme.palette.common.white,
+    '&:hover': {
+      cursor: 'pointer',
+      backgroundColor: theme.palette.secondary.neutral30,
+      borderRadius: '40px',
+    },
     '& td': {
       padding: '0.75rem',
     },
