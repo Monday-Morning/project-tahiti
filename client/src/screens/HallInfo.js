@@ -14,7 +14,7 @@ function HallInfo() {
   return (
     <div>
       <Container>
-        <BackButton path='/' goTo='Guide' />
+        <BackButton path='/guide' goTo='Guide' />
         <Typography variant='h1' className={classes.head}>
           Hall Info
         </Typography>
