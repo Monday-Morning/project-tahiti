@@ -56,8 +56,8 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '32px',
     color: '#222222',
     paddingTop: '6px',
-    [theme.breakpoints.down('sm')]:{
+    [theme.breakpoints.down('sm')]: {
       fontSize: '20px',
-    }
+    },
   },
 }));
