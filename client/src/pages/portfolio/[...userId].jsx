@@ -262,17 +262,21 @@ export async function getStaticProps({
       .filter(({ model }) => model === 'Article')
       .reduce((prev, curr) => [...prev, curr.reference], []);
 
-    const {
-      data: { getListOfArticles: articleList },
-    } = await GraphClient.query({
-      query: getListOfArticles,
-      variables: {
-        ids: articleIdList,
-        limit: 40,
-      },
-    });
+    let _articleList = [];
 
-    const _articleList = articleList.filter((article) => article);
+    if (articleIdList.length > 0) {
+      const {
+        data: { getListOfArticles: articleList },
+      } = await GraphClient.query({
+        query: getListOfArticles,
+        variables: {
+          ids: articleIdList,
+          limit: 40,
+        },
+      });
+      _articleList = articleList.filter((article) => article);
+    }
+
     const noOfArticle = _articleList.length;
 
     let { store, storePath } = picture;

@@ -8,6 +8,7 @@ import { Link as ScrollLink, Element } from 'react-scroll';
 
 // Components
 import SubCategory from '../components/widgets/SubCategory';
+import SubCategoryLink from '../components/widgets/SubCategoryLink';
 import ArticleCarousel from '../components/widgets/article/ArticleCarousel';
 import SubCategorySection from '../components/categories/SubCategorySection';
 
@@ -35,13 +36,12 @@ function Category({ articleList, categoryShortName, category }) {
               ),
             )}
             {categoryShortName === 'career' && (
-              <Link passHref href='/live' style={{ textDecoration: 'none' }}>
-                <SubCategory
-                  text='Live'
-                  isRed
-                  className={classes.subCategory}
-                />
-              </Link>
+              <SubCategoryLink
+                text='Live'
+                isRed
+                className={classes.subCategory}
+                path={'/live'}
+              />
             )}
           </div>
         </Container>

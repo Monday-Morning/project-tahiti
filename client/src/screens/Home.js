@@ -22,24 +22,49 @@ function Home({ issues, squiggles, witsdom, photostory, youtubeLinks }) {
 
   const { featured } = latestIssue;
 
+  const featuredArticles = featured.filter((item) => item !== null);
+
+  if (featuredArticles.length < 5) {
+    const backupArticles = [
+      ...latestIssue.articles.filter(
+        (item1) =>
+          item1 !== null &&
+          !featuredArticles.some((item2) => item1?.id === item2?.id),
+      ),
+      ...secondLatestIssue.featured,
+    ];
+
+    featuredArticles.push(
+      ...backupArticles.slice(0, 5 - featuredArticles.length),
+    );
+  }
+
   const articles = [
     ...latestIssue.articles.filter(
-      (item1) => !featured.some((item2) => item1.id === item2.id),
+      (item1) =>
+        item1 !== null &&
+        !featuredArticles.some((item2) => item1?.id === item2?.id),
     ),
-    ...secondLatestIssue.articles,
+    ...secondLatestIssue.articles.filter(
+      (item1) =>
+        item1 !== null &&
+        !featuredArticles.some((item2) => item1?.id === item2?.id),
+    ),
   ];
+
+  const numberOfStacks = Math.floor(articles.length / (!tabletMatches ? 3 : 4));
 
   return (
     <>
       <Container>
-        <ArticleGrid articles={featured} />
+        <ArticleGrid articles={featuredArticles} />
         <Squiggles data={squiggles} />
         <>
           <ArticleCardStack
             articleList={articles.slice(0, !tabletMatches ? 3 : 4)}
             title='This Issue'
           />
-          {(articles.length > !tabletMatches ? 3 : 4) && (
+          {articles.length >= (!tabletMatches ? 6 : 8) && (
             <ArticleCardStack
               articleList={
                 !tabletMatches ? articles.slice(3, 6) : articles.slice(4, 8)
@@ -54,14 +79,16 @@ function Home({ issues, squiggles, witsdom, photostory, youtubeLinks }) {
             <Calendar />
           </Grid>
         </Grid> */}
-          {(articles.length > !tabletMatches ? 6 : 8) && (
-            <ArticleCardStack
-              articleList={articles.slice(
-                !tabletMatches ? 6 : 8,
-                articles.length,
-              )}
-            />
-          )}
+          {Array.from(Array(numberOfStacks).keys())
+            .slice(2)
+            .map((index) => (
+              <ArticleCardStack
+                articleList={articles.slice(
+                  !tabletMatches ? 3 * index : 4 * index,
+                  !tabletMatches ? 3 * (index + 1) : 4 * (index + 1),
+                )}
+              />
+            ))}
         </>
       </Container>
       <Banner photostory={photostory} witsdom={witsdom} />
