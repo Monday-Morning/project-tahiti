@@ -21,10 +21,7 @@ const Info = () => {
               <div className={classes.info}>
                 <div className={classes.contact}>
                   {item1.contact.map((item, key) => (
-                    <div
-                      className={classes.contactContainer}
-                      style={{ margin: '5px', width: '40%' }}
-                    >
+                    <div className={classes.contactContainer}>
                       {item.designation && (
                         <Typography variant='body1' className={classes.grey}>
                           {item.designation}
@@ -230,5 +227,12 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '8px',
     fontSize: '1.3rem',
     verticalAlign: 'middle',
+  },
+  contactContainer: {
+    margin: '5px',
+    width: '40%',
+    [theme.breakpoints.down('sm')]:{
+        width: '100%',
+    }
   },
 }));
