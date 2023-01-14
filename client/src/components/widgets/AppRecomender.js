@@ -1,14 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import Bowser from 'bowser';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
 
+import Bowser from 'bowser';
+import Image from 'next/image';
+
+import {
+  Button,
+  Slide,
+  Typography,
+  useMediaQuery,
+} from '@mui/material';
 //libraries
 import makeStyles from '@mui/styles/makeStyles';
-import theme from '../../config/themes/light';
-import { Button, Slide, Typography, useMediaQuery } from '@mui/material';
-import Image from 'next/image';
 
 //assets
 import { APPS } from '../../assets/placeholder/appRecommender';
+import theme from '../../config/themes/light';
 
 function AppRecommender() {
   const classes = useStyles();
@@ -62,7 +71,7 @@ function AppRecommender() {
                           handleClick(link, current);
                         }}
                       >
-                        Continue
+                        {current ? 'Continue' : 'Download'}
                       </Button>
                     </div>
                   ),
@@ -111,6 +120,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logoContainer: {
     maxWidth: '60px',
+    padding: '8px',
     height: '100%',
     border: `1px solid ${theme.palette.secondary.neutral80}`,
     borderRadius: '10px',

@@ -1,12 +1,12 @@
-import blueLogo from '../images/logos/logo_blue.png';
+import brave from '../images/logos/brave.png';
 import chrome from '../images/logos/chrome.png';
 import edge from '../images/logos/edge.png';
+import blueLogo from '../images/logos/logo_blue.png';
 import safari from '../images/logos/safari.png';
-import brave from '../images/logos/brave.png';
 
 export const APPS = Object.freeze({
   welcomeMessage: 'Sent from Monday Morning App',
-  title: 'See the website in...',
+  title: 'Continue with...',
   sources: [
     {
       logo: blueLogo,
