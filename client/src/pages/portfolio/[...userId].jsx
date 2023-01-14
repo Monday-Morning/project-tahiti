@@ -137,7 +137,7 @@ const PortfolioPage = ({
         />
         <meta
           property='og:title'
-          content={`{firstName + ' ' + lastName} | Monday Morning`}
+          content={`${firstName + ' ' + lastName} | Monday Morning`}
         />
         <meta
           property='og:description'
@@ -148,14 +148,8 @@ const PortfolioPage = ({
           itemProp='image'
           content='/icon-256x256.png'
         />
-        <meta
-          property='og:image:url'
-          content='https://mondaymorning.nitrkl.ac.in/icon-256x256.png'
-        />
-        <meta
-          property='og:image:secure_url'
-          content='https://mondaymorning.nitrkl.ac.in/icon-256x256.png'
-        />
+        <meta property='og:image:url' content={profileImageLink} />
+        <meta property='og:image:secure_url' content={profileImageLink} />
         <meta property='og:image:type' content='image/png' />
 
         {/* <!-- =============== Twitter =============== --> */}
