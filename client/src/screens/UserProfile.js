@@ -80,7 +80,7 @@ function UserProfile() {
                 {options.map((option__value, key) => (
                   <Button
                     className={`${classes.button} 
-                    ${option == key ? classes.selectedOptionM : ''} `}
+                    ${option == key ? classes.selectedOptionMobile : ''} `}
                     key={key}
                     onClick={() => handleOptionClick(key)}
                   >
@@ -200,7 +200,7 @@ const useStyles = makeStyles((theme) => ({
   selectedOption: {
     color: `${theme.palette.secondary.main} !important`,
   },
-  selectedOptionM: {
+  selectedOptionMobile: {
     color: `${theme.palette.common.white} !important`,
     backgroundColor: `${theme.palette.primary.blue50} !important`,
   },
