@@ -41,18 +41,22 @@ const UserCard = ({ user }) => {
                           {firstName} {firstName?.length < 4 ? lastName : ''}
                         </Typography>
                       </div>
-                      <div>
-                        <Typography variant='body2'>
-                          <div className={classes.boldText}>Email</div>
-                          <email>{email}</email>{' '}
-                        </Typography>
-                      </div>
-                      <div>
-                        <Typography variant='body2'>
-                          <div className={classes.boldText}> Year</div>
-                          {year}
-                        </Typography>
-                      </div>
+                      {email.trim() && (
+                        <div>
+                          <Typography variant='body2'>
+                            <div className={classes.boldText}>Email</div>
+                            <email>{email}</email>{' '}
+                          </Typography>
+                        </div>
+                      )}
+                      {year.trim() && (
+                        <div>
+                          <Typography variant='body2'>
+                            <div className={classes.boldText}> Year</div>
+                            {year}
+                          </Typography>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -64,30 +68,48 @@ const UserCard = ({ user }) => {
                 sm={6}
                 className={`${classes.bordered} ${classes.gridPadding} ${classes.postDetailsWrapper}`}
               >
-                <div className={classes.postDetails}>
-                  <div>
-                    <Typography variant='body2' className={classes.boldText}>
-                      Number Of Posts
+                {noOfArticle ? (
+                  <>
+                    <div className={classes.postDetails}>
+                      <div>
+                        <Typography
+                          variant='body2'
+                          className={classes.boldText}
+                        >
+                          Number Of Posts
+                        </Typography>
+                      </div>
+                      <div>
+                        <Typography variant='body2'>{noOfArticle}</Typography>
+                      </div>
+                    </div>
+                    <div className={classes.postDetails}>
+                      <Typography variant='body2'>
+                        <span className={classes.boldText}>Content: </span>
+                        {noOfArticle}
+                      </Typography>
+
+                      <Typography variant='body2'>
+                        <span className={classes.boldText}>Design: </span>0
+                      </Typography>
+
+                      <Typography variant='body2'>
+                        <span className={classes.boldText}>Photography: </span>0
+                      </Typography>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <Typography variant='body2'>
+                      <span
+                        className={classes.boldText}
+                      >{`${firstName} ${lastName}`}</span>{' '}
+                      was responsible for creating and implementing the visual
+                      elements that aid in communicating our message to the
+                      audience.
                     </Typography>
-                  </div>
-                  <div>
-                    <Typography variant='body2'>{noOfArticle}</Typography>
-                  </div>
-                </div>
-                <div className={classes.postDetails}>
-                  <Typography variant='body2'>
-                    <span className={classes.boldText}>Content: </span>
-                    {noOfArticle}
-                  </Typography>
-
-                  <Typography variant='body2'>
-                    <span className={classes.boldText}>Design: </span>0
-                  </Typography>
-
-                  <Typography variant='body2'>
-                    <span className={classes.boldText}>Photography: </span>0
-                  </Typography>
-                </div>
+                  </>
+                )}
               </Grid>
               <Grid
                 item
@@ -102,7 +124,9 @@ const UserCard = ({ user }) => {
                     </Typography>
                   </div>
                   <div>
-                    <Typography variant='body2'>Content</Typography>
+                    <Typography variant='body2'>
+                      {noOfArticle ? 'Content' : 'Team MM'}
+                    </Typography>
                   </div>
                 </div>
 
@@ -218,7 +242,7 @@ const useStyles = makeStyles((theme) => ({
   columnFlex: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     height: '100%',
   },
   userName: {
@@ -229,7 +253,7 @@ const useStyles = makeStyles((theme) => ({
   postDetailsWrapper: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
   },
   postDetails: {
     display: 'flex',

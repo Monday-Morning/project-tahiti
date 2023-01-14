@@ -9,9 +9,12 @@ const useAutoComplete = (searchText, limit) => {
   const [searchResult, setSearchResult] = useState([]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setSearchKeyword(searchText);
-    }, 800);
+    const timer = setTimeout(
+      () => {
+        setSearchKeyword(searchText);
+      },
+      searchText.length < 3 ? 10 : 300,
+    );
 
     return () => {
       clearTimeout(timer);

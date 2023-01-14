@@ -3,9 +3,9 @@ import React from 'react';
 import makeStyles from '@mui/styles/makeStyles';
 import { Typography } from '@mui/material';
 
-import PhotoCarousel from './PhotoCarousel';
+import Carousel from '../guide/Carousel';
 
-const BigCarousel = ({ head, navigator, IMAGE }) => {
+const BigCarousel = ({ head, navigator, content }) => {
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
@@ -14,9 +14,7 @@ const BigCarousel = ({ head, navigator, IMAGE }) => {
           {head}
         </Typography>
       </div>
-      <div>
-        <PhotoCarousel navigator={navigator} IMAGE={IMAGE} />
-      </div>
+      <Carousel content={content} />
     </div>
   );
 };
@@ -34,11 +32,10 @@ const useStyles = makeStyles((theme) => ({
   },
   textWrapper: {
     display: 'flex',
-    direction: 'row',
     justifyContent: 'center',
   },
   text: {
+    fontSize: '28px',
     color: theme.palette.common.white,
-    alignSelf: 'center',
   },
 }));
