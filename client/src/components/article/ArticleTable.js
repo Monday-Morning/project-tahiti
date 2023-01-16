@@ -67,5 +67,4 @@ const useStyles = makeStyles((theme) => ({
   lighter: {
     fontWeight: 'regular',
   },
-  
 }));

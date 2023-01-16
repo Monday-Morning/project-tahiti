@@ -55,50 +55,6 @@ const Info = () => {
                     </div>
                   ))}
                 </div>
-                {/* <div
-                  className={classes.hncConatiner}
-                  style={{ padding: '5px' }}
-                >
-                  <Typography className={classes.hncTitle}>
-                    HNC Members
-                  </Typography>
-                  <div className={classes.hnc}>
-                    {item1.hnc.map((item, key) => (
-                      <div>
-                        {item.year && (
-                          <Typography variant='body1' className={classes.grey}>
-                            {item.year}
-                          </Typography>
-                        )}
-                        {item.name && (
-                          <Typography
-                            variant='body1'
-                            className={classes.normalText}
-                          >
-                            Name: {item.name}
-                          </Typography>
-                        )}
-                        {item.email && (
-                          <Typography
-                            variant='body1'
-                            className={classes.normalText}
-                          >
-                            Email: {item.email}
-                          </Typography>
-                        )}
-                        {item.phone && (
-                          <Typography
-                            variant='body1'
-                            className={classes.normalText}
-                          >
-                            <CallIcon className={classes.phoneIcon} />
-                            {item.phone}
-                          </Typography>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div> */}
               </div>
             </Grid>
             <Grid item md={6}>
@@ -120,46 +76,6 @@ const Info = () => {
                           />
                         </Grid>
                       )}
-                      {/* {item.established && (
-                        <Grid item>
-                          <Typography
-                            variant='body1'
-                            className={classes.normalText}
-                          >
-                            Established: {item.established}
-                          </Typography>
-                        </Grid>
-                      )}
-                      {item.rooms && (
-                        <Grid item>
-                          <Typography
-                            variant='body1'
-                            className={classes.normalText}
-                          >
-                            Rooms: {item.rooms}
-                          </Typography>
-                        </Grid>
-                      )}
-                      {item.boarders && (
-                        <Grid item>
-                          <Typography
-                            variant='body1'
-                            className={classes.normalText}
-                          >
-                            Boarders: {item.boarders}
-                          </Typography>
-                        </Grid>
-                      )}
-                      {item.type && (
-                        <Grid item style={{ margin: '10px' }}>
-                          <Typography
-                            variant='body1'
-                            className={classes.normalText}
-                          >
-                            Type: {item.type}
-                          </Typography>
-                        </Grid>
-                      )} */}
                     </Grid>
                   ))}
                 </Grid>
@@ -179,15 +95,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexWrap: 'wrap',
     gap: '15px',
-    [theme.breakpoints.down('sm')]: {
-      flexDirection: 'column',
-    },
-  },
-  hnc: {
-    display: 'flex',
-    gap: '10px',
-    justifyContent: 'space-between',
-    margin: '15px',
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
     },
@@ -218,11 +125,6 @@ const useStyles = makeStyles((theme) => ({
   info: {
     padding: '10px',
   },
-  hncTitle: {
-    fontWeight: '700',
-    fontSize: '17px',
-    lineHeight: '24px',
-  },
   phoneIcon: {
     marginRight: '8px',
     fontSize: '1.3rem',
@@ -231,8 +133,8 @@ const useStyles = makeStyles((theme) => ({
   contactContainer: {
     margin: '5px',
     width: '40%',
-    [theme.breakpoints.down('sm')]:{
-        width: '100%',
-    }
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
   },
 }));
