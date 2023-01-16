@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
 
-import makeStyles from '@mui/styles/makeStyles';
-import { Container, Grid, Typography } from '@mui/material';
+import Image from 'next/image';
+import Link from 'next/link';
 import { ArrowRightCircle } from 'react-feather';
+
+import {
+  Container,
+  Grid,
+  Typography,
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 
 // Assets
 import logo from '../../assets/images/logo.png';
 import googlePlay from '../../assets/images/logos/google_play.png';
 import { ARCHIVES } from '../../assets/placeholder/guide';
-import AppRecommender from '../widgets/AppRecomender';
+
+// import AppRecommender from '../widgets/AppRecomender';
 
 const Footer = () => {
   const classes = useStyles();
@@ -303,7 +309,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <AppRecommender />
+      {/* <AppRecommender /> */}
     </div>
   );
 };
