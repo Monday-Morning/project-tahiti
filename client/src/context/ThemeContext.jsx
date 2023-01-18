@@ -1,8 +1,4 @@
-import React, {
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { ThemeProvider } from '@mui/material/styles';
 
