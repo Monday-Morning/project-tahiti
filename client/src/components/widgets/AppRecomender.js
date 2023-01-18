@@ -1,17 +1,9 @@
-import React, {
-  useEffect,
-  useState,
-} from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Bowser from 'bowser';
 import Image from 'next/image';
 
-import {
-  Button,
-  Slide,
-  Typography,
-  useMediaQuery,
-} from '@mui/material';
+import { Button, Slide, Typography, useMediaQuery } from '@mui/material';
 //libraries
 import makeStyles from '@mui/styles/makeStyles';
 

@@ -4,11 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRightCircle } from 'react-feather';
 
-import {
-  Container,
-  Grid,
-  Typography,
-} from '@mui/material';
+import { Container, Grid, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 
 // Assets
