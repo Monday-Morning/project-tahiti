@@ -1,28 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import Head from 'next/head';
-import Router from 'next/router';
-
 // Styles
 import '../../public/index.css';
 
-// Libraries
-import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
-import { CssBaseline } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
 
-// Providers
-import ApolloClient from '../config/ApolloClient';
-import AuthState from '../context/auth/AuthState';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+
+// import { BrowserRouter } from 'react-router-dom';
+// Libraries
+import { CssBaseline } from '@mui/material';
+import { StyledEngineProvider } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 
 // Components
 // import ScrollToTopOnMount from '../components/shared/ScrollToTopOnMount';
-import ScrollToTopButton from '../components/shared/button/ScrollToTopButton';
 import ActivityIndicator from '../components/shared/ActivityIndicator';
+import ScrollToTopButton from '../components/shared/button/ScrollToTopButton';
+// Providers
+import ApolloClient from '../config/ApolloClient';
+import AuthState from '../context/auth/AuthState';
 import SidebarContextProvider from '../context/SidebarContext';
-// Theme
-import lightTheme from '../config/themes/light';
-import { useRouter } from 'next/router';
-import { BrowserRouter } from 'react-router-dom';
+import ThemeContextProvider from '../context/ThemeContext';
 
 function TahitiApp({ Component, pageProps }) {
   const classes = useStyles();
@@ -62,7 +63,7 @@ function TahitiApp({ Component, pageProps }) {
             />
           </Head>
           <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={lightTheme}>
+            <ThemeContextProvider>
               <CssBaseline />
 
               {loading ? (
@@ -73,7 +74,7 @@ function TahitiApp({ Component, pageProps }) {
 
               <ScrollToTopButton className={classes.fab} />
               {/* <ScrollToTopOnMount /> */}
-            </ThemeProvider>
+            </ThemeContextProvider>
           </StyledEngineProvider>
         </SidebarContextProvider>
       </ApolloClient>
