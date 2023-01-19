@@ -3,26 +3,40 @@ import Image from 'next/image';
 import theme from '../../config/themes/light';
 
 // Libraries
-import { Container, Paper, useMediaQuery } from '@mui/material';
+import { Container, Pagination, Paper } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { Table, TableHead, TableBody } from '@mui/material';
 import { Heart, PlayCircle } from 'react-feather';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import { useRouter } from 'next/router';
 
-const PodcastList = ({ spotify }) => {
-  const smallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-  const mediumScreen = useMediaQuery(theme.breakpoints.down('md'));
+const PodcastList = ({ spotify, pageNo, isNextNull }) => {
   const classes = useStyles();
+
   const [currentId, setCurrentId] = useState(spotify[0].id);
-
-  useEffect(() => {
-    console.log(window.document.querySelector('.embed-widget-container'));
-  }, [currentId]);
-
   function millisToMinutesAndSeconds(millis) {
     var minutes = Math.floor(millis / 60000);
     var seconds = ((millis % 60000) / 1000).toFixed(0);
     return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
   }
+  const len = isNextNull.length;
+  const { push } = useRouter();
+  const [isLoading, setLoading] = useState(true);
+  const [nextPageNo, setNextPageNo] = useState(pageNo);
+  console.log(nextPageNo);
+  useEffect(() => {
+    if (isLoading ?? true === true) {
+      setLoading((_val) => false);
+      return;
+    }
+
+    setLoading((_val) => true);
+
+    push(`/expressions/podcasts/${nextPageNo}`);
+
+    setLoading(false);
+  }, [nextPageNo]);
 
   return (
     <Container>
@@ -51,10 +65,7 @@ const PodcastList = ({ spotify }) => {
                       <PlayCircle />
                     </td>
                     <td>
-                      {podcast.name.substring(
-                        0,
-                        smallScreen ? 10 : mediumScreen ? 50 : 100,
-                      )}
+                      <div className={classes.podcastTitle}>{podcast.name}</div>
                     </td>
                     <td>{millisToMinutesAndSeconds(podcast.duration_ms)}</td>
                     <td>
@@ -67,7 +78,6 @@ const PodcastList = ({ spotify }) => {
           </Table>
         </Paper>
       </div>
-
       <div>
         <iframe
           src={`https://open.spotify.com/embed/episode/${currentId}`}
@@ -78,12 +88,27 @@ const PodcastList = ({ spotify }) => {
           allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
         ></iframe>
       </div>
+      <div className={classes.pagination}>
+        {nextPageNo != 1 ? (
+          <ChevronLeftIcon onClick={() => setNextPageNo(nextPageNo - 1)} />
+        ) : null}
+
+        {len != 0 ? (
+          <ChevronRightIcon onClick={() => setNextPageNo(nextPageNo + 1)} />
+        ) : null}
+      </div>
     </Container>
   );
 };
 export default PodcastList;
 
 const useStyles = makeStyles((theme) => ({
+  pagination: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '20px',
+    maxWidth: '90vw',
+  },
   wrapper: {
     margin: '2rem 0 2rem 0',
     borderRadius: '0.7rem',
@@ -119,16 +144,25 @@ const useStyles = makeStyles((theme) => ({
     '& td': {
       padding: '0.75rem',
     },
+
     '& td:nth-child(1)': {
       position: 'absolute',
       botton: '0rem',
       marginTop: '0.1rem',
     },
-    '& td:nth-child(2)': {
-      textAlign: 'start',
-    },
     '& td:nth-child(3)': {
       textAlign: 'start',
     },
+  },
+  podcastTitle: {
+    fontWeight: '400',
+    fontFamily: 'Source Sans Pro',
+    textAlign: 'center',
+    textAlign: 'start',
+    textOverflow: 'ellipsis',
+    lineClamp: '1',
+    boxOrient: 'vertical',
+    display: '-webkit-box',
+    overflow: 'hidden',
   },
 }));
