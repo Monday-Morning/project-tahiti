@@ -45,13 +45,18 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '0',
     backgroundColor: theme.palette.primary.blue50,
   },
+  toggleTheme: {
+    marginRight: 'auto',
+    display: 'flex',
+    alignItems: 'center',
+  },
   container: {
     display: 'flex',
     justifyContent: 'flex-end',
     alignItems: 'center',
     height: '40px',
     // Container Properties
-    paddingLeft: '16px',
+    paddingLeft: '0px',
     paddingRight: '16px',
     marginLeft: 'auto',
     marginRight: 'auto',
