@@ -1,8 +1,8 @@
+import { useEffect, useRef, useState } from 'react';
+
 import { Cancel } from '@mui/icons-material';
 import { Stack, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { useEffect } from 'react';
-import { useRef, useState } from 'react';
 
 const Tags = ({ data, handleDelete }) => {
   return (
@@ -23,6 +23,7 @@ const Tags = ({ data, handleDelete }) => {
         <Typography
           sx={{
             fontSize: '.6rem',
+            whiteSpace: 'nowrap',
           }}
         >
           {data}
