@@ -2,7 +2,6 @@ import brave from '../images/logos/brave.png';
 import chrome from '../images/logos/chrome.png';
 import edge from '../images/logos/edge.png';
 import blueLogo from '../images/logos/logo_blue.png';
-import safari from '../images/logos/safari.png';
 
 export const APPS = Object.freeze({
   welcomeMessage: 'Sent from Monday Morning App',
@@ -12,7 +11,7 @@ export const APPS = Object.freeze({
       logo: blueLogo,
       name: 'MM App',
       current: false,
-      link: 'https://play.google.com/',
+      link: 'https://play.google.com/store/apps/details?id=in.ac.nitrkl.mondaymorning&hl=en&gl=US',
     },
     {
       logo: chrome,
@@ -30,12 +29,6 @@ export const APPS = Object.freeze({
       logo: brave,
       name: 'Brave',
       browser: 'Brave',
-      current: true,
-    },
-    {
-      logo: safari,
-      name: 'Safari',
-      browser: 'Safari',
       current: true,
     },
   ],

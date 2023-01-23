@@ -16,13 +16,18 @@ function AppRecommender() {
   const mobileMatches = useMediaQuery(theme.breakpoints.down('sm'));
   const { welcomeMessage, title, sources } = APPS;
 
-  const [display, setDisplay] = useState(true);
+  const [display, setDisplay] = useState(false);
   const [currentBrowser, setCurrentBrowser] = useState(null);
 
   useEffect(() => {
     const browser =
       (!!window.navigator.brave && 'Brave') ||
       Bowser.getParser(window.navigator.userAgent).getBrowserName();
+
+    const OS = Bowser.getParser(window.navigator.userAgent).getOS();
+    if (OS.name === 'Android') {
+      setDisplay(true);
+    }
 
     setCurrentBrowser(browser);
   }, []);
