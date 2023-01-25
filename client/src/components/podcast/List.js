@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
-import theme from '../../config/themes/light';
 
 // Libraries
-import { Container, Pagination, Paper } from '@mui/material';
+import { Container, Paper } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { Table, TableHead, TableBody } from '@mui/material';
 import { Heart, PlayCircle } from 'react-feather';
@@ -11,7 +9,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { useRouter } from 'next/router';
 
-const PodcastList = ({ spotify, pageNo, isNextNull }) => {
+const PodcastList = ({ spotify, pageNo, len, hidePagination }) => {
   const classes = useStyles();
 
   const [currentId, setCurrentId] = useState(spotify[0].id);
@@ -20,11 +18,11 @@ const PodcastList = ({ spotify, pageNo, isNextNull }) => {
     var seconds = ((millis % 60000) / 1000).toFixed(0);
     return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
   }
-  const len = isNextNull.length;
+
   const { push } = useRouter();
   const [isLoading, setLoading] = useState(true);
   const [nextPageNo, setNextPageNo] = useState(pageNo);
-  console.log(nextPageNo);
+
   useEffect(() => {
     if (isLoading ?? true === true) {
       setLoading((_val) => false);
@@ -88,15 +86,17 @@ const PodcastList = ({ spotify, pageNo, isNextNull }) => {
           allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
         ></iframe>
       </div>
-      <div className={classes.pagination}>
-        {nextPageNo != 1 ? (
-          <ChevronLeftIcon onClick={() => setNextPageNo(nextPageNo - 1)} />
-        ) : null}
+      {!hidePagination ? (
+        <div className={classes.pagination}>
+          {nextPageNo != 1 ? (
+            <ChevronLeftIcon onClick={() => setNextPageNo(nextPageNo - 1)} />
+          ) : null}
 
-        {len != 0 ? (
-          <ChevronRightIcon onClick={() => setNextPageNo(nextPageNo + 1)} />
-        ) : null}
-      </div>
+          {len != 0 ? (
+            <ChevronRightIcon onClick={() => setNextPageNo(nextPageNo + 1)} />
+          ) : null}
+        </div>
+      ) : null}
     </Container>
   );
 };
@@ -135,6 +135,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '400',
     fontFamily: 'Source Sans Pro',
     textAlign: 'center',
+
     backgroundColor: theme.palette.common.white,
     '&:hover': {
       cursor: 'pointer',
@@ -156,6 +157,7 @@ const useStyles = makeStyles((theme) => ({
   },
   podcastTitle: {
     fontWeight: '400',
+    marginLeft: '0.3rem',
     fontFamily: 'Source Sans Pro',
     textAlign: 'center',
     textAlign: 'start',

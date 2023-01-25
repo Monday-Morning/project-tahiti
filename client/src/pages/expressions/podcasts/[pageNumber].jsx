@@ -14,6 +14,7 @@ const PodcastPage = ({ spotify, isError, pageNumber, isNextNull }) => {
   const handleChange = (value) => {
     setPageNo(value);
   };
+  const len = isNextNull.length;
 
   useEffect(() => {
     if (isLoading ?? true === true) {
@@ -102,9 +103,8 @@ const PodcastPage = ({ spotify, isError, pageNumber, isNextNull }) => {
           <Podcast
             spotify={spotify}
             pageNo={pageNo ?? 1}
-            totalPages={6}
             handleChange={handleChange}
-            isNextNull={isNextNull}
+            len={len}
           />
         </Marginals>
       ) : (

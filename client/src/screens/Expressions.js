@@ -30,7 +30,7 @@ function Expressions({
   miscellaneous,
 }) {
   const classes = useStyles();
-
+  const hidePagination = true;
   const CONTENT = [
     {
       name: 'Witsdom',
@@ -70,7 +70,9 @@ function Expressions({
     {
       name: 'Podcasts',
       container: true,
-      section: <PodcastList spotify={spotify} />,
+      section: (
+        <PodcastList spotify={spotify} hidePagination={hidePagination} />
+      ),
     },
     {
       name: 'Miscellaneous',

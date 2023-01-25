@@ -44,8 +44,7 @@ const SUB_CATEGORIES = {
     GALLERY: `${CATEGORIES.EXPRESSIONS}/gallery`,
     NITR_IN_MOTION: `${CATEGORIES.EXPRESSIONS}/nitrInMotion`,
     EDITORIAL: `${CATEGORIES.EXPRESSIONS}/editorial`,
-    // PODCASTS: `${CATEGORIES.EXPRESSIONS}/podcasts`,
-    PODCASTS: `https://open.spotify.com/show/7ljgcbXzt4VQRJ1SLIECNf`,
+    PODCASTS: `${CATEGORIES.EXPRESSIONS}/podcasts`,
     MISCELLANEOUS: `${CATEGORIES.EXPRESSIONS}/miscellaneous`,
   },
 };

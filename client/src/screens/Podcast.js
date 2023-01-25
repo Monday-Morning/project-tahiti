@@ -7,7 +7,7 @@ import BackLink from '../components/podcast/BackLink';
 import LatestPodcast from '../components/podcast/LatestPodcast';
 import PodcastList from '../components/podcast/List';
 
-const Podcast = ({ spotify, totalPages, pageNo, handleChange, isNextNull }) => (
+const Podcast = ({ spotify, pageNo, handleChange, len }) => (
   <>
     <Container>
       <BackLink />
@@ -15,9 +15,8 @@ const Podcast = ({ spotify, totalPages, pageNo, handleChange, isNextNull }) => (
       <PodcastList
         spotify={spotify}
         pageNo={pageNo}
-        totalPages={totalPages}
         handleChange={handleChange}
-        isNextNull={isNextNull}
+        len={len}
       />
     </Container>
   </>
