@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 // Libraries
-import { Container, Paper } from '@mui/material';
+import { Container, Paper, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { Table, TableHead, TableBody } from '@mui/material';
 import { Heart, PlayCircle } from 'react-feather';
@@ -89,11 +89,21 @@ const PodcastList = ({ spotify, pageNo, len, hidePagination }) => {
       {!hidePagination ? (
         <div className={classes.pagination}>
           {nextPageNo != 1 ? (
-            <ChevronLeftIcon onClick={() => setNextPageNo(nextPageNo - 1)} />
+            <>
+              <Typography onClick={() => setNextPageNo(nextPageNo - 1)}>
+                Previous
+              </Typography>
+              <ChevronLeftIcon onClick={() => setNextPageNo(nextPageNo - 1)} />
+            </>
           ) : null}
 
           {len != 0 ? (
-            <ChevronRightIcon onClick={() => setNextPageNo(nextPageNo + 1)} />
+            <>
+              <ChevronRightIcon onClick={() => setNextPageNo(nextPageNo + 1)} />
+              <Typography onClick={() => setNextPageNo(nextPageNo + 1)}>
+                Next
+              </Typography>
+            </>
           ) : null}
         </div>
       ) : null}
@@ -104,6 +114,9 @@ export default PodcastList;
 
 const useStyles = makeStyles((theme) => ({
   pagination: {
+    '&:hover': {
+      cursor: 'pointer',
+    },
     display: 'flex',
     justifyContent: 'center',
     marginTop: '20px',
