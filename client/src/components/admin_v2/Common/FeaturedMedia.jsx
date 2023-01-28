@@ -4,13 +4,12 @@ import React, { useEffect, useState } from 'react';
 // libraries
 import { Card, Typography } from '@mui/material';
 
-// media imports
-import SharedMedia, { thumb, thumbInner } from './sharedMedia';
-import imagekit from '../../../utils/imagekit';
-
 // graphql
 import { GraphClient } from '../../../config/ApolloClient';
 import addMedia from '../../../graphql/mutations/media/addMedia';
+import imagekit from '../../../utils/imageKit';
+// media imports
+import SharedMedia, { thumb, thumbInner } from './sharedMedia';
 
 export default function FeaturedMedia({
   height,
