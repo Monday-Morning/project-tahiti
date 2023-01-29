@@ -66,7 +66,6 @@ export default function ArticleTags({ tag, adminTags, isAdmin, id }) {
 
   const handleDelete = async (value) => {
     const newtags = tags.filter((val) => val.reference !== value.reference);
-    SetTags(newtags);
     await updateTag(value.reference, false);
   };
 
@@ -81,12 +80,13 @@ export default function ArticleTags({ tag, adminTags, isAdmin, id }) {
       },
     });
 
-    SetTags((tags) => [...tags, createdTag]);
     await updateTag(createdTag.id, true);
   };
 
   const updateTag = async (tagId, isAdded) => {
-    const { data: updatedTags } = await GraphClient.mutate({
+    const {
+      data: { updateArticleTags: updatedTags },
+    } = await GraphClient.mutate({
       mutation: updateArticleTags,
       variables: {
         id: id,
@@ -95,6 +95,15 @@ export default function ArticleTags({ tag, adminTags, isAdmin, id }) {
         isAdmin: isAdmin,
       },
     });
+
+    const updatedAdminTags = isAdmin
+      ? updatedTags.adminTags.map((data) => ({
+          ...data,
+          isAdmin: true,
+        }))
+      : [];
+    const updatedTag = isAdmin ? [] : updatedTags.tags;
+    SetTags([...updatedAdminTags, ...updatedTag]);
   };
 
   const searchQuery = (e) => {
@@ -133,7 +142,7 @@ export default function ArticleTags({ tag, adminTags, isAdmin, id }) {
                 <div
                   key={id}
                   className={classes.tagList}
-                  onClick={updateTag(id, true)}
+                  onClick={() => updateTag(id, true)}
                 >
                   {name}
                 </div>
