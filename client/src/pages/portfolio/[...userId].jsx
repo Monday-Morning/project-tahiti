@@ -111,10 +111,14 @@ const PortfolioPage = ({
     <>
       <Head>
         {/* <!-- =============== Primary Meta Tags =============== --> */}
-        <title>{firstName + ' ' + lastName} | Monday Morning</title>
+        <title>
+          {!lastName ? firstName : firstName + ' ' + lastName} | Monday Morning
+        </title>
         <meta
           name='title'
-          content={`${firstName + ' ' + lastName} | Monday Morning`}
+          content={`${
+            !lastName ? firstName : firstName + ' ' + lastName
+          } | Monday Morning`}
         />
         <meta
           name='description'
@@ -137,7 +141,9 @@ const PortfolioPage = ({
         />
         <meta
           property='og:title'
-          content={`${firstName + ' ' + lastName} | Monday Morning`}
+          content={`${
+            !lastName ? firstName : firstName + ' ' + lastName
+          } | Monday Morning`}
         />
         <meta
           property='og:description'
@@ -205,7 +211,9 @@ export async function getStaticProps({
 
         return {
           redirect: {
-            destination: `/portfolio/${id}/${getUserSlug(fullName)}`,
+            destination: `/portfolio/${id}/${getUserSlug(
+              `${user.firstName}${user.lastName ? ' ' + user.lastName : ''}`,
+            )}`,
             permanent: false,
           },
         };
@@ -231,10 +239,17 @@ export async function getStaticProps({
       };
     }
 
-    if (userSlug !== getUserSlug(user.fullName)) {
+    if (
+      userSlug !==
+      getUserSlug(
+        `${user.firstName}${user.lastName ? ' ' + user.lastName : ''}`,
+      )
+    ) {
       return {
         redirect: {
-          destination: `/portfolio/${user.id}/${getUserSlug(user.fullName)}`,
+          destination: `/portfolio/${user.id}/${getUserSlug(
+            `${user.firstName}${user.lastName ? ' ' + user.lastName : ''}`,
+          )}`,
           permanent: false,
         },
       };
