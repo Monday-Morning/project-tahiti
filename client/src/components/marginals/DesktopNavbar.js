@@ -146,7 +146,7 @@ const DesktopNavbar = () => {
                   href={path}
                   passHref
                 >
-                  <Typography variant='h2' className={`${classes.menu}`}>
+                  <Typography variant='h3' className={`${classes.menu}`}>
                     {name}
                   </Typography>
                 </Link>
