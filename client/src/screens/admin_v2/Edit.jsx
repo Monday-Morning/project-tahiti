@@ -280,7 +280,13 @@ const EditArticle = ({ allUsers, article }) => {
           </Button>
         </Box>
         <Box sx={{ marginTop: '10px' }}>
-          <ArticleTags adminTags={[]} tag={tags} id={id} isAdmin={false} />
+          <ArticleTags
+            adminTags={[]}
+            tag={tag}
+            id={id}
+            isAdmin={false}
+            setErrorMessageAndError={setErrorMessageAndError}
+          />
         </Box>
         <Box
           style={{

@@ -45,8 +45,14 @@ const Tags = ({ data, handleDelete }) => {
   );
 };
 
-export default function ArticleTags({ tag, adminTags, isAdmin, id }) {
-  const [tags, SetTags] = useState([]);
+export default function ArticleTags({
+  tag,
+  adminTags,
+  isAdmin,
+  id,
+  setErrorMessageAndError,
+}) {
+  const [tags, setTags] = useState([]);
   const [active, setActive] = useState(false);
   const [search, setSearch] = useState('');
   const tagRef = useRef();
@@ -60,16 +66,15 @@ export default function ArticleTags({ tag, adminTags, isAdmin, id }) {
         ...data,
         isAdmin: true,
       }));
-      SetTags([...adminTagData, ...tag]);
+      setTags([...adminTagData, ...tag]);
     }
-  }, [adminTags, tag]);
+  }, []);
 
   const handleDelete = async (value) => {
-    const newtags = tags.filter((val) => val.reference !== value.reference);
     await updateTag(value.reference, false);
   };
 
-  const handleCreate = async (e) => {
+  const handleCreate = async () => {
     const {
       data: { createTag: createdTag },
     } = await GraphClient.mutate({
@@ -84,6 +89,15 @@ export default function ArticleTags({ tag, adminTags, isAdmin, id }) {
   };
 
   const updateTag = async (tagId, isAdded) => {
+    if (tags.some((tag) => tag.reference === tagId && isAdded)) {
+      setErrorMessageAndError
+        ? setErrorMessageAndError('Tag already exists')
+        : null;
+      tagRef.current.value = '';
+      setActive(false);
+      return false;
+    }
+
     const {
       data: { updateArticleTags: updatedTags },
     } = await GraphClient.mutate({
@@ -103,7 +117,9 @@ export default function ArticleTags({ tag, adminTags, isAdmin, id }) {
         }))
       : [];
     const updatedTag = isAdmin ? [] : updatedTags.tags;
-    SetTags([...updatedAdminTags, ...updatedTag]);
+    setTags([...updatedAdminTags, ...updatedTag]);
+    tagRef.current.value = '';
+    setActive(false);
   };
 
   const searchQuery = (e) => {
