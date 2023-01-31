@@ -38,7 +38,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 const link = from([
   errorLink,
   new HttpLink({
-    uri: process.env.NEXT_PUBLIC_SERVER_ADDRESS,
+    uri: `${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/v1/graph`,
   }),
 ]);
 
