@@ -316,7 +316,7 @@ export const hallinfo = Object.freeze({
       ],
     },
     {
-      title: 'Mokshagundam Visvesvaraya (MV) Hall of Residence',
+      title: 'Mokshagundam Visvesvaraya Hall of Residence',
       contact: [
         {
           name: 'Prof. Shesadev Pradhan',
