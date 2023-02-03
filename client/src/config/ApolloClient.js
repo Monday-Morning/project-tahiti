@@ -9,6 +9,7 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
+import { parseCookies } from 'nookies';
 
 const cache = new InMemoryCache();
 
@@ -43,10 +44,11 @@ const link = from([
 ]);
 
 const getApolloLink = (token) => {
+  const cookies = parseCookies();
   const authLink = setContext((_, { headers }) => ({
     headers: {
       ...headers,
-      Authorization: token ? token : '',
+      Authorization: token || cookies.firebaseToken || '',
     },
   }));
   return authLink.concat(link);
