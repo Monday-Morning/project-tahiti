@@ -5,9 +5,7 @@ export default async function getAccess(ctx, permissions) {
   try {
     const cookies = parseCookies(ctx);
     const { data, error } = await fetch(
-      process.env.NODE_ENV === 'production'
-        ? 'https://mm.dashnet.in/api/auth/check'
-        : 'http://localhost:5000/auth/check',
+      `${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/auth/check`,
       {
         method: 'GET',
         mode: 'cors',
