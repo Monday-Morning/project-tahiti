@@ -138,7 +138,7 @@ export default ArticleCard;
 const useStyles = makeStyles((theme) => ({
   root: {
     boxShadow: theme.shadows[0],
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: theme.palette.background.card,
     overflow: 'hidden',
     width: ({ carousel }) => (carousel ? '400px' : '100%'),
     height: '470px',
@@ -196,7 +196,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '14px',
     fontWeight: '400',
     lineHeight: '20px',
-    color: theme.palette.secondary.neutral70,
+    color: theme.palette.secondary.neutral60,
   },
 
   cardContent: {
@@ -212,6 +212,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '2rem',
     textAlign: 'left',
     cursor: 'pointer',
+    color: theme.palette.text.primary,
 
     [theme.breakpoints.down('md')]: {
       lineHeight: '1.75rem',
@@ -228,7 +229,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   author: {
-    color: theme.palette.secondary.neutral70,
+    color: theme.palette.secondary.neutral60,
     fontFamily: 'Source Sans Pro',
     fontSize: '14px',
     lineHeight: '16px',
@@ -252,12 +253,11 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'space-between',
     fontWeight: '400',
-    color: theme.palette.secondary.neutral70,
+    color: theme.palette.secondary.neutral60,
   },
   articleDescription: {
     marginTop: '12px',
     fontWeight: '400',
-    color: theme.palette.common.black,
     textAlign: 'left',
     fontFamily: 'Source Sans Pro',
   },

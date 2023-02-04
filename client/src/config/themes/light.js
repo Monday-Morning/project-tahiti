@@ -72,7 +72,9 @@ const theme = createTheme({
     divider: 'rgba(0, 0, 0, 0.2)',
     background: {
       default: '#FFF',
-      paper: '#FAFAFA',
+      paper: '#F8F8F8',
+      card: 'FFFFFF',
+      banner: '#D9E9F7',
     },
     action: {
       active: 'rgba(0, 0, 0, 0.54)',
