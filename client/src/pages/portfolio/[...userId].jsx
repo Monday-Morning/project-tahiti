@@ -111,10 +111,14 @@ const PortfolioPage = ({
     <>
       <Head>
         {/* <!-- =============== Primary Meta Tags =============== --> */}
-        <title>{firstName + ' ' + lastName} | Monday Morning</title>
+        <title>
+          {!lastName ? firstName : firstName + ' ' + lastName} | Monday Morning
+        </title>
         <meta
           name='title'
-          content={`${firstName + ' ' + lastName} | Monday Morning`}
+          content={`${
+            !lastName ? firstName : firstName + ' ' + lastName
+          } | Monday Morning`}
         />
         <meta
           name='description'
@@ -137,7 +141,9 @@ const PortfolioPage = ({
         />
         <meta
           property='og:title'
-          content={`{firstName + ' ' + lastName} | Monday Morning`}
+          content={`${
+            !lastName ? firstName : firstName + ' ' + lastName
+          } | Monday Morning`}
         />
         <meta
           property='og:description'
@@ -148,14 +154,8 @@ const PortfolioPage = ({
           itemProp='image'
           content='/icon-256x256.png'
         />
-        <meta
-          property='og:image:url'
-          content='https://mondaymorning.nitrkl.ac.in/icon-256x256.png'
-        />
-        <meta
-          property='og:image:secure_url'
-          content='https://mondaymorning.nitrkl.ac.in/icon-256x256.png'
-        />
+        <meta property='og:image:url' content={profileImageLink} />
+        <meta property='og:image:secure_url' content={profileImageLink} />
         <meta property='og:image:type' content='image/png' />
 
         {/* <!-- =============== Twitter =============== --> */}
@@ -211,7 +211,9 @@ export async function getStaticProps({
 
         return {
           redirect: {
-            destination: `/portfolio/${id}/${getUserSlug(fullName)}`,
+            destination: `/portfolio/${id}/${getUserSlug(
+              `${user.firstName}${user.lastName ? ' ' + user.lastName : ''}`,
+            )}`,
             permanent: false,
           },
         };
@@ -237,10 +239,17 @@ export async function getStaticProps({
       };
     }
 
-    if (userSlug !== getUserSlug(user.fullName)) {
+    if (
+      userSlug !==
+      getUserSlug(
+        `${user.firstName}${user.lastName ? ' ' + user.lastName : ''}`,
+      )
+    ) {
       return {
         redirect: {
-          destination: `/portfolio/${user.id}/${getUserSlug(user.fullName)}`,
+          destination: `/portfolio/${user.id}/${getUserSlug(
+            `${user.firstName}${user.lastName ? ' ' + user.lastName : ''}`,
+          )}`,
           permanent: false,
         },
       };
