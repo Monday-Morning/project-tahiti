@@ -1,28 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+
 import Link from 'next/link';
 
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
 // Material UI
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TablePagination from '@mui/material/TablePagination';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
+import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+
 import ArticleStatusMenu from '../../components/admin_v2/Browse/ArticleStatusMenu';
 import DialogBox from '../../components/admin_v2/Browse/DialogBox';
+import SnackBarAleart from '../../components/admin_v2/Common/SnackBarAleart';
 import ArticleTags from '../../components/admin_v2/Common/Tags';
-
-import determineCategory from '../../utils/determineCategory';
 import Marginals from '../../components/admin_v2/Marginals/Marginals';
 import { GraphClient } from '../../config/ApolloClient';
-import listAllArticles from '../../graphql/queries/article/listAllArticles';
 import updateArticlePublishStatus from '../../graphql/mutations/article/updateArticlePublishStatus';
-import SnackBarAleart from '../../components/admin_v2/Common/SnackBarAleart';
+import listAllArticles from '../../graphql/queries/article/listAllArticles';
+import determineCategory from '../../utils/determineCategory';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -46,6 +47,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const BrowseArticle = ({ articles, totalArticles }) => {
   const [_articles, setArticles] = useState(articles);
+  const [rowsPerPage, setRowsPerPage] = React.useState(25);
   const [row, setRow] = useState([]);
   const [page, setPage] = useState(0);
 
@@ -68,6 +70,10 @@ const BrowseArticle = ({ articles, totalArticles }) => {
 
   const handleChangePage = (_event, newPage) => {
     setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (_event) => {
+    setRowsPerPage(+_event.target.value);
   };
 
   //snack bar aleart
@@ -107,6 +113,7 @@ const BrowseArticle = ({ articles, totalArticles }) => {
         publishStatus,
         createdAt,
         adminTags,
+        tags,
       }) => {
         const authorNames = authors?.map((author) => author.name).join(', ');
         const categoryNames = categories
@@ -124,6 +131,7 @@ const BrowseArticle = ({ articles, totalArticles }) => {
           categoryNames,
           publishStatus,
           adminTags,
+          tags,
           createdAt: new Date(createdAt).toString().substring(4, 21),
         };
       },
@@ -137,11 +145,15 @@ const BrowseArticle = ({ articles, totalArticles }) => {
         data: { listAllArticles: articles },
       } = await GraphClient.query({
         query: listAllArticles,
-        variables: { limit: 25, offset: 25 * page, onlyPublished: false },
+        variables: {
+          limit: rowsPerPage,
+          offset: rowsPerPage * page,
+          onlyPublished: false,
+        },
       });
       setArticles(articles);
     })();
-  }, [page]);
+  }, [rowsPerPage, page]);
 
   return (
     <div>
@@ -206,7 +218,12 @@ const BrowseArticle = ({ articles, totalArticles }) => {
                           '&:hover': { display: 'initial' },
                         }}
                       >
-                        <ArticleTags underlineVisible={true} tag={adminTags} />
+                        <ArticleTags
+                          adminTags={adminTags}
+                          tag={[]}
+                          isAdmin={true}
+                          id={id}
+                        />
                       </Box>
                     </StyledTableCell>
                     <StyledTableCell align='left'>
@@ -234,12 +251,12 @@ const BrowseArticle = ({ articles, totalArticles }) => {
         </TableContainer>
         <TablePagination
           component={Paper}
-          rowsPerPageOptions={[25]}
+          rowsPerPageOptions={[25, 50, 100]}
           count={totalArticles}
-          rowsPerPage={25}
+          rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
-          // onRowsPerPageChange={handleChangeRowsPerPage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Marginals>
     </div>

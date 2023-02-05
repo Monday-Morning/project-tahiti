@@ -15,6 +15,11 @@ const listAllArticles = gql`
       categories {
         number
       }
+      tags {
+        name
+        reference
+        isAdmin
+      }
       adminTags {
         name
         reference
