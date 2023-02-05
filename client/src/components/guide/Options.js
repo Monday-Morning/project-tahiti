@@ -10,6 +10,7 @@ import makeStyles from '@mui/styles/makeStyles';
 // images
 import icon1 from '../../assets/images/guide/optIcon1.png';
 import icon2 from '../../assets/images/guide/optIcon2.png';
+import icon3 from '../../assets/images/guide/optIcon3.png';
 import icon4 from '../../assets/images/guide/optIcon4.png';
 // placeholder
 import { OPTIONS } from '../../assets/placeholder/guide';
