@@ -31,7 +31,7 @@ export default Banner;
 const useStyles = makeStyles((theme) => ({
   wrapper: {
     marginTop: '2rem',
-    backgroundColor: theme.palette.primary.blue10,
+    backgroundColor: theme.palette.background.banner,
     paddingTop: '2rem',
     paddingBottom: '2rem',
   },

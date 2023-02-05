@@ -6,11 +6,8 @@ import { Card, CardContent, Button } from '@mui/material';
 // Components
 import MarkdownWrapper from '../shared/MarkdownWrapper';
 
-// Theme
-import theme from '../../config/themes/light';
-
 function Squiggles({ data }) {
-  const classes = useStyles(theme);
+  const classes = useStyles();
 
   return (
     <Card className={classes.squigglesCard}>
@@ -36,7 +33,7 @@ function Squiggles({ data }) {
 
 export default Squiggles;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   squigglesCard: {
     backgroundColor: theme.palette.accent.squiggles,
     boxShadow: theme.shadows[0],
@@ -78,6 +75,7 @@ const useStyles = makeStyles(() => ({
     fontWeight: '400',
     hyphens: 'auto',
     fontFamily: 'IBM Plex Sans',
+    color: theme.palette.background.default,
   },
   squigglesTextWrapper: {
     gridArea: '1 / 2 / 2 / 6',

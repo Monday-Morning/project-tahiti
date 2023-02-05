@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   button: {
     textAlign: 'center',
     backgroundColor: ({ isRed }) =>
-      isRed ? 'rgba(215, 36, 46, 0.6)' : theme.palette.primary.blue10,
+      isRed ? 'rgba(215, 36, 46, 0.6)' : theme.palette.background.banner,
     borderRadius: '4px',
     margin: '8px 8px 0px 0px',
     padding: '12px 16px',

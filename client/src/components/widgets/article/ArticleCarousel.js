@@ -156,9 +156,5 @@ const useStyles = makeStyles((theme) => ({
   },
   leftButton: {
     marginRight: '10px',
-    color: 'black',
-  },
-  rightButton: {
-    color: 'black',
   },
 }));
