@@ -1,8 +1,11 @@
 import React from 'react';
+
 import Link from 'next/link';
 
-import makeStyles from '@mui/styles/makeStyles';
 import { Container } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+
+import ToggleModeIcon from '../widgets/ToggleModeIcon';
 
 const TopBar = () => {
   const classes = useStyles();
@@ -10,6 +13,9 @@ const TopBar = () => {
     <div className={classes.topBar}>
       <Container>
         <div className={classes.container}>
+          <div className={classes.toggleTheme}>
+            <ToggleModeIcon />
+          </div>
           <ul className={classes.navList}>
             <li className={classes.navItem}>
               <Link href='/about' className={classes.navLink} passHref>
@@ -39,13 +45,18 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '0',
     backgroundColor: theme.palette.primary.blue50,
   },
+  toggleTheme: {
+    marginRight: 'auto',
+    display: 'flex',
+    alignItems: 'center',
+  },
   container: {
     display: 'flex',
     justifyContent: 'flex-end',
     alignItems: 'center',
     height: '40px',
     // Container Properties
-    paddingLeft: '16px',
+    paddingLeft: '0px',
     paddingRight: '16px',
     marginLeft: 'auto',
     marginRight: 'auto',

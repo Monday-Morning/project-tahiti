@@ -102,7 +102,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100px',
     minHeight: '100px',
     boxShadow: theme.shadows[0],
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: theme.palette.background.card,
     overflow: 'hidden',
     padding: '0px',
     marginTop: '10px',
@@ -155,6 +155,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '16px',
     fontFamily: 'IBM Plex Sans',
     cursor: 'pointer',
+    color: theme.palette.text.primary,
   },
   authorList: {
     width: 'auto',

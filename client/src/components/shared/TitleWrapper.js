@@ -16,7 +16,7 @@ function TitleWrapper({ title }) {
 
 export default TitleWrapper;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   titleWrapper: {
     display: 'flex',
     marginTop: '2rem',
@@ -27,7 +27,7 @@ const useStyles = makeStyles(() => ({
   },
   underline: {
     border: 'none',
-    backgroundColor: 'black',
+    backgroundColor: theme.palette.divider,
     height: '1.5px',
     marginLeft: '10px',
     marginTop: '25px',

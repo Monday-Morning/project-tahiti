@@ -160,7 +160,7 @@ const useStyles = makeStyles((theme) => ({
 
     borderRadius: '10px',
     overflow: 'hidden',
-    backgroundColor: '#ffffff',
+    backgroundColor: theme.palette.background.card,
     boxShadow:
       '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
   },
@@ -228,7 +228,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '600',
     fontSize: '1.5rem',
     lineHeight: '2rem',
-    color: theme.palette.common.black,
+    color: theme.palette.text.primary,
     cursor: 'pointer',
   },
 

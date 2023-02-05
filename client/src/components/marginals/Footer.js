@@ -311,7 +311,7 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     paddingTop: '50px',
     marginTop: '25px',
-    backgroundColor: theme.palette.secondary.neutral20,
+    backgroundColor: theme.palette.background.paper,
   },
   aboutInfo: {
     padding: '0 100px 50px 0',
@@ -390,7 +390,7 @@ const useStyles = makeStyles((theme) => ({
   },
   bottomWrapper: {
     backgroundColor: theme.palette.secondary.main,
-    color: theme.palette.common.white,
+    color: theme.palette.background.default,
   },
   bottomBar: {
     minHeight: '70px',
@@ -427,7 +427,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '20px',
     fontSize: '18px',
     cursor: 'pointer',
-    color: theme.palette.common.white,
+    color: theme.palette.background.default,
     [theme.breakpoints.down('md')]: {
       marginLeft: '10px',
     },
