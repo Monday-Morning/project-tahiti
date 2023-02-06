@@ -161,7 +161,6 @@ const MobileNavbar = () => {
         open={isMenuOpen}
         onClose={() => setMenuOpen(false)}
         onOpen={() => setMenuOpen(true)}
-        swipeAreaWidth={50}
         style={{ zIndex: 10001 }}
       >
         <nav className={classes.navContainer} aria-label='Navigation Container'>
