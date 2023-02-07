@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 import makeStyles from '@mui/styles/makeStyles';
 import { Typography } from '@mui/material';
@@ -15,6 +16,7 @@ import authContext from '../../../context/auth/AuthContext';
 
 function Welcome({ onNext, onLogin, tabletMatches }) {
   const classes = useStyles();
+  const { push } = useRouter();
 
   const { loginWithToken } = useContext(authContext);
   useEffect(() => {
@@ -51,7 +53,11 @@ function Welcome({ onNext, onLogin, tabletMatches }) {
       </Typography>
 
       <div id='buttonDiv'></div>
-      <Typography className={classes.skip} variant='body1' onClick={onNext}>
+      <Typography
+        className={classes.skip}
+        variant='body1'
+        onClick={() => push('/')}
+      >
         Skip
       </Typography>
       <Typography className={classes.terms} variant='body2'>
