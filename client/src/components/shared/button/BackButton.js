@@ -34,7 +34,10 @@ const useStyles = makeStyles((theme) => ({
     padding: '5px',
     // marginTop: '47.5px',
     fontWeight: '400',
-    color: theme.palette.secondary.neutral80,
+    color: theme.palette.text.primary,
+    '&:hover': {
+      backgroundColor: theme.palette.action.hover,
+    },
     '& div': {
       [theme.breakpoints.down('sm')]: {
         display: 'none',

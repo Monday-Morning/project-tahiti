@@ -72,131 +72,129 @@ const Feedback = () => {
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
-      <Grid container className={classes.elementWrapper} spacing={4}>
-        <Grid container className={classes.feedbackWrapper}>
-          <Grid item xs={12} md={7}>
-            <Typography variant='h3' className={classes.title}>
-              We’d love to hear from you
+      <Grid container className={classes.feedbackWrapper}>
+        <Grid item xs={12} md={7}>
+          <Typography variant='h3' className={classes.title}>
+            We’d love to hear from you
+          </Typography>
+          <form onSubmit={handleSubmit}>
+            <div className={classes.nameWrapper}>
+              <TextField
+                variant='standard'
+                className={classes.nameInput}
+                name='name'
+                type='text'
+                placeholder='Name'
+                disableUnderline={true}
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+                onFocus={() => setError({ ...error, nameError: '' })}
+                onBlur={() => {
+                  setName(name.trim()),
+                    name.length <= 0
+                      ? setError({ ...error, nameError: 'Name Required' })
+                      : setError({ ...error, nameError: '' });
+                }}
+                InputProps={{ disableUnderline: true }}
+              />
+            </div>
+            <Typography className={classes.errorMessage}>
+              {error.nameError}
             </Typography>
-            <form onSubmit={handleSubmit}>
-              <div className={classes.nameWrapper}>
-                <TextField
-                  variant='standard'
-                  className={classes.nameInput}
-                  name='name'
-                  type='text'
-                  placeholder='Name'
-                  disableUnderline={true}
-                  value={name}
-                  onChange={(event) => setName(event.target.value)}
-                  onFocus={() => setError({ ...error, nameError: '' })}
-                  onBlur={() => {
-                    setName(name.trim()),
-                      name.length <= 0
-                        ? setError({ ...error, nameError: 'Name Required' })
-                        : setError({ ...error, nameError: '' });
-                  }}
-                  InputProps={{ disableUnderline: true }}
-                />
-              </div>
-              <Typography className={classes.errorMessage}>
-                {error.nameError}
-              </Typography>
 
-              <div className={classes.emailWrapper}>
-                <TextField
-                  variant='standard'
-                  className={classes.emailInput}
-                  name='email'
-                  type='email'
-                  placeholder='Email'
-                  InputProps={{ disableUnderline: true }}
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
-                  onFocus={() => setError({ ...error, emailError: '' })}
-                  onBlur={() => {
-                    !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+            <div className={classes.emailWrapper}>
+              <TextField
+                variant='standard'
+                className={classes.emailInput}
+                name='email'
+                type='email'
+                placeholder='Email'
+                InputProps={{ disableUnderline: true }}
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                onFocus={() => setError({ ...error, emailError: '' })}
+                onBlur={() => {
+                  !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+                    ? setError({
+                        ...error,
+                        emailError: 'Valid Email-Id Required',
+                      })
+                    : setError({ ...error, emailError: '' });
+                }}
+              />
+            </div>
+            <Typography className={classes.errorMessage}>
+              {error.emailError}
+            </Typography>
+
+            <div className={classes.messageWrapper}>
+              <TextField
+                variant='standard'
+                multiline
+                className={classes.messageInput}
+                rows='8'
+                name='message'
+                placeholder='Write your message here'
+                InputProps={{ disableUnderline: true }}
+                value={message}
+                onChange={(event) => setMessage(event.target.value)}
+                onFocus={() => setError({ ...error, messageError: '' })}
+                onBlur={() => {
+                  setMessage(message.trim()),
+                    message.length <= 0
                       ? setError({
                           ...error,
-                          emailError: 'Valid Email-Id Required',
+                          messageError: 'Message Required',
                         })
-                      : setError({ ...error, emailError: '' });
-                  }}
-                />
-              </div>
-              <Typography className={classes.errorMessage}>
-                {error.emailError}
-              </Typography>
-
-              <div className={classes.messageWrapper}>
-                <TextField
-                  variant='standard'
-                  multiline
-                  className={classes.messageInput}
-                  rows='8'
-                  name='message'
-                  placeholder='Write your message here'
-                  InputProps={{ disableUnderline: true }}
-                  value={message}
-                  onChange={(event) => setMessage(event.target.value)}
-                  onFocus={() => setError({ ...error, messageError: '' })}
-                  onBlur={() => {
-                    setMessage(message.trim()),
-                      message.length <= 0
-                        ? setError({
-                            ...error,
-                            messageError: 'Message Required',
-                          })
-                        : setError({ ...error, messageError: '' });
-                  }}
-                />
-              </div>
-
-              <Grid
-                container
-                justifyContent='flex-end'
-                spacing={3}
-                className={classes.buttonWrapper}
-              >
-                <Grid item>
-                  <Button onClick={resetFields} variant='contained'>
-                    <span className={classes.buttonText}>Cancel</span>
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button
-                    onClick={handleClick}
-                    type='submit'
-                    variant='contained'
-                    color='primary'
-                    className={classes.submitButton}
-                    disabled={!enabled}
-                  >
-                    <span className={classes.buttonText}>send Message</span>
-                  </Button>
-                  <Snackbar
-                    open={open}
-                    autoHideDuration={6000}
-                    onClose={handleClose}
-                  >
-                    <Alert
-                      onClose={handleClose}
-                      severity={sentStatus ? 'success' : 'error'}
-                    >
-                      <div className={classes.snackBar}>
-                        {sentStatus ? 'Sent' : 'Failed to Send'}
-                      </div>
-                    </Alert>
-                  </Snackbar>
-                </Grid>
-              </Grid>
-            </form>
-          </Grid>
-          <Grid item xs={12} md={5}>
-            <div className={classes.imageWrapper}>
-              <Image src={image} alt='Feedback' className={classes.image} />
+                      : setError({ ...error, messageError: '' });
+                }}
+              />
             </div>
-          </Grid>
+
+            <Grid
+              container
+              justifyContent='flex-end'
+              spacing={3}
+              className={classes.buttonWrapper}
+            >
+              <Grid item>
+                <Button onClick={resetFields} variant='contained'>
+                  <span className={classes.buttonText}>Cancel</span>
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  onClick={handleClick}
+                  type='submit'
+                  variant='contained'
+                  color='primary'
+                  className={classes.submitButton}
+                  disabled={!enabled}
+                >
+                  <span className={classes.buttonText}>send Message</span>
+                </Button>
+                <Snackbar
+                  open={open}
+                  autoHideDuration={6000}
+                  onClose={handleClose}
+                >
+                  <Alert
+                    onClose={handleClose}
+                    severity={sentStatus ? 'success' : 'error'}
+                  >
+                    <div className={classes.snackBar}>
+                      {sentStatus ? 'Sent' : 'Failed to Send'}
+                    </div>
+                  </Alert>
+                </Snackbar>
+              </Grid>
+            </Grid>
+          </form>
+        </Grid>
+        <Grid item xs={12} md={5}>
+          <div className={classes.imageWrapper}>
+            <Image src={image} alt='Feedback' className={classes.image} />
+          </div>
         </Grid>
       </Grid>
     </div>
@@ -208,12 +206,10 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     maxWidth: '1200px',
     margin: '40px auto 40px auto',
+    borderRadius: '8px',
+    backgroundColor: theme.palette.background.paper,
     [theme.breakpoints.down('lg')]: {
-      marginTop: '24px',
-      padding: '0px 40px 0px 40px',
-    },
-    [theme.breakpoints.down('sm')]: {
-      padding: '0px 10px 0px 35px',
+      margin: '24px 20px 0px 20px',
     },
   },
   feedbackWrapper: {
@@ -244,7 +240,7 @@ const useStyles = makeStyles((theme) => ({
   nameWrapper: {
     display: 'flex',
     alignItems: 'center',
-    backgroundColor: theme.palette.secondary.neutral30,
+    backgroundColor: theme.palette.background.banner,
     borderRadius: '4px',
     width: '100%',
     padding: '5px 16px 0px 5px',
@@ -256,7 +252,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: theme.typography.body1.fontFamily,
     fontWeight: 400,
     width: '100%',
-    backgroundColor: 'unset',
+    backgroundColor: theme.palette.background.banner,
     border: '0',
     padding: '5px 10px',
     '&:focus': {
@@ -267,7 +263,7 @@ const useStyles = makeStyles((theme) => ({
   emailWrapper: {
     display: 'flex',
     alignItems: 'center',
-    backgroundColor: theme.palette.secondary.neutral30,
+    backgroundColor: theme.palette.background.banner,
     borderRadius: '4px',
     width: '100%',
     padding: '5px 16px 0px 5px',
@@ -290,7 +286,7 @@ const useStyles = makeStyles((theme) => ({
   messageWrapper: {
     display: 'flex',
     alignItems: 'center',
-    backgroundColor: theme.palette.secondary.neutral30,
+    backgroundColor: theme.palette.background.banner,
     borderRadius: '4px',
     width: '100%',
     padding: '5px 16px 5px 5px',
@@ -303,7 +299,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: theme.typography.body1.fontFamily,
     fontWeight: 400,
     width: '100%',
-    backgroundColor: 'unset',
+    backgroundColor: theme.palette.background.banner,
     border: '0',
     padding: '5px 10px',
     '&:focus': {

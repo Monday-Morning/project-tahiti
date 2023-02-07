@@ -136,7 +136,7 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     marginLeft: '32px',
-    backgroundColor: '#f0f6fa',
+    backgroundColor: theme.palette.background.primary,
     borderRadius: '8px',
     [theme.breakpoints.down('sm')]: {
       marginLeft: '12px',

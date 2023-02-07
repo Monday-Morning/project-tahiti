@@ -202,6 +202,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '18px 0px 24px 24px',
     boxShadow: theme.shadows[0],
     borderRadius: '8px',
+    backgroundColor: theme.palette.background.paper,
     [theme.breakpoints.down('sm')]: {
       paddingBottom: '12px',
     },
@@ -210,6 +211,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '18px 0px 40px 24px',
     boxShadow: theme.shadows[0],
     borderRadius: '8px',
+    backgroundColor: theme.palette.background.paper,
     [theme.breakpoints.down('sm')]: {
       paddingBottom: '20px',
     },
@@ -242,6 +244,7 @@ const useStyles = makeStyles((theme) => ({
   mail: {
     padding: '8px 0px 8px 0px',
     fontSize: '18px',
+    color: theme.palette.text.primary,
     [theme.breakpoints.up('xs')]: {
       fontSize: '18px',
     },
@@ -256,7 +259,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   mailid: {
-    color: theme.palette.common.black,
+    color: theme.palette.text.secondary,
     textDecorationLine: 'underline',
     fontSize: '18px',
     [theme.breakpoints.down('sm')]: {
@@ -288,7 +291,7 @@ const useStyles = makeStyles((theme) => ({
   mailFor2: {
     visibility: 'hidden',
     position: 'absolute',
-    fontSize: '18px',
+    fontSize: '16px',
     [theme.breakpoints.up('sm')]: {
       fontSize: '18px',
     },
@@ -298,7 +301,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('lg')]: {
       fontSize: '18px',
     },
-    color: theme.palette.secondary.neutral70,
+    color: theme.palette.text.primary,
     [theme.breakpoints.down('sm')]: {
       visibility: 'visible',
       position: 'relative',
@@ -324,6 +327,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '18px 0px 24px 24px',
     boxShadow: theme.shadows[0],
     borderRadius: '8px',
+    backgroundColor: theme.palette.background.paper,
     minHeight: '233px',
   },
   socialTitle: {
@@ -357,7 +361,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '15px',
     },
     paddingLeft: '4px',
-    color: theme.palette.common.black,
+    color: theme.palette.text.primary,
     textDecorationLine: 'none',
     [theme.breakpoints.down('sm')]: {
       paddingLeft: '26px',
@@ -370,6 +374,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '18px 0px 24px 24px',
     boxShadow: theme.shadows[0],
     borderRadius: '8px',
+    backgroundColor: theme.palette.background.paper,
   },
   locationTitle: {
     paddingBottom: '12px',
