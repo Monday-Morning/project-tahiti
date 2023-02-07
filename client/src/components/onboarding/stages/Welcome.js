@@ -22,7 +22,7 @@ function Welcome({ onNext, onLogin, tabletMatches }) {
   useEffect(() => {
     function handleCredentialResponse(response) {
       loginWithToken(response.credential);
-      // onNext();
+      onNext();
     }
     function gis() {
       google.accounts.id.initialize({
