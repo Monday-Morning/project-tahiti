@@ -88,23 +88,30 @@ const PodcastList = ({ spotify, pageNo, len, hidePagination }) => {
       </div>
       {!hidePagination ? (
         <div className={classes.pagination}>
-          {nextPageNo != 1 ? (
-            <>
-              <Typography onClick={() => setNextPageNo(nextPageNo - 1)}>
-                Previous
-              </Typography>
-              <ChevronLeftIcon onClick={() => setNextPageNo(nextPageNo - 1)} />
-            </>
-          ) : null}
-
-          {len != 0 ? (
-            <>
-              <ChevronRightIcon onClick={() => setNextPageNo(nextPageNo + 1)} />
-              <Typography onClick={() => setNextPageNo(nextPageNo + 1)}>
-                Next
-              </Typography>
-            </>
-          ) : null}
+          <div className={classes.paginationBtn}>
+            <ChevronLeftIcon
+              onClick={
+                nextPageNo != 1 ? () => setNextPageNo(nextPageNo - 1) : null
+              }
+            />
+            <Typography
+              onClick={
+                nextPageNo != 1 ? () => setNextPageNo(nextPageNo - 1) : null
+              }
+            >
+              Previous
+            </Typography>
+          </div>
+          <div className={classes.paginationBtn}>
+            <Typography
+              onClick={len != 0 ? () => setNextPageNo(nextPageNo + 1) : null}
+            >
+              Next
+            </Typography>
+            <ChevronRightIcon
+              onClick={len != 0 ? () => setNextPageNo(nextPageNo + 1) : null}
+            />
+          </div>
         </div>
       ) : null}
     </Container>
@@ -121,6 +128,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     marginTop: '20px',
     maxWidth: '90vw',
+    gap: '1rem',
+  },
+  paginationBtn: {
+    display: 'flex',
   },
   wrapper: {
     margin: '2rem 0 2rem 0',
