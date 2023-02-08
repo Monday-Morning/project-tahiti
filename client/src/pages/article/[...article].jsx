@@ -166,7 +166,8 @@ function ArticlePage({ article, isError }) {
         <meta property='twitter:card' content='summary_large_image' />
         <meta
           property='twitter:url'
-          content={`https://mondaymorning.nitrkl.ac.in${getArticleSlug(
+          content={`https://mondaymorning.nitrkl.ac.in${getArticleLink(
+            article.id,
             article.title,
           )}`}
         />

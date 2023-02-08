@@ -1,72 +1,137 @@
 import React, { useState } from 'react';
+
 import {
   ButtonBase,
   Container,
   Typography,
   useMediaQuery,
 } from '@mui/material';
-import theme from '../../config/themes/light';
-
 import makeStyles from '@mui/styles/makeStyles';
+
+import theme from '../../config/themes/light';
+import PostHolders from './PostHolder';
 import SocietyCards from './SocietyCards';
 
 const STAGE = {
+  DSW: 'Dean SW',
+  SP: 'Sac President',
   SOB: 'SAC Office Bearers',
-  DNF: 'Dean’s Nominee for Fests',
-  DNS: 'Dean’s Nominee for societies',
-  FC: 'Fest Convenors',
+};
+
+const POSTS = {
+  FMS: [
+    {
+      position: 'Vice President',
+      name: 'Prof. Binod Bihari Sahu',
+      phone: '0661-2462782',
+      email: 'sahub@nitrkl.ac.in',
+    },
+    {
+      position: 'Vice President',
+      name: 'Dr. Balaji P.S.',
+      phone: '0661-2462528',
+      email: 'psbalaji@nitrkl.ac.in',
+    },
+  ],
+  LCS: [
+    {
+      position: 'Vice President',
+      name: 'Dr. Akshaya Kumar Rath',
+      phone: '0661-2462697',
+      email: 'ratha@nitrkl.ac.in',
+    },
+    {
+      position: 'Vice President',
+      name: 'Dr. Winny Routray',
+      phone: '',
+      email: 'routrayw@nitrkl.ac.in',
+    },
+  ],
+  GSS: [
+    {
+      position: 'Vice President',
+      name: 'Prof. Ramesh Kumar Mohapatra',
+      phone: '0661-2462366',
+      email: 'mohapatrark@nitrkl.ac.in',
+    },
+    {
+      position: 'Vice President',
+      name: 'Dr. Mayank Yadav',
+      phone: '',
+      email: 'yadavm@nitrkl.ac.in',
+    },
+  ],
+  TS: [
+    {
+      position: 'Vice President',
+      name: 'Dr. Kaustav Chaudhury',
+      phone: '0661-2462535 ',
+      email: 'chaudhuryk@nitrkl.ac.in',
+    },
+    {
+      position: 'Vice President',
+      name: 'Dr. Prasun Chongder',
+      phone: '',
+      email: 'chongderp@nitrkl.ac.in',
+    },
+  ],
 };
 
 const SacInfoNavbar = () => {
-  const [stage, setStage] = useState(STAGE.SOB);
+  const [stage, setStage] = useState(STAGE.DSW);
   const classes = useStyles();
   const matches = useMediaQuery(theme.breakpoints.down('md'));
 
   const renderTeam = () => {
     switch (stage) {
+      case STAGE.DSW:
+        return (
+          <>
+            <PostHolders
+              position='Dean SW'
+              name='Prof. Sidhartha S. Jena'
+              email='dean-sw@nitrkl.ac.in'
+            />
+          </>
+        );
+      case STAGE.SP:
+        return (
+          <>
+            <PostHolders
+              position='Sac President'
+              name='Prof. Poonam Singh'
+              email='psingh@nitrkl.ac.in'
+            />
+          </>
+        );
       case STAGE.SOB:
         return (
           <>
-            <SocietyCards society='Film and Music Society' />
-            <SocietyCards society='Literary and Cultural Society' />{' '}
-            <SocietyCards society='Games and Sports Society' />
-            <SocietyCards society='Technical Society' />{' '}
-          </>
-        );
-      case STAGE.DNF:
-        return (
-          <>
-            <SocietyCards society='Film and Music Society' />
-            <SocietyCards society='Literary and Cultural Society' />
-            <SocietyCards society='Games and Sports Society' />
-            <SocietyCards society='Technical Society' />{' '}
-          </>
-        );
-      case STAGE.DNS:
-        return (
-          <>
-            <SocietyCards society='Film and Music Society' />
-            <SocietyCards society='Literary and Cultural Society' />{' '}
-            <SocietyCards society='Games and Sports Society' />
-            <SocietyCards society='Technical Society' />{' '}
-          </>
-        );
-      case STAGE.FC:
-        return (
-          <>
-            <SocietyCards society='Film and Music Society' />
-            <SocietyCards society='Literary and Cultural Society' />{' '}
-            <SocietyCards society='Games and Sports Society' />
-            <SocietyCards society='Technical Society' />{' '}
+            <SocietyCards society='Film and Music Society' posts={POSTS.FMS} />
+            <SocietyCards
+              society='Literary and Cultural Society'
+              posts={POSTS.LCS}
+            />{' '}
+            <SocietyCards
+              society='Games and Sports Society'
+              posts={POSTS.GSS}
+            />
+            <SocietyCards society='Technical Society' posts={POSTS.TS} />{' '}
           </>
         );
       default:
         return (
           <>
-            <SocietyCards society='Film and Music Society' />
-            <SocietyCards society='Literary and Cultural Society' />{' '}
-            <SocietyCards society='Games and Sports Society' />
-            <SocietyCards society='Technical Society' />{' '}
+            <SocietyCards society='Film and Music Society' posts={POSTS.FMS} />
+            <SocietyCards
+              society='Literary and Cultural Society'
+              posts={POSTS.LCS}
+            />{' '}
+            <SocietyCards
+              society='Games and Sports Society'
+              posts={POSTS.GSS}
+            />
+            <SocietyCards society='Technical Society' posts={POSTS.TS} />{' '}
           </>
         );
     }

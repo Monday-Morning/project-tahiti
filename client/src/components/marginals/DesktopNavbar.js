@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 import makeStyles from '@mui/styles/makeStyles';
-import { Container, Typography, TextField, ButtonBase } from '@mui/material';
+import { Container, Typography, TextField, ButtonBase, Fade } from '@mui/material';
 // import TrendingUpSharpIcon from '@mui/icons-material/TrendingUpSharp';
 
 // Utils

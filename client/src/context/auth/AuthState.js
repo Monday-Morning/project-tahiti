@@ -45,7 +45,7 @@ const AuthState = ({ children }) => {
       sameSite: true,
       maxAge: 3600,
     });
-  }, [firebaseToken]);
+  }, [user, firebaseToken, refreshToken]);
 
   const loginWithToken = async (_token) => {
     const credential = GoogleAuthProvider.credential(_token);
@@ -53,37 +53,19 @@ const AuthState = ({ children }) => {
     const res = await signInWithCredential(auth, credential);
 
     const { user, _tokenResponse } = res;
-    setUser(user);
+
+    GraphClient.setLink(getApolloLink(user.accessToken));
     setFirebaseToken(user.accessToken);
     setRefreshToken(user.refreshToken);
+    setUser(user);
 
     if (getAdditionalUserInfo(res).isNewUser) {
       try {
         const imagekit = new ImageKit({
           publicKey: process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY,
           urlEndpoint: process.env.NEXT_PUBLIC_IMAGEKIT_URLENDPOINT,
-          authenticationEndpoint:
-            process.env.NEXT_PUBLIC_IMAGEKIT_AUTHENTICATION_ENDPOINT,
+          authenticationEndpoint: `${process.env.NEXT_PUBLIC_SERVER_ADDRESS}${process.env.NEXT_PUBLIC_IMAGEKIT_AUTHENTICATION_ENDPOINT}`,
         });
-
-        const userPicture = await (await fetch(user.photoURL)).blob();
-
-        if (!['image/png', 'image/jpeg'].includes(userPicture.type)) {
-          // throw error
-        }
-
-        const imageUpload = await imagekit
-          .upload({
-            file: userPicture,
-            folder: '/user',
-            fileName: `${user.uid}.${
-              userPicture.type.toString().split('/')[1]
-            }`,
-            tags: [user.uid, 'user', 'profilePicture'],
-          })
-          .then((result) => {
-            console.log('Upload Success', result);
-          });
 
         const newAccount = await GraphClient.mutate({
           mutation: registerUser,
@@ -93,6 +75,25 @@ const AuthState = ({ children }) => {
           },
         });
         console.log('Account Created ', newAccount);
+
+        const userPicture = await (await fetch(user.photoURL)).blob();
+
+        if (!['image/png', 'image/jpeg'].includes(userPicture.type)) {
+          // throw error
+        }
+
+        const imageUpload = await imagekit
+          .upload({
+            file: user.photoURL,
+            folder: '/user',
+            fileName: `${newAccount.data.registerUser.id}.${
+              userPicture.type.toString().split('/')[1]
+            }`,
+            tags: [user.uid, 'user', 'profilePicture'],
+          })
+          .then((result) => {
+            console.log('Upload Success', result);
+          });
       } catch (err) {
         console.log(err);
       }

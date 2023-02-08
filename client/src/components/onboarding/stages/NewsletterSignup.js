@@ -24,7 +24,8 @@ function VerifyEmail(props) {
   const [isSigned, setIsSigned] = useState(false);
 
   // Props
-  const { email, setEmail, signupNewsletter } = props;
+  const { email, setEmail, signupNewsletter, onNext, onBack, tabletMatches } =
+    props;
 
   const onSignup = () => {
     setIsSigned(true);
@@ -32,8 +33,12 @@ function VerifyEmail(props) {
   };
 
   return (
-    <Grid className={classes.container} container spacing={3}>
-      <Grid className={classes.content} item sm={12} md={12} lg={7}>
+    <Grid
+      className={classes.container}
+      container
+      spacing={tabletMatches ? 0 : 3}
+    >
+      <Grid className={classes.content} item xs={12} md={7}>
         <Typography className={classes.verifyTitle} variant='h1'>
           {ONBOARDING.NEWSLETTER.PRIMARY.TITLE}
         </Typography>
@@ -52,6 +57,15 @@ function VerifyEmail(props) {
             <Typography className={classes.verifyContent} variant='body1'>
               {ONBOARDING.NEWSLETTER.SECONDARY.CONTENT}
             </Typography>
+            {tabletMatches && (
+              <Grid className={classes.mobileImgContainer} item xs={12}>
+                <Image
+                  className={classes.img}
+                  src={newsletter}
+                  alt='Verify Email'
+                />
+              </Grid>
+            )}
             <Typography className={classes.emailTitle} variant='h3'>
               {ONBOARDING.NEWSLETTER.SECONDARY.TITLE}
             </Typography>
@@ -64,23 +78,47 @@ function VerifyEmail(props) {
           </>
         )}
 
-        <Button
-          text={
-            isSigned
-              ? ONBOARDING.NEWSLETTER.BUTTON.SECONDARY
-              : ONBOARDING.NEWSLETTER.BUTTON.PRIMARY
-          }
-          onClick={isSigned ? () => router.push('/') : onSignup}
-          containerStyles={classes.button}
-        />
-
         <Typography className={classes.note} variant='body2'>
           {ONBOARDING.NEWSLETTER.NOTE}
         </Typography>
       </Grid>
 
-      <Grid className={classes.imgContainer} item sm={12} md={12} lg={5}>
-        <Image className={classes.img} src={newsletter} alt='Verify Email' />
+      {!tabletMatches && (
+        <Grid className={classes.imgContainer} item xs={12} md={5}>
+          <Image className={classes.img} src={newsletter} alt='Verify Email' />
+        </Grid>
+      )}
+
+      <Grid className={classes.buttonContainer} item xs={12}>
+        {!isSigned && (
+          <>
+            <Typography
+              className={classes.back}
+              variant='body1'
+              onClick={onBack}
+            >
+              Back
+            </Typography>
+            <Typography
+              className={classes.skip}
+              variant='body1'
+              onClick={onNext}
+            >
+              Skip
+            </Typography>
+          </>
+        )}
+        <Button
+          text={
+            isSigned
+              ? ONBOARDING.NEWSLETTER.BUTTON.SECONDARY
+              : tabletMatches
+              ? ONBOARDING.NEWSLETTER.BUTTON.MOBILE
+              : ONBOARDING.NEWSLETTER.BUTTON.PRIMARY
+          }
+          onClick={isSigned ? onNext : onSignup}
+          containerStyles={classes.button}
+        />
       </Grid>
     </Grid>
   );
@@ -95,9 +133,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.default,
     padding: 10,
     paddingLeft: 40,
+    [theme.breakpoints.down('sm')]: {
+      padding: '24px 12px 12px',
+    },
   },
   content: {
-    height: '100%',
+    height: '80%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
@@ -106,42 +147,71 @@ const useStyles = makeStyles((theme) => ({
   verifyTitle: {
     color: theme.palette.common.black,
     marginTop: 20,
+    [theme.breakpoints.down('md')]: {
+      textAlign: 'center',
+      width: '100%',
+    },
   },
   verifyContent: {
-    color: theme.palette.common.black,
+    color: theme.palette.secondary.neutral60,
     marginBottom: 30,
     fontWeight: '400',
-    fontSize: '18px',
+    fontSize: '16px',
+    [theme.breakpoints.down('md')]: {
+      textAlign: 'center',
+      fontSize: '14px',
+    },
   },
   emailInput: {
     width: '85%',
+    borderRadius: '20px',
+    paddingLeft: '20px',
+    [theme.breakpoints.down('md')]: {
+      width: '100%',
+    },
+  },
+  buttonContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    gap: 24,
   },
   button: {
-    width: '85%',
+    flex: '0 1 0',
+    padding: '10px 20px',
+    whiteSpace: 'nowrap',
   },
   imgContainer: {
-    height: '100%',
+    height: '80%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  img: {
-    width: '150%',
-    height: 'auto',
-    marginRight: 10,
+  mobileImgContainer: {
+    width: '55%',
+    margin: '0 auto 24px',
   },
   note: {
-    marginTop: 40,
-    color: theme.palette.common.black,
+    marginTop: 24,
+    color: theme.palette.common.neutral50,
   },
   iconContainer: {
     width: '80%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: '20px 0',
+    margin: '20px auto',
   },
   icon: {
     color: theme.palette.accent.green,
+  },
+  skip: {
+    cursor: 'pointer',
+    color: theme.palette.secondary.neutral50,
+  },
+  back: {
+    marginRight: 'auto',
+    cursor: 'pointer',
+    color: theme.palette.secondary.neutral50,
   },
 }));
