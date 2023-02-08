@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 //context
 import authContext from './AuthContext';
@@ -17,6 +18,7 @@ import { auth, firebaseApp } from '../../config/firebase';
 //graphql
 import { getApolloLink, GraphClient } from '../../config/ApolloClient';
 import registerUser from '../../graphql/mutations/user/registerUser';
+import addUserPicStorePath from '../../graphql/mutations/user/addUserPicStorePath';
 
 import ImageKit from 'imagekit-javascript';
 import { setCookie } from 'nookies';
@@ -25,6 +27,9 @@ const AuthState = ({ children }) => {
   const [refreshToken, setRefreshToken] = useState('');
   const [user, setUser] = useState(null);
   const [firebaseToken, setFirebaseToken] = useState('');
+  const [mid, setMid] = useState('');
+
+  const { push } = useRouter();
 
   useEffect(() => {
     if (isSupported() && process.env.NODE_ENV === 'production') {
@@ -74,7 +79,12 @@ const AuthState = ({ children }) => {
             email: user.email,
           },
         });
-        console.log('Account Created ', newAccount);
+        setMid(newAccount.data.registerUser.id);
+
+        const newToken = await auth.currentUser.getIdToken({
+          forceRefresh: true,
+        });
+        setFirebaseToken(newToken);
 
         const userPicture = await (await fetch(user.photoURL)).blob();
 
@@ -92,11 +102,19 @@ const AuthState = ({ children }) => {
             tags: [user.uid, 'user', 'profilePicture'],
           })
           .then((result) => {
-            console.log('Upload Success', result);
+            GraphClient.mutate({
+              mutation: addUserPicStorePath,
+              variables: {
+                addUserPicStorePathId: newAccount.data.registerUser.id,
+                storePath: result.filePath,
+              },
+            });
           });
       } catch (err) {
         console.log(err);
       }
+    } else {
+      push('/');
     }
   };
 
@@ -106,7 +124,7 @@ const AuthState = ({ children }) => {
 
   return (
     <authContext.Provider
-      value={{ loginWithToken, logout, user, firebaseToken, refreshToken }}
+      value={{ loginWithToken, logout, user, firebaseToken, refreshToken, mid }}
     >
       {children}
     </authContext.Provider>
