@@ -256,8 +256,11 @@ export async function getStaticProps({
 
 export async function getStaticPaths() {
   let routes = ROUTES.SUB_CATEGORIES.OBJECT.EXPRESSIONS;
-  const paths = routes.flat().map(({ path }) => ({
-    params: { subCategory: [path?.split('/')[2], '1'] },
-  }));
+  const paths = routes
+    .flat()
+    .filter((route) => route.name != 'Podcasts')
+    .map(({ path }) => ({
+      params: { subCategory: [path?.split('/')[2], '1'] },
+    }));
   return { paths, fallback: true };
 }
