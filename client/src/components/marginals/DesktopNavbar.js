@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 import makeStyles from '@mui/styles/makeStyles';
-import { Container, Typography, TextField } from '@mui/material';
+import { Container, Typography, TextField, ButtonBase } from '@mui/material';
 // import TrendingUpSharpIcon from '@mui/icons-material/TrendingUpSharp';
 
 // Utils
@@ -118,21 +118,29 @@ const DesktopNavbar = () => {
                 objectFit='cover'
               />
             </div>
-
-            <TextField
-              variant='standard'
-              label='Search for articles'
-              placeholder='Enter related words'
-              onClick={searchActive}
-              disabled={true}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position='start'>
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-              }}
-            />
+            <div className={classes.searchAndSign}>
+              <TextField
+                variant='standard'
+                label='Search for articles'
+                placeholder='Enter related words'
+                onClick={searchActive}
+                disabled={true}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position='start'>
+                      <SearchIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <div className={classes.signIn}>
+                <Link href='/onboarding' passHref>
+                  <ButtonBase type='button' className={classes.button}>
+                    <span className={classes.label}> Sign In </span>
+                  </ButtonBase>
+                </Link>
+              </div>
+            </div>
           </div>
 
           <ul aria-label='Navbar' className={classes.menuContainer}>
@@ -164,15 +172,28 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     marginTop: '10px',
   },
-
   detailsContainer: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-
     paddingTop: '10px',
     paddingBottom: '25px',
     borderBottom: `3px solid ${theme.palette.secondary.neutral50}`,
+  },
+  button: {
+    textAlign: 'center',
+    borderRadius: '4px',
+    border: 'solid black 0.5px',
+    margin: '8px 8px 0px 0px',
+    padding: '10px 20px',
+  },
+  label: {
+    fontFamily: 'Source Sans Pro',
+    fontSize: '20px',
+    fontWeight: '400',
+    lineHeight: '1.2rem',
+    textDecoration: 'none',
+    color: theme.palette.secondary.main,
   },
   imgContainer: {
     width: '33%',
@@ -185,6 +206,13 @@ const useStyles = makeStyles((theme) => ({
     position: 'unset !important',
     width: 'auto !important',
     height: 'auto !important',
+  },
+  searchAndSign: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  signIn: {
+    paddingLeft: '30px',
   },
   menuContainer: {
     width: '100%',
