@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 // Library
 import { Typography, Grid } from '@mui/material';
@@ -17,6 +18,8 @@ import { ONBOARDING } from '../../../assets/placeholder/onboarding';
 
 function VerifyEmail(props) {
   const classes = useStyles();
+
+  const { push } = useRouter();
 
   // props
   const {
@@ -93,28 +96,28 @@ function VerifyEmail(props) {
       )}
 
       <Grid className={classes.buttonContainer} item xs={12}>
-        <Typography className={classes.back} variant='body1' onClick={onBack}>
-          Back
-        </Typography>
-        <Typography className={classes.skip} variant='body1' onClick={onNext}>
+        <Typography
+          className={classes.back}
+          variant='body1'
+          onClick={isEmailVerified ? () => {} : () => push('/')}
+        >
           {isEmailVerified ? 'Resend Verification mail' : 'Skip'}
         </Typography>
+        <Typography
+          className={classes.skip}
+          variant='body1'
+          onClick={onNext}
+        ></Typography>
         <Button
           containerStyles={classes.button}
-          text={
-            tabletMatches
-              ? ONBOARDING.VERIFY_EMAIL.BUTTON.MOBILE
-              : isEmailVerified
-              ? ONBOARDING.VERIFY_EMAIL.BUTTON.SECONDARY
-              : ONBOARDING.VERIFY_EMAIL.BUTTON.PRIMARY
-          }
+          text={isEmailVerified ? 'Skip' : 'Verify Email'}
           onClick={
             !isEmailVerified
               ? () => {
                   verifyEmail();
                   toggleIsEmailVerified();
                 }
-              : onNext
+              : () => push('/')
           }
         />
       </Grid>
