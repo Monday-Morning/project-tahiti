@@ -1,13 +1,13 @@
 import React from 'react';
-import { Container, Typography } from '@mui/material';
-import BackButton from '../components/shared/button/BackButton';
-import makeStyles from '@mui/styles/makeStyles';
 
 import Image from 'next/dist/client/image';
 
+import { Container, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+
 // images
 import SACimagexs from '../assets/images/contact/sac2.png';
-
+import BackButton from '../components/shared/button/BackButton';
 // import
 import ClubInfoNavbar from '../components/widgets/ClubInfoNavbar';
 import SacInfoNavbar from '../components/widgets/SacInfoNavbar';
@@ -49,13 +49,13 @@ const SacAndClub = () => {
           </div>
         </div>
       </div>
-      {/* <div className={classes.hr}>
+      <div className={classes.hr}>
         <Typography variant='h2' className={classes.title}>
           SAC Info
         </Typography>
         <div className={classes.underline} />
-      </div> */}
-      {/* <SacInfoNavbar /> */}
+      </div>
+      <SacInfoNavbar />
       <div className={classes.hr}>
         <Typography variant='h2' className={classes.title}>
           Club Info
