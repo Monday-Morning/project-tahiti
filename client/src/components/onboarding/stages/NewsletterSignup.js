@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
@@ -11,11 +11,17 @@ import makeStyles from '@mui/styles/makeStyles';
 
 // Components
 import Button from '../../shared/button/Regular';
-import Input from '../../shared/input/Regular';
 
 // Assets
 import newsletter from '../../../assets/images/onboarding/newsletter.png';
 import { ONBOARDING } from '../../../assets/placeholder/onboarding';
+
+//graphql
+import { GraphClient } from '../../../config/ApolloClient';
+import newsLetterSubscription from '../../../graphql/mutations/user/newsLetterSubscription';
+
+//context
+import authContext from '../../../context/auth/AuthContext';
 
 function VerifyEmail(props) {
   const classes = useStyles();
@@ -24,11 +30,21 @@ function VerifyEmail(props) {
   const [isSigned, setIsSigned] = useState(false);
 
   // Props
-  const { email, setEmail, signupNewsletter, onNext, onBack, tabletMatches } =
-    props;
+  const { signupNewsletter, onNext, onBack, tabletMatches } = props;
+
+  const { mid } = useContext(authContext);
 
   const onSignup = () => {
     setIsSigned(true);
+
+    GraphClient.mutate({
+      mutation: newsLetterSubscription,
+      variables: {
+        newsletterSubscriptionId: mid,
+        flag: true,
+      },
+    });
+
     signupNewsletter();
   };
 
@@ -66,15 +82,6 @@ function VerifyEmail(props) {
                 />
               </Grid>
             )}
-            <Typography className={classes.emailTitle} variant='h3'>
-              {ONBOARDING.NEWSLETTER.SECONDARY.TITLE}
-            </Typography>
-            <Input
-              className={classes.emailInput}
-              value={email}
-              onChange={setEmail}
-              placeholder={ONBOARDING.NEWSLETTER.EMAIL_PLACEHOLDER}
-            />
           </>
         )}
 
@@ -95,16 +102,9 @@ function VerifyEmail(props) {
             <Typography
               className={classes.back}
               variant='body1'
-              onClick={onBack}
-            >
-              Back
-            </Typography>
-            <Typography
-              className={classes.skip}
-              variant='body1'
               onClick={onNext}
             >
-              Skip
+              skip
             </Typography>
           </>
         )}
@@ -162,14 +162,6 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '14px',
     },
   },
-  emailInput: {
-    width: '85%',
-    borderRadius: '20px',
-    paddingLeft: '20px',
-    [theme.breakpoints.down('md')]: {
-      width: '100%',
-    },
-  },
   buttonContainer: {
     display: 'flex',
     alignItems: 'center',
@@ -204,10 +196,6 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     color: theme.palette.accent.green,
-  },
-  skip: {
-    cursor: 'pointer',
-    color: theme.palette.secondary.neutral50,
   },
   back: {
     marginRight: 'auto',
