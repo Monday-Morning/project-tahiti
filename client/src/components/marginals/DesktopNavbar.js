@@ -225,7 +225,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     paddingBottom: '20px',
     paddingTop: '70px',
-    background: '#FEFEFF',
+    background: theme.palette.background.paper,
     zIndex: '2000',
   },
   searchBox: {
@@ -252,7 +252,7 @@ const useStyles = makeStyles((theme) => ({
   },
   searchSuggestions: {
     position: 'absolute',
-    background: '#FEFEFF',
+    background: theme.palette.background.paper,
     width: '100%',
     padding: '20px',
     zIndex: '20022',
