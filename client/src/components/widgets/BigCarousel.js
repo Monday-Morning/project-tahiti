@@ -24,7 +24,7 @@ export default BigCarousel;
 const useStyles = makeStyles((theme) => ({
   wrapper: {
     marginTop: '2rem',
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: '#222222',
     padding: '24px 0px',
     [theme.breakpoints.down('sm')]: {
       padding: '12px 0px',
