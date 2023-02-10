@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 const newsLetterSubscription = gql`
-  mutation ($newsletterSubscriptionId: ID!, $flag: Boolean!) {
-    newsletterSubscription(id: $newsletterSubscriptionId, flag: $flag) {
+  mutation ($userId: ID!, $flag: Boolean!) {
+    newsletterSubscription(id: $userId, flag: $flag) {
       id
       isNewsletterSubscribed
     }

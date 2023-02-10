@@ -58,7 +58,7 @@ function SelectTopics(props) {
     GraphClient.mutate({
       mutation: updateUserTopics,
       variables: {
-        updateUserTopicsId: mid,
+        userId: mid,
         interestedTopics: topics,
       },
     });

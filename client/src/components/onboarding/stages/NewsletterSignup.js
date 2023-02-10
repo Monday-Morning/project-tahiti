@@ -40,7 +40,7 @@ function VerifyEmail(props) {
     GraphClient.mutate({
       mutation: newsLetterSubscription,
       variables: {
-        newsletterSubscriptionId: mid,
+        userId: mid,
         flag: true,
       },
     });

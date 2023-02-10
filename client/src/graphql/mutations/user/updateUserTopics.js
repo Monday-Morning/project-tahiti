@@ -1,14 +1,8 @@
 import { gql } from '@apollo/client';
 
 const updateUserTopics = gql`
-  mutation UpdateUserTopics(
-    $updateUserTopicsId: ID!
-    $interestedTopics: [String]!
-  ) {
-    updateUserTopics(
-      id: $updateUserTopicsId
-      interestedTopics: $interestedTopics
-    ) {
+  mutation UpdateUserTopics($userId: ID!, $interestedTopics: [String]!) {
+    updateUserTopics(id: $userId, interestedTopics: $interestedTopics) {
       id
       interestedTopics
     }
