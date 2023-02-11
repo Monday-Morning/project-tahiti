@@ -45,9 +45,14 @@ function VerifyEmail(props) {
         </Typography>
 
         <Typography className={classes.verifyContent} variant='body1'>
-          {!isEmailVerified
-            ? ONBOARDING.VERIFY_EMAIL.PRIMARY.CONTENT
-            : `We have sent an email to ${email}`}
+          {!isEmailVerified ? (
+            ONBOARDING.VERIFY_EMAIL.PRIMARY.CONTENT
+          ) : (
+            <>
+              We have sent an email to
+              <div className={classes.email}>{email}</div>
+            </>
+          )}
         </Typography>
 
         {tabletMatches && (
@@ -99,25 +104,35 @@ function VerifyEmail(props) {
         <Typography
           className={classes.back}
           variant='body1'
-          onClick={isEmailVerified ? () => {} : () => push('/')}
+          onClick={() => {
+            toggleIsEmailVerified();
+          }}
         >
-          {isEmailVerified ? 'Resend Verification mail' : 'Skip'}
+          {isEmailVerified ? 'Back' : null}
         </Typography>
         <Typography
           className={classes.skip}
           variant='body1'
-          onClick={onNext}
-        ></Typography>
+          onClick={isEmailVerified ? null : () => push('/')}
+        >
+          {isEmailVerified ? 'Resend Verification mail' : 'Skip'}
+        </Typography>
         <Button
           containerStyles={classes.button}
-          text={isEmailVerified ? 'Skip' : 'Verify Email'}
+          text={
+            tabletMatches
+              ? ONBOARDING.VERIFY_EMAIL.BUTTON.MOBILE
+              : isEmailVerified
+              ? ONBOARDING.VERIFY_EMAIL.BUTTON.SECONDARY
+              : ONBOARDING.VERIFY_EMAIL.BUTTON.PRIMARY
+          }
           onClick={
             !isEmailVerified
               ? () => {
                   verifyEmail();
                   toggleIsEmailVerified();
                 }
-              : () => push('/')
+              : onNext
           }
         />
       </Grid>
@@ -170,6 +185,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       width: '100%',
     },
+  },
+  email: {
+    fontWeight: '700',
   },
   buttonContainer: {
     display: 'flex',
