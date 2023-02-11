@@ -25,7 +25,7 @@ const Topic = (props) => {
   const { topic, addSelectedTopic, removeSelectedTopic, tabletMatches } = props;
 
   const onClick = () => {
-    selected ? removeSelectedTopic(topic) : addSelectedTopic(topic);
+    selected ? removeSelectedTopic(topic[1]) : addSelectedTopic(topic[1]);
     toggleSelected();
   };
 
@@ -35,7 +35,7 @@ const Topic = (props) => {
       className={classes.topicName}
       variant={tabletMatches ? 'body2' : 'body1'}
     >
-      {topic}
+      {topic[0]}
     </Typography>
   );
 };
