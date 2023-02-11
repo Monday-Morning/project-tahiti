@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -17,8 +17,9 @@ import makeStyles from '@mui/styles/makeStyles';
 // import TrendingUpSharpIcon from '@mui/icons-material/TrendingUpSharp';
 
 // Assets
-import logoFullDark from '../../assets/images/logos/logo_full_black.png';
-
+import logoFullBlack from '../../assets/images/logos/logo_full_black.png';
+import logoFullWhite from '../../assets/images/logos/logo_full_white.png';
+import { ThemeContext } from '../../context/ThemeContext';
 // Hooks
 import useToggle from '../../hooks/useToggle';
 import useAutoComplete from '../../hooks/useAutoComplete';
@@ -35,6 +36,7 @@ const MobileNavbar = () => {
   const [searchText, setSearchText] = useState('');
   const [isSearchActive, setIsSearchActive] = useState(false);
   const inputRef = useRef(null);
+  const { isDarkTheme } = useContext(ThemeContext);
 
   const router = useRouter();
   const classes = useStyles({ isSearchActive });
@@ -123,7 +125,7 @@ const MobileNavbar = () => {
         />
         <div className={classes.logoContainer}>
           <Image
-            src={logoFullDark}
+            src={isDarkTheme ? logoFullWhite : logoFullBlack}
             alt='Monday Morning Logo'
             className={classes.logo}
             layout='fill'

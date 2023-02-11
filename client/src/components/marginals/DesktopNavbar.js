@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -17,7 +17,8 @@ import getArticleLink from '../../utils/getArticleLink';
 
 // Assets
 import logoFullBlack from '../../assets/images/logos/logo_full_black.png';
-
+import logoFullWhite from '../../assets/images/logos/logo_full_white.png';
+import { ThemeContext } from '../../context/ThemeContext';
 //hooks
 import useAutoComplete from '../../hooks/useAutoComplete';
 
@@ -27,6 +28,7 @@ const DesktopNavbar = () => {
   const [isSearchActive, setIsSearchActive] = useState(false);
   const inputRef = useRef(null);
   const classes = useStyles({ isSearchActive });
+  const { isDarkTheme } = useContext(ThemeContext);
 
   const autoCompleteData = useAutoComplete(search, 10);
 
@@ -113,7 +115,7 @@ const DesktopNavbar = () => {
           >
             <div className={classes.imgContainer}>
               <Image
-                src={logoFullBlack}
+                src={isDarkTheme ? logoFullWhite : logoFullBlack}
                 alt='Monday Morning Logo'
                 className={classes.img}
                 layout='fill'

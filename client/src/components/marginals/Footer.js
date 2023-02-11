@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -7,14 +7,18 @@ import { Container, Grid, Typography } from '@mui/material';
 import { ArrowRightCircle } from 'react-feather';
 
 // Assets
-import logo from '../../assets/images/logo.png';
+import logoFullBlack from '../../assets/images/logo.png';
 import googlePlay from '../../assets/images/logos/google_play.png';
+import logoFullWhite from '../../assets/images/logos/logo_full_white.png';
 import { ARCHIVES } from '../../assets/placeholder/guide';
+import { ThemeContext } from '../../context/ThemeContext';
 
 const Footer = () => {
   const classes = useStyles();
   const [activeMonth, setMonth] = useState(ARCHIVES.months[0]);
   const [activeYear, setYear] = useState(ARCHIVES.years[0]);
+  const { isDarkTheme } = useContext(ThemeContext);
+
   return (
     <div className={classes.wrapper}>
       <Container>
@@ -23,7 +27,7 @@ const Footer = () => {
             <div className={classes.aboutInfo}>
               <div className={classes.logoContainer}>
                 <Image
-                  src={logo}
+                  src={isDarkTheme ? logoFullWhite : logoFullBlack}
                   alt='Monday Morning'
                   className={classes.logo}
                   layout='responsive'
