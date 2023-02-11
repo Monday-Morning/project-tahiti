@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 
 //context
 import authContext from './AuthContext';
@@ -18,7 +17,8 @@ import { auth, firebaseApp } from '../../config/firebase';
 //graphql
 import { getApolloLink, GraphClient } from '../../config/ApolloClient';
 import registerUser from '../../graphql/mutations/user/registerUser';
-import addUserPicStorePath from '../../graphql/mutations/user/addUserPicStorePath';
+import updateUserProfilePicture from '../../graphql/mutations/user/updateUserProfilePicture';
+import getFirebaseUserByEmail from '../../graphql/queries/user/getFirebaseUserByEmail';
 
 import ImageKit from 'imagekit-javascript';
 import { setCookie } from 'nookies';
@@ -28,8 +28,6 @@ const AuthState = ({ children }) => {
   const [user, setUser] = useState(null);
   const [firebaseToken, setFirebaseToken] = useState('');
   const [mid, setMid] = useState('');
-
-  const { push } = useRouter();
 
   useEffect(() => {
     if (isSupported() && process.env.NODE_ENV === 'production') {
@@ -59,6 +57,19 @@ const AuthState = ({ children }) => {
 
     const { user, _tokenResponse } = res;
 
+    try {
+      const { data } = await GraphClient.query({
+        query: getFirebaseUserByEmail,
+        variables: {
+          email: user.email,
+        },
+      });
+      if (data.getFirebaseUserByEmail) {
+        setMid(data.getFirebaseUserByEmail.customClaims.mid);
+      }
+    } catch (err) {
+      console.log(err);
+    }
     GraphClient.setLink(getApolloLink(user.accessToken));
     setFirebaseToken(user.accessToken);
     setRefreshToken(user.refreshToken);
@@ -95,6 +106,7 @@ const AuthState = ({ children }) => {
         const imageUpload = await imagekit
           .upload({
             file: user.photoURL,
+            useUniqueFileName: false,
             folder: '/user',
             fileName: `${newAccount.data.registerUser.id}.${
               userPicture.type.toString().split('/')[1]
@@ -103,18 +115,17 @@ const AuthState = ({ children }) => {
           })
           .then((result) => {
             GraphClient.mutate({
-              mutation: addUserPicStorePath,
+              mutation: updateUserProfilePicture,
               variables: {
-                addUserPicStorePathId: newAccount.data.registerUser.id,
+                userId: newAccount.data.registerUser.id,
                 storePath: result.filePath,
+                blurhash: result.blurhash,
               },
             });
           });
       } catch (err) {
         console.log(err);
       }
-    } else {
-      push('/');
     }
   };
 
