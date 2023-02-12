@@ -19,7 +19,7 @@ const ThemeContextProvider = ({ children }) => {
 
   useEffect(() => {
     const currentHour = new Date().getHours();
-    setDarkTheme(currentHour >= 20 ? true : false);
+    setDarkTheme(currentHour >= 20 || currentHour <= 8 ? true : false);
   }, [setDarkTheme]);
 
   return (

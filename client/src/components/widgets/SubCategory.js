@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '1.5rem',
     textDecoration: 'none',
     color: ({ isRed }) =>
-      isRed ? theme.palette.secondary.neutral20 : theme.palette.secondary.main,
+      isRed ? theme.palette.secondary.neutral30 : theme.palette.secondary.main,
     [theme.breakpoints.down('md')]: {
       fontSize: '16px',
       lineHeight: '20px',
