@@ -75,6 +75,7 @@ const theme = createTheme({
       paper: '#F8F8F8',
       card: 'FFFFFF',
       banner: '#D9E9F7',
+      archive: '#222222'
     },
     action: {
       active: 'rgba(0, 0, 0, 0.54)',
