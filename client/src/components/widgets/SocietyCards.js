@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 
 import clsx from 'clsx';
+
+import { ExpandMore } from '@mui/icons-material';
 import {
-  Typography,
   Card,
   CardActions,
-  IconButton,
-  Collapse,
   CardContent,
+  Collapse,
+  IconButton,
+  Typography,
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import { ExpandMore } from '@mui/icons-material';
-import PostHolders from '../widgets/PostHolder';
 
-const SocietyCards = ({ society }) => {
+import PostHolders from './PostHolder';
+
+const SocietyCards = ({ society, posts }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
 
@@ -37,14 +39,19 @@ const SocietyCards = ({ society }) => {
           {society}
         </Typography>
       </CardActions>
-      {/* <Collapse in={expanded} timeout='auto' unmountOnExit>
+      <Collapse in={expanded} timeout='auto' unmountOnExit>
         <CardContent className={classes.hallDetails}>
-          <PostHolders />
-          <PostHolders />
-          <PostHolders />
-          <PostHolders />
+          {posts?.map(({ position, name, email, phone }) => (
+            <PostHolders
+              key={name}
+              position={position}
+              name={name}
+              email={email}
+              phone={phone}
+            />
+          ))}
         </CardContent>
-      </Collapse> */}
+      </Collapse>
     </Card>
   );
 };

@@ -1,11 +1,10 @@
 import React from 'react';
 
-import { Typography, Grid } from '@mui/material';
+import { PhoneOutlined } from '@mui/icons-material';
+import { Grid, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 
-import { PhoneOutlined } from '@mui/icons-material';
-
-const PostHolders = () => {
+const PostHolders = ({ position, name, email, phone }) => {
   const classes = useStyles();
   return (
     <Grid
@@ -15,20 +14,24 @@ const PostHolders = () => {
       alignItems='flex-start'
     >
       <Typography variant='body2' className={classes.position}>
-        Second year
+        {position}
+      </Typography>
+      <Typography variant='body2' className={classes.name}>
+        {name}
       </Typography>
       <Typography variant='body2' className={classes.holderDetails}>
-        name: Anish Patro
+        <strong>Email:-</strong> {email}
       </Typography>
-      <Typography variant='body2' className={classes.holderDetails}>
-        Roll: 121CE0877
-      </Typography>
-      <div className={classes.phoneDetails}>
-        <PhoneOutlined className={classes.phone} />
-        <Typography className={classes.number} variant='body2'>
-          9999999999
-        </Typography>
-      </div>
+      {phone ? (
+        <div className={classes.phoneDetails}>
+          <PhoneOutlined className={classes.phone} />
+          <Typography className={classes.number} variant='body2'>
+            {phone}
+          </Typography>
+        </div>
+      ) : (
+        <></>
+      )}
     </Grid>
   );
 };
@@ -39,15 +42,23 @@ const useStyles = makeStyles((theme) => ({
   position: {
     color: theme.palette.secondary.neutral80,
     fontFamily: 'Source Sans Pro',
-    fontSize: '16px',
+    fontSize: '20px',
     marginBottom: '5px',
     marginTop: '5px',
+    fontWeight: '600',
   },
   holderDetails: {
     fontFamily: theme.typography.fontFamily,
     fontSize: '20px',
     color: '#000',
     marginBottom: '5px',
+  },
+  name: {
+    fontFamily: theme.typography.fontFamily,
+    fontSize: '20px',
+    color: '#000',
+    marginBottom: '5px',
+    fontWeight: '600',
   },
   phoneDetails: {
     display: 'flex',
