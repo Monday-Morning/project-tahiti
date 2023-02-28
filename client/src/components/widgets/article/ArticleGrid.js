@@ -188,13 +188,13 @@ const useStylesItem = makeStyles((theme) => ({
   author: {
     display: 'inline',
     fontSize: '12px',
-    color: theme.palette.secondary.neutral20,
+    color: theme.palette.secondary.neutral40,
     fontWeight: '400',
     marginRight: '10px',
   },
   clockIcon: {
     marginRight: '5px',
-    color: theme.palette.secondary.neutral20,
+    color: theme.palette.secondary.neutral40,
     width: '10px',
     height: '10px',
   },
@@ -204,7 +204,7 @@ const useStylesItem = makeStyles((theme) => ({
     justifyContent: 'space-between',
     fontWeight: '400',
     fontSize: '12px',
-    color: theme.palette.secondary.neutral20,
+    color: theme.palette.secondary.neutral40,
   },
 }));
 

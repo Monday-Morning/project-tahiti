@@ -131,7 +131,7 @@ export default Calendar;
 const useStyles = makeStyles((theme) => ({
   archive: {
     padding: '5px calc((100% - 1280px)/2 + 24px)',
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.background.archive,
     [theme.breakpoints.down('lg')]: {
       padding: '5px 24px',
     },
@@ -149,7 +149,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   drop: {
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.background.archive,
     borderColor: theme.palette.common.white,
     padding: '4px 12px',
     fontFamily: 'Source Sans Pro',

@@ -176,7 +176,7 @@ const useStyles = makeStyles((theme) => ({
   blockquoteData: {
     paddingLeft: '1rem',
     borderLeft: '4px solid',
-    borderColor: theme.palette.common.black,
+    borderColor: theme.palette.text.main,
     minHeight: '60px',
   },
 }));

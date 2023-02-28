@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -17,8 +17,9 @@ import makeStyles from '@mui/styles/makeStyles';
 // import TrendingUpSharpIcon from '@mui/icons-material/TrendingUpSharp';
 
 // Assets
-import logoFullDark from '../../assets/images/logos/logo_full_black.png';
-
+import logoFullBlack from '../../assets/images/logos/logo_full_black.png';
+import logoFullWhite from '../../assets/images/logos/logo_full_white.png';
+import { ThemeContext } from '../../context/ThemeContext';
 // Hooks
 import useToggle from '../../hooks/useToggle';
 import useAutoComplete from '../../hooks/useAutoComplete';
@@ -35,6 +36,7 @@ const MobileNavbar = () => {
   const [searchText, setSearchText] = useState('');
   const [isSearchActive, setIsSearchActive] = useState(false);
   const inputRef = useRef(null);
+  const { isDarkTheme } = useContext(ThemeContext);
 
   const router = useRouter();
   const classes = useStyles({ isSearchActive });
@@ -123,7 +125,7 @@ const MobileNavbar = () => {
         />
         <div className={classes.logoContainer}>
           <Image
-            src={logoFullDark}
+            src={isDarkTheme ? logoFullWhite : logoFullBlack}
             alt='Monday Morning Logo'
             className={classes.logo}
             layout='fill'
@@ -161,7 +163,6 @@ const MobileNavbar = () => {
         open={isMenuOpen}
         onClose={() => setMenuOpen(false)}
         onOpen={() => setMenuOpen(true)}
-        swipeAreaWidth={50}
         style={{ zIndex: 10001 }}
       >
         <nav className={classes.navContainer} aria-label='Navigation Container'>
@@ -269,7 +270,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     paddingBottom: '20px',
     paddingTop: '20px',
-    background: '#FEFEFF',
+    background: theme.palette.background.paper,
     zIndex: '20000',
   },
   searchBox: {
@@ -299,7 +300,7 @@ const useStyles = makeStyles((theme) => ({
   },
   searchSuggestions: {
     position: 'absolute',
-    background: '#FEFEFF',
+    background: theme.palette.background.paper,
     width: '100%',
     padding: '20px',
     zIndex: '20022',

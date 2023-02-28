@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '400',
     hyphens: 'auto',
     fontFamily: 'IBM Plex Sans',
-    color: theme.palette.background.default,
+    color: theme.palette.common.black,
   },
   squigglesTextWrapper: {
     gridArea: '1 / 2 / 2 / 6',

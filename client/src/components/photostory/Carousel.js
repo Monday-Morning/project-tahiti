@@ -115,7 +115,7 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     maxWidth: '100%',
     position: 'relative',
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: '#222222',
     paddingTop: '0.5rem',
   },
 
