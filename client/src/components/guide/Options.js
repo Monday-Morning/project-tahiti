@@ -1,25 +1,23 @@
 import React from 'react';
+
+import Image from 'next/image';
 import Link from 'next/link';
 
-import makeStyles from '@mui/styles/makeStyles';
-import { Typography, Grid, Button } from '@mui/material';
 import DownloadIcon from '@mui/icons-material/Download';
-
-// placeholder
-import { OPTIONS } from '../../assets/placeholder/guide';
+import { Button, Grid, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 
 // images
 import icon1 from '../../assets/images/guide/optIcon1.png';
 import icon2 from '../../assets/images/guide/optIcon2.png';
 import icon3 from '../../assets/images/guide/optIcon3.png';
 import icon4 from '../../assets/images/guide/optIcon4.png';
-
-// components
-import SubCategories from '../widgets/SubCategory';
-
+// placeholder
+import { OPTIONS } from '../../assets/placeholder/guide';
 // theme
 import theme from '../../config/themes/light';
-import Image from 'next/image';
+// components
+import SubCategories from '../widgets/SubCategory';
 
 const Options = () => {
   const classes = useStyles(theme);
@@ -62,20 +60,22 @@ const Options = () => {
           </Typography>
         </div>
       </Link>
-      {/* <div className={classes.optionWrapper}>
-        <Image src={icon3} alt='Icon' className={classes.icons} />
-        <Typography variant='h3' className={classes.option2}>
-          Hall Info
-        </Typography>
-        <Typography variant='h3' className={classes.arrow}>
-          <i className='fas fa-chevron-right'></i>
-        </Typography>
-      </div> */}
       <Link href='/info/health' passHref>
         <div className={classes.optionWrapper}>
           <Image src={icon4} alt='Icon' className={classes.icons} />
           <Typography variant='h3' className={classes.option2}>
             Health and Emergency Info
+          </Typography>
+          <Typography variant='h3' className={classes.arrow}>
+            <i className='fas fa-chevron-right'></i>
+          </Typography>
+        </div>
+      </Link>
+      <Link href='/hallInfo' passHref>
+        <div className={classes.optionWrapper}>
+          <Image src={icon3} alt='Icon' className={classes.icons} />
+          <Typography variant='h3' className={classes.option2}>
+            Hall Info
           </Typography>
           <Typography variant='h3' className={classes.arrow}>
             <i className='fas fa-chevron-right'></i>

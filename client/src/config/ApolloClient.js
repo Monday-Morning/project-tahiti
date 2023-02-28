@@ -9,6 +9,7 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
+import { parseCookies } from 'nookies';
 
 const cache = new InMemoryCache();
 
@@ -38,15 +39,16 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 const link = from([
   errorLink,
   new HttpLink({
-    uri: process.env.NEXT_PUBLIC_SERVER_ADDRESS,
+    uri: `${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/v1/graph`,
   }),
 ]);
 
 const getApolloLink = (token) => {
+  const cookies = parseCookies();
   const authLink = setContext((_, { headers }) => ({
     headers: {
       ...headers,
-      Authorization: token ? token : '',
+      Authorization: token || cookies.firebaseToken || '',
     },
   }));
   return authLink.concat(link);
