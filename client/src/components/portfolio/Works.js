@@ -17,17 +17,18 @@ const Works = ({ user }) => {
   return (
     <Container>
       <div className={classes.wrapper}>
-        <div className={classes.sectionWrapper}>
-          {/* Content */}
-          <Typography
-            variant='h1'
-            color='primary'
-            className={classes.sectionHead}
-          >
-            Content
-          </Typography>
-          <ArticleCardStack articleList={articleList} />
-        </div>
+        {articleList.length > 0 && (
+          <div className={classes.sectionWrapper}>
+            <Typography
+              variant='h1'
+              color='primary'
+              className={classes.sectionHead}
+            >
+              Content
+            </Typography>
+            <ArticleCardStack articleList={articleList} />
+          </div>
+        )}
         {/* <div className={classes.sectionWrapper}>
           <Typography
             variant='h1'

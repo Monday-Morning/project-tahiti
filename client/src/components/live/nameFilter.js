@@ -48,7 +48,7 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     justifyContent: 'space-around',
     [theme.breakpoints.down('md')]: {
-      justifyContent: 'center',
+      justifyContent: 'space-around',
     },
   },
   filterField: {

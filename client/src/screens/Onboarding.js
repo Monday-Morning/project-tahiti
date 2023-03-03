@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
 import makeStyles from '@mui/styles/makeStyles';
-import { Typography } from '@mui/material';
+import { Typography, useMediaQuery } from '@mui/material';
+import theme from '../config/themes/light';
 
 // Components
 import Welcome from '../components/onboarding/stages/Welcome';
@@ -12,16 +13,18 @@ import NewsletterSignup from '../components/onboarding/stages/NewsletterSignup';
 // Hooks
 import useInput from '../hooks/useInput';
 import useToggle from '../hooks/useToggle';
+import Pagination from '../components/onboarding/Pagination';
 
 const STAGES = {
-  WELCOME: 'welcome-stage',
-  VERIFY_EMAIL: 'verify-email',
-  INTERESTED_TOPICS: 'interested-topics',
-  NEWSLETTER: 'newsletter-signup',
+  WELCOME: ['welcome-stage', 0],
+  INTERESTED_TOPICS: ['interested-topics', 1],
+  NEWSLETTER: ['newsletter-signup', 2],
+  VERIFY_EMAIL: ['verify-email', 3],
 };
 
 function Onboarding() {
   const classes = useStyles();
+  const tabletMatches = useMediaQuery(theme.breakpoints.down('md'));
 
   // Local States
   const [stage, setStage] = useState(STAGES.WELCOME);
@@ -53,10 +56,38 @@ function Onboarding() {
     });
 
   const renderStages = () => {
-    switch (stage) {
-      case STAGES.WELCOME:
-        return <Welcome onNext={setStageToNewsletter} onLogin={onLogin} />;
-      case STAGES.VERIFY_EMAIL:
+    switch (stage[0]) {
+      case STAGES.WELCOME[0]:
+        return (
+          <Welcome
+            onNext={setStageToInterestedTopics}
+            onLogin={onLogin}
+            tabletMatches={tabletMatches}
+          />
+        );
+      case STAGES.INTERESTED_TOPICS[0]:
+        return (
+          <SelectTopics
+            selectedTopics={selectedTopics}
+            addSelectedTopic={addSelectedTopic}
+            removeSelectedTopic={removeSelectedTopic}
+            onNext={setStageToNewsletter}
+            onBack={setStageToWelcome}
+            tabletMatches={tabletMatches}
+          />
+        );
+      case STAGES.NEWSLETTER[0]:
+        return (
+          <NewsletterSignup
+            email={newsletterEmail}
+            setEmail={setNewsletterEmail}
+            signupNewsletter={signupNewsletter}
+            onNext={setStageToVerifyEmail}
+            onBack={setStageToInterestedTopics}
+            tabletMatches={tabletMatches}
+          />
+        );
+      case STAGES.VERIFY_EMAIL[0]:
         return (
           <VerifyEmail
             email={email}
@@ -64,24 +95,8 @@ function Onboarding() {
             isEmailVerified={isEmailVerified}
             toggleIsEmailVerified={toggleIsEmailVerified}
             verifyEmail={verifyEmail}
-            onNext={setStageToInterestedTopics}
-          />
-        );
-      case STAGES.INTERESTED_TOPICS:
-        return (
-          <SelectTopics
-            selectedTopics={selectedTopics}
-            addSelectedTopic={addSelectedTopic}
-            removeSelectedTopic={removeSelectedTopic}
-            onNext={setStageToNewsletter}
-          />
-        );
-      case STAGES.NEWSLETTER:
-        return (
-          <NewsletterSignup
-            email={newsletterEmail}
-            setEmail={setNewsletterEmail}
-            signupNewsletter={signupNewsletter}
+            onBack={setStageToNewsletter}
+            tabletMatches={tabletMatches}
           />
         );
       default:
@@ -92,6 +107,9 @@ function Onboarding() {
   return (
     <div className={classes.screen}>
       <div className={classes.box}>{renderStages()}</div>
+      <div className={classes.pagination}>
+        <Pagination active={stage[1]} stages={Object.keys(STAGES)} />
+      </div>
     </div>
   );
 }
@@ -101,20 +119,24 @@ export default Onboarding;
 const useStyles = makeStyles((theme) => ({
   screen: {
     width: '100%',
-    // height: window.innerHeight,
     height: '100vh',
-    backgroundColor: '#E5E5E5',
+    padding: '0 24px',
+    backgroundColor: '#FDFDFD',
     display: 'flex',
-    justifyContent: 'center',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
   },
   box: {
-    minWidth: 350,
-    minHeight: 500,
-    width: '790px',
-    height: '468px',
+    minWidth: 312,
+    minHeight: 468,
+    width: '55%',
     backgroundColor: theme.palette.background.default,
+    boxShadow: theme.shadows[0],
     borderRadius: 5,
     overflow: 'hidden',
+    [theme.breakpoints.down('lg')]: {
+      width: '80%',
+    },
   },
 }));

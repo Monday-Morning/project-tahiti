@@ -29,13 +29,13 @@ const CATEGORIES = [
     subCategoryIds: [21, 22, 23, 24],
   },
   {
-    name: 'DD & CWC',
+    name: "Director's Desk",
     shortName: LINKS.CATEGORIES.DDCWC.split('/')[1],
     path: LINKS.CATEGORIES.DDCWC,
     asyncRoutePath: './Category',
     idNumber: 3,
     exact: true,
-    subCategoryIds: [31, 32],
+    subCategoryIds: [31],
   },
   {
     name: 'Career',
@@ -174,14 +174,14 @@ const DDCWC = [
     idNumber: 31,
     exact: true,
   },
-  {
-    name: "Chief Warden's Column",
-    shortName: LINKS.SUB_CATEGORIES.DDCWC.CHIEF_WARDENS_DESK.split('/')[2],
-    path: LINKS.SUB_CATEGORIES.DDCWC.CHIEF_WARDENS_DESK,
-    asyncRoutePath: './SubCategory',
-    idNumber: 32,
-    exact: true,
-  },
+  // {
+  //   name: "Chief Warden's Column",
+  //   shortName: LINKS.SUB_CATEGORIES.DDCWC.CHIEF_WARDENS_DESK.split('/')[2],
+  //   path: LINKS.SUB_CATEGORIES.DDCWC.CHIEF_WARDENS_DESK,
+  //   asyncRoutePath: './SubCategory',
+  //   idNumber: 32,
+  //   exact: true,
+  // },
 ];
 
 // ========================= CAREER =========================

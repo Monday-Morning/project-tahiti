@@ -10,7 +10,7 @@ import BackLink from '../components/podcast/BackLink';
 import Title from '../components/shared/PageTitle';
 import ArticleCardStack from '../components/widgets/article/ArticleCardStack';
 import BigArticleCard from '../components/widgets/article/BigArticleCard';
-import SubCategories from '../components/widgets/SubCategory';
+import SubCategoryLink from '../components/widgets/SubCategoryLink';
 
 // Utils
 import ROUTES from '../utils/getRoutes';
@@ -35,13 +35,12 @@ function SubCategory({
           <>
             <div className={classes.departments}>
               {ROUTES.DEPARTMENTS.map(({ name, shortName, path }) => (
-                <a
+                <SubCategoryLink
                   key={shortName}
-                  href={path + '/1'}
-                  style={{ textDecoration: 'none' }}
-                >
-                  <SubCategories text={name} className={classes.department} />
-                </a>
+                  text={name}
+                  className={classes.department}
+                  path={path + '/1'}
+                />
               ))}
               <div
                 className={classes.showAll}
@@ -56,13 +55,12 @@ function SubCategory({
         ) : (
           <div className={classes.departments}>
             {ROUTES.DEPARTMENTS.slice(0, 5).map(({ name, shortName, path }) => (
-              <a
+              <SubCategoryLink
                 key={shortName}
-                href={path + '/1'}
-                style={{ textDecoration: 'none' }}
-              >
-                <SubCategories text={name} className={classes.department} />
-              </a>
+                text={name}
+                className={classes.department}
+                path={path + '/1'}
+              />
             ))}
             <Typography variant='h3'>+15 depts</Typography>
             <div
