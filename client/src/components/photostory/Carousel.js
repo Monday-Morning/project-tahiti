@@ -44,7 +44,7 @@ const Carousel = ({ content }) => {
               STORES[content[left].media.store] +
               encodeURI(content[left].media.storePath)
             }
-            alt='travel image'
+            alt='image'
             width='400px'
             height='300px'
             objectFit='contain'
@@ -57,7 +57,7 @@ const Carousel = ({ content }) => {
               STORES[content[current].media.store] +
               encodeURI(content[current].media.storePath)
             }
-            alt='travel image'
+            alt='image'
             width='600px'
             height={Desktop ? '400px' : '700px'}
             objectFit='contain'
@@ -81,7 +81,7 @@ const Carousel = ({ content }) => {
               STORES[content[right].media.store] +
               encodeURI(content[right].media.storePath)
             }
-            alt='travel image'
+            alt='image'
             width='400px'
             height='300px'
             objectFit='contain'

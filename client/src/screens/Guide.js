@@ -8,7 +8,7 @@ import BigCarousel from '../components/widgets/BigCarousel';
 import BackButton from '../components/shared/button/BackButton';
 
 // placeholder
-import { CAROUSEL } from '../assets/placeholder/guide';
+import { MINI_PRINT } from '../assets/placeholder/guide';
 
 function Contact({ issues }) {
   // const latestIssue = issues[0];
@@ -27,7 +27,7 @@ function Contact({ issues }) {
         <BackButton path='/' goTo='Home' />
         <Options />
       </Container>
-      <BigCarousel head='Issues' IMAGE={CAROUSEL} navigator='2020-2021' />
+      <BigCarousel head='Print Issues' content={MINI_PRINT} />
       {/* <Archives issues={articles} /> */}
     </div>
   );

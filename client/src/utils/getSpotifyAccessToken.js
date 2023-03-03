@@ -1,9 +1,7 @@
 const getSpotifyAccessToken = async () => {
   try {
     const { access_token } = await fetch(
-      process.env.NODE_ENV === 'production'
-        ? 'https://mm.dashnet.in/api/admin/spotify/auth'
-        : 'http://localhost:5000/admin/spotify/auth',
+      `${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/admin/spotify/auth`,
       {
         method: 'GET',
         mode: 'cors',
