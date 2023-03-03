@@ -197,7 +197,6 @@ const useStyles = makeStyles((theme) => ({
   },
   linkContainer: {
     display: 'inline-block',
-    width: '100%',
     cursor: 'pointer',
     height: '100%',
   },
