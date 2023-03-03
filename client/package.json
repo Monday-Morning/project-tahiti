@@ -8,8 +8,8 @@
     "start:prod": "next start",
     "build": "next build",
     "lint": "next lint",
-    "format:check": "prettier --list-different --config \"./client/.prettierrc\" --ignore-path \"./client/.prettierignore\" --no-error-on-unmatched-pattern \"./client/.\"",
-    "format": "prettier --write --config \"./client/.prettierrc\" --ignore-path \"./client/.prettierignore\" --no-error-on-unmatched-pattern \"./client/.\""
+    "format:check": "prettier --list-different --config \"./.prettierrc\" --ignore-path \"./.prettierignore\" --no-error-on-unmatched-pattern \"./.\"",
+    "format": "prettier --write --config \"./.prettierrc\" --ignore-path \"./.prettierignore\" --no-error-on-unmatched-pattern \"./.\""
   },
   "keywords": [],
   "author": "",
@@ -23,7 +23,9 @@
     "@mui/material": "^5.8.3",
     "@mui/styles": "^5.8.3",
     "@mui/system": "^5.8.5",
+    "@mui/x-date-pickers": "^5.0.12",
     "chart.js": "^3.9.1",
+    "dayjs": "^1.11.7",
     "dotenv": "^10.0.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",

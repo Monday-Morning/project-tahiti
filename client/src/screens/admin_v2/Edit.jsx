@@ -1,35 +1,33 @@
 import React, { useState } from 'react';
 
-//graphql
-import { GraphClient } from '../../config/ApolloClient';
-import updateArticleProps from '../../graphql/mutations/article/updateArticleProps';
-import updateArticleUsers from '../../graphql/mutations/article/updateArticleUsers';
-import updateArticleCategories from '../../graphql/mutations/article/updateArticleCategories';
-import updateArticleRestriction from '../../graphql/mutations/article/updateArticleRestriction';
-import updateArticleApprovalStatus from '../../graphql/mutations/article/updateArticleApprovalStatus';
-
+import SendIcon from '@mui/icons-material/Send';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormLabel from '@mui/material/FormLabel';
+import InputBase from '@mui/material/InputBase';
 //material ui
 import Paper from '@mui/material/Paper';
-import InputBase from '@mui/material/InputBase';
-import Box from '@mui/material/Box';
-import SendIcon from '@mui/icons-material/Send';
-import Button from '@mui/material/Button';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
-import Container from '@mui/material/Container';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-//components
-import SnackBarAleart from '../../components/admin_v2/Common/SnackBarAleart';
 import AuthorsCard from '../../components/admin_v2/AddNew/AuthorCards';
 import CategoryCard from '../../components/admin_v2/AddNew/CategoryCard';
-import Marginals from '../../components/admin_v2/Marginals/Marginals';
 import FeaturedMedia from '../../components/admin_v2/Common/FeaturedMedia';
+//components
+import SnackBarAleart from '../../components/admin_v2/Common/SnackBarAleart';
 import ArticleTags from '../../components/admin_v2/Common/Tags';
-
+import Marginals from '../../components/admin_v2/Marginals/Marginals';
+//graphql
+import { GraphClient } from '../../config/ApolloClient';
+import updateArticleApprovalStatus from '../../graphql/mutations/article/updateArticleApprovalStatus';
+import updateArticleCategories from '../../graphql/mutations/article/updateArticleCategories';
+import updateArticleProps from '../../graphql/mutations/article/updateArticleProps';
+import updateArticleRestriction from '../../graphql/mutations/article/updateArticleRestriction';
+import updateArticleUsers from '../../graphql/mutations/article/updateArticleUsers';
 //utils
 import explorer from '../../utils/categoryCard';
 import STORES from '../../utils/getStores';
@@ -282,7 +280,13 @@ const EditArticle = ({ allUsers, article }) => {
           </Button>
         </Box>
         <Box sx={{ marginTop: '10px' }}>
-          <ArticleTags tag={tag} />
+          <ArticleTags
+            adminTags={[]}
+            tag={tag}
+            id={id}
+            isAdmin={false}
+            setErrorMessageAndError={setErrorMessageAndError}
+          />
         </Box>
         <Box
           style={{

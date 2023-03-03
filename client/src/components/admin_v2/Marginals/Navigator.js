@@ -15,6 +15,12 @@ import TimerIcon from '@mui/icons-material/Timer';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PhonelinkSetupIcon from '@mui/icons-material/PhonelinkSetup';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import PersonIcon from '@mui/icons-material/Person';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import PollIcon from '@mui/icons-material/Poll';
+import FeedIcon from '@mui/icons-material/Feed';
+import NewspaperIcon from '@mui/icons-material/Newspaper';
+import MarkUnreadChatAltIcon from '@mui/icons-material/MarkUnreadChatAlt';
 
 const categories = [
   {
@@ -30,11 +36,23 @@ const categories = [
     ],
   },
   {
-    id: 'Quality',
+    id: 'Website Settings',
     children: [
-      { id: 'Analytics', icon: <SettingsIcon /> },
-      { id: 'Performance', icon: <TimerIcon /> },
-      { id: 'Test Lab', icon: <PhonelinkSetupIcon /> },
+      { id: 'issues', icon: <NewspaperIcon />, path: '/admin_v2/issues' },
+      { id: 'squiggle', icon: <FeedIcon />, path: '/admin_v2/squiggle' },
+      { id: 'poll', icon: <PollIcon />, path: '/admin_v2/poll' },
+      {
+        id: 'comment',
+        icon: <MarkUnreadChatAltIcon />,
+        path: '/admin_v2/comment',
+      },
+    ],
+  },
+  {
+    id: 'Authentication',
+    children: [
+      { id: 'User', icon: <PersonIcon /> },
+      { id: 'Manage User', icon: <ManageAccountsIcon /> },
     ],
   },
 ];

@@ -1,9 +1,8 @@
 import React from 'react';
 
 import Paperbase from '../../components/admin_v2/Marginals/Marginals';
-import Custom500 from '../500.jsx';
-
 import getAccess from '../../utils/getAccess';
+import Custom500 from '../500.jsx';
 
 const Admin = ({ isError }) => {
   if (isError) {

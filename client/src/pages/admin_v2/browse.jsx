@@ -1,21 +1,17 @@
+import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { parseCookies } from 'nookies';
 
 import ActivityIndicator from '../../components/shared/ActivityIndicator';
+import { getApolloLink, GraphClient } from '../../config/ApolloClient';
+import countTotalArticles from '../../graphql/queries/article/countTotalArticles';
+import listAllArticle from '../../graphql/queries/article/listAllArticles';
 import BrowseArticle from '../../screens/admin_v2/Browse';
 import Custom500 from '../500';
 
-import { parseCookies } from 'nookies';
-import { getApolloLink, GraphClient } from '../../config/ApolloClient';
-import listAllArticle from '../../graphql/queries/article/listAllArticles';
-import countTotalArticles from '../../graphql/queries/article/countTotalArticles';
-import Head from 'next/head';
-
-const browseArticlePage = ({ articles, totalArticles, isError, error }) => {
+const BrowseArticlePage = ({ articles, totalArticles, isError, error }) => {
   const { isFallback } = useRouter();
-  console.log(articles, totalArticles);
   if (isError) return <Custom500 error={error} />;
-  console.log(isFallback);
-  console.log(!isFallback && articles && totalArticles);
 
   return (
     <>
@@ -32,7 +28,7 @@ const browseArticlePage = ({ articles, totalArticles, isError, error }) => {
   );
 };
 
-export default browseArticlePage;
+export default BrowseArticlePage;
 
 export async function getServerSideProps(context) {
   try {

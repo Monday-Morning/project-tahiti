@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // libraries
 import { Typography, Container, useMediaQuery } from '@mui/material';
@@ -18,16 +18,21 @@ import theme from '../config/themes/light';
 
 // placeholder
 import { LIVE } from '../assets/placeholder/live';
+import getLiveByYearAndSemester from '../graphql/queries/live/getLiveByYearAndSemester';
+import { GraphClient } from '../config/ApolloClient';
+import ActivityIndicator from '../components/shared/ActivityIndicator';
 
 function Live() {
   const classes = useStyles();
   const Desktop = useMediaQuery(theme.breakpoints.up('sm'));
-  const [activeCompany, setCompany] = useState(0);
+  const [liveData, setLiveData] = useState([]);
   const [department, setDepartment] = useState(LIVE.departments[0]);
-  const [degree, setDegree] = useState('B.Tech');
+  const [degree, setDegree] = useState('All Degrees');
   const [filterText, setFilter] = useState('');
   const [activeSession, setSession] = useState(LIVE.sessions[0]);
-  const [placement, setPlacement] = useState(false);
+  const [showPlacement, setShowPlacement] = useState(true);
+
+  const [isLoading, setLoading] = useState(true);
 
   const selectSessions = (season) => {
     setSession(season);
@@ -38,12 +43,29 @@ function Live() {
   };
 
   const selectDegree = (event) => {
-    setDegree(event.target.value);
+    // setDegree(event.target.value);
   };
 
-  const selectDepartment = (branch) => {
-    setDepartment(branch);
-  };
+  // const selectDepartment = (branch) => {
+  //   setDepartment(branch);
+  // };
+
+  useEffect(() => {
+    setLoading(true);
+    const [semester, year] = activeSession.split(' ');
+    GraphClient.query({
+      query: getLiveByYearAndSemester,
+      variables: { year: parseInt(year), semester: semester.toUpperCase() },
+    })
+      .then((res) => {
+        setLiveData(res.data.getLiveByYearAndSemester);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  }, [activeSession]);
 
   return (
     <Container>
@@ -59,7 +81,10 @@ function Live() {
               selectSessions={selectSessions}
               LIVE={LIVE}
             />
-            <TypeSelector placement={placement} setPlacement={setPlacement} />
+            <TypeSelector
+              placement={showPlacement}
+              setPlacement={setShowPlacement}
+            />
             <NameFilter filterText={filterText} handleChange={handleChange} />
           </div>
           <div
@@ -75,18 +100,25 @@ function Live() {
                 setDegree={setDegree}
                 handleChange={selectDegree}
               />
-              <BranchSelector
+              {/* <BranchSelector
                 department={department}
                 selectDepartment={selectDepartment}
                 LIVE={LIVE}
-              />
+              /> */}
             </div>
             <div style={{ width: '70%' }}>
-              <LiveData
-                activeCompany={activeCompany}
-                setCompany={setCompany}
-                data={LIVE.data}
-              />
+              {!isLoading && liveData && (
+                <LiveData
+                  live={liveData.filter((item) => {
+                    if (showPlacement) {
+                      return item.liveType !== 4;
+                    } else {
+                      return item.liveType === 4;
+                    }
+                  })}
+                />
+              )}
+              {isLoading && <ActivityIndicator size={50} />}
             </div>
           </div>{' '}
         </>
@@ -121,19 +153,29 @@ function Live() {
               margin: '0.5rem',
             }}
           >
-            <BranchSelector
+            {/* <BranchSelector
               department={department}
               selectDepartment={selectDepartment}
               LIVE={LIVE}
+            /> */}
+            <TypeSelector
+              placement={showPlacement}
+              setPlacement={setShowPlacement}
             />
-            <TypeSelector placement={placement} setPlacement={setPlacement} />
           </div>
           <NameFilter filterText={filterText} handleChange={handleChange} />
-          <LiveData
-            activeCompany={activeCompany}
-            setCompany={setCompany}
-            data={LIVE.data}
-          />
+          {!isLoading && liveData && (
+            <LiveData
+              live={liveData.filter((item) => {
+                if (showPlacement) {
+                  return item.liveType !== 4;
+                } else {
+                  return item.liveType === 4;
+                }
+              })}
+            />
+          )}
+          {isLoading && <ActivityIndicator size={50} />}
         </>
       )}
     </Container>
