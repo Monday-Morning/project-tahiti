@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 // Library
 import { Typography, Grid } from '@mui/material';
@@ -17,6 +18,8 @@ import { ONBOARDING } from '../../../assets/placeholder/onboarding';
 
 function VerifyEmail(props) {
   const classes = useStyles();
+
+  const { push } = useRouter();
 
   // props
   const {
@@ -42,9 +45,14 @@ function VerifyEmail(props) {
         </Typography>
 
         <Typography className={classes.verifyContent} variant='body1'>
-          {!isEmailVerified
-            ? ONBOARDING.VERIFY_EMAIL.PRIMARY.CONTENT
-            : `We have sent an email to ${email}`}
+          {!isEmailVerified ? (
+            ONBOARDING.VERIFY_EMAIL.PRIMARY.CONTENT
+          ) : (
+            <>
+              We have sent an email to
+              <div className={classes.email}>{email}</div>
+            </>
+          )}
         </Typography>
 
         {tabletMatches && (
@@ -93,10 +101,20 @@ function VerifyEmail(props) {
       )}
 
       <Grid className={classes.buttonContainer} item xs={12}>
-        <Typography className={classes.back} variant='body1' onClick={onBack}>
-          Back
+        <Typography
+          className={classes.back}
+          variant='body1'
+          onClick={() => {
+            toggleIsEmailVerified();
+          }}
+        >
+          {isEmailVerified ? 'Back' : null}
         </Typography>
-        <Typography className={classes.skip} variant='body1' onClick={onNext}>
+        <Typography
+          className={classes.skip}
+          variant='body1'
+          onClick={isEmailVerified ? null : () => push('/')}
+        >
           {isEmailVerified ? 'Resend Verification mail' : 'Skip'}
         </Typography>
         <Button
@@ -167,6 +185,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       width: '100%',
     },
+  },
+  email: {
+    fontWeight: '700',
   },
   buttonContainer: {
     display: 'flex',

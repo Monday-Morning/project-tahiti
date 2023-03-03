@@ -17,6 +17,8 @@ import { auth, firebaseApp } from '../../config/firebase';
 //graphql
 import { getApolloLink, GraphClient } from '../../config/ApolloClient';
 import registerUser from '../../graphql/mutations/user/registerUser';
+import updateUserProfilePicture from '../../graphql/mutations/user/updateUserProfilePicture';
+import getFirebaseUserByEmail from '../../graphql/queries/user/getFirebaseUserByEmail';
 
 import ImageKit from 'imagekit-javascript';
 import { setCookie } from 'nookies';
@@ -25,6 +27,7 @@ const AuthState = ({ children }) => {
   const [refreshToken, setRefreshToken] = useState('');
   const [user, setUser] = useState(null);
   const [firebaseToken, setFirebaseToken] = useState('');
+  const [mid, setMid] = useState('');
 
   useEffect(() => {
     if (isSupported() && process.env.NODE_ENV === 'production') {
@@ -54,6 +57,19 @@ const AuthState = ({ children }) => {
 
     const { user, _tokenResponse } = res;
 
+    try {
+      const { data } = await GraphClient.query({
+        query: getFirebaseUserByEmail,
+        variables: {
+          email: user.email,
+        },
+      });
+      if (data.getFirebaseUserByEmail) {
+        setMid(data.getFirebaseUserByEmail.customClaims.mid);
+      }
+    } catch (err) {
+      console.log(err);
+    }
     GraphClient.setLink(getApolloLink(user.accessToken));
     setFirebaseToken(user.accessToken);
     setRefreshToken(user.refreshToken);
@@ -74,7 +90,12 @@ const AuthState = ({ children }) => {
             email: user.email,
           },
         });
-        console.log('Account Created ', newAccount);
+        setMid(newAccount.data.registerUser.id);
+
+        const newToken = await auth.currentUser.getIdToken({
+          forceRefresh: true,
+        });
+        setFirebaseToken(newToken);
 
         const userPicture = await (await fetch(user.photoURL)).blob();
 
@@ -85,6 +106,7 @@ const AuthState = ({ children }) => {
         const imageUpload = await imagekit
           .upload({
             file: user.photoURL,
+            useUniqueFileName: false,
             folder: '/user',
             fileName: `${newAccount.data.registerUser.id}.${
               userPicture.type.toString().split('/')[1]
@@ -92,7 +114,14 @@ const AuthState = ({ children }) => {
             tags: [user.uid, 'user', 'profilePicture'],
           })
           .then((result) => {
-            console.log('Upload Success', result);
+            GraphClient.mutate({
+              mutation: updateUserProfilePicture,
+              variables: {
+                userId: newAccount.data.registerUser.id,
+                storePath: result.filePath,
+                blurhash: result.blurhash,
+              },
+            });
           });
       } catch (err) {
         console.log(err);
@@ -106,7 +135,7 @@ const AuthState = ({ children }) => {
 
   return (
     <authContext.Provider
-      value={{ loginWithToken, logout, user, firebaseToken, refreshToken }}
+      value={{ loginWithToken, logout, user, firebaseToken, refreshToken, mid }}
     >
       {children}
     </authContext.Provider>

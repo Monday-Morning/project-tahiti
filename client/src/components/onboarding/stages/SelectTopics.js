@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import authContext from '../../../context/auth/AuthContext';
 
 // Hooks
 import useToggle from '../../../hooks/useToggle';
@@ -13,6 +14,10 @@ import Button from '../../shared/button/Regular';
 // Constants
 import { ONBOARDING } from '../../../assets/placeholder/onboarding';
 
+//graphql
+import { GraphClient } from '../../../config/ApolloClient';
+import updateUserTopics from '../../../graphql/mutations/user/updateUserTopics';
+
 const Topic = (props) => {
   const [selected, toggleSelected] = useToggle(false);
   const classes = useStyles(selected);
@@ -20,7 +25,7 @@ const Topic = (props) => {
   const { topic, addSelectedTopic, removeSelectedTopic, tabletMatches } = props;
 
   const onClick = () => {
-    selected ? removeSelectedTopic(topic) : addSelectedTopic(topic);
+    selected ? removeSelectedTopic(topic[1]) : addSelectedTopic(topic[1]);
     toggleSelected();
   };
 
@@ -30,7 +35,7 @@ const Topic = (props) => {
       className={classes.topicName}
       variant={tabletMatches ? 'body2' : 'body1'}
     >
-      {topic}
+      {topic[0]}
     </Typography>
   );
 };
@@ -46,6 +51,18 @@ function SelectTopics(props) {
     onNext,
     tabletMatches,
   } = props;
+
+  const { mid } = useContext(authContext);
+
+  const setSelectedTopics = (topics) => {
+    GraphClient.mutate({
+      mutation: updateUserTopics,
+      variables: {
+        userId: mid,
+        interestedTopics: topics,
+      },
+    });
+  };
 
   return (
     <div className={classes.container}>
@@ -73,8 +90,8 @@ function SelectTopics(props) {
       <Button
         text='Next'
         onClick={() => {
+          setSelectedTopics(selectedTopics);
           onNext();
-          console.log('Following are the selected Topics: ', selectedTopics);
         }}
         containerStyles={classes.nextButton}
       />
