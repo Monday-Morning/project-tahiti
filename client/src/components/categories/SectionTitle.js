@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
   line: {
     [theme.breakpoints.up('sm')]: {
-      borderBottom: '1px solid #000000',
+      borderBottom: `1px solid ${theme.palette.secondary.main}`,
       borderColor: theme.palette.common.black,
       width: '-webkit-fill-available',
       marginInline: '1rem',
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '400',
     color: theme.palette.secondary.main,
     fontFamily: 'Source Sans Pro',
-    borderBottom: '1px solid #000000',
+    borderBottom: `1px solid ${theme.palette.secondary.main}`,
     cursor: 'pointer',
     [theme.breakpoints.down('md')]: {
       fontSize: '14px',
