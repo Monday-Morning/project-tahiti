@@ -90,11 +90,13 @@ const PodcastList = ({ spotify, pageNo, len, hidePagination }) => {
         <div className={classes.pagination}>
           <div className={classes.paginationBtn}>
             <ChevronLeftIcon
+              className={nextPageNo == 1 ? classes.btnDisable : ''}
               onClick={
                 nextPageNo != 1 ? () => setNextPageNo(nextPageNo - 1) : null
               }
             />
             <Typography
+              className={nextPageNo == 1 ? classes.btnDisable : ''}
               onClick={
                 nextPageNo != 1 ? () => setNextPageNo(nextPageNo - 1) : null
               }
@@ -104,11 +106,13 @@ const PodcastList = ({ spotify, pageNo, len, hidePagination }) => {
           </div>
           <div className={classes.paginationBtn}>
             <Typography
+              className={len == 0 ? classes.btnDisable : ''}
               onClick={len != 0 ? () => setNextPageNo(nextPageNo + 1) : null}
             >
               Next
             </Typography>
             <ChevronRightIcon
+              className={len == 0 ? classes.btnDisable : ''}
               onClick={len != 0 ? () => setNextPageNo(nextPageNo + 1) : null}
             />
           </div>
@@ -120,6 +124,9 @@ const PodcastList = ({ spotify, pageNo, len, hidePagination }) => {
 export default PodcastList;
 
 const useStyles = makeStyles((theme) => ({
+  btnDisable: {
+    color: theme.palette.text.disabled,
+  },
   pagination: {
     '&:hover': {
       cursor: 'pointer',

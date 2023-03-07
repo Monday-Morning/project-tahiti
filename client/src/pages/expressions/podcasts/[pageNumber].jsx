@@ -14,7 +14,7 @@ const PodcastPage = ({ spotify, isError, pageNumber, isNextNull }) => {
   const handleChange = (value) => {
     setPageNo(value);
   };
-  const len = isNextNull?.length?.NULL;
+  const len = isNextNull?.length;
 
   useEffect(() => {
     if (isLoading ?? true === true) {
