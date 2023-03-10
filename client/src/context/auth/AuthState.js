@@ -144,6 +144,7 @@ const AuthState = ({ children }) => {
       if (newAccount.data.registerUser.accountType === 2) {
         return {
           isNewUser: true,
+          isMigratedUser: true,
           user: user,
           newAccount: { ...newAccount },
         };
