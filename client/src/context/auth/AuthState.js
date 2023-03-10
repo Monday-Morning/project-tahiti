@@ -141,6 +141,14 @@ const AuthState = ({ children }) => {
         mid: newAccount.data.registerUser.id,
       }));
 
+      if (newAccount.data.registerUser.accountType === 2) {
+        return {
+          isNewUser: true,
+          user: user,
+          newAccount: { ...newAccount },
+        };
+      }
+
       const userPicture = await (await fetch(_user.photoURL)).blob();
 
       if (!['image/png', 'image/jpeg'].includes(userPicture.type)) {

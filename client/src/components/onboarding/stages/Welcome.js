@@ -50,7 +50,7 @@ function Welcome({
         setLoading(false);
         return;
       }
-      if (_loginResponse.isNewUser) {
+      if (_loginResponse.isNewUser && !_loginResponse.isMigratedUser) {
         onSignUp();
       } else {
         onSignIn();
