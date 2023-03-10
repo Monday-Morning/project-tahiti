@@ -6,7 +6,6 @@ import { setCookie } from 'nookies';
 
 //media
 import imagekit from '../../config/imagekit';
-import encodeImageToBlurhash from '../../utils/encodeToBlurhash';
 
 //firebase
 import {

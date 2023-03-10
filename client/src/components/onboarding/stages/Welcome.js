@@ -23,7 +23,7 @@ function Welcome({
   setLoading,
 }) {
   const classes = useStyles();
-  // const { push } = useRouter();
+  const { push } = useRouter();
 
   const { loginWithToken } = useContext(authContext);
   useEffect(() => {
