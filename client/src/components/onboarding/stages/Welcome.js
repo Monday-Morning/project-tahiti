@@ -14,29 +14,85 @@ import { ONBOARDING } from '../../../assets/placeholder/onboarding';
 //Context
 import authContext from '../../../context/auth/AuthContext';
 
-function Welcome({ onNext, onLogin, tabletMatches }) {
+function Welcome({
+  onSignIn,
+  onSignUp,
+  tabletMatches,
+  setSnackbarData,
+  isLoading,
+  setLoading,
+}) {
   const classes = useStyles();
   const { push } = useRouter();
 
   const { loginWithToken } = useContext(authContext);
   useEffect(() => {
-    function handleCredentialResponse(response) {
-      loginWithToken(response.credential);
-      onNext();
+    async function handleCredentialResponse(response) {
+      setLoading(true);
+
+      const _loginResponse = await loginWithToken(response.credential);
+      if (!_loginResponse) {
+        setSnackbarData({
+          message: 'Something went wrong. Please try again.',
+          severity: 'error',
+        });
+        setLoading(false);
+        return;
+      }
+      if (_loginResponse.error) {
+        console.error(_loginResponse.error);
+        setSnackbarData({
+          message: `Oops! Your sign ${
+            _loginResponse.isNewUser ? 'up' : 'in'
+          } failed. Please try again.`,
+          severity: 'error',
+        });
+        setLoading(false);
+        return;
+      }
+      if (_loginResponse.isNewUser && !_loginResponse.isMigratedUser) {
+        onSignUp();
+      } else {
+        onSignIn();
+      }
     }
+
     function gis() {
       google.accounts.id.initialize({
         client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
         callback: handleCredentialResponse,
       });
-      google.accounts.id.renderButton(document.getElementById('buttonDiv'), {
-        theme: 'outline',
-        size: 'large',
-      });
+      google.accounts.id.renderButton(
+        document.getElementById('googleAccountSignInDiv'),
+        {
+          theme: 'outline',
+          size: 'large',
+        },
+      );
       google.accounts.id.prompt();
     }
     gis();
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className={classes.container}>
+        <Image
+          className={classes.logo}
+          width={tabletMatches ? 232 : 390}
+          height={tabletMatches ? 40 : 68}
+          src={logo}
+          alt='Monday Morning'
+        />
+        <Typography className={classes.welcomeText} variant='body1'>
+          {ONBOARDING.WELCOME.CONTENT}
+        </Typography>
+        <Typography className={classes.welcomeText} variant='body1'>
+          Loading...
+        </Typography>
+      </div>
+    );
+  }
 
   return (
     <div className={classes.container}>
@@ -52,7 +108,7 @@ function Welcome({ onNext, onLogin, tabletMatches }) {
         {ONBOARDING.WELCOME.CONTENT}
       </Typography>
 
-      <div id='buttonDiv'></div>
+      <div id='googleAccountSignInDiv'></div>
       <Typography
         className={classes.skip}
         variant='body1'

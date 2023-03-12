@@ -2,12 +2,14 @@ import { gql } from '@apollo/client';
 
 const updateUserProfilePicture = gql`
   mutation UpdateUserProfilePicture(
-    $userId: ID!
-    $storePath: String
+    $id: ID!
+    $store: Int
+    $storePath: String!
     $blurhash: String
   ) {
     updateUserProfilePicture(
-      id: $userId
+      id: $id
+      store: $store
       storePath: $storePath
       blurhash: $blurhash
     ) {

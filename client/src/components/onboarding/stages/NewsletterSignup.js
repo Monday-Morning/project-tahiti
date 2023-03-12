@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import Image from 'next/image';
 
 // Library
@@ -23,29 +23,27 @@ import newsLetterSubscription from '../../../graphql/mutations/user/newsLetterSu
 //context
 import authContext from '../../../context/auth/AuthContext';
 
-function VerifyEmail(props) {
+function NewsletterSignup({ onComplete, onSkip, tabletMatches }) {
   const classes = useStyles();
-  const router = useRouter();
+  // const router = useRouter();
+
   // Local States
   const [isSigned, setIsSigned] = useState(false);
 
-  // Props
-  const { signupNewsletter, onNext, onBack, tabletMatches } = props;
+  const {
+    user: { mid },
+  } = useContext(authContext);
 
-  const { mid } = useContext(authContext);
-
-  const onSignup = () => {
+  const onSignup = async () => {
     setIsSigned(true);
 
-    GraphClient.mutate({
+    await GraphClient.mutate({
       mutation: newsLetterSubscription,
       variables: {
         userId: mid,
         flag: true,
       },
     });
-
-    signupNewsletter();
   };
 
   return (
@@ -102,9 +100,9 @@ function VerifyEmail(props) {
             <Typography
               className={classes.back}
               variant='body1'
-              onClick={onNext}
+              onClick={onSkip}
             >
-              skip
+              Skip
             </Typography>
           </>
         )}
@@ -116,7 +114,7 @@ function VerifyEmail(props) {
               ? ONBOARDING.NEWSLETTER.BUTTON.MOBILE
               : ONBOARDING.NEWSLETTER.BUTTON.PRIMARY
           }
-          onClick={isSigned ? onNext : onSignup}
+          onClick={isSigned ? onComplete : onSignup}
           containerStyles={classes.button}
         />
       </Grid>
@@ -124,7 +122,7 @@ function VerifyEmail(props) {
   );
 }
 
-export default VerifyEmail;
+export default NewsletterSignup;
 
 const useStyles = makeStyles((theme) => ({
   container: {

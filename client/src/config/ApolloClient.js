@@ -48,7 +48,7 @@ const getApolloLink = (token) => {
   const authLink = setContext((_, { headers }) => ({
     headers: {
       ...headers,
-      Authorization: token || cookies.firebaseToken || '',
+      Authorization: token || cookies?.firebaseToken || '',
     },
   }));
   return authLink.concat(link);

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 
 // Library
 import { Typography, Grid } from '@mui/material';
@@ -15,23 +15,88 @@ import Input from '../../shared/input/Regular';
 
 // Constants
 import { ONBOARDING } from '../../../assets/placeholder/onboarding';
+import authContext from '../../../context/auth/AuthContext';
 
-function VerifyEmail(props) {
+function VerifyEmail({
+  onComplete,
+  onSkip,
+  onBack,
+  email,
+  setEmail,
+  isEmailVerified,
+  toggleIsEmailVerified,
+  tabletMatches,
+  setSnackbarData,
+  isLoading,
+  setLoading,
+}) {
   const classes = useStyles();
 
-  const { push } = useRouter();
+  const { sendEmailLink, isSignInWithEmailLink, attachNITREmail } =
+    useContext(authContext);
 
-  // props
-  const {
-    email,
-    setEmail,
-    isEmailVerified,
-    toggleIsEmailVerified,
-    verifyEmail,
-    onNext,
-    onBack,
-    tabletMatches,
-  } = props;
+  const [isEmailLinkPage, setIsEmailLinkPage] = useState(false);
+
+  const checkInstitueEmail = () => {
+    if (!email) {
+      setSnackbarData({
+        message: 'Please enter your NITR email address',
+        severity: 'error',
+      });
+      return false;
+    }
+    if (!RegExp(/\@nitrkl\.ac\.in$/).test(email)) {
+      setSnackbarData({
+        message: 'Please enter a valid NITR email address',
+        severity: 'error',
+      });
+      return false;
+    }
+    return true;
+  };
+
+  const verifyInstituteEmail = async () => {
+    if (!checkInstitueEmail()) return;
+    setLoading(true);
+    const _res = await attachNITREmail(email, window.location.href);
+    console.log('attachNITREmail', _res);
+    onComplete();
+    setLoading(false);
+  };
+
+  const sendVerificationEmail = async () => {
+    if (!checkInstitueEmail()) return;
+    setLoading(true);
+    const _res = await sendEmailLink(email);
+    toggleIsEmailVerified(true);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    if (isEmailVerified && isSignInWithEmailLink(window.location.href)) {
+      setIsEmailLinkPage(true);
+    }
+  }, []);
+
+  if (isLoading) {
+    return (
+      <Grid
+        className={classes.container}
+        container
+        spacing={tabletMatches ? 0 : 3}
+      >
+        <Grid className={classes.content} item sm={12} md={7}>
+          <Typography className={classes.verifyTitle} variant='h1'>
+            {ONBOARDING.VERIFY_EMAIL.PRIMARY.TITLE}
+          </Typography>
+
+          <Typography className={classes.verifyContent} variant='body1'>
+            Loading...
+          </Typography>
+        </Grid>
+      </Grid>
+    );
+  }
 
   return (
     <Grid
@@ -101,38 +166,33 @@ function VerifyEmail(props) {
       )}
 
       <Grid className={classes.buttonContainer} item xs={12}>
-        <Typography
-          className={classes.back}
-          variant='body1'
-          onClick={() => {
-            toggleIsEmailVerified();
-          }}
-        >
-          {isEmailVerified ? 'Back' : null}
+        <Typography className={classes.back} variant='body1' onClick={onBack}>
+          Back
         </Typography>
         <Typography
           className={classes.skip}
           variant='body1'
-          onClick={isEmailVerified ? null : () => push('/')}
+          onClick={isEmailVerified ? sendVerificationEmail : onSkip}
         >
           {isEmailVerified ? 'Resend Verification mail' : 'Skip'}
         </Typography>
         <Button
           containerStyles={classes.button}
           text={
-            tabletMatches
-              ? ONBOARDING.VERIFY_EMAIL.BUTTON.MOBILE
-              : isEmailVerified
-              ? ONBOARDING.VERIFY_EMAIL.BUTTON.SECONDARY
-              : ONBOARDING.VERIFY_EMAIL.BUTTON.PRIMARY
+            !isEmailVerified
+              ? ONBOARDING.VERIFY_EMAIL.BUTTON.PRIMARY
+              : isEmailLinkPage
+              ? ONBOARDING.VERIFY_EMAIL.BUTTON.FINALLY
+              : ONBOARDING.VERIFY_EMAIL.BUTTON.SECONDARY
           }
           onClick={
             !isEmailVerified
-              ? () => {
-                  verifyEmail();
-                  toggleIsEmailVerified();
+              ? sendVerificationEmail
+              : isEmailLinkPage
+              ? verifyInstituteEmail
+              : () => {
+                  window.open('https://mail.nitrkl.ac.in', '_blank');
                 }
-              : onNext
           }
         />
       </Grid>

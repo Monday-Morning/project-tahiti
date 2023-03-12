@@ -18,8 +18,8 @@ export const ONBOARDING = Object.freeze({
     EMAIL_PLACEHOLDER: 'instituteID@nitrkl.ac.in',
     BUTTON: {
       PRIMARY: 'Get Verification Link',
-      SECONDARY: 'Check again and continue',
-      MOBILE: 'Next',
+      SECONDARY: 'Open webmail',
+      FINALLY: 'Confirm Verification',
     },
     NOTE: 'Note: This only works if you’re a current student/ employee of \n NIT Rourkela with a valid institute email id.',
   },
@@ -28,6 +28,8 @@ export const ONBOARDING = Object.freeze({
       TITLE: 'Interested Topics',
       CONTENT:
         "Select the topics you're interested in, and get smarter article suggestions on the MM website!",
+      LOADING_CONTENT:
+        "Give us a moment while we save your choices. Wouldn't want to mix them up.",
     },
     TOPICS: [
       ['Campus Buzz', 12],
