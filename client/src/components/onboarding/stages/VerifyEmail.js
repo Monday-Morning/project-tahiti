@@ -1,21 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Image from 'next/image';
-// import { useRouter } from 'next/router';
 
+import Image from 'next/image';
+
+// import { useRouter } from 'next/router';
 // Library
-import { Typography, Grid } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 
 // Assets
 import verifyEmailImg from '../../../assets/images/onboarding/verifyEmail.png';
-
-// Components
-import Button from '../../shared/button/Regular';
-import Input from '../../shared/input/Regular';
-
 // Constants
 import { ONBOARDING } from '../../../assets/placeholder/onboarding';
 import authContext from '../../../context/auth/AuthContext';
+// Components
+import Button from '../../shared/button/Regular';
+import Input from '../../shared/input/Regular';
 
 function VerifyEmail({
   onComplete,
@@ -78,26 +77,6 @@ function VerifyEmail({
     }
   }, []);
 
-  if (isLoading) {
-    return (
-      <Grid
-        className={classes.container}
-        container
-        spacing={tabletMatches ? 0 : 3}
-      >
-        <Grid className={classes.content} item sm={12} md={7}>
-          <Typography className={classes.verifyTitle} variant='h1'>
-            {ONBOARDING.VERIFY_EMAIL.PRIMARY.TITLE}
-          </Typography>
-
-          <Typography className={classes.verifyContent} variant='body1'>
-            Loading...
-          </Typography>
-        </Grid>
-      </Grid>
-    );
-  }
-
   return (
     <Grid
       className={classes.container}
@@ -109,53 +88,57 @@ function VerifyEmail({
           {ONBOARDING.VERIFY_EMAIL.PRIMARY.TITLE}
         </Typography>
 
-        <Typography className={classes.verifyContent} variant='body1'>
-          {!isEmailVerified ? (
-            ONBOARDING.VERIFY_EMAIL.PRIMARY.CONTENT
-          ) : (
-            <>
-              We have sent an email to
-              <div className={classes.email}>{email}</div>
-            </>
-          )}
-        </Typography>
-
-        {tabletMatches && (
-          <Grid className={classes.mobileImgContainer} item xs={12}>
-            <Image
-              className={classes.img}
-              src={verifyEmailImg}
-              alt='Verify Email'
-            />
-          </Grid>
-        )}
-
-        {isEmailVerified ? (
-          <Typography className={classes.verifyContent} variant='body1'>
-            {ONBOARDING.VERIFY_EMAIL.SECONDARY.CONTENT}
-          </Typography>
-        ) : (
+        {!isLoading && (
           <>
-            <Typography className={classes.emailTitle} variant='h3'>
-              {ONBOARDING.VERIFY_EMAIL.SECONDARY.TITLE}
+            <Typography className={classes.verifyContent} variant='body1'>
+              {!isEmailVerified ? (
+                ONBOARDING.VERIFY_EMAIL.PRIMARY.CONTENT
+              ) : (
+                <>
+                  We have sent an email to
+                  <div className={classes.email}>{email}</div>
+                </>
+              )}
             </Typography>
-            <Input
-              className={classes.emailInput}
-              value={email}
-              onChange={setEmail}
-              placeholder={ONBOARDING.VERIFY_EMAIL.EMAIL_PLACEHOLDER}
-            />
-          </>
-        )}
 
-        {!isEmailVerified && (
-          <Typography className={classes.note} variant='body2'>
-            {ONBOARDING.VERIFY_EMAIL.NOTE}
-          </Typography>
+            {tabletMatches && (
+              <Grid className={classes.mobileImgContainer} item xs={12}>
+                <Image
+                  className={classes.img}
+                  src={verifyEmailImg}
+                  alt='Verify Email'
+                />
+              </Grid>
+            )}
+
+            {isEmailVerified ? (
+              <Typography className={classes.verifyContent} variant='body1'>
+                {ONBOARDING.VERIFY_EMAIL.SECONDARY.CONTENT}
+              </Typography>
+            ) : (
+              <>
+                <Typography className={classes.emailTitle} variant='h3'>
+                  {ONBOARDING.VERIFY_EMAIL.SECONDARY.TITLE}
+                </Typography>
+                <Input
+                  className={classes.emailInput}
+                  value={email}
+                  onChange={setEmail}
+                  placeholder={ONBOARDING.VERIFY_EMAIL.EMAIL_PLACEHOLDER}
+                />
+              </>
+            )}
+
+            {!isEmailVerified && (
+              <Typography className={classes.note} variant='body2'>
+                {ONBOARDING.VERIFY_EMAIL.NOTE}
+              </Typography>
+            )}
+          </>
         )}
       </Grid>
 
-      {!tabletMatches && (
+      {!tabletMatches && !isLoading && (
         <Grid className={classes.imgContainer} item xs={12} md={5}>
           <Image
             className={classes.img}
@@ -165,37 +148,39 @@ function VerifyEmail({
         </Grid>
       )}
 
-      <Grid className={classes.buttonContainer} item xs={12}>
-        <Typography className={classes.back} variant='body1' onClick={onBack}>
-          Back
-        </Typography>
-        <Typography
-          className={classes.skip}
-          variant='body1'
-          onClick={isEmailVerified ? sendVerificationEmail : onSkip}
-        >
-          {isEmailVerified ? 'Resend Verification mail' : 'Skip'}
-        </Typography>
-        <Button
-          containerStyles={classes.button}
-          text={
-            !isEmailVerified
-              ? ONBOARDING.VERIFY_EMAIL.BUTTON.PRIMARY
-              : isEmailLinkPage
-              ? ONBOARDING.VERIFY_EMAIL.BUTTON.FINALLY
-              : ONBOARDING.VERIFY_EMAIL.BUTTON.SECONDARY
-          }
-          onClick={
-            !isEmailVerified
-              ? sendVerificationEmail
-              : isEmailLinkPage
-              ? verifyInstituteEmail
-              : () => {
-                  window.open('https://mail.nitrkl.ac.in', '_blank');
-                }
-          }
-        />
-      </Grid>
+      {!isLoading && (
+        <Grid className={classes.buttonContainer} item xs={12}>
+          <Typography className={classes.back} variant='body1' onClick={onBack}>
+            Back
+          </Typography>
+          <Typography
+            className={classes.skip}
+            variant='body1'
+            onClick={isEmailVerified ? sendVerificationEmail : onSkip}
+          >
+            {isEmailVerified ? 'Resend Verification mail' : 'Skip'}
+          </Typography>
+          <Button
+            containerStyles={classes.button}
+            text={
+              !isEmailVerified
+                ? ONBOARDING.VERIFY_EMAIL.BUTTON.PRIMARY
+                : isEmailLinkPage
+                ? ONBOARDING.VERIFY_EMAIL.BUTTON.FINALLY
+                : ONBOARDING.VERIFY_EMAIL.BUTTON.SECONDARY
+            }
+            onClick={
+              !isEmailVerified
+                ? sendVerificationEmail
+                : isEmailLinkPage
+                ? verifyInstituteEmail
+                : () => {
+                    window.open('https://mail.nitrkl.ac.in', '_blank');
+                  }
+            }
+          />
+        </Grid>
+      )}
     </Grid>
   );
 }
@@ -205,7 +190,8 @@ export default VerifyEmail;
 const useStyles = makeStyles((theme) => ({
   container: {
     width: '100%',
-    height: '100%',
+    minHeight: '40%',
+    maxHeight: '100%',
     backgroundColor: theme.palette.background.default,
     padding: 10,
     paddingLeft: 40,
