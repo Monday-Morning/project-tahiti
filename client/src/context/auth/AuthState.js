@@ -18,8 +18,10 @@ import { setCookie } from 'nookies';
 //graphql
 import { getApolloLink, GraphClient } from '../../config/ApolloClient';
 import { auth, firebaseApp } from '../../config/firebase';
+import imagekit from '../../config/imagekit';
 import addNITRMail from '../../graphql/mutations/user/addNITRMail';
 import registerUser from '../../graphql/mutations/user/registerUser';
+import updateUserProfilePicture from '../../graphql/mutations/user/updateUserProfilePicture';
 import checkNITRMail from '../../graphql/queries/user/checkNITRMail';
 import getFirebaseUserByEmail from '../../graphql/queries/user/getFirebaseUserByEmail';
 //context
