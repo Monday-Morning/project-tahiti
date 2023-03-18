@@ -31,8 +31,12 @@ function VerifyEmail({
 }) {
   const classes = useStyles();
 
-  const { sendEmailLink, isSignInWithEmailLink, attachNITREmail } =
-    useContext(authContext);
+  const {
+    sendEmailLink,
+    isSignInWithEmailLink,
+    attachNITREmail,
+    checkNITREmail,
+  } = useContext(authContext);
 
   const [isEmailLinkPage, setIsEmailLinkPage] = useState(false);
 
@@ -66,7 +70,19 @@ function VerifyEmail({
   const sendVerificationEmail = async () => {
     if (!checkInstitueEmail()) return;
     setLoading(true);
-    const _res = await sendEmailLink(email);
+    const { checkNITRMail } = await checkNITREmail(email);
+    if (checkNITRMail) {
+      setSnackbarData({
+        severity: 'error',
+        message:
+          'This email is already registered with us. Please login with different mail.',
+      });
+      setEmail('');
+      setLoading(false);
+      return;
+    }
+
+    await sendEmailLink(email);
     toggleIsEmailVerified(true);
     setLoading(false);
   };

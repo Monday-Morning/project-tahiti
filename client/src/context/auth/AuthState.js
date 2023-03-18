@@ -1,34 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-//context
-import authContext from './AuthContext';
-import { setCookie } from 'nookies';
-
-//media
-import imagekit from '../../config/imagekit';
-
+import { getAnalytics, isSupported } from 'firebase/analytics';
 //firebase
 import {
-  GoogleAuthProvider,
-  signInWithCredential,
-  getIdToken,
-  // onAuthStateChanged,
-  getAdditionalUserInfo,
   EmailAuthProvider,
-  linkWithCredential,
-  sendSignInLinkToEmail,
+  getAdditionalUserInfo,
+  getIdToken,
+  GoogleAuthProvider,
   isSignInWithEmailLink,
+  linkWithCredential,
   onIdTokenChanged,
+  sendSignInLinkToEmail,
+  signInWithCredential,
 } from 'firebase/auth';
-import { getAnalytics, isSupported } from 'firebase/analytics';
-import { auth, firebaseApp } from '../../config/firebase';
+import { setCookie } from 'nookies';
 
 //graphql
 import { getApolloLink, GraphClient } from '../../config/ApolloClient';
-import registerUser from '../../graphql/mutations/user/registerUser';
-import updateUserProfilePicture from '../../graphql/mutations/user/updateUserProfilePicture';
-import getFirebaseUserByEmail from '../../graphql/queries/user/getFirebaseUserByEmail';
+import { auth, firebaseApp } from '../../config/firebase';
 import addNITRMail from '../../graphql/mutations/user/addNITRMail';
+import registerUser from '../../graphql/mutations/user/registerUser';
+import checkNITRMail from '../../graphql/queries/user/checkNITRMail';
+import getFirebaseUserByEmail from '../../graphql/queries/user/getFirebaseUserByEmail';
+//context
+import authContext from './AuthContext';
 
 const AuthState = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -236,6 +231,22 @@ const AuthState = ({ children }) => {
     }
   };
 
+  const checkNITREmail = async (email) => {
+    try {
+      const { data } = await GraphClient.query({
+        query: checkNITRMail,
+        variables: {
+          nitrMail: email,
+        },
+      });
+
+      return data;
+    } catch (error) {
+      console.error(error);
+      return { error };
+    }
+  };
+
   const logout = () => {
     auth.signOut();
   };
@@ -247,6 +258,7 @@ const AuthState = ({ children }) => {
         sendEmailLink,
         isSignInWithEmailLink: _isSignInWithEmailLink,
         attachNITREmail,
+        checkNITREmail,
         logout,
         user: user,
       }}
