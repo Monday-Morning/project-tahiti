@@ -147,25 +147,33 @@ const AuthState = ({ children }) => {
         };
       }
 
-      const userPicture = await (await fetch(_user.photoURL)).blob();
+      let imageUpload = {
+        filePath: '/user/default.png',
+      };
 
-      if (!['image/png', 'image/jpeg'].includes(userPicture.type)) {
-        throw new Error('Invalid Image Type');
+      try {
+        const userPicture = await (await fetch(_user.photoURL)).blob();
+
+        if (!['image/png', 'image/jpeg'].includes(userPicture.type)) {
+          throw new Error('Invalid Image Type');
+        }
+
+        imageUpload = await imagekit
+          .upload({
+            file: _user.photoURL,
+            useUniqueFileName: false,
+            folder: '/user',
+            fileName: `${newAccount.data.registerUser.id}.${
+              userPicture.type.toString().split('/')[1]
+            }`,
+            tags: [_user.uid, 'user', 'profilePicture'],
+          })
+          .then((result) => {
+            return result;
+          });
+      } catch (error) {
+        console.log(error);
       }
-
-      const imageUpload = await imagekit
-        .upload({
-          file: _user.photoURL,
-          useUniqueFileName: false,
-          folder: '/user',
-          fileName: `${newAccount.data.registerUser.id}.${
-            userPicture.type.toString().split('/')[1]
-          }`,
-          tags: [_user.uid, 'user', 'profilePicture'],
-        })
-        .then((result) => {
-          return result;
-        });
 
       const _imageUpdateResponse = await GraphClient.mutate({
         mutation: updateUserProfilePicture,
