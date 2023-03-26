@@ -15,7 +15,7 @@ const Carousel = ({ content }) => {
 
   const [current, setCurrent] = useState(0);
   const left = current === 0 ? length - 1 : current - 1;
-  const right = current === 0 ? length - 1 : current - 1;
+  const right = current === length - 1 ? 0 : current + 1;
 
   const nextSlide = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
