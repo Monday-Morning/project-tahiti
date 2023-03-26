@@ -1,20 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 
+import { Alert, Snackbar, useMediaQuery } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import { Alert, Snackbar, Typography, useMediaQuery } from '@mui/material';
-import theme from '../config/themes/light';
 
-// Components
-import Welcome from '../components/onboarding/stages/Welcome';
-import VerifyEmail from '../components/onboarding/stages/VerifyEmail';
-import SelectTopics from '../components/onboarding/stages/SelectTopics';
-import NewsletterSignup from '../components/onboarding/stages/NewsletterSignup';
-
-// Hooks
-import useInput from '../hooks/useInput';
+//assets
+import logo from '../assets/images/logo_mm.png';
 // import useToggle from '../hooks/useToggle';
 import Pagination from '../components/onboarding/Pagination';
+import NewsletterSignup from '../components/onboarding/stages/NewsletterSignup';
+import SelectTopics from '../components/onboarding/stages/SelectTopics';
+import VerifyEmail from '../components/onboarding/stages/VerifyEmail';
+// Components
+import Welcome from '../components/onboarding/stages/Welcome';
+import ActivityIndicator from '../components/shared/ActivityIndicator';
+import theme from '../config/themes/light';
+// Hooks
+import useInput from '../hooks/useInput';
 
 const STAGES = {
   WELCOME: 0,
@@ -117,7 +121,7 @@ function Onboarding() {
           />
         );
       default:
-        return <Typography variant='body1'>Loading....</Typography>;
+        return <ActivityIndicator loading={true} />;
     }
   };
 
@@ -139,7 +143,14 @@ function Onboarding() {
 
   return (
     <div className={classes.screen}>
-      <div className={classes.box}>{renderStages()}</div>
+      <div className={classes.box}>
+        {renderStages()}
+        {isLoading && (
+          <div className={classes.loading}>
+            <Image src={logo} alt='MM Logo' width={`100px`} height={`100px`} />
+          </div>
+        )}
+      </div>
       <div className={classes.pagination}>
         <Pagination active={stage} stages={Object.keys(STAGES)} />
       </div>
@@ -191,5 +202,11 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('lg')]: {
       width: '80%',
     },
+  },
+  loading: {
+    margin: 'auto',
+    height: 'fit-content',
+    width: 'fit-content',
+    animation: 'rotation 2s linear infinite',
   },
 }));
