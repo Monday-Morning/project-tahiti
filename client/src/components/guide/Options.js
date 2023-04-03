@@ -120,6 +120,7 @@ const useStyles = makeStyles((theme) => ({
     direction: 'row',
     position: 'relative',
     alignItems: 'center',
+    backgroundColor: theme.palette.secondary.neutral20,
     cursor: 'pointer',
     [theme.breakpoints.down('sm')]: {
       padding: '12px',

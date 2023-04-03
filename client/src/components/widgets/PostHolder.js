@@ -40,7 +40,7 @@ export default PostHolders;
 
 const useStyles = makeStyles((theme) => ({
   position: {
-    color: theme.palette.secondary.neutral80,
+    color: theme.palette.secondary.neutral70,
     fontFamily: 'Source Sans Pro',
     fontSize: '20px',
     marginBottom: '5px',
@@ -50,13 +50,13 @@ const useStyles = makeStyles((theme) => ({
   holderDetails: {
     fontFamily: theme.typography.fontFamily,
     fontSize: '20px',
-    color: '#000',
+    color: theme.palette.secondary.main,
     marginBottom: '5px',
   },
   name: {
     fontFamily: theme.typography.fontFamily,
     fontSize: '20px',
-    color: '#000',
+    color: theme.palette.secondary.main,
     marginBottom: '5px',
     fontWeight: '600',
   },
@@ -68,11 +68,12 @@ const useStyles = makeStyles((theme) => ({
   },
   phone: {
     fontSize: '20px',
-    color: '#000',
+    color: theme.palette.secondary.main,
     marginTop: '10px',
     marginBottom: '10px',
   },
   number: {
+    color: theme.palette.secondary.main,
     marginLeft: '10px',
   },
 }));

@@ -45,7 +45,10 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '1.25rem',
     padding: '5px',
     fontWeight: '400',
-    color: theme.palette.secondary.neutral80,
+    color: theme.palette.text.primary,
+    '&:hover': {
+      backgroundColor: theme.palette.action.hover,
+    },
   },
   backIcon: {
     marginRight: '1rem',

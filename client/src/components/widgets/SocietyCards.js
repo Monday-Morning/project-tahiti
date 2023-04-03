@@ -24,12 +24,11 @@ const SocietyCards = ({ society, posts }) => {
   };
   return (
     <Card className={classes.root}>
-      <CardActions disableSpacing>
+      <CardActions disableSpacing onClick={handleExpandClick}>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
           })}
-          onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label='show more'
         >
@@ -61,6 +60,8 @@ export default SocietyCards;
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: '20px',
+    cursor: 'pointer',
+    backgroundColor: theme.palette.secondary.neutral20,
   },
   container: {
     maxWidth: '100%',
@@ -79,17 +80,17 @@ const useStyles = makeStyles((theme) => ({
   },
   expand: {
     transform: 'rotate(0deg)',
-    color: '#000',
+    color: theme.palette.secondary.main,
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
   },
   expandOpen: {
-    color: '#000',
+    color: theme.palette.secondary.main,
     transform: 'rotate(180deg)',
   },
   heading: {
-    color: '#000',
+    color: theme.palette.secondary.main,
     fontFamily: 'IBM Plex Sans',
     fontSize: '24px',
     fontWeight: 600,
@@ -123,6 +124,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    color: theme.palette.secondary.neutral80,
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
       justifyContent: 'center',
