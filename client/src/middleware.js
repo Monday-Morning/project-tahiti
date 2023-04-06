@@ -1,24 +1,25 @@
 import { NextResponse } from 'next/server';
-import { parseCookies } from 'nookies';
 
 export async function middleware(request) {
   try {
-    const url = request.nextUrl.clone();
-
     const [, , articleId] = request.nextUrl.pathname.split('/');
+
     if (!articleId) {
+      const url = request.nextUrl.clone();
       url.pathname = '/500';
       return NextResponse.rewrite(url);
     }
 
-    const cookies = parseCookies();
+    const cookies = {
+      firebaseToken: request.cookies?.get('firebaseToken'),
+    };
 
     const queryString = `query getArticleByID { getArticleByID(id: "${articleId}") { id articleType title createdAt updatedAt }}`;
 
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/v1/graph?query=${queryString}`,
       {
-        headers: cookies?.firebaseToken
+        headers: cookies.firebaseToken
           ? {
               Authorization: cookies.firebaseToken,
               'Content-Type': 'application/json',
@@ -36,6 +37,7 @@ export async function middleware(request) {
         ['FORBIDDEN', 'NOT_FOUND'].includes(error?.message),
       )
     ) {
+      const url = request.nextUrl.clone();
       url.pathname = '/404';
       return NextResponse.rewrite(url);
     }
