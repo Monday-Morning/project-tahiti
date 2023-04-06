@@ -4,7 +4,6 @@ import Head from 'next/head';
 // Components
 import Marginals from '../../components/marginals/Marginals';
 import Expressions from '../../screens/Expressions';
-// import { GraphClient } from '../../config/ApolloClient';
 import { getGraphClient } from '../../context/ApolloContextProvider';
 import getArticlesByCategories from '../../graphql/queries/category/getArticlesByCategories';
 import Custom500 from '../500';

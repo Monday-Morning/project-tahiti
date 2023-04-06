@@ -2,7 +2,6 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
-// import { GraphClient } from '../../config/ApolloClient';
 import { getGraphClient } from '../../context/ApolloContextProvider';
 
 // Components

@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 //gql
-import { GraphClient } from '../config/ApolloClient';
 import getAutoComplete from '../graphql/queries/article/getAutoComplete';
+import { apolloContext } from '../context/ApolloContextProvider';
 
 const useAutoComplete = (searchText, limit) => {
+  const graphClient = useContext(apolloContext);
   const [searchKeyword, setSearchKeyword] = useState(searchText);
   const [searchResult, setSearchResult] = useState([]);
 
@@ -27,7 +28,7 @@ const useAutoComplete = (searchText, limit) => {
     (async () => {
       const {
         data: { getAutoComplete: autoCompleteResult },
-      } = await GraphClient.query({
+      } = await graphClient.query({
         query: getAutoComplete,
         variables: { keywords: searchKeyword, limit: limit },
       });

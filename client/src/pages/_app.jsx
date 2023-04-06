@@ -11,7 +11,6 @@ import { CssBaseline } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 
 // Providers
-// import ApolloClient from '../config/ApolloClient';
 // import AuthState from '../context/auth/AuthState';
 
 // Components

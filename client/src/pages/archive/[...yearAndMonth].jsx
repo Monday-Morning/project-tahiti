@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 //liberaries
-// import { GraphClient } from '../../config/ApolloClient';
 import { getGraphClient } from '../../context/ApolloContextProvider';
 
 //components

@@ -8,7 +8,7 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
-import { parseCookies, setCookie } from 'nookies';
+import { parseCookies, setCookie, destroyCookie } from 'nookies';
 import React, { useContext, useEffect } from 'react';
 import { authContext } from './AuthContextProvider';
 
@@ -100,12 +100,24 @@ const ApolloContextProvider = ({ children }) => {
   useEffect(() => {
     console.log('apolloClient', user?.firebaseToken);
 
-    client.setLink(getApolloLink(user?.firebaseToken));
-    setCookie(null, 'firebaseToken', user?.firebaseToken ?? user?.accessToken, {
-      secure: true,
-      sameSite: true,
-      maxAge: 3600,
-    });
+    client.setLink(
+      getApolloLink(false, user?.firebaseToken ?? user?.accessToken),
+    );
+
+    if (user?.firebaseToken || user?.accessToken) {
+      setCookie(
+        null,
+        'firebaseToken',
+        user?.firebaseToken ?? user?.accessToken,
+        {
+          secure: true,
+          sameSite: true,
+          maxAge: 3600,
+        },
+      );
+    } else {
+      destroyCookie(null, 'firebaseToken');
+    }
   }, [user]);
 
   return (

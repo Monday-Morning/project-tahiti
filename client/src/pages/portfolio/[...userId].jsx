@@ -5,7 +5,6 @@ import Portfolio from '../../screens/Portfolio';
 import Marginals from '../../components/marginals/Marginals';
 
 //Graphql
-// import { GraphClient } from '../../config/ApolloClient';
 import { getGraphClient } from '../../context/ApolloContextProvider';
 import getUserByOldUserName from '../../graphql/queries/user/getUserByOldUserName';
 import getUserById from '../../graphql/queries/user/getUserById';

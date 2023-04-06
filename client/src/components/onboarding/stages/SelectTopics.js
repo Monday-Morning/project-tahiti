@@ -15,8 +15,8 @@ import Button from '../../shared/button/Regular';
 import { ONBOARDING } from '../../../assets/placeholder/onboarding';
 
 //graphql
-import { GraphClient } from '../../../config/ApolloClient';
 import updateUserTopics from '../../../graphql/mutations/user/updateUserTopics';
+import { apolloContext } from '../../../context/ApolloContextProvider';
 
 function Topic({
   topic,
@@ -64,6 +64,7 @@ function SelectTopics({ onComplete, onSkip, tabletMatches, setSnackbarData }) {
     });
 
   const { user } = useContext(authContext);
+  const graphClient = useContext(apolloContext);
 
   const updateInterestedTopics = async (topics) => {
     try {
@@ -80,7 +81,7 @@ function SelectTopics({ onComplete, onSkip, tabletMatches, setSnackbarData }) {
       }
       console.log(user);
 
-      await GraphClient.mutate({
+      await graphClient.mutate({
         mutation: updateUserTopics,
         variables: {
           id: user.mid,

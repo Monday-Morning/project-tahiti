@@ -7,7 +7,6 @@ import ActivityIndicator from '../../components/shared/ActivityIndicator';
 import SubCategory from '../../screens/SubCategory';
 import Marginals from '../../components/marginals/Marginals';
 
-// import { GraphClient } from '../../config/ApolloClient';
 import { getGraphClient } from '../../context/ApolloContextProvider';
 
 // Utils
