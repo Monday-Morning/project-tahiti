@@ -11,7 +11,7 @@ import makeStyles from '@mui/styles/makeStyles';
 import verifyEmailImg from '../../../assets/images/onboarding/verifyEmail.png';
 // Constants
 import { ONBOARDING } from '../../../assets/placeholder/onboarding';
-import authContext from '../../../context/auth/AuthContext';
+import { authContext } from '../../../context/AuthContextProvider';
 // Components
 import Button from '../../shared/button/Regular';
 import Input from '../../shared/input/Regular';

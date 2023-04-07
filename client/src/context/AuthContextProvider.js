@@ -1,34 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
 import { getAnalytics, isSupported } from 'firebase/analytics';
-//firebase
 import {
   EmailAuthProvider,
+  GoogleAuthProvider,
   getAdditionalUserInfo,
   getIdToken,
-  GoogleAuthProvider,
   isSignInWithEmailLink,
   linkWithCredential,
   onIdTokenChanged,
   sendSignInLinkToEmail,
   signInWithCredential,
 } from 'firebase/auth';
-import { setCookie } from 'nookies';
+import { destroyCookie, setCookie } from 'nookies';
+import checkNITRMail from '../graphql/queries/user/checkNITRMail';
+import { auth, firebaseApp } from '../config/firebase';
+import imagekit from '../config/imagekit';
+import addNITRMail from '../graphql/mutations/user/addNITRMail';
+import registerUser from '../graphql/mutations/user/registerUser';
+import updateUserProfilePicture from '../graphql/mutations/user/updateUserProfilePicture';
+import getFirebaseUserByEmail from '../graphql/queries/user/getFirebaseUserByEmail';
+import { getApolloLink, getGraphClient } from './ApolloContextProvider';
 
-//graphql
-import { getApolloLink, GraphClient } from '../../config/ApolloClient';
-import { auth, firebaseApp } from '../../config/firebase';
-import imagekit from '../../config/imagekit';
-import addNITRMail from '../../graphql/mutations/user/addNITRMail';
-import registerUser from '../../graphql/mutations/user/registerUser';
-import updateUserProfilePicture from '../../graphql/mutations/user/updateUserProfilePicture';
-import checkNITRMail from '../../graphql/queries/user/checkNITRMail';
-import getFirebaseUserByEmail from '../../graphql/queries/user/getFirebaseUserByEmail';
-//context
-import authContext from './AuthContext';
+export const authContext = createContext();
 
-const AuthState = ({ children }) => {
+const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+
+  const graphClient = getGraphClient(false, user?.firebaseToken);
 
   useEffect(() => {
     if (isSupported() && process.env.NODE_ENV === 'production') {
@@ -58,26 +57,36 @@ const AuthState = ({ children }) => {
   useEffect(() => {
     console.log('user', user);
 
-    GraphClient.setLink(
-      getApolloLink(user?.firebaseToken ?? user?.accessToken),
+    graphClient.setLink(
+      getApolloLink(false, user?.firebaseToken ?? user?.accessToken),
     );
-    setCookie(null, 'firebaseToken', user?.firebaseToken ?? user?.accessToken, {
-      secure: true,
-      sameSite: true,
-      maxAge: 3600,
-    });
+
+    if (user?.firebaseToken || user?.accessToken) {
+      setCookie(
+        null,
+        'firebaseToken',
+        user?.firebaseToken ?? user?.accessToken,
+        {
+          secure: true,
+          sameSite: true,
+          maxAge: 3600,
+        },
+      );
+    } else {
+      destroyCookie(null, 'firebaseToken');
+    }
   }, [user]);
 
   const loginWithToken = async (_token) => {
     try {
-      const credential = GoogleAuthProvider.credential(_token);
+      const _credential = GoogleAuthProvider.credential(_token);
 
-      const res = await signInWithCredential(auth, credential);
+      const res = await signInWithCredential(auth, _credential);
 
       const { user: _user } = res;
 
       const _firebaseToken = await getIdToken(_user, false);
-      GraphClient.setLink(getApolloLink(_firebaseToken));
+      graphClient.setLink(getApolloLink(false, _firebaseToken));
 
       setUser((_u) => ({
         ..._user,
@@ -88,7 +97,7 @@ const AuthState = ({ children }) => {
       if (!getAdditionalUserInfo(res).isNewUser) {
         const {
           data: { getFirebaseUserByEmail: _fbUser },
-        } = await GraphClient.query({
+        } = await graphClient.query({
           query: getFirebaseUserByEmail,
           variables: {
             email: _user.email,
@@ -115,7 +124,7 @@ const AuthState = ({ children }) => {
         };
       }
 
-      const newAccount = await GraphClient.mutate({
+      const _newAccount = await graphClient.mutate({
         mutation: registerUser,
         variables: {
           fullName: _user.displayName,
@@ -123,48 +132,48 @@ const AuthState = ({ children }) => {
         },
       });
 
-      if (!newAccount?.data?.registerUser) {
+      if (!_newAccount?.data?.registerUser) {
         throw new Error('Error Registering User');
       }
 
       const _refreshedFirebaseToken = await getIdToken(_user, true);
-      GraphClient.setLink(getApolloLink(_refreshedFirebaseToken));
+      graphClient.setLink(getApolloLink(false, _refreshedFirebaseToken));
 
       setUser((_u) => ({
         ..._user,
         ...(_u ?? {}),
         firebaseToken: _firebaseToken,
         refreshToken: _user.refreshToken,
-        mid: newAccount.data.registerUser.id,
+        mid: _newAccount.data.registerUser.id,
       }));
 
-      if (newAccount.data.registerUser.accountType === 2) {
+      if (_newAccount.data.registerUser.accountType === 2) {
         return {
           isNewUser: true,
           isMigratedUser: true,
           user: user,
-          newAccount: { ...newAccount },
+          newAccount: { ..._newAccount },
         };
       }
 
-      let imageUpload = {
+      let _imageUpload = {
         filePath: '/user/default.png',
       };
 
       try {
-        const userPicture = await (await fetch(_user.photoURL)).blob();
+        const _userPicture = await (await fetch(_user.photoURL)).blob();
 
-        if (!['image/png', 'image/jpeg'].includes(userPicture.type)) {
+        if (!['image/png', 'image/jpeg'].includes(_userPicture.type)) {
           throw new Error('Invalid Image Type');
         }
 
-        imageUpload = await imagekit
+        _imageUpload = await imagekit
           .upload({
             file: _user.photoURL,
             useUniqueFileName: false,
             folder: '/user',
-            fileName: `${newAccount.data.registerUser.id}.${
-              userPicture.type.toString().split('/')[1]
+            fileName: `${_newAccount.data.registerUser.id}.${
+              _userPicture.type.toString().split('/')[1]
             }`,
             tags: [_user.uid, 'user', 'profilePicture'],
           })
@@ -175,18 +184,18 @@ const AuthState = ({ children }) => {
         console.log(error);
       }
 
-      const _imageUpdateResponse = await GraphClient.mutate({
+      const _imageUpdateResponse = await graphClient.mutate({
         mutation: updateUserProfilePicture,
         variables: {
-          id: newAccount.data.registerUser.id,
-          storePath: imageUpload.filePath,
+          id: _newAccount.data.registerUser.id,
+          storePath: _imageUpload.filePath,
         },
       });
 
       return {
         isNewUser: true,
         user: user,
-        newAccount: { ...newAccount, ..._imageUpdateResponse },
+        newAccount: { ..._newAccount, ..._imageUpdateResponse },
       };
     } catch (error) {
       return {
@@ -198,7 +207,7 @@ const AuthState = ({ children }) => {
 
   const sendEmailLink = async (email) => {
     try {
-      const actionCodeSettings = {
+      const _actionCodeSettings = {
         url: `${
           process.env.NODE_ENV !== 'production'
             ? window.location.origin
@@ -206,7 +215,7 @@ const AuthState = ({ children }) => {
         }/onboarding?stage=VERIFY_EMAIL&email=${email}&isEmailLink=true`,
         handleCodeInApp: true,
       };
-      await sendSignInLinkToEmail(auth, email, actionCodeSettings);
+      await sendSignInLinkToEmail(auth, email, _actionCodeSettings);
       return true;
     } catch (error) {
       console.error(error);
@@ -218,13 +227,13 @@ const AuthState = ({ children }) => {
 
   const attachNITREmail = async (nitrMail, href) => {
     try {
-      const credential = EmailAuthProvider.credentialWithLink(nitrMail, href);
-      const userCredential = await linkWithCredential(
+      const _credential = EmailAuthProvider.credentialWithLink(nitrMail, href);
+      const _userCredential = await linkWithCredential(
         auth.currentUser,
-        credential,
+        _credential,
       );
 
-      const _user = await GraphClient.mutate({
+      const _user = await graphClient.mutate({
         mutation: addNITRMail,
         variables: {
           email: user.email,
@@ -234,7 +243,7 @@ const AuthState = ({ children }) => {
 
       // await getIdToken(auth.currentUser, true);
 
-      return { userCredential, user: _user };
+      return { userCredential: _userCredential, user: _user };
     } catch (error) {
       console.error(error);
       return { error };
@@ -270,7 +279,7 @@ const AuthState = ({ children }) => {
         attachNITREmail,
         checkNITREmail,
         logout,
-        user: user,
+        user,
       }}
     >
       {children}
@@ -278,4 +287,4 @@ const AuthState = ({ children }) => {
   );
 };
 
-export default AuthState;
+export default AuthContextProvider;

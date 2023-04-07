@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 // Libraries
 import { Container } from '@mui/material';
@@ -6,16 +6,17 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 // Components
-import { GraphClient } from '../config/ApolloClient';
 import ActivityIndicator from '../components/shared/ActivityIndicator';
 import SearchPage from '../screens/SearchPage';
 import Marginals from '../components/marginals/Marginals';
 
 // Queries
 import searchArticles from '../graphql/queries/article/searchArticles';
+import { apolloContext } from '../context/ApolloContextProvider';
 
 const Search = () => {
   const router = useRouter();
+  const graphClient = useContext(apolloContext);
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -24,7 +25,7 @@ const Search = () => {
     (async () => {
       const {
         data: { searchArticles: articleList },
-      } = await GraphClient.query({
+      } = await graphClient.query({
         query: searchArticles,
         variables: {
           keywords: router.query.keyword,

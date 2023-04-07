@@ -22,11 +22,11 @@ function Squiggles({ data }) {
             </Button>
           </div>
           <div className={classes.squigglesTextWrapper}>
-            <p className={classes.squigglesText}>
+            <div className={classes.squigglesText}>
               <MarkdownWrapper variant='body1' styles={classes.squigglesText}>
                 {data.content}
               </MarkdownWrapper>
-            </p>
+            </div>
           </div>
         </div>
       </CardContent>

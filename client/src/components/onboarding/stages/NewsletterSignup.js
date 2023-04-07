@@ -17,15 +17,16 @@ import newsletter from '../../../assets/images/onboarding/newsletter.png';
 import { ONBOARDING } from '../../../assets/placeholder/onboarding';
 
 //graphql
-import { GraphClient } from '../../../config/ApolloClient';
 import newsLetterSubscription from '../../../graphql/mutations/user/newsLetterSubscription';
 
 //context
-import authContext from '../../../context/auth/AuthContext';
+import { authContext } from '../../../context/AuthContextProvider';
+import { apolloContext } from '../../../context/ApolloContextProvider';
 
 function NewsletterSignup({ onComplete, onSkip, tabletMatches }) {
   const classes = useStyles();
   // const router = useRouter();
+  const graphClient = useContext(apolloContext);
 
   // Local States
   const [isSigned, setIsSigned] = useState(false);
@@ -37,7 +38,7 @@ function NewsletterSignup({ onComplete, onSkip, tabletMatches }) {
   const onSignup = async () => {
     setIsSigned(true);
 
-    await GraphClient.mutate({
+    await graphClient.mutate({
       mutation: newsLetterSubscription,
       variables: {
         userId: mid,

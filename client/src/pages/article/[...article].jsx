@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 // Libraries
-import { GraphClient } from '../../config/ApolloClient';
+import { getGraphClient } from '../../context/ApolloContextProvider';
 import STORES from '../../utils/getStores';
 
 // Components
@@ -199,10 +199,12 @@ export async function getStaticProps({
   preview,
 }) {
   try {
+    const graphClient = getGraphClient(true);
+
     if (oldArticleLink) {
       const {
         data: { getArticleByOldID: article },
-      } = await GraphClient.query({
+      } = await graphClient.query({
         query: getArticleByOldID,
         variables: { id: parseInt(oldArticleLink.split('-')[0]) },
       });
@@ -223,7 +225,7 @@ export async function getStaticProps({
 
     const {
       data: { getArticleByID: article },
-    } = await GraphClient.query({
+    } = await graphClient.query({
       query: getArticleByID,
       variables: { id: articleId },
     });

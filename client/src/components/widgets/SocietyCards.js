@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import clsx from 'clsx';
 
-import { ExpandMore } from '@mui/icons-material';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 import {
   Card,
   CardActions,

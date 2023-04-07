@@ -20,15 +20,13 @@ import {
   IconButton,
   Tooltip,
 } from '@mui/material';
-import {
-  Delete,
-  FilterList,
-  Edit,
-  Publish,
-  Archive,
-  Comment,
-  CircleSharp,
-} from '@mui/icons-material';
+import Delete from '@mui/icons-material/Delete';
+import FilterList from '@mui/icons-material/FilterList';
+import Edit from '@mui/icons-material/Edit';
+import Publish from '@mui/icons-material/Publish';
+import Archive from '@mui/icons-material/Archive';
+import Comment from '@mui/icons-material/Comment';
+import CircleSharp from '@mui/icons-material/CircleSharp';
 import { visuallyHidden } from '@mui/utils';
 
 function createData(name, calories, fat, carbs, protein, status) {
