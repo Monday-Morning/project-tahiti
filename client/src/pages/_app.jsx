@@ -10,9 +10,6 @@ import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 
-// Providers
-// import AuthState from '../context/auth/AuthState';
-
 // Components
 // import ScrollToTopOnMount from '../components/shared/ScrollToTopOnMount';
 import ScrollToTopButton from '../components/shared/button/ScrollToTopButton';

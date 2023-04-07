@@ -15,7 +15,7 @@ import Input from '../../shared/input/Regular';
 
 // Constants
 import { ONBOARDING } from '../../../assets/placeholder/onboarding';
-import authContext from '../../../context/auth/AuthContext';
+import { authContext } from '../../../context/AuthContextProvider';
 
 function VerifyEmail({
   onComplete,

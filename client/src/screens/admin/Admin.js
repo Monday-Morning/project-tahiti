@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 
 // context
-import { SidebarContext } from '../../context/SidebarContext';
+import { SidebarContext } from '../../context/SidebarContextProvider';
 
 // components
 import Header from '../../components/admin/Header';

@@ -225,11 +225,12 @@ export async function getStaticProps({ preview }) {
     const youtubeResponse = await fetch(
       `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&maxResults=25&playlistId=${process.env.YOUTUBE_PLAYLIST_ID}&key=${process.env.YOUTUBE_API_KEY}`,
     );
-    const youtubeData = await youtubeResponse.json();
-    const youtubeLinks = youtubeData.items.map(
-      (item) =>
-        'https://www.youtube.com/embed/' + item.snippet.resourceId.videoId,
-    );
+    const youtubeData = await youtubeResponse?.json();
+    const youtubeLinks =
+      youtubeData?.items?.map(
+        (item) =>
+          'https://www.youtube.com/embed/' + item.snippet.resourceId.videoId,
+      ) ?? [];
 
     return {
       props: {

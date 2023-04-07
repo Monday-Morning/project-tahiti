@@ -20,7 +20,7 @@ import { ONBOARDING } from '../../../assets/placeholder/onboarding';
 import newsLetterSubscription from '../../../graphql/mutations/user/newsLetterSubscription';
 
 //context
-import authContext from '../../../context/auth/AuthContext';
+import { authContext } from '../../../context/AuthContextProvider';
 import { apolloContext } from '../../../context/ApolloContextProvider';
 
 function NewsletterSignup({ onComplete, onSkip, tabletMatches }) {

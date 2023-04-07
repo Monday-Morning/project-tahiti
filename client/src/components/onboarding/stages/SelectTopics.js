@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import authContext from '../../../context/auth/AuthContext';
+import { authContext } from '../../../context/AuthContextProvider';
 
 // Hooks
 import useToggle from '../../../hooks/useToggle';

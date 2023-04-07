@@ -12,7 +12,7 @@ import logo from '../../../assets/images/logo.png';
 import { ONBOARDING } from '../../../assets/placeholder/onboarding';
 
 //Context
-import authContext from '../../../context/auth/AuthContext';
+import { authContext } from '../../../context/AuthContextProvider';
 
 function Welcome({
   onSignIn,
