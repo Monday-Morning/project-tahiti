@@ -184,7 +184,7 @@ const AuthContextProvider = ({ children }) => {
         console.log(error);
       }
 
-      const _imageUpdateResponse = await GraphClient.mutate({
+      const _imageUpdateResponse = await graphClient.mutate({
         mutation: updateUserProfilePicture,
         variables: {
           id: _newAccount.data.registerUser.id,
