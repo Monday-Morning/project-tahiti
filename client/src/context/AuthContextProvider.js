@@ -1,8 +1,9 @@
+import React, { createContext, useEffect, useState } from 'react';
+
 import { getAnalytics, isSupported } from 'firebase/analytics';
 import {
   EmailAuthProvider,
   GoogleAuthProvider,
-  // onAuthStateChanged,
   getAdditionalUserInfo,
   getIdToken,
   isSignInWithEmailLink,
@@ -11,15 +12,15 @@ import {
   sendSignInLinkToEmail,
   signInWithCredential,
 } from 'firebase/auth';
-import { setCookie, destroyCookie } from 'nookies';
-import React, { createContext, useEffect, useState } from 'react';
-import { getApolloLink, getGraphClient } from './ApolloContextProvider';
+import { destroyCookie, setCookie } from 'nookies';
+import checkNITRMail from '../../graphql/queries/user/checkNITRMail';
 import { auth, firebaseApp } from '../config/firebase';
 import imagekit from '../config/imagekit';
 import addNITRMail from '../graphql/mutations/user/addNITRMail';
 import registerUser from '../graphql/mutations/user/registerUser';
 import updateUserProfilePicture from '../graphql/mutations/user/updateUserProfilePicture';
 import getFirebaseUserByEmail from '../graphql/queries/user/getFirebaseUserByEmail';
+import { getApolloLink, getGraphClient } from './ApolloContextProvider';
 
 export const authContext = createContext();
 
@@ -155,27 +156,35 @@ const AuthContextProvider = ({ children }) => {
         };
       }
 
-      const _userPicture = await (await fetch(_user.photoURL)).blob();
+      let _imageUpload = {
+        filePath: '/user/default.png',
+      };
 
-      if (!['image/png', 'image/jpeg'].includes(_userPicture.type)) {
-        throw new Error('Invalid Image Type');
+      try {
+        const _userPicture = await (await fetch(_user.photoURL)).blob();
+
+        if (!['image/png', 'image/jpeg'].includes(_userPicture.type)) {
+          throw new Error('Invalid Image Type');
+        }
+
+        _imageUpload = await imagekit
+          .upload({
+            file: _user.photoURL,
+            useUniqueFileName: false,
+            folder: '/user',
+            fileName: `${_newAccount.data.registerUser.id}.${
+              _userPicture.type.toString().split('/')[1]
+            }`,
+            tags: [_user.uid, 'user', 'profilePicture'],
+          })
+          .then((result) => {
+            return result;
+          });
+      } catch (error) {
+        console.log(error);
       }
 
-      const _imageUpload = await imagekit
-        .upload({
-          file: _user.photoURL,
-          useUniqueFileName: false,
-          folder: '/user',
-          fileName: `${_newAccount.data.registerUser.id}.${
-            _userPicture.type.toString().split('/')[1]
-          }`,
-          tags: [_user.uid, 'user', 'profilePicture'],
-        })
-        .then((result) => {
-          return result;
-        });
-
-      const _imageUpdateResponse = await graphClient.mutate({
+      const _imageUpdateResponse = await GraphClient.mutate({
         mutation: updateUserProfilePicture,
         variables: {
           id: _newAccount.data.registerUser.id,
@@ -241,6 +250,22 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
+  const checkNITREmail = async (email) => {
+    try {
+      const { data } = await GraphClient.query({
+        query: checkNITRMail,
+        variables: {
+          nitrMail: email,
+        },
+      });
+
+      return data;
+    } catch (error) {
+      console.error(error);
+      return { error };
+    }
+  };
+
   const logout = () => {
     auth.signOut();
   };
@@ -252,6 +277,7 @@ const AuthContextProvider = ({ children }) => {
         sendEmailLink,
         isSignInWithEmailLink: _isSignInWithEmailLink,
         attachNITREmail,
+        checkNITREmail,
         logout,
         user,
       }}

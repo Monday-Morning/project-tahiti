@@ -1,16 +1,15 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import makeStyles from '@mui/styles/makeStyles';
 import { Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 
 // Assets
 import logo from '../../../assets/images/logo.png';
-
 // Constants
 import { ONBOARDING } from '../../../assets/placeholder/onboarding';
-
 //Context
 import { authContext } from '../../../context/AuthContextProvider';
 
@@ -74,26 +73,6 @@ function Welcome({
     gis();
   }, []);
 
-  if (isLoading) {
-    return (
-      <div className={classes.container}>
-        <Image
-          className={classes.logo}
-          width={tabletMatches ? 232 : 390}
-          height={tabletMatches ? 40 : 68}
-          src={logo}
-          alt='Monday Morning'
-        />
-        <Typography className={classes.welcomeText} variant='body1'>
-          {ONBOARDING.WELCOME.CONTENT}
-        </Typography>
-        <Typography className={classes.welcomeText} variant='body1'>
-          Loading...
-        </Typography>
-      </div>
-    );
-  }
-
   return (
     <div className={classes.container}>
       <Image
@@ -108,17 +87,21 @@ function Welcome({
         {ONBOARDING.WELCOME.CONTENT}
       </Typography>
 
-      <div id='googleAccountSignInDiv'></div>
-      <Typography
-        className={classes.skip}
-        variant='body1'
-        onClick={() => push('/')}
-      >
-        Skip
-      </Typography>
-      <Typography className={classes.terms} variant='body2'>
-        {ONBOARDING.WELCOME.TERMS}
-      </Typography>
+      {!isLoading && (
+        <>
+          <div id='googleAccountSignInDiv'></div>
+          <Typography
+            className={classes.skip}
+            variant='body1'
+            onClick={() => push('/')}
+          >
+            Skip
+          </Typography>
+          <Typography className={classes.terms} variant='body2'>
+            {ONBOARDING.WELCOME.TERMS}
+          </Typography>
+        </>
+      )}
     </div>
   );
 }
@@ -128,7 +111,8 @@ export default Welcome;
 const useStyles = makeStyles((theme) => ({
   container: {
     width: '100%',
-    height: '100%',
+    minHeight: '60%',
+    maxHeight: '100%',
     padding: '32px 12px',
     display: 'flex',
     flexDirection: 'column',
