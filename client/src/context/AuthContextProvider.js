@@ -13,7 +13,7 @@ import {
   signInWithCredential,
 } from 'firebase/auth';
 import { destroyCookie, setCookie } from 'nookies';
-import checkNITRMail from '../../graphql/queries/user/checkNITRMail';
+import checkNITRMail from '../graphql/queries/user/checkNITRMail';
 import { auth, firebaseApp } from '../config/firebase';
 import imagekit from '../config/imagekit';
 import addNITRMail from '../graphql/mutations/user/addNITRMail';
