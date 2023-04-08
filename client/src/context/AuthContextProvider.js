@@ -209,9 +209,9 @@ const AuthContextProvider = ({ children }) => {
     try {
       const _actionCodeSettings = {
         url: `${
-          process.env.NODE_ENV !== 'production'
-            ? window.location.origin
-            : 'https://mondaymorning.nitrkl.ac.in'
+          process.env.NODE_ENV === 'production'
+            ? 'https://mondaymorning.nitrkl.ac.in'
+            : window.location.origin
         }/onboarding?stage=VERIFY_EMAIL&email=${email}&isEmailLink=true`,
         handleCodeInApp: true,
       };
