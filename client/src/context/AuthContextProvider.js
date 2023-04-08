@@ -252,7 +252,7 @@ const AuthContextProvider = ({ children }) => {
 
   const checkNITREmail = async (email) => {
     try {
-      const { data } = await GraphClient.query({
+      const { data } = await graphClient.query({
         query: checkNITRMail,
         variables: {
           nitrMail: email,
