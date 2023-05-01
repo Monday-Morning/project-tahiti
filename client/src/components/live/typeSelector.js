@@ -21,7 +21,9 @@ const TypeSelector = ({ placement, setPlacement }) => {
           className={classes.switch}
           onClick={() => setPlacement(true)}
           style={{
-            backgroundColor: placement ? '#006DCC' : 'unset',
+            backgroundColor: placement
+              ? '#006DCC'
+              : theme.palette.background.default,
             color: placement ? 'white' : 'black',
           }}
         >
@@ -33,7 +35,9 @@ const TypeSelector = ({ placement, setPlacement }) => {
           className={classes.switch}
           onClick={() => setPlacement(false)}
           style={{
-            backgroundColor: placement ? 'unset' : '#006DCC',
+            backgroundColor: placement
+              ? theme.palette.background.default
+              : '#006DCC',
             color: placement ? 'black' : 'white',
           }}
         >

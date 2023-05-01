@@ -164,7 +164,7 @@ const CourseSelector = ({ degree, handleChange, setDegree }) => {
 
 export default CourseSelector;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   title: {
     margin: '2rem 0rem 1rem 0rem',
     color: theme.palette.secondary.main,

@@ -184,7 +184,7 @@ function Live() {
 
 export default Live;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   title: {
     marginTop: '2rem',
     color: theme.palette.secondary.main,

@@ -31,12 +31,12 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     gap: '20px',
-    boxShadow:
-      '0px 0px 1px rgba(0, 0, 0, 0.24), 0px 1px 3px rgba(0, 0, 0, 0.12)',
+    boxShadow: theme.shadows[0],
     padding: '20px',
     marginTop: '22px',
     borderRadius: '8px',
     cursor: 'pointer',
+    backgroundColor: theme.palette.secondary.neutral20,
     [theme.breakpoints.down('md')]: {
       flexDirection: 'row-reverse',
     },
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     fontSize: '24px',
     lineHeight: '32px',
-    color: '#222222',
+    color: theme.palette.secondary.main,
     paddingTop: '6px',
     [theme.breakpoints.down('sm')]: {
       fontSize: '20px',

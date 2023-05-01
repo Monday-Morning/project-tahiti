@@ -110,7 +110,7 @@ const useStyles = makeStyles((theme) => ({
 
   black: {
     position: 'absolute',
-    backgroundColor: theme.palette.background.banner,
+    backgroundColor: theme.palette.background.archive,
     bottom: '0',
     left: '0',
     right: '0',

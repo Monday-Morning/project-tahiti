@@ -67,6 +67,7 @@ const useStyles = makeStyles(() => ({
     border: '1px solid',
     borderColor: theme.palette.primary.blue50,
     borderRadius: '4px',
+    cursor: 'pointer',
     padding: '2px 16px',
     [theme.breakpoints.down('md')]: {
       padding: '1px 0px',
