@@ -42,11 +42,12 @@ function Home({ issues, squiggles, witsdom, photostory, youtubeLinks }) {
   const articles = [].concat(
     ...issues.map((issue) => {
       return issue.articles.filter((article) => {
-        article !== null &&
+        return (
+          article !== null &&
           !featuredArticles.some(
-            (featuredArticle) => featuredArticle.id !== article.id,
-          );
-        return article;
+            (featuredArticle) => featuredArticle.id === article.id,
+          )
+        );
       });
     }),
   );
@@ -85,6 +86,7 @@ function Home({ issues, squiggles, witsdom, photostory, youtubeLinks }) {
           .slice(2)
           .map((index) => (
             <ArticleCardStack
+              key={index}
               articleList={articles.slice(
                 !tabletMatches ? 3 * index : 4 * index,
                 !tabletMatches ? 3 * (index + 1) : 4 * (index + 1),
