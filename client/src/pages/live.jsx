@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 
 //Components
 import Marginals from '../components/marginals/Marginals';
 import Live from '../screens/Live';
+import BlockScreen from '../screens/BlockScreen';
+import ActivityIndicator from '../components/shared/ActivityIndicator';
+
+//firebase remote config
+import { isLivePageVisible, initRemoteConfig } from '../config/remoteConfig';
 
 const LivePage = () => {
+  const [isPageVisible, setIsPageVisible] = useState(isLivePageVisible);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    (async () => {
+      await initRemoteConfig();
+      setIsPageVisible(isLivePageVisible);
+      setLoading(false);
+    })();
+  }, []);
+
   return (
     <>
       <Head>
@@ -67,9 +84,11 @@ const LivePage = () => {
           content='Monday Morning is the Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students.'
         />
       </Head>
-      <Marginals>
-        <Live />
-      </Marginals>
+      {loading ? (
+        <ActivityIndicator />
+      ) : (
+        <Marginals>{isPageVisible ? <Live /> : <BlockScreen />}</Marginals>
+      )}
     </>
   );
 };
