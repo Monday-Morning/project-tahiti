@@ -2,10 +2,12 @@ import React from 'react';
 import Link from 'next/link';
 
 import makeStyles from '@mui/styles/makeStyles';
-import { Container } from '@mui/material';
+import { Container, Button, useMediaQuery } from '@mui/material';
+import theme from '../../config/themes/light';
 
 const TopBar = () => {
   const classes = useStyles();
+  const mobile = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <div className={classes.topBar}>
       <Container>
@@ -26,6 +28,13 @@ const TopBar = () => {
                 <span className={classes.navLink}>Contact Us</span>
               </Link>
             </li>
+            {mobile && (
+              <li className={classes.navItem}>
+                <Link href='#' passHref>
+                  <span className={classes.signInButton}>Sign In</span>
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </Container>
@@ -35,6 +44,16 @@ const TopBar = () => {
 export default TopBar;
 
 const useStyles = makeStyles((theme) => ({
+  signInButton: {
+    color: '#ffffff',
+    backgroundColor: '#00368D',
+    alignItems: 'center',
+    padding: '4px 6px',
+    borderRadius: '0.3em',
+    fontFamily: 'IBM Plex Sans',
+    fontSize: '14px',
+    fontWeight: '400',
+  },
   topBar: {
     marginTop: '0',
     backgroundColor: theme.palette.primary.blue50,
