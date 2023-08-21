@@ -301,18 +301,19 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     background: '#FEFEFF',
     width: '100%',
-    padding: '20px',
+    /* padding: '20px', */
     zIndex: '20022',
     borderRadius: '0px 0px 5px 5px',
     border: '1px #ECEDEC',
     borderStyle: 'none solid solid',
     boxShadow: '0px 0px 5px grey',
     display: (_) => (_.isSearchActive ? 'block' : 'none'),
+    paddingLeft:"20px"
   },
   trendingList: {
     fontFamily: theme.typography.fontFamily,
     alignItems: 'center',
-    paddingBottom: '8px',
+    paddingBottom: '12px',
     paddingTop: '8px',
     cursor: 'pointer',
   },
