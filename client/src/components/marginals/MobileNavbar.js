@@ -316,7 +316,7 @@ const useStyles = makeStyles((theme) => ({
   trendingList: {
     fontFamily: theme.typography.fontFamily,
     alignItems: 'center',
-    paddingBottom: '8px',
+    paddingBottom: '12px',
     paddingTop: '8px',
     cursor: 'pointer',
   },
