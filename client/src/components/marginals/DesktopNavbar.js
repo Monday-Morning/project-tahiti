@@ -70,6 +70,11 @@ const DesktopNavbar = () => {
                 inputRef={inputRef}
                 color='primary'
                 InputProps={{
+                  sx: {
+                    '& input': {
+                      paddingLeft: '20px',
+                    },
+                  },
                   endAdornment: (
                     <InputAdornment position='start'>
                       <SearchIcon />
@@ -166,7 +171,6 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     marginTop: '10px',
   },
-
   detailsContainer: {
     display: 'flex',
     alignItems: 'center',
@@ -234,7 +238,6 @@ const useStyles = makeStyles((theme) => ({
   searchField: {
     width: '100%',
     color: theme.palette.primary.blue50,
-    paddingBottom: '0px',
   },
   trendingArticles: {
     position: 'absoulte',
