@@ -81,6 +81,11 @@ const MobileNavbar = () => {
               placeholder='Search for articles'
               color='primary'
               InputProps={{
+                sx: {
+                  '& input': {
+                    paddingLeft: '20px',
+                  },
+                },
                 endAdornment: (
                   <InputAdornment position='start'>
                     <SearchIcon />
@@ -278,7 +283,6 @@ const useStyles = makeStyles((theme) => ({
   searchField: {
     width: '100%',
     color: theme.palette.primary.blue50,
-    paddingBottom: '0px',
   },
   trendingArticles: {
     position: 'absoulte',
@@ -301,13 +305,13 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     background: '#FEFEFF',
     width: '100%',
-    padding: '20px',
     zIndex: '20022',
     borderRadius: '0px 0px 5px 5px',
     border: '1px #ECEDEC',
     borderStyle: 'none solid solid',
     boxShadow: '0px 0px 5px grey',
     display: (_) => (_.isSearchActive ? 'block' : 'none'),
+    paddingLeft: '20px',
   },
   trendingList: {
     fontFamily: theme.typography.fontFamily,
