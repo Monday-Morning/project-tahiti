@@ -10,7 +10,7 @@
     },
     {
       "name": "Next.js: debug client-side",
-      "type": "pwa-msedge",
+      "type": "msedge",
       "request": "launch",
       "url": "http://localhost:3000",
       "cwd": "${workspaceFolder}/client"
@@ -21,7 +21,18 @@
       "request": "launch",
       "command": "yarn start",
       "cwd": "${workspaceFolder}/client",
-      "console": "integratedTerminal",
+      "serverReadyAction": {
+        "pattern": "started server on .+, url: (https?://.+)",
+        "uriFormat": "%s",
+        "action": "debugWithEdge"
+      }
+    },
+    {
+      "name": "Next.js: debug production stack",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "yarn start:prod",
+      "cwd": "${workspaceFolder}/client",
       "serverReadyAction": {
         "pattern": "started server on .+, url: (https?://.+)",
         "uriFormat": "%s",

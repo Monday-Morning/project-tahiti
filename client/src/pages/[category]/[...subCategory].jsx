@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
-import { GraphClient } from '../../config/ApolloClient';
+import { getGraphClient } from '../../context/ApolloContextProvider';
 
 // Components
 import ActivityIndicator from '../../components/shared/ActivityIndicator';
@@ -209,6 +209,8 @@ export async function getStaticProps({
   preview,
 }) {
   try {
+    const graphClient = getGraphClient(true);
+
     const department = subCategory.length === 3 ? subCategory[1] : false;
     const pageNumber =
       subCategory.length === 3 ? subCategory[2] : subCategory[1];
@@ -238,11 +240,11 @@ export async function getStaticProps({
 
     const {
       data: { getArticlesByCategories: articleList },
-    } = await GraphClient.query({
+    } = await graphClient.query({
       query: getArticlesByCategories,
       variables: {
         categoryNumbers: [
-          departmentDetails?.idNumber || subCategoryDetails?.idNumber,
+          departmentDetails?.idNumber || subCategoryDetails.idNumber,
         ],
         limit: 7,
         offset: 7 * (parseInt(pageNumber) - 1),
@@ -251,11 +253,11 @@ export async function getStaticProps({
 
     const {
       data: { countOfArticlesBySubCategory: countOfArticles },
-    } = await GraphClient.query({
+    } = await graphClient.query({
       query: countOfArticlesBySubCategory,
       variables: {
         categoryNumber:
-          departmentDetails?.idNumber || subCategoryDetails?.idNumber,
+          departmentDetails?.idNumber || subCategoryDetails.idNumber,
       },
     });
 
@@ -290,8 +292,8 @@ export async function getStaticPaths() {
     params: {
       category: path?.split('/')[1],
       subCategory: path?.split('/')[3]
-        ? [(path?.split('/')[2], path?.split('/')[3], '1')]
-        : [(path?.split('/')[2], '1')],
+        ? [path?.split('/')[2], path?.split('/')[3], '1']
+        : [path?.split('/')[2], '1'],
     },
   }));
   return { paths, fallback: true };
