@@ -70,11 +70,6 @@ const DesktopNavbar = () => {
                 inputRef={inputRef}
                 color='primary'
                 InputProps={{
-                  sx: {
-                    "& input": {
-                      paddingLeft: "20px"
-                    }
-                  },
                   endAdornment: (
                     <InputAdornment position='start'>
                       <SearchIcon />
@@ -239,6 +234,9 @@ const useStyles = makeStyles((theme) => ({
   searchField: {
     width: '100%',
     color: theme.palette.primary.blue50,
+    '& input': {
+      paddingLeft: '20px',
+    },
   },
   trendingArticles: {
     position: 'absoulte',
@@ -264,7 +262,7 @@ const useStyles = makeStyles((theme) => ({
     borderStyle: 'none solid solid',
     boxShadow: '0px 0px 5px grey',
     display: (_) => (_.isSearchActive ? 'block' : 'none'),
-    paddingLeft: "20px"
+    paddingLeft: '20px',
   },
   trendingList: {
     fontFamily: theme.typography.fontFamily,

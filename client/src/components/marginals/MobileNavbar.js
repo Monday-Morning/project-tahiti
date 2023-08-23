@@ -81,11 +81,6 @@ const MobileNavbar = () => {
               placeholder='Search for articles'
               color='primary'
               InputProps={{
-                sx: {
-                  '& input': {
-                    paddingLeft: '20px',
-                  },
-                },
                 endAdornment: (
                   <InputAdornment position='start'>
                     <SearchIcon />
@@ -283,6 +278,9 @@ const useStyles = makeStyles((theme) => ({
   searchField: {
     width: '100%',
     color: theme.palette.primary.blue50,
+    '& input': {
+      paddingLeft: '20px',
+    },
   },
   trendingArticles: {
     position: 'absoulte',
