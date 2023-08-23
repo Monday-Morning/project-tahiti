@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -7,13 +7,20 @@ import { useRouter } from 'next/router';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 import makeStyles from '@mui/styles/makeStyles';
-import { Container, Typography, TextField, ButtonBase, Fade } from '@mui/material';
+import {
+  Container,
+  Typography,
+  TextField,
+  ButtonBase,
+  Fade,
+} from '@mui/material';
 // import TrendingUpSharpIcon from '@mui/icons-material/TrendingUpSharp';
 
 // Utils
 import ROUTES from '../../utils/getRoutes';
 import NewTabLink from '../shared/links/NewTabLink';
 import getArticleLink from '../../utils/getArticleLink';
+import { authContext } from '../../context/AuthContextProvider';
 
 // Assets
 import logoFullBlack from '../../assets/images/logos/logo_full_black.png';
@@ -21,13 +28,16 @@ import logoFullBlack from '../../assets/images/logos/logo_full_black.png';
 //hooks
 import useAutoComplete from '../../hooks/useAutoComplete';
 
+//components
+import UserAvatar from '../widgets/UserAvatar';
+
 const DesktopNavbar = () => {
   const router = useRouter();
   const [search, setSearch] = useState('');
   const [isSearchActive, setIsSearchActive] = useState(false);
   const inputRef = useRef(null);
   const classes = useStyles({ isSearchActive });
-
+  const { user } = useContext(authContext);
   const autoCompleteData = useAutoComplete(search, 10);
 
   useEffect(() => {
@@ -136,11 +146,20 @@ const DesktopNavbar = () => {
                 }}
               />
               <div className={classes.signIn}>
-                <Link href='/onboarding' passHref>
-                  <ButtonBase type='button' className={classes.button}>
-                    <span className={classes.label}> Sign In </span>
-                  </ButtonBase>
-                </Link>
+                {user ? (
+                  <div className={classes.avatar}>
+                    <UserAvatar
+                      picture={user.photoURL}
+                      name={user.displayName}
+                    />
+                  </div>
+                ) : (
+                  <Link href='/onboarding' passHref>
+                    <ButtonBase type='button' className={classes.button}>
+                      <span className={classes.label}> Sign In </span>
+                    </ButtonBase>
+                  </Link>
+                )}
               </div>
             </div>
           </div>
@@ -188,6 +207,9 @@ const useStyles = makeStyles((theme) => ({
     border: 'solid black 0.5px',
     margin: '8px 8px 0px 0px',
     padding: '10px 20px',
+  },
+  avatar: {
+    marginRight: '20px',
   },
   label: {
     fontFamily: 'Source Sans Pro',
