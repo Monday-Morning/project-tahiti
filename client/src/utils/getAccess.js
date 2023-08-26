@@ -10,7 +10,7 @@ export default async function getAccess({ ctx, permissions }) {
         mode: 'cors',
         cache: 'no-cache',
         headers: {
-          authorization: cookies.firebaseToken,
+          authorization: cookies?.firebaseToken,
         },
       },
     );

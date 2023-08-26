@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 // libraries
-import { GraphClient } from '../config/ApolloClient';
+import { getGraphClient } from '../context/ApolloContextProvider';
 
 // Components
 import Marginals from '../components/marginals/Marginals';
@@ -180,9 +180,11 @@ function HomePage({
 
 export async function getStaticProps({ preview }) {
   try {
+    const graphClient = getGraphClient(true);
+
     const {
       data: { getLatestIssues: issues },
-    } = await GraphClient.query({
+    } = await graphClient.query({
       query: getLatestIssues,
       variables: { limit: 2 },
     });
@@ -198,7 +200,7 @@ export async function getStaticProps({ preview }) {
 
     const {
       data: { getLatestSquiggle: squiggles },
-    } = await GraphClient.query({
+    } = await graphClient.query({
       query: getLatestSquiggle,
     });
 
@@ -206,7 +208,7 @@ export async function getStaticProps({ preview }) {
       data: {
         getArticlesByCategories: [witsdom],
       },
-    } = await GraphClient.query({
+    } = await graphClient.query({
       query: getArticlesByCategories,
       variables: { categoryNumbers: 61, limit: 1 },
     });
@@ -215,7 +217,7 @@ export async function getStaticProps({ preview }) {
       data: {
         getArticlesByCategories: [photostory],
       },
-    } = await GraphClient.query({
+    } = await graphClient.query({
       query: getArticlesByCategories,
       variables: { categoryNumbers: 62, limit: 1 },
     });
@@ -223,11 +225,12 @@ export async function getStaticProps({ preview }) {
     const youtubeResponse = await fetch(
       `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&maxResults=25&playlistId=${process.env.YOUTUBE_PLAYLIST_ID}&key=${process.env.YOUTUBE_API_KEY}`,
     );
-    const youtubeData = await youtubeResponse.json();
-    const youtubeLinks = youtubeData.items.map(
-      (item) =>
-        'https://www.youtube.com/embed/' + item.snippet.resourceId.videoId,
-    );
+    const youtubeData = await youtubeResponse?.json();
+    const youtubeLinks =
+      youtubeData?.items?.map(
+        (item) =>
+          'https://www.youtube.com/embed/' + item.snippet.resourceId.videoId,
+      ) ?? [];
 
     return {
       props: {

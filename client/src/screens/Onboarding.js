@@ -1,115 +1,179 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+
+import { Alert, Snackbar, useMediaQuery } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import { Typography, useMediaQuery } from '@mui/material';
-import theme from '../config/themes/light';
 
+//assets
+import logo from '../assets/images/logo_mm.png';
+// import useToggle from '../hooks/useToggle';
+import Pagination from '../components/onboarding/Pagination';
+import NewsletterSignup from '../components/onboarding/stages/NewsletterSignup';
+import SelectTopics from '../components/onboarding/stages/SelectTopics';
+import VerifyEmail from '../components/onboarding/stages/VerifyEmail';
 // Components
 import Welcome from '../components/onboarding/stages/Welcome';
-import VerifyEmail from '../components/onboarding/stages/VerifyEmail';
-import SelectTopics from '../components/onboarding/stages/SelectTopics';
-import NewsletterSignup from '../components/onboarding/stages/NewsletterSignup';
-
+import ActivityIndicator from '../components/shared/ActivityIndicator';
+import theme from '../config/themes/light';
 // Hooks
 import useInput from '../hooks/useInput';
-import useToggle from '../hooks/useToggle';
-import Pagination from '../components/onboarding/Pagination';
 
 const STAGES = {
-  WELCOME: ['welcome-stage', 0],
-  INTERESTED_TOPICS: ['interested-topics', 1],
-  NEWSLETTER: ['newsletter-signup', 2],
-  VERIFY_EMAIL: ['verify-email', 3],
+  WELCOME: 0,
+  INTERESTED_TOPICS: 1,
+  NEWSLETTER: 2,
+  VERIFY_EMAIL: 3,
 };
 
 function Onboarding() {
   const classes = useStyles();
   const tabletMatches = useMediaQuery(theme.breakpoints.down('md'));
+  const { push, reload } = useRouter();
 
   // Local States
-  const [stage, setStage] = useState(STAGES.WELCOME);
+  const [stage, setStage] = useState(-1);
   const [email, setEmail] = useInput('');
-  const [isEmailVerified, toggleIsEmailVerified] = useToggle(false);
-  const [selectedTopics, setSelectedTopics] = useState([]);
-  const [newsletterEmail, setNewsletterEmail] = useInput('');
+  const [isEmailVerified, toggleIsEmailVerified] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+  const [snackbarData, setSnackbarData] = useState({
+    message: '',
+    severity: 'success',
+  });
 
   // Stage Change functions
-  // eslint-disable-next-line
-  const setStageToWelcome = () => setStage(STAGES.WELCOME);
-  const setStageToVerifyEmail = () => setStage(STAGES.VERIFY_EMAIL);
+  // const setStageToWelcome = () => setStage(STAGES.WELCOME);
   const setStageToInterestedTopics = () => setStage(STAGES.INTERESTED_TOPICS);
   const setStageToNewsletter = () => setStage(STAGES.NEWSLETTER);
+  const setStageToVerifyEmail = () => setStage(STAGES.VERIFY_EMAIL);
 
   // Local Helper Functions
-  const onLogin = () => console.log('Login Function Executed');
-  const verifyEmail = () => console.log('Email Verify Function Executed');
-  const signupNewsletter = () => console.log('Signed up for Newsletter');
-
-  const addSelectedTopic = (newTopic) =>
-    setSelectedTopics((current) => [...current, newTopic]);
-
-  const removeSelectedTopic = (topic) =>
-    setSelectedTopics((selected) => {
-      return selected.filter((selectedTopic) => {
-        if (selectedTopic !== topic) return selectedTopic;
-      });
-    });
+  const onSignIn = () => {
+    setLoading(false);
+    if (window.location.pathname.includes('/onboarding')) {
+      push('/');
+    } else {
+      reload();
+    }
+  };
+  const onSignUp = () => {
+    setLoading(false);
+    setStageToInterestedTopics();
+  };
+  const onSignUpNewsletter = () => {
+    console.log('Signed up for Newsletter');
+    setLoading(false);
+    setStageToVerifyEmail();
+  };
+  const onVerifyEmail = () => {
+    console.log('Email Verify Function Executed');
+    setLoading(false);
+    push('/');
+  };
 
   const renderStages = () => {
-    switch (stage[0]) {
-      case STAGES.WELCOME[0]:
+    switch (stage) {
+      case STAGES.WELCOME:
         return (
           <Welcome
-            onNext={setStageToInterestedTopics}
-            onLogin={onLogin}
+            onSignIn={onSignIn}
+            onSignUp={onSignUp}
             tabletMatches={tabletMatches}
+            setSnackbarData={setSnackbarData}
+            isLoading={isLoading}
+            setLoading={setLoading}
           />
         );
       case STAGES.INTERESTED_TOPICS[0]:
         return (
           <SelectTopics
-            selectedTopics={selectedTopics}
-            addSelectedTopic={addSelectedTopic}
-            removeSelectedTopic={removeSelectedTopic}
-            onNext={setStageToNewsletter}
-            onBack={setStageToWelcome}
+            onComplete={setStageToNewsletter}
+            onSkip={setStageToVerifyEmail}
             tabletMatches={tabletMatches}
+            setSnackbarData={setSnackbarData}
           />
         );
       case STAGES.NEWSLETTER[0]:
         return (
           <NewsletterSignup
-            email={newsletterEmail}
-            setEmail={setNewsletterEmail}
-            signupNewsletter={signupNewsletter}
-            onNext={setStageToVerifyEmail}
-            onBack={setStageToInterestedTopics}
+            onComplete={onSignUpNewsletter}
+            onSkip={setStageToVerifyEmail}
             tabletMatches={tabletMatches}
+            setSnackbarData={setSnackbarData}
           />
         );
-      case STAGES.VERIFY_EMAIL[0]:
+      case STAGES.VERIFY_EMAIL:
         return (
           <VerifyEmail
+            onComplete={onVerifyEmail}
+            onSkip={onSignIn}
+            onBack={setStageToNewsletter}
             email={email}
             setEmail={setEmail}
             isEmailVerified={isEmailVerified}
             toggleIsEmailVerified={toggleIsEmailVerified}
-            verifyEmail={verifyEmail}
-            onBack={setStageToNewsletter}
             tabletMatches={tabletMatches}
+            snackbarData={snackbarData}
+            setSnackbarData={setSnackbarData}
+            isLoading={isLoading}
+            setLoading={setLoading}
           />
         );
       default:
-        return <Typography variant='body1'>Loading....</Typography>;
+        return <ActivityIndicator loading={true} />;
     }
   };
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.has('stage')) {
+      setStage(STAGES[params.get('stage')?.toUpperCase()]);
+    } else {
+      setStage(STAGES.WELCOME);
+    }
+    if (params.has('email')) {
+      setEmail(params.get('email'));
+    }
+    if (params.has('isEmailLink')) {
+      toggleIsEmailVerified(true);
+    }
+  }, []);
+
   return (
     <div className={classes.screen}>
-      <div className={classes.box}>{renderStages()}</div>
-      <div className={classes.pagination}>
-        <Pagination active={stage[1]} stages={Object.keys(STAGES)} />
+      <div className={classes.box}>
+        {renderStages()}
+        {isLoading && (
+          <div className={classes.loading}>
+            <Image src={logo} alt='MM Logo' width={`100px`} height={`100px`} />
+          </div>
+        )}
       </div>
+      <div className={classes.pagination}>
+        <Pagination active={stage} stages={Object.keys(STAGES)} />
+      </div>
+
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        ClickAwayListenerProps={{ mouseEvent: false, touchEvent: false }}
+        autoHideDuration={5000}
+        open={snackbarData.message !== ''}
+        onClose={() => setSnackbarData({ message: '', severity: 'success' })}
+        key={`Snack: ${snackbarData.message} ${Date.now()} ${Math.random()}`}
+      >
+        <Alert
+          onClose={() => setSnackbarData({ message: '', severity: 'success' })}
+          severity={snackbarData.severity}
+          variant='filled'
+        >
+          {snackbarData.message}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }
@@ -138,5 +202,11 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('lg')]: {
       width: '80%',
     },
+  },
+  loading: {
+    margin: 'auto',
+    height: 'fit-content',
+    width: 'fit-content',
+    animation: 'rotation 2s linear infinite',
   },
 }));

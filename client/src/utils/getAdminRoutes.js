@@ -1,5 +1,5 @@
 // library
-import { Create } from '@mui/icons-material';
+import Create from '@mui/icons-material/Create';
 
 const admin = {
   id: 'admin',

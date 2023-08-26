@@ -9,11 +9,9 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material';
-import {
-  FiberManualRecord,
-  KeyboardArrowDown,
-  KeyboardArrowUp,
-} from '@mui/icons-material';
+import FiberManualRecord from '@mui/icons-material/FiberManualRecord';
+import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
 
 // components
 import NavItem from './NavItem';

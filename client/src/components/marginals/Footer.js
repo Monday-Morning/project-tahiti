@@ -209,8 +209,9 @@ const Footer = () => {
                       name='month'
                       className={classes.archivesSelect}
                       onChange={(e) => setMonth(e.target.value)}
+                      defaultValue={''}
                     >
-                      <option value='' selected disabled hidden>
+                      <option value='' disabled hidden>
                         <Typography variant='body1'>Month</Typography>
                       </option>
                       {ARCHIVES.months.map((month, key) => (
@@ -223,8 +224,9 @@ const Footer = () => {
                       name='year'
                       className={classes.archivesSelect}
                       onChange={(e) => setYear(e.target.value)}
+                      defaultValue={''}
                     >
-                      <option value='' selected disabled hidden>
+                      <option value='' disabled hidden>
                         <Typography variant='body1'>Year</Typography>
                       </option>
                       {ARCHIVES.years.map((year, key) => (

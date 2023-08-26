@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 // Libraries
-import { GraphClient } from '../../config/ApolloClient';
+import { getGraphClient } from '../../context/ApolloContextProvider';
 import STORES from '../../utils/getStores';
 
 // Components
@@ -177,9 +177,11 @@ export async function getStaticProps({
   preview,
 }) {
   try {
+    const graphClient = getGraphClient(true);
+
     const {
       data: { getArticleByID: photostory },
-    } = await GraphClient.query({
+    } = await graphClient.query({
       query: getArticleByID,
       variables: { id: photostoryId },
     });

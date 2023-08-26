@@ -28,6 +28,8 @@ export const ONBOARDING = Object.freeze({
       TITLE: 'Interested Topics',
       CONTENT:
         "Select the topics you're interested in, and get smarter article suggestions on the MM website!",
+      LOADING_CONTENT:
+        "Give us a moment while we save your choices. Wouldn't want to mix them up.",
     },
     TOPICS: [
       'Witsdom',
