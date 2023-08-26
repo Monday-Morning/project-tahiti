@@ -28,17 +28,17 @@ const POSTS = {
     },
     {
       position: 'Vice President',
-      name: 'Dr. Balaji P.S.',
-      phone: '0661-2462528',
-      email: 'psbalaji@nitrkl.ac.in',
+      name: 'Prof. Kumud Kant Mehta',
+      phone: '9492573480',
+      email: 'mehtakk@nitrkl.ac.in',
     },
   ],
   LCS: [
     {
       position: 'Vice President',
-      name: 'Dr. Akshaya Kumar Rath',
-      phone: '0661-2462697',
-      email: 'ratha@nitrkl.ac.in',
+      name: 'Prof. Sivaraman J.',
+      phone: '9840968282',
+      email: 'jsiva@nitrkl.ac.in',
     },
     {
       position: 'Vice President',
@@ -70,9 +70,9 @@ const POSTS = {
     },
     {
       position: 'Vice President',
-      name: 'Dr. Prasun Chongder',
-      phone: '',
-      email: 'chongderp@nitrkl.ac.in',
+      name: 'Prof. Tirthankar Sarkar',
+      phone: '9547960987',
+      email: 'sarkart@nitrkl.ac.in',
     },
   ],
 };
@@ -99,8 +99,8 @@ const SacInfoNavbar = () => {
           <>
             <PostHolders
               position='Sac President'
-              name='Prof. Poonam Singh'
-              email='psingh@nitrkl.ac.in'
+              name='Prof. Rajeev Kumar Panda'
+              email='rkpanda@nitrkl.ac.in'
             />
           </>
         );
