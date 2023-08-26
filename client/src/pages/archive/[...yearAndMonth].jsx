@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 //liberaries
-import { GraphClient } from '../../config/ApolloClient';
+import { getGraphClient } from '../../context/ApolloContextProvider';
 
 //components
 import Archive from '../../screens/Archive';
@@ -171,9 +171,11 @@ export async function getStaticProps({
   },
 }) {
   try {
+    const graphClient = getGraphClient(true);
+
     const {
       data: { listArticlesByYearAndMonth: archiveArticles },
-    } = await GraphClient.query({
+    } = await graphClient.query({
       query: listArticlesByYearAndMonth,
       variables: {
         onlyPublished: true,

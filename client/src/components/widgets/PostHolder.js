@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { PhoneOutlined } from '@mui/icons-material';
+import PhoneOutlined from '@mui/icons-material/PhoneOutlined';
 import { Grid, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 

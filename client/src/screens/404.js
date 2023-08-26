@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { Grid, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import { ArrowForward } from '@mui/icons-material';
+import ArrowForward from '@mui/icons-material/ArrowForward';
 
 import logo from '../assets/images/logo_mm.png';
 import LINKS from '../utils/getLinks';
