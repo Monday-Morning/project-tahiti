@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 //graphql
-import { GraphClient } from '../../../config/ApolloClient';
+import { getGraphClient } from '../../../context/ApolloContextProvider';
 import createIssue from '../../../graphql/mutations/issues/createIssue';
 import updateIssueArticles from '../../../graphql/mutations/issues/updateIssueArticles';
 import updateIssueProps from '../../../graphql/mutations/issues/updateIssueProps';
@@ -32,6 +32,7 @@ export default function IssueDialogBox({
   issueList,
   setIssueList,
 }) {
+  const graphClient = getGraphClient(true);
   const { name, articles, featured } = seletedIssue;
 
   const [issueTitle, setIssueTitle] = useState(name || '');
@@ -90,7 +91,7 @@ export default function IssueDialogBox({
     if (action === 'Add') {
       const {
         data: { createIssue: issue },
-      } = await GraphClient.mutate({
+      } = await graphClient.mutate({
         mutation: createIssue,
         variables: {
           name: issueTitle,
@@ -123,7 +124,7 @@ export default function IssueDialogBox({
       ) {
         const {
           data: { updateIssueArticles: issue },
-        } = await GraphClient.mutate({
+        } = await graphClient.mutate({
           mutation: updateIssueArticles,
           variables: {
             updateIssueArticlesId: seletedIssue.id,
@@ -142,7 +143,7 @@ export default function IssueDialogBox({
       ) {
         const {
           data: { updateIssueProps: issue },
-        } = await GraphClient.mutate({
+        } = await graphClient.mutate({
           mutation: updateIssueProps,
           variables: {
             updateIssuePropsId: seletedIssue.id,

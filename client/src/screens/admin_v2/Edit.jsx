@@ -22,7 +22,7 @@ import SnackBarAleart from '../../components/admin_v2/Common/SnackBarAleart';
 import ArticleTags from '../../components/admin_v2/Common/Tags';
 import Marginals from '../../components/admin_v2/Marginals/Marginals';
 //graphql
-import { GraphClient } from '../../config/ApolloClient';
+import { getGraphClient } from '../../context/ApolloContextProvider';
 import updateArticleApprovalStatus from '../../graphql/mutations/article/updateArticleApprovalStatus';
 import updateArticleCategories from '../../graphql/mutations/article/updateArticleCategories';
 import updateArticleProps from '../../graphql/mutations/article/updateArticleProps';
@@ -39,7 +39,7 @@ const checkIsSame = (arr1, arr2) => {
 
 const EditArticle = ({ allUsers, article }) => {
   const mobile = !useMediaQuery('(min-width:600px)');
-
+  const graphClient = getGraphClient(true);
   const {
     id,
     title,
@@ -132,7 +132,7 @@ const EditArticle = ({ allUsers, article }) => {
     if (!validateArticleData()) return;
     if (articleTitle !== title || inShort !== inshort) {
       try {
-        await GraphClient.mutate({
+        await graphClient.mutate({
           mutation: updateArticleProps,
           variables: {
             updateArticlePropsId: id,
@@ -165,7 +165,7 @@ const EditArticle = ({ allUsers, article }) => {
       )
     ) {
       try {
-        await GraphClient.mutate({
+        await graphClient.mutate({
           mutation: updateArticleUsers,
           variables: {
             updateArticleUsersId: id,
@@ -188,7 +188,7 @@ const EditArticle = ({ allUsers, article }) => {
       )
     ) {
       try {
-        await GraphClient.mutate({
+        await graphClient.mutate({
           mutation: updateArticleCategories,
           variables: {
             updateArticleCategoriesId: id,
@@ -203,7 +203,7 @@ const EditArticle = ({ allUsers, article }) => {
 
     if (isInstituteRestricted !== instituteRestricted) {
       try {
-        await GraphClient.mutate({
+        await graphClient.mutate({
           mutation: updateArticleRestriction,
           variables: {
             updateArticleRestrictionId: id,
@@ -219,7 +219,7 @@ const EditArticle = ({ allUsers, article }) => {
 
     if (approvalStatus !== approval) {
       try {
-        await GraphClient.mutate({
+        await graphClient.mutate({
           mutation: updateArticleApprovalStatus,
           variables: {
             updateArticleApprovalStatusId: id,

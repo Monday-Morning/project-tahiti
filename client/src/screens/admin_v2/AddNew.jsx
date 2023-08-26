@@ -11,11 +11,12 @@ import SnackBarAleart from '../../components/admin_v2/Common/SnackBarAleart';
 import AuthorsCard from '../../components/admin_v2/AddNew/AuthorCards';
 import CategoryCard from '../../components/admin_v2/AddNew/CategoryCard';
 import explorer from '../../utils/categoryCard';
-import { GraphClient } from '../../config/ApolloClient';
+import { getGraphClient } from '../../context/ApolloContextProvider';
 import createArticle from '../../graphql/mutations/article/createArticle';
 
 const AddNew = ({ allUsers }) => {
   const { push } = useRouter();
+  const graphClient = getGraphClient(true);
 
   const [title, setTitle] = useState('');
 
@@ -29,9 +30,10 @@ const AddNew = ({ allUsers }) => {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const _users = allUsers.map((user) => {
-    return { ...user, label: user.fullName };
-  });
+  const _users =
+    allUsers?.map((user) => {
+      return { ...user, label: user.fullName };
+    }) ?? [];
 
   const addCategories = (categoryNumber) => {
     if (categories.has(categoryNumber)) {
@@ -77,18 +79,19 @@ const AddNew = ({ allUsers }) => {
   const createNewArticle = () => {
     validateArticleData();
 
-    GraphClient.mutate({
-      mutation: createArticle,
-      variables: {
-        articleType: 'STANDARD',
-        title,
-        authors: contentTeam.map((user) => user.id),
-        designers: designTeam.map((user) => user.id),
-        tech: techTeam.map((user) => user.id),
-        photographers: pnfTeam.map((user) => user.id),
-        categoryNumbers: Array.from(categories),
-      },
-    })
+    graphClient
+      .mutate({
+        mutation: createArticle,
+        variables: {
+          articleType: 'STANDARD',
+          title,
+          authors: contentTeam.map((user) => user.id),
+          designers: designTeam.map((user) => user.id),
+          tech: techTeam.map((user) => user.id),
+          photographers: pnfTeam.map((user) => user.id),
+          categoryNumbers: Array.from(categories),
+        },
+      })
       .then(() => {
         push('/admin_v2/browse');
       })

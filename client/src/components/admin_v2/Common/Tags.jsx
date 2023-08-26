@@ -5,7 +5,7 @@ import { Stack, TextField, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { Box } from '@mui/system';
 
-import { GraphClient } from '../../../config/ApolloClient';
+import { getGraphClient } from '../../../context/ApolloContextProvider';
 import updateArticleTags from '../../../graphql/mutations/article/updateArticleTags';
 import createTag from '../../../graphql/mutations/tag/createTag';
 import useTagAutoComplete from '../../../hooks/useTagAutoComplete';
@@ -52,6 +52,7 @@ export default function ArticleTags({
   id,
   setErrorMessageAndError,
 }) {
+  const graphClient = getGraphClient(true);
   const [tags, setTags] = useState([]);
   const [active, setActive] = useState(false);
   const [search, setSearch] = useState('');
@@ -77,7 +78,7 @@ export default function ArticleTags({
   const handleCreate = async () => {
     const {
       data: { createTag: createdTag },
-    } = await GraphClient.mutate({
+    } = await graphClient.mutate({
       mutation: createTag,
       variables: {
         name: tagRef.current.value,
@@ -100,7 +101,7 @@ export default function ArticleTags({
 
     const {
       data: { updateArticleTags: updatedTags },
-    } = await GraphClient.mutate({
+    } = await graphClient.mutate({
       mutation: updateArticleTags,
       variables: {
         id: id,

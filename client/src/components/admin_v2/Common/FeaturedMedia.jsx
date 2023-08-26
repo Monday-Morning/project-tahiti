@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, Typography } from '@mui/material';
 
 // graphql
-import { GraphClient } from '../../../config/ApolloClient';
+import { getGraphClient } from '../../../context/ApolloContextProvider';
 import addMedia from '../../../graphql/mutations/media/addMedia';
 import imagekit from '../../../utils/imageKit';
 // media imports
@@ -20,6 +20,7 @@ export default function FeaturedMedia({
   setError,
   setErrorMessage,
 }) {
+  const graphClient = getGraphClient(true);
   const [files, setFiles] = useState([{ name: image, preview: image }]);
   const { getRootProps, getInputProps, style, isDragActive } = SharedMedia(
     files,
@@ -46,20 +47,22 @@ export default function FeaturedMedia({
         .then((result) => {
           console.log('Upload Result', result);
 
-          GraphClient.mutate({
-            mutation: addMedia,
-            variables: {
-              imageKitFileId: result.fileId,
-              authors: coverMediaAuthors.map((_u) => _u.details ?? _u.id),
-              storePath: result.filePath,
-              store: 2,
-            },
-          }).then((res) => {
-            console.log('Media Added', res);
-            setError(false);
-            setErrorMessage('Image Uploaded Successfully');
-            return;
-          });
+          graphClient
+            .mutate({
+              mutation: addMedia,
+              variables: {
+                imageKitFileId: result.fileId,
+                authors: coverMediaAuthors.map((_u) => _u.details ?? _u.id),
+                storePath: result.filePath,
+                store: 2,
+              },
+            })
+            .then((res) => {
+              console.log('Media Added', res);
+              setError(false);
+              setErrorMessage('Image Uploaded Successfully');
+              return;
+            });
         })
         .catch((error) => {
           console.log('Upload Error', error);

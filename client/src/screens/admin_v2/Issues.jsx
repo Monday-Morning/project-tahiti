@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 //graphql
-import { GraphClient } from '../../config/ApolloClient';
+import { getGraphClient } from '../../context/ApolloContextProvider';
 import getIssueById from '../../graphql/queries/issues/getIssueById';
 import removeIssue from '../../graphql/mutations/issues/removeIssue';
 import getLatestIssues from '../../graphql/queries/issues/getLatestIssues';
@@ -43,6 +43,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const Issues = ({ issues }) => {
+  const graphClient = getGraphClient(true);
   const [dialogBoxOpen, setDialogBoxOpen] = useState(false);
   const [seletedIssue, setSelectedIssue] = useState({
     name: '',
@@ -58,7 +59,7 @@ const Issues = ({ issues }) => {
     setDialogBoxOpen(true);
     const {
       data: { getIssueByID: issue },
-    } = await GraphClient.query({
+    } = await graphClient.query({
       query: getIssueById,
       variables: {
         getIssueByIdId: id,
@@ -70,7 +71,7 @@ const Issues = ({ issues }) => {
   const deleteIssue = async (id) => {
     alert('Are you sure you want to delete this issue?');
 
-    await GraphClient.mutate({
+    await graphClient.mutate({
       mutation: removeIssue,
       variables: {
         removeIssueId: id,
@@ -82,7 +83,7 @@ const Issues = ({ issues }) => {
   const getMoreissues = async () => {
     const {
       data: { getLatestIssues: issues },
-    } = await GraphClient.query({
+    } = await graphClient.query({
       query: getLatestIssues,
       variables: {
         limit: 9,
