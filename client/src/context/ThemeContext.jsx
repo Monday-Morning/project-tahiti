@@ -20,6 +20,15 @@ const ThemeContextProvider = ({ children }) => {
   useEffect(() => {
     const currentHour = new Date().getHours();
     setDarkTheme(currentHour >= 20 || currentHour <= 8 ? true : false);
+    localStorage.setItem(
+      'darkTheme',
+      currentHour >= 20 || currentHour <= 8 ? 'true' : 'false',
+    );
+    if (localStorage.getItem('darkTheme') === 'true') {
+      setDarkTheme(true);
+    } else if (localStorage.getItem('darkTheme') === 'false') {
+      setDarkTheme(false);
+    }
   }, [setDarkTheme]);
 
   return (
