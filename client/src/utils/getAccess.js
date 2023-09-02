@@ -3,7 +3,7 @@ import { parseCookies } from 'nookies';
 export default async function getAccess({ ctx, permissions }) {
   try {
     const cookies = parseCookies(ctx);
-    const { data, error } = await fetch(
+    const data = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/auth/check`,
       {
         method: 'GET',

@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import { GraphClient } from '../config/ApolloClient';
+import { getGraphClient } from '../context/ApolloContextProvider';
 import getTagAutocomplete from '../graphql/queries/tag/getTagAutocomplete';
 
 const useTagAutoComplete = (searchTag, isAdmin, limit) => {
+  const graphClient = getGraphClient(true);
   const [searchKeyword, setSearchKeyword] = useState(searchTag);
   const [result, setResult] = useState([]);
 
@@ -21,7 +22,7 @@ const useTagAutoComplete = (searchTag, isAdmin, limit) => {
     (async () => {
       const {
         data: { getTagAutocomplete: autoCompleteResult },
-      } = await GraphClient.query({
+      } = await graphClient.query({
         query: getTagAutocomplete,
         variables: {
           searchTerm: searchKeyword,

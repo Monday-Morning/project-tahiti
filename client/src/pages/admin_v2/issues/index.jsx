@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { parseCookies } from 'nookies';
-import { getApolloLink, GraphClient } from '../../../config/ApolloClient';
+import { getGraphClient } from '../../../context/ApolloContextProvider';
 import getLatestIssues from '../../../graphql/queries/issues/getLatestIssues';
 
 import Issues from '../../../screens/admin_v2/Issues.jsx';
@@ -21,7 +21,7 @@ export default IssuePage;
 
 export async function getServerSideProps(ctx) {
   try {
-    const requiredPermissions = ['issue.list.unpublished'];
+    const requiredPermissions = ['issue.read.unpublished'];
     const userPermissions = await getAccess({ ctx });
 
     if (!userPermissions.data) {
@@ -47,11 +47,11 @@ export async function getServerSideProps(ctx) {
     }
 
     const cookies = parseCookies(ctx);
-    GraphClient.setLink(getApolloLink(cookies.firebaseToken));
+    const graphClient = getGraphClient(false, cookies.firebaseToken);
 
     const {
       data: { getLatestIssues: issues },
-    } = await GraphClient.query({
+    } = await graphClient.query({
       query: getLatestIssues,
       variables: {
         onlyPublished: false,

@@ -20,7 +20,7 @@ import DialogBox from '../../components/admin_v2/Browse/DialogBox';
 import SnackBarAleart from '../../components/admin_v2/Common/SnackBarAleart';
 import ArticleTags from '../../components/admin_v2/Common/Tags';
 import Marginals from '../../components/admin_v2/Marginals/Marginals';
-import { GraphClient } from '../../config/ApolloClient';
+import { getGraphClient } from '../../context/ApolloContextProvider';
 import updateArticlePublishStatus from '../../graphql/mutations/article/updateArticlePublishStatus';
 import listAllArticles from '../../graphql/queries/article/listAllArticles';
 import determineCategory from '../../utils/determineCategory';
@@ -46,6 +46,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const BrowseArticle = ({ articles, totalArticles }) => {
+  const graphClient = getGraphClient(true);
   const [_articles, setArticles] = useState(articles);
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
   const [row, setRow] = useState([]);
@@ -86,7 +87,7 @@ const BrowseArticle = ({ articles, totalArticles }) => {
 
   const updatePublishStatus = async ({ id, publishStatus }) => {
     try {
-      const data = await GraphClient.mutate({
+      const data = await graphClient.mutate({
         mutation: updateArticlePublishStatus,
         variables: {
           updateArticlePublishStatusId: id,
@@ -143,7 +144,7 @@ const BrowseArticle = ({ articles, totalArticles }) => {
     (async () => {
       const {
         data: { listAllArticles: articles },
-      } = await GraphClient.query({
+      } = await graphClient.query({
         query: listAllArticles,
         variables: {
           limit: rowsPerPage,

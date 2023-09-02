@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { parseCookies } from 'nookies';
 
 import ActivityIndicator from '../../components/shared/ActivityIndicator';
-import { getApolloLink, GraphClient } from '../../config/ApolloClient';
+import { getGraphClient } from '../../context/ApolloContextProvider';
 import countTotalArticles from '../../graphql/queries/article/countTotalArticles';
 import listAllArticle from '../../graphql/queries/article/listAllArticles';
 import BrowseArticle from '../../screens/admin_v2/Browse';
@@ -33,17 +33,17 @@ export default BrowseArticlePage;
 export async function getServerSideProps(context) {
   try {
     const cookies = parseCookies(context);
-    GraphClient.setLink(getApolloLink(cookies.firebaseToken));
+    const graphClient = getGraphClient(false, cookies.firebaseToken);
 
     const {
       data: { countTotalArticles: totalArticles },
-    } = await GraphClient.query({
+    } = await graphClient.query({
       query: countTotalArticles,
     });
 
     const {
       data: { listAllArticles: articles },
-    } = await GraphClient.query({
+    } = await graphClient.query({
       query: listAllArticle,
       variables: { limit: 25, offset: 0, onlyPublished: false },
     });
