@@ -35,9 +35,7 @@ const DialogPoll = ({ dialogBoxOpen, setDialogBoxOpen }) => {
     DialogBoxClose();
   };
   const classes = useStyles();
-  useEffect(() => {
-    console.log(live);
-  }, [live]);
+  
   return (
     <>
       <Dialog
