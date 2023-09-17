@@ -1,15 +1,7 @@
-import React, { useState } from 'react';
-import Image from 'next/image';
+import React from 'react';
+
 // Libraries
-import { Container, Typography, Grid } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import { Bookmark, Share2, Clock } from 'react-feather';
-
-// Components
-import { PODCAST } from '../../assets/placeholder/podcast';
-
-// Images
-import podcastImage from '../../assets/images/podcast.png';
 
 const LatestPodcast = () => {
   const classes = useStyles();

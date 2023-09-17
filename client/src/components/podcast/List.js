@@ -1,53 +1,71 @@
-import React, { useState } from 'react';
-import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
 
 // Libraries
-import { Container, Paper } from '@mui/material';
+import { Container, Paper, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { Table, TableHead, TableBody } from '@mui/material';
 import { Heart, PlayCircle } from 'react-feather';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import { useRouter } from 'next/router';
 
-// Components
-import { PODCAST } from '../../assets/placeholder/podcast';
-
-// Images
-import podcastCover from '../../assets/images/podcast_cover.png';
-
-const PodcastList = ({ spotify }) => {
-  const Podcast = PODCAST;
+const PodcastList = ({ spotify, pageNo, len, hidePagination }) => {
   const classes = useStyles();
+
+  const [currentId, setCurrentId] = useState(spotify[0].id);
+  function millisToMinutesAndSeconds(millis) {
+    var minutes = Math.floor(millis / 60000);
+    var seconds = ((millis % 60000) / 1000).toFixed(0);
+    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+  }
+
+  const { push } = useRouter();
+  const [isLoading, setLoading] = useState(true);
+  const [nextPageNo, setNextPageNo] = useState(pageNo);
+
+  useEffect(() => {
+    if (isLoading ?? true === true) {
+      setLoading((_val) => false);
+      return;
+    }
+
+    setLoading((_val) => true);
+
+    push(`/expressions/podcasts/${nextPageNo}`);
+
+    setLoading(false);
+  }, [nextPageNo]);
+
   return (
     <Container>
-      {/* <div className={classes.wrapper}>
+      <div className={classes.wrapper}>
         <Paper>
           <Table>
             <TableHead>
               <tr className={classes.headerRow}>
                 <th></th>
                 <th>Title</th>
-                <th>Tags</th>
                 <th>Time</th>
-                <th>Favorite</th>
+                <th>Fav</th>
               </tr>
             </TableHead>
             <TableBody>
-              {Podcast.map((podcast, key) => {
+              {spotify.map((podcast, key) => {
                 return (
-                  <tr key={key} className={classes.ListRow}>
+                  <tr
+                    key={key}
+                    className={classes.ListRow}
+                    onClick={() => {
+                      setCurrentId(spotify[key].id);
+                    }}
+                  >
                     <td>
                       <PlayCircle />
                     </td>
-                    <td>{podcast.title}</td>
                     <td>
-                      {podcast.tags.map((tag, key, podcast) => {
-                        if (key === podcast.length - 1) {
-                          return <span key={key}> {tag} </span>;
-                        } else {
-                          return <span key={key}> {tag}, </span>;
-                        }
-                      })}
+                      <div className={classes.podcastTitle}>{podcast.name}</div>
                     </td>
-                    <td>{podcast.duration}</td>
+                    <td>{millisToMinutesAndSeconds(podcast.duration_ms)}</td>
                     <td>
                       <Heart size={18} />
                     </td>
@@ -57,11 +75,10 @@ const PodcastList = ({ spotify }) => {
             </TableBody>
           </Table>
         </Paper>
-      </div> */}
-
+      </div>
       <div>
         <iframe
-          src={`https://open.spotify.com/embed/episode/${spotify[0].id}`}
+          src={`https://open.spotify.com/embed/episode/${currentId}`}
           width='100%'
           height='152'
           frameBorder='0'
@@ -69,12 +86,60 @@ const PodcastList = ({ spotify }) => {
           allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
         ></iframe>
       </div>
+      {!hidePagination ? (
+        <div className={classes.pagination}>
+          <div className={classes.paginationBtn}>
+            <ChevronLeftIcon
+              className={nextPageNo == 1 ? classes.btnDisable : ''}
+              onClick={
+                nextPageNo != 1 ? () => setNextPageNo(nextPageNo - 1) : null
+              }
+            />
+            <Typography
+              className={nextPageNo == 1 ? classes.btnDisable : ''}
+              onClick={
+                nextPageNo != 1 ? () => setNextPageNo(nextPageNo - 1) : null
+              }
+            >
+              Previous
+            </Typography>
+          </div>
+          <div className={classes.paginationBtn}>
+            <Typography
+              className={len == 0 ? classes.btnDisable : ''}
+              onClick={len != 0 ? () => setNextPageNo(nextPageNo + 1) : null}
+            >
+              Next
+            </Typography>
+            <ChevronRightIcon
+              className={len == 0 ? classes.btnDisable : ''}
+              onClick={len != 0 ? () => setNextPageNo(nextPageNo + 1) : null}
+            />
+          </div>
+        </div>
+      ) : null}
     </Container>
   );
 };
 export default PodcastList;
 
 const useStyles = makeStyles((theme) => ({
+  btnDisable: {
+    color: theme.palette.text.disabled,
+  },
+  pagination: {
+    '&:hover': {
+      cursor: 'pointer',
+    },
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '20px',
+    maxWidth: '90vw',
+    gap: '1rem',
+  },
+  paginationBtn: {
+    display: 'flex',
+  },
   wrapper: {
     margin: '2rem 0 2rem 0',
     borderRadius: '0.7rem',
@@ -86,6 +151,9 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '1.5rem',
       textAlign: 'center',
       padding: '0.75rem',
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '16px',
+      },
     },
     '& th:nth-child(2)': {
       textAlign: 'start',
@@ -98,19 +166,36 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '400',
     fontFamily: 'Source Sans Pro',
     textAlign: 'center',
-    backgroundColor: theme.palette.secondary.neutral30,
+
+    backgroundColor: theme.palette.common.white,
+    '&:hover': {
+      cursor: 'pointer',
+      backgroundColor: theme.palette.secondary.neutral30,
+      borderRadius: '40px',
+    },
     '& td': {
       padding: '0.75rem',
     },
+
     '& td:nth-child(1)': {
       position: 'absolute',
       botton: '0rem',
-    },
-    '& td:nth-child(2)': {
-      textAlign: 'start',
+      marginTop: '0.1rem',
     },
     '& td:nth-child(3)': {
       textAlign: 'start',
     },
+  },
+  podcastTitle: {
+    fontWeight: '400',
+    marginLeft: '0.3rem',
+    fontFamily: 'Source Sans Pro',
+    textAlign: 'center',
+    textAlign: 'start',
+    textOverflow: 'ellipsis',
+    lineClamp: '1',
+    boxOrient: 'vertical',
+    display: '-webkit-box',
+    overflow: 'hidden',
   },
 }));
