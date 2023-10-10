@@ -56,7 +56,7 @@ function Welcome({
       }
     }
 
-    function gis() {
+    function gsi() {
       google.accounts.id.initialize({
         client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
         callback: handleCredentialResponse,
@@ -70,7 +70,11 @@ function Welcome({
       );
       google.accounts.id.prompt();
     }
-    gis();
+    const script = document.createElement('script');
+    script.src = 'https://accounts.google.com/gsi/client';
+    script.strategy = 'beforeInteractive';
+    script.onload = gsi;
+    document.head.appendChild(script);
   }, []);
 
   return (
