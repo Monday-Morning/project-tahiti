@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import makeStyles from '@mui/styles/makeStyles';
 import { useSwipeable } from 'react-swipeable';
-import { ArrowBack, ArrowForward } from '@mui/icons-material';
+import ArrowBack from '@mui/icons-material/ArrowBack';
+import ArrowForward from '@mui/icons-material/ArrowForward';
 
 const HomeCarousel = ({ links }) => {
   const classes = useStyles();

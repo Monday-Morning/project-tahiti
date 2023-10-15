@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useRouter } from 'next/router';
+import React, { useState, useContext } from 'react';
+// import { useRouter } from 'next/router';
 import Image from 'next/image';
 
 // Library
@@ -11,25 +11,40 @@ import makeStyles from '@mui/styles/makeStyles';
 
 // Components
 import Button from '../../shared/button/Regular';
-import Input from '../../shared/input/Regular';
 
 // Assets
 import newsletter from '../../../assets/images/onboarding/newsletter.png';
 import { ONBOARDING } from '../../../assets/placeholder/onboarding';
 
-function VerifyEmail(props) {
+//graphql
+import newsLetterSubscription from '../../../graphql/mutations/user/newsLetterSubscription';
+
+//context
+import { authContext } from '../../../context/AuthContextProvider';
+import { apolloContext } from '../../../context/ApolloContextProvider';
+
+function NewsletterSignup({ onComplete, onSkip, tabletMatches }) {
   const classes = useStyles();
-  const router = useRouter();
+  // const router = useRouter();
+  const graphClient = useContext(apolloContext);
+
   // Local States
   const [isSigned, setIsSigned] = useState(false);
 
-  // Props
-  const { email, setEmail, signupNewsletter, onNext, onBack, tabletMatches } =
-    props;
+  const {
+    user: { mid },
+  } = useContext(authContext);
 
-  const onSignup = () => {
+  const onSignup = async () => {
     setIsSigned(true);
-    signupNewsletter();
+
+    await graphClient.mutate({
+      mutation: newsLetterSubscription,
+      variables: {
+        userId: mid,
+        flag: true,
+      },
+    });
   };
 
   return (
@@ -66,15 +81,6 @@ function VerifyEmail(props) {
                 />
               </Grid>
             )}
-            <Typography className={classes.emailTitle} variant='h3'>
-              {ONBOARDING.NEWSLETTER.SECONDARY.TITLE}
-            </Typography>
-            <Input
-              className={classes.emailInput}
-              value={email}
-              onChange={setEmail}
-              placeholder={ONBOARDING.NEWSLETTER.EMAIL_PLACEHOLDER}
-            />
           </>
         )}
 
@@ -95,14 +101,7 @@ function VerifyEmail(props) {
             <Typography
               className={classes.back}
               variant='body1'
-              onClick={onBack}
-            >
-              Back
-            </Typography>
-            <Typography
-              className={classes.skip}
-              variant='body1'
-              onClick={onNext}
+              onClick={onSkip}
             >
               Skip
             </Typography>
@@ -116,7 +115,7 @@ function VerifyEmail(props) {
               ? ONBOARDING.NEWSLETTER.BUTTON.MOBILE
               : ONBOARDING.NEWSLETTER.BUTTON.PRIMARY
           }
-          onClick={isSigned ? onNext : onSignup}
+          onClick={isSigned ? onComplete : onSignup}
           containerStyles={classes.button}
         />
       </Grid>
@@ -124,7 +123,7 @@ function VerifyEmail(props) {
   );
 }
 
-export default VerifyEmail;
+export default NewsletterSignup;
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -162,14 +161,6 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '14px',
     },
   },
-  emailInput: {
-    width: '85%',
-    borderRadius: '20px',
-    paddingLeft: '20px',
-    [theme.breakpoints.down('md')]: {
-      width: '100%',
-    },
-  },
   buttonContainer: {
     display: 'flex',
     alignItems: 'center',
@@ -204,10 +195,6 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     color: theme.palette.accent.green,
-  },
-  skip: {
-    cursor: 'pointer',
-    color: theme.palette.secondary.neutral50,
   },
   back: {
     marginRight: 'auto',

@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 
 // libraries
-import { GraphClient } from '../config/ApolloClient';
 import { Container, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import makeStyles from '@mui/styles/makeStyles';
@@ -17,9 +16,11 @@ import { ARCHIVES } from '../assets/placeholder/guide';
 
 //gql
 import listArticlesByYearAndMonth from '../graphql/queries/article/listArticleByYearAndMonth';
+import { apolloContext } from '../context/ApolloContextProvider';
 
 function Archive({ archiveArticles, year, month }) {
   const classes = useStyles();
+  const graphClient = useContext(apolloContext);
 
   const { push } = useRouter();
 
@@ -54,7 +55,7 @@ function Archive({ archiveArticles, year, month }) {
       try {
         const {
           data: { listArticlesByYearAndMonth: archiveArticles },
-        } = await GraphClient.query({
+        } = await graphClient.query({
           query: listArticlesByYearAndMonth,
           variables: {
             onlyPublished: true,

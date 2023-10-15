@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
-import { GraphClient } from '../../config/ApolloClient';
+import { getGraphClient } from '../../context/ApolloContextProvider';
 
 // Components
 import ActivityIndicator from '../../components/shared/ActivityIndicator';
@@ -175,13 +175,15 @@ export async function getStaticProps({
   preview,
 }) {
   try {
+    const graphClient = getGraphClient(true);
+
     const category = ROUTES.CATEGORIES.filter(
       ({ asyncRoutePath }) => asyncRoutePath === './Category',
     ).filter(({ shortName }) => shortName === categoryShortName)[0];
 
     const {
       data: { getArticlesByCategories: articleList },
-    } = await GraphClient.query({
+    } = await graphClient.query({
       query: getArticlesByCategories,
       variables: {
         categoryNumbers: [category?.idNumber, ...category?.subCategoryIds],

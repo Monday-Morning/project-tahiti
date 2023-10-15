@@ -15,7 +15,8 @@ import insta4 from '../../assets/images/instagram/insta4.jpeg';
 import insta5 from '../../assets/images/instagram/insta5.jpeg';
 import insta6 from '../../assets/images/instagram/insta6.jpeg';
 import Image from 'next/image';
-import { YouTube, Instagram } from '@mui/icons-material';
+import YouTube from '@mui/icons-material/YouTube';
+import Instagram from '@mui/icons-material/Instagram';
 
 const INSTA_LINKS = [insta1, insta2, insta3, insta4, insta5, insta6];
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
-import Router from 'next/router';
+// import Router from 'next/router';
 
 // Styles
 import '../../public/index.css';
@@ -10,19 +10,17 @@ import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 
-// Providers
-import ApolloClient from '../config/ApolloClient';
-import AuthState from '../context/auth/AuthState';
-
 // Components
 // import ScrollToTopOnMount from '../components/shared/ScrollToTopOnMount';
 import ScrollToTopButton from '../components/shared/button/ScrollToTopButton';
 import ActivityIndicator from '../components/shared/ActivityIndicator';
-import SidebarContextProvider from '../context/SidebarContext';
+import SidebarContextProvider from '../context/SidebarContextProvider';
 // Theme
 import lightTheme from '../config/themes/light';
 import { useRouter } from 'next/router';
-import { BrowserRouter } from 'react-router-dom';
+// import { BrowserRouter } from 'react-router-dom';
+import ApolloContextProvider from '../context/ApolloContextProvider';
+import AuthContextProvider from '../context/AuthContextProvider';
 
 function TahitiApp({ Component, pageProps }) {
   const classes = useStyles();
@@ -48,8 +46,8 @@ function TahitiApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <AuthState>
-      <ApolloClient>
+    <AuthContextProvider>
+      <ApolloContextProvider>
         <SidebarContextProvider>
           <Head>
             {/* <!-- =============== Standard Meta Tags =============== --> */}
@@ -76,8 +74,8 @@ function TahitiApp({ Component, pageProps }) {
             </ThemeProvider>
           </StyledEngineProvider>
         </SidebarContextProvider>
-      </ApolloClient>
-    </AuthState>
+      </ApolloContextProvider>
+    </AuthContextProvider>
   );
 }
 
