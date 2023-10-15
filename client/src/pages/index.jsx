@@ -186,10 +186,10 @@ export async function getStaticProps({ preview }) {
       data: { getLatestIssues: issues },
     } = await graphClient.query({
       query: getLatestIssues,
-      variables: { limit: 2 },
+      variables: { limit: 4 },
     });
 
-    if (!issues || issues.length !== 2) {
+    if (!issues) {
       return {
         redirect: {
           destination: '/error/internal-server-error',
@@ -222,15 +222,14 @@ export async function getStaticProps({ preview }) {
       variables: { categoryNumbers: 62, limit: 1 },
     });
 
-    const youtubeResponse = await fetch(
-      `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&maxResults=25&playlistId=${process.env.YOUTUBE_PLAYLIST_ID}&key=${process.env.YOUTUBE_API_KEY}`,
-    );
-    const youtubeData = await youtubeResponse?.json();
-    const youtubeLinks =
-      youtubeData?.items?.map(
-        (item) =>
-          'https://www.youtube.com/embed/' + item.snippet.resourceId.videoId,
-      ) ?? [];
+    // const youtubeResponse = await fetch(
+    //   `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&maxResults=25&playlistId=${process.env.YOUTUBE_PLAYLIST_ID}&key=${process.env.YOUTUBE_API_KEY}`,
+    // );
+    // const youtubeData = await youtubeResponse.json();
+    // const youtubeLinks = youtubeData.items.map(
+    //   (item) =>
+    //     'https://www.youtube.com/embed/' + item.snippet.resourceId.videoId,
+    // );
 
     return {
       props: {
@@ -238,7 +237,7 @@ export async function getStaticProps({ preview }) {
         squiggles,
         witsdom,
         photostory,
-        youtubeLinks,
+        // youtubeLinks,
       },
       revalidate:
         preview || new Date(Date.now()).getDay() < 3

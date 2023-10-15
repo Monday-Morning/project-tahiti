@@ -11,9 +11,9 @@ export const DETAILS = Object.freeze({
   ],
   cc_title: 'Chief Coordinators:',
   CCs: [
-    { name: 'Rashmi Ranjan Samantaray', number: '9556074595' },
-    { name: 'Rishika Shah', number: '9667521704' },
-    { name: 'Sunil Urmal', number: '9938287481' },
+    { name: 'Arpan Vihan', number: '6398454922' },
+    { name: 'Aditya Bharambe', number: '7039267530' },
+    { name: 'Preeti Priyadarshini', number: '7656980495' },
   ],
   socialMedia: {
     title: 'Social Media Handles',
