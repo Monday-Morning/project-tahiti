@@ -122,12 +122,16 @@ const DesktopNavbar = () => {
             </div>
 
             <TextField
+            className={classes.searchlable}
               variant='standard'
-              label='Search for articles'
-              placeholder='Enter related words'
               onClick={searchActive}
               disabled={true}
               InputProps={{
+                startAdornment: (
+                  <InputAdornment position='start'>
+                    Search for articles
+                  </InputAdornment>
+                ),
                 endAdornment: (
                   <InputAdornment position='start'>
                     <SearchIcon />
@@ -278,4 +282,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
     opacity: '0.7',
   },
+  searchlable:{
+    width:"19%"
+  }
 }));
