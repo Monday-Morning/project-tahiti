@@ -15,7 +15,6 @@ export const useTheme = () => useContext(ThemeContext);
 const ThemeContextProvider = ({ children }) => {
   const [defaultTheme, setDefaultTheme] = useLocalStorage('DefaultTheme');
   const [isDarkTheme, setDarkTheme] = useLocalStorage('IsDarkTheme');
-  useEffect(() => {}, [isDarkTheme]);
   useEffect(() => {
     const darkModeMediaQuery = window.matchMedia(
       '(prefers-color-scheme: dark)',
