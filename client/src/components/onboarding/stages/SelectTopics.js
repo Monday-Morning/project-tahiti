@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { authContext } from '../../../context/AuthContextProvider';
 
 // Hooks
 import useToggle from '../../../hooks/useToggle';
@@ -13,15 +14,27 @@ import Button from '../../shared/button/Regular';
 // Constants
 import { ONBOARDING } from '../../../assets/placeholder/onboarding';
 
-const Topic = (props) => {
+//graphql
+import updateUserTopics from '../../../graphql/mutations/user/updateUserTopics';
+import { apolloContext } from '../../../context/ApolloContextProvider';
+
+function Topic({
+  topic,
+  addSelectedTopic,
+  removeSelectedTopic,
+  tabletMatches,
+  setSnackbarData,
+}) {
   const [selected, toggleSelected] = useToggle(false);
   const classes = useStyles(selected);
-  // Props
-  const { topic, addSelectedTopic, removeSelectedTopic, tabletMatches } = props;
 
   const onClick = () => {
-    selected ? removeSelectedTopic(topic) : addSelectedTopic(topic);
+    selected ? removeSelectedTopic(topic[1]) : addSelectedTopic(topic[1]);
     toggleSelected();
+    setSnackbarData({
+      message: '',
+      severity: 'success',
+    });
   };
 
   return (
@@ -30,22 +43,60 @@ const Topic = (props) => {
       className={classes.topicName}
       variant={tabletMatches ? 'body2' : 'body1'}
     >
-      {topic}
+      {topic[0]}
     </Typography>
   );
-};
+}
 
-function SelectTopics(props) {
+function SelectTopics({ onComplete, onSkip, tabletMatches, setSnackbarData }) {
   const classes = useStyles();
 
-  // props
-  const {
-    selectedTopics,
-    addSelectedTopic,
-    removeSelectedTopic,
-    onNext,
-    tabletMatches,
-  } = props;
+  const [selectedTopics, setSelectedTopics] = useState([]);
+
+  const addSelectedTopic = (newTopic) =>
+    setSelectedTopics((current) => [...current, newTopic]);
+
+  const removeSelectedTopic = (topic) =>
+    setSelectedTopics((selected) => {
+      return selected.filter((selectedTopic) => {
+        if (selectedTopic !== topic) return selectedTopic;
+      });
+    });
+
+  const { user } = useContext(authContext);
+  const graphClient = useContext(apolloContext);
+
+  const updateInterestedTopics = async (topics) => {
+    try {
+      if (!user) {
+        setSnackbarData({
+          message: 'Please sign up to continue.',
+          severity: 'warning',
+        });
+        return;
+      }
+      if (topics.length === 0) {
+        onSkip();
+        return;
+      }
+      console.log(user);
+
+      await graphClient.mutate({
+        mutation: updateUserTopics,
+        variables: {
+          id: user.mid,
+          interestedTopics: topics,
+        },
+      });
+
+      onComplete();
+    } catch (error) {
+      setSnackbarData({
+        message: 'Something went wrong. Please try again.',
+        severity: 'error',
+      });
+    }
+  };
 
   return (
     <div className={classes.container}>
@@ -66,6 +117,7 @@ function SelectTopics(props) {
             addSelectedTopic={addSelectedTopic}
             removeSelectedTopic={removeSelectedTopic}
             tabletMatches={tabletMatches}
+            setSnackbarData={setSnackbarData}
           />
         ))}
       </div>
@@ -73,8 +125,7 @@ function SelectTopics(props) {
       <Button
         text='Next'
         onClick={() => {
-          onNext();
-          console.log('Following are the selected Topics: ', selectedTopics);
+          updateInterestedTopics(selectedTopics);
         }}
         containerStyles={classes.nextButton}
       />

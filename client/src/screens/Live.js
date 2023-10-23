@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 // libraries
 import { Typography, Container, useMediaQuery } from '@mui/material';
@@ -19,8 +19,8 @@ import theme from '../config/themes/light';
 // placeholder
 import { LIVE } from '../assets/placeholder/live';
 import getLiveByYearAndSemester from '../graphql/queries/live/getLiveByYearAndSemester';
-import { GraphClient } from '../config/ApolloClient';
 import ActivityIndicator from '../components/shared/ActivityIndicator';
+import { apolloContext } from '../context/ApolloContextProvider';
 
 function Live() {
   const classes = useStyles();
@@ -33,6 +33,8 @@ function Live() {
   const [showPlacement, setShowPlacement] = useState(true);
 
   const [isLoading, setLoading] = useState(true);
+
+  const graphClient = useContext(apolloContext);
 
   const selectSessions = (season) => {
     setSession(season);
@@ -53,10 +55,11 @@ function Live() {
   useEffect(() => {
     setLoading(true);
     const [semester, year] = activeSession.split(' ');
-    GraphClient.query({
-      query: getLiveByYearAndSemester,
-      variables: { year: parseInt(year), semester: semester.toUpperCase() },
-    })
+    graphClient
+      .query({
+        query: getLiveByYearAndSemester,
+        variables: { year: parseInt(year), semester: semester.toUpperCase() },
+      })
       .then((res) => {
         setLiveData(res.data.getLiveByYearAndSemester);
         setLoading(false);

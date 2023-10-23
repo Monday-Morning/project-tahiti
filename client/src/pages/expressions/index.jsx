@@ -4,7 +4,7 @@ import Head from 'next/head';
 // Components
 import Marginals from '../../components/marginals/Marginals';
 import Expressions from '../../screens/Expressions';
-import { GraphClient } from '../../config/ApolloClient';
+import { getGraphClient } from '../../context/ApolloContextProvider';
 import getArticlesByCategories from '../../graphql/queries/category/getArticlesByCategories';
 import Custom500 from '../500';
 
@@ -170,16 +170,18 @@ const ExpressionsPage = ({
 
 export async function getStaticProps() {
   try {
+    const graphClient = getGraphClient(true);
+
     const {
       data: { getArticlesByCategories: witsdom },
-    } = await GraphClient.query({
+    } = await graphClient.query({
       query: getArticlesByCategories,
       variables: { categoryNumbers: 61, limit: 3 },
     });
 
     const {
       data: { getArticlesByCategories: photostory },
-    } = await GraphClient.query({
+    } = await graphClient.query({
       query: getArticlesByCategories,
       variables: { categoryNumbers: 62, limit: 5 },
     });
@@ -188,7 +190,7 @@ export async function getStaticProps() {
       data: {
         getArticlesByCategories: [editorial],
       },
-    } = await GraphClient.query({
+    } = await graphClient.query({
       query: getArticlesByCategories,
       variables: { categoryNumbers: 66, limit: 3 },
     });
@@ -197,7 +199,7 @@ export async function getStaticProps() {
       data: {
         getArticlesByCategories: [miscellaneous],
       },
-    } = await GraphClient.query({
+    } = await graphClient.query({
       query: getArticlesByCategories,
       variables: { categoryNumbers: 67, limit: 3 },
     });

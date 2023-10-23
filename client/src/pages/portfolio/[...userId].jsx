@@ -5,7 +5,7 @@ import Portfolio from '../../screens/Portfolio';
 import Marginals from '../../components/marginals/Marginals';
 
 //Graphql
-import { GraphClient } from '../../config/ApolloClient';
+import { getGraphClient } from '../../context/ApolloContextProvider';
 import getUserByOldUserName from '../../graphql/queries/user/getUserByOldUserName';
 import getUserById from '../../graphql/queries/user/getUserById';
 import getListOfArticles from '../../graphql/queries/article/getListOfArticles';
@@ -181,13 +181,6 @@ const PortfolioPage = ({
 
 export default PortfolioPage;
 
-export async function getStaticPaths() {
-  return {
-    paths: [],
-    fallback: 'blocking',
-  };
-}
-
 export async function getStaticProps({
   params: {
     userId: [portfolioId, userSlug],
@@ -196,13 +189,15 @@ export async function getStaticProps({
   /**** to bring the portfolio URL in correct format - start ****/
 
   try {
+    const graphClient = getGraphClient(true);
+
     if (!userSlug && !portfolioId.match(/^[0-9a-f]{24}$/g)) {
       try {
         const {
           data: {
             getUserByOldUserName: { id, fullName },
           },
-        } = await GraphClient.query({
+        } = await graphClient.query({
           query: getUserByOldUserName,
           variables: {
             oldUserName: portfolioId,
@@ -226,7 +221,7 @@ export async function getStaticProps({
 
     const {
       data: { getUserByID: user },
-    } = await GraphClient.query({
+    } = await graphClient.query({
       query: getUserById,
       variables: {
         getUserById: portfolioId,
@@ -276,7 +271,7 @@ export async function getStaticProps({
     if (articleIdList.length > 0) {
       const {
         data: { getListOfArticles: articleList },
-      } = await GraphClient.query({
+      } = await graphClient.query({
         query: getListOfArticles,
         variables: {
           ids: articleIdList,
@@ -318,4 +313,11 @@ export async function getStaticProps({
       },
     };
   }
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  };
 }
