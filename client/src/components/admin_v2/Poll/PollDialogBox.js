@@ -47,7 +47,7 @@ const DialogPoll = ({ dialogBoxOpen, setDialogBoxOpen }) => {
         fullWidth
         maxWidth='md'
       >
-        <DialogTitle id='scroll-dialog-title' className={classes.DialogTitle}>
+        <DialogTitle id='scroll-dialog-title' className={classes.dialogTitle}>
           Create Poll
         </DialogTitle>
         {live === 'offline' ? (
@@ -58,7 +58,7 @@ const DialogPoll = ({ dialogBoxOpen, setDialogBoxOpen }) => {
                 multiline
                 variant='outlined'
                 placeholder='Poll Question'
-                className={classes.QuestionInputField}
+                className={classes.questionInputField}
               ></TextField>
             </div>
             <FormControl sx={{ m: 1, minWidth: 120 }}>
@@ -93,14 +93,14 @@ const DialogPoll = ({ dialogBoxOpen, setDialogBoxOpen }) => {
             })}
           </DialogContent>
         ) : (
-          <DialogContent className={classes.LiveReturn}>
+          <DialogContent className={classes.liveReturn}>
             <Typography variant='h3'>Poll Going Live </Typography>
           </DialogContent>
         )}
 
-        <div className={classes.BtnBox}>
+        <div className={classes.buttonBox}>
           <Button
-            className={classes.LiveBtn}
+            className={classes.liveButton}
             onClick={() => {
               handleLive();
             }}
@@ -108,7 +108,7 @@ const DialogPoll = ({ dialogBoxOpen, setDialogBoxOpen }) => {
             Live
           </Button>
           <Button
-            className={classes.LiveBtn}
+            className={classes.liveButton}
             onClick={() => {
               handleSave();
             }}
@@ -121,14 +121,14 @@ const DialogPoll = ({ dialogBoxOpen, setDialogBoxOpen }) => {
   );
 };
 const useStyles = makeStyles((theme) => ({
-  DialogTitle: {
+  dialogTitle: {
     textAlign: 'center',
   },
-  BtnBox: {
+  buttonBox: {
     display: 'flex',
     justifyContent: 'end',
   },
-  LiveBtn: {
+  liveButton: {
     width: '3rem',
     margin: '1rem 1rem 1rem 0',
     backgroundColor: 'green',
@@ -137,14 +137,14 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: '#f50057',
     },
   },
-  LiveReturn: {
+  liveReturn: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     height: '10rem',
     width: '100%',
   },
-  QuestionInputField:{
+  questionInputField:{
     width: '100%',
     marginBottom: '1rem ',
     marginTop: '1rem'
