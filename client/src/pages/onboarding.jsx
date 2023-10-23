@@ -1,6 +1,5 @@
 import React from 'react';
 import Head from 'next/head';
-import Script from 'next/script';
 
 //Components
 import Onboarding from '../screens/Onboarding';
@@ -66,10 +65,6 @@ const OnBoardingPage = () => {
           content='Monday Morning is the Media Body of National Institute Of Technology Rourkela. Monday Morning covers all the events, issues and activities going on inside the campus. Monday morning also serves as a link between the administration and the students.'
         />
       </Head>
-      <Script
-        src='https://accounts.google.com/gsi/client'
-        strategy='beforeInteractive'
-      ></Script>
       <Onboarding />
     </>
   );

@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 
 // context
-import { SidebarContext } from '../../../../context/SidebarContext';
+import { SidebarContext } from '../../../../context/SidebarContextProvider';
 
 const NavItem = ({ item, level }) => {
   const theme = useTheme();

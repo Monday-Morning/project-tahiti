@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import makeStyles from '@mui/styles/makeStyles';
 import { Fab } from '@mui/material';
-import { KeyboardArrowUp } from '@mui/icons-material';
+import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
 
 const ScrollToTopButton = () => {
   const classes = useStyles();
@@ -26,6 +26,7 @@ const ScrollToTopButton = () => {
 
   useEffect(() => {
     window.addEventListener('scroll', toggleVisible);
+    return () => window.removeEventListener('scroll', toggleVisible);
   }, []);
 
   return (
