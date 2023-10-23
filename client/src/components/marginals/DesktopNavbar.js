@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -7,13 +7,20 @@ import { useRouter } from 'next/router';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 import makeStyles from '@mui/styles/makeStyles';
-import { Container, Typography, TextField, Fade } from '@mui/material';
+import {
+  Container,
+  Typography,
+  TextField,
+  ButtonBase,
+  Fade,
+} from '@mui/material';
 // import TrendingUpSharpIcon from '@mui/icons-material/TrendingUpSharp';
 
 // Utils
 import ROUTES from '../../utils/getRoutes';
 import NewTabLink from '../shared/links/NewTabLink';
 import getArticleLink from '../../utils/getArticleLink';
+import { authContext } from '../../context/AuthContextProvider';
 
 // Assets
 import logoFullBlack from '../../assets/images/logos/logo_full_black.png';
@@ -21,13 +28,16 @@ import logoFullBlack from '../../assets/images/logos/logo_full_black.png';
 //hooks
 import useAutoComplete from '../../hooks/useAutoComplete';
 
+//components
+import UserAvatar from '../widgets/UserAvatar';
+
 const DesktopNavbar = () => {
   const router = useRouter();
   const [search, setSearch] = useState('');
   const [isSearchActive, setIsSearchActive] = useState(false);
   const inputRef = useRef(null);
   const classes = useStyles({ isSearchActive });
-
+  const { user } = useContext(authContext);
   const autoCompleteData = useAutoComplete(search, 10);
 
   useEffect(() => {
@@ -120,21 +130,38 @@ const DesktopNavbar = () => {
                 objectFit='cover'
               />
             </div>
-
-            <TextField
-              variant='standard'
-              label='Search for articles'
-              placeholder='Enter related words'
-              onClick={searchActive}
-              disabled={true}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position='start'>
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-              }}
-            />
+            <div className={classes.searchAndSign}>
+              <TextField
+                variant='standard'
+                label='Search for articles'
+                placeholder='Enter related words'
+                onClick={searchActive}
+                disabled={true}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position='start'>
+                      <SearchIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <div className={classes.signIn}>
+                {user ? (
+                  <div className={classes.avatar}>
+                    <UserAvatar
+                      picture={user.photoURL}
+                      name={user.displayName}
+                    />
+                  </div>
+                ) : (
+                  <Link href='/onboarding' passHref>
+                    <ButtonBase type='button' className={classes.button}>
+                      <span className={classes.label}> Sign In </span>
+                    </ButtonBase>
+                  </Link>
+                )}
+              </div>
+            </div>
           </div>
 
           <ul aria-label='Navbar' className={classes.menuContainer}>
@@ -166,15 +193,31 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     marginTop: '10px',
   },
-
   detailsContainer: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-
     paddingTop: '10px',
     paddingBottom: '25px',
     borderBottom: `3px solid ${theme.palette.secondary.neutral50}`,
+  },
+  button: {
+    textAlign: 'center',
+    borderRadius: '4px',
+    border: 'solid black 0.5px',
+    margin: '8px 8px 0px 0px',
+    padding: '10px 20px',
+  },
+  avatar: {
+    marginRight: '20px',
+  },
+  label: {
+    fontFamily: 'Source Sans Pro',
+    fontSize: '20px',
+    fontWeight: '400',
+    lineHeight: '1.2rem',
+    textDecoration: 'none',
+    color: theme.palette.secondary.main,
   },
   imgContainer: {
     width: '33%',
@@ -187,6 +230,13 @@ const useStyles = makeStyles((theme) => ({
     position: 'unset !important',
     width: 'auto !important',
     height: 'auto !important',
+  },
+  searchAndSign: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  signIn: {
+    paddingLeft: '30px',
   },
   menuContainer: {
     width: '100%',
@@ -234,7 +284,9 @@ const useStyles = makeStyles((theme) => ({
   searchField: {
     width: '100%',
     color: theme.palette.primary.blue50,
-    paddingBottom: '0px',
+    '& input': {
+      paddingLeft: '20px',
+    },
   },
   trendingArticles: {
     position: 'absoulte',
@@ -254,18 +306,18 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     background: '#FEFEFF',
     width: '100%',
-    padding: '20px',
     zIndex: '20022',
     borderRadius: '0px 0px 5px 5px',
     border: '1px #ECEDEC',
     borderStyle: 'none solid solid',
     boxShadow: '0px 0px 5px grey',
     display: (_) => (_.isSearchActive ? 'block' : 'none'),
+    paddingLeft: '20px',
   },
   trendingList: {
     fontFamily: theme.typography.fontFamily,
     alignItems: 'center',
-    paddingBottom: '8px',
+    paddingBottom: '12px',
     paddingTop: '8px',
     cursor: 'pointer',
   },

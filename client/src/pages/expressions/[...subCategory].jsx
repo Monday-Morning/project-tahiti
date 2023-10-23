@@ -7,7 +7,7 @@ import ActivityIndicator from '../../components/shared/ActivityIndicator';
 import SubCategory from '../../screens/SubCategory';
 import Marginals from '../../components/marginals/Marginals';
 
-import { GraphClient } from '../../config/ApolloClient';
+import { getGraphClient } from '../../context/ApolloContextProvider';
 
 // Utils
 import ROUTES from '../../utils/getRoutes';
@@ -208,13 +208,15 @@ export async function getStaticProps({
   preview,
 }) {
   try {
+    const graphClient = getGraphClient(true);
+
     let subCategoryDetails = ROUTES.SUB_CATEGORIES.OBJECT.EXPRESSIONS.filter(
       ({ shortName }) => shortName === subCategory,
     )[0];
 
     const {
       data: { getArticlesByCategories: articleList },
-    } = await GraphClient.query({
+    } = await graphClient.query({
       query: getArticlesByCategories,
       variables: {
         categoryNumbers: [subCategoryDetails?.idNumber],
@@ -225,7 +227,7 @@ export async function getStaticProps({
 
     const {
       data: { countOfArticlesBySubCategory: countOfArticles },
-    } = await GraphClient.query({
+    } = await graphClient.query({
       query: countOfArticlesBySubCategory,
       variables: {
         categoryNumber: subCategoryDetails?.idNumber,

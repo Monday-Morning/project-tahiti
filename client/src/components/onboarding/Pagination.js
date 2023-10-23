@@ -42,7 +42,6 @@ function Pagination({ stages, active }) {
     </Stepper>
   );
 }
-
 export default Pagination;
 
 const useStyles = makeStyles((theme) => ({
