@@ -4,7 +4,7 @@ import { getGraphClient } from '../context/ApolloContextProvider';
 import getTagAutocomplete from '../graphql/queries/tag/getTagAutocomplete';
 
 const useTagAutoComplete = (searchTag, isAdmin, limit) => {
-  const graphClient = getGraphClient(true);
+  const graphClient = getGraphClient();
   const [searchKeyword, setSearchKeyword] = useState(searchTag);
   const [result, setResult] = useState([]);
 

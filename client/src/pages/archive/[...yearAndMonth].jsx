@@ -171,7 +171,7 @@ export async function getStaticProps({
   },
 }) {
   try {
-    const graphClient = getGraphClient(true);
+    const graphClient = getGraphClient();
 
     const {
       data: { listArticlesByYearAndMonth: archiveArticles },
