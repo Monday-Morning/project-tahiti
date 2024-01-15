@@ -46,7 +46,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const BrowseArticle = ({ articles, totalArticles }) => {
-  const graphClient = getGraphClient(true);
+  const graphClient = getGraphClient();
   const [_articles, setArticles] = useState(articles);
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
   const [row, setRow] = useState([]);

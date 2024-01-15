@@ -180,7 +180,7 @@ function HomePage({
 
 export async function getStaticProps({ preview }) {
   try {
-    const graphClient = getGraphClient(true);
+    const graphClient = getGraphClient();
 
     const {
       data: { getLatestIssues: issues },

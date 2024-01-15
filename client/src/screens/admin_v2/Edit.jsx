@@ -39,7 +39,7 @@ const checkIsSame = (arr1, arr2) => {
 
 const EditArticle = ({ allUsers, article }) => {
   const mobile = !useMediaQuery('(min-width:600px)');
-  const graphClient = getGraphClient(true);
+  const graphClient = getGraphClient(false);
   const {
     id,
     title,

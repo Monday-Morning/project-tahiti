@@ -170,7 +170,7 @@ const ExpressionsPage = ({
 
 export async function getStaticProps() {
   try {
-    const graphClient = getGraphClient(true);
+    const graphClient = getGraphClient();
 
     const {
       data: { getArticlesByCategories: witsdom },

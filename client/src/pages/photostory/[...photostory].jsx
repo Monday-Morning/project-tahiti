@@ -177,7 +177,7 @@ export async function getStaticProps({
   preview,
 }) {
   try {
-    const graphClient = getGraphClient(true);
+    const graphClient = getGraphClient();
 
     const {
       data: { getArticleByID: photostory },

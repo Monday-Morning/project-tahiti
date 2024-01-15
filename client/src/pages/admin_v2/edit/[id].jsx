@@ -5,7 +5,7 @@ import Custom500 from '../../500';
 import ActivityIndicator from '../../../components/shared/ActivityIndicator';
 
 import { parseCookies } from 'nookies';
-import { getApolloLink, GraphClient } from '../../../config/ApolloClient';
+import { getGraphClient } from '../../../context/ApolloContextProvider';
 import getRestrictedArticleData from '../../../graphql/queries/article/getRestrictedArticleData';
 import listAllUser from '../../../graphql/queries/user/listAllUser';
 import EditArticle from '../../../screens/admin_v2/Edit';
@@ -33,20 +33,18 @@ export default EditPage;
 export async function getServerSideProps(context) {
   try {
     const id = context.params.id;
-
     const cookies = parseCookies(context);
-    GraphClient.setLink(getApolloLink(cookies.firebaseToken));
-
+    const graphClient = getGraphClient(false, cookies.firebaseToken);
     const {
       data: { listAllUsers: allUsers },
-    } = await GraphClient.query({
+    } = await graphClient.query({
       query: listAllUser,
       variables: { accountType: 2, limit: 10000 },
     });
 
     const {
       data: { getArticleByID: article },
-    } = await GraphClient.query({
+    } = await graphClient.query({
       query: getRestrictedArticleData,
       variables: { id },
     });
