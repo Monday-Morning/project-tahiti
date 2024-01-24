@@ -52,7 +52,7 @@ export default function ArticleTags({
   id,
   setErrorMessageAndError,
 }) {
-  const graphClient = getGraphClient(true);
+  const graphClient = getGraphClient();
   const [tags, setTags] = useState([]);
   const [active, setActive] = useState(false);
   const [search, setSearch] = useState('');

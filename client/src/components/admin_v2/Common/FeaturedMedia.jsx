@@ -20,7 +20,7 @@ export default function FeaturedMedia({
   setError,
   setErrorMessage,
 }) {
-  const graphClient = getGraphClient(true);
+  const graphClient = getGraphClient();
   const [files, setFiles] = useState([{ name: image, preview: image }]);
   const { getRootProps, getInputProps, style, isDragActive } = SharedMedia(
     files,

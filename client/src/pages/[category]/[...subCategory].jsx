@@ -209,7 +209,7 @@ export async function getStaticProps({
   preview,
 }) {
   try {
-    const graphClient = getGraphClient(true);
+    const graphClient = getGraphClient();
 
     const department = subCategory.length === 3 ? subCategory[1] : false;
     const pageNumber =

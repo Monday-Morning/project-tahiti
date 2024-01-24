@@ -16,7 +16,7 @@ import createArticle from '../../graphql/mutations/article/createArticle';
 
 const AddNew = ({ allUsers }) => {
   const { push } = useRouter();
-  const graphClient = getGraphClient(true);
+  const graphClient = getGraphClient();
 
   const [title, setTitle] = useState('');
 

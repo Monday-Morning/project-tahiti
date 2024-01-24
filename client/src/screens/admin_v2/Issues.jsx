@@ -43,7 +43,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const Issues = ({ issues }) => {
-  const graphClient = getGraphClient(true);
+  const graphClient = getGraphClient();
   const [dialogBoxOpen, setDialogBoxOpen] = useState(false);
   const [seletedIssue, setSelectedIssue] = useState({
     name: '',

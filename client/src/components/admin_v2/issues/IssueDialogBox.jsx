@@ -32,7 +32,7 @@ export default function IssueDialogBox({
   issueList,
   setIssueList,
 }) {
-  const graphClient = getGraphClient(true);
+  const graphClient = getGraphClient();
   const { name, articles, featured } = seletedIssue;
 
   const [issueTitle, setIssueTitle] = useState(name || '');

@@ -13,7 +13,6 @@ const getRestricedArticleData = gql`
             details
             name
           }
-          imageKitFileID
           storePath
           store
           id
@@ -23,7 +22,6 @@ const getRestricedArticleData = gql`
             details
             name
           }
-          imageKitFileID
           storePath
           store
           id

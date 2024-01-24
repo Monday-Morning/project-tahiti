@@ -189,7 +189,7 @@ export async function getStaticProps({
   /**** to bring the portfolio URL in correct format - start ****/
 
   try {
-    const graphClient = getGraphClient(true);
+    const graphClient = getGraphClient();
 
     if (!userSlug && !portfolioId.match(/^[0-9a-f]{24}$/g)) {
       try {

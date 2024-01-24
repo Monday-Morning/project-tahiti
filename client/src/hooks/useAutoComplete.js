@@ -5,7 +5,7 @@ import getAutoComplete from '../graphql/queries/article/getAutoComplete';
 import { getGraphClient } from '../context/ApolloContextProvider';
 
 const useAutoComplete = (searchText, limit) => {
-  const graphClient = getGraphClient(true);
+  const graphClient = getGraphClient();
   const [searchKeyword, setSearchKeyword] = useState(searchText);
   const [searchResult, setSearchResult] = useState([]);
 
