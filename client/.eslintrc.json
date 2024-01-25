@@ -1,5 +1,5 @@
 {
-  "extends": ["next/core-web-vitals", "prettier"],
+  "extends": ["next/core-web-vitals","next/babel", "prettier"],
   "rules": {
     "no-plusplus": 0,
     "react/jsx-props-no-spreading": 0,
