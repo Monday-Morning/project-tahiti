@@ -16,6 +16,7 @@ import getArticleByID from '../../graphql/queries/article/getArticleByID';
 import getArticleByOldID from '../../graphql/queries/article/getArticleByOldID';
 import getArticleLink, { getArticleSlug } from '../../utils/getArticleLink';
 import Custom500 from '../500';
+import Comment from '../../components/article/comments/Comment';
 
 function ArticlePage({ article, isError }) {
   const { isFallback } = useRouter();

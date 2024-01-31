@@ -16,6 +16,7 @@ import ArticleTags from '../components/article/Tags';
 import RecommendedArticles from '../components/article/RecommendedArticles';
 import SidePanel from '../components/article/SidePanel';
 import SidePanelMobile from '../components/article/SidePanelMobile';
+import Comment from '../components/article/comments/Comment';
 
 // Assets
 import theme from '../config/themes/light';
@@ -35,7 +36,7 @@ function Article({ article }) {
             <Disclaimer />
             <ArticleTags tags={article?.tags} />
             <hr />
-            {/* <Comments /> */}
+            <Comments />
           </Grid>
 
           <Grid item md={3}>
